@@ -41,6 +41,11 @@ structure-aware, whitening-based detection holds.
 - **Whitening is neutral** on this isotropic-noise synthetic (expected to help on real
   correlated-channel data — not yet demonstrated).
 
+**First real-CPS validation:** on **HAI** (59 sensors, multi-process) the framework *leads* on the
+imbalance-appropriate metrics — AUPRC **0.77** / TPR@5%FPR **0.77** vs AutoEncoder 0.75/0.73, LOF 0.74/0.71,
+Isolation Forest 0.40/0.53. On near-unimodal **SKAB** all methods are weak and it's only competitive — the
+contrast supports the thesis (mode machinery helps where normal is genuinely multimodal). WADI/SWaT pending.
+
 Full ablation, tables, and honest limitations are in the [paper](index.html).
 
 ## Run
@@ -51,6 +56,8 @@ python poc/eval_generated.py          # C1 generated faults: standard detectors 
 python poc/component3.py              # C3: single-global vs cluster ensemble on pockets
 python poc/ablation.py --seeds 3      # each component, separately and combined
 python poc/make_figures.py            # regenerate results/figure.png
+python poc/run_real.py hai            # real CPS: HAI (multi-process) — framework leads
+python poc/run_real.py skab           # real CPS: SKAB (near-unimodal) — competitive
 ```
 
 Requires: `torch`, `scikit-learn`, `pyod`, `numpy`, `scipy`, `matplotlib` (CUDA optional).

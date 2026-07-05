@@ -57,7 +57,7 @@
 <p class="title">Physically-Grounded Anomaly Detection for Massively-Multimodal Cyber-Physical Normal Data</p>
 <p class="byline"><span class="a">Alexander Apartsin</span><sup>1</sup> &nbsp; <span class="a">Yehudit Aperstein</span><sup>2</sup></p>
 <p class="affil"><sup>1</sup>Holon Institute of Technology (HIT) &nbsp;&middot;&nbsp; <sup>2</sup>Afeka College of Engineering</p>
-<p class="note">Preliminary proof-of-concept report on synthetic data. Real-testbed validation (WADI / SWaT / HAI) in progress.</p>
+<p class="note">Preliminary proof-of-concept report: synthetic MIIM benchmark with first real-CPS validation on the SKAB and HAI testbeds. WADI / SWaT access-gated and pending.</p>
 
 <div class="abstract">
   <div class="h">Abstract</div>
@@ -78,8 +78,11 @@
   framework substantially outperforms standard detectors; on physically-valid faults, Isolation Forest
   and a single autoencoder are effectively blind while the framework detects them; a supervised ensemble
   trained only on C1 anomalies transfers to unseen fault families; and mode-conditional calibration
-  eliminates systematically false-alarming modes that the mean rate hides. We report a full ablation and
-  are explicit about scope: all results are synthetic; real-testbed validation is the next step.</p>
+  eliminates systematically false-alarming modes that the mean rate hides. First real-CPS validation is
+  consistent with the thesis: on the multi-process HAI testbed the framework leads on the imbalance-appropriate
+  metrics (AUPRC 0.77, TPR@5%FPR 0.77), while on the near-unimodal SKAB rotor all methods are weak and it is
+  merely competitive. We report a full ablation and are explicit about scope: the main study is synthetic and
+  the real-data results are first, single-seed, static-window; WADI/SWaT validation is the next step.</p>
 </div>
 
 <h2>1. Introduction</h2>
@@ -383,6 +386,33 @@ maximum is dominated by one tiny cluster.</caption>
 <tr class="best"><td>mode-conditional</td><td>0.159</td><td>0.68</td><td>0.97</td><td>3/25</td><td>0.66</td></tr>
 </tbody></table>
 
+<h3>6.6 First real-CPS validation (SKAB, HAI)</h3>
+<p>We apply the framework unchanged to two real testbeds, windowing each time series into per-channel
+statistical features. Real test sessions drift from the training session, so thresholds are calibrated on a
+held-out split of test-normal (calibrating on recent known-normal operation is the realistic protocol, not
+label leakage). At the low anomaly base rates here, <b>AUPRC</b> and TPR@5%FPR are the meaningful metrics.
+On <b>HAI</b> (59 sensors, four coupled processes &mdash; genuinely multi-process), the framework
+<em>leads</em>: AUPRC 0.77 and TPR@5%FPR 0.77, above the AutoEncoder (0.75/0.73), LOF (0.74/0.71), and far
+above Isolation Forest (0.40/0.53); LOF and the AutoEncoder edge it only on AUROC. On <b>SKAB</b> (a single
+rotor testbed, effectively unimodal), all methods are weak (AUROC 0.56&ndash;0.64) and the framework is
+competitive but does not lead. The contrast supports the thesis: the mode-based machinery helps where normal
+operation is genuinely multimodal (HAI) and not where it is unimodal (SKAB).</p>
+<table><caption>Table 5. Real CPS testbeds, single seed, threshold calibrated on held-out test-normal.
+AUPRC (bold column) is the meaningful metric at these base rates. HAI is multi-process (4% attacks); SKAB is
+a single rotor (35% anomalous windows).</caption>
+<thead><tr><th>dataset / method</th><th>AUROC</th><th>AUPRC</th><th>TPR@5%FPR</th></tr></thead>
+<tbody>
+<tr><td>HAI &middot; Isolation Forest</td><td>0.864</td><td class="fail">0.395</td><td>0.525</td></tr>
+<tr><td>HAI &middot; LOF</td><td>0.943</td><td>0.740</td><td>0.709</td></tr>
+<tr><td>HAI &middot; AutoEncoder</td><td>0.940</td><td>0.747</td><td>0.726</td></tr>
+<tr class="best"><td>HAI &middot; VaDE + basin (ours)</td><td>0.907</td><td>0.771</td><td>0.766</td></tr>
+<tr><td>SKAB &middot; Isolation Forest</td><td>0.635</td><td>0.549</td><td>0.261</td></tr>
+<tr><td>SKAB &middot; LOF</td><td>0.633</td><td>0.566</td><td>0.269</td></tr>
+<tr><td>SKAB &middot; VaDE + basin (ours)</td><td>0.605</td><td>0.559</td><td>0.269</td></tr>
+</tbody></table>
+<p class="cap">These are first real-data results: single seed, a static per-window feature representation; the
+temporal multiscale of A8 (per-channel time constants) is not yet modelled, and WADI/SWaT remain access-gated.</p>
+
 <figure>
   <img src="poc/results/figure.png" alt="Four-panel results figure.">
   <figcaption>Figure 1. (A) <b>Difficulty ladder</b>: detection (TPR@5%FPR) versus fault distance from the
@@ -395,9 +425,10 @@ maximum is dominated by one tiny cluster.</caption>
 
 <h2>7. Limitations and Scope</h2>
 <ul class="spaced">
-  <li><b>Synthetic only.</b> All results are on the controlled MIIM benchmark. Real-testbed validation is
-  the immediate next step: WADI and SWaT are access-gated (iTrust request, in progress); SKAB and HAI are
-  downloaded and slated next. Code is dataset-agnostic behind a loader.</li>
+  <li><b>Real-data results are preliminary.</b> The main study is synthetic; the SKAB/HAI results
+  (Section&nbsp;6.6) are single-seed on a static per-window feature representation, and SKAB is near-unimodal
+  so it does not exercise the thesis. WADI and SWaT (the intended primary real benchmarks) are access-gated
+  (iTrust request, pending). Code is dataset-agnostic behind a loader.</li>
   <li><b>Realism margin over LOF depends on sensor heterogeneity.</b> On an earlier homogeneous-channel
   version of the benchmark, LOF (local density on raw distance) was competitive. Under the realistic model
   (A6&ndash;A7: bounded modes, heterogeneous noise/precision, per-channel quantization) LOF's advantage

@@ -1,0 +1,10 @@
+HAI(W=60,stats): train=9166 test=7410 feats=354 anomaly-frac=0.040
+
+method               AUROC   AUPRC  realFPR  TPR@5%FPR
+IsolationForest      0.864   0.395    0.049      0.525
+LOF                  0.943   0.740    0.048      0.709
+AutoEncoder          0.940   0.747    0.048      0.726
+VaDE (joint)         0.909   0.771    0.048      0.766
+VaDE + basin         0.907   0.771    0.050      0.766
+
+C4 (discovered clusters): global 5% budget -> mean FPR 0.050, TFAR90 0.144, clusters>50% 0/13
