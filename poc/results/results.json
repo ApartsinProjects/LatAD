@@ -1,0 +1,47 @@
+{
+  "IsolationForest": {
+    "AUROC": 0.7310590625,
+    "AUPRC": 0.6352006653977065,
+    "FPR": 0.325,
+    "rare_mode_FPR": 0.6003311258278146,
+    "common_mode_FPR": 0.045973154362416106,
+    "pocket_recall": 0.03375,
+    "ood_recall": 1.0
+  },
+  "LOF": {
+    "AUROC": 0.88565125,
+    "AUPRC": 0.7743984642553127,
+    "FPR": 0.453,
+    "rare_mode_FPR": 0.8480132450331126,
+    "common_mode_FPR": 0.052684563758389265,
+    "pocket_recall": 0.91125,
+    "ood_recall": 1.0
+  },
+  "AutoEncoder": {
+    "AUROC": 0.7465247916666666,
+    "AUPRC": 0.6410259225968444,
+    "FPR": 0.5303333333333333,
+    "rare_mode_FPR": 1.0,
+    "common_mode_FPR": 0.05436241610738255,
+    "pocket_recall": 0.97375,
+    "ood_recall": 1.0
+  },
+  "VAE+GMM (sequential)": {
+    "AUROC": 0.8622434374999999,
+    "AUPRC": 0.7268729133976638,
+    "FPR": 0.5023333333333333,
+    "rare_mode_FPR": 0.9407284768211921,
+    "common_mode_FPR": 0.05805369127516778,
+    "pocket_recall": 1.0,
+    "ood_recall": 1.0
+  },
+  "VaDE (joint, ours)": {
+    "AUROC": 0.9622837499999999,
+    "AUPRC": 0.898559536371346,
+    "FPR": 0.468,
+    "rare_mode_FPR": 0.8841059602649006,
+    "common_mode_FPR": 0.046308724832214765,
+    "pocket_recall": 1.0,
+    "ood_recall": 1.0
+  }
+}

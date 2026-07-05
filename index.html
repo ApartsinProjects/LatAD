@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Physically-Grounded Anomaly Detection for Massively-Multimodal CPS Normal Data</title>
+<style>
+  :root{
+    --ink:#15212e; --steel:#24475f; --steel2:#356084; --signal:#e0872b;
+    --normal:#2f8f7f; --paper:#fbfcfd; --surface:#fff; --border:#dbe2e8;
+    --muted:#5c6b78; --text:#1b2833;
+    --serif:Georgia,'Iowan Old Style','Times New Roman',serif;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,'SF Mono','Cascadia Mono',Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--paper);color:var(--text);font-family:var(--serif);
+    font-size:17px;line-height:1.62;margin:0;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:0 24px 96px}
+  .masthead{background:var(--ink);color:#eaf0f5;margin-bottom:0}
+  .masthead-inner{max-width:820px;margin:0 auto;padding:46px 24px 34px}
+  .eyebrow{font-family:var(--sans);font-size:.72rem;letter-spacing:.16em;
+    text-transform:uppercase;color:#8fb3cc;font-weight:600;margin:0 0 14px}
+  h1{font-family:var(--serif);font-weight:700;font-size:2.05rem;line-height:1.16;
+    margin:0 0 14px;color:#fff}
+  .authors{font-family:var(--sans);font-size:.95rem;color:#cddae5;margin:0 0 4px}
+  .affil{font-family:var(--sans);font-size:.82rem;color:#8fb3cc;margin:0}
+  .status{font-family:var(--sans);font-size:.74rem;color:#e7c9a0;margin:14px 0 0;
+    background:rgba(224,135,43,.12);border:1px solid rgba(224,135,43,.3);
+    display:inline-block;padding:5px 11px;border-radius:6px}
+  h2{font-family:var(--sans);font-size:1.3rem;font-weight:650;color:var(--ink);
+    margin:44px 0 6px;letter-spacing:-.01em;padding-bottom:6px;border-bottom:2px solid var(--border)}
+  h3{font-family:var(--sans);font-size:1.03rem;font-weight:650;color:var(--steel);margin:26px 0 4px}
+  p{margin:0 0 14px;text-align:justify;hyphens:auto}
+  a{color:var(--steel2)}
+  .lead{font-size:1.05rem}
+  .abstract{background:var(--surface);border:1px solid var(--border);border-radius:12px;
+    padding:22px 26px;margin:30px 0 8px}
+  .abstract h3{margin-top:0;font-family:var(--sans);text-transform:uppercase;
+    font-size:.72rem;letter-spacing:.12em;color:var(--signal)}
+  code{font-family:var(--mono);font-size:.86em;background:#eef2f5;padding:1px 5px;border-radius:4px}
+  table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:.86rem;margin:16px 0}
+  th,td{text-align:right;padding:8px 10px;border-bottom:1px solid var(--border)}
+  th:first-child,td:first-child{text-align:left}
+  thead th{background:var(--ink);color:#fff;font-size:.7rem;letter-spacing:.04em;
+    text-transform:uppercase;font-weight:600}
+  tbody tr:last-child td{border-bottom:2px solid var(--ink)}
+  .best{background:#fbf1e5;font-weight:700}
+  .fail{color:#b4472a;font-weight:600}
+  .cap{font-family:var(--sans);font-size:.82rem;color:var(--muted);margin:6px 0 26px;text-align:left}
+  .tag{font-family:var(--sans);font-size:.7rem;font-weight:700;text-transform:uppercase;
+    letter-spacing:.05em;padding:2px 8px;border-radius:20px;margin-right:6px}
+  .c1{background:#e7edf2;color:var(--steel2)} .c2{background:#e2efec;color:#1f6357}
+  .c3{background:#f6e9d6;color:#9a5a12}
+  figure{margin:22px 0;text-align:center}
+  figure img{max-width:100%;border:1px solid var(--border);border-radius:10px}
+  .callout{background:#f4f8fb;border-left:3px solid var(--steel2);padding:12px 18px;
+    margin:18px 0;border-radius:0 8px 8px 0;font-size:.96rem}
+  .refs{font-family:var(--sans);font-size:.82rem;line-height:1.5}
+  .refs li{margin-bottom:7px}
+  ul.tight li{margin-bottom:4px}
+  .toc{font-family:var(--sans);font-size:.85rem;background:var(--surface);
+    border:1px solid var(--border);border-radius:10px;padding:14px 20px;margin:26px 0}
+  .toc a{text-decoration:none;color:var(--steel)}
+  @media(max-width:600px){body{font-size:16px}h1{font-size:1.6rem}.wrap{padding:0 16px 60px}}
+</style>
+</head>
+<body>
+<div class="masthead"><div class="masthead-inner">
+  <p class="eyebrow">Research Report &middot; Proof of Concept</p>
+  <h1>Physically-Grounded Anomaly Detection for Massively-Multimodal Cyber-Physical Normal Data</h1>
+  <p class="authors">Alexander Apartsin</p>
+  <p class="affil">Holon Institute of Technology (HIT)</p>
+  <span class="status">Preliminary synthetic-benchmark study &middot; real-testbed validation (WADI/SWaT/HAI) in progress</span>
+</div></div>
+
+<div class="wrap">
+
+<div class="abstract">
+  <h3>Abstract</h3>
+  <p>Anomaly detection in transportation cyber-physical systems (CPS) is limited less by the
+  scarcity of faults than by the difficulty of modelling <em>normal</em> behaviour. CPS normal
+  operation is <strong>Massive, Implicit, Imbalanced, Multimodal (MIIM)</strong>: it comprises a
+  very large number of unlabeled operating modes whose frequencies span orders of magnitude. We
+  argue this structure produces three characteristic detector errors &mdash; false positives on
+  rare-but-valid modes, false negatives on faults hidden in the interpolated gaps between modes,
+  and an inability to calibrate or rank detectors without labeled faults &mdash; and we present a
+  framework that turns the structure into an advantage. A joint variational latent model with a
+  Gaussian-mixture prior (VaDE) discovers the modes; on top of it three components each target one
+  error: (C1) physically-guided anomaly generation that manufactures controllable, physically-valid
+  boundary faults; (C2) a basin-of-attraction test that separates rare-but-valid modes from faults
+  by latent dynamics; and (C3) a cluster-based reconstruction ensemble that catches over-interpolated
+  faults. On a controlled MIIM benchmark, the joint foundation reaches AUROC 0.94 versus 0.74&ndash;0.87 for
+  standard detectors, and the full framework 0.997 (C3 being the decisive detection driver); C2 lowers
+  the rare-mode false-positive rate from 0.93 to 0.69 in its dedicated configuration; and on
+  physically-valid dependency-violation faults, Isolation Forest and a single autoencoder are effectively
+  blind (TPR 0.00 at 5% FPR) while the framework detects 0.92. We report a full ablation isolating each
+  component, including where a component is neutral or its benefit configuration-dependent, and are
+  explicit about what is and is not yet demonstrated:
+  results are on synthetic data; validation on the WADI water-distribution testbed is the next step.</p>
+</div>
+
+<div class="toc">
+  <strong>Contents.</strong>
+  <a href="#intro">1 Introduction</a> &nbsp;&middot;&nbsp;
+  <a href="#related">2 Related Work</a> &nbsp;&middot;&nbsp;
+  <a href="#setting">3 Problem Setting &amp; Assumptions</a> &nbsp;&middot;&nbsp;
+  <a href="#data">4 Data Construction</a> &nbsp;&middot;&nbsp;
+  <a href="#methods">5 Methods</a> &nbsp;&middot;&nbsp;
+  <a href="#experiments">6 Experiments</a> &nbsp;&middot;&nbsp;
+  <a href="#limits">7 Limitations</a> &nbsp;&middot;&nbsp;
+  <a href="#refs">References</a>
+</div>
+
+<h2 id="intro">1. Introduction</h2>
+<p class="lead">Modern transportation platforms &mdash; road vehicles, rail rolling stock, maritime
+vessels &mdash; are deeply integrated cyber-physical systems: networks of sensors, embedded
+software, control logic, and physical actuators that continuously sense their own state and act
+upon it. A contemporary locomotive coordinates hundreds of electronic control units and thousands
+of signals governing propulsion, braking, and energy management.</p>
+<p>This complexity makes a system's faults impossible to enumerate in advance: the combinations in
+which a fault can arise cannot be predefined or exhaustively sampled before deployment, and faults
+often develop slowly as wear or drift that produces no obvious symptom until well advanced. Because
+faults cannot be specified ahead of time, they must be discovered from the system's own behaviour as
+it operates &mdash; the task of anomaly detection. That behaviour is richly observable: high-frequency
+vibration, current, temperature, pressure and control signals are recorded across entire fleets, and
+in principle carry an early signature of almost any developing fault. Detecting those signatures
+before they culminate in failure is of direct operational and societal importance: in transportation
+an undetected fault is not merely a maintenance expense but a potential safety event.</p>
+<p>Anomaly detection is commonly framed as characterising anomalies, yet this framing is misleading.
+Were labeled faults abundant, the task would reduce to supervised classification; in practice genuine
+faults are rare and unrepresentative. The principal source of information lies on the opposite side
+of the decision boundary, in the <em>normal</em> data, which is abundant yet rarely exploited in
+full. Our thesis is that the hard and neglected problem is <strong>modelling normal behaviour</strong>,
+and that CPS normal data has a specific, exploitable structure we call MIIM (Section 3). We identify
+three detector errors this structure induces and contribute a framework, not a single model, in
+which a joint latent-clustering foundation is augmented by three targeted components (Section 5),
+validated on a controlled benchmark and on physically-valid synthetic faults (Section 6).</p>
+
+<h2 id="related">2. Related Work</h2>
+<h3>CPS/ICS anomaly-detection benchmarks and methods</h3>
+<p>Industrial control-system testbeds provide the standard evaluation ground: SWaT and WADI
+(water treatment and distribution) [1,2] and the HIL-based HAI dataset [3], with the simulated
+BATADAL water-network competition [4]. Multivariate time-series detectors evaluated on these include
+reconstruction/forecasting models (OmniAnomaly [5], USAD [6], TranAD [7]), graph models (GDN [8],
+MTAD-GAT [9]), GAN-based MAD-GAN [10], and the Anomaly Transformer [11]; Ruff et&nbsp;al. [12] give a
+unifying review of deep and shallow anomaly detection. We note that several results in this line rely
+on point-adjustment scoring later shown to inflate F1 [13], and we deliberately avoid it.</p>
+<h3>Deep and shallow detectors</h3>
+<p>Foundational families include reconstruction (autoencoders, the VAE [14]), one-class methods
+(OC-SVM, Deep SVDD [15], DROCC [16]), density/energy models (DAGMM [17]), self-supervised
+transformation learning (NeuTraL-AD [18]), and non-deep baselines &mdash; Isolation Forest [19], LOF
+[20], and the parameter-free ECOD/COPOD [21]. We use Isolation Forest, LOF, and a deep autoencoder as
+baselines spanning the global, local-density, and single-reconstruction families.</p>
+<h3>Deep clustering with generative latent models</h3>
+<p>Our foundation builds on latent-variable clustering: VaDE [22] replaces the VAE's single-Gaussian
+prior with a Gaussian mixture, jointly generative and clustering; GMVAE [23] documents the
+cluster-degeneracy failure we encounter and fix; DAGMM [17] is the anomaly-focused member of this
+family. Training instability and collapse are known [23], with fixes including KL/&beta;-annealing and
+mini-batch mixture initialisation (S3VDC [24]).</p>
+<h3>Multimodal normal, synthetic anomalies, and whitening</h3>
+<p>That "normal" is multimodal is well known in prognostics &mdash; C-MAPSS [25] contains six
+operating regimes &mdash; and contextual anomaly detection [26] formalises why ignoring regime causes
+false positives; yet no established CPS method isolates the rare-but-valid-mode false positive that
+we target, a genuine gap. For synthetic anomalies, outlier exposure [27] and CutPaste [28] create
+proxy irregularities; channel-shuffling to destroy cross-sensor joint structure (our C1) has no
+established named predecessor and is presented as a contribution. Label-free detector ranking has
+been studied via excess-mass/mass-volume curves [29]. Our whitened residual score uses Ledoit-Wolf
+shrinkage covariance [30] and follows the Mahalanobis-distance OOD line [31]. The operational
+cost of false alarms in rail predictive maintenance is documented in CBM/PdM surveys [32,33].</p>
+
+<h2 id="setting">3. Problem Setting and Assumptions</h2>
+<p>Let normal operation be a distribution <code>p(x)</code> over sensor windows <code>x&isin;R^d</code>.
+Our central assumption is that for CPS, <code>p(x)</code> is a mixture over many operating modes with
+four properties we jointly term <strong>MIIM</strong>:</p>
+<ul class="tight">
+  <li><strong>Multimodal</strong> &mdash; many separate but equally valid operating modes, not one.</li>
+  <li><strong>Massive</strong> &mdash; the number of modes is very large.</li>
+  <li><strong>Implicit</strong> &mdash; modes are neither labeled nor declared; they must be discovered.</li>
+  <li><strong>Imbalanced</strong> &mdash; mode frequencies span orders of magnitude; the rarest legitimate
+  modes are represented by only a handful of examples.</li>
+</ul>
+<p>CPS normal data differs from the data anomaly-detection methods usually assume: it is generated by
+deterministic physics, hard physical limits, and engineered control, not a single stochastic process.
+This makes valid states combinatorially numerous (the origin of massive multimodality) but also endows
+them with genuine structure a physically-informed detector can exploit.</p>
+<p><strong>Three characteristic errors.</strong> MIIM induces three detector failures, distinct from any
+fault of the vehicle itself. (i) The <em>false positive</em>: a rare but legitimate mode, seen too
+seldom in training, falls outside the learned normal model and is alarmed on &mdash; eroding operator
+trust. (ii) The <em>false negative</em>: between two well-sampled modes a single model interpolates a
+smooth bridge of "normal" the system never visits, and a genuine fault whose signature falls in that
+pocket is scored as ordinary. (iii) <em>Calibration and ranking</em>: because representative abnormal
+data does not exist, thresholds cannot be fixed and competing detectors cannot be ranked. The framework
+of Section 5 targets these three errors with three components.</p>
+
+<h2 id="data">4. Data Construction</h2>
+<p>Absent access-cleared real data (Section 7), we build a controlled MIIM benchmark that makes the
+four properties explicit and provides ground-truth modes for measurement. Normal data is a mixture of
+<code>K=40</code> operating modes; each mode is a smooth nonlinear manifold (a low-dimensional regime
+coordinate mapped through a mode-specific random embedding with a channel-coupling nonlinearity),
+mimicking "valid states must remain consistent with physics/control". Mode weights follow a Zipf(2.0)
+law, so the rarest modes carry single-digit sample counts while the commonest carry thousands &mdash;
+frequencies spanning orders of magnitude. Mode labels are used only for evaluation; no detector sees
+them (implicit).</p>
+<p>Two fault families are injected for the standard benchmark: <strong>OOD</strong> faults far outside
+every mode, and <strong>pocket</strong> faults at midpoints between two well-sampled modes (the
+dangerous false-negative case). In addition, the C1 generator (Section 5.3) manufactures physically-valid
+<strong>dependency-violation</strong> faults by shuffling channel blocks between windows of different
+modes: every channel retains a real value, and only the joint cross-channel structure is broken. A
+detector-independent oracle (k-NN distance to a true-normal reference drawn from the same generative
+process, in the same standardisation frame) certifies which candidates are genuine anomalies, and a
+pooled-within-mode Mahalanobis distance measures each fault's distance from the nearest mode in &sigma;
+units. This construction is deliberately kept non-circular: neither the oracle nor the distance metric
+uses the detector under test.</p>
+<div class="callout"><strong>General vs. CPS normal data.</strong> General AD assumes one or a few roughly
+balanced, often-explicit modes from a stochastic process. CPS normal data is governed by physics and
+control, has many modes (massive), strongly imbalanced frequencies, and implicit structure that must be
+discovered &mdash; the regime our benchmark reproduces.</div>
+
+<h2 id="methods">5. Methods</h2>
+<h3>5.1 Foundation: joint latent encoding and mode discovery</h3>
+<p>The foundation is a variational autoencoder whose latent prior is a Gaussian mixture (VaDE [22]):
+encoder <code>q(z|x)</code>, decoder <code>p(x|z)</code>, and <code>K</code> learnable mixture components
+whose means are the operating modes. Encoding and clustering are learned <em>together</em>, so the
+representation is shaped to make modes emerge as well-separated clusters. A practical obstacle is
+<strong>cluster collapse</strong>: naive joint training merged our 40 modes into ~5 components (measured:
+clustering NMI 0.38, 5/40 components used), crippling rare-mode representation. We stabilise training with
+a variance floor, a covariance penalty, KL/&beta; warm-up, and a slower learning rate on the mixture
+parameters; this restores 38/40 components and NMI 0.70, and is decisive for the results below.</p>
+<h3>5.2 Whitened residual scoring</h3>
+<p>The anomaly score sums two negative-log-likelihood terms: a <em>reconstruction</em> term and a
+<em>latent-density</em> term. For reconstruction we use the whitened (Mahalanobis) residual energy
+<code>&frac12; r&#8868;&Sigma;&#8315;&sup1;r</code> with a Ledoit-Wolf-shrunk residual covariance [30]
+rather than a plain sum of squares, so per-channel scale and cross-channel correlation are respected.
+For the latent term we use the <em>nearest-component</em> density (not the &pi;-weighted mixture): a
+rare-but-valid mode must not be penalised merely for being rare.</p>
+<h3>5.3 <span class="tag c1">C1</span> Physically-guided anomaly generation</h3>
+<p>C1 manufactures the faults that do not otherwise exist, and the ones that matter: physically-valid
+boundary cases. Candidates are generated by channel-block shuffling across modes (breaking joint
+structure while keeping marginals real), filtered by the detector-independent oracle to keep only
+genuine anomalies, and moved a controlled fraction toward the nearest mode to tune difficulty. This
+yields a spectrum of faults at known distances, which is precisely what is needed to calibrate
+thresholds and rank detectors without labeled faults.</p>
+<h3>5.4 <span class="tag c2">C2</span> Basin-of-attraction test</h3>
+<p>C2 attacks the false positive. From a point's latent position we run gradient descent on the
+mixture-density potential from several perturbed restarts and measure <em>basin agreement</em>: the
+fraction of restarts converging to the same mode. A rare-but-valid point sits in one stable basin
+(agreement &asymp;1); a pocket fault sits on the separatrix between two modes and its restarts split
+(agreement &asymp;0.5). Crucially this reads geometry, not the rare component's mis-estimated density,
+so it rescues rare valid modes the density score would alarm on.</p>
+<h3>5.5 <span class="tag c3">C3</span> Cluster-based ensemble</h3>
+<p>C3 attacks the false negative. Rather than one model that averages across all modes and interpolates
+between them, we fit one reconstruction expert per discovered mode (input-space PCA on that mode's
+points) and score a point by the <em>minimum</em> reconstruction error over experts &mdash; "does any
+single mode explain this point?" No expert has ever seen the between-modes region, so a pocket fault is
+reconstructed poorly by all of them, whereas a single global model interpolates and misses it. An
+owner-gap statistic (second-smallest minus smallest expert error) adds pocket sensitivity.</p>
+
+<h2 id="experiments">6. Experiments</h2>
+<p>Setup: <code>K=40</code> modes, 24 channels, ~24k normal training windows; VaDE with a 10-D latent,
+trained per seed; thresholds calibrated on normal data only. Baselines (Isolation Forest, LOF, deep
+AutoEncoder) via PyOD. Metrics: AUROC/AUPRC, and two MIIM diagnostics &mdash; rare-mode false-positive
+rate and pocket detection. Values are mean&plusmn;std over 5 seeds unless noted.</p>
+
+<h3>6.1 Main benchmark</h3>
+<table>
+<thead><tr><th>method</th><th>AUROC</th><th>AUPRC</th><th>rare-mode FPR &darr;</th><th>pocket recall &uarr;</th></tr></thead>
+<tbody>
+<tr><td>Isolation Forest</td><td>0.739</td><td>0.638</td><td>0.570*</td><td class="fail">0.029</td></tr>
+<tr><td>LOF</td><td>0.872</td><td>0.746</td><td>0.887</td><td>0.956</td></tr>
+<tr><td>AutoEncoder</td><td>0.751</td><td>0.642</td><td class="fail">1.000</td><td>0.969</td></tr>
+<tr><td>VAE+GMM (sequential)</td><td>0.903</td><td>0.802</td><td>0.979</td><td>0.997</td></tr>
+<tr><td>VaDE (joint, foundation)</td><td>0.942</td><td>0.866</td><td>0.927</td><td>0.992</td></tr>
+<tr class="best"><td>VaDE + C2 (reconstruction+basin config)</td><td>0.963</td><td>0.902</td><td>0.686</td><td>0.983</td></tr>
+</tbody></table>
+<p class="cap">Table 1. 5-seed means. The joint latent+clustering model dominates standard detectors. The last
+row is the <em>C2-emphasizing</em> configuration (reconstruction+basin, density down-weighted), which cuts
+rare-mode FPR from 0.93 to 0.69; the full framework with C3 reaches AUROC 0.997 (Table 3). *Isolation
+Forest's low rare-mode FPR is an artifact of it detecting almost nothing (pocket recall 0.03).</p>
+
+<h3>6.2 <span class="tag c1">C1</span> Physically-valid faults: standard detectors are blind</h3>
+<p>On oracle-certified, physically in-range dependency-violation faults, we calibrate each detector's
+threshold to 5% FPR on realistic normal (rare modes included) and report TPR by distance from the nearest
+mode (in units of the normal envelope, the 99th percentile of normal &sigma;).</p>
+<table>
+<thead><tr><th>method</th><th>AUROC</th><th>TPR@5%FPR</th><th>1&ndash;1.5&times; (hardest)</th><th>1.5&ndash;2&times;</th><th>2&ndash;4&times;</th></tr></thead>
+<tbody>
+<tr><td>Isolation Forest</td><td class="fail">0.393</td><td class="fail">0.000</td><td>0.00</td><td>0.00</td><td>0.00</td></tr>
+<tr><td>AutoEncoder</td><td class="fail">0.561</td><td class="fail">0.002</td><td>0.00</td><td>0.00</td><td>0.00</td></tr>
+<tr><td>VAE+GMM (sequential)</td><td>0.896</td><td>0.492</td><td>0.03</td><td>0.58</td><td>0.97</td></tr>
+<tr><td>LOF</td><td>0.934</td><td>0.693</td><td>0.38</td><td>0.80</td><td>0.96</td></tr>
+<tr><td>VaDE (joint)</td><td>0.982</td><td>0.895</td><td>0.73</td><td>1.00</td><td>1.00</td></tr>
+<tr class="best"><td>VaDE + basin (full)</td><td>0.985</td><td>0.918</td><td>0.79</td><td>1.00</td><td>1.00</td></tr>
+</tbody></table>
+<p class="cap">Table 2. Single seed. Isolation Forest scores these faults as <em>more normal than normal</em>
+(AUROC&nbsp;&lt;&nbsp;0.5) and the AutoEncoder is at chance: every channel holds a real value and the
+marginals look typical, so global and single-reconstruction detectors are blind to the joint-structure
+violation. Detection degrades gracefully with difficulty; the structure-aware model degrades least.</p>
+
+<h3>6.3 <span class="tag c2">C2</span> and <span class="tag c3">C3</span> component demonstrations</h3>
+<p><strong>C2</strong> separates rare-valid modes from pockets by basin agreement: rare-normal points
+have mean agreement 0.99 (one stable basin) versus 0.78 for pocket faults (split basin), and adding C2
+lowers rare-mode FPR from 0.93 to 0.69 (Table 1). <strong>C3</strong> catches the over-interpolation
+false negative: on pocket faults a <em>single global</em> reconstruction model scores AUROC 0.451 (below
+random &mdash; it reconstructs the between-modes bridge <em>too</em> well), while the per-mode ensemble
+scores 0.996. This is the mechanism the proposal predicts, demonstrated directly; in the ablation
+(Table 3) adding C3 lifts overall AUROC from 0.946 to 0.997.</p>
+
+<h3>6.4 Ablation: each component, separately and combined</h3>
+<table>
+<thead><tr><th>configuration</th><th>AUROC</th><th>AUPRC</th><th>rare-mode FPR &darr;</th><th>pocket recall &uarr;</th></tr></thead>
+<tbody>
+<tr><td>Foundation (plain reconstruction + density)</td><td>0.946</td><td>0.861</td><td>0.910</td><td>0.998</td></tr>
+<tr><td>+ whitening</td><td>0.945</td><td>0.864</td><td>0.965</td><td>1.000</td></tr>
+<tr><td>+ <span class="tag c2">C2</span> basin</td><td>0.959</td><td>0.889</td><td>0.931</td><td>1.000</td></tr>
+<tr><td>+ <span class="tag c3">C3</span> ensemble</td><td>0.997</td><td>0.991</td><td>0.942</td><td>1.000</td></tr>
+<tr class="best"><td>+ C2 + C3 (full framework)</td><td>0.997</td><td>0.992</td><td>0.920</td><td>1.000</td></tr>
+</tbody></table>
+<p class="cap">Table 3. 3-seed ablation on the main benchmark, all terms co-computed in one pass per seed
+and fused (equal weight) after standardising on normal data. <strong>C3 is the decisive detection
+driver</strong> (AUROC 0.946&rarr;0.997). Whitening is neutral on this isotropic-noise synthetic.
+<strong>C2's rare-mode-FPR benefit is configuration-dependent:</strong> under equal-weight additive
+fusion the &pi;-independent density term dominates rare-mode scoring, so C2's reduction is modest
+(0.965&rarr;0.920); in a C2-emphasizing configuration that scores on reconstruction+basin alone (Section 6.3)
+rare-mode FPR falls to 0.686, trading some peak AUROC for far fewer rare-mode false alarms. We report
+both rather than only the favourable operating point.</p>
+
+<figure>
+  <img src="poc/results/figure.png" alt="Four-panel results figure: VaDE latent map, anomaly-score distributions, basin-agreement mechanism, and 5-seed method comparison.">
+  <figcaption class="cap">Figure 1. (A) VaDE latent (PCA) with normal modes and injected faults.
+  (B) Anomaly-score distributions by group. (C) Component 2: basin agreement separates rare-valid modes
+  (piled at 1.0) from pockets. (D) 5-seed comparison of AUROC and rare-mode FPR.</figcaption>
+</figure>
+
+<h2 id="limits">7. Limitations and Honest Scope</h2>
+<ul class="tight">
+  <li><strong>Synthetic only.</strong> All results are on the controlled MIIM benchmark. Real-testbed
+  validation is the immediate next step: WADI and SWaT are access-gated (iTrust request, in progress);
+  SKAB and HAI 20.07/21.03 are downloaded and slated next. The code is dataset-agnostic behind a loader.</li>
+  <li><strong>Whitening is neutral here.</strong> On this benchmark the Ledoit-Wolf residual whitening
+  neither helps nor hurts because the synthetic observation noise is isotropic; its expected benefit is
+  on real correlated-channel data and is not yet demonstrated.</li>
+  <li><strong>A local-density baseline is competitive.</strong> LOF is not blind to the C1 faults (Table 2);
+  the clean claim is that <em>global</em> and <em>single-reconstruction</em> detectors fail, and our
+  structure-aware model leads, not that all baselines fail.</li>
+  <li><strong>Two calibration protocols.</strong> The rare-mode FPR (Table 1) and the TPR@5%FPR (Table 2)
+  use different, individually-valid threshold calibrations and are not directly comparable number-to-number.</li>
+  <li><strong>C1 depends on a decoder as physics prior;</strong> its "physical validity" is per-channel
+  in-range plus off-joint-manifold, not a full physics simulation.</li>
+</ul>
+<p>The framework's claims are demonstrated at the level of a synthetic proof of concept: the joint model
+beats standard detectors on MIIM data; C1 produces faults that blind standard detectors; C2 reduces
+rare-mode false positives; C3 catches over-interpolated pockets a single model misses. Transfer to real
+CPS data is the work that would turn this into an operational result.</p>
+
+<h2 id="refs">References</h2>
+<ol class="refs">
+<li>Goh, Adepu, Junejo, Mathur. A Dataset to Support Research in the Design of Secure Water Treatment Systems (SWaT). CRITIS 2016.</li>
+<li>Ahmed, Palleti, Mathur. WADI: A Water Distribution Testbed for Research in the Design of Secure CPS. CySWATER 2017.</li>
+<li>Shin, Lee, Yun, Kim. HAI 1.0: HIL-based Augmented ICS Security Dataset. USENIX CSET 2020.</li>
+<li>Taormina, Galelli, Tippenhauer et&nbsp;al. Battle of the Attack Detection Algorithms (BATADAL). J. Water Resources Planning &amp; Management, 2018.</li>
+<li>Su et&nbsp;al. Robust Anomaly Detection for Multivariate Time Series (OmniAnomaly). KDD 2019.</li>
+<li>Audibert et&nbsp;al. USAD: UnSupervised Anomaly Detection on Multivariate Time Series. KDD 2020.</li>
+<li>Tuli, Casale, Jennings. TranAD: Deep Transformer Networks for Anomaly Detection. PVLDB 2022.</li>
+<li>Deng, Hooi. Graph Neural Network-Based Anomaly Detection in Multivariate Time Series (GDN). AAAI 2021.</li>
+<li>Zhao et&nbsp;al. Multivariate Time-series Anomaly Detection via Graph Attention Network (MTAD-GAT). ICDM 2020.</li>
+<li>Li et&nbsp;al. MAD-GAN: Multivariate Anomaly Detection with GANs. ICANN 2019.</li>
+<li>Xu, Wu, Wang, Long. Anomaly Transformer: Association Discrepancy. ICLR 2022.</li>
+<li>Ruff et&nbsp;al. A Unifying Review of Deep and Shallow Anomaly Detection. Proc. IEEE, 2021.</li>
+<li>Kim et&nbsp;al. Towards a Rigorous Evaluation of Time-Series Anomaly Detection. AAAI 2022.</li>
+<li>Kingma, Welling. Auto-Encoding Variational Bayes (VAE). ICLR 2014.</li>
+<li>Ruff et&nbsp;al. Deep One-Class Classification (Deep SVDD). ICML 2018.</li>
+<li>Goyal et&nbsp;al. DROCC: Deep Robust One-Class Classification. ICML 2020.</li>
+<li>Zong et&nbsp;al. Deep Autoencoding Gaussian Mixture Model (DAGMM). ICLR 2018.</li>
+<li>Qiu et&nbsp;al. Neural Transformation Learning for Deep Anomaly Detection (NeuTraL-AD). ICML 2021.</li>
+<li>Liu, Ting, Zhou. Isolation Forest. ICDM 2008.</li>
+<li>Breunig et&nbsp;al. LOF: Identifying Density-Based Local Outliers. SIGMOD 2000.</li>
+<li>Li et&nbsp;al. ECOD: Unsupervised Outlier Detection Using Empirical CDFs. IEEE TKDE 2022. (see also COPOD, ICDM 2020)</li>
+<li>Jiang et&nbsp;al. Variational Deep Embedding (VaDE). IJCAI 2017.</li>
+<li>Dilokthanakul et&nbsp;al. Deep Unsupervised Clustering with Gaussian Mixture VAEs (GMVAE). arXiv:1611.02648, 2016.</li>
+<li>Cao et&nbsp;al. Simple, Scalable, and Stable Variational Deep Clustering (S3VDC). ECML-PKDD 2020.</li>
+<li>Saxena et&nbsp;al. Damage Propagation Modeling for Aircraft Engine Run-to-Failure (C-MAPSS). IEEE PHM 2008.</li>
+<li>Song, Wu, Jermaine, Ranka. Conditional Anomaly Detection. IEEE TKDE 2007.</li>
+<li>Hendrycks, Mazeika, Dietterich. Deep Anomaly Detection with Outlier Exposure. ICLR 2019.</li>
+<li>Li, Sohn, Yoon, Pfister. CutPaste: Self-Supervised Anomaly Detection and Localization. CVPR 2021.</li>
+<li>Goix. How to Evaluate the Quality of Unsupervised Anomaly Detection Algorithms? ICML AD Workshop 2016.</li>
+<li>Ledoit, Wolf. A Well-Conditioned Estimator for Large-Dimensional Covariance Matrices. J. Multivariate Analysis, 2004.</li>
+<li>Lee et&nbsp;al. A Simple Unified Framework for Detecting Out-of-Distribution Samples (Mahalanobis). NeurIPS 2018.</li>
+<li>Jardine, Lin, Banjevic. A Review on Machinery Diagnostics and Prognostics Implementing CBM. MSSP 2006.</li>
+<li>Fernandes et&nbsp;al. A Survey on Data-Driven Predictive Maintenance for the Railway Industry. Sensors 2021.</li>
+</ol>
+<p class="cap">Bibliographic metadata is being verified; a few venue/year fields may be refined in a later
+revision. This is a preliminary proof-of-concept report, not a peer-reviewed publication.</p>
+
+</div>
+</body>
+</html>

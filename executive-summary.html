@@ -1,0 +1,270 @@
+<style>
+  .pg *{box-sizing:border-box}
+  .pg{
+    --ink:#15212e; --steel:#24475f; --steel-2:#356084;
+    --signal:#e0872b; --signal-soft:#f6e9d6;
+    --normal:#2f8f7f; --normal-soft:#e2efec;
+    --paper:#f4f6f8; --surface:#ffffff; --border:#d7dee4;
+    --muted:#5c6b78; --text:#1b2833;
+    --serif:Georgia,'Iowan Old Style','Times New Roman',serif;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,'SF Mono','Cascadia Mono','Roboto Mono',Menlo,Consolas,monospace;
+    background:var(--paper); color:var(--text);
+    font-family:var(--serif); font-size:17px; line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .pg .wrap{max-width:860px;margin:0 auto;padding:0 24px 72px}
+  .pg h1,.pg h2,.pg h3,.pg .eyebrow,.pg .chip,.pg .tag,.pg .cnum,.pg .metagrid{font-family:var(--sans)}
+
+  /* Header */
+  .pg .masthead{background:var(--ink);color:#eaf0f5;margin:0 -9999px 0;padding:0}
+  .pg .masthead-inner{max-width:860px;margin:0 auto;padding:44px 24px 38px}
+  .pg .eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#8fb3cc;font-weight:600;margin:0 0 14px}
+  .pg h1{font-family:var(--serif);font-weight:700;font-size:2.15rem;line-height:1.15;margin:0 0 6px;color:#fff;text-wrap:balance}
+  .pg .subtitle{font-family:var(--sans);font-size:1.02rem;color:#b7c8d6;margin:0 0 26px;font-weight:400}
+  .pg .metagrid{display:flex;flex-wrap:wrap;gap:10px 12px}
+  .pg .meta{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:7px;padding:8px 13px;font-size:.8rem;line-height:1.3}
+  .pg .meta b{display:block;color:#7fa8c6;font-size:.66rem;letter-spacing:.09em;text-transform:uppercase;font-weight:600;margin-bottom:2px}
+  .pg .meta span{color:#e7eef4;font-weight:500}
+
+  /* Sections */
+  .pg section{margin-top:44px}
+  .pg h2{font-size:1.34rem;font-weight:600;color:var(--ink);margin:0 0 4px;letter-spacing:-.01em}
+  .pg .lead-label{font-family:var(--sans);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--signal);font-weight:700;margin:0 0 10px}
+  .pg p{margin:0 0 15px;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+  .pg .muted{color:var(--muted)}
+  .pg .eyebrow,.pg .subtitle,.pg .lead-label{text-align:left;hyphens:manual}
+
+  /* Failure-mode split */
+  .pg .split{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+  .pg .fail{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px}
+  .pg .fail .tag{display:inline-block;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:3px 9px;border-radius:20px;margin-bottom:9px}
+  .pg .split3{grid-template-columns:repeat(3,1fr)}
+  .pg .fp .tag{background:var(--signal-soft);color:#9a5a12}
+  .pg .fn .tag{background:var(--normal-soft);color:#1f6357}
+  .pg .cal .tag{background:#e3ebf1;color:#2c4a63}
+  .pg .fail p{font-size:.95rem;margin:0}
+
+  /* Comparison table */
+  .pg .cmp-wrap{overflow-x:auto;margin-top:18px}
+  .pg table.cmp{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:.9rem;min-width:540px}
+  .pg .cmp th,.pg .cmp td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+  .pg .cmp thead th{font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;color:#fff;font-weight:700}
+  .pg .cmp thead th.dim{background:var(--ink)}
+  .pg .cmp thead th.gen{background:var(--steel)}
+  .pg .cmp thead th.cps{background:var(--signal)}
+  .pg .cmp tbody th{font-weight:600;color:var(--ink);background:var(--paper);white-space:nowrap}
+  .pg .cmp td.cps{background:#fbf1e5}
+  .pg .cmp tbody tr:last-child th,.pg .cmp tbody tr:last-child td{border-bottom:none}
+
+  /* Deliverables list */
+  .pg ul.deliv{margin:14px 0 0;padding:0;list-style:none;display:grid;gap:11px}
+  .pg ul.deliv li{position:relative;padding-left:26px;font-size:.95rem;text-align:justify;hyphens:auto}
+  .pg ul.deliv li::before{content:"";position:absolute;left:5px;top:9px;width:7px;height:7px;background:var(--signal);border-radius:2px;transform:rotate(45deg)}
+  .pg ul.deliv li b{font-family:var(--sans);font-size:.86rem;color:var(--ink)}
+
+  /* Shortcomings list */
+  .pg .shorts{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .pg .shorts li{background:var(--surface);padding:13px 18px 13px 44px;position:relative;font-size:.96rem;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+  .pg .shorts li::before{content:"";position:absolute;left:18px;top:20px;width:8px;height:8px;border:2px solid var(--signal);border-radius:50%}
+
+  /* Framework thesis banner */
+  .pg .thesis{background:linear-gradient(160deg,#2b5473,#1d3a4f);color:#eef4f8;border-radius:12px;padding:22px 24px;margin-top:10px}
+  .pg .thesis p{margin:0;font-size:1.06rem;line-height:1.5}
+  .pg .thesis b{color:#fff}
+
+  /* Component cards */
+  .pg .components{display:grid;gap:16px;margin-top:20px}
+  .pg .comp{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px 24px;position:relative}
+  .pg .comp-head{display:flex;align-items:baseline;gap:14px;margin-bottom:10px}
+  .pg .cnum{font-family:var(--mono);font-size:.8rem;font-weight:600;color:#fff;background:var(--steel);min-width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:8px;flex-shrink:0}
+  .pg .comp h3{font-size:1.08rem;font-weight:600;color:var(--ink);margin:0;line-height:1.3}
+  .pg .comp p{font-size:.95rem;margin:0 0 10px}
+  .pg .comp p:last-child{margin-bottom:0}
+  .pg .kbits{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+  .pg .kbit{font-family:var(--mono);font-size:.72rem;background:var(--paper);border:1px solid var(--border);color:var(--steel-2);padding:4px 9px;border-radius:6px}
+
+  /* Diagram */
+  .pg .diagram{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;margin-top:20px;overflow-x:auto}
+  .pg .diagram svg{display:block;min-width:560px;width:100%;height:auto}
+
+  /* Alignment two-up */
+  .pg .align{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+  .pg .acard{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 22px}
+  .pg .acard h3{font-size:1rem;font-weight:600;color:var(--ink);margin:0 0 12px;display:flex;align-items:center;gap:9px}
+  .pg .acard h3::before{content:"";width:10px;height:10px;border-radius:3px;background:var(--signal)}
+  .pg .acard.fit h3::before{background:var(--normal)}
+  .pg .acard ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+  .pg .acard li{font-size:.92rem;line-height:1.45;padding-left:18px;position:relative;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+  .pg .acard li::before{content:"›";position:absolute;left:0;color:var(--steel-2);font-family:var(--sans);font-weight:700}
+  .pg .acard li b{font-family:var(--sans);font-size:.82rem;color:var(--ink)}
+
+  /* Scope footer */
+  .pg .scope{margin-top:40px;border-top:2px solid var(--ink);padding-top:20px;display:flex;flex-wrap:wrap;gap:26px}
+  .pg .scope div{flex:1;min-width:130px}
+  .pg .scope b{display:block;font-family:var(--sans);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+  .pg .scope span{font-family:var(--sans);font-size:1.15rem;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+  .pg .scope small{display:block;font-size:.8rem;color:var(--muted);margin-top:2px;font-family:var(--serif)}
+
+  @media (max-width:620px){
+    .pg{font-size:16px}
+    .pg h1{font-size:1.7rem}
+    .pg .split,.pg .align{grid-template-columns:1fr}
+  }
+</style>
+
+<div class="pg">
+  <div class="masthead">
+    <div class="masthead-inner">
+      <p class="eyebrow">Research Proposal · Executive Summary</p>
+      <h1>Generative AI for Physically-Grounded Anomaly Detection in Predictive Maintenance of Transportation Cyber-Physical Systems</h1>
+      <p class="subtitle">A framework, not a single model, built to survive scarce anomalies, multimodal normal behavior, and the absence of calibration data.</p>
+      <div class="metagrid">
+        <div class="meta"><b>Applicant</b><span>Dr. Alexander Apartsin · HIT</span></div>
+        <div class="meta"><b>Call</b><span>Smart Transport &amp; Infrastructure 2026</span></div>
+        <div class="meta"><b>Track</b><span>Rail CBM / Predictive Maintenance</span></div>
+        <div class="meta"><b>Partner</b><span>Israel Railways</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section>
+      <p class="lead-label">Motivation</p>
+      <h2>Anomaly detection in safety-critical transportation systems</h2>
+      <p>Modern transportation platforms, whether road vehicles, rail rolling stock, or maritime vessels, have evolved into deeply integrated <b>cyber-physical systems</b>: networks of sensors, embedded software, control logic, and physical actuators that operate as a single tightly coupled unit, continuously sensing their own state and acting upon it. A contemporary vehicle or locomotive coordinates hundreds of electronic control units and thousands of signals governing propulsion, braking, energy management, and safety functions, a degree of <b>complexity</b> without precedent in earlier, predominantly mechanical designs.</p>
+      <p>This very complexity makes the system's <b>faults</b> impossible to enumerate in advance. With so many interacting components, control modes, and operating conditions, the combinations in which a fault can arise cannot be predefined, tested, or exhaustively sampled before deployment. Faults, moreover, often develop slowly, as gradual wear, drift, or degradation that produces no obvious symptom until it is well advanced, and a fault left undetected while it develops can escalate into a serious <b>failure</b>, ranging from unplanned downtime to a safety-critical malfunction. Because the faults cannot be specified ahead of time, they must instead be discovered from the system's own behavior as it operates, which is the task of <b>anomaly detection</b>.</p>
+      <p>That behavior is, fortunately, richly observable. High-frequency measurements of vibration, current, temperature, pressure, and position, together with internal computational and control signals, are recorded continuously across entire fleets. The result is a large and heterogeneous stream of operational data that, in principle, carries an <b>early signature</b> of almost any developing fault.</p>
+      <p>Detecting those signatures before they culminate in failure is of direct operational and societal importance. In transportation, an undetected fault is not merely a maintenance expense but a potential <b>safety event</b>, and unplanned failures erode the availability and punctuality on which passengers, freight, and critical supply chains depend. Condition-based and predictive maintenance, driven by automated anomaly detection over this sensor data, therefore promises fewer in-service failures, longer asset life, and lower lifecycle cost, while advancing the broader objective of eliminating serious transportation incidents. Realizing this promise, however, requires <b>confronting a set of difficulties intrinsic</b> to the data such systems produce.</p>
+    </section>
+
+    <section>
+      <p class="lead-label">Problem Statement</p>
+      <h2>The central challenge lies in modeling normal behavior, not the anomalies</h2>
+      <p>Anomaly detection is commonly framed as the problem of characterizing anomalies, yet this framing is misleading. Were a sufficient set of labeled faults available, the task would reduce to standard supervised classification. In practice such data does not exist: genuine faults are rare, and the few that are recorded seldom span the full range of ways in which a system can develop a fault. An immediate consequence, revisited below, is that model selection itself becomes unreliable, since the same scarce faults must serve for both tuning and evaluation. The principal source of information consequently lies on the opposite side of the decision boundary, in the <em>normal</em> data, which is abundant yet rarely exploited in full.</p>
+      <p>Cyber-physical data is, moreover, of a special kind. Unlike financial or transactional data, whose regularities are largely statistical, the signals of a cyber-physical system are shaped by a complex combination of deterministic physical laws, hard physical limitations, and engineered control schemes: mechanics, thermodynamics, and actuator bounds constrain what can occur, while designed controllers dictate how the system responds. This has two consequences. It makes the data harder, because the space of valid behavior expands combinatorially as the number of interacting laws and control schemes grows, which is one origin of the massive multimodality described below. Yet it also endows the data with genuine structure that purely probabilistic data lacks, since valid states are not arbitrary but must remain consistent with known physics and control logic. That structure is precisely what a physically informed detector can exploit, and what a purely statistical model tends to discard.</p>
+      <p>The characterization of normal behavior, however, is itself the central difficulty. Such a system does not possess a single normal state but transitions through many distinct yet entirely valid operating regimes, such as cold start versus steady state, light versus heavy load, and different control configurations, each forming a separate cluster in signal space. The system is never told which regime it currently occupies, and the rarest of these legitimate regimes are precisely the ones a detector is most likely to misclassify as faults.</p>
+      <p>These characteristics can be stated more precisely. Normal behavior is <b>multimodal</b>, composed of many separate but equally valid operating modes rather than a single one; it is <b>massive</b>, where "massive" refers not to the sheer volume of data but to the number of these operating modes, which is very large; it is <b>implicit</b>, since the modes are neither labeled nor declared and must be discovered from the data itself; and it is <b>imbalanced</b>, because the frequencies of the modes span orders of magnitude, leaving the rarest legitimate modes represented by only a handful of examples. We term this combination the <b>Massive, Implicit, Imbalanced Multimodality (MIIM)</b> of normal operation data in cyber-physical systems, and it is the property the proposed framework is designed to exploit.</p>
+      <p>These differences set CPS normal data apart from the data that anomaly-detection methods usually assume:</p>
+      <div class="cmp-wrap">
+        <table class="cmp">
+          <thead>
+            <tr>
+              <th class="dim">Property</th>
+              <th class="gen">General normal data</th>
+              <th class="cps">CPS normal data</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Generation</th>
+              <td>Predominantly statistical, sampled from a stochastic process</td>
+              <td class="cps">Governed by deterministic physical laws, physical limits, and engineered control schemes</td>
+            </tr>
+            <tr>
+              <th>Number of modes</th>
+              <td>One, or a few</td>
+              <td class="cps">Many (massive)</td>
+            </tr>
+            <tr>
+              <th>Mode balance</th>
+              <td>Roughly balanced across modes</td>
+              <td class="cps">Strongly imbalanced; frequencies span orders of magnitude</td>
+            </tr>
+            <tr>
+              <th>Mode structure</th>
+              <td>Often explicit: data points can be assigned to specific modes</td>
+              <td class="cps">Implicit: modes must be discovered, and assigning a data point to a specific mode is difficult</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The data itself compounds these difficulties. The underlying signals are large-scale, high-frequency, and irregularly sampled, and they combine sensory, computational, and control channels that differ in scale, noise level, and sampling policy. This is <b>big data</b> in the strict sense, so that constructing a faithful model of normal behavior across it calls for distributed training and processing on a big-data platform such as Spark.</p>
+    </section>
+
+    <section>
+      <p class="lead-label">Detection Errors</p>
+      <h2>How anomaly detection goes wrong on CPS data</h2>
+      <p>These properties give rise to three characteristic errors of anomaly detection, distinct from any fault or failure of the vehicle itself. The first is the <b>false positive</b>: a rare but entirely legitimate operating mode, seen too seldom in training, falls outside the learned model of normal and is flagged as an anomaly. In the field this is what erodes trust, as operators learn that the system alarms on valid behavior and begin to ignore it.</p>
+      <p>The second, and more dangerous, is the <b>false negative</b>. Between two well-sampled modes the model interpolates a smooth bridge of "normal" that the system never actually visits, and a genuine fault whose signature falls into that pocket is scored as ordinary. The risk is sharpest where high-frequency signals meet rare modes, since the model then has ample freedom to over-interpolate and too few examples to correct it.</p>
+      <p>The third concerns <b>calibration and ranking</b>. Because sufficient abnormal data does not exist by definition, there is no representative set on which to fix decision thresholds or to compare detectors. Calibration collapses into guesswork, and competing models, or successive versions of one model, cannot be ranked reliably, since every score reflects only the few faults that happened to be available.</p>
+    </section>
+
+    <section>
+      <p class="lead-label">The Proposed Framework</p>
+      <h2>Turning the structure of the data into an advantage</h2>
+      <p>The framework turns the structure of cyber-physical data from an obstacle into an asset. Unlike purely statistical data, this data carries genuine structure imposed by physics and control; the difficulty is only that the structure is implicit. That implicitness is precisely what makes it necessary to model the data first in a low-dimensional latent domain, learning a representation that exposes the regularities the raw signals merely imply. Once such a representation exists, the hidden operating modes can be recovered by clustering the latent data, turning the massive, implicit, imbalanced multimodality into an explicit map in which each mode is an identifiable cluster.</p>
+      <p>This explicit structure is what the framework exploits to confront the challenges set out above. With the normal modes made explicit, generated faults can be grounded against them, rare-but-valid modes can be told apart from genuine faults, and detection can be calibrated and scored without any labeled abnormal data. Rather than a single new model, the framework organizes this strategy into three complementary components, each aimed at one of the three detection errors identified above.</p>
+      <p><b>Joint latent encoding and structure discovery.</b> Underpinning the three components is a single foundational step: the framework learns a low-dimensional latent representation of normal operation and, at the same time, discovers its mode structure by clustering. Carrying out the encoding and the clustering together, rather than one after the other, lets each guide the other, so the representation is shaped to make the operating modes emerge as well-separated clusters. This is the step that turns the implicit multimodality of the data into an explicit map of identified modes, on which the three components below then operate.</p>
+      <p><b>Physically-guided anomaly generation.</b> The first component attacks the <b>calibration and ranking error</b> at its root, by manufacturing the anomalies that do not otherwise exist, and it manufactures the ones that matter: the hard cases lying just beyond the boundary of normal behavior, where genuine and spurious anomalies are hardest to separate. The generation is physically guided, so that each synthetic fault remains consistent with the system's physics and control logic rather than being an artificial outlier the system could never produce, and it is controlled, so that the distance of each generated fault from the known normal modes can be tuned. With this realistic, controllable supply of anomalies, decision thresholds can be fixed and competing models trained, ranked, and evaluated on data that resembles the faults the system will actually meet, rather than on the few that happened to be recorded.</p>
+      <p><b>Basin-of-attraction test.</b> The second component attacks the <b>false positive</b>, by separating a rare-but-valid normal mode from a genuine fault according to how a point moves in latent space. A rare normal point shows a monotonic improvement in its normality score as it is nudged toward nearby normal modes, whereas an anomaly exhibits no single consistent direction of improvement, a signature that it belongs to no nearby normal operating regime. A rare but legitimate mode is therefore recognized as valid rather than alarmed on.</p>
+      <p><b>Cluster-based ensemble.</b> The third component attacks the <b>false negative</b>, the missed fault produced by over-interpolation between modes. Rather than a single model that averages across all modes and smooths over the smallest, an ensemble of experts is organized around the discovered cluster structure, so that rare modes are represented in their own right instead of being absorbed into their larger neighbors. The fault hiding in the interpolated pocket between two modes is then no longer smoothed away as normal.</p>
+      <p>Because the normal operation data is big data, the entire framework is implemented on a cloud big-data platform such as Databricks, which supplies the distributed processing and model training that its scale requires.</p>
+
+      <div class="diagram" role="img" aria-label="Pipeline: raw CPS signals are encoded into a joint latent and cluster space; three components then generate physically-grounded boundary anomalies, apply a basin-of-attraction test, and run a cluster-based ensemble, producing a calibrated anomaly score.">
+        <svg viewBox="0 0 720 250" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,Segoe UI,Roboto,sans-serif">
+          <defs>
+            <marker id="ah" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#356084"/></marker>
+          </defs>
+          <!-- input -->
+          <rect x="8" y="98" width="118" height="54" rx="9" fill="#15212e"/>
+          <text x="67" y="120" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">CPS signals</text>
+          <text x="67" y="137" text-anchor="middle" fill="#8fb3cc" font-size="10">high-freq · irregular</text>
+          <!-- VAE latent -->
+          <rect x="168" y="98" width="118" height="54" rx="9" fill="#24475f"/>
+          <text x="227" y="120" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">Latent + clusters</text>
+          <text x="227" y="137" text-anchor="middle" fill="#b7c8d6" font-size="10">encoded jointly</text>
+          <line x1="126" y1="125" x2="164" y2="125" stroke="#356084" stroke-width="2" marker-end="url(#ah)"/>
+          <!-- three components -->
+          <rect x="330" y="16" width="210" height="52" rx="9" fill="#fff" stroke="#d7dee4"/>
+          <circle cx="352" cy="42" r="11" fill="#24475f"/><text x="352" y="46" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">1</text>
+          <text x="372" y="38" fill="#1b2833" font-size="11.5" font-weight="600">Grounded anomaly gen.</text>
+          <text x="372" y="54" fill="#5c6b78" font-size="10">boundary faults, physics-guided</text>
+
+          <rect x="330" y="99" width="210" height="52" rx="9" fill="#fff" stroke="#d7dee4"/>
+          <circle cx="352" cy="125" r="11" fill="#24475f"/><text x="352" y="129" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">2</text>
+          <text x="372" y="121" fill="#1b2833" font-size="11.5" font-weight="600">Basin-of-attraction test</text>
+          <text x="372" y="137" fill="#5c6b78" font-size="10">monotonic normality test</text>
+
+          <rect x="330" y="182" width="210" height="52" rx="9" fill="#fff" stroke="#d7dee4"/>
+          <circle cx="352" cy="208" r="11" fill="#24475f"/><text x="352" y="212" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">3</text>
+          <text x="372" y="204" fill="#1b2833" font-size="11.5" font-weight="600">Cluster-based ensemble</text>
+          <text x="372" y="220" fill="#5c6b78" font-size="10">protects rare modes</text>
+
+          <line x1="286" y1="120" x2="326" y2="44" stroke="#356084" stroke-width="1.6" marker-end="url(#ah)"/>
+          <line x1="286" y1="125" x2="326" y2="125" stroke="#356084" stroke-width="1.6" marker-end="url(#ah)"/>
+          <line x1="286" y1="130" x2="326" y2="206" stroke="#356084" stroke-width="1.6" marker-end="url(#ah)"/>
+          <!-- output -->
+          <rect x="582" y="98" width="128" height="54" rx="9" fill="#e0872b"/>
+          <text x="646" y="120" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">Calibrated</text>
+          <text x="646" y="137" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">anomaly score</text>
+          <line x1="540" y1="42" x2="578" y2="118" stroke="#356084" stroke-width="1.6" marker-end="url(#ah)"/>
+          <line x1="540" y1="125" x2="578" y2="125" stroke="#356084" stroke-width="1.6" marker-end="url(#ah)"/>
+          <line x1="540" y1="208" x2="578" y2="132" stroke="#356084" stroke-width="1.6" marker-end="url(#ah)"/>
+        </svg>
+      </div>
+    </section>
+
+    <section>
+      <p class="lead-label">Outcomes</p>
+      <h2>Expected outcomes, deliverables, and pilot path</h2>
+      <p>The project delivers a validated, deployable anomaly-detection capability for rail rolling stock and track, together with the evidence needed to move it toward operational use.</p>
+      <ul class="deliv">
+        <li><b>The framework, implemented and running.</b> Joint latent encoding and clustering, physically-guided anomaly generation, the basin-of-attraction test, and the cluster-based ensemble, deployed on a cloud big-data platform (Databricks).</li>
+        <li><b>Validation on real operator data.</b> Retrospective evaluation on Israel Railways sensor logs, for example traction-motor current, bearing vibration, or track-geometry signals, quantifying false-positive and false-negative rates against current practice.</li>
+        <li><b>A calibration and ranking protocol.</b> A physically-grounded evaluation procedure that lets competing detectors be calibrated and ranked without any labeled fault data.</li>
+        <li><b>A proof-of-concept detector.</b> A documented detector for one selected subsystem, packaged and ready for shadow deployment.</li>
+      </ul>
+      <p>The maturation path runs from retrospective validation, through shadow operation on live data streams alongside existing maintenance, to a supervised operational pilot with Israel Railways maintenance teams. The quarterly partner reviews required by the call keep the work aligned with operational priorities and provide the milestones toward a subsequent full deployment.</p>
+    </section>
+
+    <div class="scope">
+      <div><b>Duration</b><span>2 years</span><small>below the 3-year ceiling</small></div>
+      <div><b>Budget</b><span>₪330,000</span><small>lean; value-for-money read</small></div>
+      <div><b>Nature</b><span>Data + compute</span><small>no hardware or field deployment</small></div>
+      <div><b>Output</b><span>PoC + method</span><small>pilot-ready with Israel Railways</small></div>
+    </div>
+
+  </div>
+</div>

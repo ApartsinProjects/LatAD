@@ -1,0 +1,5 @@
+poc/datasets/
+**/__pycache__/
+*.pyc
+.DS_Store
+poc/results/*.pkl

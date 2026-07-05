@@ -1,0 +1,10 @@
+method                          AUROC          AUPRC  rare_mode_FPR  pocket_recall     ood_recall
+-------------------------------------------------------------------------------------------------
+IsolationForest                 0.731          0.635          0.600          0.034          1.000
+LOF                             0.886          0.774          0.848          0.911          1.000
+AutoEncoder                     0.747          0.641          1.000          0.974          1.000
+VAE+GMM (sequential)            0.862          0.727          0.941          1.000          1.000
+VaDE (joint, ours)              0.962          0.899          0.884          1.000          1.000
+
+rare_mode_FPR: lower is better (valid rare modes wrongly alarmed).
+pocket_recall / ood_recall: higher is better (faults caught).

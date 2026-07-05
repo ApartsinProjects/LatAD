@@ -1,0 +1,24 @@
+=== seed 0 ===
+  VaDE AUROC=0.944  LOF AUROC=0.886  seq AUROC=0.861
+=== seed 1 ===
+  VaDE AUROC=0.931  LOF AUROC=0.859  seq AUROC=0.906
+=== seed 2 ===
+  VaDE AUROC=0.938  LOF AUROC=0.850  seq AUROC=0.918
+=== seed 3 ===
+  VaDE AUROC=0.941  LOF AUROC=0.910  seq AUROC=0.916
+=== seed 4 ===
+  VaDE AUROC=0.955  LOF AUROC=0.854  seq AUROC=0.913
+
+MIIM benchmark, 5 seeds, 40 modes  (mean +/- std)
+method                                 AUROC             AUPRC     rare_mode_FPR     pocket_recall        ood_recall
+--------------------------------------------------------------------------------------------------------------------
+IsolationForest                0.739+/-0.009     0.638+/-0.004     0.570+/-0.088     0.029+/-0.009     1.000+/-0.000
+LOF                            0.872+/-0.023     0.746+/-0.038     0.887+/-0.050     0.956+/-0.024     1.000+/-0.000
+AutoEncoder                    0.751+/-0.004     0.642+/-0.001     1.000+/-0.000     0.969+/-0.008     1.000+/-0.000
+VAE+GMM (sequential)           0.903+/-0.021     0.802+/-0.029     0.979+/-0.022     0.997+/-0.003     1.000+/-0.000
+VaDE (joint, ours)             0.942+/-0.008     0.866+/-0.024     0.927+/-0.031     0.992+/-0.004     1.000+/-0.000
+VaDE + basin (full, ours)      0.962+/-0.008     0.899+/-0.023     0.716+/-0.076     0.986+/-0.007     1.000+/-0.000
+
+rare_mode_FPR: lower is better.  pocket/ood_recall: higher is better.
+
+[out] wrote E:\Projects\Backlog\LatAD\poc\results\results_multiseed.json and .txt
