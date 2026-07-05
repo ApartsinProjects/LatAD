@@ -1,0 +1,8 @@
+per-mode reconstruction ensemble vs single global model:
+target      single-global   per-mode-ens
+  pocket            0.468          0.994
+  ood               1.000          1.000
+
+supervised mode-subset ensemble (10 members, trained on C1 anomalies, tested on unseen fault families):
+  pocket     AUROC 0.802
+  ood        AUROC 0.987

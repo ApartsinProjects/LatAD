@@ -1,0 +1,7 @@
+GLOBAL threshold (5% mean-FPR budget):
+  mean FPR 0.485 | TFAR90 1.000 | CVaR10 1.000 | worst 1.000 | modes>50%FPR 16/25
+  [matched TPR=0.8]  TFAR90 0.794 | CVaR10 0.982
+MODE-CONDITIONAL thresholds (per-cluster 5% FPR guarantee):
+  mean FPR 0.159 | TFAR90 0.683 | CVaR10 0.968 | worst 1.000 | modes>50%FPR 3/25
+  detection pocket: global 0.989 -> mode-conditional 0.660
+  detection ood: global 1.000 -> mode-conditional 1.000

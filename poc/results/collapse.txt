@@ -1,0 +1,4 @@
+clustering vs true modes (train):
+  sequential GMM : NMI=0.568  ACC=0.277
+  joint VaDE     : NMI=0.654  ACC=0.428
+  clusters used  : sequential=40/40  joint=37/40

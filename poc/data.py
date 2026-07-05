@@ -80,9 +80,12 @@ def make_miim(
     n_test_normal: int = 6000,
     n_ood: int = 800,
     n_pocket: int = 800,
-    zipf_exponent: float = 2.0,
-    rare_quantile: float = 0.30,
+    zipf_exponent: float = 2.2,
+    rare_quantile: float = 0.40,
     noise: float = 0.15,
+    noise_mode: str = "correlated",
+    bounded: bool = True,
+    quantize: bool = True,
     seed: int = 0,
 ) -> tuple[CPSDataset, dict]:
     """Generate the controlled MIIM benchmark.
@@ -97,12 +100,40 @@ def make_miim(
     # Per-mode intrinsic spread in regime (latent) space.
     mode_scale = rng.uniform(0.25, 0.7, size=n_modes)
 
+    # Observation-noise model. 'correlated' gives noise a fixed non-isotropic
+    # covariance Sigma = W W^T + diag(s^2): cross-channel correlation (low-rank W)
+    # plus heteroscedastic per-channel scale s. The decoder cannot reconstruct
+    # noise, so residuals inherit Sigma - which is exactly what a whitened
+    # (Mahalanobis) score exploits and a plain sum-of-squares cannot. 'isotropic'
+    # reproduces the earlier white noise (whitening is then provably neutral).
+    n_nf = 6
+    Wn = rng.normal(0, 1, size=(n_features, n_nf)) * 0.55
+    chan_scale = rng.uniform(0.4, 2.4, size=n_features)
+    # Heterogeneous, a-priori-unknown per-channel resolution: sensors and
+    # actuators differ in precision/quantization (fine ADC vs coarse vs near-binary
+    # actuator states). q_frac is the quantisation step as a fraction of the
+    # channel scale - most channels fine, a few very coarse.
+    q_frac = rng.choice([0.02, 0.05, 0.10, 0.30, 0.80], size=n_features,
+                        p=[0.40, 0.25, 0.20, 0.10, 0.05])
+
+    def add_noise(X, r):
+        if noise_mode == "isotropic":
+            return X + r.normal(0, noise, X.shape)
+        common = r.normal(0, 1, size=(len(X), n_nf)) @ Wn.T      # correlated part
+        indep = r.normal(0, 1, size=X.shape) * chan_scale        # heteroscedastic
+        return X + noise * (common + indep)
+
     def sample_mode(mode_id: int, n: int) -> np.ndarray:
         if n == 0:
             return np.empty((0, n_features), np.float64)
-        lat = rng.normal(0, mode_scale[mode_id], size=(n, latent_dim))
-        x = _mode_manifold(lat, mode_id, n_features, rng)
-        return x
+        s = mode_scale[mode_id]
+        lat = rng.normal(0, s, size=(n, latent_dim))
+        if bounded:
+            # Physical/control limits bound a mode's extent: truncate the regime
+            # coordinate to +/-2 sigma (a clipped Gaussian), giving each mode a
+            # bounded manifold patch with hard edges rather than infinite tails.
+            lat = np.clip(lat, -2.0 * s, 2.0 * s)
+        return _mode_manifold(lat, mode_id, n_features, rng)
 
     # ---- normal training data: implicit, imbalanced multimodality ----
     train_counts = rng.multinomial(n_train, weights)
@@ -160,10 +191,19 @@ def make_miim(
     x_pocket = np.stack(pockets)
     x_pocket += rng.normal(0, x_train.std(0) * 0.05, size=x_pocket.shape)
 
-    # ---- assemble, add observation noise, standardise on train stats ----
-    x_train = x_train + rng.normal(0, noise, x_train.shape)
+    # ---- assemble, add observation noise, quantise, standardise on train ----
+    x_train = add_noise(x_train, rng)
     x_test = np.concatenate([x_test_normal, x_ood, x_pocket])
-    x_test = x_test + rng.normal(0, noise, x_test.shape)
+    x_test = add_noise(x_test, rng)
+
+    # heterogeneous per-channel quantisation (fixed step, physical frame)
+    q_step = (q_frac * (x_train.std(0) + 1e-8)) if quantize else None
+
+    def _quant(X):
+        return np.round(X / q_step) * q_step if quantize else X
+
+    x_train = _quant(x_train)
+    x_test = _quant(x_test)
     y_test = np.concatenate([
         np.zeros(len(x_test_normal)), np.ones(len(x_ood)), np.ones(len(x_pocket))])
     atype_test = np.array(
@@ -178,7 +218,7 @@ def make_miim(
     # different manifolds and a different frame - not a valid reference).
     oracle_counts = rng.multinomial(8000, weights)
     x_or = np.concatenate([sample_mode(m, int(oracle_counts[m])) for m in range(n_modes)])
-    x_or = x_or + rng.normal(0, noise, x_or.shape)
+    x_or = _quant(add_noise(x_or, rng))
     oracle_normal = ((x_or - mu) / sd).astype(np.float32)
 
     x_train = ((x_train - mu) / sd).astype(np.float32)

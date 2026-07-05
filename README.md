@@ -12,15 +12,21 @@ each one.
 ## The framework
 
 A joint variational latent model with a Gaussian-mixture prior (**VaDE**) discovers the operating
-modes; on top of it three components each attack one MIIM error:
+modes; on top of it four components each attack one MIIM failure:
 
 | | Component | Targets | Mechanism |
 |---|---|---|---|
 | **C1** | Physically-guided anomaly generation | calibration / ranking without labels | shuffle channels across modes → oracle-filter → tune difficulty ([`poc/generate.py`](poc/generate.py)) |
 | **C2** | Basin-of-attraction test | false **positive** on rare-but-valid modes | latent gradient-descent; rare-valid = one stable basin, pocket = split ([`poc/component2.py`](poc/component2.py)) |
-| **C3** | Cluster-based ensemble | false **negative** on over-interpolated pockets | per-mode reconstruction experts, min-over-experts ([`poc/component3.py`](poc/component3.py)) |
+| **C3** | Cluster-based ensemble | false **negative** on over-interpolated pockets | per-mode reconstruction experts *and* a supervised mode-subset ensemble trained on C1 anomalies ([`poc/component3.py`](poc/component3.py)) |
+| **C4** | Mode-conditional risk control | *systematic* per-mode false alarms | per-mode worst-case FPR + mode-conditional thresholds ([`poc/component4.py`](poc/component4.py)) |
 
 Plus a whitened (Ledoit-Wolf Mahalanobis) reconstruction score in [`poc/models_vade.py`](poc/models_vade.py).
+
+The synthetic benchmark ([`poc/data.py`](poc/data.py)) models CPS realism: **bounded modes** (truncated
+supports from control/physical limits), **heterogeneous per-channel** noise, precision, and **quantization**,
+and heavy-tailed mode imbalance — properties under which raw-distance baselines (LOF) degrade while
+structure-aware, whitening-based detection holds.
 
 ## Headline results (synthetic MIIM benchmark)
 
