@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LatAD — Synthetic MIIM data: model &amp; generation</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+<style>
+  :root{--text:#1a1a1a;--muted:#555;--rule:#dcdcdc;--accent:#2f6d4f;--soft:#f5f8f6;
+    --serif:Georgia,'Times New Roman',serif;--sans:'Helvetica Neue',Arial,sans-serif;--mono:Consolas,monospace;}
+  *{box-sizing:border-box}
+  body{background:#fff;color:var(--text);font-family:var(--serif);font-size:17px;line-height:1.55;margin:0}
+  .wrap{max-width:820px;margin:0 auto;padding:44px 24px 110px}
+  h1{font-size:1.65rem;margin:0 0 4px}
+  .sub{font-family:var(--sans);color:var(--muted);font-size:.95rem;margin:0 0 8px}
+  .tag{font-family:var(--sans);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+  h2{font-family:var(--sans);font-size:1.16rem;margin:32px 0 6px;padding-bottom:5px;border-bottom:2px solid var(--rule)}
+  h3{font-family:var(--sans);font-size:1rem;margin:20px 0 3px;color:#222}
+  p{margin:0 0 12px;text-align:justify}
+  code{font-family:var(--mono);font-size:.86em;background:var(--soft);padding:1px 5px;border-radius:4px}
+  .box{background:var(--soft);border:1px solid var(--rule);border-radius:8px;padding:12px 18px;margin:14px 0}
+  table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:.83rem;margin:14px 0}
+  th,td{text-align:left;padding:6px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+  thead th{border-top:1.5px solid #333;border-bottom:1.5px solid #333}
+  td.n{text-align:right;font-variant-numeric:tabular-nums}
+  ul{margin:4px 0 10px;padding-left:22px} li{margin-bottom:3px}
+  ol{margin:4px 0 12px;padding-left:22px}
+  .eq{overflow-x:auto}
+  .phen{font-family:var(--sans);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em;
+    background:#e7efe9;color:var(--accent);padding:1px 7px;border-radius:20px;margin-right:5px;white-space:nowrap}
+  @media(max-width:600px){body{font-size:16px}.wrap{padding:28px 15px 60px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p class="tag">LatAD · synthetic benchmark · data model &amp; generation</p>
+<h1>Synthetic MIIM data: model &amp; generation process</h1>
+<p class="sub">Two controlled generators with ground truth: a <strong>static</strong> MIIM benchmark
+(<code>data.py</code>) and a <strong>temporal</strong> MIIM benchmark (<code>temporal_data.py</code>). Both
+manufacture normal operation with the phenomena the framework assumes, plus labelled faults, so each detection
+mechanism can be validated where real data cannot.</p>
+
+<div class="box">
+<strong>Why synthetic.</strong> Genuine CPS faults are rare, unlabelled, and mixed with distribution shift;
+real testbeds (HAI/SKAB) turned out to contain only <em>snapshot-detectable</em> anomalies. A controlled
+generator gives (i) ground-truth modes and anomaly types, (ii) a non-circular oracle for labels, and (iii)
+the ability to inject <em>history-dependent</em> anomalies that no real benchmark we found exposes.
+</div>
+
+<h2>1. Phenomena modelled</h2>
+<p>Normal operation is <strong>MIIM</strong> — Massive, Implicit, Imbalanced, Multimodal — plus CPS-specific
+structure. The generators realise:</p>
+<p>
+<span class="phen">multimodal</span><span class="phen">massive K</span><span class="phen">imbalanced (Zipf)</span>
+<span class="phen">implicit modes</span><span class="phen">bounded modes</span><span class="phen">low-density normals</span>
+<span class="phen">heterogeneous sensing</span><span class="phen">per-channel quantization</span>
+<span class="phen">correlated noise</span><span class="phen">temporal multiscale</span>
+<span class="phen">mode-transition state machine</span><span class="phen">per-mode dwell</span>
+</p>
+
+<h2>2. Common core — a mode as a bounded nonlinear manifold</h2>
+<p>Both generators share the mode model. There are $K$ operating modes; mode $k$ has an intrinsic
+<strong>regime coordinate</strong> $u\in\mathbb R^{r}$ ($r=3$) mapped to $d=24$ channels by a smooth,
+mode-specific nonlinear embedding</p>
+<div class="eq">$$g_k(u)=A_k u+b_k+0.35\,\tanh\!\big(1.3\,(A_k u+b_k)^{\leftarrow}\big),$$</div>
+<p>where $A_k\in\mathbb R^{d\times r}$, $b_k\in\mathbb R^{d}$ are fixed per mode (a deterministic per-mode
+seed), and $(\cdot)^{\leftarrow}$ is channel reversal — a coupling that makes the manifold curved, so the
+joint cross-channel structure is non-trivial (a fault can be marginally-valid yet jointly-invalid).</p>
+<p><strong>Imbalance</strong> (Zipf): mode frequencies $\pi_k\propto \mathrm{rank}(k)^{-\beta}$ are shuffled so
+identity is decoupled from frequency; the rarest modes get $O(1)$ samples. <strong>Bounded modes:</strong> the
+regime coordinate is a truncated/clipped Gaussian, $u\sim\mathcal N(0,\sigma_k^2 I_r)$ clipped to $\pm2\sigma_k$
+— hard edges, empty between-mode regions. <strong>Heterogeneous sensing:</strong> correlated + heteroscedastic
+noise $\Sigma_\varepsilon=WW^\top+\operatorname{diag}(s^2)$, and per-channel quantization step $\delta_c$
+(fine ADC-like to coarse near-binary). Standardisation uses <strong>train</strong> statistics only.</p>
+
+<h2>3. Static generator (<code>make_miim</code>)</h2>
+<h3>3.1 Normal data</h3>
+<p>Draw mode counts $\sim\mathrm{Multinomial}(n,\pi)$; per mode, sample $u$, map through $g_k$, add correlated
+noise, quantize. The test-normal set is deliberately <strong>rare-enriched</strong> (half by the true prior,
+half forced from the rare tail) so the rare-mode false-positive rate is measurable.</p>
+<h3>3.2 Fault families (static)</h3>
+<ul>
+<li><strong>OOD</strong> — points far outside every mode (uniform in a wide box, then pushed further from the
+nearest centroid).</li>
+<li><strong>pocket</strong> — a midpoint $x=(1-t)c_a+t\,c_b$, $t\in[0.35,0.65]$, between two well-sampled mode
+centroids: the over-interpolation false-negative case.</li>
+</ul>
+<h3>3.3 Non-circular labelling &amp; distance</h3>
+<p>Labels never use the detector. A <strong>true-normal oracle</strong> holds a large fresh normal sample from
+the <em>same</em> modes/frame; a candidate is a genuine anomaly iff its $\kappa$-NN distance to that reference
+exceeds the $99^{\text{th}}$ percentile of normal self-distance (self-match dropped). A model-agnostic
+<strong>distance to the nearest mode</strong> uses a pooled within-mode Mahalanobis
+$\sigma(x)=\min_k\sqrt{(x-\bar x_k)^\top S^{-1}(x-\bar x_k)}$; the <strong>normal envelope</strong> is
+$E=Q_{0.99}(\sigma)$, so a fault at $\sigma(x)/E\in[1,2]$ is "just outside" (hard).</p>
+
+<h2>4. Temporal generator (<code>make_temporal_miim</code>)</h2>
+<p>Adds the axes the static one lacks — <em>dynamics, transitions, dwell, temporal multiscale</em> — so the
+<strong>history-dependent</strong> anomalies can be expressed and the trajectory channel validated.</p>
+<h3>4.1 Mode-transition state machine</h3>
+<p>Each mode has a small set of <strong>allowed successors</strong> (a sparse graph with Dirichlet-weighted
+edges); every other edge is <strong>forbidden</strong>. Per-mode <strong>dwell</strong> times are log-uniform
+$\in[15,220]$ (some regimes brief, some long — a temporal-scale mix). Stationary mode frequency is Zipf-imbalanced.</p>
+<h3>4.2 Within-mode dynamics &amp; temporal multiscale</h3>
+<p>Inside a dwell the regime coordinate is an <strong>Ornstein-Uhlenbeck</strong> walk mean-reverting to the
+mode centre, clipped (bounded):</p>
+<div class="eq">$$u_t=0.85\,u_{t-1}+0.15\,\varepsilon_t,\quad \varepsilon_t\sim\mathcal N(0,\sigma_k^2 I_r),\qquad u_t\leftarrow\operatorname{clip}(u_t,\pm2\sigma_k),$$</div>
+<p>emitted through $g_k$. The stream is then smoothed <strong>per channel with different time constants</strong>
+$x^{(c)}_t=\alpha_c x^{(c)}_t+(1-\alpha_c)x^{(c)}_{t-1}$, $\alpha_c\in[0.05,0.95]$ — slow/inertial channels
+(temperature-like) vs fast (RPM-like): the temporal multiscale of assumption A8. Heterogeneous noise and
+quantization follow, then per-train standardisation and windowing (window $W$, stride $S$; per-window label by
+majority, plus the dominant anomaly type and mode).</p>
+<h3>4.3 Fault families (temporal) — snapshot vs history-dependent</h3>
+<ul>
+<li><span class="phen">snapshot</span> <strong>pocket</strong> — a short between-two-modes segment.</li>
+<li><span class="phen">snapshot</span> <strong>drift</strong> — the OU coordinate slowly pushed <em>out of bounds</em>
+over a segment (bypasses the clip) → values leave the manifold.</li>
+<li><span class="phen">history</span> <strong>bad_transition</strong> — a <em>forbidden</em> mode&rarr;mode jump.
+Crucially the labelled windows are the ones <strong>settled inside the (valid) target mode</strong>, after the
+straddle: their <em>values</em> are indistinguishable from normal — <em>only the path</em> is invalid, so no
+snapshot detector can catch them; only the trajectory channel can.</li>
+</ul>
+<div class="box">
+<strong>Validation (snapshot detector, VaDE, per-type TPR @5% FPR).</strong> pocket <b>0.72</b>, drift
+<b>0.91</b> (both snapshot-detectable) — but settled bad_transition <b>0.057</b> ≈ the false-positive floor:
+the snapshot channel is <em>blind</em> to the history-dependent anomaly, exactly the controlled case the real
+testbeds could not provide.
+</div>
+
+<h2>5. Default parameters</h2>
+<table>
+<thead><tr><th>parameter</th><th>static</th><th>temporal</th><th></th></tr></thead>
+<tbody>
+<tr><td>modes $K$</td><td class="n">40</td><td class="n">20</td><td>massive multimodality</td></tr>
+<tr><td>channels $d$</td><td class="n">24</td><td class="n">24</td><td>spatial</td></tr>
+<tr><td>intrinsic $r$</td><td class="n">3</td><td class="n">3</td><td>low-dim manifold per mode</td></tr>
+<tr><td>Zipf exponent $\beta$</td><td class="n">2.2</td><td class="n">2.0</td><td>imbalance strength</td></tr>
+<tr><td>rare quantile</td><td class="n">0.40</td><td>&mdash;</td><td>low-density normals</td></tr>
+<tr><td>bounded / quantized</td><td>yes / yes</td><td>yes / yes</td><td>A6 / A7</td></tr>
+<tr><td>noise</td><td>correlated het.</td><td>heteroscedastic</td><td>A7</td></tr>
+<tr><td>dwell mean</td><td>&mdash;</td><td>log-uniform [15,220]</td><td>temporal scale mix</td></tr>
+<tr><td>allowed successors</td><td>&mdash;</td><td class="n">~3 / mode</td><td>transition state machine</td></tr>
+<tr><td>window $W$ / stride $S$</td><td>&mdash;</td><td class="n">40 / 20</td><td>windowing</td></tr>
+</tbody></table>
+
+<h2>6. What the generators enable</h2>
+<ul>
+<li>ground-truth <strong>modes</strong> and <strong>anomaly types</strong> for per-type diagnostics;</li>
+<li>a <strong>non-circular</strong> oracle and a model-agnostic <strong>distance/envelope</strong> for honest,
+detector-independent labels and difficulty bands;</li>
+<li>a controlled <strong>history-dependent</strong> anomaly (bad_transition) that isolates the trajectory
+channel — the reason the temporal generator exists;</li>
+<li>label-free hooks: C1-style generated anomalies for model selection, and the memory-horizon probe for B.</li>
+</ul>
+
+</div>
+</body>
+</html>
