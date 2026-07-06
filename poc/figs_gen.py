@@ -102,12 +102,13 @@ c2x = sum(m[0] for m in cl2)/len(cl2); c2y = sum(m[1] for m in cl2)/len(cl2)
 rings = "\n  ".join(ring(m) for m in cl1 + cl2)
 
 heat_svg = f'''<figure style="margin:18px 0;text-align:center">
-<svg viewBox="0 0 {W} {H}" width="100%" style="max-width:{W}px;border-radius:8px" font-family="Helvetica Neue,Arial,sans-serif">
+<svg viewBox="0 0 {W} {H}" width="100%" xmlns:xlink="http://www.w3.org/1999/xlink" style="max-width:{W}px;border-radius:8px" font-family="Helvetica Neue,Arial,sans-serif">
   <defs>
     <marker id="arrGood" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#2ec4b6"/></marker>
     <marker id="arrBad" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#ff5a6a"/></marker>
   </defs>
-  <image href="{uri}" x="0" y="0" width="{W}" height="{H}" preserveAspectRatio="none"/>
+  <rect x="0" y="0" width="{W}" height="{H}" fill="#0d1226"/>
+  <image href="{uri}" xlink:href="{uri}" x="0" y="0" width="{W}" height="{H}" preserveAspectRatio="none"/>
   {rings}
   <circle cx="{c1x:.0f}" cy="{c1y:.0f}" r="3.3" fill="#ff5a6a"/>
   <circle cx="{c2x:.0f}" cy="{c2y:.0f}" r="3.3" fill="#ff5a6a"/>
@@ -139,9 +140,9 @@ kuri = png_data_uri(kfield)
 klabels = "\n  ".join(f'<text x="{cx3[i]}" y="185" fill="#333" font-size="12" text-anchor="middle" font-weight="600">{s[1]}</text>'
                       for i, s in enumerate(kmodes_specs))
 curv_svg = f'''<figure style="margin:14px 0;text-align:center">
-<svg viewBox="0 0 {cw} {chh}" width="100%" style="max-width:{cw}px;border-radius:8px" font-family="Helvetica Neue,Arial,sans-serif">
+<svg viewBox="0 0 {cw} {chh}" width="100%" xmlns:xlink="http://www.w3.org/1999/xlink" style="max-width:{cw}px;border-radius:8px" font-family="Helvetica Neue,Arial,sans-serif">
   <rect x="0" y="0" width="{cw}" height="{chh}" fill="#0d1226"/>
-  <image href="{kuri}" x="0" y="0" width="{cw}" height="{chh}" preserveAspectRatio="none"/>
+  <image href="{kuri}" xlink:href="{kuri}" x="0" y="0" width="{cw}" height="{chh}" preserveAspectRatio="none"/>
   <rect x="0" y="164" width="{cw}" height="36" fill="#fcfcfb"/>
   {klabels}
 </svg>
@@ -215,15 +216,17 @@ All change together at the shared mode transitions (dashed) but on their own tim
 </figure>'''
 
 # ---------- splice into the doc ----------
-html = open(DOC, encoding="utf-8").read()
 def replace_figure(html, token, newblock):
     idx = html.find(token)
     assert idx != -1, "token not found: " + token
     start = html.rfind("<figure", 0, idx)
     end = html.find("</figure>", idx) + len("</figure>")
     return html[:start] + newblock + html[end:]
-html = replace_figure(html, "Normal latent density (2D)", heat_svg)
-html = replace_figure(html, "The curvature knob", curv_svg)
-html = replace_figure(html, "slow sensor", ts_svg)
-open(DOC, "w", encoding="utf-8", newline="\n").write(html)
-print("spliced OK; doc bytes:", len(html))
+
+if __name__ == "__main__":
+    html = open(DOC, encoding="utf-8").read()
+    html = replace_figure(html, "Normal latent density (2D)", heat_svg)
+    html = replace_figure(html, "The curvature knob", curv_svg)
+    html = replace_figure(html, "slow sensor", ts_svg)
+    open(DOC, "w", encoding="utf-8", newline="\n").write(html)
+    print("spliced OK; doc bytes:", len(html))
