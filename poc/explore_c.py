@@ -99,6 +99,53 @@ def mode_ctx_score(c_tr, assign_tr, c_te, assign_te, K, min_n=40):
     return sc(c_tr, assign_tr), sc(c_te, assign_te)
 
 
+def soft_gamma(v, X):
+    """Soft responsibilities gamma_t from the window VaDE (no argmax)."""
+    import torch.nn.functional as F
+    dev = next(v.parameters()).device
+    with torch.no_grad():
+        mu, _ = v.encode(torch.as_tensor(X, dtype=torch.float32, device=dev))
+        logpcz = F.log_softmax(v.pi_logit, 0).unsqueeze(0) + v._log_pz_given_c(mu)
+        return torch.softmax(logpcz, 1).cpu().numpy()
+
+
+def soft_ctx_score(c_tr, g_tr, w_tr, c_te, g_te, shrink=0.2, ridge=1e-3):
+    """Responsibility-weighted (soft) per-mode context density, fit with per-window
+    rarity weights w_tr (soft coverage). No window is hard-assigned to a mode."""
+    N, D = c_tr.shape; K = g_tr.shape[1]
+    Wt = g_tr * w_tr[:, None]                          # (N,K) combined weights
+    Wk = Wt.sum(0) + 1e-9
+    mu = (Wt.T @ c_tr) / Wk[:, None]                   # (K,D) gamma-weighted means
+    inv = np.empty((K, D, D))
+    for k in range(K):
+        d = c_tr - mu[k]
+        cov = (Wt[:, k:k + 1] * d).T @ d / Wk[k]
+        cov = (1 - shrink) * cov + shrink * np.trace(cov) / D * np.eye(D) + ridge * np.eye(D)
+        inv[k] = np.linalg.inv(cov)
+
+    def sc(c, g):
+        out = np.zeros(len(c))
+        for k in range(K):
+            d = c - mu[k]
+            out += g[:, k] * np.einsum("ij,jk,ik->i", d, inv[k], d)
+        return out
+    return sc(c_tr, g_tr), sc(c_te, g_te)
+
+
+def soft_rarity_weights(g, lag=2, clip=8.0):
+    """Per-window soft transition-rarity weight from responsibility outer-products.
+    T[i,j] = sum_t g[t-lag,i] g[t,j] (fuzzy transition graph, lag clears window overlap)."""
+    N, K = g.shape
+    T = g[:-lag].T @ g[lag:]                            # (K,K) soft edge counts
+    F = T / (T.sum() + 1e-9)
+    r = np.ones(N)
+    edge_mass = np.einsum("ti,tj->t", g[:-lag], g[lag:])          # per-t total soft mass ~1
+    rare = np.einsum("ti,ij,tj->t", g[:-lag], 1.0 / (F + 1e-6), g[lag:])
+    r[lag:] = np.clip(rare / (edge_mass + 1e-9), 0.2, clip)
+    r /= r.mean()
+    return r, T
+
+
 def main():
     seed = 0; K = 20; latent = 8
     device = "cuda" if (torch.cuda.is_available() and os.environ.get("CUDA_VISIBLE_DEVICES") != "") else "cpu"
@@ -126,38 +173,34 @@ def main():
     from sklearn.decomposition import PCA
     pca = PCA(n_components=24, random_state=0).fit(c_tr)
     cr_tr, cr_te = pca.transform(c_tr), pca.transform(c_te)
-    sc_tr, sc_te = mode_ctx_score(cr_tr, atr, cr_te, ate, K)
-
-    def z(v_, ref):
-        return (v_ - ref.mean()) / (ref.std() + 1e-9)
-    def rank(s, ref):                                  # right-tail empirical CDF under normal
-        o = np.sort(ref); return np.searchsorted(o, s, side="right") / len(o)
-    zw_te, zc_te = z(sw_te, sw_tr), z(sc_te, sc_tr)
-    uw, uc = rank(sw_te, sw_tr), rank(sc_te, sc_tr)    # each ~uniform on normal
-
-    combos = {
-        "window-only (C-alone)": sw_te,
-        "z(win)+z(ctx)": zw_te + zc_te,
-        "max(z(win),z(ctx))": np.maximum(zw_te, zc_te),
+    # soft responsibilities from the window VaDE (no argmax); soft rarity weights
+    g_tr, g_te = soft_gamma(v, xtr_s), soft_gamma(v, xte_s)
+    r_tr, T = soft_rarity_weights(g_tr, lag=2)
+    ones = np.ones(len(g_tr))
+    contexts = {
+        "hard-argmax LW":       mode_ctx_score(cr_tr, atr, cr_te, ate, K),
+        "soft gamma-weighted":  soft_ctx_score(cr_tr, g_tr, ones, cr_te, g_te),
+        "soft + rarity-weight": soft_ctx_score(cr_tr, g_tr, r_tr, cr_te, g_te),
     }
-    print("\n=== window score + robust mode-conditional context (no FiLM) ===")
-    print(f"{'combination':<28}" + "".join(f"{t:>16}" for t in TYPES) + f"{'FPR':>7}")
-    for name in combos:
-        ste = combos[name]
-        thr = np.quantile(ste[normal], 0.95)           # exact 5% FPR on normal test windows
-        row = {t: float((ste[atype == t] > thr).mean()) for t in TYPES}
-        print(f"{name:<28}" + "".join(f"{row[t]:>16.3f}" for t in TYPES)
-              + f"{float((ste[normal] > thr).mean()):>7.3f}")
-    # asymmetric p-value OR: window branch (serves pocket+drift) keeps most budget,
-    # context branch (serves bad_transition) gets a thin tail -> catch history faults
-    # at minimal snapshot cost.
-    for qw, qc in [(0.955, 0.995), (0.96, 0.99), (0.965, 0.985), (0.97, 0.98)]:
-        tw = np.quantile(sw_te[normal], qw); tc = np.quantile(sc_te[normal], qc)
-        flag = (sw_te > tw) | (sc_te > tc)
-        row = {t: float(flag[atype == t].mean()) for t in TYPES}
-        print(f"{f'OR win@{1-qw:.3f} ctx@{1-qc:.3f}':<28}"
-              + "".join(f"{row[t]:>16.3f}" for t in TYPES)
-              + f"{float(flag[normal].mean()):>7.3f}")
+    thrw = np.quantile(sw_te[normal], 0.95)
+    win_row = {t: float((sw_te[atype == t] > thrw).mean()) for t in TYPES}
+
+    def evalctx(name, sc_te):
+        print(f"\n--- context: {name} ---")
+        print(f"{'combination':<26}" + "".join(f"{t:>15}" for t in TYPES) + f"{'FPR':>7}")
+        print(f"{'window-only (C-alone)':<26}" + "".join(f"{win_row[t]:>15.3f}" for t in TYPES)
+              + f"{float((sw_te[normal] > thrw).mean()):>7.3f}")
+        for qw, qc in [(0.955, 0.995), (0.96, 0.99), (0.965, 0.985), (0.97, 0.98)]:
+            tw = np.quantile(sw_te[normal], qw); tc = np.quantile(sc_te[normal], qc)
+            flag = (sw_te > tw) | (sc_te > tc)
+            row = {t: float(flag[atype == t].mean()) for t in TYPES}
+            print(f"{f'OR win@{1-qw:.3f} ctx@{1-qc:.3f}':<26}"
+                  + "".join(f"{row[t]:>15.3f}" for t in TYPES)
+                  + f"{float(flag[normal].mean()):>7.3f}")
+
+    print("\n=== window + mode-conditional context (no FiLM), exact 5% FPR ===")
+    for name, (_, sc_te) in contexts.items():
+        evalctx(name, sc_te)
     print("\nfloor bad_transition (snapshot baseline) = 0.057")
 
 
