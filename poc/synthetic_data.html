@@ -131,8 +131,13 @@ dials, each with a few settings; a <em>mode</em> is one full combination of sett
 huge number of combinations, and the machine spends most of its time in only a few of them.</p>
 <p>The system is $n_{\text{sub}}$ interacting <strong>subsystems</strong>, each with a few discrete states. A
 global <strong>mode</strong> is a tuple of sub-states $(s_1,\dots,s_{n_{\text{sub}}})$, so the number of
-candidate modes $K=\prod_j|S_j|$ grows <strong>exponentially</strong> with the number of subsystems (A2). Only a
-<strong>physically reachable</strong> subset is kept (illegal combinations pruned). The reachable modes carry
+candidate modes $K=\prod_j|S_j|$ grows <strong>exponentially</strong> with the number of subsystems (A2). Not
+every combination is physically <strong>reachable</strong>, because subsystems constrain one another (an
+"engine-off" state cannot co-occur with "high RPM"; a closed valve cannot co-occur with "high downstream flow").
+A <strong>compatibility relation</strong> (a set of forbidden sub-state co-occurrences, sampled once and then
+fixed) prunes the contradictory tuples; the survivors are the <strong>mode vocabulary</strong>, and the only
+modes the transition graph (Step 4) can ever visit. The result is far smaller than $\prod_j|S_j|$ yet still
+exponentially large: massive but not arbitrary. The reachable modes carry
 <strong>Zipf</strong> stationary frequencies $\pi_k\propto\mathrm{rank}(k)^{-\beta}$, shuffled so identity is
 decoupled from frequency and the rare tail carries $O(1)$ mass (A6); the normal law is then the mixture
 $p(x)=\sum_k\pi_k\,p_k(x)$ over the reachable modes (A1).</p>
@@ -144,8 +149,11 @@ rarely drifts to its edge, never leaving the allowed patch.</p>
 <p>Each mode $k$ has a low-dimensional <strong>regime coordinate</strong> $u\in\mathbb R^{r}$ ($r\ll d$; e.g.
 $r=3$, $d=24$), mapped to the channels by a smooth, curved, mode-specific manifold</p>
 <div class="eq">$$g_k(u)=A_k u+b_k+0.35\,\tanh\!\big(1.3\,(A_k u+b_k)^{\leftarrow}\big),$$</div>
-<p>with $A_k\in\mathbb R^{d\times r}$, $b_k\in\mathbb R^{d}$ fixed per mode and $(\cdot)^{\leftarrow}$ a channel
-reversal that couples channels (a point can be marginally in-range yet jointly off-manifold). $g_k$ is
+<p>with $A_k\in\mathbb R^{d\times r}$, $b_k\in\mathbb R^{d}$ fixed per mode. The linear part $A_k u+b_k$ places and
+orients the mode; the $\tanh$ term bends it into a <em>curved</em> manifold (strength $0.35$, so the curvature is
+mild but real); and $(\cdot)^{\leftarrow}$, a channel reversal, makes the coupling <strong>non-local</strong>
+(channel $c$ interacts with channel $d{-}c$), so the joint constraint shows in no single channel or adjacent
+pair: a point can be marginally in-range on every channel yet jointly off-manifold. $g_k$ is
 <strong>additive over subsystems</strong> (each contributes a channel block), so composition shows in signal
 space. The regime coordinate is <strong>concentrated and clipped</strong>: $u\sim\mathcal N(0,\sigma_k^2 I_r)$
 truncated to $\pm2\sigma_k$, giving bounded modes with hard edges (A3) whose density concentrates at the centre
@@ -155,15 +163,22 @@ and <strong>thins toward the boundary</strong> (A4).</p>
 <p style="font-style:italic;color:#4a5a50;margin:2px 0 8px">In plain terms: the channels are a mixed bag: fine
 sensors, on/off actuators, integer state flags, held-then-stepped setpoints, and one slow fuel-gauge. Some modes
 use the whole bag, others just a plain subset.</p>
-<p>The $d$ channels are a <strong>mix of variable types</strong>, each with its own scale, resolution
-$\delta_c$, and correlated heteroscedastic noise $\Sigma_\varepsilon=W_\varepsilon W_\varepsilon^\top+\operatorname{diag}(s^2)$ ($W_\varepsilon$ a low-rank loading matrix, distinct from the window length $W$):</p>
+<p>The $d$ channels are a <strong>mix of variable types</strong>: each <em>renders</em> its underlying $g_k(u)$
+value differently, with its own scale, resolution $\delta_c$, and correlated heteroscedastic noise
+$\Sigma_\varepsilon=W_\varepsilon W_\varepsilon^\top+\operatorname{diag}(s^2)$ ($W_\varepsilon$ a low-rank
+loading matrix, distinct from the window length $W$):</p>
 <ul>
-<li><strong>sensor</strong>: continuous $g_k(u)$ with fine quantization;</li>
-<li><strong>control / actuator</strong>: piecewise-constant within a mode, coarse or near-binary;</li>
-<li><strong>discrete state</strong>: integer subsystem-state indicators;</li>
-<li><strong>setpoint</strong>: hold-then-step, changing only at transitions;</li>
-<li><strong>accumulator</strong>: a slow integrator (Step 5).</li>
+<li><strong>sensor</strong>: the continuous value, finely quantized;</li>
+<li><strong>control / actuator</strong>: held piecewise-constant within a mode, coarse or near-binary;</li>
+<li><strong>discrete state</strong>: thresholded to an integer subsystem-state indicator;</li>
+<li><strong>setpoint</strong>: held, then stepped only at a transition;</li>
+<li><strong>accumulator</strong>: the exception, a slow integrator that overrides its channel (Step 5), not a rendering of $g_k$.</li>
 </ul>
+<p>The noise is deliberately <strong>correlated</strong> (via the low-rank $W_\varepsilon$), not white: a decoder
+cannot reconstruct noise, so residuals inherit $\Sigma_\varepsilon$, which is the structure a whitened
+(Mahalanobis / Ledoit-Wolf) residual score exploits and a plain sum-of-squares cannot. Heteroscedasticity
+($\operatorname{diag}(s^2)$) and per-channel quantization $\delta_c$ make the channels genuinely unequal, so
+<em>which</em> channel a fault touches matters.</p>
 <p>Which types are <strong>active is mode-dependent</strong>: some modes drive the full mix, others only a
 homogeneous subset (a built-in control for A8).</p>
 
@@ -172,10 +187,12 @@ homogeneous subset (a built-in control for A8).</p>
 to mode, but only along allowed routes, pausing a while in each. Channels react at different speeds (temperature
 lags, RPM snaps); some modes juggle several speeds, some just one.</p>
 <p>Normal operation is a <strong>walk over the reachable modes</strong>: a sparse <strong>transition graph</strong>
-(a few allowed successors per mode, Dirichlet-weighted; every other edge forbidden) with per-mode
-<strong>dwell</strong> times log-uniform in $[15,220]$ (some regimes brief, some long: a temporal-scale mix).
-Within a dwell the regime coordinate follows an <strong>Ornstein-Uhlenbeck</strong> walk, mean-reverting and
-clipped,</p>
+(a few allowed successors per mode, Dirichlet-weighted; every other edge forbidden, which is what makes a
+forbidden jump an anomaly in Step 5) with per-mode <strong>dwell</strong> times <strong>log-uniform</strong> in
+$[15,220]$ (log-uniform so durations spread evenly across an order of magnitude: some regimes brief, some long,
+a temporal-scale mix). Within a dwell the regime coordinate follows an <strong>Ornstein-Uhlenbeck</strong> walk
+(mean-reverting to the mode centre, clipped to stay in bounds; the coefficient $0.85$ sets the within-mode
+memory, i.e. the autocorrelation length),</p>
 <div class="eq">$$u_t=0.85\,u_{t-1}+0.15\,\varepsilon_t,\quad\varepsilon_t\sim\mathcal N(0,\sigma_k^2 I_r),\qquad u_t\leftarrow\operatorname{clip}(u_t,\pm2\sigma_k),$$</div>
 <p>emitted through $g_k$; each channel is then smoothed with its <strong>own</strong> time constant
 $x^{(c)}_t=\alpha_c x^{(c)}_t+(1-\alpha_c)x^{(c)}_{t-1}$, $\alpha_c\in[0.05,0.95]$ (slow / inertial vs fast: the
@@ -202,8 +219,10 @@ always-valid controls, so the dataset holds matched with / without pairs.</p>
 <p style="font-style:italic;color:#4a5a50;margin:2px 0 8px">In plain terms: the trainer only ever sees the raw
 numbers, never which mode or setting produced them, and it sees a great many of them.</p>
 <p>No mode or subsystem-state label is emitted for training (A7): only the raw channel stream, labels kept for
-evaluation. The stream is standardised on <strong>train</strong> statistics and windowed (window $W$, stride $S$;
-per-window label by majority, plus the dominant anomaly type and mode). The sample is <strong>massive</strong>.</p>
+evaluation. The stream is standardised on <strong>train</strong> statistics <em>only</em> (never the test set, so
+there is no leakage and the detector sees exactly the normalisation it would at deployment) and windowed (window
+$W$, stride $S$; per-window label by majority, plus the dominant anomaly type and mode). The sample is
+<strong>massive</strong>, which A1's mixture and A2's mode count require to populate even the rare tail.</p>
 
 <h2>3. Anomaly taxonomy (test stream)</h2>
 <p>Faults span snapshot to history-dependent, so every detection error has a controlled case:</p>
