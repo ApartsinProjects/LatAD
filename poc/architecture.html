@@ -157,7 +157,11 @@ Captures <strong>order and exact timing</strong> (transitions); far offsets forc
 ($\psi(k)$ = a positional encoding of the query offset $k$).<br>
 <strong>(b) Containment head</strong> (far, coarse) — was mode $a$ present in a period $P=[t-b,\,t-a]$:
 <div class="eq">$$\mathcal L_{\text{cont}}=\sum_t\sum_{P,a}w_a\,\mathrm{BCE}\big(\mathbb 1[a\in P],\,q_\theta(c_t,P,a)\big),\quad w_a\propto1/\pi_a.$$</div>
-Captures <strong>occurrence, timing-robust</strong>, and is where <em>rare-state presence</em> is kept far back.<br>
+Captures <strong>occurrence, timing-robust</strong>, and is where <em>rare-state presence</em> is kept far back.
+<strong>Queries must be weighted, not uniform:</strong> sampled uniformly almost every $(P,a)$ has the same
+answer (the common mode is nearly always present, rare ones nearly always absent), so a trivial majority-class
+predictor would win and the head learns nothing; balance positive/negative answers and up-weight rare
+candidates ($w_a\propto1/\pi_a$) so no answer is the majority.<br>
 <em>Why two:</em> precise recall degrades with distance while containment persists, so instance serves the
 <strong>near</strong> readout and containment the <strong>far</strong> one. Asking only about the determined past
 keeps both <strong>unpredictability-proof</strong>; the learned selective state (Mamba's gate) does the actual

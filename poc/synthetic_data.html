@@ -65,19 +65,19 @@ generators are built to satisfy exactly these, and the detector is designed agai
   <td>$p(x)=\sum_{k=1}^{K}\pi_k\,p_k(x)$, $K$ <em>large</em>.</td>
   <td>$K$ modes, mixture sampling</td></tr>
 <tr><td><b>A2</b></td><td>bounded modes</td>
-  <td>controllers hold each regime inside setpoint bands and hard actuator / physical limits; the space <em>between</em> regimes is only passed through, never occupied.</td>
+  <td>controllers <em>mostly</em> hold each regime within setpoint bands and actuator limits; the space <em>between</em> regimes is usually only passed through, rarely dwelt in.</td>
   <td>$\operatorname{supp}(p_k)$ bounded ($u$ compact); between-mode density $\approx0$.</td>
   <td>$u$ clipped to $\pm2\sigma_k$</td></tr>
 <tr><td><b>A3</b></td><td>low-dim modes</td>
-  <td>within a regime only a few command / load variables move; the many sensors are (noisy) deterministic functions of those few.</td>
+  <td>only a few variables within a regime are truly <em>independent</em>; the rest are derived from them, deterministically or probabilistically.</td>
   <td>each $p_k$ near a manifold $\mathcal M_k=\{g_k(u):u\in\mathbb R^{r}\}$, $r\ll d$.</td>
   <td>$r=3\!\ll\!24=d$; $g_k$</td></tr>
 <tr><td><b>A4</b></td><td>imbalance</td>
-  <td>machines spend most of the record in a few steady regimes; startup, shutdown and rare maneuvers occupy very little of it.</td>
+  <td>machines spend most of the record in a few steady regimes; startup, shutdown and rare maneuvers occupy very little of it; so an infrequent but perfectly normal point is easily mistaken for an anomaly.</td>
   <td>$(\pi_k)$ heavy-tailed (Zipf $\beta$): $\pi_k\propto\mathrm{rank}(k)^{-\beta}$, $\min_k\pi_k\ll1/K$.</td>
   <td>Zipf weights, rank-shuffled</td></tr>
 <tr><td><b>A5</b></td><td>implicit</td>
-  <td>the operating-mode label is rarely logged alongside telemetry; only raw sensor streams are recorded, so modes must be <em>discovered</em>.</td>
+  <td>the true regimes are an emergent artifact of complex system design and coupling, so the <em>actual</em> modes can rarely be recovered exactly; the mode label is not logged either, so modes must be <em>discovered</em> (approximately) from raw streams.</td>
   <td>mode label $k$ latent; only $x$ observed at train time.</td>
   <td>no labels emitted for training</td></tr>
 <tr><td><b>A6</b></td><td>heterogeneous sensing</td>
