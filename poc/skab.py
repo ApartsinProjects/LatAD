@@ -23,15 +23,10 @@ import numpy as np
 import pandas as pd
 
 from data import CPSDataset
+from winfeat import window_features
 
 CHANNELS = ["Accelerometer1RMS", "Accelerometer2RMS", "Current", "Pressure",
             "Temperature", "Thermocouple", "Voltage", "Volume Flow RateRMS"]
-
-
-def _feat(win):
-    """Per-channel window features: mean, std, min, max, trend, range (6xC)."""
-    return np.concatenate([win.mean(0), win.std(0), win.min(0), win.max(0),
-                           win[-1] - win[0], win.max(0) - win.min(0)])
 
 
 def _windows(df, W, stride, rep="flatten"):
@@ -41,11 +36,10 @@ def _windows(df, W, stride, rep="flatten"):
     wins, labs = [], []
     for i in range(0, len(X) - W + 1, stride):
         w = X[i:i + W]
-        wins.append(_feat(w) if rep == "stats" else w)
+        wins.append(window_features(w, rep))
         labs.append(1 if y[i:i + W].mean() > 0.5 else 0)
     if not wins:
-        dim = 6 * len(CHANNELS) if rep == "stats" else (W, len(CHANNELS))
-        return np.empty((0,) + (dim if isinstance(dim, tuple) else (dim,))), np.empty((0,), int)
+        return np.empty((0, 0)), np.empty((0,), int)
     return np.stack(wins), np.array(labs, int)
 
 
@@ -76,7 +70,7 @@ def load_skab(root="datasets/SKAB", W=20, stride=10, rep="flatten") -> CPSDatase
             Xt.append(w); yt.append(l)
     Xt = np.concatenate(Xt); yt = np.concatenate(yt)
 
-    if rep == "stats":                                     # (N, 6C) feature vectors
+    if rep in ("stats", "temporal"):                       # (N, F) feature vectors
         mu, sd = Xn.mean(0), Xn.std(0) + 1e-8
         x_train = ((Xn - mu) / sd).astype(np.float32)
         x_test = ((Xt - mu) / sd).astype(np.float32)

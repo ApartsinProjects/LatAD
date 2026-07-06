@@ -80,8 +80,8 @@
   trained only on C1 anomalies transfers to unseen fault families; and mode-conditional calibration
   eliminates systematically false-alarming modes that the mean rate hides. First real-CPS validation is
   consistent with the thesis: on the multi-process HAI testbed the framework leads on the imbalance-appropriate
-  metrics (AUPRC 0.77, TPR@5%FPR 0.77), while on the near-unimodal SKAB rotor all methods are weak and it is
-  merely competitive. We report a full ablation and are explicit about scope: the main study is synthetic and
+  metrics (AUPRC 0.77, TPR@5%FPR 0.77), while on the SKAB rotor &mdash; an order of magnitude fewer measured
+  modes &mdash; all methods are weak and it is merely competitive. We report a full ablation and are explicit about scope: the main study is synthetic and
   the real-data results are first, single-seed, static-window; WADI/SWaT validation is the next step.</p>
 </div>
 
@@ -394,9 +394,23 @@ label leakage). At the low anomaly base rates here, <b>AUPRC</b> and TPR@5%FPR a
 On <b>HAI</b> (59 sensors, four coupled processes &mdash; genuinely multi-process), the framework
 <em>leads</em>: AUPRC 0.77 and TPR@5%FPR 0.77, above the AutoEncoder (0.75/0.73), LOF (0.74/0.71), and far
 above Isolation Forest (0.40/0.53); LOF and the AutoEncoder edge it only on AUROC. On <b>SKAB</b> (a single
-rotor testbed, effectively unimodal), all methods are weak (AUROC 0.56&ndash;0.64) and the framework is
-competitive but does not lead. The contrast supports the thesis: the mode-based machinery helps where normal
-operation is genuinely multimodal (HAI) and not where it is unimodal (SKAB).</p>
+rotor testbed), all methods are weak (AUROC 0.56&ndash;0.64) and the framework is competitive but does not
+lead. Measured MIIM profiles (Table&nbsp;6) sharpen the contrast: HAI is <em>massively</em> multimodal
+(BIC selects $\ge$64 modes) whereas SKAB has an order of magnitude fewer ($\approx$16); the framework's
+mode-based advantage tracks the number of modes, i.e. how <em>massive</em> the multimodality is, not merely
+whether the data is multimodal at all (both are). Other plausible contributors to the SKAB result &mdash;
+its high anomaly base rate (35% vs 4%), an order-of-magnitude less training data, and low intrinsic
+separability (all methods $\approx$0.6 AUROC) &mdash; are discussed in the limitations.</p>
+<table><caption>Table 6. Measured MIIM profile of each dataset (normal data). K&#770; = BIC-selected number of
+GMM modes (64 = search cap, still improving); bic-gain = per-sample BIC improvement over one mode (&gt;0 =
+genuinely multimodal); K<sub>eff</sub> = exp(entropy of mode weights) = effective number of modes; imbalance
+= 1&minus;K<sub>eff</sub>/K&#770;. This turns 'multimodal/imbalanced' into measured quantities.</caption>
+<thead><tr><th>dataset</th><th>d</th><th>d<sub>int</sub></th><th>K&#770; (modes)</th><th>bic-gain</th><th>silhouette</th><th>K<sub>eff</sub></th><th>imbalance</th></tr></thead>
+<tbody>
+<tr><td>synthetic MIIM</td><td>24</td><td>11</td><td>&ge;64</td><td>25.5</td><td>0.16</td><td>40.7</td><td>0.36</td></tr>
+<tr><td>HAI (multi-process)</td><td>354</td><td>56</td><td>&ge;64</td><td>15.1</td><td>0.09</td><td>51.2</td><td>0.20</td></tr>
+<tr><td>SKAB (single rotor)</td><td>48</td><td>18</td><td>16</td><td>12.3</td><td>0.11</td><td>11.2</td><td>0.30</td></tr>
+</tbody></table>
 <table><caption>Table 5. Real CPS testbeds, single seed, threshold calibrated on held-out test-normal.
 AUPRC (bold column) is the meaningful metric at these base rates. HAI is multi-process (4% attacks); SKAB is
 a single rotor (35% anomalous windows).</caption>
@@ -426,8 +440,9 @@ temporal multiscale of A8 (per-channel time constants) is not yet modelled, and 
 <h2>7. Limitations and Scope</h2>
 <ul class="spaced">
   <li><b>Real-data results are preliminary.</b> The main study is synthetic; the SKAB/HAI results
-  (Section&nbsp;6.6) are single-seed on a static per-window feature representation, and SKAB is near-unimodal
-  so it does not exercise the thesis. WADI and SWaT (the intended primary real benchmarks) are access-gated
+  (Section&nbsp;6.6) are single-seed on a static per-window feature representation, and SKAB has far fewer
+  modes (Table&nbsp;6), a high 35% anomaly base rate, and little training data, so it under-exercises the
+  thesis and its result is confounded by those factors. WADI and SWaT (the intended primary real benchmarks) are access-gated
   (iTrust request, pending). Code is dataset-agnostic behind a loader.</li>
   <li><b>Realism margin over LOF depends on sensor heterogeneity.</b> On an earlier homogeneous-channel
   version of the benchmark, LOF (local density on raw distance) was competitive. Under the realistic model

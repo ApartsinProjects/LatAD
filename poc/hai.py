@@ -18,13 +18,9 @@ import numpy as np
 import pandas as pd
 
 from data import CPSDataset
+from winfeat import window_features
 
 LABELS = {"time", "attack", "attack_P1", "attack_P2", "attack_P3"}
-
-
-def _feat(win):
-    return np.concatenate([win.mean(0), win.std(0), win.min(0), win.max(0),
-                           win[-1] - win[0], win.max(0) - win.min(0)])
 
 
 def _read(path):
@@ -39,7 +35,7 @@ def _windows(df, sensors, W, stride, rep):
     wins, labs = [], []
     for i in range(0, len(X) - W + 1, stride):
         w = X[i:i + W]
-        wins.append(_feat(w) if rep == "stats" else w.ravel())
+        wins.append(window_features(w, rep))
         labs.append(1 if y[i:i + W].mean() > 0.5 else 0)
     if not wins:
         return np.empty((0, 0)), np.empty((0,), int)
