@@ -121,8 +121,12 @@ def main():
         atr = v._log_pz_given_c(v.encode(torch.as_tensor(xtr_s, device=dev))[0]).argmax(1).cpu().numpy()
         ate = v._log_pz_given_c(v.encode(torch.as_tensor(xte_s, device=dev))[0]).argmax(1).cpu().numpy()
 
-    # mode-conditional context branch (robust, whitened)
-    sc_tr, sc_te = mode_ctx_score(c_tr, atr, c_te, ate, K)
+    # mode-conditional context branch (robust, whitened). PCA-reduce c_t first to cut the
+    # heavy-tail FPR cost (chi^2_96 -> chi^2_m), keeping the top transition directions.
+    from sklearn.decomposition import PCA
+    pca = PCA(n_components=24, random_state=0).fit(c_tr)
+    cr_tr, cr_te = pca.transform(c_tr), pca.transform(c_te)
+    sc_tr, sc_te = mode_ctx_score(cr_tr, atr, cr_te, ate, K)
 
     def z(v_, ref):
         return (v_ - ref.mean()) / (ref.std() + 1e-9)
