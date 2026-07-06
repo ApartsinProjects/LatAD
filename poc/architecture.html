@@ -128,78 +128,43 @@ anomaly logic; $K$ large with the imbalanced tail preserved.</dd>
 <h3><span class="B2">Model B</span> — trainable trajectory encoder (queryable history)</h3>
 <dl>
 <dt>In plain terms</dt><dd style="font-style:italic;color:#543">Keeps a running "diary" of which modes the
-system has been in, at several zoom levels (recent / medium / long-ago). It only <em>remembers the past</em> —
-it never predicts the future (much normal behaviour is unpredictable) and never judges anomalies. We check it's
-a good diary by quizzing it: "which mode were we in <em>k</em> steps ago?" — if it can answer far-back
-questions, it has really kept the history.</dd>
+system has been in and in what order. It only <em>remembers the past</em> — it never predicts the future (much
+normal behaviour is unpredictable) and never judges anomalies. We check it is a good diary by quizzing it:
+"which mode were we in <em>k</em> steps ago?" — if it answers far-back questions, it has kept the history.</dd>
 <dt>Embedding (not tokenization)</dt>
-<dd>Because A's modes are <strong>fuzzy</strong> (a soft $\gamma_t$), hard segment/tokenization is wrong — it
-discards the soft information and has ill-defined boundaries on a flickering signal. Instead embed each step as
-a <strong>soft mixture of learned mode embeddings</strong> — the continuous analogue of a token:
-<div class="eq">$$e_t=\sum_k \gamma_{t,k}\,m_k\ \ (\oplus\ W\,d_t),$$</div>
-so a between-modes window sits <em>on the segment</em> between $m_A$ and $m_B$, and a transition is a
-<strong>smooth trajectory in embedding space</strong> (a forbidden path = an unusual $e$-trajectory, not a
-discrete jump). ($m_k$ may be initialised from A's mode centroids; a plain MLP on $(\gamma_t,d_t)$ is the
-simpler equivalent.)</dd>
-<dt>Encoder</dt><dd>a <strong>long-range continuous sequence model</strong> over $\{e_t\}$ —
-<strong>SSM / Mamba</strong> or <strong>dilated-TCN</strong> (streaming, $10^3$-step memory), with
-<strong>multi-resolution readouts</strong> $c_t=[c^{\text{short}}\oplus c^{\text{med}}\oplus c^{\text{long}}]$
-and a <strong>per-resolution maturity signal</strong> $\tilde\tau^{r}_t=\log(1+\min(t-t_\text{start},R_r))$
-(replaces burn-in — early context is "immature", not discarded). A multi-timescale EMA of $\gamma$ is only a
-fixed, weak baseline of this.</dd>
-<dt>Input</dt><dd>the stream of soft assignments $\gamma_t$ (and distances $d_t$) from frozen A.</dd>
-<dt>Output</dt><dd>trajectory context $c_t$ — a multi-resolution history summary (a vector, or a small set of
-memory tokens for C's cross-attention).</dd>
-<dt>Loss — two query heads (no forecasting)</dt>
-<dd>Two complementary readouts on the shared $c_t$, jointly shaping it; both ask only about the
-<em>determined past</em>.<br>
-<strong>(a) Instance head</strong> — <em>time-indexed recall</em>, precise, for short/near horizons: recover
-the assignment at offset $k$,
-<div class="eq">$$\mathcal L_{\text{inst}}=\sum_t\sum_{k}\lambda_k\ \mathrm{CE}\big(\gamma_{t-k},\ r_\theta(c_t,\phi(k))\big).$$</div>
-Captures <strong>order and exact timing</strong> (needed for transitions/sequences); weighted to short/medium $k$.<br>
-<strong>(b) Containment head</strong> — <em>period membership</em>, coarse, for medium/long horizons: given a
-period $P=[t-b,\,t-a]$ and a candidate state $a$, predict whether $a$ was present in $P$ (BCE),
-<div class="eq">$$\mathcal L_{\text{cont}}=\sum_t\sum_{P,a}\ w_a\ \mathrm{BCE}\big(\mathbb 1[a\in P],\ q_\theta(c_t,P,a)\big).$$</div>
-Captures <strong>occurrence, order-agnostic and timing-robust</strong> ("was rare $Z$ visited in the last hour?").<br>
-<em>Why two:</em> precise instance recall degrades with distance while containment persists — "visited $Z$
-somewhere in the last 1000 steps" survives when "$Z$ at exactly offset 347" does not — so <strong>instance maps
-to the short readout, containment to the long</strong> (they land on B's existing resolutions). Far offsets /
-long periods <strong>force long memory</strong>.<br>
-<strong>Rare/common balancing</strong> (mainly on containment, where presence of rare states is otherwise lost):
-balance positive/negative periods and up-weight rare-state positives $w_a\propto 1/\pi_a$, so a period containing
-a rare $Z$ counts as much as one full of the common state; apply lighter rare-weighting $\lambda_k\propto1/\pi$
-to the instance head.</dd>
-<dt>Rationale</dt><dd>fuzzy modes &rarr; <em>embed</em>, don't tokenize; transitions become smooth
-$e$-trajectories. The past is <em>determined</em> &rarr; retrieval is well-posed and
-<strong>unpredictability-proof</strong>; offset-parameterisation gives a tunable memory horizon; content+time
-queries make $c_t$ encode <em>which</em> regime and <em>when</em>.</dd>
-<dt>Keeping rare states (don't let the common state dominate)</dt>
-<dd>The system sits in the common mode most of the time, so a naive time-average is flooded by it and forgets a
-brief visit to a rare state. Three safeguards: <strong>(1) surprise-gated writing</strong> — like taking
-meeting notes, a <em>repeated</em> common state writes almost nothing to the memory while a <em>new/rare</em>
-state writes a lot, i.e. update $s_t=s_{t-1}+g_t\!\cdot\!\Delta_t$ with a novelty gate
-$g_t=\sigma(\text{novelty}_t)$ (this is what Mamba's selection / LSTM gates do). Here $s_t$ is <em>B's own
-recurrent state</em> (the SSM/Mamba selective state that feeds $c_t$), not a second parallel memory &mdash; so
-"surprise-gated writing" is a property the encoder <em>learns</em>, and the hand-designed EMA below is only a
-fixed fallback baseline for it.
-<div style="margin:.4em 0 .2em;padding:.5em .7em;background:#faf7f0;border-left:3px solid #c9b98a">
-<em>How surprise is measured (exactly).</em> Two signals, both cheap and <strong>non-forecasting</strong>:
-<br><strong>rarity (surprisal)</strong> — how improbable the current mode is,
-$\;\mathrm{sur}^{\text{rare}}_t=-\log\pi_{k_t},\ k_t=\arg\max\gamma_t$, with $\pi$ the mode frequencies from A
-(common mode $\to$ small, rare mode $\to$ large);
-<br><strong>change from recent</strong> — how far the current embedding has moved from what the memory has lately
-held, $\;\mathrm{sur}^{\text{chg}}_t=\lVert e_t-s^{\text{recent}}_{t-1}\rVert$ (a fast EMA of $e$), so a mode
-switch or a rare visit reads as high change.
-<br>The gate is a small <strong>learned</strong> function fed exactly these signals (so the rare-weighted
-query-loss sets the balance, nothing hand-tuned):
-<div class="eq">$$g_t=\sigma\!\Big(\mathrm{MLP}\big(e_t,\ s_{t-1},\ \underbrace{-\log\pi_{k_t}}_{\text{rarity}},\ \underbrace{\lVert e_t-s^{\text{recent}}_{t-1}\rVert}_{\text{change}}\big)\Big).$$</div>
-(Hand-designed fallback if a learned gate is not wanted: $g_t=\sigma(a\cdot\mathrm{sur}^{\text{rare}}_t+b\cdot\mathrm{sur}^{\text{chg}}_t-\theta)$.)
-Two guardrails: keep it non-forecasting (rarity/change, never next-step prediction, which would reopen the
-unpredictability trap), and <strong>debounce</strong> the assignment so a one-step noise flicker is not read as a
-genuine surprise.</div>
-<strong>(2) presence features</strong> — per mode, "time since last visited" and recent peak, so even a one-step
-rare visit is on the record regardless of duration; <strong>(3) rare-weighted queries</strong> — the training
-quiz asks about rare states more often (weight $\propto 1/\pi_a$), so forgetting them is penalised.</dd>
+<dd>A's modes are <strong>fuzzy</strong> (a soft $\gamma_t$), so hard tokenization is wrong. Embed each step as a
+<strong>soft mixture of learned mode embeddings</strong>,
+<div class="eq">$$e_t=\sum_k \gamma_{t,k}\,m_k,$$</div>
+so a between-modes window sits <em>on the segment</em> between $m_A$ and $m_B$: a transition is a smooth
+$e$-trajectory and a forbidden path is an unusual one. ($m_k$ init from A's centroids; a plain MLP on $\gamma_t$
+is the simple equivalent.)</dd>
+<dt>Encoder</dt><dd>one <strong>long-range sequence model</strong> over $\{e_t\}$ — <strong>SSM / Mamba</strong>
+(or dilated-TCN), streaming with $\sim\!10^3$-step memory. Its recurrent state $s_t$ <em>is</em> the memory; a
+readout of $s_t$ gives the context $c_t$.</dd>
+<dt>Input</dt><dd>the stream of responsibilities $\gamma_t$ from frozen A.</dd>
+<dt>Output</dt><dd>trajectory context $c_t$ (a vector, or a few memory tokens for C's cross-attention).</dd>
+<dt>Loss — rare-weighted recall (no forecasting)</dt>
+<dd>One head. Over a spread of offsets $k\in\{1,2,4,\dots,512\}$, recover the past mode from the context:
+<div class="eq">$$\mathcal L_B=\sum_t\sum_k \lambda_k\,\mathrm{CE}\big(\gamma_{t-k},\,r_\theta(c_t,\phi(k))\big),\qquad \lambda_k\propto 1/\pi.$$</div>
+Far offsets <strong>force long memory</strong>; asking only about the <em>determined</em> past keeps it
+<strong>unpredictability-proof</strong>; the rare-weight $\lambda_k\propto1/\pi$ stops the common mode from
+dominating, so brief rare visits are not forgotten. The learned selective state (Mamba's gate) does the rest —
+it writes more on novel/rare steps than on repeats, learned end-to-end from this loss.</dd>
+<dt>Rationale</dt><dd>fuzzy modes &rarr; embed, don't tokenize; the past is <em>determined</em> so retrieval is
+well-posed; offset-parameterisation gives a tunable memory horizon. A faithful $c_t$ lets C catch invalid
+<em>paths</em> without an explicit transition graph.</dd>
+<dt>Optional extensions (add only if the lean core misses something)</dt>
+<dd><ul>
+<li><strong>Containment head</strong> — "was mode $a$ present in period $P$?" (BCE, rare/common-balanced): coarse,
+timing-robust recall for long horizons, if precise offset-recall degrades too fast.</li>
+<li><strong>Explicit surprise-gated writing</strong> — if the learned gate under-writes rare states, force it:
+$s_t=s_{t-1}+g_t\Delta_t$ with $g_t=\sigma\big(\mathrm{MLP}(e_t,s_{t-1},-\log\pi_{k_t},\lVert e_t-s^{\text{recent}}\rVert)\big)$
+(surprise = rarity $-\log\pi$ + change from recent; non-forecasting; debounce flicker).</li>
+<li><strong>Presence features</strong> — per mode "time since last visited", so a one-step rare visit stays on
+the record regardless of duration.</li>
+<li><strong>Multi-resolution + maturity</strong> — split $c_t$ into short/med/long readouts with a per-resolution
+maturity signal, if a single horizon is not enough.</li>
+</ul></dd>
 <dt>Objectives</dt><dd>a faithful, queryable record of regime occupancy, order, and dwell — good enough that C
 catches invalid <em>paths</em> without an explicit transition graph.</dd>
 <dt>Constraints</dt><dd>normal-only; reset state at run boundaries; <strong>no forecasting, no anomaly logic</strong>;
@@ -318,11 +283,11 @@ snapshot TPR must not fall when conditioning is switched on.</p>
 
 <h3>Redundancy / overkill (demote to fallback or gate behind an ablation)</h3>
 <ul>
-<li><b>B has four rare-state mechanisms</b> (two query heads, learned surprise gate, presence features,
-rare-weighted queries). Core = rare-weighted <em>containment</em> loss + the learned selective state; presence
-features and the hand-designed EMA are fallbacks/ablations, not core. Keep two, demote two.</li>
-<li><b>Three resolutions + per-resolution maturity</b>, but the instance/containment split needs only two
-horizons (near/far). Start with two; add "med" only if a gap shows.</li>
+<li><b>B rare-state machinery</b> (<em>applied</em>): the core now keeps just two mechanisms &mdash;
+rare-weighted recall + the learned selective state; the containment head, explicit surprise-gating, and
+presence features are demoted to optional extensions, added only if the core under-recalls rare states.</li>
+<li><b>Resolutions</b> (<em>applied</em>): the core reads out a single horizon; multi-resolution + per-resolution
+maturity is an optional extension, added only if one horizon proves too short.</li>
 <li><b>C's $\pi_k(c_t)$ context-prior head</b> overlaps with FiLM (both make expectations context-dependent).
 Ship FiLM alone first; add the head only if contextual/pocket faults survive.</li>
 <li><b>C2 basin descent</b> is the most expensive part (per-window latent optimisation) and only targets E2;
