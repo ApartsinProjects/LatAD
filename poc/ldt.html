@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LDT — Latent Dynamics Twin: design & training</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+<style>
+  :root{--text:#1a1a1a;--muted:#555;--rule:#d8d8d8;--accent:#1d4e6f;--link:#1d4e6f;--soft:#f6f8fa;
+    --serif:Georgia,'Times New Roman',serif;--sans:'Helvetica Neue',Arial,sans-serif;--mono:Consolas,monospace;}
+  *{box-sizing:border-box}
+  body{background:#fff;color:var(--text);font-family:var(--serif);font-size:17px;line-height:1.55;margin:0}
+  .wrap{max-width:800px;margin:0 auto;padding:44px 24px 100px}
+  h1{font-size:1.7rem;margin:0 0 4px}
+  .sub{font-family:var(--sans);color:var(--muted);font-size:.95rem;margin:0 0 6px}
+  .tag{font-family:var(--sans);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+  h2{font-family:var(--sans);font-size:1.14rem;margin:32px 0 6px;padding-bottom:5px;border-bottom:2px solid var(--rule)}
+  h3{font-family:var(--sans);font-size:1rem;margin:20px 0 3px;color:#222}
+  p{margin:0 0 12px;text-align:justify}
+  a{color:var(--link)}
+  code{font-family:var(--mono);font-size:.86em;background:var(--soft);padding:1px 5px;border-radius:4px}
+  .box{background:var(--soft);border:1px solid var(--rule);border-radius:8px;padding:12px 18px;margin:14px 0}
+  .role{border-left:3px solid var(--accent)}
+  table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:.85rem;margin:14px 0}
+  th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+  thead th{border-top:1.5px solid #333;border-bottom:1.5px solid #333}
+  ul{margin:0 0 12px;padding-left:22px} li{margin-bottom:4px}
+  .open{background:#fbf6ee;border:1px solid #e6d9c2;border-radius:8px;padding:12px 18px;margin:14px 0}
+  .eq{overflow-x:auto}
+  @media(max-width:600px){body{font-size:16px}.wrap{padding:28px 15px 60px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p class="tag">LatAD · latent-digital-twin branch · design note</p>
+<h1>LDT — Latent Dynamics Twin</h1>
+<p class="sub">A frozen, self-supervised encoder of trajectory dynamics that augments the window-based
+MIIM detector (CVaDE). Companion to the main framework (C1&ndash;C4).</p>
+
+<h2>1. Why: the snapshot limitation</h2>
+<p>The window/mode detector (VaDE + C1&ndash;C4) sees a <em>snapshot</em>: it has no memory of the trajectory
+that led to the current window. Two anomaly classes are invisible to any snapshot (even a longer window or a
+convolution over it): (i) a state that is normal <em>now</em> but reached via an <strong>invalid path</strong>
+(bad transition), and (ii) a <strong>slow drift</strong> whose evidence spans far more than one window. The
+fix is a learned <strong>sufficient statistic of history</strong> at bounded dimension &mdash; a recurrent/
+state-space context $c_t$ made meaningful by a <strong>prediction</strong> objective.</p>
+
+<h2>2. Two models, separated by concern</h2>
+<table>
+<thead><tr><th></th><th>LDT (this doc)</th><th>CVaDE (detector)</th></tr></thead>
+<tbody>
+<tr><td>owns</td><td>time / dynamics / transitions</td><td>modes / detection</td></tr>
+<tr><td>input</td><td>stream $x_{1:t}$</td><td>$\xi_t=[\phi(W_t)\oplus c_t]$</td></tr>
+<tr><td>output</td><td>context $c_t$ (+ transition score $s^{\text{trans}}_t$)</td><td>anomaly score</td></tr>
+<tr><td>trained by</td><td>contrastive multi-horizon prediction</td><td>VaDE ELBO + C1&ndash;C4</td></tr>
+<tr><td>data</td><td>normal, sequential</td><td>normal, augmented windows</td></tr>
+<tr><td>when</td><td>first, then <strong>frozen</strong></td><td>second, on $[\text{window}\oplus c_t]$</td></tr>
+</tbody></table>
+<p>They train <strong>separately</strong> (stable, testable in isolation) and compose by a single
+concatenation. First verify "$c_t$ improves detection" in isolation, then add transitions and C1&ndash;C4.</p>
+
+<h2>3. LDT architecture (causal)</h2>
+<ul>
+<li>per-step encoder $e:\ \phi(W_t)\mapsto u_t$;</li>
+<li>state model $f$ with a <strong>multi-timescale backbone</strong> (dilated temporal-conv / S4-Mamba /
+hierarchical "clockwork" recurrence): $\;c_t=f(c_{t-1},u_t,\tilde\tau_t)$;</li>
+<li><strong>saturating time-from-start</strong> $\tilde\tau_t=\log\!\big(1+(t-t_{\text{start}})\big)$ so early
+predictions widen (the state is under-determined near a trajectory start);</li>
+<li>multi-horizon projection heads $g_h$ used <em>only</em> during training.</li>
+</ul>
+
+<h2>4. Training objective</h2>
+<p>Self-supervised <strong>contrastive multi-horizon prediction</strong> (InfoNCE), on <strong>normal data
+only</strong>, over horizons $h\in\{1,4,16,64,256,\dots\}$ (multiscale = assumption A8):</p>
+<div class="eq">$$\mathcal L_{\text{LDT}}=\sum_h \lambda_h\ \text{InfoNCE}\big(g_h(c_t,\tilde\tau_t),\,u_{t+h},\,\{\text{negatives}\}\big)\ +\ \beta_{\text{vic}}\,\text{VICReg}(c_t).$$</div>
+<ul>
+<li>The head <strong>scores compatibility of $(c_t,\text{future})$ pairs</strong> &mdash; it models the
+<em>distribution</em> of valid futures, so a <strong>valid-but-unpredictable</strong> transition (in-support)
+is not penalised; only out-of-support pairs are.</li>
+<li>Contrastive form ⇒ <strong>collapse is prevented by the loss</strong> (a constant $c_t$ cannot win the
+discrimination; InfoNCE lower-bounds $I(c_t;\text{future})$, which is $0$ under collapse). VICReg guards
+against dimensional collapse; a light density/reconstruction anchor covers non-predictive observation
+anomalies.</li>
+</ul>
+
+<h3>4.1 Long-memory requirements (design against short-memory bias)</h3>
+<p>A naive next-step model forgets: the persistence signal dominates and $c_t$ keeps only the last few steps.
+To force long-term transitions/trends into $c_t$:</p>
+<ul>
+<li><strong>Long + curriculum horizons</strong> &mdash; include genuinely long $h$, weighted enough that the
+model cannot ignore them (far prediction is impossible from short memory); grow $h$ over training.</li>
+<li><strong>Multi-timescale backbone</strong> &mdash; dilated-TCN / SSM / clockwork, not a vanilla RNN.</li>
+<li><strong>Slow/trend targets</strong> &mdash; predict the future moving-average or slope at long horizons,
+not just raw values (Slow-Feature principle); optionally feed long-EMA / long-window slope as input.</li>
+</ul>
+<p>What "long-term" should mean: a fixed-dimensional $c_t$ must <strong>summarise</strong> &mdash; the recent
+<em>sequence of regimes</em>, their <em>dwell times</em>, and the <em>slow trend</em> &mdash; not raw history.
+That summary is exactly what makes long-range invalid patterns (an invalid regime <em>path</em>, a
+drifting-out-of-spec trend) detectable.</p>
+
+<h3>4.2 Data &amp; optimisation protocol</h3>
+<ul>
+<li>Normal only; reset $c$ and $\tau$ at run/file boundaries; burn-in context before scoring.</li>
+<li>Teacher-force the state; open-loop the heads; per-channel standardisation on train.</li>
+<li>Adam ~1e-3, gradient clipping, subsequence batches (len ~100&ndash;500+ for long memory).</li>
+<li><strong>Label-free model selection</strong>: state dim, context length, horizons chosen by held-out
+<em>normal</em> contrastive loss (+ detection on C1-generated anomalies).</li>
+</ul>
+
+<h3>4.3 Acceptance test — measure the memory horizon</h3>
+<p>Do not assume long memory; <strong>probe it</strong>. Train linear probes to recover long-past events /
+long-horizon futures from $c_t$ and measure the <strong>effective memory horizon</strong>. If probes cannot
+recover events from far back, increase horizons / change backbone. This is the LDT's gate before it feeds
+CVaDE.</p>
+
+<h2>5. Outputs (frozen) and how CVaDE uses them</h2>
+<ul>
+<li><strong>Context $c_t$</strong> &mdash; concatenated to the window: CVaDE runs on $\xi_t=[\phi(W_t)\oplus
+c_t\,(\oplus\,\Delta c_t)]$, standardised so neither part swamps. The discovered modes become
+<em>(operating regime &times; history phase)</em>.</li>
+<li><strong>Transition score</strong> $s^{\text{trans}}_t=-\log\ \text{compat}(c_{t-1},u_t)$ &mdash; the
+transition improbability, added as its own anomaly term (not recoverable from the static $c_t$).</li>
+</ul>
+<p>Final detector score: whitened reconstruction + nearest-mode latent NLL + basin instability (CVaDE)
+$+\ s^{\text{trans}}_t$, each standardised on normal and summed.</p>
+
+<h2>6. Training pipeline</h2>
+<ol>
+<li>Train <strong>LDT</strong> on normal (contrastive multi-horizon) &rarr; pass the memory-horizon probe &rarr; freeze.</li>
+<li>Compute $c_t$ for all data; form $\xi_t=[\phi(W_t)\oplus c_t]$.</li>
+<li>Train <strong>CVaDE</strong> on normal $\xi_t$ (VaDE + anti-collapse); fit whitener, C3 ensemble, C4 thresholds.</li>
+<li>Detect: CVaDE score $+\ s^{\text{trans}}_t$.</li>
+</ol>
+
+<h2>7. Grounding</h2>
+<p>Composes established ideas rather than reinventing: Contrastive Predictive Coding (van den Oord 2018);
+recurrent state-space / world models (RSSM, PlaNet/Dreamer); long-range sequence models (S4, Mamba);
+forecasting-based CPS AD (OmniAnomaly, GDN, TranAD); classical state-space/Kalman; digital twins. Novel angle:
+the MIIM mode/regime structure and the four components layered on the learned latent dynamics.</p>
+
+<div class="open">
+<h3 style="margin-top:0">Open questions / to discuss</h3>
+<ul>
+<li>Backbone choice: dilated-TCN vs SSM (Mamba/S4) vs hierarchical RNN &mdash; memory vs simplicity vs deps.</li>
+<li>Negatives for InfoNCE: in-batch across time vs across runs vs hard negatives (near-in-time).</li>
+<li>Does $c_t$ risk dropping <em>non-predictive</em> anomaly signal? How strong an anchor is needed.</li>
+<li>Two-stage frozen vs end-to-end fine-tuning of LDT+CVaDE.</li>
+<li>Where transitions live: $s^{\text{trans}}_t$ scalar vs stacking last-$k$ latents into CVaDE vs both.</li>
+<li>Non-stationarity across runs / sensor drift &mdash; per-run normalisation vs learned regime of "session".</li>
+</ul>
+</div>
+
+</div>
+</body>
+</html>
