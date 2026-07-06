@@ -138,7 +138,7 @@ def _chunk_sequence(gamma_seq, seg_len, stride, device):
 
 def train_B(model, gamma_seq, pi, epochs=8, seg_len=512, stride=256,
             batch_segs=8, lr=1e-3, device="cpu", anchor_reg=1e-3,
-            n_cont_queries=8, verbose=False, seed=0):
+            n_cont_queries=8, verbose=False, seed=0, max_train_offset=64):
     """Train B on one normal gamma stream with the two query heads.
 
     gamma_seq : (T, K) responsibilities from frozen A, in time order.
@@ -150,7 +150,7 @@ def train_B(model, gamma_seq, pi, epochs=8, seg_len=512, stride=256,
 
     pi_t = torch.as_tensor(np.maximum(pi, 1e-4), dtype=torch.float32, device=device)
     inv_pi = 1.0 / pi_t
-    lam = (inv_pi / inv_pi.mean())                        # lambda_k prop 1/pi, mean 1
+    lam = (inv_pi / inv_pi.mean()).clamp(0.3, 3.0)        # lambda_k prop 1/pi, clipped
     segs = _chunk_sequence(gamma_seq, seg_len, stride, device)
     K = model.K
     offs = torch.tensor(INSTANCE_OFFSETS, device=device)
@@ -170,7 +170,7 @@ def train_B(model, gamma_seq, pi, epochs=8, seg_len=512, stride=256,
             loss_i = 0.0
             n_i = 0
             for oi, k in enumerate(INSTANCE_OFFSETS):
-                if k >= L:
+                if k >= L or k > max_train_offset:
                     break
                 t = torch.arange(k, L, device=device)     # queryable positions
                 if len(t) == 0:

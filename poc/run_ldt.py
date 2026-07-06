@@ -71,6 +71,42 @@ def fused_scores(model, x, c, pmpca, fuser, device):
     return fuser.predict_proba(feats)[:, 1], feats
 
 
+class ModeContextScore:
+    """Mode-conditional trajectory-context anomaly: how off-distribution is c_t for
+    windows assigned to this mode. FiLM scores p(window | c_t) and cannot catch a
+    pure-trajectory fault (bad_transition: the window is NORMAL, only the arrival
+    path is wrong). This scores p(c_t | mode) instead -> flags an abnormal arrival.
+    Ablation-safe: with c_t==0 (C-alone) it returns 0, so the control gets no signal.
+    """
+
+    def __init__(self, c, assign, K, ridge=1e-2):
+        self.dim = c.shape[1]; self.mu = {}; self.inv = {}
+        self.trivial = bool(np.allclose(c, 0))
+        gcov = np.cov(c.T) + ridge * np.eye(self.dim)
+        self.gmu = c.mean(0); self.ginv = np.linalg.pinv(gcov)
+        for k in range(K):
+            ck = c[assign == k]
+            if len(ck) >= 30:
+                self.mu[k] = ck.mean(0)
+                self.inv[k] = np.linalg.pinv(np.cov(ck.T) + ridge * np.eye(self.dim))
+
+    def score(self, c, assign):
+        if self.trivial or np.allclose(c, 0):
+            return np.zeros(len(c))
+        out = np.zeros(len(c))
+        for k in np.unique(assign):
+            idx = np.where(assign == k)[0]
+            m = self.mu.get(int(k), self.gmu); inv = self.inv.get(int(k), self.ginv)
+            dd = c[idx] - m
+            out[idx] = np.einsum("ij,jk,ik->i", dd, inv, dd)
+        return out
+
+
+def _z(v, ref):
+    mu, sd = ref.mean(), ref.std() + 1e-9
+    return (v - mu) / sd if sd > 1e-6 else np.zeros_like(v)
+
+
 def run(seed=0, K=16, latent=8, device=None, verbose=True):
     if device is None:
         # honour CUDA_VISIBLE_DEVICES="" as a real CPU request
@@ -82,7 +118,7 @@ def run(seed=0, K=16, latent=8, device=None, verbose=True):
 
     # ---- data --------------------------------------------------------------
     d = make_temporal_miim(n_modes=20, n_features=24, seed=seed,
-                           n_train=200000, n_test=200000, W=40, stride=20)
+                           n_train=120000, n_test=150000, W=40, stride=20)
     xtr, xte = d["x_train"], d["x_test"]
     yte, atype = d["y_test"], d["atype_test"]
     print(f"train={len(xtr)} test={len(xte)} feat={d['n_features']} "
@@ -102,10 +138,11 @@ def run(seed=0, K=16, latent=8, device=None, verbose=True):
 
     # ---- B: trajectory encoder --------------------------------------------
     print("\n[B] training trajectory encoder (GRU stand-in for Mamba)...")
-    B = ldt_b.TrajectoryEncoderB(K=K, emb_dim=latent, ctx_dim=32,
+    B = ldt_b.TrajectoryEncoderB(K=K, emb_dim=48, ctx_dim=96, n_layers=2,
                                  centroids=A.centroids(), backbone="gru")
-    ldt_b.train_B(B, g_tr, A.pi, epochs=8, seg_len=512, stride=256,
-                  batch_segs=8, lr=1e-3, device=device, verbose=verbose, seed=seed)
+    ldt_b.train_B(B, g_tr, A.pi, epochs=60, seg_len=512, stride=128,
+                  batch_segs=16, lr=3e-3, max_train_offset=64,
+                  device=device, verbose=verbose, seed=seed)
     probe = ldt_b.memory_horizon_probe(B, g_tr, device=device)
     print("    memory-horizon probe (instance-head acc vs offset):")
     print("      " + "  ".join(f"k={k}:{a:.2f}" for k, a in probe.items()))
@@ -135,6 +172,7 @@ def run(seed=0, K=16, latent=8, device=None, verbose=True):
         # per-mode PCA experts (C3a) on the conditioned assignment
         assign_tr = ldt_c.assign_modes(model, xtr, ctr, device=device)
         pmpca = ldt_c.PerModePCA(xtr, assign_tr, latent_dim=latent)
+        ctxscore = ModeContextScore(ctr, assign_tr, K)   # mode-conditional trajectory context
 
         # C1 anomalies get context too: use the mean train context (they are not
         # a time series). This keeps the fuser features distributionally matched.
@@ -152,8 +190,20 @@ def run(seed=0, K=16, latent=8, device=None, verbose=True):
         # score train-normal for C4 per-mode thresholds
         fused_tr, _ = fused_scores(model, xtr, ctr, pmpca, fuser, device)
 
-        # ---- C4: per-mode thresholds at 5% FPR --------------------------
+        # ---- combine base C-score with the trajectory-context score -----
         assign_te = ldt_c.assign_modes(model, xte, cte, device=device)
+        sctx_tr = ctxscore.score(ctr, assign_tr)
+        sctx_te = ctxscore.score(cte, assign_te)
+        base_tr = fused_tr.copy()
+        # s_ctx contributes only as an EXCEEDANCE above a high normal quantile, so it
+        # RAISES genuine trajectory outliers without diluting the shared threshold for
+        # snapshot faults (or shifting C-alone, whose s_ctx is identically 0).
+        zs_tr = _z(sctx_tr, sctx_tr)
+        q = float(np.quantile(zs_tr, 0.90)) if zs_tr.std() > 1e-6 else 0.0
+        fused_tr = _z(base_tr, base_tr) + np.maximum(0.0, zs_tr - q)
+        fused_te = _z(fused_te, base_tr) + np.maximum(0.0, _z(sctx_te, sctx_tr) - q)
+
+        # ---- C4: per-mode thresholds at 5% FPR --------------------------
         global_thr = float(np.quantile(fused_tr, 0.95))
         thr_dict = component4.mode_conditional_thresholds(
             fused_tr, assign_tr, target_fpr=0.05, global_thr=global_thr)

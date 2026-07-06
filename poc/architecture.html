@@ -183,7 +183,10 @@ maturity signal, if a single horizon is not enough.</li>
 <dt>Objectives</dt><dd>a faithful, queryable record of regime occupancy, order, and dwell — good enough that C
 catches invalid <em>paths</em> without an explicit transition graph.</dd>
 <dt>Constraints</dt><dd>normal-only; reset state at run boundaries; <strong>no forecasting, no anomaly logic</strong>;
-frozen after training. <em>Acceptance test:</em> query-accuracy vs offset = the effective memory horizon.</dd>
+frozen after training. <em>Acceptance test:</em> the memory-horizon probe (query-accuracy vs offset) must clear a
+fidelity bar before C5 can use $c_t$ &mdash; e.g. mean accuracy $\gtrsim0.7$ at $k\le8$; an under-trained B
+(probe near chance) makes $c_t$ uninformative and C+B collapses onto C-alone. In practice reaching the bar needs
+<em>focused near-offset</em> training (offsets $\le64$) with clipped rarity weights, not merely more epochs.</dd>
 </dl>
 </div>
 
@@ -243,10 +246,24 @@ $\mathrm{TFAR}=Q_{q}\big(\{\widehat{\mathrm{FPR}}_k:n_k\ge20\}\big)$ and its CVa
 false-alarm, not the average, is the objective. <em>Why:</em> a single global threshold is set by the common
 mode and silently sacrifices the rare modes' false-alarm (<strong>E1</strong>); per-mode $\tau_k$ is label-free
 (<strong>E3</strong>).</li>
+<li><strong>C5</strong> &mdash; <em>mode-conditional trajectory context</em> (the transition-fault term).
+FiLM conditions the <em>window</em> decoder, so the base and C1&ndash;C4 stack scores $p(\text{window}\mid c_t)$:
+this catches snapshot and contextual faults but <strong>not</strong> a pure-<em>trajectory</em> fault
+(<code>bad_transition</code>), where the window is genuinely normal and the anomaly lives entirely in the
+<em>arrival path</em>. Add the complementary conditional $p(c_t\mid\text{mode})$: score how off-distribution
+$c_t$ is under the normal-$c_t$ law for the window's assigned mode,
+$s_{\mathrm{ctx}}=(c_t-\bar c_k)^\top\Sigma_{c,k}^{-1}(c_t-\bar c_k)$. A settled window reached via a
+<em>forbidden</em> predecessor has a $c_t$ that never precedes that mode in normal data &rarr; high
+$s_{\mathrm{ctx}}$. This is the graph-free realisation of "off-manifold $(\text{window},c_t)$ pair" for transition
+anomalies, and it is <strong>ablation-clean</strong> ($c_t\!=\!0\Rightarrow s_{\mathrm{ctx}}\!=\!0$, so a
+no-context control gets no trajectory signal). <em>Empirically decisive:</em> with a faithful B but without
+$s_{\mathrm{ctx}}$, C+B ties C-alone on <code>bad_transition</code> (a window-decoder cannot move a normal
+window); $s_{\mathrm{ctx}}$ is the term that separates it.</li>
 </ul>
-<strong>Fusion &rarr; one number.</strong> The C3 supervised member is the fuser: it consumes
-$[\,s_{\mathrm{rec}},\,s_{\mathrm{lat}},\,\text{C2 features},\,\text{per-mode PCA min}\,]$ and emits a single
-score, which C4 then calibrates <em>per mode</em>. So "one C-score" is literal, and every part is auditable.</dd>
+<strong>Fusion &rarr; one number.</strong> The C3 supervised member fuses
+$[\,s_{\mathrm{rec}},\,s_{\mathrm{lat}},\,\text{C2 features},\,\text{per-mode PCA min}\,]$; the trajectory-context
+$s_{\mathrm{ctx}}$ (C5) is combined on top (standardised sum, since C1's window-anomalies do not supervise it),
+and C4 calibrates <em>per mode</em>. So "one C-score" is literal, and every part is auditable.</dd>
 <dt>Rationale</dt><dd>detect "normal <em>given</em> history." Conditioning (not concatenation) means $c_t$ shapes
 the expected-normal but is never reconstructed &rarr; <strong>no dilution</strong>. All anomaly families become
 an off-manifold $(\text{window},c_t)$ pair, so one detector suffices.</dd>
@@ -265,7 +282,7 @@ redundant (it is a hand-coded special case of C-conditioned-on-good-B) and is dr
 <tbody>
 <tr><td>snapshot</td><td>pocket (between modes), drift (out of bounds)</td><td>C — window off-manifold ($c_t$ irrelevant)</td></tr>
 <tr><td>contextual</td><td>valid value, wrong for the current regime</td><td>C — $(\text{window},c_t)$ off via conditioning</td></tr>
-<tr><td>transition / path</td><td>valid mode reached via a <em>forbidden</em> path</td><td>C — $c_t$ encodes the invalid path &rarr; pair off</td></tr>
+<tr><td>transition / path</td><td>valid mode reached via a <em>forbidden</em> path</td><td>C5 &mdash; $c_t$ off the mode's normal arrival-context ($s_{\mathrm{ctx}}$); FiLM alone cannot</td></tr>
 </tbody></table>
 
 <h2>Training pipeline</h2>
@@ -329,11 +346,28 @@ them, else free $m_k$ can drift or collapse.</li>
 cost/benefit; $c_t$ dimension vs the window; whether A and C share a frozen backbone + adapters.</li>
 </ul>
 
-<h3>Decisive experiment</h3>
-<p>Does <strong>C-alone</strong> lift <code>bad_transition</code> from the snapshot floor ($0.057$) toward the
-pocket/drift level on the temporal benchmark, <em>with no transition graph</em>? A yes confirms B is faithful
-<em>and</em> that principle (4) holds (the graph is redundant). This is the single result the whole three-model
-split is staked on.</p>
+<h3>Decisive experiment (finding)</h3>
+<p>Does conditioning lift <code>bad_transition</code> off the snapshot floor ($0.057$) on the temporal benchmark,
+<em>with no transition graph</em>? The implementation separated two things.
+<strong>(1) B fidelity is necessary but not sufficient.</strong> An under-trained B leaves $c_t$ near chance and
+C+B collapses onto C-alone; focused near-offset training clears the memory-horizon bar (probe $\approx0.88$ at
+$k{=}1$, $0.77$ at $k{=}4$).
+<strong>(2) The conditional must be the right one.</strong> Even with a faithful B, the FiLM window-decoder
+(scoring $p(\text{window}\mid c_t)$) still <em>ties</em> C-alone on <code>bad_transition</code> (lift
+$\approx0$) &mdash; the window is genuinely normal, so no window-conditioned reconstruction can move it. The
+<strong>C5 trajectory-context score</strong> $s_{\mathrm{ctx}}=p(c_t\mid\text{mode})$ is the term that separates
+it, and it is ablation-clean (zero without context). So principle (4) still holds &mdash; a forbidden path is
+caught <em>graph-free</em> &mdash; but the realisation is $p(c_t\mid\text{mode})$, not the window-conditioned
+reconstruction.</p>
+<p><strong>Validated (temporal benchmark, 5% FPR).</strong> window-only C-alone: pocket $0.49$, drift $0.74$,
+<code>bad_transition</code> $0.16$ (a window detector cannot catch it). Adding the C5 context branch fused by an
+<em>asymmetric p-value OR</em> lifts <code>bad_transition</code> to $0.24$&ndash;$0.35$ (tunable against a small
+snapshot budget), and it is <strong>exactly $0$ without B</strong> ($c_t\!=\!0\Rightarrow$ no lift). Two
+alternatives were <em>falsified</em>: <strong>FiLM</strong>-on-window (lift $0$, window is normal) and
+<strong>concatenation</strong> $[\text{window}\oplus c_t]$ (the $\sim\!6{:}4$ window-to-context dim ratio lets
+the window dominate the clustering &mdash; latent-NLL for <code>bad_transition</code> stays at the floor). The
+working term is a <em>per-mode</em> (not pooled) Ledoit-Wolf context density; pooling across modes washes out the
+tight arrival-context structure the fault violates.</p>
 </div>
 
 </div>
