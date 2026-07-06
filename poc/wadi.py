@@ -15,7 +15,7 @@ def _prep(df, cols):
     return X.values.astype(np.float32)
 
 
-def load_wadi(W=60, stride=30, rep="stats", downsample=10):
+def load_wadi(W=60, stride=30, rep="stats", downsample=10, clip=10.0):
     nrm = pd.read_csv(f"{DIR}/WADI_14days_new.csv")        # header on row 0
     atk = pd.read_csv(f"{DIR}/WADI_attackdataLABLE.csv", skiprows=1)  # extra index row first
     nrm.columns = [c.strip() for c in nrm.columns]
@@ -26,10 +26,16 @@ def load_wadi(W=60, stride=30, rep="stats", downsample=10):
     sensors = [c for c in sensors if nrm[c].isna().mean() < 0.5]   # drop mostly-NaN cols
 
     Xn = _prep(nrm, sensors)[::downsample]
-    Xa = _prep(atk, sensors)
-    ya = (pd.to_numeric(atk[lc], errors="coerce").values == -1).astype(int)
+    Xa = _prep(atk, sensors)[::downsample]                 # downsample TEST too (was a bug:
+    ya = (pd.to_numeric(atk[lc], errors="coerce").values == -1).astype(int)[::downsample]
+    # train/test windows must span the SAME physical horizon, else features mismatch)
+    # KEEP the ~30 near-constant-in-normal channels: standardised by their tiny sigma
+    # they are the most sensitive attack carriers (an actuator forced during an attack).
     mu, sd = Xn.mean(0), Xn.std(0) + 1e-8                  # standardise on normal channels
     Xn, Xa = (Xn - mu) / sd, (Xa - mu) / sd
+    if clip:                                               # A2 hard envelope: a >10sigma reading is a
+        Xn, Xa = np.clip(Xn, -clip, clip), np.clip(Xa, -clip, clip)  # sensor fault / glitch / unit
+    # shift (2_MCV_007_CO const-in-normal->active; 2B_AIT_002_PV 9->4428), not a process state.
 
     def win(X, y=None):
         Xw, yl = [], []

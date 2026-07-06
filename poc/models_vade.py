@@ -152,6 +152,148 @@ class VaDE(nn.Module):
         log_near = self._log_pz_given_c(mu).max(dim=1).values.cpu().numpy()
         return recon - log_near
 
+    # ------------------------------------------------------------------ #
+    #  Hard-anomaly scoring head (see EXPERIMENT_LOG 2.29).
+    #  Diagnosis: the reconstruction term is DEAD on hard anomalies (they are
+    #  correlation-break faults the decoder rebuilds fine) and actively drags
+    #  the joint score down; the diagonal nearest-mode NLL is blind to
+    #  between-dim correlation. Fix: score in the jointly-learned latent with a
+    #  high-K diagonal GMM (parametric KDE -> non-Gaussian pockets), dropping
+    #  recon entirely. On WADI this lifts HARD 0.49 -> 0.76 and beats a PCA
+    #  latent, so the JOINT representation pays off once the head stops wasting it.
+    # ------------------------------------------------------------------ #
+    @torch.no_grad()
+    def _encode_mean(self, x):
+        return self.encode(_as_tensor(x, self))[0].cpu().numpy().astype(float)
+
+    @torch.no_grad()
+    def _hard_components(self, x):
+        """The two latent NLL terms (density, diagonal-nearest-mode) for x."""
+        z = self._encode_mean(x)
+        dens = -self.latent_gmm.score_samples(z)                    # V3 density head
+        diag_nll = -self._log_pz_given_c(_as_tensor(z, self)).max(dim=1).values.cpu().numpy()  # V1
+        return dens, diag_nll
+
+    def fit_latent_density(self, x, k_density=80, seed=0):
+        """Fit a high-K diagonal GMM on the NORMAL latent (the parametric density
+        head) and record the two components' train-normal mean/std so the fused
+        score is calibrated against normal (NOT against the test batch, whose
+        outliers would otherwise set the z-scale and swamp the signal). Stores
+        only GMM params + 4 scalars -- no data retained."""
+        self.latent_gmm = GaussianMixture(
+            n_components=k_density, covariance_type="diag", reg_covar=1e-3,
+            random_state=seed).fit(self._encode_mean(x))
+        d, n = self._hard_components(x)
+        self._hd_ref = (d.mean(), d.std() + 1e-9, n.mean(), n.std() + 1e-9)
+        return self
+
+    # ---- optional 3rd head: responsibility-weighted whitened residual ----
+    # Dead on WADI (correlation-break faults reconstruct fine) but the BEST hard
+    # detector on HAI (0.84): where the fault DOES surface in reconstruction, the
+    # residual whitened per-mode and averaged by responsibility gamma_k carries it.
+    # Off by default; gate it on (auto) via a train-normal heteroscedasticity test.
+    @torch.no_grad()
+    def _responsibilities(self, x):
+        from scipy.special import logsumexp
+        mu = self.encode(_as_tensor(x, self))[0]
+        logN = self._log_pz_given_c(mu).cpu().numpy()
+        logpi = torch.log_softmax(self.pi_logit, 0).cpu().numpy()
+        lp = logpi[None] + logN
+        return np.exp(lp - logsumexp(lp, 1, keepdims=True))
+
+    @torch.no_grad()
+    def _residual(self, x):
+        xt = _as_tensor(x, self)
+        return (xt - self.decode(self.encode(xt)[0])).cpu().numpy().astype(float)
+
+    def _resid_score(self, Q, G):
+        mk = np.stack([self._rlw.get(k, self._rglob).mahalanobis(Q) for k in range(self.K)], 1)
+        return (G * mk).sum(1)
+
+    def fit_resid_head(self, x, red_dim=30, min_mode=30, seed=0):
+        """Fit the responsibility-weighted whitened-residual head on NORMAL data:
+        reduce residual to `red_dim`, per-mode LedoitWolf precision, calibrate on
+        train. Also stores an AUTO gate = per-mode residual heteroscedasticity
+        (how much per-mode covariance departs from the global): high => the residual
+        carries mode-specific structure worth using (HAI); low => skip it (WADI)."""
+        from sklearn.decomposition import PCA
+        from sklearn.covariance import LedoitWolf
+        R = self._residual(x); G = self._responsibilities(x); a = G.argmax(1)
+        self._rp = PCA(min(red_dim, R.shape[1]), random_state=seed).fit(R)
+        Q = self._rp.transform(R)
+        self._rglob = LedoitWolf().fit(Q)
+        self._rlw = {k: LedoitWolf().fit(Q[a == k]) for k in np.unique(a) if (a == k).sum() >= min_mode}
+        s = self._resid_score(Q, G); self._rd_ref = (s.mean(), s.std() + 1e-9)
+        # AUTO gate = does the residual GENERALISE to held-out normal? Fit per-mode
+        # precision on the first 80% of train, score the last 20%; if that held-out
+        # normal scores MUCH higher (recon drifts / overfits -> WADI), the residual is
+        # unreliable -> skip. If it generalises (ratio ~1 -> HAI), keep it.
+        nA = int(0.8 * len(Q))
+        aA = a[:nA]
+        rlwA = {k: LedoitWolf().fit(Q[:nA][aA == k]) for k in np.unique(aA) if (aA == k).sum() >= min_mode}
+        def _sc(Qs, Gs):
+            mk = np.stack([rlwA.get(k, self._rglob).mahalanobis(Qs) for k in range(self.K)], 1)
+            return (Gs * mk).sum(1)
+        sA, sB = _sc(Q[:nA], G[:nA]), _sc(Q[nA:], G[nA:])
+        ratio = np.quantile(sB, 0.95) / (np.quantile(sA, 0.95) + 1e-9)
+        self._resid_gen_ratio = float(ratio)
+        self._resid_auto = ratio < 1.5                     # generalises -> trust the residual
+        return self
+
+    # ---- optional 4th head: C2 basin-agreement RESCUE (FP fix for overlapping-mode data) ----
+    # Perturb z with Gaussian noise; 'agreement' = fraction of copies keeping the clean argmax
+    # mode. Rare-but-VALID points sit deep in one basin -> high agreement -> DEMOTE. Only helps
+    # when modes OVERLAP (between-mode faults exist); auto-scaled by the TRAIN ratio of ambiguous
+    # normals so it self-disables on crisp-mode data (WADI/HAI -> lambda 0).
+    @torch.no_grad()
+    def _noise_agreement(self, x, R=16, frac=0.5, seed=0):
+        zt = self.encode(_as_tensor(x, self))[0]
+        base = self._log_pz_given_c(zt).argmax(1).cpu().numpy()
+        g = torch.Generator(device=zt.device).manual_seed(seed)
+        sig = torch.as_tensor(frac * self._basin_zstd, dtype=zt.dtype, device=zt.device)
+        ag = np.zeros(len(base))
+        for _ in range(R):
+            zp = zt + torch.randn(zt.shape, generator=g, device=zt.device, dtype=zt.dtype) * sig
+            ag += (self._log_pz_given_c(zp).argmax(1).cpu().numpy() == base)
+        return ag / R
+
+    def fit_basin_head(self, x, amb_level=0.5, base_lam=2.5, deadzone=0.15, seed=0):
+        """Calibrate the basin rescue purely on training normals: lambda scales with the RATIO
+        of train-normal windows that are 'between modes' (max responsibility < amb_level). Crisp
+        modes -> ~0 -> off (WADI/HAI); overlapping -> fires (SKAB). No score-threshold constant."""
+        self._basin_zstd = self._encode_mean(x).std(0)
+        maxr = self._responsibilities(x).max(1)
+        self._basin_frac_amb = float((maxr < amb_level).mean())
+        self._basin_lam = base_lam * max(0.0, self._basin_frac_amb - deadzone)
+        ag = self._noise_agreement(x, seed=seed)
+        self._basin_ref = (ag.mean(), ag.std() + 1e-9)
+        return self
+
+    @torch.no_grad()
+    def anomaly_score_hard(self, x, use_recon=False, use_resid=False, use_basin=False):
+        """Improved head: latent density NLL + diagonal nearest-mode NLL, each z-normalised
+        against TRAIN-normal, then summed. `use_recon=False` drops the harmful reconstruction
+        term. `use_resid` adds the responsibility-weighted whitened residual (True|False|'auto'
+        via held-out-normal generalisation; needs `fit_resid_head`). `use_basin` subtracts the
+        C2 basin-agreement rescue (True|False|'auto'; auto-scaled by train ambiguity ratio, so
+        'auto' is a no-op on crisp-mode data; needs `fit_basin_head`)."""
+        dens, diag_nll = self._hard_components(x)
+        dm, ds, nm, ns = self._hd_ref
+        score = (dens - dm) / ds + (diag_nll - nm) / ns
+        if use_recon and self.res_whitener is not None:
+            x_t = _as_tensor(x, self)
+            r = _recon_energy(x_t, self.decode(self.encode(x_t)[0]), self.res_whitener)
+            score = score + (r - r.mean()) / (r.std() + 1e-9)
+        add_resid = use_resid is True or (use_resid == "auto" and getattr(self, "_resid_auto", False))
+        if add_resid and hasattr(self, "_rlw"):
+            Q = self._rp.transform(self._residual(x)); G = self._responsibilities(x)
+            rs = self._resid_score(Q, G); rm, rsd = self._rd_ref
+            score = score + (rs - rm) / rsd
+        if use_basin and getattr(self, "_basin_lam", 0.0) > 0.0:
+            ag = self._noise_agreement(x); am, asd = self._basin_ref
+            score = score - self._basin_lam * (ag - am) / asd
+        return score
+
 
 class PlainVAE(nn.Module):
     """Standard VAE with an N(0, I) prior, for the sequential ablation."""

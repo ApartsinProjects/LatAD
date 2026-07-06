@@ -4,6 +4,14 @@ ours = window VaDE (+ event transition branch + optional neural c_t context via 
 
 Honest expectation: HAI/SKAB anomalies are snapshot-detectable, so the trajectory
 branches should add little there; WADI/SWaT unknown.
+
+CAVEAT (audit): the event + context (B) branches assume the test windows form ONE
+time-ordered walk. That holds for WADI (single attack file) but NOT for SWaT (test =
+held-out-normal ++ attack, one seam at the label flip) or HAI (windows concatenated
+across files). On those, any transition-surprise / GRU-context score AT a seam is an
+artifact, not real trajectory signal (on SWaT the seam aligns with the normal->attack
+flip, so it spuriously flatters +event/+context). Trust only the window-VaDE column on
+SWaT/HAI; the trajectory branches there are reported for completeness, not as results.
 """
 from __future__ import annotations
 import sys, numpy as np, torch
@@ -82,3 +90,5 @@ if __name__ == "__main__":
         import hai; run("HAI", hai.load_hai(), K=24, do_B=do_B)
     if "wadi" in which:
         import wadi; run("WADI", wadi.load_wadi(), K=20, do_B=do_B)
+    if "swat" in which:
+        import swat; run("SWaT", swat.load_swat(), K=20, do_B=do_B)   # needs Dec-2015 files

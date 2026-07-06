@@ -4,3 +4,8 @@ poc/datasets/
 .DS_Store
 poc/results/*.pkl
 /datasets/
+
+# data arrays (gated-data-derived, large) — never commit
+*.npy
+poc/sota_bundle/results/
+poc/logs/

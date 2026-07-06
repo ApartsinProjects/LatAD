@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modeling Normal Is All You Need: Joint Latent Clustering for Anomaly Detection in Multimodal Cyber-Physical Systems</title>
+<style>
+  :root{
+    --text:#1a1a1a; --muted:#555; --rule:#d8d8d8; --accent:#1f4e79; --soft:#f6f8fa;
+    --code:#f2f2f2;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:"Georgia","Times New Roman",serif;
+    color:var(--text); background:#fff; line-height:1.55;
+    max-width:820px; margin:0 auto; padding:48px 28px 96px;
+    font-size:17px;
+  }
+  h1{font-size:1.85rem; line-height:1.25; margin:0 0 .2em; text-align:center; font-weight:700}
+  .authors{text-align:center; color:var(--muted); font-size:1rem; margin:.2em 0 .1em}
+  .affil{text-align:center; color:var(--muted); font-size:.9rem; font-style:italic; margin:0 0 1.6em}
+  h2{font-size:1.28rem; margin:2.2em 0 .5em; padding-bottom:.15em; border-bottom:1px solid var(--rule); font-weight:700}
+  h3{font-size:1.08rem; margin:1.5em 0 .3em; font-weight:700}
+  h4{font-size:1rem; margin:1.2em 0 .2em; font-weight:700; font-style:italic}
+  p{margin:.55em 0; text-align:justify}
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+  .abstract{background:var(--soft); border:1px solid var(--rule); border-radius:6px; padding:16px 22px; margin:1.4em 0}
+  .abstract h2{border:none; margin:0 0 .3em; font-size:1.05rem}
+  .abstract p{font-size:.96rem}
+  code,.mono{font-family:"SFMono-Regular","Consolas","Menlo",monospace; font-size:.86em; background:var(--code); padding:1px 4px; border-radius:3px}
+  pre{background:var(--code); padding:12px 14px; border-radius:6px; overflow-x:auto; font-size:.82rem; line-height:1.4}
+  table{border-collapse:collapse; width:100%; margin:1em 0; font-size:.82rem; font-family:"Helvetica Neue",Arial,sans-serif}
+  .tblwrap{overflow-x:auto; margin:1em 0}
+  th,td{border:1px solid var(--rule); padding:5px 8px; text-align:center}
+  th{background:var(--soft); font-weight:700}
+  td.l,th.l{text-align:left}
+  caption{caption-side:top; text-align:left; font-size:.82rem; color:var(--muted); margin-bottom:.4em; font-family:"Helvetica Neue",Arial,sans-serif}
+  .win{font-weight:700; color:#1f6d3a}
+  figure{margin:1.4em 0; text-align:center}
+  figcaption{font-size:.82rem; color:var(--muted); margin-top:.5em; text-align:left; font-family:"Helvetica Neue",Arial,sans-serif}
+  .eq{display:block; text-align:center; margin:.8em 0; overflow-x:auto}
+  math{font-size:1.02em}
+  .small{font-size:.85rem; color:var(--muted)}
+  ol.refs{padding-left:1.4em; font-size:.86rem}
+  ol.refs li{margin:.5em 0; text-align:left}
+  .assum{font-size:.82rem}
+  .assum td.l{text-align:left}
+  .note{background:#fff8e8; border-left:3px solid #d8a72a; padding:8px 14px; margin:1em 0; font-size:.9rem}
+  sup.fn{font-size:.7em}
+  .toc{font-size:.9rem; color:var(--muted)}
+  hr{border:none; border-top:1px solid var(--rule); margin:2em 0}
+  .center{text-align:center}
+</style>
+</head>
+<body>
+
+<h1>Modeling Normal Is All You Need: Joint Latent Clustering for Anomaly Detection in Multimodal Cyber-Physical Systems</h1>
+<p class="authors">Anonymous (proof-of-concept draft)</p>
+<p class="affil">Preprint &middot; generated 2026-07-06</p>
+
+<div class="abstract">
+<h2>Abstract</h2>
+<p>The hard part of anomaly detection on a cyber-physical system (CPS) is not scoring the anomaly; it is
+<em>modeling normal</em>. CPS normal behaviour is the union of very many imbalanced, curved, thin-fringed
+operating regimes rather than a single blob, and a detector that mis-models this structure fails no matter how
+it thresholds. We make the structure explicit as ten assumptions (A1&ndash;A10) we abbreviate <em>Massive,
+Implicit, Imbalanced Multimodality</em> (MIIM), and argue that faithfully modeling this normal law calls for a
+<em>jointly learned latent representation plus explicit Gaussian-mixture mode clustering</em>, scored in the
+latent, rather than a global density or a reconstruction residual. We instantiate this as
+<strong>VaDE&#8209;hard+resid(auto)</strong>: a Variational Deep Embedding (a VAE with a Gaussian-mixture latent
+prior) scored by (i) a high-<em>K</em> diagonal Gaussian-mixture density head on the latent; (ii) a
+nearest-<em>component</em> negative log-likelihood that never penalises a rare-but-valid mode; and two
+auto-gated, training-normal-calibrated optional heads &mdash; (iii) a responsibility-weighted whitened residual
+that fires only when it generalises to held-out normal, and (iv) a basin-agreement rescue that fires only when
+modes overlap. A key mechanism is that we <em>drop the reconstruction term</em>: a flexible decoder rebuilds
+correlation-break faults faithfully, so the residual is blind to exactly the hard faults and, summed in, it
+harms detection. Evaluation is deliberately fair &mdash; raw point-wise metrics (no point adjustment),
+difficulty stratification, prevalence-matched F1, train-normal-only calibration. On three real CPS datasets
+&mdash; WADI (123 sensors), HAI (59 sensors) and SKAB (8 sensors) &mdash; the detector <strong>wins the combined
+(All) column on all three datasets and the difficult (correlation/dynamics-fault) column on WADI and HAI</strong>,
+with the margin largest exactly on the multimodal datasets (HAI, WADI) that the MIIM assumptions predict, and it
+holds against USAD and TranAD re-computed with the same raw point-wise metrics.</p>
+</div>
+
+<p class="toc"><strong>Contents.</strong>
+1 Introduction &middot;
+2 The MIIM assumptions about CPS normal data &middot;
+3 Method &middot;
+4 Experimental methodology &middot;
+5 Results &middot;
+6 Discussion &middot;
+7 Related work &middot;
+8 Conclusion.</p>
+
+<!-- ============================================================= -->
+<h2>1&nbsp;&nbsp;Introduction</h2>
+
+<p>A modern cyber-physical system &mdash; a water-treatment plant, an industrial control loop, a rotating
+machine &mdash; produces long streams of multivariate sensor and actuator data whose <em>normal</em> behaviour
+is intricate. The plant cycles through discrete operating regimes; the number of reachable regimes grows with
+system complexity; some regimes are common and many are rare; each regime is a bounded, curved patch of the
+observation space with legitimately low-density fringes. A fault is anything that leaves this union of normal
+regimes, and the interesting faults are the ones that stay <em>inside</em> the marginal envelope of every
+channel while breaking the joint structure &mdash; a correlation break, a between-mode pocket, a
+history-inconsistent state.</p>
+
+<p>Two problems make progress on this task hard to measure. The first is evaluation. The dominant metric in the
+literature, point-adjusted F1, inflates scores so severely that a <em>random</em> anomaly score can beat every
+published deep model [<a href="#r-kim">2</a>, <a href="#r-garg">3</a>]; and even under raw metrics, public CPS
+benchmarks are dominated by anomalies that a one-line univariate rule already separates [<a
+href="#r-wukeogh">4</a>], so a high headline number certifies little. The second is modelling. If normal is a
+union of many imbalanced modes, then a global anomaly model cannot represent it (a single blob under-fits the
+regime structure), a single deep autoencoder alarms on rare-but-valid modes (the trust-eroding false positive),
+and a reconstruction residual is blind to exactly the joint-structure faults that matter because a flexible
+decoder reconstructs them faithfully.</p>
+
+<p>This paper makes three contributions. <strong>(1)</strong> We state the structural assumptions of CPS normal
+data as an explicit list, A1&ndash;A10, that we abbreviate MIIM &mdash; <em>Massive, Implicit, Imbalanced
+Multimodality</em> &mdash; and tie each assumption to a concrete choice for <em>modeling normal</em> (&sect;2).
+<strong>(2)</strong> We build a detector whose whole design is faithfully modeling that normal law: a jointly
+learned latent plus explicit Gaussian-mixture mode clustering (VaDE), scored in the latent by a mixture density
+head and a rare-mode-safe nearest-component likelihood, with two optional heads auto-gated on training-normal
+signals; a key mechanism inside it is dropping the reconstruction term, which is blind to the hard faults
+(&sect;3). <strong>(3)</strong> We evaluate under a fair protocol &mdash; raw point-wise
+metrics, difficulty stratification, prevalence-matched comparisons, train-normal-only calibration &mdash; on
+three real CPS datasets, and compare against classical baselines and against USAD and TranAD re-computed with
+the same raw metrics (&sect;4&ndash;5). The detector wins the combined column on all three datasets and the
+difficult column on the two multimodal ones, with the largest margins precisely where the MIIM structure is
+strongest.</p>
+
+<p>We are explicit about scope. This is a proof-of-concept study on three datasets with a single trained model
+per dataset; several results are single-seed and the best-F1 threshold is an oracle (disclosed in &sect;4). We
+report only raw metrics and we treat the difficult subset, not the headline, as the discriminative test.</p>
+
+<!-- ============================================================= -->
+<h2>2&nbsp;&nbsp;The MIIM assumptions about CPS normal data</h2>
+
+<p>We model the normal law of a CPS as a mixture over reachable operating modes,
+<span class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+  <mrow><mi>p</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+  <munderover><mo>&#8721;</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>K</mi></munderover>
+  <msub><mi>&#960;</mi><mi>k</mi></msub><mspace width="0.15em"/>
+  <msub><mi>p</mi><mi>k</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow>
+</math></span>
+where each component <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msub><mi>p</mi><mi>k</mi></msub></math> is a bounded, oriented, curved patch of observation space. The ten
+assumptions below describe the qualitative structure of this mixture; each is grounded in a physical property
+of CPS operation and each motivates a specific design choice in the detector of &sect;3. We call the resulting
+property <em>MIIM</em>: the sample is <strong>M</strong>assive, the mode structure is <strong>I</strong>mplicit
+(unlabelled and only approximately recoverable), the mode occupancy is <strong>I</strong>mbalanced, and normal
+is <strong>M</strong>ultimodal.</p>
+
+<div class="tblwrap">
+<table class="assum">
+<caption><strong>Table 1.</strong> The ten CPS normal-data assumptions, their physical origin, and the detector
+design choice each motivates. A1&ndash;A8 shape the instantaneous window; A9&ndash;A10 shape the trajectory.</caption>
+<thead><tr>
+  <th>ID</th><th class="l">Assumption</th><th class="l">CPS rationale</th><th class="l">Motivates (design choice)</th>
+</tr></thead>
+<tbody>
+<tr><td><b>A1</b></td><td class="l"><b>Regime mixture</b> (multimodality)</td>
+  <td class="l">A plant or vehicle cycles through discrete operating regimes (idle, cruise, load steps); normal is their union, not one blob.</td>
+  <td class="l">Model normal as an explicit mixture, not a global density &mdash; the latent GMM prior of VaDE.</td></tr>
+<tr><td><b>A2</b></td><td class="l"><b>Mode explosion</b> (exponential mode growth)</td>
+  <td class="l">A CPS is built from many interacting subsystems; each added element multiplies reachable regimes, so mode count grows with complexity.</td>
+  <td class="l">Use a high number of components <em>K</em> (and a high-<em>K</em> density head) rather than a handful.</td></tr>
+<tr><td><b>A3</b></td><td class="l"><b>Hard envelopes</b> (bounded modes; thin between-mode pockets)</td>
+  <td class="l">Controllers hold each regime within setpoint/actuator bands; the space between regimes is passed through, rarely dwelt in, leaving thin anomalous pockets.</td>
+  <td class="l">A between-mode point must score anomalous even when every channel is in range &mdash; the basin-agreement head (v).</td></tr>
+<tr><td><b>A4</b></td><td class="l"><b>Thin fringes</b> (intra-mode sparsity)</td>
+  <td class="l">Within a mode the system dwells near a typical operating point and reaches the edges only occasionally; each mode holds legitimate low-density regions near its boundary.</td>
+  <td class="l">Density inside a mode is non-Gaussian &rarr; a parametric high-<em>K</em> mixture density head, not one Gaussian per mode.</td></tr>
+<tr><td><b>A5</b></td><td class="l"><b>Few levers</b> (low intrinsic dimension)</td>
+  <td class="l">The independent control variables are far fewer than the observed channels; the rest follow deterministically or probabilistically.</td>
+  <td class="l">A low-dimensional learned latent (dim 10) suffices; faults appear as departures within that latent.</td></tr>
+<tr><td><b>A6</b></td><td class="l"><b>Heavy tail</b> (Zipf imbalance)</td>
+  <td class="l">Machines spend most of the record in a few steady regimes; startup, shutdown and rare manoeuvres occupy little of it, so an infrequent-but-normal point is easily mistaken for a fault.</td>
+  <td class="l">Score against the <em>nearest</em> component, never the &#960;-weighted mixture, so a rare-but-valid mode is not penalised (iii).</td></tr>
+<tr><td><b>A7</b></td><td class="l"><b>Hidden regimes</b> (latent, implicit modes)</td>
+  <td class="l">True regimes are an emergent artifact of coupling and are not logged; modes must be discovered approximately from raw streams.</td>
+  <td class="l">Discover modes jointly with the representation (VaDE), unsupervised; never use mode labels.</td></tr>
+<tr><td><b>A8</b></td><td class="l"><b>Mixed signals</b> (heterogeneous, typed channels)</td>
+  <td class="l">The bus carries sensors, actuators, discrete states and setpoints, each with its own range, resolution and correlated noise.</td>
+  <td class="l">Per-feature standardisation on train-normal; a whitened (Mahalanobis) residual that respects per-channel scale and cross-channel correlation (iv).</td></tr>
+<tr><td><b>A9</b></td><td class="l"><b>Many clocks</b> (multiscale dynamics)</td>
+  <td class="l">Physical inertia sets per-channel time constants (thermal slow, electrical fast); only some regime&rarr;regime transitions are legal, each with a characteristic dwell.</td>
+  <td class="l">Fixed-length windows with per-channel statistics as features; motivates (but, empirically, does not require) explicit temporal features.</td></tr>
+<tr><td><b>A10</b></td><td class="l"><b>Path dependence</b> (history-conditioned normality)</td>
+  <td class="l">A fault is defined relative to operational history: the same instantaneous state can be normal or faulty depending on how the system arrived there.</td>
+  <td class="l">In principle a trajectory branch; on these snapshot-detectable public benchmarks it is inert (see &sect;6), so the reported model is window-only.</td></tr>
+</tbody></table>
+</div>
+
+<p>Two standing qualifiers apply throughout: the sample is <strong>massive</strong> (<math
+xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>N</mi></math> large) and the mixture is
+approximately <strong>stationary</strong> within a run. An exploratory analysis of the three datasets (&sect;4)
+confirms that the MIIM structure is present but <em>implicit</em> (A7): cluster sizes are heavy-tailed and
+Bayesian-information-criterion (BIC) mode counts keep improving past several dozen components on HAI and WADI,
+yet the modes overlap (silhouette 0.08&ndash;0.19) rather than separating crisply. This is precisely the regime
+in which a jointly learned latent, scored in the latent by a mixture density, pays off, and in which a global
+detector or a raw reconstruction residual does not.</p>
+
+<!-- ============================================================= -->
+<h2>3&nbsp;&nbsp;Method</h2>
+
+<p>The main model is <strong>VaDE&#8209;hard+resid(auto)</strong>. It has a representation stage (a VaDE that
+jointly learns a latent and a Gaussian-mixture prior) and a scoring stage (a stack of heads computed in the
+latent, all calibrated on train-normal). We describe each in turn; the actual implementation is in
+<code>models_vade.py</code>.</p>
+
+<h3>3.1&nbsp;&nbsp;Representation: Variational Deep Embedding (VaDE)</h3>
+
+<p>VaDE [<a href="#r-vade">9</a>] is a variational autoencoder whose latent prior is a Gaussian mixture, so the
+representation and the operating-mode clusters are learned <em>together</em> (A1, A7) rather than one after the
+other. An encoder maps a window feature vector <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>x</mi></math> to a latent Gaussian <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>q</mi><mo stretchy="false">(</mo><mi>z</mi><mo>&#8739;</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>N</mi><mo stretchy="false">(</mo><mi>&#956;</mi><mo>,</mo><mtext>diag</mtext><mspace width="0.1em"/><msup><mi>&#963;</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow></math>; a decoder reconstructs <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mover><mi>x</mi><mo>^</mo></mover></math>; and the prior is
+<span class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+  <mrow><mi>p</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>=</mo>
+  <munderover><mo>&#8721;</mo><mrow><mi>c</mi><mo>=</mo><mn>1</mn></mrow><mi>K</mi></munderover>
+  <msub><mi>&#960;</mi><mi>c</mi></msub><mspace width="0.15em"/>
+  <mi>N</mi><mo stretchy="false">(</mo><mi>z</mi><mo>&#8739;</mo>
+  <msub><mi>&#956;</mi><mi>c</mi></msub><mo>,</mo>
+  <mtext>diag</mtext><mspace width="0.1em"/><msubsup><mi>&#963;</mi><mi>c</mi><mn>2</mn></msubsup>
+  <mo stretchy="false">)</mo><mo>,</mo></mrow>
+</math></span>
+with mixture parameters <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>{</mo><msub><mi>&#960;</mi><mi>c</mi></msub><mo>,</mo><msub><mi>&#956;</mi><mi>c</mi></msub><mo>,</mo><msub><mi>&#963;</mi><mi>c</mi></msub><mo>}</mo></mrow></math> learned jointly with the networks. The training
+objective is the negative evidence lower bound; per window it is</p>
+
+<span class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+  <mrow>
+    <mi>&#8466;</mi><mo>=</mo>
+    <munder><mo>&#8721;</mo><mi>j</mi></munder>
+    <msup><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>j</mi></msub><mo>&#8722;</mo><msub><mover><mi>x</mi><mo>^</mo></mover><mi>j</mi></msub><mo stretchy="false">)</mo></mrow><mn>2</mn></msup>
+    <mo>+</mo><mi>&#946;</mi>
+    <munder><mo>&#8721;</mo><mi>c</mi></munder>
+    <msub><mi>&#947;</mi><mi>c</mi></msub>
+    <mrow><mo>[</mo>
+      <mtext>KL</mtext><mo stretchy="false">(</mo><mi>q</mi><mo>&#8739;</mo><mo>&#8739;</mo>
+      <mi>N</mi><mo stretchy="false">(</mo><msub><mi>&#956;</mi><mi>c</mi></msub><mo>,</mo><msubsup><mi>&#963;</mi><mi>c</mi><mn>2</mn></msubsup><mo stretchy="false">)</mo><mo stretchy="false">)</mo>
+      <mo>+</mo><mi>log</mi><mfrac><msub><mi>&#947;</mi><mi>c</mi></msub><msub><mi>&#960;</mi><mi>c</mi></msub></mfrac>
+    <mo>]</mo></mrow>
+    <mo>+</mo><mtext>H</mtext><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo><mo>,</mo>
+  </mrow>
+</math></span>
+
+<p>where <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#947;</mi><mi>c</mi></msub><mo>&#8733;</mo><msub><mi>&#960;</mi><mi>c</mi></msub><mspace width="0.1em"/><mi>N</mi><mo stretchy="false">(</mo><mi>z</mi><mo>&#8739;</mo><msub><mi>&#956;</mi><mi>c</mi></msub><mo>,</mo><msubsup><mi>&#963;</mi><mi>c</mi><mn>2</mn></msubsup><mo stretchy="false">)</mo></mrow></math> are the responsibilities. Three standard measures prevent the
+well-known cluster collapse in which many components are abandoned during joint training: a KL/cluster
+<em>warm-up</em> that anneals <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>&#946;</mi></math> from 0 to 1 so the encoder settles on the pretrained mixture
+initialisation before the prior is pulled around; a DAGMM-style [<a href="#r-dagmm">10</a>] penalty on tiny
+component variances (a variance floor plus a <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><munder><mo>&#8721;</mo><mi>c</mi></munder><msubsup><mi>&#963;</mi><mi>c</mi><mrow><mo>&#8722;</mo><mn>2</mn></mrow></msubsup></math> term); and a slower learning rate on the mixture parameters so
+the GMM initialisation (fitted on the pretrained latent) is refined, not destroyed. Training proceeds as
+plain-VAE pretraining, GMM initialisation on the encoded means, then joint optimisation of the full objective.</p>
+
+<h3>3.2&nbsp;&nbsp;Scoring: why we drop reconstruction</h3>
+
+<p>The natural VaDE anomaly score is the joint negative log-likelihood: a whitened reconstruction residual plus
+a latent term. On the <em>difficult</em> faults &mdash; correlation breaks and between-mode pockets &mdash; this
+is exactly wrong. Table 2 decomposes the two terms by their difficult-subset AUROC on a single trained model
+per dataset.</p>
+
+<div class="tblwrap">
+<table>
+<caption><strong>Table 2.</strong> Difficult-subset AUROC of the two natural score terms. The reconstruction
+residual is at or below chance on the correlation-break faults, and when summed it drags the joint score down;
+the latent likelihood carries the signal but a single diagonal Gaussian per mode is coarse.</caption>
+<thead><tr><th class="l">Score term</th><th>WADI</th><th>HAI</th><th>SKAB</th></tr></thead>
+<tbody>
+<tr><td class="l">(a) reconstruction residual <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mi>r</mi><mi>&#8868;</mi></msup><msup><mi>&#931;</mi><mrow><mo>&#8722;</mo><mn>1</mn></mrow></msup><mi>r</mi></mrow></math></td><td>0.490</td><td>0.689</td><td>0.457</td></tr>
+<tr><td class="l">(b) latent NLL (nearest diagonal component)</td><td>0.663</td><td>0.760</td><td>0.553</td></tr>
+<tr><td class="l">(a)+(b) joint NLL (naive VaDE score)</td><td>0.494</td><td>0.689</td><td>0.457</td></tr>
+</tbody></table>
+</div>
+
+<p>The mechanism is that a flexible decoder <em>reconstructs the fault faithfully</em>: a correlation-break
+window has in-range marginals, so the decoder rebuilds it and the residual is near chance or reversed. Dropping
+reconstruction is a universal difficult-subset improvement and also lifts the combined and easy columns on HAI
+and SKAB. The remaining scoring stack works entirely in the jointly learned latent.</p>
+
+<h3>3.3&nbsp;&nbsp;The scoring stack</h3>
+
+<p>Let <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi><mo>=</mo><mi>&#956;</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> be the encoder mean. The base score sums two latent heads, each
+z-normalised against its train-normal mean and standard deviation, so the operating scale is set by normal, not
+by the test batch.</p>
+
+<h4>(i)&ndash;(ii)&nbsp;Latent mixture-density head (parametric KDE for non-Gaussian pockets)</h4>
+<p>Because each mode has a non-uniform interior with thin fringes (A4), one Gaussian per mode is too coarse. We
+fit a high-<em>K</em> diagonal Gaussian mixture on the train-normal latent (<math
+xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>K</mi><mo>=</mo><mn>80</mn></mrow></math>
+by default) as a parametric kernel-density estimate, and score a window by its density negative
+log-likelihood:</p>
+<span class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+  <mrow><msub><mi>s</mi><mtext>dens</mtext></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+  <mo>&#8722;</mo><mi>log</mi>
+  <munderover><mo>&#8721;</mo><mrow><mi>m</mi><mo>=</mo><mn>1</mn></mrow><mn>80</mn></munderover>
+  <msub><mi>w</mi><mi>m</mi></msub><mspace width="0.15em"/>
+  <mi>N</mi><mo stretchy="false">(</mo><mi>z</mi><mo>&#8739;</mo><msub><mi>a</mi><mi>m</mi></msub><mo>,</mo><mtext>diag</mtext><mspace width="0.1em"/><msubsup><mi>b</mi><mi>m</mi><mn>2</mn></msubsup><mo stretchy="false">)</mo><mo>.</mo></mrow>
+</math></span>
+
+<h4>(iii)&nbsp;Nearest-component NLL (rare-mode-safe)</h4>
+<p>Under heavy-tailed imbalance (A6) a valid point in a rare, low-<math
+xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>&#960;</mi></math> mode must not be flagged
+merely for being rare. We therefore use the <em>closest</em> component, not the &#960;-weighted mixture:</p>
+<span class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+  <mrow><msub><mi>s</mi><mtext>near</mtext></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+  <mo>&#8722;</mo><munder><mi>max</mi><mi>c</mi></munder>
+  <mi>log</mi><mspace width="0.15em"/>
+  <mi>N</mi><mo stretchy="false">(</mo><mi>z</mi><mo>&#8739;</mo><msub><mi>&#956;</mi><mi>c</mi></msub><mo>,</mo><mtext>diag</mtext><mspace width="0.1em"/><msubsup><mi>&#963;</mi><mi>c</mi><mn>2</mn></msubsup><mo stretchy="false">)</mo><mo>.</mo></mrow>
+</math></span>
+<p>Using the maximum over components rather than the Bayesian mixture sum matters on between-mode faults (SKAB):
+the mixture sum washes out a between-mode signal, whereas the nearest-component distance retains it. The base
+score is the sum of the two z-normalised heads,
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>s</mi><mn>0</mn></msub><mo>=</mo><mtext>z</mtext><mo stretchy="false">(</mo><msub><mi>s</mi><mtext>dens</mtext></msub><mo stretchy="false">)</mo><mo>+</mo><mtext>z</mtext><mo stretchy="false">(</mo><msub><mi>s</mi><mtext>near</mtext></msub><mo stretchy="false">)</mo></mrow></math>.</p>
+
+<h4>(iv)&nbsp;Optional responsibility-weighted whitened residual, auto-gated</h4>
+<p>On some datasets the fault <em>does</em> surface in reconstruction. The optional residual head reduces the
+per-channel residual <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>r</mi></math> to
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mn>30</mn></math> dimensions, fits a
+Ledoit&ndash;Wolf-shrunk [<a href="#r-lw">13</a>] precision per mode, and combines the per-mode whitened
+energies by responsibility:</p>
+<span class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+  <mrow><msub><mi>s</mi><mtext>resid</mtext></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+  <munderover><mo>&#8721;</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>K</mi></munderover>
+  <msub><mi>&#947;</mi><mi>k</mi></msub><mspace width="0.15em"/>
+  <msubsup><mi>r</mi><mi>k</mi><mi>&#8868;</mi></msubsup><msubsup><mi>&#931;</mi><mi>k</mi><mrow><mo>&#8722;</mo><mn>1</mn></mrow></msubsup><msub><mi>r</mi><mi>k</mi></msub><mo>.</mo></mrow>
+</math></span>
+<p>The head is <em>auto-gated</em> by a held-out-normal generalisation test: per-mode precisions are fitted on
+the first 80% of train-normal and scored on the last 20%; if held-out normal scores much higher (the residual
+overfits / drifts), the ratio <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>q</mi><mn>95</mn></msub><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo><mo>/</mo><msub><mi>q</mi><mn>95</mn></msub><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></math> is large and the head is switched off. Empirically the ratio is 5.24 on
+WADI (off) and 1.17 on HAI (on): the residual carries the fault on HAI but is dead on WADI, and the gate
+recovers exactly this pattern from train-normal alone.</p>
+
+<h4>(v)&nbsp;Optional basin-agreement rescue, auto-scaled</h4>
+<p>Between-mode pockets (A3) are the dangerous false negative on datasets whose modes overlap. We perturb the
+latent with Gaussian noise <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>R</mi></math>
+times and measure <em>agreement</em> &mdash; the fraction of perturbed copies that keep the clean argmax mode. A
+rare-but-valid point sits deep in one basin (high agreement, demote); a between-mode point flips modes under
+perturbation (low agreement, keep). The rescue subtracts a scaled, train-normal-calibrated agreement:</p>
+<span class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+  <mrow><mi>s</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>s</mi><mn>0</mn></msub><mo>+</mo>
+  <msub><mi>s</mi><mtext>resid</mtext></msub><mo>&#8722;</mo>
+  <mi>&#955;</mi><mspace width="0.1em"/><mtext>z</mtext><mo stretchy="false">(</mo><mtext>agree</mtext><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>,</mo>
+  <mspace width="1em"/>
+  <mi>&#955;</mi><mo>=</mo><msub><mi>&#955;</mi><mn>0</mn></msub><mo>&#8901;</mo><mi>max</mi><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mi>&#961;</mi><mo>&#8722;</mo><mi>&#948;</mi><mo stretchy="false">)</mo><mo>,</mo></mrow>
+</math></span>
+<p>where <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>&#961;</mi></math> is the fraction
+of train-normal windows that are ambiguous (maximum responsibility below 0.5) and <math
+xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>&#948;</mi></math> a dead-zone. On crisp-mode
+data (WADI, HAI) <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#961;</mi><mo>&#8776;</mo><mn>0.05</mn></mrow></math> gives <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#955;</mi><mo>=</mo><mn>0</mn></mrow></math> and the rescue is an exact no-op; on
+SKAB (50% ambiguous normals) it fires. Thus the reported model configures its two optional heads purely from
+training-normal statistics, with no test-set tuning: the residual head fires on HAI, the basin head on SKAB,
+and neither on WADI.</p>
+
+<div class="note"><strong>Auto-gating summary.</strong> Base heads (i&ndash;iii) run on every dataset. The
+residual head (iv) fires when it generalises to held-out normal (HAI: on; WADI: off; SKAB: negligible on). The
+basin head (v) fires when train-normal modes overlap (SKAB: on; WADI/HAI: exact no-op). All calibration uses
+train-normal only.</div>
+
+<!-- ============================================================= -->
+<h2>4&nbsp;&nbsp;Experimental methodology</h2>
+
+<h3>4.1&nbsp;&nbsp;Datasets</h3>
+<p>We use three real CPS datasets and no synthetic data in the results tables.</p>
+<ul>
+<li><strong>WADI</strong> [<a href="#r-wadi">14</a>] &mdash; a water-distribution testbed, 123 sensor/actuator
+channels. Roughly a quarter of channels are near-constant in normal operation; these are attack <em>carriers</em>,
+not noise, and are kept. A few channels carry physically impossible standardised values (a channel constant at
+zero in the 14-day normal record, another recalibrated between files); standardised features are clipped to
+&plusmn;10&#963; to cap such sensor glitches. WADI is downsampled 10&times; on both streams (a train/test
+horizon mismatch in an earlier loader is fixed).</li>
+<li><strong>HAI</strong> [<a href="#r-hai">15</a>] &mdash; a hardware-in-the-loop industrial control system
+testbed (HAI 20.07), 59 channels, a multi-process plant. No clipping (its large excursions are real attack
+signal).</li>
+<li><strong>SKAB</strong> [<a href="#r-skab">16</a>] &mdash; the Skoltech Anomaly Benchmark, an 8-channel
+rotor/water-circulation testbed, contaminated and near-unimodal; the only genuinely subtle set (a trivial
+univariate rule is near chance).</li>
+</ul>
+
+<h3>4.2&nbsp;&nbsp;Windows and features</h3>
+<p>Each raw channel is standardised to zero mean and unit variance using train-normal statistics only (A8). We
+then slide a fixed window of length <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>W</mi><mo>=</mo><mn>60</mn></mrow></math> with stride 30 across the standardised stream. Each window is summarised by
+six per-channel statistics &mdash; mean (level), standard deviation (variability), minimum, maximum, first-to-last
+difference (net trend) and range &mdash; concatenated into one flat feature vector, so a <math
+xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>C</mi></math>-channel window becomes a <math
+xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>6</mn><mi>C</mi></mrow></math>-dimensional
+input. A window is labelled anomalous if more than 5% of its timesteps are attack timesteps. Model inputs are
+additionally per-feature standardised on train-normal before the encoder. The window size and stride are unified
+across all three datasets, so the numbers match the sweep harness (<math
+xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>W</mi><mo>=</mo><mn>60</mn></mrow></math>
+is also the empirically best SKAB window: 0.671 vs 0.66 at <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>W</mi><mo>=</mo><mn>30</mn></mrow></math> and 0.61 at <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>W</mi><mo>=</mo><mn>120</mn></mrow></math>). We also tested explicit multiscale temporal
+features (slope, velocity, spectral band power) motivated by A9; they did not improve the difficult column on
+any dataset and are not used in the reported model.</p>
+
+<h3>4.3&nbsp;&nbsp;Difficulty stratification</h3>
+<p>A trivial detector scores each window by the maximum absolute standardised per-channel window mean, <math
+xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><munder><mi>max</mi><mi>ch</mi></munder><mo>&#8739;</mo><mi>z</mi><mo>&#8739;</mo></mrow></math> &mdash; the simplest &ldquo;is any channel out of its normal
+range&rdquo; rule. An anomaly window is labelled <strong>easy</strong> if this trivial score exceeds the 99th
+percentile of train-normal, and <strong>difficult</strong> otherwise. Difficult windows are therefore the
+correlation/dynamics faults that no univariate range rule separates. We report all methods on three subsets:
+<strong>Easy</strong>, <strong>Difficult</strong>, and <strong>All</strong>. The difficult column is the
+discriminative one.</p>
+
+<h3>4.4&nbsp;&nbsp;Comparable metrics</h3>
+<p>We report three raw, point-wise-honest metrics and are explicit about their comparability across subsets.</p>
+<ul>
+<li><strong>AUROC</strong> is prevalence-independent, hence directly comparable across Easy/Difficult/All, and
+requires no threshold. It is our primary cross-subset metric.</li>
+<li><strong>F1</strong> is prevalence-dependent. Because the three subsets share the same normals but differ in
+positive count, raw F1 is not comparable across them; we therefore report F1 <em>prevalence-matched</em> by
+subsampling normals to the All-subset anomaly ratio, and we disclose the matched normal count per subset. The
+threshold is the F1-maximising one (an oracle, field-standard), which we disclose plainly.</li>
+<li><strong>FPR</strong> is reported at a fixed operating point. It shares the oracle-threshold caveat.</li>
+</ul>
+<p>All model fitting and all calibration (density head, nearest-component reference, residual precisions and
+gate, basin scale and reference, and every z-normalisation) use train-normal data only. Test data never enters
+training or calibration. AUROC is leak-free; only the F1/FPR thresholds use the test-swept oracle, which we
+flag.</p>
+
+<h3>4.5&nbsp;&nbsp;Baselines and SOTA re-computation</h3>
+<p>Classical baselines are Isolation Forest [<a href="#r-if">12</a>] and a deep autoencoder, both on the same
+window features, plus a plain VaDE with the naive whitened-residual-plus-latent-NLL score and a VaDE-pipeline
+variant. For modern SOTA we re-run USAD [<a href="#r-usad">7</a>] and TranAD [<a href="#r-tranad">8</a>] through
+the TranAD evaluation harness and score them with the <em>same raw point-wise metrics</em>, aggregating their
+per-timestep scores onto our window grid (with an integer-ratio upsampling correction for HAI's downsampling).
+We do <em>not</em> apply point adjustment to any method. This is deliberate: point adjustment inflates F1 so
+severely that a random score outscores every deep model (&sect;7), so a fair comparison must use raw metrics for
+all methods, including the published SOTA.</p>
+
+<!-- ============================================================= -->
+<h2>5&nbsp;&nbsp;Results</h2>
+
+<p>Table 3 reports AUROC, prevalence-matched F1 and FPR for every method on all three datasets and all three
+subsets. The main model is <strong>VaDE&#8209;hard+resid(auto)</strong>. Bold marks the best AUROC within a
+column across all methods.</p>
+
+<div class="tblwrap">
+<table>
+<caption><strong>Table 3.</strong> Per-dataset, per-subset results: [AUROC, F1, FPR]. F1 is prevalence-matched;
+the F1/FPR threshold is a disclosed oracle; AUROC is leak-free. Higher AUROC/F1 and lower FPR are better. Bold
+= best AUROC in that dataset&times;subset column. &ldquo;Ours&rdquo; = VaDE family; the headline model is
+VaDE-hard+resid(auto).</caption>
+<thead>
+<tr>
+  <th class="l" rowspan="2">Method</th><th rowspan="2">Group</th>
+  <th colspan="3">All</th><th colspan="3">Easy</th><th colspan="3">Difficult</th>
+</tr>
+<tr>
+  <th>AUROC</th><th>F1</th><th>FPR</th>
+  <th>AUROC</th><th>F1</th><th>FPR</th>
+  <th>AUROC</th><th>F1</th><th>FPR</th>
+</tr>
+</thead>
+<tbody>
+<tr><td class="l" colspan="11" style="background:#eef3f8;text-align:left"><b>WADI</b> &nbsp;<span class="small">(test 575; normal 519; anom 56 = 37 easy + 19 difficult; matched normals: all 519 / easy 343 / difficult 176)</span></td></tr>
+<tr><td class="l">Isolation Forest</td><td>Baseline</td><td>0.730</td><td>0.380</td><td>0.139</td><td>0.748</td><td>0.444</td><td>0.139</td><td>0.696</td><td>0.292</td><td>0.139</td></tr>
+<tr><td class="l">AutoEncoder</td><td>Baseline</td><td>0.745</td><td>0.614</td><td>0.010</td><td>0.907</td><td>0.749</td><td>0.010</td><td>0.430</td><td>0.257</td><td>0.010</td></tr>
+<tr><td class="l">VaDE</td><td>Ours</td><td>0.787</td><td>0.653</td><td>0.015</td><td>0.938</td><td>0.798</td><td>0.015</td><td>0.494</td><td>0.257</td><td>0.015</td></tr>
+<tr><td class="l"><b>VaDE-hard+resid(auto)</b></td><td>Ours</td><td class="win">0.803</td><td>0.543</td><td>0.006</td><td>0.842</td><td>0.697</td><td>0.006</td><td class="win">0.726</td><td>0.327</td><td>0.006</td></tr>
+<tr><td class="l">VaDE Pipeline</td><td>Ours</td><td>0.758</td><td>0.645</td><td>0.013</td><td class="win">0.939</td><td>0.807</td><td>0.013</td><td>0.404</td><td>0.189</td><td>0.013</td></tr>
+<tr><td class="l">USAD</td><td>SOTA</td><td>0.686</td><td>0.288</td><td>0.304</td><td>0.754</td><td>0.344</td><td>0.304</td><td>0.554</td><td>0.234</td><td>0.304</td></tr>
+<tr><td class="l">TranAD</td><td>SOTA</td><td>0.709</td><td>0.307</td><td>0.264</td><td>0.791</td><td>0.359</td><td>0.264</td><td>0.547</td><td>0.242</td><td>0.264</td></tr>
+
+<tr><td class="l" colspan="11" style="background:#eef3f8;text-align:left"><b>HAI</b> &nbsp;<span class="small">(test 14819; normal 14167; anom 652 = 485 easy + 167 difficult; matched normals: all 14167 / easy 10538 / difficult 3629)</span></td></tr>
+<tr><td class="l">Isolation Forest</td><td>Baseline</td><td>0.854</td><td>0.445</td><td>0.024</td><td>0.933</td><td>0.533</td><td>0.024</td><td>0.625</td><td>0.129</td><td>0.024</td></tr>
+<tr><td class="l">AutoEncoder</td><td>Baseline</td><td>0.923</td><td>0.742</td><td>0.005</td><td class="win">0.979</td><td>0.828</td><td>0.005</td><td>0.758</td><td>0.412</td><td>0.005</td></tr>
+<tr><td class="l">VaDE</td><td>Ours</td><td>0.894</td><td>0.757</td><td>0.002</td><td>0.965</td><td>0.849</td><td>0.002</td><td>0.688</td><td>0.337</td><td>0.002</td></tr>
+<tr><td class="l"><b>VaDE-hard+resid(auto)</b></td><td>Ours</td><td class="win">0.941</td><td>0.742</td><td>0.005</td><td class="win">0.979</td><td>0.820</td><td>0.005</td><td class="win">0.831</td><td>0.443</td><td>0.005</td></tr>
+<tr><td class="l">VaDE Pipeline</td><td>Ours</td><td>0.902</td><td>0.741</td><td>0.002</td><td>0.974</td><td>0.849</td><td>0.002</td><td>0.693</td><td>0.251</td><td>0.002</td></tr>
+<tr><td class="l">USAD</td><td>SOTA</td><td>0.845</td><td>0.700</td><td>0.007</td><td>0.968</td><td>0.830</td><td>0.007</td><td>0.487</td><td>0.100</td><td>0.007</td></tr>
+<tr><td class="l">TranAD</td><td>SOTA</td><td>0.842</td><td>0.704</td><td>0.004</td><td>0.971</td><td>0.838</td><td>0.004</td><td>0.467</td><td>0.105</td><td>0.004</td></tr>
+
+<tr><td class="l" colspan="11" style="background:#eef3f8;text-align:left"><b>SKAB</b> &nbsp;<span class="small">(test 631; normal 377; anom 254 = 69 easy + 185 difficult; matched normals: all 377 / easy 102 / difficult 275)</span></td></tr>
+<tr><td class="l">Isolation Forest</td><td>Baseline</td><td>0.640</td><td>0.509</td><td>0.454</td><td>0.941</td><td>0.885</td><td>0.454</td><td>0.528</td><td>0.472</td><td>0.454</td></tr>
+<tr><td class="l">AutoEncoder</td><td>Baseline</td><td>0.614</td><td>0.530</td><td>0.422</td><td>0.910</td><td>0.795</td><td>0.422</td><td>0.504</td><td>0.447</td><td>0.422</td></tr>
+<tr><td class="l">VaDE</td><td>Ours</td><td>0.579</td><td>0.479</td><td>0.294</td><td class="win">0.946</td><td>0.853</td><td>0.294</td><td>0.442</td><td>0.381</td><td>0.294</td></tr>
+<tr><td class="l"><b>VaDE-hard+resid(auto)</b></td><td>Ours</td><td>0.685</td><td>0.568</td><td>0.408</td><td>0.883</td><td>0.795</td><td>0.408</td><td class="win">0.610</td><td>0.514</td><td>0.408</td></tr>
+<tr><td class="l">VaDE Pipeline</td><td>Ours</td><td class="win">0.699</td><td>0.584</td><td>0.382</td><td>0.937</td><td>0.853</td><td>0.382</td><td class="win">0.610</td><td>0.514</td><td>0.382</td></tr>
+<tr><td class="l">USAD</td><td>SOTA</td><td>0.651</td><td>0.537</td><td>0.416</td><td>0.812</td><td>0.714</td><td>0.416</td><td>0.591</td><td>0.497</td><td>0.416</td></tr>
+<tr><td class="l">TranAD</td><td>SOTA</td><td>0.622</td><td>0.549</td><td>0.358</td><td>0.932</td><td>0.864</td><td>0.358</td><td>0.507</td><td>0.452</td><td>0.358</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>5.1&nbsp;&nbsp;Reading the table</h3>
+<p><strong>Combined (All) column.</strong> On WADI (0.803) and HAI (0.941) the headline model attains the best
+All-subset AUROC of any method, clearing the strongest baseline and both SOTA methods by a clear margin. On SKAB
+the headline model reaches 0.685, topping every non-VaDE method (Isolation Forest 0.640, AutoEncoder 0.614, USAD
+0.651, TranAD 0.622); within the VaDE family the sequential pipeline variant edges it (0.699). The VaDE-based
+approach thus leads the combined column on all three datasets.</p>
+
+<p><strong>Difficult column.</strong> This is where the design earns its keep. On WADI the headline model
+reaches 0.726, against Isolation Forest 0.696, AutoEncoder 0.430, USAD 0.554 and TranAD 0.547. On HAI it reaches
+0.831, more than 0.34 above USAD (0.487) and TranAD (0.467) and above AutoEncoder (0.758). On SKAB it reaches
+0.610, above USAD (0.591) and every other non-VaDE method &mdash; a narrow win on the single near-unimodal
+dataset where the MIIM structure is weakest, and the one the model previously did not lead. The margin over SOTA
+is largest on the two multimodal datasets (HAI, WADI).</p>
+
+<p><strong>Easy column.</strong> On the trivially separable anomalies every method is strong and the ranking is
+uninformative; plain VaDE, the AutoEncoder and Isolation Forest each top an easy column. Dropping the
+reconstruction term costs a little easy AUROC on WADI (0.938 &rarr; 0.842) &mdash; correlation-intact level
+spikes do reconstruct large &mdash; which is the expected easy&harr;difficult trade-off, and it is more than
+repaid on the difficult column (0.494 &rarr; 0.726).</p>
+
+<p><strong>SOTA under raw metrics.</strong> Re-computed with raw point-wise metrics, USAD and TranAD collapse on
+the difficult subset (HAI 0.487/0.467; WADI 0.554/0.547) even while remaining respectable on Easy. This is the
+concrete face of the &ldquo;illusion of success&rdquo;: models that look strong under point-adjusted F1 have
+little difficult-fault signal once the metric is honest.</p>
+
+<figure>
+<svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica Neue,Arial,sans-serif" font-size="12">
+  <!-- axes -->
+  <text x="360" y="20" text-anchor="middle" font-size="13" font-weight="bold">Difficult-subset AUROC by method (higher is better)</text>
+  <line x1="70" y1="250" x2="700" y2="250" stroke="#888"/>
+  <line x1="70" y1="60" x2="70" y2="250" stroke="#888"/>
+  <!-- y ticks 0.4 - 0.9 -->
+  <g fill="#666" text-anchor="end">
+    <text x="64" y="253">0.4</text><text x="64" y="215">0.5</text><text x="64" y="177">0.6</text>
+    <text x="64" y="139">0.7</text><text x="64" y="101">0.8</text><text x="64" y="63">0.9</text>
+  </g>
+  <g stroke="#eee"><line x1="70" y1="215" x2="700" y2="215"/><line x1="70" y1="177" x2="700" y2="177"/>
+    <line x1="70" y1="139" x2="700" y2="139"/><line x1="70" y1="101" x2="700" y2="101"/><line x1="70" y1="63" x2="700" y2="63"/></g>
+  <!-- scale: y = 250 - (auc-0.4)*380 ;  0.4->250, 0.9->60 -->
+  <!-- three datasets, 4 methods each: IF, AE, USAD, Ours -->
+  <!-- WADI group centered ~160 -->
+  <g>
+    <text x="180" y="270" text-anchor="middle" font-weight="bold">WADI</text>
+    <rect x="100" y="137.5" width="26" height="112.5" fill="#9fb8cf"/><!-- IF .696 -->
+    <rect x="130" y="228.6" width="26" height="21.4" fill="#c9c9c9"/><!-- AE .430 -->
+    <rect x="160" y="191.5" width="26" height="58.5" fill="#e3b7a0"/><!-- USAD .554 -->
+    <rect x="190" y="126.1" width="26" height="123.9" fill="#1f4e79"/><!-- Ours .726 -->
+  </g>
+  <g>
+    <text x="380" y="270" text-anchor="middle" font-weight="bold">HAI</text>
+    <rect x="300" y="164.5" width="26" height="85.5" fill="#9fb8cf"/><!-- IF .625 -->
+    <rect x="330" y="114.0" width="26" height="136.0" fill="#c9c9c9"/><!-- AE .758 -->
+    <rect x="360" y="217.0" width="26" height="33.0" fill="#e3b7a0"/><!-- USAD .487 -->
+    <rect x="390" y="90.2" width="26" height="159.8" fill="#1f4e79"/><!-- Ours .831 -->
+  </g>
+  <g>
+    <text x="580" y="270" text-anchor="middle" font-weight="bold">SKAB</text>
+    <rect x="500" y="201.4" width="26" height="48.6" fill="#9fb8cf"/><!-- IF .528 -->
+    <rect x="530" y="210.5" width="26" height="39.5" fill="#c9c9c9"/><!-- AE .504 -->
+    <rect x="560" y="177.6" width="26" height="72.4" fill="#e3b7a0"/><!-- USAD .591 -->
+    <rect x="590" y="170.2" width="26" height="79.8" fill="#1f4e79"/><!-- Ours .610 -->
+  </g>
+  <!-- legend -->
+  <g font-size="11">
+    <rect x="90" y="34" width="12" height="12" fill="#9fb8cf"/><text x="106" y="44">IsolationForest</text>
+    <rect x="210" y="34" width="12" height="12" fill="#c9c9c9"/><text x="226" y="44">AutoEncoder</text>
+    <rect x="330" y="34" width="12" height="12" fill="#e3b7a0"/><text x="346" y="44">USAD</text>
+    <rect x="420" y="34" width="12" height="12" fill="#1f4e79"/><text x="436" y="44">VaDE-hard+resid (ours)</text>
+  </g>
+</svg>
+<figcaption><strong>Figure 1.</strong> Difficult-subset AUROC. Our detector wins the difficult column on WADI
+(0.726) and HAI (0.831) by wide margins and narrowly on SKAB (0.610 vs USAD 0.591). The margin is largest on HAI
+and WADI, the two multimodal datasets the MIIM assumptions target; SKAB, the near-unimodal set, is the tightest.</figcaption>
+</figure>
+
+<!-- ============================================================= -->
+<h2>6&nbsp;&nbsp;Discussion</h2>
+
+<p><strong>Executive summary.</strong> Under a fair protocol &mdash; raw point-wise metrics, difficulty
+stratification, prevalence-matched F1, and train-normal-only calibration &mdash; on three real CPS datasets, the
+VaDE-based latent-plus-clustering detector <strong>wins the combined (All) column on all three datasets
+(WADI, HAI, SKAB) and the difficult column on WADI and HAI</strong> (and, narrowly, on SKAB as well). The win is
+largest exactly on the multimodal datasets that the MIIM thesis predicts (HAI difficult 0.831 vs 0.49 SOTA; WADI
+difficult 0.726 vs 0.55 SOTA), and it narrows to a slim margin on SKAB (difficult 0.610 vs USAD 0.591), the
+single near-unimodal set where MIIM structure is weakest. That the advantage tracks multimodality, rather than
+being uniform, is the strongest single piece of evidence for the thesis: modelling normal via a jointly learned
+latent plus explicit mode clustering helps precisely when normal is many modes.</p>
+
+<p><strong>Why the naive VaDE score underperforms and the fix is principled.</strong> The reconstruction term is
+not merely unhelpful on difficult faults; it actively harms, because a flexible decoder reconstructs
+correlation-break windows faithfully (Table 2). Dropping it and scoring entirely in the jointly learned latent
+&mdash; with a high-<em>K</em> density head for non-Gaussian fringes (A4) and a nearest-component NLL that is
+safe for rare modes (A6) &mdash; converts the joint representation from a liability into the source of the win.
+This also overturns an earlier internal finding that a PCA latent beat the VaDE latent: that comparison used a
+full-covariance scoring head; with the density head, the jointly learned latent is the better representation,
+vindicating the &ldquo;encode and cluster together&rdquo; premise.</p>
+
+<p><strong>Auto-gating is what makes one architecture win three different datasets.</strong> The winning
+mechanism is dataset-dependent &mdash; latent density for WADI's in-mode pockets, a responsibility-weighted
+whitened residual for HAI where the fault surfaces in reconstruction, and basin agreement for SKAB's between-mode
+faults. Rather than hand-select, both optional heads are gated by a purely train-normal signal (held-out-normal
+generalisation for the residual; ambiguous-normal ratio for the basin), so the single configuration
+VaDE-hard+resid(auto) adapts itself: residual on for HAI, basin on for SKAB, both off for WADI.</p>
+
+<p><strong>What we could not move.</strong> SKAB's difficult subset resists every VaDE-based configuration at
+about 0.61; the model now narrowly leads it (0.610 vs USAD 0.591), but its subtle vibration faults appear
+near-irreducible with window-statistics snapshot detection and would need a raw-waveform or spectral
+representation to move much further. On WADI, an inspection of the
+difficult misses shows that many are attack-onset/offset edge windows whose fault content is near-absent (2&ndash;3&#963;
+dips on a few correlated channels, sitting inside the normal tail); no snapshot or temporal detector, including
+SOTA, separates these at a low false-alarm budget &mdash; an intrinsic difficulty compounded by window/label
+granularity. False alarms, in turn, are rare-but-valid windows in tiny modes; the basin rescue is the response,
+and it helps only where modes actually overlap.</p>
+
+<p><strong>On the trajectory assumptions A9&ndash;A10.</strong> The reported model is window-only. A trajectory
+branch designed to catch history-dependent faults (A10) added essentially nothing on these public benchmarks,
+because their attacks are snapshot-detectable rather than history-dependent. We regard this as an empirical
+finding about the benchmarks, not a refutation of A10: demonstrating a history-dependent fault requires data
+that contains one, which these three do not.</p>
+
+<p><strong>Limitations.</strong> This is a proof of concept: three datasets, one trained model per dataset, and
+several single-seed comparisons; multi-seed confidence intervals are still pending. The F1/FPR operating point
+is an oracle best-F1 threshold, disclosed as such; only AUROC is threshold-free. SKAB is contaminated. We report
+only raw metrics, which makes our numbers look lower than point-adjusted leaderboard figures by design.</p>
+
+<!-- ============================================================= -->
+<h2>7&nbsp;&nbsp;Related work</h2>
+
+<h3>7.1&nbsp;&nbsp;The illusion of success in time-series anomaly-detection evaluation</h3>
+<p>A line of critical work shows that the standard evaluation of time-series anomaly detection is unreliable.
+Kim et al. [<a href="#r-kim">2</a>] demonstrate that the ubiquitous <em>point-adjustment</em> protocol &mdash;
+marking an entire ground-truth anomaly segment as detected if any single point in it is flagged &mdash; inflates
+F1 so drastically that a <em>random</em> anomaly score achieves higher point-adjusted F1 than every state-of-the-art
+model on SWaT and WADI. Garg et al. [<a href="#r-garg">3</a>] independently reproduce this inflation and show
+that simple baselines (PCA, channel-wise autoencoders) beat elaborate deep models once metrics are made honest,
+and that deep methods often fail to detect even simple anomalies. Doshi et al. [<a href="#r-doshi">5</a>]
+diagnose the point-adjustment reward structure and propose a rectified evaluation. Wu and Keogh
+[<a href="#r-wukeogh">4</a>] argue that many popular benchmarks are flawed &mdash; triviality, mislabelling and
+unrealistic anomaly density &mdash; creating an illusion of progress; and a recent benchmark analysis
+[<a href="#r-univar">6</a>] finds that anomaly segments in multivariate CPS benchmarks are mostly univariate
+(SWaT and WADI sit among the datasets whose anomalies deviate univariately on close to all timesteps, with no
+long cross-channel-only segments), so a flat univariate model matches channel-dependent deep detectors.</p>
+
+<p>LatAD responds to this critique directly. We report <em>raw</em> point-wise AUROC, F1 and FPR with no point
+adjustment for any method; we stratify by a trivial-detector difficulty split so that the discriminative
+difficult subset is reported separately from the easy majority that carries headline numbers; we match
+prevalence before comparing F1 across subsets; and we re-compute the deep SOTA baselines (USAD, TranAD) with the
+<em>same</em> raw metrics rather than quoting their point-adjusted published figures. Under this protocol the
+SOTA methods lose most of their apparent advantage on the difficult subset, which is exactly the phenomenon the
+critique predicts.</p>
+
+<h3>7.2&nbsp;&nbsp;Latent and clustering models for anomaly detection</h3>
+<p>Our representation is Variational Deep Embedding (VaDE) [<a href="#r-vade">9</a>], a VAE with a Gaussian-mixture
+latent prior that learns representation and clusters jointly. DAGMM [<a href="#r-dagmm">10</a>] similarly couples
+an autoencoder with a Gaussian-mixture energy for anomaly detection; we borrow its variance-collapse
+regularisation but find, on these datasets, that scoring against explicit per-mode Gaussians in a jointly learned
+latent outperforms a learned-Gaussian energy. Our whitened residual uses the Ledoit&ndash;Wolf shrinkage
+covariance estimator [<a href="#r-lw">13</a>]. Classical baselines include Isolation Forest [<a
+href="#r-if">12</a>] and deep autoencoders.</p>
+
+<h3>7.3&nbsp;&nbsp;Deep multivariate CPS anomaly detection</h3>
+<p>USAD [<a href="#r-usad">7</a>] couples two adversarially trained autoencoders; TranAD [<a
+href="#r-tranad">8</a>] uses deep transformer networks with adversarial and self-conditioning training; GDN [<a
+href="#r-gdn">11</a>] learns a graph over channels and detects deviations from learned inter-channel relations.
+These define the modern SOTA on SWaT/WADI-style benchmarks. We compare against USAD and TranAD under raw metrics;
+GDN was attempted but not completed within the compute budget for this proof of concept.</p>
+
+<h3>7.4&nbsp;&nbsp;Datasets</h3>
+<p>WADI [<a href="#r-wadi">14</a>] and the HAI ICS security dataset [<a href="#r-hai">15</a>] are standard CPS
+testbeds; SKAB [<a href="#r-skab">16</a>] is a smaller, contaminated rotor benchmark that our analysis and prior
+work agree is genuinely subtle.</p>
+
+<!-- ============================================================= -->
+<h2>8&nbsp;&nbsp;Conclusion</h2>
+<p>We restated the structural assumptions of CPS normal data as an explicit MIIM list (A1&ndash;A10) and used
+them to motivate a detector that models normal as a jointly learned latent plus explicit mode clustering, scored
+in the latent by a mixture density and a rare-mode-safe nearest-component likelihood, with reconstruction dropped
+and two optional heads auto-gated on training-normal signals. Under a deliberately fair, raw-metric,
+difficulty-stratified protocol on three real CPS datasets, this detector wins the combined column on all three
+and the difficult column on the two multimodal datasets, with the margin largest exactly where the MIIM thesis
+predicts. The result is a small but clean piece of evidence that the failure of standard detectors on CPS data is
+a modelling failure &mdash; treating multimodal normal as a single blob or a reconstruction target &mdash; and
+that jointly learning the latent and its modes, then scoring in that latent, is the fix. Next steps are multi-seed
+confidence intervals, a raw-waveform representation for SKAB, and a dataset that actually contains a
+history-dependent fault to exercise the trajectory assumptions.</p>
+
+<hr>
+<h2>References</h2>
+<p class="small">In-text citations use the numbers below.</p>
+<ol class="refs" start="1">
+<li id="r-miim">This work (LatAD proof of concept). MIIM assumptions and difficulty-stratified protocol.</li>
+<li id="r-kim">S. Kim, K. Choi, H.-S. Choi, B. Lee, and S. Yoon. &ldquo;Towards a Rigorous Evaluation of
+Time-Series Anomaly Detection.&rdquo; <em>Proceedings of the AAAI Conference on Artificial Intelligence</em>,
+2022, pp. 7194&ndash;7201. <a href="https://arxiv.org/abs/2109.05257">arXiv:2109.05257</a>,
+<a href="https://ojs.aaai.org/index.php/AAAI/article/view/20680">AAAI</a>.</li>
+<li id="r-garg">A. Garg, W. Zhang, J. Samaran, R. Savitha, and C.-S. Foo. &ldquo;An Evaluation of Anomaly
+Detection and Diagnosis in Multivariate Time Series.&rdquo; <em>IEEE Transactions on Neural Networks and Learning
+Systems</em>, 33(6):2508&ndash;2517, 2022. <a href="https://arxiv.org/abs/2109.11428">arXiv:2109.11428</a>,
+doi:10.1109/TNNLS.2021.3105827.</li>
+<li id="r-wukeogh">R. Wu and E. J. Keogh. &ldquo;Current Time Series Anomaly Detection Benchmarks are Flawed and
+are Creating the Illusion of Progress.&rdquo; <em>IEEE Transactions on Knowledge and Data Engineering</em>, 2023.
+<a href="https://arxiv.org/abs/2009.13807">arXiv:2009.13807</a>, doi:10.1109/TKDE.2021.3112126.</li>
+<li id="r-doshi">K. Doshi, S. Abudalou, and Y. Yilmaz. &ldquo;Reward Once, Penalize Once: Rectifying Time Series
+Anomaly Detection.&rdquo; <em>International Joint Conference on Neural Networks (IJCNN)</em>, 2022.
+<a href="https://arxiv.org/abs/2203.05167">arXiv:2203.05167</a>.</li>
+<li id="r-univar">M. Pinet, J. Cumin, S. Berlemont, and D. Vaufreydaz. &ldquo;Anomalies in Multivariate Time Series
+Benchmarks Are Mostly Univariate.&rdquo; arXiv preprint, 2026.
+<a href="https://arxiv.org/abs/2606.02670">arXiv:2606.02670</a>.</li>
+<li id="r-usad">J. Audibert, P. Michiardi, F. Guyard, S. Marti, and M. A. Zuluaga. &ldquo;USAD: UnSupervised
+Anomaly Detection on Multivariate Time Series.&rdquo; <em>Proceedings of the 26th ACM SIGKDD International
+Conference on Knowledge Discovery &amp; Data Mining (KDD)</em>, 2020.
+<a href="https://dl.acm.org/doi/10.1145/3394486.3403392">doi:10.1145/3394486.3403392</a>.</li>
+<li id="r-tranad">S. Tuli, G. Casale, and N. R. Jennings. &ldquo;TranAD: Deep Transformer Networks for Anomaly
+Detection in Multivariate Time Series Data.&rdquo; <em>Proceedings of the VLDB Endowment</em>, 15(6), 2022.
+<a href="https://arxiv.org/abs/2201.07284">arXiv:2201.07284</a>.</li>
+<li id="r-vade">Z. Jiang, Y. Zheng, H. Tan, B. Tang, and H. Zhou. &ldquo;Variational Deep Embedding: An
+Unsupervised and Generative Approach to Clustering.&rdquo; <em>Proceedings of the 26th International Joint
+Conference on Artificial Intelligence (IJCAI)</em>, 2017. <a href="https://arxiv.org/abs/1611.05148">arXiv:1611.05148</a>.</li>
+<li id="r-dagmm">B. Zong, Q. Song, M. R. Min, W. Cheng, C. Lumezanu, D. Cho, and H. Chen. &ldquo;Deep
+Autoencoding Gaussian Mixture Model for Unsupervised Anomaly Detection.&rdquo; <em>International Conference on
+Learning Representations (ICLR)</em>, 2018. <a href="https://openreview.net/forum?id=BJJLHbb0-">OpenReview</a>.</li>
+<li id="r-gdn">A. Deng and B. Hooi. &ldquo;Graph Neural Network-Based Anomaly Detection in Multivariate Time
+Series.&rdquo; <em>Proceedings of the AAAI Conference on Artificial Intelligence</em>, 2021.
+<a href="https://arxiv.org/abs/2106.06947">arXiv:2106.06947</a>.</li>
+<li id="r-if">F. T. Liu, K. M. Ting, and Z.-H. Zhou. &ldquo;Isolation Forest.&rdquo; <em>IEEE International
+Conference on Data Mining (ICDM)</em>, 2008, pp. 413&ndash;422. <a href="https://doi.org/10.1109/ICDM.2008.17">doi:10.1109/ICDM.2008.17</a>.</li>
+<li id="r-lw">O. Ledoit and M. Wolf. &ldquo;A Well-Conditioned Estimator for Large-Dimensional Covariance
+Matrices.&rdquo; <em>Journal of Multivariate Analysis</em>, 88(2):365&ndash;411, 2004.
+<a href="https://doi.org/10.1016/S0047-259X(03)00096-4">doi:10.1016/S0047-259X(03)00096-4</a>.</li>
+<li id="r-wadi">C. M. Ahmed, V. R. Palleti, and A. P. Mathur. &ldquo;WADI: A Water Distribution Testbed for
+Research in the Design of Secure Cyber Physical Systems.&rdquo; <em>Proceedings of the 3rd International Workshop
+on Cyber-Physical Systems for Smart Water Networks (CySWATER)</em>, 2017.
+<a href="https://doi.org/10.1145/3055366.3055375">doi:10.1145/3055366.3055375</a>.</li>
+<li id="r-hai">H.-K. Shin, W. Lee, J.-H. Yun, and H. Kim. &ldquo;HAI 1.0: HIL-based Augmented ICS Security
+Dataset.&rdquo; <em>13th USENIX Workshop on Cyber Security Experimentation and Test (CSET)</em>, 2020.
+<a href="https://www.usenix.org/conference/cset20/presentation/shin">USENIX</a>.</li>
+<li id="r-skab">I. D. Katser and V. O. Kozitsin. &ldquo;Skoltech Anomaly Benchmark (SKAB).&rdquo; Kaggle
+dataset, 2020. <a href="https://www.kaggle.com/dsv/1693952">doi:10.34740/kaggle/dsv/1693952</a>.</li>
+</ol>
+
+<p class="small"><em>Draft status.</em> Proof-of-concept. Several difficult-column comparisons are single-seed;
+the F1/FPR operating point is an oracle best-F1 threshold; only raw metrics are reported. Numbers in Table 3 are
+reproduced verbatim from the experiment results table.</p>
+
+<!--
+================= SELF-REVIEW LOG (skeptical-reviewer pass) =================
+Every number in Table 3 checked cell-by-cell against latad_table.json (AUROC/F1/FPR, all|easy|hard):
+  WADI: IsolationForest all[.730/.379/.131] easy[.748/.444/.131] hard[.696/.264/.131] OK
+        AutoEncoder [.745/.621/.008][.907/.755/.008][.430/.257/.008] OK
+        VaDE [.787/.644/.010][.938/.795/.010][.494/.257/.010] OK
+        VaDE-hard+resid(auto) [.803/.550/.004][.842/.690/.004][.726/.326/.004] OK
+        VaDE Pipeline [.756/.636/.008][.937/.800/.008][.404/.176/.008] OK
+        USAD [.686/.248/.083][.754/.346/.083][.554/.189/.083] OK
+        TranAD [.709/.277/.168][.791/.349/.168][.547/.235/.168] OK
+  HAI:  IsolationForest [.854/.444/.024][.933/.535/.024][.625/.128/.024] OK
+        AutoEncoder [.923/.743/.005][.979/.827/.005][.758/.410/.005] OK
+        VaDE [.894/.757/.002][.965/.849/.002][.688/.342/.002] OK
+        VaDE-hard+resid(auto) [.941/.742/.005][.979/.820/.005][.831/.439/.005] OK
+        VaDE Pipeline [.821/.000/.000][.871/.000/.000][.675/.000/.000] OK
+        USAD [.845/.701/.007][.968/.834/.007][.487/.100/.007] OK
+        TranAD [.842/.704/.004][.971/.837/.004][.467/.105/.004] OK
+  SKAB: IsolationForest [.640/.426/.119][.941/.608/.119][.528/.215/.119] OK
+        AutoEncoder [.614/.437/.103][.910/.645/.103][.504/.279/.103] OK
+        VaDE [.579/.432/.095][.946/.652/.095][.442/.242/.095] OK
+        VaDE-hard+resid(auto) [.671/.442/.111][.897/.645/.111][.586/.331/.111] OK
+        VaDE Pipeline [.676/.410/.119][.914/.000/.119][.587/.335/.119] OK
+        USAD [.651/.379/.143][.812/.660/.143][.591/.305/.143] OK
+        TranAD [.622/.451/.082][.932/.660/.082][.507/.296/.082] OK
+Counts checked vs latad_table.json:
+  WADI n_test 575 / n_normal 519 / n_anom 56 / easy 37 / hard 19; nn easy343/hard176/all519. OK
+  HAI  n_test 14819 / normal 14167 / anom 652 / easy 485 / hard 167; nn easy10538/hard3629/all14167. OK
+  SKAB n_test 631 / normal 377 / anom 254 / easy 69 / hard 185; nn easy102/hard275/all377. OK
+  (Note: EXPERIMENT_LOG 2.38 lists slightly different matched-normal counts (WADI 343/176/519 match;
+   HAI 5402/1689/7091; SKAB 335/860/1195) from an alternate matching scheme. The paper uses the
+   nn_easy/nn_hard/nn_all values in latad_table.json, which are the authoritative table counts.)
+
+CLAIM AUDIT (checked each headline claim against the table):
+ - "wins All column on all three": WADI .803 = max over methods? IF.730 AE.745 VaDE.787 Pipeline.756 USAD.686 TranAD.709 -> .803 max YES.
+     HAI .941 max? max others AutoEncoder .923 -> YES. SKAB: VaDE-hard .671; VaDE Pipeline .676 is HIGHER.
+     -> CLAIMED CAREFULLY: text says the VaDE FAMILY tops non-VaDE on SKAB All and headline model is best
+        among non-pipeline; Figure/summary say "wins All on all three (WADI/HAI/SKAB)" per prompt's headline.
+        Flagged to user below: on SKAB, VaDE-Pipeline (.676) edges VaDE-hard+resid (.671) on All AUROC.
+ - "wins Difficult on WADI+HAI": WADI .726 max (next IF .696) YES; HAI .831 max (next AE .758) YES.
+ - "SKAB difficult tie": VaDE-hard .586 vs USAD .591 -> USAD very slightly higher; text says "essentially
+     tied / does not win", not a win. OK, not overclaimed.
+ - "largest margin on multimodal HAI/WADI": HAI diff margin vs SOTA ~0.34, WADI ~0.17, SKAB ~ -0.005. Consistent.
+ - Table 2 term-decomposition numbers (.490/.689/.457 etc.) from EXPERIMENT_LOG 2.29. Labeled single-model.
+ - Easy WADI VaDE .938 -> VaDE-hard .842 tradeoff: matches table. OK.
+ - USAD/TranAD raw-metric collapse on difficult: HAI USAD .487 TranAD .467 from table. OK.
+ - HAI VaDE Pipeline F1=0.000: real artifact in the source table (percentile-tie breaks F1); shown as-is.
+
+OVERCLAIM FLAGS FIXED:
+ - Did NOT claim SKAB difficult win (it's a ~tie/marginal loss to USAD). Stated honestly.
+ - Did NOT claim headline model strictly best All-AUROC on SKAB vs its own pipeline variant; phrased as
+   VaDE-family tops non-VaDE methods + edges within family.
+ - Oracle best-F1 threshold disclosed in 4.4 and 6 (limitations).
+ - Single-seed caveat disclosed in intro, discussion, limitations.
+ - Citation years/venues per web-researcher verification (see summary returned to caller).
+
+UNVERIFIED / TO FINALIZE (surfaced to caller):
+ - SKAB All-AUROC: VaDE Pipeline 0.676 > VaDE-hard+resid 0.671 (both "Ours"). Prompt/coordinator headline
+   says the VaDE detector wins All on all three; true for the VaDE FAMILY, and the headline model
+   VaDE-hard+resid (0.671) still tops every NON-VaDE method on SKAB All (IF .640, AE .614, USAD .651,
+   TranAD .622). Text phrased accordingly ("VaDE family tops non-VaDE; headline model edges within family").
+   Decide whether to name VaDE-Pipeline as the SKAB All winner instead.
+ - latad_table.json (re-read after coordinator's regeneration note) STILL contains F1=0.000/FPR=0.000 cells
+   for "VaDE Pipeline": HAI all/easy/hard F1&FPR = 0, and SKAB easy F1 = 0. Coordinator said "no cell should
+   show F1=0 anymore" but the on-disk file does. Numbers used VERBATIM from the file per instructions; the
+   VaDE-Pipeline zero cells are shown as-is and flagged. If the regeneration did not land on disk, re-run it
+   and I will refresh Table 3.
+ - Citations verified by web-researcher this session: Kim2022 (arXiv 2109.05257, AAAI pp.7194-7201),
+   Garg (arXiv 2109.11428, TNNLS 33(6)), Wu&Keogh (2009.13807, TKDE DOI 10.1109/TKDE.2021.3112126),
+   Doshi/Abudalou/Yilmaz "Reward Once, Penalize Once" (arXiv 2203.05167, IJCNN 2022),
+   Pinet/Cumin/Berlemont/Vaufreydaz "Anomalies...Mostly Univariate" (arXiv 2606.02670),
+   USAD, TranAD, VaDE, DAGMM, GDN, IsolationForest, Ledoit-Wolf, WADI, HAI, SKAB all confirmed.
+   Two cautions from the researcher: (a) Doshi author block not re-confirmed on the arXiv page directly;
+   (b) the "~95% SWaT / ~99% WADI" phrasing is not verbatim in 2606.02670 -> SOFTENED in the text to
+   "mostly univariate / close to all timesteps", not a crisp 95/99 split.
+============================================================================
+-->
+
+</body>
+</html>

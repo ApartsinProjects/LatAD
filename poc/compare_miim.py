@@ -72,9 +72,13 @@ def main():
         sn = s[normal]
         cells = "".join(f"{tpr(sn, s[atype == t]):>13.3f}" for t in COLS)
         ffpr = tpr(sn, s[fringe])                       # false-alarm rate on hard-valid fringe
-        au = roc_auc_score((yte == 1) & ~np.isin(atype, TRAJ) if name in
-                           ("LOF", "IsolationForest", "AutoEncoder") else yte == 1,
-                           s) if True else 0
+        # snapshot baselines cannot see bad_transition -> DROP those windows from both
+        # label and score (not relabel them 0, which would count each as a false positive).
+        if name in ("LOF", "IsolationForest", "AutoEncoder"):
+            keep = ~np.isin(atype, TRAJ)
+            au = roc_auc_score(yte[keep] == 1, s[keep])
+        else:
+            au = roc_auc_score(yte == 1, s)
         print(f"{name:<24}" + cells + f"{ffpr:>10.3f}{au:>7.3f}")
     print("\nsnapshot cols fair for baselines; bad_transition needs trajectory (ours). "
           "fringeFPR = false alarms on hard-VALID points (lower better). AUROC excludes "
