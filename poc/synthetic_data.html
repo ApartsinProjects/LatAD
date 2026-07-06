@@ -51,7 +51,7 @@ generator gives (i) ground-truth modes and anomaly types, (ii) a non-circular or
 the ability to inject <em>history-dependent</em> anomalies that no real benchmark we found exposes.
 </div>
 
-<h2>0. Data assumptions (A1&ndash;A8)</h2>
+<h2>0. Data assumptions (A1&ndash;A9)</h2>
 <p>Everything downstream rests on a single generative picture of <em>normal</em> CPS operation. Let
 $x\in\mathbb R^{d}$ be one channel-vector and $p(x)$ the normal law. Each mode $k$ carries an intrinsic
 <em>regime coordinate</em> $u\in\mathbb R^{r}$ (per-mode spread $\sigma_k$) mapped to the $d$ channels by a
@@ -72,30 +72,34 @@ generators are built to satisfy exactly these, and the detector is designed agai
   <td>controllers <em>mostly</em> hold each regime within setpoint bands and actuator limits; the space <em>between</em> regimes is usually only passed through, rarely dwelt in.</td>
   <td>$\operatorname{supp}(p_k)$ bounded ($u$ compact); between-mode density $\approx0$.</td>
   <td>$u$ clipped to $\pm2\sigma_k$</td></tr>
-<tr><td><b>A4</b></td><td>low-dim modes</td>
+<tr><td><b>A4</b></td><td>within-mode density</td>
+  <td>within a single mode the system's presence is non-uniform: it dwells near a typical operating point and reaches the edges of the regime only occasionally, so each normal mode holds legitimately low-probability regions, most often near its boundary.</td>
+  <td>$p_k$ is non-uniform on its support: mass concentrates near the mode centre and thins toward the boundary $\partial\operatorname{supp}(p_k)$, so low-density-but-valid regions exist inside every mode.</td>
+  <td>$u$ (Gaussian / OU) concentrates at the centre, sparse near the $\pm2\sigma_k$ clip</td></tr>
+<tr><td><b>A5</b></td><td>low-dim modes</td>
   <td>the independent control variables are far fewer than the observed variables (the channels, or a whole window); the rest follow from them, deterministically or probabilistically.</td>
   <td>each $p_k$ near a manifold $\mathcal M_k=\{g_k(u):u\in\mathbb R^{r}\}$, $r\ll d$.</td>
   <td>$r=3\!\ll\!24=d$; $g_k$</td></tr>
-<tr><td><b>A5</b></td><td>imbalance</td>
+<tr><td><b>A6</b></td><td>imbalance</td>
   <td>machines spend most of the record in a few steady regimes; startup, shutdown and rare maneuvers occupy very little of it; so an infrequent but perfectly normal point is easily mistaken for an anomaly.</td>
   <td>$(\pi_k)$ heavy-tailed (Zipf $\beta$): $\pi_k\propto\mathrm{rank}(k)^{-\beta}$, $\min_k\pi_k\ll1/K$.</td>
   <td>Zipf weights, rank-shuffled</td></tr>
-<tr><td><b>A6</b></td><td>implicit</td>
+<tr><td><b>A7</b></td><td>implicit</td>
   <td>the true regimes are an emergent artifact of complex system design and coupling, so the <em>actual</em> modes can rarely be recovered exactly; the mode label is not logged either, so modes must be <em>discovered</em> (approximately) from raw streams.</td>
   <td>mode label $k$ latent; only $x$ observed at train time.</td>
   <td>no labels emitted for training</td></tr>
-<tr><td><b>A7</b></td><td>heterogeneous sensing</td>
+<tr><td><b>A8</b></td><td>heterogeneous sensing</td>
   <td>a CPS bus mixes transducer types (thermal, rotational, pressure, binary limit switches) with different ranges, ADC resolutions, and correlated bus noise.</td>
   <td>channel $c$ has its own scale, quantization $\delta_c$, and correlated het. noise $\Sigma_\varepsilon=WW^\top+\operatorname{diag}(s^2)$.</td>
   <td>per-channel scale/$\delta_c$; $\Sigma_\varepsilon$</td></tr>
-<tr><td><b>A8</b></td><td>multiscale dynamics <span style="color:#888">(temporal)</span></td>
+<tr><td><b>A9</b></td><td>multiscale dynamics <span style="color:#888">(temporal)</span></td>
   <td>physical inertia sets per-channel time constants (thermal slow, electrical fast); operating procedure makes only some regime&rarr;regime transitions legal, each with a characteristic dwell.</td>
   <td>within a mode $u$ has bounded dynamics, per-channel $\alpha_c$; across modes a <em>sparse transition graph</em> (forbidden edges), dwell $\tau_k$.</td>
   <td>OU + $\alpha_c$ smoothing; state machine</td></tr>
 </tbody></table>
 <p>Two standing qualifiers apply throughout: the sample is <strong>massive</strong> ($N$ large) and the mixture is
-<strong>stationary</strong> (the $\pi_k$ and $g_k$ do not drift within a run). A1&ndash;A7 are static (both
-generators); A8 (dynamics) is the temporal generator only. Physical <em>joint coupling</em> (marginally in-range
+<strong>stationary</strong> (the $\pi_k$ and $g_k$ do not drift within a run). A1&ndash;A8 are static (both
+generators); A9 (dynamics) is the temporal generator only. Physical <em>joint coupling</em> (marginally in-range
 on every channel yet jointly off-manifold) is not a separate row &mdash; it is inherent in the curved,
 cross-channel $g_k$ of &sect;2.</p>
 
@@ -158,7 +162,7 @@ mode centre, clipped (bounded):</p>
 <div class="eq">$$u_t=0.85\,u_{t-1}+0.15\,\varepsilon_t,\quad \varepsilon_t\sim\mathcal N(0,\sigma_k^2 I_r),\qquad u_t\leftarrow\operatorname{clip}(u_t,\pm2\sigma_k),$$</div>
 <p>emitted through $g_k$. The stream is then smoothed <strong>per channel with different time constants</strong>
 $x^{(c)}_t=\alpha_c x^{(c)}_t+(1-\alpha_c)x^{(c)}_{t-1}$, $\alpha_c\in[0.05,0.95]$ — slow/inertial channels
-(temperature-like) vs fast (RPM-like): the temporal multiscale of assumption A8. Heterogeneous noise and
+(temperature-like) vs fast (RPM-like): the temporal multiscale of assumption A9. Heterogeneous noise and
 quantization follow, then per-train standardisation and windowing (window $W$, stride $S$; per-window label by
 majority, plus the dominant anomaly type and mode).</p>
 <h3>4.3 Fault families (temporal) — snapshot vs history-dependent</h3>
@@ -187,8 +191,8 @@ testbeds could not provide.
 <tr><td>intrinsic $r$</td><td class="n">3</td><td class="n">3</td><td>low-dim manifold per mode</td></tr>
 <tr><td>Zipf exponent $\beta$</td><td class="n">2.2</td><td class="n">2.0</td><td>imbalance strength</td></tr>
 <tr><td>rare quantile</td><td class="n">0.40</td><td>&mdash;</td><td>low-density normals</td></tr>
-<tr><td>bounded / quantized</td><td>yes / yes</td><td>yes / yes</td><td>A3 / A7</td></tr>
-<tr><td>noise</td><td>correlated het.</td><td>heteroscedastic</td><td>A7</td></tr>
+<tr><td>bounded / quantized</td><td>yes / yes</td><td>yes / yes</td><td>A3 / A8</td></tr>
+<tr><td>noise</td><td>correlated het.</td><td>heteroscedastic</td><td>A8</td></tr>
 <tr><td>dwell mean</td><td>&mdash;</td><td>log-uniform [15,220]</td><td>temporal scale mix</td></tr>
 <tr><td>allowed successors</td><td>&mdash;</td><td class="n">~3 / mode</td><td>transition state machine</td></tr>
 <tr><td>window $W$ / stride $S$</td><td>&mdash;</td><td class="n">40 / 20</td><td>windowing</td></tr>
