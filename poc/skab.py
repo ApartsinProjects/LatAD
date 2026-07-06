@@ -29,7 +29,7 @@ CHANNELS = ["Accelerometer1RMS", "Accelerometer2RMS", "Current", "Pressure",
             "Temperature", "Thermocouple", "Voltage", "Volume Flow RateRMS"]
 
 
-def _windows(df, W, stride, rep="flatten"):
+def _windows(df, W, stride, rep="flatten", thr=0.5):
     X = df[CHANNELS].to_numpy(dtype=np.float64)
     y = (df["anomaly"].to_numpy(dtype=np.float64) if "anomaly" in df.columns
          else np.zeros(len(X)))                        # anomaly-free file has no label
@@ -37,7 +37,7 @@ def _windows(df, W, stride, rep="flatten"):
     for i in range(0, len(X) - W + 1, stride):
         w = X[i:i + W]
         wins.append(window_features(w, rep))
-        labs.append(1 if y[i:i + W].mean() > 0.5 else 0)
+        labs.append(1 if y[i:i + W].mean() > thr else 0)  # thr=0 for pure-normal training
     if not wins:
         return np.empty((0, 0)), np.empty((0,), int)
     return np.stack(wins), np.array(labs, int)
@@ -58,9 +58,9 @@ def load_skab(root="datasets/SKAB", W=20, stride=10, rep="flatten") -> CPSDatase
 
     Xtr = []
     for f in train_files:
-        w, l = _windows(pd.read_csv(f, sep=";"), W, stride, rep)
+        w, l = _windows(pd.read_csv(f, sep=";"), W, stride, rep, thr=0.0)  # pure normal
         if len(w):
-            Xtr.append(w[l == 0])                          # normal windows only
+            Xtr.append(w[l == 0])                          # windows with ZERO anomaly rows
     Xn = np.concatenate(Xtr)
 
     Xt, yt = [], []
@@ -74,11 +74,14 @@ def load_skab(root="datasets/SKAB", W=20, stride=10, rep="flatten") -> CPSDatase
         mu, sd = Xn.mean(0), Xn.std(0) + 1e-8
         x_train = ((Xn - mu) / sd).astype(np.float32)
         x_test = ((Xt - mu) / sd).astype(np.float32)
-    else:                                                  # (N, W, C) -> per-channel
+    else:                                                  # flatten -> per-channel scale
         C = len(CHANNELS)
         mu = Xn.reshape(-1, C).mean(0); sd = Xn.reshape(-1, C).std(0) + 1e-8
-        x_train = (((Xn - mu) / sd).reshape(len(Xn), W * C)).astype(np.float32)
-        x_test = (((Xt - mu) / sd).reshape(len(Xt), W * C)).astype(np.float32)
+
+        def nrm(A):
+            return (((A.reshape(len(A), W, C) - mu) / sd).reshape(len(A), W * C)).astype(np.float32)
+
+        x_train, x_test = nrm(Xn), nrm(Xt)
     atype = np.where(yt == 1, "anomaly", "none")
     return CPSDataset(
         x_train=x_train, x_test=x_test, y_test=yt,
