@@ -202,8 +202,10 @@ shrunk residual covariance (so A6's correlated/heteroscedastic normal noise is d
 nearest-component latent NLL $s_{\mathrm{lat}}=\min_k d_k$. <em>Why:</em> off-manifold in value <em>or</em> in
 latent geometry.</li>
 <li><strong>C1</strong> — <em>physically-guided contrast (supplies the boundary).</em> Manufactures
-<em>hard, close</em> pseudo-anomalies (channel-shuffle candidates kept only if off-mode yet physically
-plausible, difficulty set by the distance band $\sigma/E\in[1,2]$), context-conditional on $c_t$.
+<em>hard, close</em> pseudo-anomalies from channel-shuffle candidates, <strong>kept</strong> iff all three hold:
+(i) <em>off-mode</em> by a non-circular oracle &mdash; $\kappa$-NN distance to a fresh same-frame normal
+reference exceeds its $Q_{99}$ self-distance; (ii) <em>physically in-range</em> &mdash; each channel within its
+observed bounds; (iii) <em>hard</em> &mdash; mode-distance in the band $\sigma/E\in[1,2]$. Context-conditional on $c_t$.
 <em>Why:</em> normal-only data has no hard negatives; C1 draws the decision surface exactly where E1/E2 live,
 and everything supervised (C3 member, C4 threshold) calibrates against it &rarr; addresses <strong>E3</strong>.</li>
 <li><strong>C2</strong> — <em>basin-of-attraction agreement.</em> Descend the latent mixture potential
@@ -218,10 +220,13 @@ per mode; the reconstruction score is the <strong>min over experts</strong> &mda
 member trained normal-vs-C1, class-balanced per mode. <em>Why:</em> a single global model over-smooths the
 imbalanced tail and false-positives on rare modes (<strong>E1</strong>); the per-mode min plus C1-supervised
 member sharpen the boundary.</li>
-<li><strong>C4</strong> — <em>mode-conditional risk control.</em> Not one global threshold but a per-mode set;
-report the tail false-alarm rate $\mathrm{TFAR}=Q_{q}\big(\{\widehat{\mathrm{FPR}}_k:n_k\ge20\}\big)$ and its
-CVaR. <em>Why:</em> a global threshold is set by the common mode and silently sacrifices the rare modes'
-false-alarm (<strong>E1</strong>); TFAR makes the <em>worst</em> mode the objective, label-free
+<li><strong>C4</strong> — <em>mode-conditional risk control.</em> <em>Decision rule:</em> a per-mode threshold
+$\tau_k=Q_{1-\alpha}\big(\text{fused scores of normal windows assigned to }k\big)$ at target false-alarm
+$\alpha$ (or matched to a target TPR on C1's anomalies when available); a window at mode $k$ fires iff its fused
+score $>\tau_k$. <em>Audit:</em> report the tail false-alarm rate
+$\mathrm{TFAR}=Q_{q}\big(\{\widehat{\mathrm{FPR}}_k:n_k\ge20\}\big)$ and its CVaR, so the <em>worst</em> mode's
+false-alarm, not the average, is the objective. <em>Why:</em> a single global threshold is set by the common
+mode and silently sacrifices the rare modes' false-alarm (<strong>E1</strong>); per-mode $\tau_k$ is label-free
 (<strong>E3</strong>).</li>
 </ul>
 <strong>Fusion &rarr; one number.</strong> The C3 supervised member is the fuser: it consumes
