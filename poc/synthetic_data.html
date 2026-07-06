@@ -114,6 +114,13 @@ operation carrying <em>every</em> phenomenon A1&ndash;A10 (the <strong>MIIM</str
 Imbalanced, Multimodal, plus CPS structure), together with a labelled test stream spanning the full anomaly
 taxonomy (&sect;3). The recipe is six steps; each is tagged with the assumptions it realises, so the data model
 and the assumption list stay one-to-one.</p>
+<p><strong>Shape &amp; notation.</strong> A single timestep is a channel-vector $x_t\in\mathbb R^{d}$ ($d$ = the
+number of channels, of mixed type per Step 3; default $d=24$). The generator emits a length-$T$ <strong>multivariate
+time series</strong> $X=(x_1,\dots,x_T)\in\mathbb R^{T\times d}$ with $T$ large (a normal <em>train</em> series
+and a labelled <em>test</em> series). Detection runs <strong>per window</strong>: overlapping windows
+$x_{t-W+1:t}\in\mathbb R^{W\times d}$ of length $W$ and stride $S$ (default $W=40$, $S=20$), each carrying a
+window label $y_t\in\{0,1\}$ plus its dominant mode and anomaly type. So the shapes are: series $T\times d$,
+window $W\times d$.</p>
 
 <h2>2. The recipe, step by step</h2>
 <p>Six steps produce one normal time-series; each step is tagged with the assumptions it realises.</p>
@@ -149,7 +156,7 @@ and <strong>thins toward the boundary</strong> (A4).</p>
 sensors, on/off actuators, integer state flags, held-then-stepped setpoints, and one slow fuel-gauge. Some modes
 use the whole bag, others just a plain subset.</p>
 <p>The $d$ channels are a <strong>mix of variable types</strong>, each with its own scale, resolution
-$\delta_c$, and correlated heteroscedastic noise $\Sigma_\varepsilon=WW^\top+\operatorname{diag}(s^2)$:</p>
+$\delta_c$, and correlated heteroscedastic noise $\Sigma_\varepsilon=W_\varepsilon W_\varepsilon^\top+\operatorname{diag}(s^2)$ ($W_\varepsilon$ a low-rank loading matrix, distinct from the window length $W$):</p>
 <ul>
 <li><strong>sensor</strong>: continuous $g_k(u)$ with fine quantization;</li>
 <li><strong>control / actuator</strong>: piecewise-constant within a mode, coarse or near-binary;</li>
@@ -237,6 +244,7 @@ $E=Q_{0.99}(\sigma)$ sets difficulty bands, so a fault at $\sigma(x)/E\in[1,2]$ 
 <tr><td>dwell mean</td><td>log-uniform [15,220]</td><td>A9</td></tr>
 <tr><td>allowed successors</td><td>~3 / mode</td><td>A9</td></tr>
 <tr><td>accumulator load $\ell$ / recharge $\rho$</td><td>per-mode</td><td>A10</td></tr>
+<tr><td>series length $T$ (train / test)</td><td>~60k / 40k</td><td>A1 (massive $N$)</td></tr>
 <tr><td>window $W$ / stride $S$</td><td>40 / 20</td><td>windowing</td></tr>
 </tbody></table>
 
