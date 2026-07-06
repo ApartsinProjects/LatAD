@@ -129,8 +129,9 @@ anomaly logic; $K$ large with the imbalanced tail preserved.</dd>
 <dl>
 <dt>In plain terms</dt><dd style="font-style:italic;color:#543">Keeps a running "diary" of which modes the
 system has been in and in what order. It only <em>remembers the past</em> — it never predicts the future (much
-normal behaviour is unpredictable) and never judges anomalies. We check it is a good diary by quizzing it:
-"which mode were we in <em>k</em> steps ago?" — if it answers far-back questions, it has kept the history.</dd>
+normal behaviour is unpredictable) and never judges anomalies. We check it is a good diary with two kinds of
+quiz: <em>exact</em> ("which mode were we in <em>k</em> steps ago?") and <em>presence</em> ("was mode Z around
+at all in the last while?") — if it answers both, near and far back, it has kept the history.</dd>
 <dt>Embedding (not tokenization)</dt>
 <dd>A's modes are <strong>fuzzy</strong> (a soft $\gamma_t$), so hard tokenization is wrong. Embed each step as a
 <strong>soft mixture of learned mode embeddings</strong>,
@@ -140,23 +141,28 @@ $e$-trajectory and a forbidden path is an unusual one. ($m_k$ init from A's cent
 is the simple equivalent.)</dd>
 <dt>Encoder</dt><dd>one <strong>long-range sequence model</strong> over $\{e_t\}$ — <strong>SSM / Mamba</strong>
 (or dilated-TCN), streaming with $\sim\!10^3$-step memory. Its recurrent state $s_t$ <em>is</em> the memory; a
-readout of $s_t$ gives the context $c_t$.</dd>
+<strong>near/far readout</strong> of $s_t$ gives the context $c_t$ (near serves the instance head, far the
+containment head).</dd>
 <dt>Input</dt><dd>the stream of responsibilities $\gamma_t$ from frozen A.</dd>
 <dt>Output</dt><dd>trajectory context $c_t$ (a vector, or a few memory tokens for C's cross-attention).</dd>
-<dt>Loss — rare-weighted recall (no forecasting)</dt>
-<dd>One head. Over a spread of offsets $k\in\{1,2,4,\dots,512\}$, recover the past mode from the context:
-<div class="eq">$$\mathcal L_B=\sum_t\sum_k \lambda_k\,\mathrm{CE}\big(\gamma_{t-k},\,r_\theta(c_t,\phi(k))\big),\qquad \lambda_k\propto 1/\pi.$$</div>
-Far offsets <strong>force long memory</strong>; asking only about the <em>determined</em> past keeps it
-<strong>unpredictability-proof</strong>; the rare-weight $\lambda_k\propto1/\pi$ stops the common mode from
-dominating, so brief rare visits are not forgotten. The learned selective state (Mamba's gate) does the rest —
-it writes more on novel/rare steps than on repeats, learned end-to-end from this loss.</dd>
+<dt>Loss — two query heads (no forecasting)</dt>
+<dd>Both heads read the shared $c_t$ and ask only about the <em>determined</em> past; both are
+rare/common-balanced so the common mode cannot flood them.<br>
+<strong>(a) Instance head</strong> (near, precise) — recover the mode at offset $k$:
+<div class="eq">$$\mathcal L_{\text{inst}}=\sum_t\sum_{k}\lambda_k\,\mathrm{CE}\big(\gamma_{t-k},\,r_\theta(c_t,\phi(k))\big),\quad k\in\{1,2,4,\dots,512\},\ \lambda_k\propto1/\pi.$$</div>
+Captures <strong>order and exact timing</strong> (transitions); far offsets force long memory.<br>
+<strong>(b) Containment head</strong> (far, coarse) — was mode $a$ present in a period $P=[t-b,\,t-a]$:
+<div class="eq">$$\mathcal L_{\text{cont}}=\sum_t\sum_{P,a}w_a\,\mathrm{BCE}\big(\mathbb 1[a\in P],\,q_\theta(c_t,P,a)\big),\quad w_a\propto1/\pi_a.$$</div>
+Captures <strong>occurrence, timing-robust</strong>, and is where <em>rare-state presence</em> is kept far back.<br>
+<em>Why two:</em> precise recall degrades with distance while containment persists, so instance serves the
+<strong>near</strong> readout and containment the <strong>far</strong> one. Asking only about the determined past
+keeps both <strong>unpredictability-proof</strong>; the learned selective state (Mamba's gate) does the actual
+writing, more on novel/rare steps than on repeats.</dd>
 <dt>Rationale</dt><dd>fuzzy modes &rarr; embed, don't tokenize; the past is <em>determined</em> so retrieval is
 well-posed; offset-parameterisation gives a tunable memory horizon. A faithful $c_t$ lets C catch invalid
 <em>paths</em> without an explicit transition graph.</dd>
 <dt>Optional extensions (add only if the lean core misses something)</dt>
 <dd><ul>
-<li><strong>Containment head</strong> — "was mode $a$ present in period $P$?" (BCE, rare/common-balanced): coarse,
-timing-robust recall for long horizons, if precise offset-recall degrades too fast.</li>
 <li><strong>Explicit surprise-gated writing</strong> — if the learned gate under-writes rare states, force it:
 $s_t=s_{t-1}+g_t\Delta_t$ with $g_t=\sigma\big(\mathrm{MLP}(e_t,s_{t-1},-\log\pi_{k_t},\lVert e_t-s^{\text{recent}}\rVert)\big)$
 (surprise = rarity $-\log\pi$ + change from recent; non-forecasting; debounce flicker).</li>
@@ -288,11 +294,11 @@ snapshot TPR must not fall when conditioning is switched on.</p>
 
 <h3>Redundancy / overkill (demote to fallback or gate behind an ablation)</h3>
 <ul>
-<li><b>B rare-state machinery</b> (<em>applied</em>): the core now keeps just two mechanisms &mdash;
-rare-weighted recall + the learned selective state; the containment head, explicit surprise-gating, and
-presence features are demoted to optional extensions, added only if the core under-recalls rare states.</li>
-<li><b>Resolutions</b> (<em>applied</em>): the core reads out a single horizon; multi-resolution + per-resolution
-maturity is an optional extension, added only if one horizon proves too short.</li>
+<li><b>B rare-state machinery</b>: the core keeps the two query heads (instance + rare-balanced containment)
+plus the learned selective state; explicit surprise-gating and presence features stay optional, added only if
+the core under-recalls rare states.</li>
+<li><b>Resolutions</b>: the core reads out two horizons (near for instance, far for containment); a third
+("med") resolution + per-resolution maturity stays optional.</li>
 <li><b>C's $\pi_k(c_t)$ context-prior head</b> overlaps with FiLM (both make expectations context-dependent).
 Ship FiLM alone first; add the head only if contextual/pocket faults survive.</li>
 <li><b>C2 basin descent</b> is the most expensive part (per-window latent optimisation) and only targets E2;
