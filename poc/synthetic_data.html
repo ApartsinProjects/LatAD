@@ -65,8 +65,8 @@ generators are built to satisfy exactly these, and the detector is designed agai
   <td>$p(x)=\sum_{k=1}^{K}\pi_k\,p_k(x)$ (a union of $K$ modes).</td>
   <td>$K$ modes, mixture sampling</td></tr>
 <tr><td><b>A2</b></td><td>massive modes</td>
-  <td>a modern CPS is built from many interacting subsystems, and each added element (or new context) multiplies the reachable regimes, so the number of modes grows exponentially; the operating time is then spread thin and unevenly across this multitude, so any single mode is a small, bounded, low-probability slice.</td>
-  <td>$K\gg1$ (growing exponentially in the number of system elements); probability splits, bounded and unevenly, across the modes, so each carries only small mass ($\max_k\pi_k\ll1$).</td>
+  <td>a modern CPS is built from many interacting subsystems, and each added element (or new context) multiplies the reachable regimes, so the number of modes grows exponentially with system complexity.</td>
+  <td>$K\gg1$, growing exponentially in the number of system elements.</td>
   <td>$K$ set large / over-provisioned</td></tr>
 <tr><td><b>A3</b></td><td>bounded modes</td>
   <td>controllers <em>mostly</em> hold each regime within setpoint bands and actuator limits; the space <em>between</em> regimes is usually only passed through, rarely dwelt in.</td>
