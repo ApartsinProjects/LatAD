@@ -73,10 +73,24 @@ transition graph, no score-OR).
 </tbody></table>
 <p>Data flow: <code>window &rarr; A &rarr; (&gamma;, d)</code>; <code>&gamma; &rarr; B &rarr; c_t</code>;
 <code>(raw window, c_t) &rarr; C &rarr; anomaly score</code>.</p>
+<div class="box" style="background:#eef4f8;border-color:#cfe0ea">
+<strong>In plain terms.</strong> A single snapshot can't tell if you got <em>here</em> the wrong way. So three
+models split the work: <strong>A</strong> looks at one window and says <em>which operating mode</em> it is (a
+soft "90% mode&nbsp;3, 10% mode&nbsp;7") and how far it is from every mode. <strong>B</strong> watches those
+mode-readings over time and keeps a running, <em>queryable</em> memory of "which modes we've been in, in what
+order, for how long" — it only <em>remembers</em>, it never predicts or judges. <strong>C</strong> is the
+detector: it looks at the current window <em>and</em> is handed B's memory, then decides if anything is wrong.
+The memory is used to shape "what's normal here," not glued on as extra numbers, so a normal history can never
+hide a real problem.
+</div>
 
 <div class="model A">
 <h3><span class="A2">Model A</span> — mode discovery &amp; geometry-aware window encoder</h3>
 <dl>
+<dt>In plain terms</dt><dd style="font-style:italic;color:#345">Looks at one window and reports two things:
+<em>which</em> operating mode it is (a soft "90% mode 3, 10% mode 7"), and <em>how far</em> it sits from every
+mode. The "which" is for the historian; the "how far" is for the detector (a window far from everything still
+gets a confident nearest-mode, so the assignment alone would hide it — the distances don't).</dd>
 <dt>Architecture</dt><dd>VaDE: a VAE with a <strong>Gaussian-mixture latent prior</strong> of $K$ components
 (joint encode + cluster in latent space). Over-provisioned $K$; the anti-collapse recipe (variance floor,
 $\beta$ warm-up, covariance penalty, slow mixture-LR) keeps the imbalanced rare modes alive. <em>No FiLM.</em></dd>
@@ -97,6 +111,11 @@ anomaly logic; $K$ large with the imbalanced tail preserved.</dd>
 <div class="model B">
 <h3><span class="B2">Model B</span> — trainable trajectory encoder (queryable history)</h3>
 <dl>
+<dt>In plain terms</dt><dd style="font-style:italic;color:#543">Keeps a running "diary" of which modes the
+system has been in, at several zoom levels (recent / medium / long-ago). It only <em>remembers the past</em> —
+it never predicts the future (much normal behaviour is unpredictable) and never judges anomalies. We check it's
+a good diary by quizzing it: "which mode were we in <em>k</em> steps ago?" — if it can answer far-back
+questions, it has really kept the history.</dd>
 <dt>Embedding (not tokenization)</dt>
 <dd>Because A's modes are <strong>fuzzy</strong> (a soft $\gamma_t$), hard segment/tokenization is wrong — it
 discards the soft information and has ill-defined boundaries on a flickering signal. Instead embed each step as
@@ -126,6 +145,15 @@ $\mathcal K=\{1,2,4,\dots,512\}$, a verifier $p_\theta(\text{present}\mid c_t,k,
 $e$-trajectories. The past is <em>determined</em> &rarr; retrieval is well-posed and
 <strong>unpredictability-proof</strong>; offset-parameterisation gives a tunable memory horizon; content+time
 queries make $c_t$ encode <em>which</em> regime and <em>when</em>.</dd>
+<dt>Keeping rare states (don't let the common state dominate)</dt>
+<dd>The system sits in the common mode most of the time, so a naive time-average is flooded by it and forgets a
+brief visit to a rare state. Three safeguards: <strong>(1) surprise-gated writing</strong> — like taking
+meeting notes, a <em>repeated</em> common state writes almost nothing to the memory while a <em>new/rare</em>
+state writes a lot, i.e. update $s_t=s_{t-1}+g_t\!\cdot\!\Delta_t$ with a novelty gate
+$g_t=\sigma(\text{novelty}(e_t,s_{t-1}))$ (this is what Mamba's selection / LSTM gates do); <strong>(2) presence
+features</strong> — per mode, "time since last visited" and recent peak, so even a one-step rare visit is on the
+record regardless of duration; <strong>(3) rare-weighted queries</strong> — the training quiz asks about rare
+states more often (weight $\propto 1/\pi_a$), so forgetting them is penalised.</dd>
 <dt>Objectives</dt><dd>a faithful, queryable record of regime occupancy, order, and dwell — good enough that C
 catches invalid <em>paths</em> without an explicit transition graph.</dd>
 <dt>Constraints</dt><dd>normal-only; reset state at run boundaries; <strong>no forecasting, no anomaly logic</strong>;
@@ -136,6 +164,12 @@ frozen after training. <em>Acceptance test:</em> query-accuracy vs offset = the 
 <div class="model C">
 <h3><span class="C2">Model C</span> — trajectory-conditional anomaly detector</h3>
 <dl>
+<dt>In plain terms</dt><dd style="font-style:italic;color:#534">The actual detector. It looks at the current raw
+window and is <em>told</em> B's history, then asks "is this window normal <em>given</em> how we got here?" The
+history is used to <em>tune expectations</em> (not appended as extra numbers — that would let a normal history
+water down a real anomaly). One question — "is this (window, history) pair normal?" — catches all three fault
+kinds: a bad window on its own, a valid value that's wrong for the context, and a valid state reached by an
+impossible path. C1&ndash;C4 run on top unchanged.</dd>
 <dt>Architecture</dt><dd>a VaDE (its <em>own</em> mixture prior, own weights) over the <strong>raw window</strong>,
 with the trajectory context injected by conditioning: <strong>FiLM</strong> $h'=\gamma(c_t)\odot h+\beta(c_t)$
 when $c_t$ is a single vector, or <strong>cross-attention</strong> when B exposes a memory (window features
