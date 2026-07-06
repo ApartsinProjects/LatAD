@@ -68,7 +68,7 @@ detector is designed against them.</p>
   <td>a modern CPS is built from many interacting subsystems, and each added element (or new context) multiplies the reachable regimes, so the number of modes grows exponentially with system complexity.</td>
   <td>global</td></tr>
 <tr><td><b>A3</b></td><td><b>Hard Envelopes</b> (bounded modes)</td>
-  <td>controllers <em>mostly</em> hold each regime within setpoint bands and actuator limits; the space <em>between</em> regimes is usually only passed through, rarely dwelt in.</td>
+  <td>controllers <em>mostly</em> hold each regime within setpoint bands and actuator limits; the space <em>between</em> regimes is usually only passed through, rarely dwelt in. Neighbouring envelopes can sit very close, so only a thin sliver of anomalous space separates them (a small between-mode pocket).</td>
   <td>global</td></tr>
 <tr><td><b>A4</b></td><td><b>Thin Fringes</b> (intra-mode sparsity)</td>
   <td>within a single mode the system's presence is non-uniform: it dwells near a typical operating point and reaches the edges of the regime only occasionally, so each normal mode holds legitimately low-probability regions, most often near its boundary.</td>
@@ -120,6 +120,8 @@ and which anomalies a given detector models or misses.
       <stop offset="82%" stop-color="#d63a5e" stop-opacity="0.7"/>
       <stop offset="100%" stop-color="#6a1b4d" stop-opacity="0.45"/>
     </radialGradient>
+    <marker id="arrGood" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#2ec4b6"/></marker>
+    <marker id="arrBad" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#ff5a6a"/></marker>
   </defs>
   <rect x="0" y="0" width="640" height="400" fill="#0d1226"/>
   <g style="mix-blend-mode:screen" stroke="rgba(255,255,255,0.16)" stroke-width="0.8">
@@ -155,20 +157,43 @@ and which anomalies a given detector models or misses.
     <ellipse cx="625" cy="355" rx="12" ry="5" fill="url(#modeDens)" opacity="0.32" transform="rotate(-40 625 355)"/>
     <ellipse cx="255" cy="360" rx="13" ry="5" fill="url(#modeDens)" opacity="0.35" transform="rotate(-50 255 360)"/>
     <ellipse cx="540" cy="60" rx="13" ry="5" fill="url(#modeDens)" opacity="0.35" transform="rotate(15 540 60)"/>
+    <ellipse cx="475" cy="300" rx="24" ry="9" fill="url(#modeDens)" opacity="0.8" transform="rotate(-8 475 300)"/>
+    <ellipse cx="525" cy="298" rx="24" ry="9" fill="url(#modeDens)" opacity="0.8" transform="rotate(10 525 298)"/>
+    <ellipse cx="500" cy="320" rx="22" ry="8" fill="url(#modeDens)" opacity="0.8" transform="rotate(2 500 320)"/>
+    <ellipse cx="120" cy="152" rx="22" ry="8" fill="url(#modeDens)" opacity="0.72" transform="rotate(28 120 152)"/>
+    <ellipse cx="160" cy="160" rx="22" ry="8" fill="url(#modeDens)" opacity="0.72" transform="rotate(-18 160 160)"/>
   </g>
   <text x="16" y="26" fill="#cdd9e5" font-size="13" font-weight="600">Normal latent density (2D)</text>
   <line x1="172" y1="126" x2="190" y2="52" stroke="#cdd9e5" stroke-width="0.8"/>
   <text x="190" y="44" fill="#cdd9e5" font-size="11" text-anchor="middle">dense common mode &#183; one major axis (A1, A5)</text>
   <line x1="610" y1="95" x2="604" y2="54" stroke="#cdd9e5" stroke-width="0.8"/>
   <text x="628" y="46" fill="#cdd9e5" font-size="11" text-anchor="end">rare, faint mode (A6)</text>
-  <line x1="452" y1="288" x2="420" y2="376" stroke="#cdd9e5" stroke-width="0.8"/>
-  <text x="410" y="390" fill="#cdd9e5" font-size="11" text-anchor="middle">hard edge (A3) &#183; bright&#8594;dim = thin fringe (A4)</text>
+  <line x1="110" y1="297" x2="70" y2="372" stroke="#cdd9e5" stroke-width="0.8"/>
+  <text x="18" y="388" fill="#cdd9e5" font-size="11" text-anchor="start">hard edge (A3) &#183; fade = thin fringe (A4)</text>
+  <ellipse cx="475" cy="300" rx="24" ry="9" fill="none" stroke="#7fe3d8" stroke-width="1.2" transform="rotate(-8 475 300)"/>
+  <ellipse cx="525" cy="298" rx="24" ry="9" fill="none" stroke="#7fe3d8" stroke-width="1.2" transform="rotate(10 525 298)"/>
+  <ellipse cx="500" cy="320" rx="22" ry="8" fill="none" stroke="#7fe3d8" stroke-width="1.2" transform="rotate(2 500 320)"/>
+  <circle cx="500" cy="306" r="3.5" fill="#ff5a6a"/>
+  <ellipse cx="120" cy="152" rx="22" ry="8" fill="none" stroke="#7fe3d8" stroke-width="1.2" transform="rotate(28 120 152)"/>
+  <ellipse cx="160" cy="160" rx="22" ry="8" fill="none" stroke="#7fe3d8" stroke-width="1.2" transform="rotate(-18 160 160)"/>
+  <circle cx="141" cy="156" r="3.5" fill="#ff5a6a"/>
+  <line x1="500" y1="306" x2="545" y2="352" stroke="#cdd9e5" stroke-width="0.8"/>
+  <text x="596" y="366" fill="#cdd9e5" font-size="11" text-anchor="end">close-mode clusters &#8594; thin anomalous pockets (A3)</text>
+  <polyline fill="none" stroke="#2ec4b6" stroke-width="2.2" marker-end="url(#arrGood)" points="170,140 255,95 372,150"/>
+  <polyline fill="none" stroke="#ff5a6a" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrBad)" points="300,300 375,163"/>
+  <text x="205" y="82" fill="#2ec4b6" font-size="11" font-weight="600">valid path</text>
+  <text x="322" y="240" fill="#ff5a6a" font-size="11" font-weight="600">forbidden jump</text>
+  <text x="385" y="140" fill="#e8eef4" font-size="11" text-anchor="middle">same state, two histories (A10)</text>
 </svg>
 <figcaption style="font-size:.82rem;color:#666;font-family:'Helvetica Neue',Arial,sans-serif">A 2D slice of the
 normal latent: each blob is one operating mode. Many modes (A1; the real $K$ is far larger, A2), each a bounded
 ellipse with a <em>hard edge</em> (A3) and density fading centre&rarr;rim (A4), <em>elongated along one dominant
 direction</em> (A5, few levers). Sizes and brightness vary widely (A6, heavy tail: a few dense common modes, a
-long faint rare tail). No labels are shown &mdash; the detector sees only this density (A7).</figcaption>
+long faint rare tail). No labels are shown &mdash; the detector sees only this density (A7). Overlaid: a
+<span style="color:#2ec4b6">valid trajectory</span> hops along allowed transitions while a
+<span style="color:#c0392b">forbidden jump</span> reaches the <em>same</em> mode by an illegal path (A10, though
+its endpoint looks normal); two envelopes at lower right sit so close they leave only a thin anomalous pocket
+(A3).</figcaption>
 </figure>
 
 <h2>1. One unified generator</h2>
@@ -318,6 +343,36 @@ time constants, others a single one.</p>
 (zero on forbidden edges); dwell $D\sim\big\lfloor e^{\,\mathcal U(\ln 15,\ln 220)}\big\rfloor$; per-channel
 constant $\alpha_c\sim\mathcal U(0.05,0.95)$. A slow channel ($\alpha_c=0.05$) lags a step change by
 $\sim\!1/\alpha_c\approx20$ samples; a fast one ($\alpha_c=0.9$) tracks it within $\sim\!1$.</p>
+<figure style="margin:16px 0;text-align:center">
+<svg viewBox="0 0 600 312" width="100%" style="max-width:600px" font-family="Helvetica Neue,Arial,sans-serif">
+  <rect x="0" y="0" width="600" height="312" fill="#fcfcfb"/>
+  <g stroke="#c9b98a" stroke-width="1" stroke-dasharray="3 4">
+    <line x1="230" y1="26" x2="230" y2="296"/>
+    <line x1="350" y1="26" x2="350" y2="296"/>
+    <line x1="470" y1="26" x2="470" y2="296"/>
+  </g>
+  <text x="240" y="22" font-size="10" fill="#b09b5f">mode change</text>
+  <g font-size="10" fill="#555" text-anchor="start">
+    <text x="6" y="56">slow sensor</text>
+    <text x="6" y="110">fast / noisy</text>
+    <text x="6" y="164">state (discrete)</text>
+    <text x="6" y="218">setpoint (held)</text>
+    <text x="6" y="272">accumulator</text>
+  </g>
+  <polyline fill="none" stroke="#e0a458" stroke-width="2" points="110,58 160,54 210,49 260,47 310,50 360,56 410,61 460,58 510,51 560,48 585,49"/>
+  <polyline fill="none" stroke="#6fb1e0" stroke-width="1.4" points="110,108 135,95 160,119 185,100 210,121 235,93 260,113 285,90 310,122 335,99 360,116 385,92 410,120 435,102 460,124 485,95 510,114 535,89 560,118 585,104"/>
+  <polyline fill="none" stroke="#b48ce0" stroke-width="2" points="110,175 230,175 230,145 350,145 350,160 470,160 470,175 585,175"/>
+  <polyline fill="none" stroke="#5fc7a8" stroke-width="2" points="110,228 230,228 230,208 350,208 350,220 470,220 470,202 585,202"/>
+  <polyline fill="none" stroke="#e07a9a" stroke-width="2" points="110,250 300,286 300,252 470,285 470,250 585,266"/>
+  <line x1="108" y1="298" x2="585" y2="298" stroke="#bbb" stroke-width="1"/>
+  <text x="585" y="310" font-size="10" fill="#888" text-anchor="end">time &#8594;</text>
+</svg>
+<figcaption style="font-size:.82rem;color:#666;font-family:'Helvetica Neue',Arial,sans-serif">One normal
+multivariate window: five channels of different <em>type, scale and domain</em> stacked over time. A slow
+low-noise sensor; a fast high-variance sensor; a discrete state; a held-then-stepped setpoint; a slowly
+draining/recharging accumulator. All change together at the shared mode transitions (dashed), but on their own
+time constants (A8, A9).</figcaption>
+</figure>
 
 <h3>Step 5: History-conditioned normality <span class="phen">A10</span></h3>
 <p style="font-style:italic;color:#4a5a50;margin:2px 0 8px">In plain terms: whether a reading is fine can depend on
