@@ -87,17 +87,17 @@ generators are built to satisfy exactly these, and the detector is designed agai
   <td>the true regimes are an emergent artifact of complex system design and coupling, so the <em>actual</em> modes can rarely be recovered exactly; the mode label is not logged either, so modes must be <em>discovered</em> (approximately) from raw streams.</td>
   <td>mode label $k$ latent; only $x$ observed at train time.</td>
   <td>no labels emitted for training</td></tr>
-<tr><td><b>A8</b></td><td><b>Mixed Signals</b> (heterogeneous variables)</td>
+<tr><td><b>A8</b></td><td><b>Mixed Signals</b> (heterogeneous variables) <span style="color:var(--accent)">(mode-dependent)</span></td>
   <td>the CPS bus carries a <em>mix of variable types</em> (sensor readings, actuator / control signals, discrete system states, setpoints), each with its own range, resolution, and correlated noise; not sensors alone.</td>
-  <td>channel $c$ (a sensor, control, state, or setpoint) has its own scale, quantization $\delta_c$, and correlated het. noise $\Sigma_\varepsilon=WW^\top+\operatorname{diag}(s^2)$.</td>
+  <td>channel $c$ (a sensor, control, state, or setpoint) has its own scale, quantization $\delta_c$, and correlated het. noise $\Sigma_\varepsilon=WW^\top+\operatorname{diag}(s^2)$. Which types are <em>active</em> is mode-dependent: some modes drive the full mix, others a homogeneous subset.</td>
   <td>per-channel scale/$\delta_c$; $\Sigma_\varepsilon$</td></tr>
-<tr><td><b>A9</b></td><td><b>Many Clocks</b> (multiscale dynamics) <span style="color:#888">(temporal)</span></td>
+<tr><td><b>A9</b></td><td><b>Many Clocks</b> (multiscale dynamics) <span style="color:#888">(temporal)</span> <span style="color:var(--accent)">(mode-dependent)</span></td>
   <td>physical inertia sets per-channel time constants (thermal slow, electrical fast); operating procedure makes only some regime&rarr;regime transitions legal, each with a characteristic dwell.</td>
-  <td>within a mode $u$ has bounded dynamics, per-channel $\alpha_c$; across modes a <em>sparse transition graph</em> (forbidden edges), dwell $\tau_k$.</td>
+  <td>within a mode $u$ has bounded dynamics, per-channel $\alpha_c$; across modes a <em>sparse transition graph</em> (forbidden edges), dwell $\tau_k$. Multiscale is mode-dependent: some modes span several time scales, others a single one.</td>
   <td>OU + $\alpha_c$ smoothing; state machine</td></tr>
-<tr><td><b>A10</b></td><td><b>Path Dependence</b> (history-conditioned normality) <span style="color:#888">(temporal)</span></td>
+<tr><td><b>A10</b></td><td><b>Path Dependence</b> (history-conditioned normality) <span style="color:#888">(temporal)</span> <span style="color:var(--accent)">(mode-dependent)</span></td>
   <td>a fault is defined <em>relative to the operational history</em>: the same instantaneous state can be normal or faulty depending on how the system got there (a low battery is fine after intensive operation, but anomalous right after a fresh start / full charge).</td>
-  <td>normality is $p(\text{normal}\mid x_t,\ \text{history}_{1:t-1})$, not $p(\text{normal}\mid x_t)$: a state valid under one trajectory is anomalous under another.</td>
+  <td>normality is $p(\text{normal}\mid x_t,\ \text{history}_{1:t-1})$, not $p(\text{normal}\mid x_t)$: a state valid under one trajectory is anomalous under another. Mode-dependent: only some modes are history-conditioned; the rest are always-valid controls.</td>
   <td>bad_transition family (valid state via a forbidden path)</td></tr>
 </tbody></table>
 <p>Two standing qualifiers apply throughout: the sample is <strong>massive</strong> ($N$ large) and the mixture is
@@ -106,6 +106,15 @@ generators are built to satisfy exactly these, and the detector is designed agai
 unified generator (&sect;1) produces a single time-series carrying all ten. Physical <em>joint coupling</em>
 (marginally in-range on every channel yet jointly off-manifold) is not a separate row: it is inherent in the
 curved, cross-channel $g_k$ of &sect;2.</p>
+
+<div class="box" style="background:#eef4f0;border-color:#cfe0d6">
+<strong>Mode-dependent by design (a built-in ablation).</strong> A8, A9 and A10 hold on <em>some</em> modes and
+not others: some modes drive the full heterogeneous channel mix, others a homogeneous subset; some evolve on
+several time scales, others one; some are valid only given the right trajectory, others are always valid. The
+same split applies to anomalies (some sit in the simple subset, some in the complex). Because a phenomenon
+<em>and its absence</em> both live in one dataset, we can read off, per phenomenon, exactly which normal modes
+and which anomalies a given detector models or misses.
+</div>
 
 <h2>1. One unified generator</h2>
 <p>A single streaming generator produces a <strong>massive multivariate time-series</strong> of normal CPS
@@ -146,6 +155,8 @@ $\delta_c$, and correlated heteroscedastic noise $\Sigma_\varepsilon=WW^\top+\op
 <li><strong>setpoint</strong>: hold-then-step, changing only at transitions;</li>
 <li><strong>accumulator</strong>: a slow integrator (Step 5).</li>
 </ul>
+<p>Which types are <strong>active is mode-dependent</strong>: some modes drive the full mix, others only a
+homogeneous subset (a built-in control for A8).</p>
 
 <h3>Step 4: Trajectory dynamics <span class="phen">A9</span></h3>
 <p>Normal operation is a <strong>walk over the reachable modes</strong>: a sparse <strong>transition graph</strong>
@@ -156,7 +167,8 @@ clipped,</p>
 <div class="eq">$$u_t=0.85\,u_{t-1}+0.15\,\varepsilon_t,\quad\varepsilon_t\sim\mathcal N(0,\sigma_k^2 I_r),\qquad u_t\leftarrow\operatorname{clip}(u_t,\pm2\sigma_k),$$</div>
 <p>emitted through $g_k$; each channel is then smoothed with its <strong>own</strong> time constant
 $x^{(c)}_t=\alpha_c x^{(c)}_t+(1-\alpha_c)x^{(c)}_{t-1}$, $\alpha_c\in[0.05,0.95]$ (slow / inertial vs fast: the
-multiscale clocks).</p>
+multiscale clocks). Whether a mode is <strong>multiscale is mode-dependent</strong>: some modes span several
+time constants, others a single one.</p>
 
 <h3>Step 5: History-conditioned normality <span class="phen">A10</span></h3>
 <p>Two mechanisms make the <em>same</em> instantaneous state normal or anomalous depending on the past:</p>
@@ -167,6 +179,8 @@ $\rho_t$ a recharge; a low $a_t$ is <strong>normal iff preceded by high cumulati
 <li><strong>Transition graph.</strong> A settled state is <strong>normal iff reached by an allowed path</strong>;
 the identical values reached via a forbidden predecessor are a fault.</li>
 </ul>
+<p>Path-dependence is <strong>mode-dependent</strong>: only some modes are history-conditioned; the rest are
+always-valid controls, so the dataset holds matched with / without pairs.</p>
 
 <h3>Step 6: Implicit, and framing <span class="phen">A7</span></h3>
 <p>No mode or subsystem-state label is emitted for training (A7): only the raw channel stream, labels kept for
