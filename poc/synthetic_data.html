@@ -61,6 +61,9 @@ compactly; the generators are built to satisfy exactly these, and the detector i
 <tr><td><b>A1</b></td><td>multimodal mixture</td>
   <td>$p(x)=\sum_{k=1}^{K}\pi_k\,p_k(x)$ with $K$ <em>large</em> (massive) &mdash; normal is a union of many operating regimes, not one blob.</td>
   <td>$K$ modes, mixture sampling</td></tr>
+<tr><td><b>A6</b></td><td>bounded modes</td>
+  <td>$\operatorname{supp}(p_k)$ is <em>bounded</em> ($u$ on a compact set), so between-mode regions have $\approx 0$ density &mdash; interpolation pockets are anomalous, not normal.</td>
+  <td>$u$ clipped to $\pm2\sigma_k$</td></tr>
 <tr><td><b>A2</b></td><td>low-dim modes</td>
   <td>each $p_k$ concentrates near a manifold $\mathcal M_k=\{g_k(u):u\in\mathbb R^{r}\}$, intrinsic $r\ll d$.</td>
   <td>$r=3\!\ll\!24=d$; $g_k$</td></tr>
@@ -70,12 +73,6 @@ compactly; the generators are built to satisfy exactly these, and the detector i
 <tr><td><b>A4</b></td><td>implicit</td>
   <td>the mode label $k$ is <em>latent</em>: only $x$ is observed at train time, never $k$ &mdash; modes must be discovered.</td>
   <td>no labels emitted for training</td></tr>
-<tr><td><b>A5</b></td><td>physical joint coupling</td>
-  <td>channels are jointly constrained by $g_k$ (cross-channel), so a point can be <em>marginally</em> in-range on every channel yet <em>jointly</em> off $\mathcal M_k$.</td>
-  <td>curved $g_k$ w/ channel-reversal coupling</td></tr>
-<tr><td><b>A6</b></td><td>bounded modes</td>
-  <td>$\operatorname{supp}(p_k)$ is <em>bounded</em> ($u$ on a compact set), so between-mode regions have $\approx 0$ density &mdash; interpolation pockets are anomalous, not normal.</td>
-  <td>$u$ clipped to $\pm2\sigma_k$</td></tr>
 <tr><td><b>A7</b></td><td>heterogeneous sensing</td>
   <td>channel $c$ is read with its own scale, quantization step $\delta_c$, and <em>correlated heteroscedastic</em> noise $\Sigma_\varepsilon=WW^\top+\operatorname{diag}(s^2)$.</td>
   <td>per-channel scale/$\delta_c$; $\Sigma_\varepsilon$</td></tr>
@@ -84,8 +81,10 @@ compactly; the generators are built to satisfy exactly these, and the detector i
   <td>OU + $\alpha_c$ smoothing; state machine</td></tr>
 </tbody></table>
 <p>Two standing qualifiers apply throughout: the sample is <strong>massive</strong> ($N$ large) and the mixture is
-<strong>stationary</strong> (the $\pi_k$ and $g_k$ do not drift within a run). A1&ndash;A7 are static (both
-generators); A8 is the temporal generator only. In the paper's shorthand these are the same A1&ndash;A8.</p>
+<strong>stationary</strong> (the $\pi_k$ and $g_k$ do not drift within a run). A1&ndash;A4, A6, A7 are static
+(both generators); A8 (dynamics) is the temporal generator only. The paper's <em>physical joint coupling</em>
+(A5) is not a separate row here &mdash; it is inherent in the curved, cross-channel $g_k$ of &sect;2 (marginally
+in-range yet jointly off-manifold).</p>
 
 <h2>1. Phenomena modelled</h2>
 <p>Normal operation is <strong>MIIM</strong> — Massive, Implicit, Imbalanced, Multimodal — plus CPS-specific
