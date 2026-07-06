@@ -95,28 +95,39 @@ anomaly logic; $K$ large with the imbalanced tail preserved.</dd>
 </div>
 
 <div class="model B">
-<h3><span class="B2">Model B</span> — queryable trajectory memory</h3>
+<h3><span class="B2">Model B</span> — trainable trajectory encoder (queryable history)</h3>
 <dl>
-<dt>Architecture</dt><dd>a recurrent state update $s_t=f(s_{t-1},\gamma_t)$. <em>Simple:</em> multi-timescale
-EMAs of $\gamma$ (short/med/long occupancy) + dwell + previous mode (no training). <em>Learned:</em> a
-multi-resolution dilated-TCN / SSM / clockwork RNN, read out at short/med/long depths, with a
-<strong>per-resolution maturity signal</strong> $\tilde\tau^{r}_t=\log(1+\min(t-t_\text{start},R_r))$ (replaces
-burn-in, so early context is "immature" not discarded).</dd>
-<dt>Input</dt><dd>previous state $s_{t-1}$ + current assignment $\gamma_t$ (from A) + maturity $\tilde\tau^{r}_t$.</dd>
-<dt>Output</dt><dd>trajectory context $c_t$ — a multi-resolution summary of the past mode sequence (a vector, or
-a small set of memory tokens for cross-attention).</dd>
-<dt>Loss (learned version) — <em>queryable-past</em></dt>
-<dd>The state must answer "was assignment $a$ present $k$ steps ago?". Over a spread of offsets
-$\mathcal K=\{1,2,4,\dots,512\}$, a verifier $p_\theta(\text{present}\mid s_t,k,a)$ trained by BCE with the
+<dt>Embedding (not tokenization)</dt>
+<dd>Because A's modes are <strong>fuzzy</strong> (a soft $\gamma_t$), hard segment/tokenization is wrong — it
+discards the soft information and has ill-defined boundaries on a flickering signal. Instead embed each step as
+a <strong>soft mixture of learned mode embeddings</strong> — the continuous analogue of a token:
+<div class="eq">$$e_t=\sum_k \gamma_{t,k}\,m_k\ \ (\oplus\ W\,d_t),$$</div>
+so a between-modes window sits <em>on the segment</em> between $m_A$ and $m_B$, and a transition is a
+<strong>smooth trajectory in embedding space</strong> (a forbidden path = an unusual $e$-trajectory, not a
+discrete jump). ($m_k$ may be initialised from A's mode centroids; a plain MLP on $(\gamma_t,d_t)$ is the
+simpler equivalent.)</dd>
+<dt>Encoder</dt><dd>a <strong>long-range continuous sequence model</strong> over $\{e_t\}$ —
+<strong>SSM / Mamba</strong> or <strong>dilated-TCN</strong> (streaming, $10^3$-step memory), with
+<strong>multi-resolution readouts</strong> $c_t=[c^{\text{short}}\oplus c^{\text{med}}\oplus c^{\text{long}}]$
+and a <strong>per-resolution maturity signal</strong> $\tilde\tau^{r}_t=\log(1+\min(t-t_\text{start},R_r))$
+(replaces burn-in — early context is "immature", not discarded). A multi-timescale EMA of $\gamma$ is only a
+fixed, weak baseline of this.</dd>
+<dt>Input</dt><dd>the stream of soft assignments $\gamma_t$ (and distances $d_t$) from frozen A.</dd>
+<dt>Output</dt><dd>trajectory context $c_t$ — a multi-resolution history summary (a vector, or a small set of
+memory tokens for C's cross-attention).</dd>
+<dt>Loss — <em>queryable-past</em> (no forecasting)</dt>
+<dd>The encoder must answer "was assignment $a$ present $k$ steps ago?". Over a spread of offsets
+$\mathcal K=\{1,2,4,\dots,512\}$, a verifier $p_\theta(\text{present}\mid c_t,k,a)$ trained by BCE with the
 <em>true</em> past $\gamma_{t-k}$ as positive and other assignments as negatives:
-<div class="eq">$$\mathcal L_B=\sum_t\sum_{k\in\mathcal K}\Big[-\log p_\theta(\text{yes}\mid s_t,k,\gamma_{t-k})-\textstyle\sum_{a^-}\log p_\theta(\text{no}\mid s_t,k,a^-)\Big].$$</div>
-(Simpler variant: a recall head $r_\theta(s_t,\phi(k))$ with $\mathrm{CE}(\gamma_{t-k},r_\theta)$.) Far offsets
-<strong>force long memory</strong>. The EMA is the fixed, weak approximation of this.</dd>
-<dt>Rationale</dt><dd>the past is <em>determined</em> &rarr; retrieval is well-posed and unpredictability-proof;
-offset-parameterisation gives multiscale memory and a tunable horizon; content+time queries make $c_t$ encode
-<em>which</em> regime and <em>when</em>.</dd>
+<div class="eq">$$\mathcal L_B=\sum_t\sum_{k\in\mathcal K}\Big[-\log p_\theta(\text{yes}\mid c_t,k,\gamma_{t-k})-\textstyle\sum_{a^-}\log p_\theta(\text{no}\mid c_t,k,a^-)\Big].$$</div>
+(Simpler variant: a recall head $r_\theta(c_t,\phi(k))$ with $\mathrm{CE}(\gamma_{t-k},r_\theta)$.) Far offsets
+<strong>force long memory</strong>; a spread of offsets gives multiscale recall for free.</dd>
+<dt>Rationale</dt><dd>fuzzy modes &rarr; <em>embed</em>, don't tokenize; transitions become smooth
+$e$-trajectories. The past is <em>determined</em> &rarr; retrieval is well-posed and
+<strong>unpredictability-proof</strong>; offset-parameterisation gives a tunable memory horizon; content+time
+queries make $c_t$ encode <em>which</em> regime and <em>when</em>.</dd>
 <dt>Objectives</dt><dd>a faithful, queryable record of regime occupancy, order, and dwell — good enough that C
-can catch invalid <em>paths</em> without an explicit transition graph.</dd>
+catches invalid <em>paths</em> without an explicit transition graph.</dd>
 <dt>Constraints</dt><dd>normal-only; reset state at run boundaries; <strong>no forecasting, no anomaly logic</strong>;
 frozen after training. <em>Acceptance test:</em> query-accuracy vs offset = the effective memory horizon.</dd>
 </dl>
