@@ -167,9 +167,10 @@ def generate_stream(sys, T, inject, rng, quotas=None):
         # ---- test-only anomalies ----
         if inject and rng.random() < 0.05:
             drift = rng.normal(0, 1, sys.r) * sys.sigma[cur] * 3.0; atype, anom = "drift", 1
-        # fringe (normal) enrichment
-        if not inject and rng.random() < 0.06:
-            U = _fringe_segment(sys, cur, D, rng); emit(cur, U, "none", 0)
+        # (a) fringe: hard NORMAL near-boundary windows (|u| in [1.7,2)sigma), labelled
+        # so false-alarms on valid-but-hard points (E1) are measurable in BOTH streams.
+        if drift is None and rng.random() < 0.06:
+            U = _fringe_segment(sys, cur, D, rng); emit(cur, U, "fringe", 0)
         else:
             U = _ou_segment(sys, cur, D, rng, drift); emit(cur, U, atype, anom)
         # settled bad_transition labelling (history anomaly)
@@ -195,6 +196,11 @@ def generate_stream(sys, T, inject, rng, quotas=None):
             other = int(rng.choice(sys.K)); U = _ou_segment(sys, cur, 40, rng)
             X.append(g_k(sys, other, U) + _noise(sys, cur, 40, rng))
             M.extend([cur] * 40); A.extend([1] * 40); TY.extend(["wrong_for_regime"] * 40); t += 40
+        if inject and rng.random() < 0.03:            # (c) near-boundary anomaly: just OUTSIDE one mode
+            dirs = rng.normal(0, 1, (40, sys.r)); dirs /= np.linalg.norm(dirs, axis=1, keepdims=True)
+            U = dirs * rng.uniform(2.05, 3.0, (40, 1)) * sys.sigma[cur]     # |u| just past the 2-sigma rim
+            X.append(g_k(sys, cur, U) + _noise(sys, cur, 40, rng))
+            M.extend([cur] * 40); A.extend([1] * 40); TY.extend(["near_boundary"] * 40); t += 40
         # ---- next mode ----
         if inject and rng.random() < 0.05 and sys.forbidden[cur]:   # forbidden jump
             cur = int(rng.choice(sorted(sys.forbidden[cur]))); pending_bad = 1
@@ -264,7 +270,12 @@ def make_dataset(seed=0, n_train=60000, n_test=40000, W=40, stride=20):
         for i in range(0, len(Z) - W + 1, stride):
             Xw.append(window_features(Z[i:i + W], "stats"))
             aw = A[i:i + W]; y.append(int(aw.mean() > 0.5))
-            tw = TY[i:i + W][aw == 1]; at.append(tw[0] if len(tw) else "none")
+            tw = TY[i:i + W][aw == 1]
+            if len(tw):
+                at.append(tw[0])
+            else:                                       # normal window: flag the fringe sub-type
+                sub = TY[i:i + W]
+                at.append("fringe" if (sub == "fringe").mean() > 0.5 else "none")
             mm = M[i:i + W][M[i:i + W] >= 0]
             md.append(int(np.bincount(mm).argmax()) if len(mm) else -1)
         return (np.asarray(Xw, np.float32), np.asarray(y, int),
@@ -283,7 +294,8 @@ if __name__ == "__main__":
           f"winfeat={d['n_features']}  anomaly-frac={d['y_test'].mean():.3f}")
     print(f"distinct modes seen (train): {len(np.unique(d['mode_train'][d['mode_train']>=0]))}/{d['K']}")
     at = d['atype_test']
-    for t in ["none", "pocket", "drift", "ood", "wrong_for_regime", "bad_transition"]:
+    for t in ["none", "fringe", "pocket", "near_boundary", "drift", "ood",
+              "wrong_for_regime", "bad_transition"]:
         print(f"  {t:<16} {int((at == t).sum())} windows")
     import os
     os.makedirs("datasets/miim", exist_ok=True)
