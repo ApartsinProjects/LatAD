@@ -80,3 +80,5 @@ if __name__ == "__main__":
         import skab; run("SKAB", skab.load_skab(), K=16, do_B=do_B)
     if "hai" in which:
         import hai; run("HAI", hai.load_hai(), K=24, do_B=do_B)
+    if "wadi" in which:
+        import wadi; run("WADI", wadi.load_wadi(), K=20, do_B=do_B)
