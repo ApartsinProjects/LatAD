@@ -98,7 +98,7 @@ generators are built to satisfy exactly these, and the detector is designed agai
   <td>OU + $\alpha_c$ smoothing; state machine</td></tr>
 <tr><td><b>A10</b></td><td><b>Path Dependence</b> (history-conditioned normality) <span style="color:#888">(temporal)</span></td>
   <td>a fault is defined <em>relative to the operational history</em>: the same instantaneous state can be normal or faulty depending on how the system got there (a low battery is fine after intensive operation, but anomalous right after a fresh start / full charge).</td>
-  <td>normality is $p(\text{normal}\mid x_t,\ \text{history}_{<t})$, not $p(\text{normal}\mid x_t)$: a state valid under one trajectory is anomalous under another.</td>
+  <td>normality is $p(\text{normal}\mid x_t,\ \text{history}_{1:t-1})$, not $p(\text{normal}\mid x_t)$: a state valid under one trajectory is anomalous under another.</td>
   <td>bad_transition family (valid state via a forbidden path)</td></tr>
 </tbody></table>
 <p>Two standing qualifiers apply throughout: the sample is <strong>massive</strong> ($N$ large) and the mixture is
