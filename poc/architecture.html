@@ -134,13 +134,25 @@ fixed, weak baseline of this.</dd>
 <dt>Input</dt><dd>the stream of soft assignments $\gamma_t$ (and distances $d_t$) from frozen A.</dd>
 <dt>Output</dt><dd>trajectory context $c_t$ — a multi-resolution history summary (a vector, or a small set of
 memory tokens for C's cross-attention).</dd>
-<dt>Loss — <em>queryable-past</em> (no forecasting)</dt>
-<dd>The encoder must answer "was assignment $a$ present $k$ steps ago?". Over a spread of offsets
-$\mathcal K=\{1,2,4,\dots,512\}$, a verifier $p_\theta(\text{present}\mid c_t,k,a)$ trained by BCE with the
-<em>true</em> past $\gamma_{t-k}$ as positive and other assignments as negatives:
-<div class="eq">$$\mathcal L_B=\sum_t\sum_{k\in\mathcal K}\Big[-\log p_\theta(\text{yes}\mid c_t,k,\gamma_{t-k})-\textstyle\sum_{a^-}\log p_\theta(\text{no}\mid c_t,k,a^-)\Big].$$</div>
-(Simpler variant: a recall head $r_\theta(c_t,\phi(k))$ with $\mathrm{CE}(\gamma_{t-k},r_\theta)$.) Far offsets
-<strong>force long memory</strong>; a spread of offsets gives multiscale recall for free.</dd>
+<dt>Loss — two query heads (no forecasting)</dt>
+<dd>Two complementary readouts on the shared $c_t$, jointly shaping it; both ask only about the
+<em>determined past</em>.<br>
+<strong>(a) Instance head</strong> — <em>time-indexed recall</em>, precise, for short/near horizons: recover
+the assignment at offset $k$,
+<div class="eq">$$\mathcal L_{\text{inst}}=\sum_t\sum_{k}\lambda_k\ \mathrm{CE}\big(\gamma_{t-k},\ r_\theta(c_t,\phi(k))\big).$$</div>
+Captures <strong>order and exact timing</strong> (needed for transitions/sequences); weighted to short/medium $k$.<br>
+<strong>(b) Containment head</strong> — <em>period membership</em>, coarse, for medium/long horizons: given a
+period $P=[t-b,\,t-a]$ and a candidate state $a$, predict whether $a$ was present in $P$ (BCE),
+<div class="eq">$$\mathcal L_{\text{cont}}=\sum_t\sum_{P,a}\ w_a\ \mathrm{BCE}\big(\mathbb 1[a\in P],\ q_\theta(c_t,P,a)\big).$$</div>
+Captures <strong>occurrence, order-agnostic and timing-robust</strong> ("was rare $Z$ visited in the last hour?").<br>
+<em>Why two:</em> precise instance recall degrades with distance while containment persists — "visited $Z$
+somewhere in the last 1000 steps" survives when "$Z$ at exactly offset 347" does not — so <strong>instance maps
+to the short readout, containment to the long</strong> (they land on B's existing resolutions). Far offsets /
+long periods <strong>force long memory</strong>.<br>
+<strong>Rare/common balancing</strong> (mainly on containment, where presence of rare states is otherwise lost):
+balance positive/negative periods and up-weight rare-state positives $w_a\propto 1/\pi_a$, so a period containing
+a rare $Z$ counts as much as one full of the common state; apply lighter rare-weighting $\lambda_k\propto1/\pi$
+to the instance head.</dd>
 <dt>Rationale</dt><dd>fuzzy modes &rarr; <em>embed</em>, don't tokenize; transitions become smooth
 $e$-trajectories. The past is <em>determined</em> &rarr; retrieval is well-posed and
 <strong>unpredictability-proof</strong>; offset-parameterisation gives a tunable memory horizon; content+time
@@ -150,10 +162,25 @@ queries make $c_t$ encode <em>which</em> regime and <em>when</em>.</dd>
 brief visit to a rare state. Three safeguards: <strong>(1) surprise-gated writing</strong> — like taking
 meeting notes, a <em>repeated</em> common state writes almost nothing to the memory while a <em>new/rare</em>
 state writes a lot, i.e. update $s_t=s_{t-1}+g_t\!\cdot\!\Delta_t$ with a novelty gate
-$g_t=\sigma(\text{novelty}(e_t,s_{t-1}))$ (this is what Mamba's selection / LSTM gates do); <strong>(2) presence
-features</strong> — per mode, "time since last visited" and recent peak, so even a one-step rare visit is on the
-record regardless of duration; <strong>(3) rare-weighted queries</strong> — the training quiz asks about rare
-states more often (weight $\propto 1/\pi_a$), so forgetting them is penalised.</dd>
+$g_t=\sigma(\text{novelty}_t)$ (this is what Mamba's selection / LSTM gates do).
+<div style="margin:.4em 0 .2em;padding:.5em .7em;background:#faf7f0;border-left:3px solid #c9b98a">
+<em>How surprise is measured (exactly).</em> Two signals, both cheap and <strong>non-forecasting</strong>:
+<br><strong>rarity (surprisal)</strong> — how improbable the current mode is,
+$\;\mathrm{sur}^{\text{rare}}_t=-\log\pi_{k_t},\ k_t=\arg\max\gamma_t$, with $\pi$ the mode frequencies from A
+(common mode $\to$ small, rare mode $\to$ large);
+<br><strong>change from recent</strong> — how far the current embedding has moved from what the memory has lately
+held, $\;\mathrm{sur}^{\text{chg}}_t=\lVert e_t-s^{\text{recent}}_{t-1}\rVert$ (a fast EMA of $e$), so a mode
+switch or a rare visit reads as high change.
+<br>The gate is a small <strong>learned</strong> function fed exactly these signals (so the rare-weighted
+query-loss sets the balance, nothing hand-tuned):
+<div class="eq">$$g_t=\sigma\!\Big(\mathrm{MLP}\big(e_t,\ s_{t-1},\ \underbrace{-\log\pi_{k_t}}_{\text{rarity}},\ \underbrace{\lVert e_t-s^{\text{recent}}_{t-1}\rVert}_{\text{change}}\big)\Big).$$</div>
+(Hand-designed fallback if a learned gate is not wanted: $g_t=\sigma(a\cdot\mathrm{sur}^{\text{rare}}_t+b\cdot\mathrm{sur}^{\text{chg}}_t-\theta)$.)
+Two guardrails: keep it non-forecasting (rarity/change, never next-step prediction, which would reopen the
+unpredictability trap), and <strong>debounce</strong> the assignment so a one-step noise flicker is not read as a
+genuine surprise.</div>
+<strong>(2) presence features</strong> — per mode, "time since last visited" and recent peak, so even a one-step
+rare visit is on the record regardless of duration; <strong>(3) rare-weighted queries</strong> — the training
+quiz asks about rare states more often (weight $\propto 1/\pi_a$), so forgetting them is penalised.</dd>
 <dt>Objectives</dt><dd>a faithful, queryable record of regime occupancy, order, and dwell — good enough that C
 catches invalid <em>paths</em> without an explicit transition graph.</dd>
 <dt>Constraints</dt><dd>normal-only; reset state at run boundaries; <strong>no forecasting, no anomaly logic</strong>;
