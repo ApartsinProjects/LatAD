@@ -48,6 +48,22 @@
 trajectory-conditional detector (C) that runs the C1&ndash;C4 components. Extends the static MIIM framework
 to time-series / dynamics.</p>
 
+<div class="box" style="background:#f6f8fa;border:1px solid var(--rule);border-radius:8px;padding:10px 18px;margin:14px 0;font-family:var(--sans);font-size:.86rem">
+<strong>Notation &amp; naming.</strong> We standardise on the mixture-model terms and retire "assignment vector"
+(it implies a hard pick, whereas the quantity is soft). Throughout, $K$ = number of operating modes, $\Delta^K$
+the probability simplex, and $z$ the VAE latent code (Model A).
+<table style="margin:6px 0 2px">
+<tbody>
+<tr><td style="width:6.5em"><b>$\gamma\in\Delta^K$</b></td><td><b>responsibility vector</b> (soft mode membership, $\gamma_k=P(k\mid z)$) &mdash; A's identity output, B's input.</td></tr>
+<tr><td><b>$d\in\mathbb R^K$</b></td><td><b>mode-distance vector</b> (Mahalanobis to each component) &mdash; A's geometry output.</td></tr>
+<tr><td><b>$\pi\in\Delta^K$</b></td><td><b>mode prior</b> (marginal responsibility mass, $\pi_k=\mathbb E[\gamma_k]$) &mdash; A's frequency output; drives B's rarity term and C's $\pi_k(c_t)$.</td></tr>
+<tr><td><b>$e_t$</b></td><td><b>step embedding</b> (soft mixture of mode embeddings) &mdash; B's per-step input token.</td></tr>
+<tr><td><b>$c_t$</b></td><td><b>trajectory context</b> (multi-resolution history readout) &mdash; B's output, C's conditioning.</td></tr>
+</tbody></table>
+Model short-names, used interchangeably with A/B/C: <b>A = Mode Encoder</b>, <b>B = History Encoder</b>,
+<b>C = Conditional Detector</b>.
+</div>
+
 <div class="principle">
 <strong>Guiding principles.</strong>
 (1) <em>Separation of concerns</em> — three <strong>independent models</strong> (separate weights &amp;
@@ -84,21 +100,6 @@ The memory is used to shape "what's normal here," not glued on as extra numbers,
 hide a real problem.
 </div>
 
-<div class="box" style="background:#f6f8fa;border:1px solid var(--rule);border-radius:8px;padding:10px 18px;margin:14px 0;font-family:var(--sans);font-size:.86rem">
-<strong>Notation &amp; naming.</strong> We standardise on the mixture-model terms and retire "assignment vector"
-(it implies a hard pick, whereas the quantity is soft).
-<table style="margin:6px 0 2px">
-<tbody>
-<tr><td style="width:6.5em"><b>$\gamma\in\Delta^K$</b></td><td><b>responsibility vector</b> (soft mode membership, $\gamma_k=P(k\mid z)$) &mdash; A's identity output, B's input.</td></tr>
-<tr><td><b>$d\in\mathbb R^K$</b></td><td><b>mode-distance vector</b> (Mahalanobis to each component) &mdash; A's geometry output.</td></tr>
-<tr><td><b>$\pi\in\Delta^K$</b></td><td><b>mode prior</b> (marginal responsibility mass, $\pi_k=\mathbb E[\gamma_k]$) &mdash; A's frequency output; drives B's rarity term and C's $\pi_k(c_t)$.</td></tr>
-<tr><td><b>$e_t$</b></td><td><b>step embedding</b> (soft mixture of mode embeddings) &mdash; B's per-step input token.</td></tr>
-<tr><td><b>$c_t$</b></td><td><b>trajectory context</b> (multi-resolution history readout) &mdash; B's output, C's conditioning.</td></tr>
-</tbody></table>
-Model short-names, used interchangeably with A/B/C: <b>A = Mode Encoder</b>, <b>B = History Encoder</b>,
-<b>C = Conditional Detector</b>.
-</div>
-
 <div class="model A">
 <h3><span class="A2">Model A</span> — mode discovery &amp; geometry-aware window encoder</h3>
 <dl>
@@ -107,7 +108,7 @@ Model short-names, used interchangeably with A/B/C: <b>A = Mode Encoder</b>, <b>
 mode. The "which" is for the historian; the "how far" is for the detector (a window far from everything still
 gets a confident nearest-mode, so the assignment alone would hide it — the distances don't).</dd>
 <dt>Architecture</dt><dd>VaDE: a VAE with a <strong>Gaussian-mixture latent prior</strong> of $K$ components
-(joint encode + cluster in latent space). Over-provisioned $K$; the anti-collapse recipe (variance floor,
+(component $k$: mean $\mu_k$, covariance $\Sigma_k$; joint encode + cluster in latent space). Over-provisioned $K$; the anti-collapse recipe (variance floor,
 $\beta$ warm-up, covariance penalty, slow mixture-LR) keeps the imbalanced rare modes alive. <em>No FiLM.</em></dd>
 <dt>Input</dt><dd>a single window $\phi(W_t)$ (features or raw).</dd>
 <dt>Output (per window)</dt><dd>latent $z$; <strong>responsibility vector</strong> $\gamma\in\Delta^K$
@@ -137,8 +138,10 @@ at all in the last while?") — if it answers both, near and far back, it has ke
 <strong>soft mixture of learned mode embeddings</strong>,
 <div class="eq">$$e_t=\sum_k \gamma_{t,k}\,m_k,$$</div>
 so a between-modes window sits <em>on the segment</em> between $m_A$ and $m_B$: a transition is a smooth
-$e$-trajectory and a forbidden path is an unusual one. ($m_k$ init from A's centroids; a plain MLP on $\gamma_t$
-is the simple equivalent.)</dd>
+$e$-trajectory and a forbidden path is an unusual one. ($m_k$ init from A's centroids.) <em>Note:</em>
+$e_t=\sum_k\gamma_{t,k}m_k=M\gamma_t$ <strong>is a linear layer on $\gamma$</strong>; prefer this anchored form
+over a free MLP on $\gamma_t$ for <strong>betweenness</strong> (a between-modes window stays between the anchors)
+and <strong>rare-mode robustness</strong> (each mode is anchored by its init, not starved for samples).</dd>
 <dt>Encoder</dt><dd>one <strong>long-range sequence model</strong> over $\{e_t\}$ — <strong>SSM / Mamba</strong>
 (or dilated-TCN), streaming with $\sim\!10^3$-step memory. Its recurrent state $s_t$ <em>is</em> the memory; a
 <strong>near/far readout</strong> of $s_t$ gives the context $c_t$ (near serves the instance head, far the
@@ -149,8 +152,9 @@ containment head).</dd>
 <dd>Both heads read the shared $c_t$ and ask only about the <em>determined</em> past; both are
 rare/common-balanced so the common mode cannot flood them.<br>
 <strong>(a) Instance head</strong> (near, precise) — recover the mode at offset $k$:
-<div class="eq">$$\mathcal L_{\text{inst}}=\sum_t\sum_{k}\lambda_k\,\mathrm{CE}\big(\gamma_{t-k},\,r_\theta(c_t,\phi(k))\big),\quad k\in\{1,2,4,\dots,512\},\ \lambda_k\propto1/\pi.$$</div>
-Captures <strong>order and exact timing</strong> (transitions); far offsets force long memory.<br>
+<div class="eq">$$\mathcal L_{\text{inst}}=\sum_t\sum_{k}\lambda_k\,\mathrm{CE}\big(\gamma_{t-k},\,r_\theta(c_t,\psi(k))\big),\quad k\in\{1,2,4,\dots,512\},\ \lambda_k\propto1/\pi.$$</div>
+Captures <strong>order and exact timing</strong> (transitions); far offsets force long memory
+($\psi(k)$ = a positional encoding of the query offset $k$).<br>
 <strong>(b) Containment head</strong> (far, coarse) — was mode $a$ present in a period $P=[t-b,\,t-a]$:
 <div class="eq">$$\mathcal L_{\text{cont}}=\sum_t\sum_{P,a}w_a\,\mathrm{BCE}\big(\mathbb 1[a\in P],\,q_\theta(c_t,P,a)\big),\quad w_a\propto1/\pi_a.$$</div>
 Captures <strong>occurrence, timing-robust</strong>, and is where <em>rare-state presence</em> is kept far back.<br>
@@ -165,7 +169,8 @@ well-posed; offset-parameterisation gives a tunable memory horizon. A faithful $
 <dd><ul>
 <li><strong>Explicit surprise-gated writing</strong> — if the learned gate under-writes rare states, force it:
 $s_t=s_{t-1}+g_t\Delta_t$ with $g_t=\sigma\big(\mathrm{MLP}(e_t,s_{t-1},-\log\pi_{k_t},\lVert e_t-s^{\text{recent}}\rVert)\big)$
-(surprise = rarity $-\log\pi$ + change from recent; non-forecasting; debounce flicker).</li>
+($k_t=\arg\max\gamma_t$ the current mode; $s^{\text{recent}}$ = a fast EMA of $e$; surprise = rarity
+$-\log\pi$ + change-from-recent; non-forecasting; debounce flicker).</li>
 <li><strong>Presence features</strong> — per mode "time since last visited", so a one-step rare visit stays on
 the record regardless of duration.</li>
 <li><strong>Multi-resolution + maturity</strong> — split $c_t$ into short/med/long readouts with a per-resolution
@@ -188,7 +193,7 @@ water down a real anomaly). One question — "is this (window, history) pair nor
 kinds: a bad window on its own, a valid value that's wrong for the context, and a valid state reached by an
 impossible path. C1&ndash;C4 run on top unchanged.</dd>
 <dt>Architecture</dt><dd>a VaDE (its <em>own</em> mixture prior, own weights) over the <strong>raw window</strong>,
-with the trajectory context injected by conditioning: <strong>FiLM</strong> $h'=\gamma(c_t)\odot h+\beta(c_t)$
+with the trajectory context injected by conditioning: <strong>FiLM</strong> $h'=\gamma_{\text{F}}(c_t)\odot h+\beta_{\text{F}}(c_t)$ (scale/shift functions of $c_t$, distinct from the responsibility $\gamma$)
 when $c_t$ is a single vector, or <strong>cross-attention</strong> when B exposes a memory (window features
 query B's tokens). Same anti-collapse recipe as A. Optionally a $\pi_k(c_t)$ head so mode expectations are
 context-conditional.</dd>
@@ -211,7 +216,7 @@ latent geometry.</li>
 <em>hard, close</em> pseudo-anomalies from channel-shuffle candidates, <strong>kept</strong> iff all three hold:
 (i) <em>off-mode</em> by a non-circular oracle &mdash; $\kappa$-NN distance to a fresh same-frame normal
 reference exceeds its $Q_{99}$ self-distance; (ii) <em>physically in-range</em> &mdash; each channel within its
-observed bounds; (iii) <em>hard</em> &mdash; mode-distance in the band $\sigma/E\in[1,2]$. Context-conditional on $c_t$.
+observed bounds; (iii) <em>hard</em> &mdash; its nearest-mode distance is only $1$&ndash;$2\times$ the normal envelope (the close band where E1/E2 live). Context-conditional on $c_t$.
 <em>Why:</em> normal-only data has no hard negatives; C1 draws the decision surface exactly where E1/E2 live,
 and everything supervised (C3 member, C4 threshold) calibrates against it &rarr; addresses <strong>E3</strong>.</li>
 <li><strong>C2</strong> — <em>basin-of-attraction agreement.</em> Descend the latent mixture potential

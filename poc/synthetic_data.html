@@ -53,8 +53,10 @@ the ability to inject <em>history-dependent</em> anomalies that no real benchmar
 
 <h2>0. Data assumptions (A1&ndash;A7)</h2>
 <p>Everything downstream rests on a single generative picture of <em>normal</em> CPS operation. Let
-$x\in\mathbb R^{d}$ be one channel-vector and $p(x)$ the normal law. The assumptions, stated precisely and
-compactly; the generators are built to satisfy exactly these, and the detector is designed against them.</p>
+$x\in\mathbb R^{d}$ be one channel-vector and $p(x)$ the normal law. Each mode $k$ carries an intrinsic
+<em>regime coordinate</em> $u\in\mathbb R^{r}$ (per-mode spread $\sigma_k$) mapped to the $d$ channels by a
+smooth <em>mode map</em> $g_k$ (fully specified in &sect;2). The assumptions, stated precisely and compactly; the
+generators are built to satisfy exactly these, and the detector is designed against them.</p>
 <table>
 <thead><tr><th>ID</th><th>assumption</th><th>why we assume it (CPS origin)</th><th>precise statement</th><th>realized by</th></tr></thead>
 <tbody>
