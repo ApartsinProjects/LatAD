@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LatAD — Trajectory-aware architecture (A / B / C)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+<style>
+  :root{--text:#1a1a1a;--muted:#555;--rule:#dcdcdc;--A:#1d4e6f;--B:#7a4d17;--C:#5a1e5e;
+    --soft:#f6f8fa;--serif:Georgia,'Times New Roman',serif;--sans:'Helvetica Neue',Arial,sans-serif;--mono:Consolas,monospace;}
+  *{box-sizing:border-box}
+  body{background:#fff;color:var(--text);font-family:var(--serif);font-size:17px;line-height:1.55;margin:0}
+  .wrap{max-width:840px;margin:0 auto;padding:44px 24px 110px}
+  h1{font-size:1.7rem;margin:0 0 4px}
+  .sub{font-family:var(--sans);color:var(--muted);font-size:.95rem;margin:0 0 8px}
+  .tag{font-family:var(--sans);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  h2{font-family:var(--sans);font-size:1.18rem;margin:34px 0 8px;padding-bottom:5px;border-bottom:2px solid var(--rule)}
+  p{margin:0 0 12px;text-align:justify}
+  code{font-family:var(--mono);font-size:.86em;background:var(--soft);padding:1px 5px;border-radius:4px}
+  .principle{background:var(--soft);border-left:3px solid #333;border-radius:6px;padding:12px 18px;margin:16px 0;font-size:1.02rem}
+  table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:.85rem;margin:14px 0}
+  th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+  thead th{border-top:1.5px solid #333;border-bottom:1.5px solid #333}
+  .model{border:1px solid var(--rule);border-radius:10px;padding:4px 20px 14px;margin:20px 0}
+  .model.A{border-top:4px solid var(--A)} .model.B{border-top:4px solid var(--B)} .model.C{border-top:4px solid var(--C)}
+  .model h3{font-family:var(--sans);font-size:1.12rem;margin:16px 0 4px}
+  .model .A2{color:var(--A)} .model .B2{color:var(--B)} .model .C2{color:var(--C)}
+  dl{margin:8px 0}
+  dt{font-family:var(--sans);font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em;
+     color:#333;margin-top:10px}
+  dd{margin:2px 0 0}
+  ul{margin:4px 0 8px;padding-left:22px} li{margin-bottom:3px}
+  ol{margin:4px 0 12px;padding-left:22px}
+  .eq{overflow-x:auto}
+  .open{background:#fbf6ee;border:1px solid #e6d9c2;border-radius:8px;padding:12px 18px;margin:16px 0}
+  @media(max-width:600px){body{font-size:16px}.wrap{padding:28px 15px 60px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p class="tag">LatAD · latent-digital-twin branch · architecture spec</p>
+<h1>Trajectory-aware anomaly detection: three models (A / B / C)</h1>
+<p class="sub">A frozen mode-encoder (A) and a queryable history encoder (B) provide context to a
+trajectory-conditional detector (C) that runs the C1&ndash;C4 components. Extends the static MIIM framework
+to time-series / dynamics.</p>
+
+<div class="principle">
+<strong>Guiding principles.</strong>
+(1) <em>Separation of concerns</em> — three <strong>independent models</strong> (separate weights &amp;
+training; A and C may share <em>architecture</em>, not weights).
+(2) <em>Encode history, never forecast</em> — the twin (A+B) only summarises the determined past, so
+unpredictable-but-normal signal is never treated as anomalous.
+(3) <em>Condition, don't concatenate</em> — context modulates the detector (FiLM / cross-attention) and is
+never a reconstruction target, so a normal history cannot dilute a real window anomaly.
+(4) <em>One unified detector</em> — with a faithful B, snapshot, contextual, and transition anomalies all
+surface as an off-manifold $(\text{window},c_t)$ pair, so detection is a single C-score (no explicit
+transition graph, no score-OR).
+(5) <em>Normal-only training</em> throughout.
+</div>
+
+<h2>Overview</h2>
+<table>
+<thead><tr><th></th><th class="A2" style="color:var(--A)">A — mode encoder</th><th style="color:var(--B)">B — trajectory memory</th><th style="color:var(--C)">C — conditional detector</th></tr></thead>
+<tbody>
+<tr><td><b>owns</b></td><td>the mode <em>vocabulary</em></td><td>the <em>history</em> record</td><td>the <em>detection</em></td></tr>
+<tr><td><b>knows anomalies?</b></td><td>no</td><td>no</td><td>yes (C1&ndash;C4)</td></tr>
+<tr><td><b>conditioning</b></td><td>none</td><td>&mdash;</td><td>FiLM / cross-attention on $c_t$</td></tr>
+<tr><td><b>status</b></td><td>trained &amp; <b>frozen</b> first</td><td>trained on A's $\gamma$, frozen</td><td>trained last</td></tr>
+</tbody></table>
+<p>Data flow: <code>window &rarr; A &rarr; (&gamma;, d)</code>; <code>&gamma; &rarr; B &rarr; c_t</code>;
+<code>(raw window, c_t) &rarr; C &rarr; anomaly score</code>.</p>
+
+<div class="model A">
+<h3><span class="A2">Model A</span> — mode discovery &amp; geometry-aware window encoder</h3>
+<dl>
+<dt>Architecture</dt><dd>VaDE: a VAE with a <strong>Gaussian-mixture latent prior</strong> of $K$ components
+(joint encode + cluster in latent space). Over-provisioned $K$; the anti-collapse recipe (variance floor,
+$\beta$ warm-up, covariance penalty, slow mixture-LR) keeps the imbalanced rare modes alive. <em>No FiLM.</em></dd>
+<dt>Input</dt><dd>a single window $\phi(W_t)$ (features or raw).</dd>
+<dt>Output (per window)</dt><dd>latent $z$; <strong>soft assignment</strong> $\gamma\in\Delta^K$
+($\gamma_k=P(\text{mode }k\mid z)$); <strong>distances to all modes</strong> $d\in\mathbb R^K$,
+Mahalanobis in latent $d_k=(z-\mu_k)^\top\Sigma_k^{-1}(z-\mu_k)$.</dd>
+<dt>Loss</dt><dd>VaDE evidence lower bound (reconstruction + mixture-KL) + the anti-collapse terms. Normal data only.</dd>
+<dt>Rationale</dt><dd>$\gamma$ is the <em>regime identity</em> (vocabulary for B); $d$ is the <em>geometry</em> —
+$\gamma$ is a softmax of $-d$ and loses magnitude (an OOD window still has a confident nearest mode), whereas
+$d$ preserves "how far off-manifold," which detection needs.</dd>
+<dt>Objectives</dt><dd>recover the massive, imbalanced, implicit multimodality; provide a stable discrete vocabulary.</dd>
+<dt>Constraints</dt><dd>normal-only; <strong>frozen after training</strong> so B's vocabulary can't drift; no
+anomaly logic; $K$ large with the imbalanced tail preserved.</dd>
+</dl>
+</div>
+
+<div class="model B">
+<h3><span class="B2">Model B</span> — queryable trajectory memory</h3>
+<dl>
+<dt>Architecture</dt><dd>a recurrent state update $s_t=f(s_{t-1},\gamma_t)$. <em>Simple:</em> multi-timescale
+EMAs of $\gamma$ (short/med/long occupancy) + dwell + previous mode (no training). <em>Learned:</em> a
+multi-resolution dilated-TCN / SSM / clockwork RNN, read out at short/med/long depths, with a
+<strong>per-resolution maturity signal</strong> $\tilde\tau^{r}_t=\log(1+\min(t-t_\text{start},R_r))$ (replaces
+burn-in, so early context is "immature" not discarded).</dd>
+<dt>Input</dt><dd>previous state $s_{t-1}$ + current assignment $\gamma_t$ (from A) + maturity $\tilde\tau^{r}_t$.</dd>
+<dt>Output</dt><dd>trajectory context $c_t$ — a multi-resolution summary of the past mode sequence (a vector, or
+a small set of memory tokens for cross-attention).</dd>
+<dt>Loss (learned version) — <em>queryable-past</em></dt>
+<dd>The state must answer "was assignment $a$ present $k$ steps ago?". Over a spread of offsets
+$\mathcal K=\{1,2,4,\dots,512\}$, a verifier $p_\theta(\text{present}\mid s_t,k,a)$ trained by BCE with the
+<em>true</em> past $\gamma_{t-k}$ as positive and other assignments as negatives:
+<div class="eq">$$\mathcal L_B=\sum_t\sum_{k\in\mathcal K}\Big[-\log p_\theta(\text{yes}\mid s_t,k,\gamma_{t-k})-\textstyle\sum_{a^-}\log p_\theta(\text{no}\mid s_t,k,a^-)\Big].$$</div>
+(Simpler variant: a recall head $r_\theta(s_t,\phi(k))$ with $\mathrm{CE}(\gamma_{t-k},r_\theta)$.) Far offsets
+<strong>force long memory</strong>. The EMA is the fixed, weak approximation of this.</dd>
+<dt>Rationale</dt><dd>the past is <em>determined</em> &rarr; retrieval is well-posed and unpredictability-proof;
+offset-parameterisation gives multiscale memory and a tunable horizon; content+time queries make $c_t$ encode
+<em>which</em> regime and <em>when</em>.</dd>
+<dt>Objectives</dt><dd>a faithful, queryable record of regime occupancy, order, and dwell — good enough that C
+can catch invalid <em>paths</em> without an explicit transition graph.</dd>
+<dt>Constraints</dt><dd>normal-only; reset state at run boundaries; <strong>no forecasting, no anomaly logic</strong>;
+frozen after training. <em>Acceptance test:</em> query-accuracy vs offset = the effective memory horizon.</dd>
+</dl>
+</div>
+
+<div class="model C">
+<h3><span class="C2">Model C</span> — trajectory-conditional anomaly detector</h3>
+<dl>
+<dt>Architecture</dt><dd>a VaDE (its <em>own</em> mixture prior, own weights) over the <strong>raw window</strong>,
+with the trajectory context injected by conditioning: <strong>FiLM</strong> $h'=\gamma(c_t)\odot h+\beta(c_t)$
+when $c_t$ is a single vector, or <strong>cross-attention</strong> when B exposes a memory (window features
+query B's tokens). Same anti-collapse recipe as A. Optionally a $\pi_k(c_t)$ head so mode expectations are
+context-conditional.</dd>
+<dt>Input</dt><dd>the <strong>raw window</strong> (local detail) + trajectory context $c_t$ <em>via conditioning</em>
+(never concatenated).</dd>
+<dt>Output</dt><dd>a single anomaly score.</dd>
+<dt>Loss</dt><dd>conditioned VaDE ELBO on normal + anti-collapse; then the components fit on normal:
+whitened (Ledoit-Wolf Mahalanobis) residual score + nearest-component latent NLL, plus
+<strong>C1</strong> (context-conditional physically-guided generation), <strong>C2</strong> (basin test),
+<strong>C3</strong> (cluster ensemble), <strong>C4</strong> (mode-conditional risk / TFAR).</dd>
+<dt>Rationale</dt><dd>detect "normal <em>given</em> history." Conditioning (not concatenation) means $c_t$ shapes
+the expected-normal but is never reconstructed &rarr; <strong>no dilution</strong>. All anomaly families become
+an off-manifold $(\text{window},c_t)$ pair, so one detector suffices.</dd>
+<dt>Objectives</dt><dd>a single unified detector covering snapshot, contextual, and transition anomalies, with
+per-mode false-alarm control.</dd>
+<dt>Constraints</dt><dd>normal-only; reconstructs/scores <em>only the window</em>; $c_t$ modulates but is never a
+target; trained after A and B; different weights from A.</dd>
+</dl>
+</div>
+
+<h2>Detection &amp; what each mechanism catches</h2>
+<p><strong>Detection = the single C-score.</strong> With a faithful B, the explicit mode-transition graph is
+redundant (it is a hand-coded special case of C-conditioned-on-good-B) and is dropped.</p>
+<table>
+<thead><tr><th>anomaly family</th><th>example</th><th>caught by</th></tr></thead>
+<tbody>
+<tr><td>snapshot</td><td>pocket (between modes), drift (out of bounds)</td><td>C — window off-manifold ($c_t$ irrelevant)</td></tr>
+<tr><td>contextual</td><td>valid value, wrong for the current regime</td><td>C — $(\text{window},c_t)$ off via conditioning</td></tr>
+<tr><td>transition / path</td><td>valid mode reached via a <em>forbidden</em> path</td><td>C — $c_t$ encodes the invalid path &rarr; pair off</td></tr>
+</tbody></table>
+
+<h2>Training pipeline</h2>
+<ol>
+<li>Train <span class="A2" style="color:var(--A)"><b>A</b></span> on normal (VaDE + anti-collapse) &rarr; <b>freeze</b>; emit $(\gamma,d)$ per window.</li>
+<li>Train <span style="color:var(--B)"><b>B</b></span> on A's $\gamma$-stream (queryable-past loss) &rarr; pass the memory-horizon test &rarr; <b>freeze</b>; emit $c_t$.</li>
+<li>Train <span style="color:var(--C)"><b>C</b></span> on normal, conditioned on $c_t$ (FiLM &rarr; cross-attention), fit C1&ndash;C4 on normal.</li>
+<li>Detect via the C-score.</li>
+</ol>
+
+<h2>Global objectives &amp; constraints</h2>
+<ul>
+<li><b>Phenomena covered</b> (validated on the temporal-MIIM benchmark): massive imbalanced multimodality;
+bounded modes; anomaly pockets; low-density (rare-valid) normals; heterogeneous + quantized sensing; temporal
+multiscale; a mode-transition state machine with forbidden edges; per-mode dwell.</li>
+<li><b>Anomaly families</b>: snapshot (pocket, drift), contextual, transition/path.</li>
+<li><b>Invariants</b>: normal-only training; encode history not forecast; condition not concatenate; single
+conditional detector; per-mode false-alarm control (C4/TFAR); label-free model selection (held-out normal loss,
+C1-generated anomalies, memory-horizon probe).</li>
+</ul>
+
+<div class="open">
+<h3 style="margin-top:0">Open items before/after building</h3>
+<ul>
+<li>Backbone for B (dilated-TCN vs SSM/Mamba vs clockwork) and its memory-horizon target.</li>
+<li>FiLM (single $c_t$) first vs cross-attention (B memory) — when the extra cost pays off.</li>
+<li>Dimensionality budget of $c_t$ vs the window; whether A and C should share a frozen backbone + adapters.</li>
+<li>Decisive experiment: does C-alone lift <code>bad_transition</code> from the snapshot floor (0.057) toward the
+pocket/drift level on the temporal benchmark, with no transition graph? (confirms B faithful + graph redundant.)</li>
+<li>Non-stationarity across runs / sensor drift — per-run normalisation vs a learned "session" regime.</li>
+</ul>
+</div>
+
+</div>
+</body>
+</html>
