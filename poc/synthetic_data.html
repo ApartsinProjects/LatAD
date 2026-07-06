@@ -108,6 +108,67 @@ same split applies to anomalies (some sit in the simple subset, some in the comp
 and which anomalies a given detector models or misses.
 </div>
 
+<figure style="margin:18px 0;text-align:center">
+<svg viewBox="0 0 640 400" width="100%" style="max-width:640px;border-radius:8px" font-family="Helvetica Neue,Arial,sans-serif">
+  <defs>
+    <radialGradient id="modeDens" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff3c4" stop-opacity="1"/>
+      <stop offset="25%" stop-color="#ffd24d" stop-opacity="0.95"/>
+      <stop offset="55%" stop-color="#f77f2e" stop-opacity="0.85"/>
+      <stop offset="82%" stop-color="#d63a5e" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#6a1b4d" stop-opacity="0.45"/>
+    </radialGradient>
+  </defs>
+  <rect x="0" y="0" width="640" height="400" fill="#0d1226"/>
+  <g style="mix-blend-mode:screen" stroke="rgba(255,255,255,0.16)" stroke-width="0.8">
+    <ellipse cx="170" cy="140" rx="54" ry="17" fill="url(#modeDens)" opacity="0.95" transform="rotate(25 170 140)"/>
+    <ellipse cx="440" cy="255" rx="54" ry="17" fill="url(#modeDens)" opacity="0.92" transform="rotate(-40 440 255)"/>
+    <ellipse cx="300" cy="300" rx="50" ry="16" fill="url(#modeDens)" opacity="0.9" transform="rotate(68 300 300)"/>
+    <ellipse cx="110" cy="285" rx="34" ry="12" fill="url(#modeDens)" opacity="0.8" transform="rotate(-18 110 285)"/>
+    <ellipse cx="525" cy="135" rx="34" ry="12" fill="url(#modeDens)" opacity="0.8" transform="rotate(52 525 135)"/>
+    <ellipse cx="255" cy="95" rx="34" ry="11" fill="url(#modeDens)" opacity="0.78" transform="rotate(-58 255 95)"/>
+    <ellipse cx="565" cy="325" rx="32" ry="11" fill="url(#modeDens)" opacity="0.75" transform="rotate(12 565 325)"/>
+    <ellipse cx="385" cy="155" rx="34" ry="12" fill="url(#modeDens)" opacity="0.8" transform="rotate(-15 385 155)"/>
+    <ellipse cx="95" cy="185" rx="30" ry="11" fill="url(#modeDens)" opacity="0.72" transform="rotate(82 95 185)"/>
+    <ellipse cx="470" cy="350" rx="32" ry="11" fill="url(#modeDens)" opacity="0.75" transform="rotate(42 470 350)"/>
+    <ellipse cx="60" cy="95" rx="20" ry="7" fill="url(#modeDens)" opacity="0.5" transform="rotate(30 60 95)"/>
+    <ellipse cx="215" cy="210" rx="20" ry="7" fill="url(#modeDens)" opacity="0.5" transform="rotate(-45 215 210)"/>
+    <ellipse cx="345" cy="240" rx="20" ry="7" fill="url(#modeDens)" opacity="0.5" transform="rotate(15 345 240)"/>
+    <ellipse cx="600" cy="205" rx="18" ry="7" fill="url(#modeDens)" opacity="0.45" transform="rotate(-70 600 205)"/>
+    <ellipse cx="155" cy="350" rx="20" ry="7" fill="url(#modeDens)" opacity="0.5" transform="rotate(50 155 350)"/>
+    <ellipse cx="285" cy="170" rx="18" ry="6" fill="url(#modeDens)" opacity="0.48" transform="rotate(-25 285 170)"/>
+    <ellipse cx="500" cy="235" rx="20" ry="7" fill="url(#modeDens)" opacity="0.5" transform="rotate(62 500 235)"/>
+    <ellipse cx="420" cy="85" rx="18" ry="6" fill="url(#modeDens)" opacity="0.45" transform="rotate(-35 420 85)"/>
+    <ellipse cx="60" cy="340" rx="18" ry="6" fill="url(#modeDens)" opacity="0.45" transform="rotate(20 60 340)"/>
+    <ellipse cx="610" cy="95" rx="18" ry="6" fill="url(#modeDens)" opacity="0.45" transform="rotate(-55 610 95)"/>
+    <ellipse cx="205" cy="300" rx="20" ry="7" fill="url(#modeDens)" opacity="0.5" transform="rotate(72 205 300)"/>
+    <ellipse cx="355" cy="360" rx="18" ry="6" fill="url(#modeDens)" opacity="0.45" transform="rotate(-10 355 360)"/>
+    <ellipse cx="455" cy="185" rx="20" ry="7" fill="url(#modeDens)" opacity="0.5" transform="rotate(45 455 185)"/>
+    <ellipse cx="135" cy="225" rx="18" ry="6" fill="url(#modeDens)" opacity="0.45" transform="rotate(-80 135 225)"/>
+    <ellipse cx="560" cy="270" rx="18" ry="6" fill="url(#modeDens)" opacity="0.45" transform="rotate(30 560 270)"/>
+    <ellipse cx="325" cy="120" rx="20" ry="7" fill="url(#modeDens)" opacity="0.5" transform="rotate(60 325 120)"/>
+    <ellipse cx="90" cy="120" rx="13" ry="5" fill="url(#modeDens)" opacity="0.35" transform="rotate(40 90 120)"/>
+    <ellipse cx="395" cy="315" rx="13" ry="5" fill="url(#modeDens)" opacity="0.35" transform="rotate(-20 395 315)"/>
+    <ellipse cx="185" cy="60" rx="13" ry="5" fill="url(#modeDens)" opacity="0.35" transform="rotate(70 185 60)"/>
+    <ellipse cx="625" cy="355" rx="12" ry="5" fill="url(#modeDens)" opacity="0.32" transform="rotate(-40 625 355)"/>
+    <ellipse cx="255" cy="360" rx="13" ry="5" fill="url(#modeDens)" opacity="0.35" transform="rotate(-50 255 360)"/>
+    <ellipse cx="540" cy="60" rx="13" ry="5" fill="url(#modeDens)" opacity="0.35" transform="rotate(15 540 60)"/>
+  </g>
+  <text x="16" y="26" fill="#cdd9e5" font-size="13" font-weight="600">Normal latent density (2D)</text>
+  <line x1="172" y1="126" x2="190" y2="52" stroke="#cdd9e5" stroke-width="0.8"/>
+  <text x="190" y="44" fill="#cdd9e5" font-size="11" text-anchor="middle">dense common mode &#183; one major axis (A1, A5)</text>
+  <line x1="610" y1="95" x2="604" y2="54" stroke="#cdd9e5" stroke-width="0.8"/>
+  <text x="628" y="46" fill="#cdd9e5" font-size="11" text-anchor="end">rare, faint mode (A6)</text>
+  <line x1="452" y1="288" x2="420" y2="376" stroke="#cdd9e5" stroke-width="0.8"/>
+  <text x="410" y="390" fill="#cdd9e5" font-size="11" text-anchor="middle">hard edge (A3) &#183; bright&#8594;dim = thin fringe (A4)</text>
+</svg>
+<figcaption style="font-size:.82rem;color:#666;font-family:'Helvetica Neue',Arial,sans-serif">A 2D slice of the
+normal latent: each blob is one operating mode. Many modes (A1; the real $K$ is far larger, A2), each a bounded
+ellipse with a <em>hard edge</em> (A3) and density fading centre&rarr;rim (A4), <em>elongated along one dominant
+direction</em> (A5, few levers). Sizes and brightness vary widely (A6, heavy tail: a few dense common modes, a
+long faint rare tail). No labels are shown &mdash; the detector sees only this density (A7).</figcaption>
+</figure>
+
 <h2>1. One unified generator</h2>
 <p>A single streaming generator produces a <strong>massive multivariate time-series</strong> of normal CPS
 operation carrying <em>every</em> phenomenon A1&ndash;A10 (the <strong>MIIM</strong> property: Massive, Implicit,
