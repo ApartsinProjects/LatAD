@@ -182,8 +182,9 @@ $p(x)=\sum_k\pi_k\,p_k(x)$ over the reachable modes (A1).</p>
 <p><em>Exact forms &amp; example.</em> frequencies
 $\pi_k=\dfrac{\mathrm{rank}(k)^{-\beta}}{\sum_j \mathrm{rank}(j)^{-\beta}}$, then the rank$\to$mode assignment is
 shuffled. E.g. $n_{\text{sub}}=4$ subsystems with $|S_j|\in\{3,4,5\}$ give up to $\prod_j|S_j|=180$ candidate
-modes; a compatibility relation forbidding, say, half the pairwise sub-state co-occurrences leaves on the order
-of $70$ reachable modes. With $\beta=2$ the most common mode is $\approx 2^2=4\times$ the second and the tail
+modes; a compatibility relation that independently forbids each unordered sub-state pair with probability
+$p_{\text{forbid}}\!\approx\!0.5$ (a tuple is reachable iff it contains no forbidden pair) leaves on the order of
+$70$ reachable modes. With $\beta=2$ the most common mode is $\approx 2^2=4\times$ the second and the tail
 decays as $\mathrm{rank}^{-2}$, so the rarest modes appear only a handful of times in a length-$T$ run.</p>
 
 <h3>Step 2: Per-mode geometry <span class="phen">A3</span><span class="phen">A4</span><span class="phen">A5</span></h3>
@@ -200,6 +201,12 @@ noise; $\sigma_k$ sets the mode's overall scale, $B_k$'s columns its directions)
 The clip gives a <strong>bounded</strong> patch with a hard rim (A3); the Gaussian on $u$ concentrates mass at the
 centre and <strong>thins toward the rim</strong> (A4); and $r\ll d$ makes it a thin, oriented ellipsoid (A5, few
 levers): exactly the blobs in the &sect;0 figure.</p>
+<p><em>How the geometry is drawn</em> (per mode, once, at instantiation): centre
+$\mu_k\sim\mathcal N(0,\tau^2 I_d)$ ($\tau$ set so centres are well separated, e.g. $\tau=3$); loading
+$B_k=Q_k\Lambda_k$ with $Q_k\in\mathbb R^{d\times r}$ random-orthonormal (the stretch directions) and
+$\Lambda_k=\operatorname{diag}(\lambda_1>\dots>\lambda_r)$ decaying (one dominant lever, A5); scale
+$\sigma_k\sim\mathcal U(0.25,0.7)$; curvature $\kappa_k=0$ for a fraction $1-p_{\text{curv}}$ of modes, else
+$\kappa_k\sim\mathcal U(0.1,0.35)$.</p>
 <p><strong>Curvature knob $\kappa_k$ <span style="color:var(--accent)">(mode-dependent)</span>.</strong> A flat
 subspace is <em>too easy</em>: per-mode PCA reconstructs it exactly, so a linear detector already wins, and the
 region "between two modes" can look like a valid third mode. So we add an optional bend,</p>
@@ -269,26 +276,41 @@ entry until the next transition. E.g. a fine sensor uses $\delta_c=0.02\,\sigma_
 $\delta_c=0.8\,\sigma_c$.</p>
 <p>Which types are <strong>active is mode-dependent</strong>: some modes drive the full mix, others only a
 homogeneous subset (a built-in control for A8).</p>
+<p><em>How the sensing is drawn</em> (once). Assign each channel a type (a typical split for $d=24$:
+$\sim\!12$ sensor, $\sim\!4$ control, $\sim\!3$ discrete-state, $\sim\!2$ setpoint, $\sim\!3$ accumulator);
+noise loading $W_\varepsilon\sim\mathcal N(0,1)^{\,d\times q}/\sqrt q$ ($q\!\approx\!6$); heteroscedastic scales
+$s_c\sim\mathcal U(0.4,2.4)$, so a few channels are <strong>very high-amplitude</strong>; quantization $\delta_c$
+by type ($0.02\,\sigma_c$ fine sensor &hellip; $0.8\,\sigma_c$ near-binary switch); state thresholds
+$\theta_c$ at the channel median. The noise may be <strong>non-stationary</strong>: a per-mode multiplier
+$\eta_k\sim\mathcal U(0.5,2)$ (optionally drifting within a dwell) scales $\Sigma_\varepsilon$, so the same
+channel is calm in one regime and bursty in another (Figure 3).</p>
 
 <h3>Step 4: Trajectory dynamics <span class="phen">A9</span></h3>
 <p style="font-style:italic;color:#4a5a50;margin:2px 0 8px">In plain terms: over time the machine walks from mode
 to mode, but only along allowed routes, pausing a while in each. Channels react at different speeds (temperature
 lags, RPM snaps); some modes juggle several speeds, some just one.</p>
-<p>Normal operation is a <strong>walk over the reachable modes</strong>: a sparse <strong>transition graph</strong>
-(a few allowed successors per mode, Dirichlet-weighted; every other edge forbidden, which is what makes a
-forbidden jump an anomaly in Step 5) with per-mode <strong>dwell</strong> times <strong>log-uniform</strong> in
-$[15,220]$ (log-uniform so durations spread evenly across an order of magnitude: some regimes brief, some long,
-a temporal-scale mix). Within a dwell the regime coordinate follows an <strong>Ornstein-Uhlenbeck</strong> walk
-(mean-reverting to the mode centre, clipped to stay in bounds; the coefficient $0.85$ sets the within-mode
-memory, i.e. the autocorrelation length),</p>
-<div class="eq">$$u_t=0.85\,u_{t-1}+0.15\,\varepsilon_t,\quad\varepsilon_t\sim\mathcal N(0,\sigma_k^2 I_r),\qquad u_t\leftarrow\operatorname{clip}(u_t,\pm2\sigma_k),$$</div>
+<p>Normal operation is a <strong>semi-Markov walk</strong>: on entering a mode the system commits to a
+<strong>dwell</strong> (no self-jumping), emits that many in-mode samples, then transitions. The graph is
+<strong>two-tier</strong>: the top-$m$ common modes form a densely-connected <strong>core</strong> (often a
+cycle) the walk mostly circulates within (core-successor weight $\approx0.8$), while each rare mode is a
+<strong>leaf</strong> entered from the core with small weight, given a <em>short</em> dwell, and returning to the
+core. Dwell is <strong>density-scaled</strong>: $\mathbb E[D_k]$ grows with $\pi_k$ (common modes long, mean
+$\sim\!150$&ndash;$220$; rare short, mean $\sim\!15$&ndash;$40$), so most <em>time</em> is spent in the big
+modes; weights and dwell are set so the occupancy (visit-rate $\times$ dwell) reproduces the Zipf $\pi$ of
+Step 1. Every non-edge is <strong>forbidden</strong> (a bad-transition anomaly in Step 5). Within a dwell the
+regime coordinate follows an <strong>Ornstein-Uhlenbeck</strong> walk
+(mean-reverting to the mode centre, clipped to stay in bounds; $\phi=0.85$ sets the within-mode memory, and the
+$\sqrt{1-\phi^2}\,\sigma_k$ scaling keeps the stationary spread at exactly $\sigma_k$, so the walk's marginal
+matches Step 2's $\mathcal N(0,\sigma_k^2)$),</p>
+<div class="eq">$$u_t=\phi\,u_{t-1}+\sqrt{1-\phi^2}\;\sigma_k\,\varepsilon_t,\quad\varepsilon_t\sim\mathcal N(0,I_r),\qquad u_t\leftarrow\operatorname{clip}(u_t,\pm2\sigma_k),\quad(\phi=0.85).$$</div>
 <p>emitted through $g_k$; each channel is then smoothed with its <strong>own</strong> time constant
 $x^{(c)}_t=\alpha_c x^{(c)}_t+(1-\alpha_c)x^{(c)}_{t-1}$, $\alpha_c\in[0.05,0.95]$ (slow / inertial vs fast: the
 multiscale clocks). Whether a mode is <strong>multiscale is mode-dependent</strong>: some modes span several
 time constants, others a single one.</p>
-<p><em>Exact forms.</em> transition row over the allowed successors $P_{k,\cdot}\sim\mathrm{Dirichlet}(\mathbf1)$
-(zero on forbidden edges); dwell $D\sim\big\lfloor e^{\,\mathcal U(\ln 15,\ln 220)}\big\rfloor$; per-channel
-constant $\alpha_c\sim\mathcal U(0.05,0.95)$. A slow channel ($\alpha_c=0.05$) lags a step change by
+<p><em>Exact forms.</em> core-successor row $P_{k,\cdot}\sim\mathrm{Dirichlet}(\boldsymbol\alpha)$ with mass
+concentrated on the next-core mode and a little on $1$&ndash;$2$ rare leaves (zero on forbidden edges); dwell
+$D_k\sim\big\lfloor e^{\,\mathcal U(\ln D^-_k,\,\ln D^+_k)}\big\rfloor$ with the band $[D^-_k,D^+_k]$ scaled up
+for common $k$; per-channel constant $\alpha_c\sim\mathcal U(0.05,0.95)$. A slow channel ($\alpha_c=0.05$) lags a step change by
 $\sim\!1/\alpha_c\approx20$ samples; a fast one ($\alpha_c=0.9$) tracks it within $\sim\!1$.</p>
 <figure style="margin:16px 0;text-align:center">
 <svg viewBox="0 0 600 354" width="100%" style="max-width:600px" font-family="Helvetica Neue,Arial,sans-serif">
@@ -337,7 +359,8 @@ always-valid controls, so the dataset holds matched with / without pairs.</p>
 <p><em>Example.</em> load $\ell=0.02$ in cruise, $0.08$ under heavy load, recharge $\rho=0.05$ only in a
 "charging" mode. A settled window at $a_t=0.1$ is <strong>normal</strong> after a long heavy-load dwell but a
 <strong>fault</strong> after a fresh start; independently, a valid mode reached from a <em>forbidden</em>
-predecessor is a fault by the graph rule. These are the two Step-7 history anomalies.</p>
+predecessor is a fault by the graph rule. ($a_0=1$ at run start; the accumulator channel exists only in
+history-flagged modes, with per-mode load $\ell(k)\in[0.01,0.1]$.) These are the two Step-7 history anomalies.</p>
 
 <h3>Step 6: Implicit, and framing <span class="phen">A7</span></h3>
 <p style="font-style:italic;color:#4a5a50;margin:2px 0 8px">In plain terms: the trainer only ever sees the raw
@@ -388,7 +411,9 @@ once, then take a long walk through it, deliberately detouring so every rare cor
 enough visits to be measured.</p>
 <p>Two phases. <strong>(A) Instantiate the system</strong> once: sample the valid <em>modes</em> (Step 1), the
 <em>dynamics</em> graph (valid edges including a few low-probability ones, plus the forbidden edges; Step 4), and
-the per-mode geometry, channel types and sensor parameters (Steps 2, 3, 5). <strong>(B) Generate streams</strong>
+the per-mode geometry, channel types and sensor parameters (Steps 2, 3, 5), plus per-mode <em>Bernoulli flags</em>
+for the mode-dependent axes (heterogeneous channels A8, multiscale A9, history A10, curvature) so the ablation is
+factorial. <strong>(B) Generate streams</strong>
 by walking the graph, rendering each step (Steps 2&ndash;3), evolving the dynamics (Step 4), and injecting faults
 into the test stream (Step 7).</p>
 <p>A <em>natural</em> walk follows the Zipf frequencies and the graph, which is realistic but <strong>starves the
@@ -401,7 +426,7 @@ construction (we know when we took a forbidden edge, pushed to a fringe, or inje
 <tbody>
 <tr><td>every mode (incl. low-probability)</td><td>forced visits until a per-mode quota is met</td><td>normal</td></tr>
 <tr><td>low-probability <em>valid</em> edges</td><td>forced rare (allowed) transitions</td><td>normal</td></tr>
-<tr><td>fringe (near-boundary, in-mode)</td><td>push $u\to\pm2\sigma_k$ for some windows</td><td>normal</td></tr>
+<tr><td>fringe (near-boundary, in-mode)</td><td>on-manifold with $|u|\in[1.7,2]\,\sigma_k$ (inside the clip; drift is $>2\sigma_k$)</td><td>normal</td></tr>
 <tr><td>invalid dynamics</td><td>forbidden edge; settled target windows (Step 7)</td><td>anomaly &middot; bad_transition</td></tr>
 <tr><td>pocket</td><td>between-mode midpoint (Step 7)</td><td>anomaly</td></tr>
 <tr><td>OOD</td><td>far outside every mode (Step 7)</td><td>anomaly</td></tr>
@@ -410,7 +435,9 @@ construction (we know when we took a forbidden edge, pushed to a fringe, or inje
 <p style="font-size:.82rem;color:#666;font-family:'Helvetica Neue',Arial,sans-serif"><strong>Table 3.</strong> The
 stratified walk: each variant we must measure, how the walk forces it, and its ground-truth label. Train uses
 only the normal rows; test uses all. Quotas make the rare-valid cases (modes, edges, fringe) numerous enough to
-measure the rare-mode false-alarm rate (E1), while every anomaly family has a controlled, labelled presence.</p>
+measure the rare-mode false-alarm rate (E1), while every anomaly family has a controlled, labelled presence.
+Typical quotas: $\ge\!150$ windows per mode (incl. rare), $\ge\!40$ per low-probability edge, $\ge\!100$ fringe,
+$\ge\!200$ per anomaly family.</p>
 
 <h2>3. Non-circular labelling &amp; difficulty</h2>
 <p>Labels never use the detector. A <strong>true-normal oracle</strong> holds a large fresh normal sample from
@@ -426,13 +453,16 @@ $E=Q_{0.99}(\sigma)$ sets difficulty bands, so a fault at $\sigma(x)/E\in[1,2]$ 
 <tbody>
 <tr><td>subsystems $n_{\text{sub}}$ / states each</td><td>~4 / 3&ndash;5</td><td>A2 (compositional $K$)</td></tr>
 <tr><td>reachable modes $K$</td><td>$\gg 40$</td><td>A1, A2</td></tr>
+<tr><td>compat. forbid $p_{\text{forbid}}$</td><td class="n">~0.5</td><td>A2 (reachability)</td></tr>
+<tr><td>core modes $m$</td><td class="n">6&ndash;10</td><td>A9 (two-tier graph)</td></tr>
 <tr><td>channels $d$ (mixed types)</td><td class="n">24</td><td>A8</td></tr>
 <tr><td>intrinsic $r$</td><td class="n">3</td><td>A5</td></tr>
 <tr><td>curvature $\kappa_k$ (per mode)</td><td>$0$ or $\approx0.35$</td><td>A5 (flat vs curved axis)</td></tr>
+<tr><td>curved fraction $p_{\text{curv}}$</td><td class="n">~0.3</td><td>A5 (curvature axis)</td></tr>
 <tr><td>Zipf exponent $\beta$</td><td>2.0&ndash;2.2</td><td>A6</td></tr>
 <tr><td>bounded / quantized</td><td>yes / yes</td><td>A3 / A8</td></tr>
-<tr><td>noise</td><td>correlated het.</td><td>A8</td></tr>
-<tr><td>dwell mean</td><td>log-uniform [15,220]</td><td>A9</td></tr>
+<tr><td>noise: scale $s_c$ / non-stat. $\eta_k$</td><td>corr.; $\mathcal U(.4,2.4)$ / $\mathcal U(.5,2)$</td><td>A8</td></tr>
+<tr><td>dwell mean (density-scaled)</td><td>rare ~15&ndash;40, common ~150&ndash;220</td><td>A9</td></tr>
 <tr><td>allowed successors</td><td>~3 / mode</td><td>A9</td></tr>
 <tr><td>accumulator load $\ell$ / recharge $\rho$</td><td>per-mode</td><td>A10</td></tr>
 <tr><td>series length $T$ (train / test)</td><td>~60k / 40k</td><td>A1 (massive $N$)</td></tr>

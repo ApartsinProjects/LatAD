@@ -3,3 +3,4 @@ poc/datasets/
 *.pyc
 .DS_Store
 poc/results/*.pkl
+/datasets/
