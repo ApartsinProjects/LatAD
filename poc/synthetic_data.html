@@ -54,51 +54,43 @@ the ability to inject <em>history-dependent</em> anomalies that no real benchmar
 <p>Everything downstream rests on a single generative picture of <em>normal</em> CPS operation. Let
 $x\in\mathbb R^{d}$ be one channel-vector and $p(x)$ the normal law. Each mode $k$ carries an intrinsic
 <em>regime coordinate</em> $u\in\mathbb R^{r}$ (per-mode spread $\sigma_k$) mapped to the $d$ channels by a
-smooth <em>mode map</em> $g_k$ (fully specified in &sect;2). The assumptions, stated precisely and compactly; the
-generators are built to satisfy exactly these, and the detector is designed against them.</p>
+smooth <em>mode map</em> $g_k$ (specified in &sect;2). The table gives each assumption's <em>rationale</em> and
+<em>scope</em> (global, or mode-dependent so it holds on some modes and not others); its precise statement and
+how the generator realises it are in the recipe (&sect;2). The generator satisfies exactly these, and the
+detector is designed against them.</p>
 <table>
-<thead><tr><th>ID</th><th>assumption</th><th>why we assume it (CPS origin)</th><th>precise statement</th><th>realized by</th></tr></thead>
+<thead><tr><th>ID</th><th>assumption</th><th>why we assume it (CPS origin)</th><th>scope</th></tr></thead>
 <tbody>
 <tr><td><b>A1</b></td><td><b>Regime Mixture</b> (multimodality)</td>
   <td>a plant or vehicle cycles through discrete <em>operating regimes</em> (idle, cruise, load steps, maneuvers); normal is their union, not one blob.</td>
-  <td>$p(x)=\sum_{k=1}^{K}\pi_k\,p_k(x)$ (a union of $K$ modes).</td>
-  <td>$K$ modes, mixture sampling</td></tr>
+  <td>global</td></tr>
 <tr><td><b>A2</b></td><td><b>Mode Explosion</b> (exponential mode growth)</td>
   <td>a modern CPS is built from many interacting subsystems, and each added element (or new context) multiplies the reachable regimes, so the number of modes grows exponentially with system complexity.</td>
-  <td>$K\gg1$, growing exponentially in the number of system elements.</td>
-  <td>$K$ set large / over-provisioned</td></tr>
+  <td>global</td></tr>
 <tr><td><b>A3</b></td><td><b>Hard Envelopes</b> (bounded modes)</td>
   <td>controllers <em>mostly</em> hold each regime within setpoint bands and actuator limits; the space <em>between</em> regimes is usually only passed through, rarely dwelt in.</td>
-  <td>$\operatorname{supp}(p_k)$ bounded ($u$ compact); between-mode density $\approx0$.</td>
-  <td>$u$ clipped to $\pm2\sigma_k$</td></tr>
+  <td>global</td></tr>
 <tr><td><b>A4</b></td><td><b>Thin Fringes</b> (intra-mode sparsity)</td>
   <td>within a single mode the system's presence is non-uniform: it dwells near a typical operating point and reaches the edges of the regime only occasionally, so each normal mode holds legitimately low-probability regions, most often near its boundary.</td>
-  <td>$p_k$ is non-uniform on its support: mass concentrates near the mode centre and thins toward the boundary $\partial\operatorname{supp}(p_k)$, so low-density-but-valid regions exist inside every mode.</td>
-  <td>$u$ (Gaussian / OU) concentrates at the centre, sparse near the $\pm2\sigma_k$ clip</td></tr>
+  <td>global</td></tr>
 <tr><td><b>A5</b></td><td><b>Few Levers</b> (low intrinsic dimension)</td>
   <td>the independent control variables are far fewer than the observed variables (the channels, or a whole window); the rest follow from them, deterministically or probabilistically.</td>
-  <td>each $p_k$ near a manifold $\mathcal M_k=\{g_k(u):u\in\mathbb R^{r}\}$, $r\ll d$.</td>
-  <td>$r=3\!\ll\!24=d$; $g_k$</td></tr>
+  <td>global</td></tr>
 <tr><td><b>A6</b></td><td><b>Heavy Tail</b> (Zipf imbalance)</td>
   <td>machines spend most of the record in a few steady regimes; startup, shutdown and rare maneuvers occupy very little of it; so an infrequent but perfectly normal point is easily mistaken for an anomaly.</td>
-  <td>$(\pi_k)$ heavy-tailed (Zipf $\beta$): $\pi_k\propto\mathrm{rank}(k)^{-\beta}$, $\min_k\pi_k\ll1/K$.</td>
-  <td>Zipf weights, rank-shuffled</td></tr>
+  <td>global</td></tr>
 <tr><td><b>A7</b></td><td><b>Hidden Regimes</b> (latent modes)</td>
   <td>the true regimes are an emergent artifact of complex system design and coupling, so the <em>actual</em> modes can rarely be recovered exactly; the mode label is not logged either, so modes must be <em>discovered</em> (approximately) from raw streams.</td>
-  <td>mode label $k$ latent; only $x$ observed at train time.</td>
-  <td>no labels emitted for training</td></tr>
-<tr><td><b>A8</b></td><td><b>Mixed Signals</b> (heterogeneous variables) <span style="color:var(--accent)">(mode-dependent)</span></td>
+  <td>global</td></tr>
+<tr><td><b>A8</b></td><td><b>Mixed Signals</b> (heterogeneous variables)</td>
   <td>the CPS bus carries a <em>mix of variable types</em> (sensor readings, actuator / control signals, discrete system states, setpoints), each with its own range, resolution, and correlated noise; not sensors alone.</td>
-  <td>channel $c$ (a sensor, control, state, or setpoint) has its own scale, quantization $\delta_c$, and correlated het. noise $\Sigma_\varepsilon=WW^\top+\operatorname{diag}(s^2)$. Which types are <em>active</em> is mode-dependent: some modes drive the full mix, others a homogeneous subset.</td>
-  <td>per-channel scale/$\delta_c$; $\Sigma_\varepsilon$</td></tr>
-<tr><td><b>A9</b></td><td><b>Many Clocks</b> (multiscale dynamics) <span style="color:#888">(temporal)</span> <span style="color:var(--accent)">(mode-dependent)</span></td>
+  <td><span style="color:var(--accent)">mode-dependent</span></td></tr>
+<tr><td><b>A9</b></td><td><b>Many Clocks</b> (multiscale dynamics)</td>
   <td>physical inertia sets per-channel time constants (thermal slow, electrical fast); operating procedure makes only some regime&rarr;regime transitions legal, each with a characteristic dwell.</td>
-  <td>within a mode $u$ has bounded dynamics, per-channel $\alpha_c$; across modes a <em>sparse transition graph</em> (forbidden edges), dwell $\tau_k$. Multiscale is mode-dependent: some modes span several time scales, others a single one.</td>
-  <td>OU + $\alpha_c$ smoothing; state machine</td></tr>
-<tr><td><b>A10</b></td><td><b>Path Dependence</b> (history-conditioned normality) <span style="color:#888">(temporal)</span> <span style="color:var(--accent)">(mode-dependent)</span></td>
+  <td><span style="color:var(--accent)">mode-dependent</span> &middot; <span style="color:#888">temporal</span></td></tr>
+<tr><td><b>A10</b></td><td><b>Path Dependence</b> (history-conditioned normality)</td>
   <td>a fault is defined <em>relative to the operational history</em>: the same instantaneous state can be normal or faulty depending on how the system got there (a low battery is fine after intensive operation, but anomalous right after a fresh start / full charge).</td>
-  <td>normality is $p(\text{normal}\mid x_t,\ \text{history}_{1:t-1})$, not $p(\text{normal}\mid x_t)$: a state valid under one trajectory is anomalous under another. Mode-dependent: only some modes are history-conditioned; the rest are always-valid controls.</td>
-  <td>bad_transition family (valid state via a forbidden path)</td></tr>
+  <td><span style="color:var(--accent)">mode-dependent</span> &middot; <span style="color:#888">temporal</span></td></tr>
 </tbody></table>
 <p>Two standing qualifiers apply throughout: the sample is <strong>massive</strong> ($N$ large) and the mixture is
 <strong>stationary</strong> (the $\pi_k$ and $g_k$ do not drift within a run). A1&ndash;A8 shape each
@@ -127,14 +119,21 @@ and the assumption list stay one-to-one.</p>
 <p>Six steps produce one normal time-series; each step is tagged with the assumptions it realises.</p>
 
 <h3>Step 1: Compositional mode space <span class="phen">A1</span><span class="phen">A2</span><span class="phen">A6</span></h3>
+<p style="font-style:italic;color:#4a5a50;margin:2px 0 8px">In plain terms: picture the machine as a handful of
+dials, each with a few settings; a <em>mode</em> is one full combination of settings. A few dials already make a
+huge number of combinations, and the machine spends most of its time in only a few of them.</p>
 <p>The system is $n_{\text{sub}}$ interacting <strong>subsystems</strong>, each with a few discrete states. A
 global <strong>mode</strong> is a tuple of sub-states $(s_1,\dots,s_{n_{\text{sub}}})$, so the number of
 candidate modes $K=\prod_j|S_j|$ grows <strong>exponentially</strong> with the number of subsystems (A2). Only a
 <strong>physically reachable</strong> subset is kept (illegal combinations pruned). The reachable modes carry
 <strong>Zipf</strong> stationary frequencies $\pi_k\propto\mathrm{rank}(k)^{-\beta}$, shuffled so identity is
-decoupled from frequency and the rare tail carries $O(1)$ mass (A6).</p>
+decoupled from frequency and the rare tail carries $O(1)$ mass (A6); the normal law is then the mixture
+$p(x)=\sum_k\pi_k\,p_k(x)$ over the reachable modes (A1).</p>
 
 <h3>Step 2: Per-mode geometry <span class="phen">A3</span><span class="phen">A4</span><span class="phen">A5</span></h3>
+<p style="font-style:italic;color:#4a5a50;margin:2px 0 8px">In plain terms: inside a mode only a few hidden knobs
+move, and every channel is a smooth function of them. The machine mostly sits near the middle of a mode and only
+rarely drifts to its edge, never leaving the allowed patch.</p>
 <p>Each mode $k$ has a low-dimensional <strong>regime coordinate</strong> $u\in\mathbb R^{r}$ ($r\ll d$; e.g.
 $r=3$, $d=24$), mapped to the channels by a smooth, curved, mode-specific manifold</p>
 <div class="eq">$$g_k(u)=A_k u+b_k+0.35\,\tanh\!\big(1.3\,(A_k u+b_k)^{\leftarrow}\big),$$</div>
@@ -146,6 +145,9 @@ truncated to $\pm2\sigma_k$, giving bounded modes with hard edges (A3) whose den
 and <strong>thins toward the boundary</strong> (A4).</p>
 
 <h3>Step 3: Typed, heterogeneous channels <span class="phen">A8</span></h3>
+<p style="font-style:italic;color:#4a5a50;margin:2px 0 8px">In plain terms: the channels are a mixed bag: fine
+sensors, on/off actuators, integer state flags, held-then-stepped setpoints, and one slow fuel-gauge. Some modes
+use the whole bag, others just a plain subset.</p>
 <p>The $d$ channels are a <strong>mix of variable types</strong>, each with its own scale, resolution
 $\delta_c$, and correlated heteroscedastic noise $\Sigma_\varepsilon=WW^\top+\operatorname{diag}(s^2)$:</p>
 <ul>
@@ -159,6 +161,9 @@ $\delta_c$, and correlated heteroscedastic noise $\Sigma_\varepsilon=WW^\top+\op
 homogeneous subset (a built-in control for A8).</p>
 
 <h3>Step 4: Trajectory dynamics <span class="phen">A9</span></h3>
+<p style="font-style:italic;color:#4a5a50;margin:2px 0 8px">In plain terms: over time the machine walks from mode
+to mode, but only along allowed routes, pausing a while in each. Channels react at different speeds (temperature
+lags, RPM snaps); some modes juggle several speeds, some just one.</p>
 <p>Normal operation is a <strong>walk over the reachable modes</strong>: a sparse <strong>transition graph</strong>
 (a few allowed successors per mode, Dirichlet-weighted; every other edge forbidden) with per-mode
 <strong>dwell</strong> times log-uniform in $[15,220]$ (some regimes brief, some long: a temporal-scale mix).
@@ -171,6 +176,10 @@ multiscale clocks). Whether a mode is <strong>multiscale is mode-dependent</stro
 time constants, others a single one.</p>
 
 <h3>Step 5: History-conditioned normality <span class="phen">A10</span></h3>
+<p style="font-style:italic;color:#4a5a50;margin:2px 0 8px">In plain terms: whether a reading is fine can depend on
+the story so far. A low fuel-gauge is normal after a long haul but alarming right after refuelling; a settled
+state is fine if reached by a legal route, suspicious if you jumped there illegally. Only some modes work this
+way.</p>
 <p>Two mechanisms make the <em>same</em> instantaneous state normal or anomalous depending on the past:</p>
 <ul>
 <li><strong>Accumulator.</strong> An integrator channel tracks, e.g., state-of-charge,
@@ -183,6 +192,8 @@ the identical values reached via a forbidden predecessor are a fault.</li>
 always-valid controls, so the dataset holds matched with / without pairs.</p>
 
 <h3>Step 6: Implicit, and framing <span class="phen">A7</span></h3>
+<p style="font-style:italic;color:#4a5a50;margin:2px 0 8px">In plain terms: the trainer only ever sees the raw
+numbers, never which mode or setting produced them, and it sees a great many of them.</p>
 <p>No mode or subsystem-state label is emitted for training (A7): only the raw channel stream, labels kept for
 evaluation. The stream is standardised on <strong>train</strong> statistics and windowed (window $W$, stride $S$;
 per-window label by majority, plus the dominant anomaly type and mode). The sample is <strong>massive</strong>.</p>
