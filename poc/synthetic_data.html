@@ -112,8 +112,9 @@ and which anomalies a given detector models or misses.
 <p>A single streaming generator produces a <strong>massive multivariate time-series</strong> of normal CPS
 operation carrying <em>every</em> phenomenon A1&ndash;A10 (the <strong>MIIM</strong> property: Massive, Implicit,
 Imbalanced, Multimodal, plus CPS structure), together with a labelled test stream spanning the full anomaly
-taxonomy (&sect;3). The recipe is six steps; each is tagged with the assumptions it realises, so the data model
-and the assumption list stay one-to-one.</p>
+taxonomy (Step 7). The recipe is <strong>seven steps</strong>: Steps 1&ndash;6 build the normal series, Step 7
+injects the labelled faults; each is tagged with the assumptions it realises, so the data model and the
+assumption list stay one-to-one.</p>
 <p><strong>Shape &amp; notation.</strong> A single timestep is a channel-vector $x_t\in\mathbb R^{d}$ ($d$ = the
 number of channels, of mixed type per Step 3; default $d=24$). The generator emits a length-$T$ <strong>multivariate
 time series</strong> $X=(x_1,\dots,x_T)\in\mathbb R^{T\times d}$ with $T$ large (a normal <em>train</em> series
@@ -123,7 +124,8 @@ window label $y_t\in\{0,1\}$ plus its dominant mode and anomaly type. So the sha
 window $W\times d$.</p>
 
 <h2>2. The recipe, step by step</h2>
-<p>Six steps produce one normal time-series; each step is tagged with the assumptions it realises.</p>
+<p>Steps 1&ndash;6 produce the normal time-series; Step 7 injects the labelled test faults. Each step is tagged
+with the assumptions it realises.</p>
 
 <h3>Step 1: Compositional mode space <span class="phen">A1</span><span class="phen">A2</span><span class="phen">A6</span></h3>
 <p style="font-style:italic;color:#4a5a50;margin:2px 0 8px">In plain terms: picture the machine as a handful of
@@ -141,6 +143,12 @@ exponentially large: massive but not arbitrary. The reachable modes carry
 <strong>Zipf</strong> stationary frequencies $\pi_k\propto\mathrm{rank}(k)^{-\beta}$, shuffled so identity is
 decoupled from frequency and the rare tail carries $O(1)$ mass (A6); the normal law is then the mixture
 $p(x)=\sum_k\pi_k\,p_k(x)$ over the reachable modes (A1).</p>
+<p><em>Exact forms &amp; example.</em> frequencies
+$\pi_k=\dfrac{\mathrm{rank}(k)^{-\beta}}{\sum_j \mathrm{rank}(j)^{-\beta}}$, then the rank$\to$mode assignment is
+shuffled. E.g. $n_{\text{sub}}=4$ subsystems with $|S_j|\in\{3,4,5\}$ give up to $\prod_j|S_j|=180$ candidate
+modes; a compatibility relation forbidding, say, half the pairwise sub-state co-occurrences leaves on the order
+of $70$ reachable modes. With $\beta=2$ the most common mode is $\approx 2^2=4\times$ the second and the tail
+decays as $\mathrm{rank}^{-2}$, so the rarest modes appear only a handful of times in a length-$T$ run.</p>
 
 <h3>Step 2: Per-mode geometry <span class="phen">A3</span><span class="phen">A4</span><span class="phen">A5</span></h3>
 <p style="font-style:italic;color:#4a5a50;margin:2px 0 8px">In plain terms: inside a mode only a few hidden knobs
@@ -158,6 +166,42 @@ pair: a point can be marginally in-range on every channel yet jointly off-manifo
 space. The regime coordinate is <strong>concentrated and clipped</strong>: $u\sim\mathcal N(0,\sigma_k^2 I_r)$
 truncated to $\pm2\sigma_k$, giving bounded modes with hard edges (A3) whose density concentrates at the centre
 and <strong>thins toward the boundary</strong> (A4).</p>
+<p><strong>Why the $\tanh$ (the curvature).</strong> Without it $g_k$ is affine, a <em>flat plane</em>, and every
+cross-channel relation is linear: a fault could only be caught by breaking a single channel's <em>range</em>,
+and the point exactly "between two modes" would itself look like a valid third mode. The saturating $\tanh$ bows
+the flat plane into a gently <em>curved</em> surface, so (i) each mode is a genuinely nonlinear low-dim manifold,
+and (ii) the region <em>between</em> modes falls <em>off</em> every manifold. The constants: $0.35$ scales the
+bend (mild but real), $1.3$ sets where $\tanh$ saturates, and the channel reversal $(\cdot)^{\leftarrow}$ couples
+far-apart channels so the constraint is <strong>non-local</strong> (no single channel or adjacent pair reveals it).</p>
+<figure style="margin:14px 0;text-align:center">
+<svg viewBox="0 0 560 290" width="100%" style="max-width:560px" font-family="Helvetica Neue,Arial,sans-serif">
+  <line x1="60" y1="250" x2="530" y2="250" stroke="#bbb" stroke-width="1"/>
+  <line x1="60" y1="250" x2="60" y2="40" stroke="#bbb" stroke-width="1"/>
+  <text x="528" y="268" font-size="12" fill="#888" text-anchor="end">channel i</text>
+  <text x="52" y="46" font-size="12" fill="#888" text-anchor="end">channel j</text>
+  <line x1="110" y1="215" x2="470" y2="95" stroke="#999" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <text x="118" y="230" font-size="12" fill="#999">linear part (flat plane)</text>
+  <path d="M 110 215 Q 290 118 470 95" fill="none" stroke="#2f6d4f" stroke-width="2.5"/>
+  <text x="352" y="150" font-size="12.5" fill="#2f6d4f" font-weight="600">manifold (+ tanh)</text>
+  <g fill="#2f6d4f">
+    <circle cx="182" cy="176" r="3"/><circle cx="236" cy="149" r="3.5"/>
+    <circle cx="264" cy="138" r="4"/><circle cx="290" cy="130" r="4"/>
+    <circle cx="316" cy="122" r="4"/><circle cx="344" cy="115" r="3.5"/>
+    <circle cx="398" cy="105" r="3"/>
+  </g>
+  <circle cx="300" cy="188" r="5" fill="#c0392b"/>
+  <text x="312" y="200" font-size="12" fill="#c0392b">in-range, off-manifold (fault)</text>
+  <line x1="300" y1="188" x2="300" y2="250" stroke="#c0392b" stroke-width="0.7" stroke-dasharray="2 3"/>
+  <line x1="300" y1="188" x2="60" y2="188" stroke="#c0392b" stroke-width="0.7" stroke-dasharray="2 3"/>
+</svg>
+<figcaption style="font-size:.82rem;color:#666;font-family:'Helvetica Neue',Arial,sans-serif">The $\tanh$ bows the
+flat linear plane (dashed) into a curved manifold (green). Normal points lie on the curve, dense at the centre,
+sparse toward the bounded ends. The red point is within each channel's range (dashed guides) yet off the
+manifold: marginally valid, jointly invalid.</figcaption>
+</figure>
+<p><em>Example.</em> With $r=1$ and two channels, at the mode centre $u=0$: the affine term gives the dashed
+line; adding $0.35\tanh(1.3\,\cdot)$ bows it into the green arc. Normal windows land on the arc (dense at the
+centre, sparse at the $\pm2\sigma$ ends); the red point sits inside each channel's range but off the arc.</p>
 
 <h3>Step 3: Typed, heterogeneous channels <span class="phen">A8</span></h3>
 <p style="font-style:italic;color:#4a5a50;margin:2px 0 8px">In plain terms: the channels are a mixed bag: fine
@@ -179,6 +223,12 @@ cannot reconstruct noise, so residuals inherit $\Sigma_\varepsilon$, which is th
 (Mahalanobis / Ledoit-Wolf) residual score exploits and a plain sum-of-squares cannot. Heteroscedasticity
 ($\operatorname{diag}(s^2)$) and per-channel quantization $\delta_c$ make the channels genuinely unequal, so
 <em>which</em> channel a fault touches matters.</p>
+<p><em>Exact renderings</em> of a channel's raw value $v_c=g_k(u)_c+\varepsilon_c$, $\varepsilon\sim\mathcal
+N(0,\Sigma_\varepsilon)$: <strong>sensor</strong> $\hat v_c=\delta_c\,\mathrm{round}(v_c/\delta_c)$ with small
+$\delta_c$; <strong>actuator</strong> the same with large $\delta_c$ (coarse); <strong>discrete state</strong>
+$\mathbb 1[v_c>\theta_c]$ (or a few integer levels); <strong>setpoint</strong> holds the value taken at mode
+entry until the next transition. E.g. a fine sensor uses $\delta_c=0.02\,\sigma_c$, a near-binary switch
+$\delta_c=0.8\,\sigma_c$.</p>
 <p>Which types are <strong>active is mode-dependent</strong>: some modes drive the full mix, others only a
 homogeneous subset (a built-in control for A8).</p>
 
@@ -198,6 +248,10 @@ memory, i.e. the autocorrelation length),</p>
 $x^{(c)}_t=\alpha_c x^{(c)}_t+(1-\alpha_c)x^{(c)}_{t-1}$, $\alpha_c\in[0.05,0.95]$ (slow / inertial vs fast: the
 multiscale clocks). Whether a mode is <strong>multiscale is mode-dependent</strong>: some modes span several
 time constants, others a single one.</p>
+<p><em>Exact forms.</em> transition row over the allowed successors $P_{k,\cdot}\sim\mathrm{Dirichlet}(\mathbf1)$
+(zero on forbidden edges); dwell $D\sim\big\lfloor e^{\,\mathcal U(\ln 15,\ln 220)}\big\rfloor$; per-channel
+constant $\alpha_c\sim\mathcal U(0.05,0.95)$. A slow channel ($\alpha_c=0.05$) lags a step change by
+$\sim\!1/\alpha_c\approx20$ samples; a fast one ($\alpha_c=0.9$) tracks it within $\sim\!1$.</p>
 
 <h3>Step 5: History-conditioned normality <span class="phen">A10</span></h3>
 <p style="font-style:italic;color:#4a5a50;margin:2px 0 8px">In plain terms: whether a reading is fine can depend on
@@ -214,6 +268,10 @@ the identical values reached via a forbidden predecessor are a fault.</li>
 </ul>
 <p>Path-dependence is <strong>mode-dependent</strong>: only some modes are history-conditioned; the rest are
 always-valid controls, so the dataset holds matched with / without pairs.</p>
+<p><em>Example.</em> load $\ell=0.02$ in cruise, $0.08$ under heavy load, recharge $\rho=0.05$ only in a
+"charging" mode. A settled window at $a_t=0.1$ is <strong>normal</strong> after a long heavy-load dwell but a
+<strong>fault</strong> after a fresh start; independently, a valid mode reached from a <em>forbidden</em>
+predecessor is a fault by the graph rule. These are the two Step-7 history anomalies.</p>
 
 <h3>Step 6: Implicit, and framing <span class="phen">A7</span></h3>
 <p style="font-style:italic;color:#4a5a50;margin:2px 0 8px">In plain terms: the trainer only ever sees the raw
@@ -223,16 +281,33 @@ evaluation. The stream is standardised on <strong>train</strong> statistics <em>
 there is no leakage and the detector sees exactly the normalisation it would at deployment) and windowed (window
 $W$, stride $S$; per-window label by majority, plus the dominant anomaly type and mode). The sample is
 <strong>massive</strong>, which A1's mixture and A2's mode count require to populate even the rare tail.</p>
+<p><em>Exact forms.</em> standardise $z_t=(x_t-\mu_{\text{tr}})/\sigma_{\text{tr}}$ ($\mu_{\text{tr}},\sigma_{\text{tr}}$
+the per-channel <em>train</em> mean and std); take windows $z_{t-W+1:t}$ every $S$ steps; window label
+$y=\mathbb 1[\text{fraction of anomalous steps}>\tfrac12]$, with its majority mode and dominant anomaly type.</p>
 
-<h2>3. Anomaly taxonomy (test stream)</h2>
-<p>Faults span snapshot to history-dependent, so every detection error has a controlled case:</p>
+<h3>Step 7: Anomaly generation (test stream only) <span class="phen">A3</span><span class="phen">A4</span><span class="phen">A10</span></h3>
+<p style="font-style:italic;color:#4a5a50;margin:2px 0 8px">In plain terms: the training data is all-normal; only
+the test stream gets faults, six kinds, ranging from obvious (way out of range) to subtle (a perfectly ordinary
+reading reached by an impossible history).</p>
+<p>Faults are injected only into the test series. $c_k$ is mode $k$'s centroid in signal space, $D$ the dwell
+length. Each family targets a specific detection error (E1 rare-mode false-positive, E2 over-interpolation
+false-negative, E3 label-free calibration):</p>
 <ul>
-<li><span class="phen">snapshot</span> <strong>OOD</strong>: far outside every mode.</li>
-<li><span class="phen">snapshot</span> <strong>pocket</strong>: a short between-two-modes segment $x=(1-t)c_a+t\,c_b$, $t\in[0.35,0.65]$ (the over-interpolation false-negative).</li>
-<li><span class="phen">snapshot</span> <strong>drift</strong>: the OU coordinate pushed <em>out of bounds</em> (bypasses the clip), so values leave the manifold.</li>
-<li><span class="phen">contextual</span> <strong>wrong-for-regime</strong>: a value valid in some mode, invalid for the current one.</li>
-<li><span class="phen">history</span> <strong>bad_transition</strong>: a forbidden mode&rarr;mode jump; the labelled windows are <strong>settled inside the valid target mode</strong>, snapshot-normal, so only the trajectory channel can catch them.</li>
-<li><span class="phen">history</span> <strong>premature_depletion</strong>: the accumulator is low <em>without</em> the load history that would justify it: snapshot-normal, only the integral of the past is inconsistent.</li>
+<li><span class="phen">snapshot</span> <strong>OOD</strong>: a point far outside every mode,
+$x=c_{\text{near}}+1.8\,(x_0-c_{\text{near}})$, $x_0\sim\mathcal U(\text{wide box})$, $c_{\text{near}}$ its nearest
+centroid (pushed further out to guarantee it is off).</li>
+<li><span class="phen">snapshot</span> <strong>pocket</strong>: a short between-two-modes segment
+$x=(1-t)\,c_a+t\,c_b$, $t\sim\mathcal U(0.35,0.65)$: the over-interpolation false-negative (E2).</li>
+<li><span class="phen">snapshot</span> <strong>drift</strong>: inside a dwell add an un-clipped ramp
+$u_t\leftarrow u_t+g\,(k/D)$ so the coordinate leaves $\pm2\sigma_k$ and the values leave the manifold.</li>
+<li><span class="phen">contextual</span> <strong>wrong-for-regime</strong>: emit another mode's signature
+$g_a(u)$ while the trajectory is in mode $b$: values valid for $a$, invalid given context $b$.</li>
+<li><span class="phen">history</span> <strong>bad_transition</strong>: jump a <em>forbidden</em> edge
+$a\!\to\!b$ and label the windows <strong>settled inside the valid target $b$</strong> (after the straddle),
+snapshot-normal, so only the trajectory channel can catch them.</li>
+<li><span class="phen">history</span> <strong>premature_depletion</strong>: drive the accumulator low
+($a_t\!\downarrow$) <em>without</em> the preceding heavy-load dwell: snapshot-normal, only the integral of the
+past is inconsistent.</li>
 </ul>
 <div class="box">
 <strong>Why the history families matter.</strong> On the current generator a snapshot detector (VaDE, per-type
@@ -241,7 +316,7 @@ false-positive floor: it is <em>blind</em> to history-dependent faults. bad_tran
 are the two controlled cases that isolate the trajectory model (B), which no real testbed we found provides.
 </div>
 
-<h2>4. Non-circular labelling &amp; difficulty</h2>
+<h2>3. Non-circular labelling &amp; difficulty</h2>
 <p>Labels never use the detector. A <strong>true-normal oracle</strong> holds a large fresh normal sample from
 the <em>same</em> modes/frame; a candidate is a genuine anomaly iff its $\kappa$-NN distance to that reference
 exceeds the $99^{\text{th}}$ percentile of normal self-distance (self-match dropped). A model-agnostic
@@ -249,7 +324,7 @@ exceeds the $99^{\text{th}}$ percentile of normal self-distance (self-match drop
 $\sigma(x)=\min_k\sqrt{(x-\bar x_k)^\top S^{-1}(x-\bar x_k)}$; the <strong>normal envelope</strong>
 $E=Q_{0.99}(\sigma)$ sets difficulty bands, so a fault at $\sigma(x)/E\in[1,2]$ is "just outside" (hard).</p>
 
-<h2>5. Default parameters</h2>
+<h2>4. Default parameters</h2>
 <table>
 <thead><tr><th>parameter</th><th>value</th><th>realises</th></tr></thead>
 <tbody>
@@ -267,7 +342,7 @@ $E=Q_{0.99}(\sigma)$ sets difficulty bands, so a fault at $\sigma(x)/E\in[1,2]$ 
 <tr><td>window $W$ / stride $S$</td><td>40 / 20</td><td>windowing</td></tr>
 </tbody></table>
 
-<h2>6. What it enables &amp; build status</h2>
+<h2>5. What it enables &amp; build status</h2>
 <ul>
 <li>ground-truth <strong>modes</strong>, subsystem states, and <strong>anomaly types</strong> for per-type diagnostics;</li>
 <li>a <strong>non-circular</strong> oracle and model-agnostic <strong>distance / envelope</strong> for detector-independent labels and difficulty bands;</li>
