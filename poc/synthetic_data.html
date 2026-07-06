@@ -88,7 +88,7 @@ generators are built to satisfy exactly these, and the detector is designed agai
   <td>the true regimes are an emergent artifact of complex system design and coupling, so the <em>actual</em> modes can rarely be recovered exactly; the mode label is not logged either, so modes must be <em>discovered</em> (approximately) from raw streams.</td>
   <td>mode label $k$ latent; only $x$ observed at train time.</td>
   <td>no labels emitted for training</td></tr>
-<tr><td><b>A8</b></td><td><b>Motley Channels</b> (heterogeneous variables)</td>
+<tr><td><b>A8</b></td><td><b>Mixed Signals</b> (heterogeneous variables)</td>
   <td>the CPS bus carries a <em>mix of variable types</em> (sensor readings, actuator / control signals, discrete system states, setpoints), each with its own range, resolution, and correlated noise; not sensors alone.</td>
   <td>channel $c$ (a sensor, control, state, or setpoint) has its own scale, quantization $\delta_c$, and correlated het. noise $\Sigma_\varepsilon=WW^\top+\operatorname{diag}(s^2)$.</td>
   <td>per-channel scale/$\delta_c$; $\Sigma_\varepsilon$</td></tr>
