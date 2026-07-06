@@ -51,7 +51,7 @@ generator gives (i) ground-truth modes and anomaly types, (ii) a non-circular or
 the ability to inject <em>history-dependent</em> anomalies that no real benchmark we found exposes.
 </div>
 
-<h2>0. Data assumptions (A1&ndash;A9)</h2>
+<h2>0. Data assumptions (A1&ndash;A10)</h2>
 <p>Everything downstream rests on a single generative picture of <em>normal</em> CPS operation. Let
 $x\in\mathbb R^{d}$ be one channel-vector and $p(x)$ the normal law. Each mode $k$ carries an intrinsic
 <em>regime coordinate</em> $u\in\mathbb R^{r}$ (per-mode spread $\sigma_k$) mapped to the $d$ channels by a
@@ -96,10 +96,14 @@ generators are built to satisfy exactly these, and the detector is designed agai
   <td>physical inertia sets per-channel time constants (thermal slow, electrical fast); operating procedure makes only some regime&rarr;regime transitions legal, each with a characteristic dwell.</td>
   <td>within a mode $u$ has bounded dynamics, per-channel $\alpha_c$; across modes a <em>sparse transition graph</em> (forbidden edges), dwell $\tau_k$.</td>
   <td>OU + $\alpha_c$ smoothing; state machine</td></tr>
+<tr><td><b>A10</b></td><td><b>Path Dependence</b> (history-conditioned normality) <span style="color:#888">(temporal)</span></td>
+  <td>a fault is defined <em>relative to the operational history</em>: the same instantaneous state can be normal or faulty depending on how the system got there (a low battery is fine after intensive operation, but anomalous right after a fresh start / full charge).</td>
+  <td>normality is $p(\text{normal}\mid x_t,\ \text{history}_{<t})$, not $p(\text{normal}\mid x_t)$: a state valid under one trajectory is anomalous under another.</td>
+  <td>bad_transition family (valid state via a forbidden path)</td></tr>
 </tbody></table>
 <p>Two standing qualifiers apply throughout: the sample is <strong>massive</strong> ($N$ large) and the mixture is
 <strong>stationary</strong> (the $\pi_k$ and $g_k$ do not drift within a run). A1&ndash;A8 are static (both
-generators); A9 (dynamics) is the temporal generator only. Physical <em>joint coupling</em> (marginally in-range
+generators); A9&ndash;A10 (dynamics and history) are the temporal generator only. Physical <em>joint coupling</em> (marginally in-range
 on every channel yet jointly off-manifold) is not a separate row &mdash; it is inherent in the curved,
 cross-channel $g_k$ of &sect;2.</p>
 
