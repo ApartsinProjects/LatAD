@@ -52,13 +52,19 @@
   .toc{font-size:.9rem; color:var(--muted)}
   hr{border:none; border-top:1px solid var(--rule); margin:2em 0}
   .center{text-align:center}
+  .doclink{position:fixed;top:12px;right:14px;background:#f6f8fa;border:1px solid #d8d8d8;border-radius:5px;padding:5px 11px;font-family:"Helvetica Neue",Arial,sans-serif;font-size:.78rem;color:#1f4e79;text-decoration:none;z-index:20;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+  .doclink:hover{background:#eef3f8;text-decoration:none}
+  @media print{.doclink{display:none}}
 </style>
 </head>
 <body>
+<a class="doclink no-docx no-print" href="paper.docx" download>&#8595;&nbsp;Download DOCX</a>
 
 <h1>Modeling Normal Is All You Need: Joint Latent Clustering for Anomaly Detection in Multimodal Cyber-Physical Systems</h1>
-<p class="authors">Alexander Apartsin<sup class="fn">1</sup>&nbsp;&nbsp;Yehudit Aperstein<sup class="fn">2</sup></p>
-<p class="affil"><sup class="fn">1</sup>Holon Institute of Technology (HIT), Holon, Israel&nbsp;&nbsp;&middot;&nbsp;&nbsp;<sup class="fn">2</sup>Afeka Academic College of Engineering, Tel Aviv, Israel</p>
+<p class="authors">Alexander Apartsin</p>
+<p class="affil">Holon Institute of Technology (HIT), Holon, Israel</p>
+<p class="authors" style="margin-top:.5em">Yehudit Aperstein</p>
+<p class="affil">Afeka Academic College of Engineering, Tel Aviv, Israel</p>
 
 <div class="abstract">
 <h2>Abstract</h2>
@@ -88,7 +94,6 @@ and a latent-only score that drops reconstruction because a flexible decoder reb
 7 Related work &middot;
 8 Conclusion.</p>
 
-<!-- ============================================================= -->
 <h2>1&nbsp;&nbsp;Introduction</h2>
 
 <p>A modern cyber-physical system (CPS), whether a water-treatment plant, an industrial control loop, or a rotating machine, integrates hundreds of sensors, embedded controllers, and physical actuators into a single tightly coupled unit that continuously senses its own state and acts upon it. This complexity puts its faults beyond enumeration: the combinations of component, control mode, and operating condition in which a fault can arise cannot be predefined, tested, or exhaustively sampled before deployment, and many faults develop slowly, as wear, drift, or degradation that shows no obvious symptom until it is well advanced and can escalate into unplanned downtime or a safety-critical failure. Because the faults cannot be specified in advance, they must be discovered from the system’s own behaviour as it operates, which is the task of anomaly detection [<a href="#r-chandola">22</a>]. That behaviour is richly observable: high-frequency measurements of vibration, current, temperature, pressure, and position, together with internal control signals, are recorded continuously and, in principle, carry an early signature of almost any developing fault.</p>
@@ -125,7 +130,6 @@ structure is strongest and the slimmest on the one near-unimodal set.</p>
 per dataset; several results are single-seed and the best-F1 threshold is an oracle (disclosed in &sect;4). We
 report only raw metrics and we treat the difficult subset, not the headline, as the discriminative test.</p>
 
-<!-- ============================================================= -->
 <h2>2&nbsp;&nbsp;The MIIM assumptions about CPS normal data</h2>
 
 <p>We model the normal law of a CPS as a mixture over reachable operating modes,
@@ -192,13 +196,11 @@ yet the modes overlap (silhouette 0.08&ndash;0.19) rather than separating crispl
 in which a jointly learned latent, scored in the latent by a mixture density, pays off, and in which a global
 detector or a raw reconstruction residual does not.</p>
 
-<!-- ============================================================= -->
 <h2>3&nbsp;&nbsp;Method</h2>
 
 <p>The main model is <strong>VaDE&#8209;hard+resid(auto)</strong>. It has a representation stage (a VaDE that
 jointly learns a latent and a Gaussian-mixture prior) and a scoring stage (a stack of heads computed in the
-latent, all calibrated on train-normal). We describe each in turn; the actual implementation is in
-<code>models_vade.py</code>.</p>
+latent, all calibrated on train-normal). We describe each in turn.</p>
 
 <h3>3.1&nbsp;&nbsp;Representation: Variational Deep Embedding (VaDE)</h3>
 
@@ -346,7 +348,6 @@ residual head (iv) fires when it generalises to held-out normal (HAI: on; WADI: 
 basin head (v) fires when train-normal modes overlap (SKAB: on; WADI/HAI: exact no-op). All calibration uses
 train-normal only.</div>
 
-<!-- ============================================================= -->
 <h2>4&nbsp;&nbsp;Experimental methodology</h2>
 
 <h3>4.1&nbsp;&nbsp;Datasets</h3>
@@ -420,7 +421,6 @@ all methods, including the published SOTA. We also report a pedagogical <em>triv
 maximum absolute standardised per-channel window mean, the same score that defines the difficulty split (&sect;4.3),
 whose behaviour by construction is strong on Easy and near chance on Difficult.</p>
 
-<!-- ============================================================= -->
 <h2>5&nbsp;&nbsp;Results</h2>
 
 <p>Table 3 reports AUROC, prevalence-matched F1 and FPR for every method on all three datasets and all three
@@ -515,46 +515,24 @@ models that look strong under point-adjusted F1 have little difficult-fault sign
 
 <figure>
 <svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica Neue,Arial,sans-serif" font-size="12">
-  <!-- axes -->
   <text x="360" y="20" text-anchor="middle" font-size="13" font-weight="bold">Difficult-subset AUROC by method (higher is better)</text>
   <line x1="70" y1="250" x2="700" y2="250" stroke="#888"/>
   <line x1="70" y1="60" x2="70" y2="250" stroke="#888"/>
-  <!-- y ticks 0.4 - 0.9 -->
   <g fill="#666" text-anchor="end">
     <text x="64" y="253">0.4</text><text x="64" y="215">0.5</text><text x="64" y="177">0.6</text>
     <text x="64" y="139">0.7</text><text x="64" y="101">0.8</text><text x="64" y="63">0.9</text>
   </g>
   <g stroke="#eee"><line x1="70" y1="215" x2="700" y2="215"/><line x1="70" y1="177" x2="700" y2="177"/>
     <line x1="70" y1="139" x2="700" y2="139"/><line x1="70" y1="101" x2="700" y2="101"/><line x1="70" y1="63" x2="700" y2="63"/></g>
-  <!-- scale: y = 250 - (auc-0.4)*380 ;  0.4->250, 0.9->60 -->
-  <!-- methods per group: IF, AE, USAD, TranAD, GDN, Ours (GDN WADI only) -->
-  <!-- WADI group (6 bars incl. GDN) -->
   <g>
     <text x="170" y="270" text-anchor="middle" font-weight="bold">WADI</text>
-    <rect x="96"  y="137.5" width="18" height="112.5" fill="#9fb8cf"/><!-- IF .696 -->
-    <rect x="118" y="238.6" width="18" height="11.4"  fill="#c9c9c9"/><!-- AE .430 -->
-    <rect x="140" y="191.5" width="18" height="58.5"  fill="#e3b7a0"/><!-- USAD .554 -->
-    <rect x="162" y="194.9" width="18" height="55.1"  fill="#d59a7a"/><!-- TranAD .547 -->
-    <rect x="184" y="180.8" width="18" height="69.2"  fill="#b5764f"/><!-- GDN .582 -->
-    <rect x="206" y="126.1" width="18" height="123.9" fill="#1f4e79"/><!-- Ours .726 -->
-  </g>
+    <rect x="96"  y="137.5" width="18" height="112.5" fill="#9fb8cf"/>    <rect x="118" y="238.6" width="18" height="11.4"  fill="#c9c9c9"/>    <rect x="140" y="191.5" width="18" height="58.5"  fill="#e3b7a0"/>    <rect x="162" y="194.9" width="18" height="55.1"  fill="#d59a7a"/>    <rect x="184" y="180.8" width="18" height="69.2"  fill="#b5764f"/>    <rect x="206" y="126.1" width="18" height="123.9" fill="#1f4e79"/>  </g>
   <g>
     <text x="380" y="270" text-anchor="middle" font-weight="bold">HAI</text>
-    <rect x="306" y="164.5" width="18" height="85.5"  fill="#9fb8cf"/><!-- IF .625 -->
-    <rect x="328" y="114.0" width="18" height="136.0" fill="#c9c9c9"/><!-- AE .758 -->
-    <rect x="350" y="217.0" width="18" height="33.0"  fill="#e3b7a0"/><!-- USAD .487 -->
-    <rect x="372" y="222.5" width="18" height="27.5"  fill="#d59a7a"/><!-- TranAD .467 -->
-    <rect x="416" y="90.2"  width="18" height="159.8" fill="#1f4e79"/><!-- Ours .831 -->
-  </g>
+    <rect x="306" y="164.5" width="18" height="85.5"  fill="#9fb8cf"/>    <rect x="328" y="114.0" width="18" height="136.0" fill="#c9c9c9"/>    <rect x="350" y="217.0" width="18" height="33.0"  fill="#e3b7a0"/>    <rect x="372" y="222.5" width="18" height="27.5"  fill="#d59a7a"/>    <rect x="416" y="90.2"  width="18" height="159.8" fill="#1f4e79"/>  </g>
   <g>
     <text x="590" y="270" text-anchor="middle" font-weight="bold">SKAB</text>
-    <rect x="516" y="201.4" width="18" height="48.6"  fill="#9fb8cf"/><!-- IF .528 -->
-    <rect x="538" y="210.5" width="18" height="39.5"  fill="#c9c9c9"/><!-- AE .504 -->
-    <rect x="560" y="177.6" width="18" height="72.4"  fill="#e3b7a0"/><!-- USAD .591 -->
-    <rect x="582" y="209.3" width="18" height="40.7"  fill="#d59a7a"/><!-- TranAD .507 -->
-    <rect x="626" y="170.2" width="18" height="79.8"  fill="#1f4e79"/><!-- Ours .610 -->
-  </g>
-  <!-- legend -->
+    <rect x="516" y="201.4" width="18" height="48.6"  fill="#9fb8cf"/>    <rect x="538" y="210.5" width="18" height="39.5"  fill="#c9c9c9"/>    <rect x="560" y="177.6" width="18" height="72.4"  fill="#e3b7a0"/>    <rect x="582" y="209.3" width="18" height="40.7"  fill="#d59a7a"/>    <rect x="626" y="170.2" width="18" height="79.8"  fill="#1f4e79"/>  </g>
   <g font-size="11">
     <rect x="80"  y="34" width="12" height="12" fill="#9fb8cf"/><text x="96"  y="44">IsolationForest</text>
     <rect x="180" y="34" width="12" height="12" fill="#c9c9c9"/><text x="196" y="44">AutoEncoder</text>
@@ -571,7 +549,6 @@ multimodal datasets the MIIM assumptions target; SKAB, the near-unimodal set, is
 WADI only.</figcaption>
 </figure>
 
-<!-- ============================================================= -->
 <h2>6&nbsp;&nbsp;Discussion</h2>
 
 <p><strong>Executive summary.</strong> Under a fair protocol (raw point-wise metrics, difficulty
@@ -631,7 +608,6 @@ cut, and a different percentile would re-draw the boundary between the subsets, 
 the trivial rule's Easy and Difficult performance is large enough that the split is not knife-edge. We report only
 raw metrics, which makes our numbers look lower than point-adjusted leaderboard figures by design.</p>
 
-<!-- ============================================================= -->
 <h2>7&nbsp;&nbsp;Related work</h2>
 
 <p>Anomaly detection is the unsupervised or semi-supervised task of flagging departures from a model of normal behaviour, adopted precisely because labelled anomalies are too scarce to train a classifier [<a href="#r-chandola">22</a>,&nbsp;<a href="#r-pang">23</a>,&nbsp;<a href="#r-ruff">24</a>]. On time series it must additionally respect temporal and cross-channel dependence [<a href="#r-tsreview">25</a>], and on cyber-physical and industrial control systems it underpins physics-aware intrusion and fault detection [<a href="#r-icssurvey">26</a>]. LatAD sits squarely in this line: unsupervised, trained on normal only, and specialised to the multimodal structure of cyber-physical normal behaviour.</p>
@@ -681,7 +657,6 @@ confirming that their apparent strength does not survive a raw, difficulty-strat
 <h3>7.4&nbsp;&nbsp;Datasets</h3>
 <p>We evaluate on three real CPS testbeds chosen to span the modality axis of the MIIM thesis. WADI [<a href="#r-wadi">13</a>] is a 123-channel water-distribution testbed from iTrust, and SWaT [<a href="#r-swat">20</a>] is its 51-channel water-treatment sibling; the two are the de facto standard multivariate CPS benchmarks and the primary targets of the evaluation critique above [<a href="#r-kim">1</a>,&nbsp;<a href="#r-wukeogh">3</a>]. HAI [<a href="#r-hai">14</a>] is a 59-channel hardware-in-the-loop industrial control testbed spanning several coupled processes, the most strongly multimodal of the three. SKAB [<a href="#r-skab">15</a>] is a smaller, contaminated 8-channel rotor and water-circulation benchmark, near-unimodal and, by our analysis, the only genuinely subtle set (a trivial univariate rule is near chance on it). We report WADI, HAI and SKAB, which contrast a large multimodal distribution network, a strongly multimodal plant and a near-unimodal rotor, so the difficulty-stratified results read directly against the MIIM structure of each dataset.</p>
 
-<!-- ============================================================= -->
 <h2>8&nbsp;&nbsp;Conclusion</h2>
 <p>We restated the structural assumptions of CPS normal data as an explicit MIIM list (A1&ndash;A10) and used
 them to motivate a detector that models normal as a jointly learned latent plus explicit mode clustering, scored
@@ -758,7 +733,6 @@ dataset, 2020. <a href="https://www.kaggle.com/dsv/1693952">doi:10.34740/kaggle/
 <li id="r-tsreview">A. Bl&aacute;zquez-Garc&iacute;a, A. Conde, U. Mori, and J. A. Lozano. &ldquo;A Review on Outlier/Anomaly Detection in Time Series Data.&rdquo; <em>ACM Computing Surveys</em>, 54(3):Article&nbsp;56, 2021. <a href="https://arxiv.org/abs/2002.04236">arXiv:2002.04236</a>, doi:10.1145/3444690.</li>
 <li id="r-icssurvey">Y. Hu, A. Yang, H. Li, Y. Sun, and L. Sun. &ldquo;A Survey of Intrusion Detection on Industrial Control Systems.&rdquo; <em>International Journal of Distributed Sensor Networks</em>, 14(8), 2018. <a href="https://doi.org/10.1177/1550147718794615">doi:10.1177/1550147718794615</a>.</li>
 </ol>
-
 
 </body>
 </html>
