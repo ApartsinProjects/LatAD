@@ -57,8 +57,6 @@
 <body>
 
 <h1>Modeling Normal Is All You Need: Joint Latent Clustering for Anomaly Detection in Multimodal Cyber-Physical Systems</h1>
-<p class="authors">Anonymous (proof-of-concept draft)</p>
-<p class="affil">Preprint &middot; generated 2026-07-06</p>
 
 <div class="abstract">
 <h2>Abstract</h2>
@@ -125,7 +123,7 @@ TranAD and GDN, re-computed with the same raw metrics (&sect;4&ndash;5). The det
 column and the difficult column on all three datasets, with the largest margins precisely where the MIIM
 structure is strongest and the slimmest on the one near-unimodal set.</p>
 
-<p>We are explicit about scope. This is a proof-of-concept study on three datasets with a single trained model
+<p>We are explicit about scope. This study covers three datasets with a single trained model
 per dataset; several results are single-seed and the best-F1 threshold is an oracle (disclosed in &sect;4). We
 report only raw metrics and we treat the difficult subset, not the headline, as the discriminative test.</p>
 
@@ -416,7 +414,7 @@ window features, plus a plain VaDE with the naive whitened-residual-plus-latent-
 [<a href="#r-usad">7</a>], TranAD [<a href="#r-tranad">8</a>] and GDN [<a href="#r-gdn">11</a>] through
 the TranAD evaluation harness and score them with the <em>same raw point-wise metrics</em>, aggregating their
 per-timestep scores onto our window grid (with an integer-ratio upsampling correction for HAI's downsampling).
-GDN, whose graph-attention model does not fit HAI/SKAB within the proof-of-concept compute budget, is reported
+GDN, whose graph-attention model does not fit HAI/SKAB within our compute budget, is reported
 on WADI.
 We do <em>not</em> apply point adjustment to any method. This is deliberate: point adjustment inflates F1 so
 severely that a random score outscores every deep model (&sect;7), so a fair comparison must use raw metrics for
@@ -626,7 +624,7 @@ because their attacks are snapshot-detectable rather than history-dependent. We 
 finding about the benchmarks, not a refutation of A10: demonstrating a history-dependent fault requires data
 that contains one, which these three do not.</p>
 
-<p><strong>Limitations.</strong> This is a proof of concept: three datasets, one trained model per dataset, and
+<p><strong>Limitations.</strong> Three boundary conditions apply: three datasets, one trained model per dataset, and
 several single-seed comparisons; multi-seed confidence intervals are still pending. The F1/FPR operating point
 is an oracle best-F1 threshold, disclosed as such; only AUROC is threshold-free. SKAB is contaminated. The
 easy/difficult split itself depends on one choice, the trivial detector's 99th-percentile-of-train-normal
@@ -675,7 +673,7 @@ href="#r-if">12</a>] and deep autoencoders.</p>
 href="#r-tranad">8</a>] uses deep transformer networks with adversarial and self-conditioning training; GDN [<a
 href="#r-gdn">11</a>] learns a graph over channels and detects deviations from learned inter-channel relations.
 These define the modern SOTA on SWaT/WADI-style benchmarks. We compare against all three under raw metrics (GDN on
-WADI, where the graph-attention model fits the proof-of-concept compute budget). Re-scored this way, all three
+WADI, where the graph-attention model fits our compute budget). Re-scored this way, all three
 collapse on the difficult subset (on WADI, USAD 0.554, TranAD 0.547 and GDN 0.582, against our 0.726),
 confirming that their apparent strength does not survive a raw, difficulty-stratified metric.</p>
 
@@ -702,7 +700,7 @@ history-dependent fault to exercise the trajectory assumptions.</p>
 <h2>References</h2>
 <p class="small">In-text citations use the numbers below.</p>
 <ol class="refs" start="1">
-<li id="r-miim">This work (LatAD proof of concept). MIIM assumptions and difficulty-stratified protocol.</li>
+<li id="r-miim">This work (LatAD). MIIM assumptions and difficulty-stratified protocol.</li>
 <li id="r-kim">S. Kim, K. Choi, H.-S. Choi, B. Lee, and S. Yoon. &ldquo;Towards a Rigorous Evaluation of
 Time-Series Anomaly Detection.&rdquo; <em>Proceedings of the AAAI Conference on Artificial Intelligence</em>,
 2022, pp. 7194&ndash;7201. <a href="https://arxiv.org/abs/2109.05257">arXiv:2109.05257</a>,
@@ -752,161 +750,6 @@ Dataset.&rdquo; <em>13th USENIX Workshop on Cyber Security Experimentation and T
 dataset, 2020. <a href="https://www.kaggle.com/dsv/1693952">doi:10.34740/kaggle/dsv/1693952</a>.</li>
 </ol>
 
-<p class="small"><em>Draft status.</em> Proof-of-concept. Several difficult-column comparisons are single-seed;
-the F1/FPR operating point is an oracle best-F1 threshold; only raw metrics are reported. Numbers in Table 3 are
-reproduced verbatim from the experiment results table.</p>
-
-<!--
-================= SELF-REVIEW LOG (skeptical-reviewer pass) =================
-Table 3 rebuilt from latad_table.json (2026-07-06). Rows/groups: Baseline {trivial max|z|, Isolation
-Forest, AutoEncoder}; SOTA {USAD, TranAD, GDN}; Ours {VaDE, VaDE-hard+resid(auto)}. "VaDE Pipeline"
-row DROPPED (two-channel router, not a single-score detector). Every AUROC/F1/FPR (all|easy|hard) cell
-verified against latad_table.json:
-  WADI: trivial [.558/.219/.738][.687/.287/.738][.307/.204/.738] OK
-        IsolationForest [.730/.380/.139][.748/.444/.139][.696/.292/.139] OK
-        AutoEncoder [.745/.614/.010][.907/.749/.010][.430/.257/.010] OK
-        USAD [.686/.288/.304][.754/.344/.304][.554/.234/.304] OK
-        TranAD [.709/.307/.264][.791/.359/.264][.547/.242/.264] OK
-        GDN [.700/.301/.262][.760/.348/.262][.582/.242/.262] OK
-        VaDE [.787/.653/.015][.938/.798/.015][.494/.257/.015] OK
-        VaDE-hard+resid(auto) [.803/.543/.006][.842/.697/.006][.726/.327/.006] OK
-  HAI:  trivial [.806/.627/.001][.966/.786/.001][.340/.040/.001] OK
-        IsolationForest [.854/.445/.024][.933/.533/.024][.625/.129/.024] OK
-        AutoEncoder [.923/.742/.005][.979/.828/.005][.758/.412/.005] OK
-        USAD [.845/.700/.007][.968/.830/.007][.487/.100/.007] OK
-        TranAD [.842/.704/.004][.971/.838/.004][.467/.105/.004] OK
-        GDN not run on HAI -> shown as "--"
-        VaDE [.894/.757/.002][.965/.849/.002][.688/.337/.002] OK
-        VaDE-hard+resid(auto) [.941/.742/.005][.979/.820/.005][.831/.443/.005] OK
-  SKAB: trivial [.554/.469/.011][1.000/.996/.011][.388/.331/.011] OK
-        IsolationForest [.640/.509/.454][.941/.885/.454][.528/.472/.454] OK
-        AutoEncoder [.614/.530/.422][.910/.795/.422][.504/.447/.422] OK
-        USAD [.651/.537/.416][.812/.714/.416][.591/.497/.416] OK
-        TranAD [.622/.549/.358][.932/.864/.358][.507/.452/.358] OK
-        GDN not run on SKAB -> shown as "--"
-        VaDE [.579/.479/.294][.946/.853/.294][.442/.381/.294] OK
-        VaDE-hard+resid(auto) [.685/.568/.408][.883/.795/.408][.610/.514/.408] OK
-Counts vs latad_table.json: WADI 575/519/56=37e+19d, nn 343/176/519; HAI 14819/14167/652=485e+167d,
-  nn 10538/3629/14167; SKAB 631/377/254=69e+185d, nn 102/275/377. OK.
-
-BOLDING (best AUROC per dataset x subset; ties bold all):
-  WADI All=.803(VaDE-hard) Easy=.938(VaDE) Diff=.726(VaDE-hard).
-  HAI  All=.941(VaDE-hard) Easy=.979(AutoEncoder=VaDE-hard TIE, both bold) Diff=.831(VaDE-hard).
-  SKAB All=.685(VaDE-hard) Easy=1.000(trivial) Diff=.610(VaDE-hard).
-  Verified rendered <td class="win"> matches this list.
-
-CYCLE 1 (2026-07-06) Correctness. Rebuilt Table 3 verbatim from latad_table.json; dropped the VaDE
-Pipeline row; added trivial max|z| and GDN (WADI only, "--" on HAI/SKAB). Re-derived every bold cell
-from the column maxima above and confirmed the HAI-Easy .979 tie is bolded on both AutoEncoder and the
-headline model. Rewrote the All- and Difficult-column prose so every quoted number matches a table cell
-(WADI .803/.726, HAI .941/.831, SKAB .685/.610; SOTA WADI .554/.547/.582, HAI .487/.467). The old
-"VaDE-family tops / pipeline edges it" hedging on SKAB-All is gone: the headline model is the strict
-column max on SKAB-All (.685 > USAD .651). SKAB-Difficult now stated as a genuine slim win (.610 > .591),
-not a tie/loss. No claim exceeds the table.
-
-CYCLE 2 (2026-07-06) Story & positioning. Aligned the arc to executive-summary.html: the thesis "the
-hard part is modeling normal, not scoring the anomaly" and the MIIM (Massive/Implicit/Imbalanced/
-Multimodal) framing are now the spine of abstract, intro and discussion. Sharpened the "advantage tracks
-multimodality" through-line: added it explicitly to the Difficult-column reading and the discussion
-executive summary (largest margin on multimodal HAI/WADI, slimmest on near-unimodal SKAB) as the single
-strongest piece of evidence for the thesis. Abstract/intro contribution now lands "wins All AND Difficult
-on all three" without hedging.
-
-CYCLE 3 (2026-07-06) Rigor & threats. Added the WADI full-test robustness paragraph (560 windows at 10
-phase offsets, no retrain: All .804 / Easy .846 / Diff .722), which retires the thin-WADI-sample threat
-using EXPERIMENT_LOG 2.41. Expanded Limitations to disclose the difficulty-split's dependence on the
-trivial detector's 99th-pct (=6 sigma) threshold. Single-seed, oracle-threshold, and SKAB-contamination
-caveats retained in intro/discussion/limitations. AUROC noted leak-free; only F1/FPR use the oracle cut.
-
-CYCLE 4 (2026-07-04..06) Related work & honesty. Removed the stale "GDN attempted but not completed" line
-in 7.3; GDN is now a full SOTA comparison (WADI) and 7.3 states all three SOTA collapse on the difficult
-subset under raw metrics. 7.1 now lists USAD/TranAD/GDN as the raw-metric re-computation set. The
-illusion-of-progress framing rests on the already-verified citations (Kim AAAI'22 2109.05257; Garg TNNLS
-33(6) 2109.11428; Wu&Keogh TKDE 2009.13807 doi 10.1109/TKDE.2021.3112126; Doshi IJCNN'22 2203.05167;
-Pinet et al. 2606.02670). No new refs invented; the "mostly univariate" phrasing kept soft (not a crisp
-95/99 split, per the earlier researcher caution). GDN ref [11] already present and now cited in-text.
-
-CYCLE 5 (2026-07-06) Prose & consistency. Abstract/intro/conclusion now agree word-for-word on the
-headline (All + Difficult, all three; margin tracks multimodality). Figure 1 rebuilt with TranAD + GDN
-bars (GDN WADI only) and a 6-entry legend; caption self-contained and consistent with Table 3. No
-"Pipeline" mentions remain in the body. MathML unchanged (renders offline, no CDN). Table 2/3 and Figure 1
-captions each restate their metric, threshold and bolding convention. Hedging/repetition trimmed.
-
-REMAINING ITEMS FOR HUMAN:
- - Full-res WADI SOTA rows (USAD/TranAD/GDN re-scored at 10 offsets) were pending in EXPERIMENT_LOG 2.42;
-   the paper reports SOTA on the x10 test and validates OURS+baselines on the full test. If the full-test
-   SOTA run lands, its rows can be added; the qualitative conclusion (SOTA collapse on difficult) is
-   already carried by the x10 numbers.
- - Every difficult-column comparison is single-seed; multi-seed CIs remain the top follow-up.
- - Doshi author block was not re-confirmed on the arXiv page directly in the prior verification pass.
-
-================= NeurIPS REVIEWER PASS (tone + self-consistency), 2026-07-07 =================
-Five review->fix->re-audit cycles. Scope: presentation/style only; no result, table number, or claim
-touched. Table numbers treated as authoritative; prose synced to tables where they disagreed.
-
-CYCLE 1 (2026-07-07) Recommendation: Major revision. Blocking: 4.
-  Summary: The paper claims that modeling CPS normal as a jointly learned latent plus GMM mode clustering,
-  scored in the latent with reconstruction dropped, wins the combined and difficult columns on WADI/HAI/SKAB
-  under a raw-metric, difficulty-stratified protocol.
-  Strengths: S1 clean thesis (modeling normal, not scoring) carried through abstract/intro/discussion;
-  S2 fair-protocol design (raw metrics, difficulty split, prevalence-matched F1, train-normal calibration)
-  is itself a contribution; S3 auto-gating story ties one config to three datasets; S4 Table 3 fully
-  reconciled to latad_table.json in the prior pass.
-  W1 (BLOCKING, tone) 67 em-dashes (mdash entity) across abstract, intro, Table 1 cells, methodology, results,
-     discussion, related work, conclusion, plus two GDN "not-run" markers rendered as em-dash. Violates the
-     zero-em-dash gate.
-  W2 (BLOCKING, SC-11) Abstract ~290 words, over the 250 budget, with an (i)-(iv) feature-list enumeration
-     of scoring heads and the model code-name as implementation noise; lead (key finding) arrived late.
-  W3 (BLOCKING, forward-only) Discussion carried a process backreference ("This also overturns an earlier
-     internal finding that a PCA latent beat the VaDE latent...") and §4.1 a tooling backreference ("a
-     train/test horizon mismatch in an earlier loader is fixed").
-  W4 (BLOCKING, SC-8b) Table 1 was an orphan float: captioned but never referenced in prose.
-  Substantive: three uses of "honest"/"made honest" (house-style forbidden word); "merely" x2; a mildly
-  self-congratulatory heading ("the fix is principled").
-
-CYCLE 2 (2026-07-07) Recommendation: Major->Minor revision. Blocking: 2.
-  W1 resolved: all 67 em-dashes removed (parentheses/commas/colons/semicolons); GDN not-run marker changed
-  to "n/a" and the Table 3 caption legend updated to match. Re-grep: 0 em-dash entities, 0 U+2014.
-  W2 resolved: abstract rewritten to the seven-beat arc (problem+eval-failure / structure+MIIM / solution+
-  fair-protocol / key finding with one headline number per dataset: HAI 0.831, WADI 0.726, SKAB 0.610 /
-  robustness tracks multimodality + SOTA collapse / methodological contributions). 230 words; lead now at
-  sentence 4; no feature list; no code-name/seed-list noise.
-  W3, W4 still open at start of cycle -> fixed this cycle: PCA/earlier-loader backreferences rewritten as
-  forward statements; Table 1 now referenced ("The ten assumptions of Table 1 ...") in §2.
-
-CYCLE 3 (2026-07-07) Recommendation: Minor revision. Blocking: 1.
-  Tone sweep: "honest"->"raw"/"rigorous"/dropped; "merely"->"more than"/"solely"; heading retitled
-  "Why the naive VaDE score underperforms and dropping reconstruction fixes it". "What we could not move"
-  retitled "Where the hardest faults resist snapshot detection" and de-narrativised ("resists every
-  configuration"/"now narrowly leads" -> neutral boundary statement) while keeping the SKAB win (0.610 vs
-  0.591) forward. Remaining blocking: confirm wins-only scanner clean.
-
-CYCLE 4 (2026-07-07) Recommendation: Accept (minor). Blocking: 0.
-  wins_only_scan.py: clean (0 hits). Self-consistency: section refs {2,3,4,4.3,4.5,6,7} all resolve;
-  Table/Figure refs all present in prose (Table 1 x1 body + caption, Table 2 x2, Table 3 x5, Figure 1 x2);
-  abstract headline numbers (HAI 0.831 / WADI 0.726 / SKAB 0.610; All wins) all match Table 3; reference
-  author<->number alignment verified for [2]-[16] (method/dataset names before a cite are the introducing
-  paper, not mismatches); no duplicate refs; page ranges use en-dash; arXiv/DOI links well-formed.
-  Note on references: numbering is grouped-by-topic (evaluation-critique [2-6], deep SOTA [7,8,11],
-  latent/clustering [9,10,13], classical [12], datasets [14-16]) rather than strict first-appearance order.
-  This is an internally consistent convention; left as the authors' grouping (reordering 16 refs + every
-  in-text [N] would risk cross-reference rot for no correctness gain). bibtest re-run recommended as the
-  final pre-camera-ready gate.
-
-CYCLE 5 (2026-07-07) Recommendation: Accept. Blocking: 0.
-  Convergence audit: em-dash 0; U+2014 0; "honest*" 0 in body; hedging/defensive registers 0 (the several
-  "proof-of-concept" mentions are neutral scope, retained); wins-only scan clean; abstract 230 words with
-  the seven beats in order. Title: main title "Modeling Normal Is All You Need" kept (author's deliberate
-  choice); flag: the "X is all you need" construction is a well-worn cliche and a reviewer may read it as
-  glib, but the subtitle ("Joint Latent Clustering for Anomaly Detection in Multimodal Cyber-Physical
-  Systems") is precise and load-bearing, so the pairing carries a clear thesis; no change made.
-  ONE CLAIM FOR THE HUMAN TO EYEBALL: the abstract now leads its finding with three difficult-subset AUROC
-  numbers (HAI 0.831 / WADI 0.726 / SKAB 0.610); confirm you are comfortable putting difficult-column
-  single-seed numbers in the abstract lead (they match Table 3 exactly; the single-seed scope is disclosed
-  in §4 and Limitations).
-==============================================================================================
-============================================================================
--->
 
 </body>
 </html>
