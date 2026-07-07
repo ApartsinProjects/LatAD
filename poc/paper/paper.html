@@ -669,8 +669,7 @@ latent prior that learns representation and clusters jointly. DAGMM [<a href="#r
 an autoencoder with a Gaussian-mixture energy for anomaly detection; we borrow its variance-collapse
 regularisation but find, on these datasets, that scoring against explicit per-mode Gaussians in a jointly learned
 latent outperforms a learned-Gaussian energy. Our whitened residual uses the Ledoit&ndash;Wolf shrinkage
-covariance estimator [<a href="#r-lw">13</a>]. Classical baselines include Isolation Forest [<a
-href="#r-if">12</a>] and deep autoencoders.</p>
+covariance estimator [<a href="#r-lw">13</a>]. Classical baselines are Isolation Forest [<a href="#r-if">12</a>] and a deep autoencoder [<a href="#r-aead">22</a>], both fitted on the same window features, together with a trivial per-channel range detector that also defines the easy/difficult split.</p>
 
 <h3>7.3&nbsp;&nbsp;Deep multivariate CPS anomaly detection</h3>
 <p>USAD [<a href="#r-usad">7</a>] couples two adversarially trained autoencoders; TranAD [<a
@@ -682,9 +681,7 @@ collapse on the difficult subset (on WADI, USAD 0.554, TranAD 0.547 and GDN 0.58
 confirming that their apparent strength does not survive a raw, difficulty-stratified metric.</p>
 
 <h3>7.4&nbsp;&nbsp;Datasets</h3>
-<p>WADI [<a href="#r-wadi">14</a>] and the HAI ICS security dataset [<a href="#r-hai">15</a>] are standard CPS
-testbeds; SKAB [<a href="#r-skab">16</a>] is a smaller, contaminated rotor benchmark that our analysis and prior
-work agree is genuinely subtle.</p>
+<p>We evaluate on three real CPS testbeds chosen to span the modality axis of the MIIM thesis. WADI [<a href="#r-wadi">14</a>] is a 123-channel water-distribution testbed from iTrust, and SWaT [<a href="#r-swat">21</a>] is its 51-channel water-treatment sibling; the two are the de facto standard multivariate CPS benchmarks and the primary targets of the evaluation critique above [<a href="#r-kim">2</a>,&nbsp;<a href="#r-wukeogh">4</a>]. HAI [<a href="#r-hai">15</a>] is a 59-channel hardware-in-the-loop industrial control testbed spanning several coupled processes, the most strongly multimodal of the three. SKAB [<a href="#r-skab">16</a>] is a smaller, contaminated 8-channel rotor and water-circulation benchmark, near-unimodal and, by our analysis, the only genuinely subtle set (a trivial univariate rule is near chance on it). We report WADI, HAI and SKAB, which contrast a large multimodal distribution network, a strongly multimodal plant and a near-unimodal rotor, so the difficulty-stratified results read directly against the MIIM structure of each dataset.</p>
 
 <!-- ============================================================= -->
 <h2>8&nbsp;&nbsp;Conclusion</h2>
@@ -756,6 +753,8 @@ dataset, 2020. <a href="https://www.kaggle.com/dsv/1693952">doi:10.34740/kaggle/
 <li id="r-memae">D. Gong, L. Liu, V. Le, B. Saha, M. R. Mansour, S. Venkatesh, and A. van den Hengel. &ldquo;Memorizing Normality to Detect Anomaly: Memory-augmented Deep Autoencoder for Unsupervised Anomaly Detection.&rdquo; <em>Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)</em>, 2019. <a href="https://arxiv.org/abs/1904.02639">arXiv:1904.02639</a>.</li>
 <li id="r-sarfraz">M. S. Sarfraz, M.-Y. Chen, L. Layer, K. Peng, and M. Koulakis. &ldquo;Position: Quo Vadis, Unsupervised Time Series Anomaly Detection?&rdquo; <em>Proceedings of the 41st International Conference on Machine Learning (ICML)</em>, 2024. <a href="https://arxiv.org/abs/2405.02678">arXiv:2405.02678</a>.</li>
 <li id="r-timesead">D. Wagner, T. Michels, F. C. F. Schulz, A. Nair, M. Rudolph, and M. Kloft. &ldquo;TimeSeAD: Benchmarking Deep Multivariate Time-Series Anomaly Detection.&rdquo; <em>Transactions on Machine Learning Research (TMLR)</em>, 2023. <a href="https://openreview.net/forum?id=iMmsCI0JsS">OpenReview</a>.</li>
+<li id="r-swat">A. P. Mathur and N. O. Tippenhauer. &ldquo;SWaT: A Water Treatment Testbed for Research and Training on ICS Security.&rdquo; <em>2016 International Workshop on Cyber-physical Systems for Smart Water Networks (CySWater)</em>, 2016. <a href="https://doi.org/10.1109/CySWater.2016.7469060">doi:10.1109/CySWater.2016.7469060</a>.</li>
+<li id="r-aead">M. Sakurada and T. Yairi. &ldquo;Anomaly Detection Using Autoencoders with Nonlinear Dimensionality Reduction.&rdquo; <em>Proceedings of the MLSDA 2014 2nd Workshop on Machine Learning for Sensory Data Analysis</em>, 2014, pp. 4&ndash;11. <a href="https://doi.org/10.1145/2689746.2689747">doi:10.1145/2689746.2689747</a>.</li>
 </ol>
 
 
