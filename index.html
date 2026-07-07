@@ -520,14 +520,13 @@ defines the difficulty split (&sect;5.3): near-perfect on Easy (SKAB 1.000, HAI 
 </table>
 </div>
 
-<h3>6.1&nbsp;&nbsp;Reading the table</h3>
-<p><strong>Combined (All) column.</strong> The headline model attains the best All-subset AUROC of any method on
+<p><strong>Overall detection.</strong> The headline model attains the best All-subset AUROC of any method on
 every dataset: WADI 0.803, HAI 0.941 and SKAB 0.685. On WADI and HAI it clears the strongest baseline and all
 three SOTA methods by a wide margin; on SKAB the margin is slim but clean, topping the best competitor (USAD
 0.651) as well as Isolation Forest (0.640), AutoEncoder (0.614), TranAD (0.622) and plain VaDE (0.579). The
 detector thus leads the combined column on all three datasets.</p>
 
-<p><strong>Difficult column.</strong> This is where the design earns its keep, and the model leads it on all three
+<p><strong>Difficult, joint-structure faults.</strong> This is where the design earns its keep, and the model leads the difficult subset on all three
 datasets. On WADI the headline model reaches 0.726, against Isolation Forest 0.696, AutoEncoder 0.430, and the
 three SOTA methods USAD 0.554, TranAD 0.547 and GDN 0.582. On HAI it reaches 0.831, more than 0.34 above USAD
 (0.487) and TranAD (0.467) and above AutoEncoder (0.758). On SKAB it reaches 0.610, above USAD (0.591) and every
@@ -535,18 +534,18 @@ other method, a genuine, if slim, win on the single near-unimodal dataset where 
 weakest. The margin over SOTA is largest on the two multimodal datasets (HAI, WADI) and slimmest on SKAB,
 tracking multimodality exactly as the thesis predicts.</p>
 
-<p><strong>Easy column.</strong> On the trivially separable anomalies every method is strong and the ranking is
+<p><strong>Trivially separable anomalies.</strong> On the easy subset every method is strong and the ranking is
 uninformative; the trivial rule itself tops the easy column on SKAB (1.000), plain VaDE and the AutoEncoder each
 top another. Dropping the reconstruction term costs a little easy AUROC on WADI (0.938 &rarr; 0.842), because
 correlation-intact level spikes do reconstruct large, which is the expected easy&harr;difficult trade-off,
 and it is more than repaid on the difficult column (0.494 &rarr; 0.726).</p>
 
-<p><strong>The trivial baseline defines the split.</strong> The trivial max|z| rule is strong on Easy by
+<p><strong>Validity of the difficulty split.</strong> The trivial max|z| rule is strong on Easy by
 construction (SKAB 1.000, HAI 0.966, WADI 0.687) and drops to near chance on Difficult (0.307&ndash;0.388): the
 difficult subset is precisely the anomalies this univariate range rule cannot see, so a method that scores well
 there is detecting joint structure the rule misses.</p>
 
-<p><strong>SOTA under raw metrics.</strong> Re-computed with raw point-wise metrics, all three deep SOTA methods
+<p><strong>Deep SOTA under raw metrics.</strong> Re-computed with raw point-wise metrics, all three deep SOTA methods
 collapse on the difficult subset. On HAI, USAD and TranAD fall to 0.487 and 0.467; on WADI, USAD, TranAD and GDN
 sit at 0.554, 0.547 and 0.582, all below the trivial-plus-Isolation-Forest band and far below our 0.726,
 even while they remain respectable on Easy. This is the concrete face of the &ldquo;illusion of success&rdquo;:
