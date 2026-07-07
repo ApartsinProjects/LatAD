@@ -84,16 +84,6 @@ subset. The methodological contributions are the MIIM assumption set, the diffic
 and a latent-only score that drops reconstruction because a flexible decoder rebuilds the hard faults faithfully.</p>
 </div>
 
-<p class="toc"><strong>Contents.</strong>
-1 Introduction &middot;
-2 Related work &middot;
-3 The MIIM assumptions about CPS normal data &middot;
-4 Method &middot;
-5 Experimental methodology &middot;
-6 Results &middot;
-7 Discussion &middot;
-8 Conclusion.</p>
-
 <h2>1&nbsp;&nbsp;Introduction</h2>
 
 <p>A modern cyber-physical system (CPS), whether a water-treatment plant, an industrial control loop, or a rotating machine, integrates hundreds of sensors, embedded controllers, and physical actuators into a single tightly coupled unit that continuously senses its own state and acts upon it. This complexity puts its faults beyond enumeration: the combinations of component, control mode, and operating condition in which a fault can arise cannot be predefined, tested, or exhaustively sampled before deployment, and many faults develop slowly, as wear, drift, or degradation that shows no obvious symptom until it is well advanced and can escalate into unplanned downtime or a safety-critical failure. Because the faults cannot be specified in advance, they must be discovered from the system’s own behaviour as it operates, which is the task of anomaly detection [<a href="#r-chandola">22</a>]. That behaviour is richly observable: high-frequency measurements of vibration, current, temperature, pressure, and position, together with internal control signals, are recorded continuously and, in principle, carry an early signature of almost any developing fault.</p>
