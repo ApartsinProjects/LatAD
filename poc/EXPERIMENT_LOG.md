@@ -808,7 +808,12 @@ DIFFICULT AUROC, winning per-dataset configs:
   full-test run therefore trains ONCE on the ×10 normal (identical model) then scores all 10 full-res phase-offsets
   with NO per-offset retrain (checkpoint reused within the one container) — `modal_sota.py` full-test block.
 - **Full-res WADI SOTA test generated** (`wadi_testfull.npy`, 172803×123, standardized on ×10-normal, offset-0 ==
-  the ×10 test exactly). Full-test USAD/TranAD offset-scoring launched; results pending.
+  the ×10 test exactly). Full-test USAD/TranAD offset-scoring launched; **TIMED OUT (7200s)**: the TranAD harness
+  RE-TRAINS per offset (the no-`--retrain` scoring pass didn't reuse the checkpoint), ~24 min/offset → only 5/10
+  USAD offsets done in 2h. Full-test SOTA rows NOT obtained. Conclusion unaffected: SOTA already loses on the ×10
+  test (WADI difficult USAD .55 / TranAD .55 / GDN .58 vs ours .73) and OURS is validated on the full 560-window
+  test (difficult .722, unchanged). Cheap fix if wanted: concatenate all 10 offsets into ONE test array and score
+  in a single train-once pass (avoids the per-offset retrain + timeout).
 
 ### 2.9 Code audit (2026-07-06, subagent) — findings & disposition
 - **#1 FIXED `compare_miim.py`:** snapshot-baseline AUROC relabelled `bad_transition` windows as normal
