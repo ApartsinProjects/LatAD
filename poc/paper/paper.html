@@ -91,17 +91,17 @@ and a latent-only score that drops reconstruction because a flexible decoder reb
 <!-- ============================================================= -->
 <h2>1&nbsp;&nbsp;Introduction</h2>
 
-<p>A modern cyber-physical system (CPS), whether a water-treatment plant, an industrial control loop, or a rotating machine, integrates hundreds of sensors, embedded controllers, and physical actuators into a single tightly coupled unit that continuously senses its own state and acts upon it. This complexity puts its faults beyond enumeration: the combinations of component, control mode, and operating condition in which a fault can arise cannot be predefined, tested, or exhaustively sampled before deployment, and many faults develop slowly, as wear, drift, or degradation that shows no obvious symptom until it is well advanced and can escalate into unplanned downtime or a safety-critical failure. Because the faults cannot be specified in advance, they must be discovered from the system’s own behaviour as it operates, which is the task of anomaly detection [<a href="#r-chandola">23</a>]. That behaviour is richly observable: high-frequency measurements of vibration, current, temperature, pressure, and position, together with internal control signals, are recorded continuously and, in principle, carry an early signature of almost any developing fault.</p>
+<p>A modern cyber-physical system (CPS), whether a water-treatment plant, an industrial control loop, or a rotating machine, integrates hundreds of sensors, embedded controllers, and physical actuators into a single tightly coupled unit that continuously senses its own state and acts upon it. This complexity puts its faults beyond enumeration: the combinations of component, control mode, and operating condition in which a fault can arise cannot be predefined, tested, or exhaustively sampled before deployment, and many faults develop slowly, as wear, drift, or degradation that shows no obvious symptom until it is well advanced and can escalate into unplanned downtime or a safety-critical failure. Because the faults cannot be specified in advance, they must be discovered from the system’s own behaviour as it operates, which is the task of anomaly detection [<a href="#r-chandola">22</a>]. That behaviour is richly observable: high-frequency measurements of vibration, current, temperature, pressure, and position, together with internal control signals, are recorded continuously and, in principle, carry an early signature of almost any developing fault.</p>
 
-<p>The task is commonly framed as characterising the anomalies, but that framing is misleading. Were a representative set of labelled faults available, the task would reduce to supervised classification; in practice genuine faults are rare and the few on record seldom span the ways a system can fail [<a href="#r-ruff">25</a>], so scarce faults cannot define the decision boundary and, as revisited below, cannot even be spent reliably on model selection. The information lies on the other side of the boundary, in the normal data, which is abundant and rarely exploited in full. Modelling that normal law faithfully is therefore the hard part of the problem, and cyber-physical normal is a law of a particular kind. Shaped by deterministic physics, hard actuator and setpoint limits, and engineered control, it is the union of many bounded, curved operating regimes, some common and many rare, each with legitimately low-density fringes, rather than a single statistical blob. A detector that mis-models this structure fails however it thresholds.</p>
+<p>The task is commonly framed as characterising the anomalies, but that framing is misleading. Were a representative set of labelled faults available, the task would reduce to supervised classification; in practice genuine faults are rare and the few on record seldom span the ways a system can fail [<a href="#r-ruff">24</a>], so scarce faults cannot define the decision boundary and, as revisited below, cannot even be spent reliably on model selection. The information lies on the other side of the boundary, in the normal data, which is abundant and rarely exploited in full. Modelling that normal law faithfully is therefore the hard part of the problem, and cyber-physical normal is a law of a particular kind. Shaped by deterministic physics, hard actuator and setpoint limits, and engineered control, it is the union of many bounded, curved operating regimes, some common and many rare, each with legitimately low-density fringes, rather than a single statistical blob. A detector that mis-models this structure fails however it thresholds.</p>
 
 <p>A fault is anything that leaves this union of normal regimes, and the interesting ones stay <em>inside</em> the marginal envelope of every channel while breaking the joint structure: a correlation break, a between-mode pocket, a history-inconsistent state. These faults are invisible to any per-channel range rule, and, as we show, to a reconstruction residual as well.</p>
 
 <p>Two problems make progress on this task hard to measure. The first is evaluation. The dominant metric in the
 literature, point-adjusted F1, inflates scores so severely that a <em>random</em> anomaly score can beat every
-published deep model [<a href="#r-kim">2</a>, <a href="#r-garg">3</a>]; and even under raw metrics, public CPS
+published deep model [<a href="#r-kim">1</a>, <a href="#r-garg">2</a>]; and even under raw metrics, public CPS
 benchmarks are dominated by anomalies that a one-line univariate rule already separates [<a
-href="#r-wukeogh">4</a>], so a high headline number certifies little. The second is modelling. If normal is a
+href="#r-wukeogh">3</a>], so a high headline number certifies little. The second is modelling. If normal is a
 union of many imbalanced modes, then a global anomaly model cannot represent it (a single blob under-fits the
 regime structure), a single deep autoencoder alarms on rare-but-valid modes (the trust-eroding false positive),
 and a reconstruction residual is blind to exactly the joint-structure faults that matter because a flexible
@@ -202,7 +202,7 @@ latent, all calibrated on train-normal). We describe each in turn; the actual im
 
 <h3>3.1&nbsp;&nbsp;Representation: Variational Deep Embedding (VaDE)</h3>
 
-<p>VaDE [<a href="#r-vade">9</a>] is a variational autoencoder whose latent prior is a Gaussian mixture, so the
+<p>VaDE [<a href="#r-vade">8</a>] is a variational autoencoder whose latent prior is a Gaussian mixture, so the
 representation and the operating-mode clusters are learned <em>together</em> (A1, A7) rather than one after the
 other. An encoder maps a window feature vector <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>x</mi></math> to a latent Gaussian <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>q</mi><mo stretchy="false">(</mo><mi>z</mi><mo>&#8739;</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>N</mi><mo stretchy="false">(</mo><mi>&#956;</mi><mo>,</mo><mtext>diag</mtext><mspace width="0.1em"/><msup><mi>&#963;</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow></math>; a decoder reconstructs <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mover><mi>x</mi><mo>^</mo></mover></math>; and the prior is
 <span class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
@@ -237,7 +237,7 @@ objective is the negative evidence lower bound; per window it is</p>
 <p>where <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#947;</mi><mi>c</mi></msub><mo>&#8733;</mo><msub><mi>&#960;</mi><mi>c</mi></msub><mspace width="0.1em"/><mi>N</mi><mo stretchy="false">(</mo><mi>z</mi><mo>&#8739;</mo><msub><mi>&#956;</mi><mi>c</mi></msub><mo>,</mo><msubsup><mi>&#963;</mi><mi>c</mi><mn>2</mn></msubsup><mo stretchy="false">)</mo></mrow></math> are the responsibilities. Three standard measures prevent the
 well-known cluster collapse in which many components are abandoned during joint training: a KL/cluster
 <em>warm-up</em> that anneals <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>&#946;</mi></math> from 0 to 1 so the encoder settles on the pretrained mixture
-initialisation before the prior is pulled around; a DAGMM-style [<a href="#r-dagmm">10</a>] penalty on tiny
+initialisation before the prior is pulled around; a DAGMM-style [<a href="#r-dagmm">9</a>] penalty on tiny
 component variances (a variance floor plus a <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><munder><mo>&#8721;</mo><mi>c</mi></munder><msubsup><mi>&#963;</mi><mi>c</mi><mrow><mo>&#8722;</mo><mn>2</mn></mrow></msubsup></math> term); and a slower learning rate on the mixture parameters so
 the GMM initialisation (fitted on the pretrained latent) is refined, not destroyed. Training proceeds as
 plain-VAE pretraining, GMM initialisation on the encoded means, then joint optimisation of the full objective.</p>
@@ -306,7 +306,7 @@ score is the sum of the two z-normalised heads,
 <p>On some datasets the fault <em>does</em> surface in reconstruction. The optional residual head reduces the
 per-channel residual <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>r</mi></math> to
 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mn>30</mn></math> dimensions, fits a
-Ledoit&ndash;Wolf-shrunk [<a href="#r-lw">13</a>] precision per mode, and combines the per-mode whitened
+Ledoit&ndash;Wolf-shrunk [<a href="#r-lw">12</a>] precision per mode, and combines the per-mode whitened
 energies by responsibility:</p>
 <span class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
   <mrow><msub><mi>s</mi><mtext>resid</mtext></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
@@ -352,16 +352,16 @@ train-normal only.</div>
 <h3>4.1&nbsp;&nbsp;Datasets</h3>
 <p>We use three real CPS datasets and no synthetic data in the results tables.</p>
 <ul>
-<li><strong>WADI</strong> [<a href="#r-wadi">14</a>], a water-distribution testbed, 123 sensor/actuator
+<li><strong>WADI</strong> [<a href="#r-wadi">13</a>], a water-distribution testbed, 123 sensor/actuator
 channels. Roughly a quarter of channels are near-constant in normal operation; these are attack <em>carriers</em>,
 not noise, and are kept. A few channels carry physically impossible standardised values (a channel constant at
 zero in the 14-day normal record, another recalibrated between files); standardised features are clipped to
 &plusmn;10&#963; to cap such sensor glitches. WADI is downsampled 10&times; on both streams, with the train and
 test horizons matched.</li>
-<li><strong>HAI</strong> [<a href="#r-hai">15</a>], a hardware-in-the-loop industrial control system
+<li><strong>HAI</strong> [<a href="#r-hai">14</a>], a hardware-in-the-loop industrial control system
 testbed (HAI 20.07), 59 channels, a multi-process plant. No clipping (its large excursions are real attack
 signal).</li>
-<li><strong>SKAB</strong> [<a href="#r-skab">16</a>], the Skoltech Anomaly Benchmark, an 8-channel
+<li><strong>SKAB</strong> [<a href="#r-skab">15</a>], the Skoltech Anomaly Benchmark, an 8-channel
 rotor/water-circulation testbed, contaminated and near-unimodal; the only genuinely subtle set (a trivial
 univariate rule is near chance).</li>
 </ul>
@@ -407,9 +407,9 @@ training or calibration. AUROC is leak-free; only the F1/FPR thresholds use the 
 flag.</p>
 
 <h3>4.5&nbsp;&nbsp;Baselines and SOTA re-computation</h3>
-<p>Classical baselines are Isolation Forest [<a href="#r-if">12</a>] and a deep autoencoder, both on the same
+<p>Classical baselines are Isolation Forest [<a href="#r-if">11</a>] and a deep autoencoder, both on the same
 window features, plus a plain VaDE with the naive whitened-residual-plus-latent-NLL score. For modern SOTA we re-run USAD
-[<a href="#r-usad">7</a>], TranAD [<a href="#r-tranad">8</a>] and GDN [<a href="#r-gdn">11</a>] through
+[<a href="#r-usad">6</a>], TranAD [<a href="#r-tranad">7</a>] and GDN [<a href="#r-gdn">10</a>] through
 the TranAD evaluation harness and score them with the <em>same raw point-wise metrics</em>, aggregating their
 per-timestep scores onto our window grid (with an integer-ratio upsampling correction for HAI's downsampling).
 GDN, whose graph-attention model does not fit HAI/SKAB within our compute budget, is reported
@@ -634,24 +634,24 @@ raw metrics, which makes our numbers look lower than point-adjusted leaderboard 
 <!-- ============================================================= -->
 <h2>7&nbsp;&nbsp;Related work</h2>
 
-<p>Anomaly detection is the unsupervised or semi-supervised task of flagging departures from a model of normal behaviour, adopted precisely because labelled anomalies are too scarce to train a classifier [<a href="#r-chandola">23</a>,&nbsp;<a href="#r-pang">24</a>,&nbsp;<a href="#r-ruff">25</a>]. On time series it must additionally respect temporal and cross-channel dependence [<a href="#r-tsreview">26</a>], and on cyber-physical and industrial control systems it underpins physics-aware intrusion and fault detection [<a href="#r-icssurvey">27</a>]. LatAD sits squarely in this line: unsupervised, trained on normal only, and specialised to the multimodal structure of cyber-physical normal behaviour.</p>
+<p>Anomaly detection is the unsupervised or semi-supervised task of flagging departures from a model of normal behaviour, adopted precisely because labelled anomalies are too scarce to train a classifier [<a href="#r-chandola">22</a>,&nbsp;<a href="#r-pang">23</a>,&nbsp;<a href="#r-ruff">24</a>]. On time series it must additionally respect temporal and cross-channel dependence [<a href="#r-tsreview">25</a>], and on cyber-physical and industrial control systems it underpins physics-aware intrusion and fault detection [<a href="#r-icssurvey">26</a>]. LatAD sits squarely in this line: unsupervised, trained on normal only, and specialised to the multimodal structure of cyber-physical normal behaviour.</p>
 
 <h3>7.1&nbsp;&nbsp;The illusion of progress in time-series anomaly-detection evaluation</h3>
 <p>A line of critical work shows that the standard evaluation of time-series anomaly detection is unreliable.
-Kim et al. [<a href="#r-kim">2</a>] demonstrate that the ubiquitous <em>point-adjustment</em> protocol
+Kim et al. [<a href="#r-kim">1</a>] demonstrate that the ubiquitous <em>point-adjustment</em> protocol
 (marking an entire ground-truth anomaly segment as detected if any single point in it is flagged) inflates
 F1 so drastically that a <em>random</em> anomaly score achieves higher point-adjusted F1 than every state-of-the-art
-model on SWaT and WADI. Garg et al. [<a href="#r-garg">3</a>] independently reproduce this inflation and show
+model on SWaT and WADI. Garg et al. [<a href="#r-garg">2</a>] independently reproduce this inflation and show
 that simple baselines (PCA, channel-wise autoencoders) beat elaborate deep models once metrics are made rigorous,
-and that deep methods often fail to detect even simple anomalies. Doshi et al. [<a href="#r-doshi">5</a>]
+and that deep methods often fail to detect even simple anomalies. Doshi et al. [<a href="#r-doshi">4</a>]
 diagnose the point-adjustment reward structure and propose a rectified evaluation. The critique now spans metrics and benchmarks alike. Wu and Keogh
-[<a href="#r-wukeogh">4</a>] argue that many popular benchmarks are flawed (triviality, mislabelling and
+[<a href="#r-wukeogh">3</a>] argue that many popular benchmarks are flawed (triviality, mislabelling and
 unrealistic anomaly density) creating an illusion of progress; and a recent benchmark analysis
-[<a href="#r-univar">6</a>] finds that anomaly segments in multivariate CPS benchmarks are mostly univariate
+[<a href="#r-univar">5</a>] finds that anomaly segments in multivariate CPS benchmarks are mostly univariate
 (SWaT and WADI sit among the datasets whose anomalies deviate univariately on close to all timesteps, with no
 long cross-channel-only segments), so a flat univariate model matches channel-dependent deep detectors.</p>
 
-<p>A parallel critique targets the dominant scoring mechanism itself. Reconstruction-based detectors assume that a model trained to reconstruct normal data reconstructs anomalies worse; Bouman and Heskes [<a href="#r-bouman">17</a>] show this assumption is unreliable, because anomalies lying far from normal data can be reconstructed perfectly in practice, and Gong et al. [<a href="#r-memae">18</a>] earlier showed that a deep autoencoder generalises well enough to rebuild anomalies and miss them. This is the theoretical counterpart of our Table 2 result that the reconstruction residual is at or below chance on correlation-break faults, and it motivates scoring in a clustered latent rather than through a reconstruction residual. A position paper by Sarfraz et al. [<a href="#r-sarfraz">19</a>] draws the two threads together, characterising the field as plagued by flawed evaluation metrics, inconsistent benchmarking, and unjustified design choices, and showing that state-of-the-art deep detectors effectively learn linear mappings that simple baselines reproduce; Wagner et al. [<a href="#r-timesead">20</a>] re-audit the widely used multivariate benchmarks, discard the ones with erroneous labels, and note the absence of any standard evaluation metric.</p>
+<p>A parallel critique targets the dominant scoring mechanism itself. Reconstruction-based detectors assume that a model trained to reconstruct normal data reconstructs anomalies worse; Bouman and Heskes [<a href="#r-bouman">16</a>] show this assumption is unreliable, because anomalies lying far from normal data can be reconstructed perfectly in practice, and Gong et al. [<a href="#r-memae">17</a>] earlier showed that a deep autoencoder generalises well enough to rebuild anomalies and miss them. This is the theoretical counterpart of our Table 2 result that the reconstruction residual is at or below chance on correlation-break faults, and it motivates scoring in a clustered latent rather than through a reconstruction residual. A position paper by Sarfraz et al. [<a href="#r-sarfraz">18</a>] draws the two threads together, characterising the field as plagued by flawed evaluation metrics, inconsistent benchmarking, and unjustified design choices, and showing that state-of-the-art deep detectors effectively learn linear mappings that simple baselines reproduce; Wagner et al. [<a href="#r-timesead">19</a>] re-audit the widely used multivariate benchmarks, discard the ones with erroneous labels, and note the absence of any standard evaluation metric.</p>
 
 <p>LatAD responds to these critiques directly. We report <em>raw</em> point-wise AUROC, F1 and FPR with no point
 adjustment for any method; we stratify by a trivial-detector difficulty split so that the discriminative
@@ -662,24 +662,24 @@ SOTA methods lose most of their apparent advantage on the difficult subset, whic
 critique predicts.</p>
 
 <h3>7.2&nbsp;&nbsp;Latent and clustering models for anomaly detection</h3>
-<p>Our representation is Variational Deep Embedding (VaDE) [<a href="#r-vade">9</a>], a VAE with a Gaussian-mixture
-latent prior that learns representation and clusters jointly. DAGMM [<a href="#r-dagmm">10</a>] similarly couples
+<p>Our representation is Variational Deep Embedding (VaDE) [<a href="#r-vade">8</a>], a VAE with a Gaussian-mixture
+latent prior that learns representation and clusters jointly. DAGMM [<a href="#r-dagmm">9</a>] similarly couples
 an autoencoder with a Gaussian-mixture energy for anomaly detection; we borrow its variance-collapse
 regularisation but find, on these datasets, that scoring against explicit per-mode Gaussians in a jointly learned
 latent outperforms a learned-Gaussian energy. Our whitened residual uses the Ledoit&ndash;Wolf shrinkage
-covariance estimator [<a href="#r-lw">13</a>]. Classical baselines are Isolation Forest [<a href="#r-if">12</a>] and a deep autoencoder [<a href="#r-aead">22</a>], both fitted on the same window features, together with a trivial per-channel range detector that also defines the easy/difficult split.</p>
+covariance estimator [<a href="#r-lw">12</a>]. Classical baselines are Isolation Forest [<a href="#r-if">11</a>] and a deep autoencoder [<a href="#r-aead">21</a>], both fitted on the same window features, together with a trivial per-channel range detector that also defines the easy/difficult split.</p>
 
 <h3>7.3&nbsp;&nbsp;Deep multivariate CPS anomaly detection</h3>
-<p>USAD [<a href="#r-usad">7</a>] couples two adversarially trained autoencoders; TranAD [<a
-href="#r-tranad">8</a>] uses deep transformer networks with adversarial and self-conditioning training; GDN [<a
-href="#r-gdn">11</a>] learns a graph over channels and detects deviations from learned inter-channel relations.
+<p>USAD [<a href="#r-usad">6</a>] couples two adversarially trained autoencoders; TranAD [<a
+href="#r-tranad">7</a>] uses deep transformer networks with adversarial and self-conditioning training; GDN [<a
+href="#r-gdn">10</a>] learns a graph over channels and detects deviations from learned inter-channel relations.
 These define the modern SOTA on SWaT/WADI-style benchmarks. We compare against all three under raw metrics (GDN on
 WADI, where the graph-attention model fits our compute budget). Re-scored this way, all three
 collapse on the difficult subset (on WADI, USAD 0.554, TranAD 0.547 and GDN 0.582, against our 0.726),
 confirming that their apparent strength does not survive a raw, difficulty-stratified metric.</p>
 
 <h3>7.4&nbsp;&nbsp;Datasets</h3>
-<p>We evaluate on three real CPS testbeds chosen to span the modality axis of the MIIM thesis. WADI [<a href="#r-wadi">14</a>] is a 123-channel water-distribution testbed from iTrust, and SWaT [<a href="#r-swat">21</a>] is its 51-channel water-treatment sibling; the two are the de facto standard multivariate CPS benchmarks and the primary targets of the evaluation critique above [<a href="#r-kim">2</a>,&nbsp;<a href="#r-wukeogh">4</a>]. HAI [<a href="#r-hai">15</a>] is a 59-channel hardware-in-the-loop industrial control testbed spanning several coupled processes, the most strongly multimodal of the three. SKAB [<a href="#r-skab">16</a>] is a smaller, contaminated 8-channel rotor and water-circulation benchmark, near-unimodal and, by our analysis, the only genuinely subtle set (a trivial univariate rule is near chance on it). We report WADI, HAI and SKAB, which contrast a large multimodal distribution network, a strongly multimodal plant and a near-unimodal rotor, so the difficulty-stratified results read directly against the MIIM structure of each dataset.</p>
+<p>We evaluate on three real CPS testbeds chosen to span the modality axis of the MIIM thesis. WADI [<a href="#r-wadi">13</a>] is a 123-channel water-distribution testbed from iTrust, and SWaT [<a href="#r-swat">20</a>] is its 51-channel water-treatment sibling; the two are the de facto standard multivariate CPS benchmarks and the primary targets of the evaluation critique above [<a href="#r-kim">1</a>,&nbsp;<a href="#r-wukeogh">3</a>]. HAI [<a href="#r-hai">14</a>] is a 59-channel hardware-in-the-loop industrial control testbed spanning several coupled processes, the most strongly multimodal of the three. SKAB [<a href="#r-skab">15</a>] is a smaller, contaminated 8-channel rotor and water-circulation benchmark, near-unimodal and, by our analysis, the only genuinely subtle set (a trivial univariate rule is near chance on it). We report WADI, HAI and SKAB, which contrast a large multimodal distribution network, a strongly multimodal plant and a near-unimodal rotor, so the difficulty-stratified results read directly against the MIIM structure of each dataset.</p>
 
 <!-- ============================================================= -->
 <h2>8&nbsp;&nbsp;Conclusion</h2>
@@ -699,7 +699,6 @@ history-dependent fault to exercise the trajectory assumptions.</p>
 <h2>References</h2>
 <p class="small">In-text citations use the numbers below.</p>
 <ol class="refs" start="1">
-<li id="r-miim">This work (LatAD). MIIM assumptions and difficulty-stratified protocol.</li>
 <li id="r-kim">S. Kim, K. Choi, H.-S. Choi, B. Lee, and S. Yoon. &ldquo;Towards a Rigorous Evaluation of
 Time-Series Anomaly Detection.&rdquo; <em>Proceedings of the AAAI Conference on Artificial Intelligence</em>,
 2022, pp. 7194&ndash;7201. <a href="https://arxiv.org/abs/2109.05257">arXiv:2109.05257</a>,
