@@ -235,17 +235,4 @@ def make_miim(
     return ds, meta
 
 
-def load_wadi(root: str) -> CPSDataset:
-    """Drop-in loader for the real WADI dataset once iTrust access is granted.
-
-    Expects the standard WADI CSVs under `root`:
-        WADI_14days*.csv          (normal operation)
-        WADI_attackdata*.csv      (attack period, with an attack-label column)
-    Kept as a stub with the exact wiring so switching from synthetic to WADI is
-    a one-line change in run.py. Not called until the files are present.
-    """
-    raise NotImplementedError(
-        "WADI files not present yet. Once iTrust grants access, place the CSVs "
-        f"under {root!r} and implement the parse here (drop first ~2 rows of "
-        "sensor warm-up, forward-fill actuator states, standardise on the "
-        "14-day normal split, map the attack column to y_test).")
+# The real WADI loader now lives in wadi.py (load_wadi); the old stub here was removed.

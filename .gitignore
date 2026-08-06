@@ -3,3 +3,12 @@ poc/datasets/
 *.pyc
 .DS_Store
 poc/results/*.pkl
+/datasets/
+
+# data arrays (gated-data-derived, large) — never commit
+*.npy
+poc/sota_bundle/results/
+poc/logs/
+
+# zenodo deposit artifact (regenerable)
+poc/zenodo_LatAD_v1.0.zip

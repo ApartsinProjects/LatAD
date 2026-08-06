@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LatAD — Trajectory-aware architecture (A / B / C)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+<style>
+  :root{--text:#1a1a1a;--muted:#555;--rule:#dcdcdc;--A:#1d4e6f;--B:#7a4d17;--C:#5a1e5e;
+    --soft:#f6f8fa;--serif:Georgia,'Times New Roman',serif;--sans:'Helvetica Neue',Arial,sans-serif;--mono:Consolas,monospace;}
+  *{box-sizing:border-box}
+  body{background:#fff;color:var(--text);font-family:var(--serif);font-size:17px;line-height:1.55;margin:0}
+  .wrap{max-width:840px;margin:0 auto;padding:44px 24px 110px}
+  h1{font-size:1.7rem;margin:0 0 4px}
+  .sub{font-family:var(--sans);color:var(--muted);font-size:.95rem;margin:0 0 8px}
+  .tag{font-family:var(--sans);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  h2{font-family:var(--sans);font-size:1.18rem;margin:34px 0 8px;padding-bottom:5px;border-bottom:2px solid var(--rule)}
+  p{margin:0 0 12px;text-align:justify}
+  code{font-family:var(--mono);font-size:.86em;background:var(--soft);padding:1px 5px;border-radius:4px}
+  .principle{background:var(--soft);border-left:3px solid #333;border-radius:6px;padding:12px 18px;margin:16px 0;font-size:1.02rem}
+  table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:.85rem;margin:14px 0}
+  th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+  thead th{border-top:1.5px solid #333;border-bottom:1.5px solid #333}
+  .model{border:1px solid var(--rule);border-radius:10px;padding:4px 20px 14px;margin:20px 0}
+  .model.A{border-top:4px solid var(--A)} .model.B{border-top:4px solid var(--B)} .model.C{border-top:4px solid var(--C)}
+  .model h3{font-family:var(--sans);font-size:1.12rem;margin:16px 0 4px}
+  .model .A2{color:var(--A)} .model .B2{color:var(--B)} .model .C2{color:var(--C)}
+  dl{margin:8px 0}
+  dt{font-family:var(--sans);font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em;
+     color:#333;margin-top:10px}
+  dd{margin:2px 0 0}
+  ul{margin:4px 0 8px;padding-left:22px} li{margin-bottom:3px}
+  ol{margin:4px 0 12px;padding-left:22px}
+  .eq{overflow-x:auto}
+  .open{background:#fbf6ee;border:1px solid #e6d9c2;border-radius:8px;padding:12px 18px;margin:16px 0}
+  @media(max-width:600px){body{font-size:16px}.wrap{padding:28px 15px 60px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p class="tag">LatAD · latent-digital-twin branch · architecture spec</p>
+<h1>Trajectory-aware anomaly detection: three models (A / B / C)</h1>
+<p class="sub">A frozen mode-encoder (A) and a queryable history encoder (B) provide context to a
+trajectory-conditional detector (C) that runs the C1&ndash;C4 components. Extends the static MIIM framework
+to time-series / dynamics.</p>
+
+<div class="box" style="background:#f6f8fa;border:1px solid var(--rule);border-radius:8px;padding:10px 18px;margin:14px 0;font-family:var(--sans);font-size:.86rem">
+<strong>Notation &amp; naming.</strong> We standardise on the mixture-model terms and retire "assignment vector"
+(it implies a hard pick, whereas the quantity is soft). Throughout, $K$ = number of operating modes, $\Delta^K$
+the probability simplex, and $z$ the VAE latent code (Model A).
+<table style="margin:6px 0 2px">
+<tbody>
+<tr><td style="width:6.5em"><b>$\gamma\in\Delta^K$</b></td><td><b>responsibility vector</b> (soft mode membership, $\gamma_k=P(k\mid z)$) &mdash; A's identity output, B's input.</td></tr>
+<tr><td><b>$d\in\mathbb R^K$</b></td><td><b>mode-distance vector</b> (Mahalanobis to each component) &mdash; A's geometry output.</td></tr>
+<tr><td><b>$\pi\in\Delta^K$</b></td><td><b>mode prior</b> (marginal responsibility mass, $\pi_k=\mathbb E[\gamma_k]$) &mdash; A's frequency output; drives B's rarity term and C's $\pi_k(c_t)$.</td></tr>
+<tr><td><b>$e_t$</b></td><td><b>step embedding</b> (soft mixture of mode embeddings) &mdash; B's per-step input token.</td></tr>
+<tr><td><b>$c_t$</b></td><td><b>trajectory context</b> (multi-resolution history readout) &mdash; B's output, C's conditioning.</td></tr>
+</tbody></table>
+Model short-names, used interchangeably with A/B/C: <b>A = Mode Encoder</b>, <b>B = History Encoder</b>,
+<b>C = Conditional Detector</b>.
+</div>
+
+<div class="principle">
+<strong>Guiding principles.</strong>
+(1) <em>Separation of concerns</em> — three <strong>independent models</strong> (separate weights &amp;
+training; A and C may share <em>architecture</em>, not weights).
+(2) <em>Encode history, never forecast</em> — the twin (A+B) only summarises the determined past, so
+unpredictable-but-normal signal is never treated as anomalous.
+(3) <em>Condition, don't concatenate</em> — context modulates the detector (FiLM / cross-attention) and is
+never a reconstruction target, so a normal history cannot dilute a real window anomaly.
+(4) <em>One unified detector</em> — with a faithful B, snapshot, contextual, and transition anomalies all
+surface as an off-manifold $(\text{window},c_t)$ pair, so detection is a single C-score (no explicit
+transition graph, no score-OR).
+(5) <em>Normal-only training</em> throughout.
+</div>
+
+<h2>Overview</h2>
+<table>
+<thead><tr><th></th><th class="A2" style="color:var(--A)">A — mode encoder</th><th style="color:var(--B)">B — trajectory memory</th><th style="color:var(--C)">C — conditional detector</th></tr></thead>
+<tbody>
+<tr><td><b>owns</b></td><td>the mode <em>vocabulary</em></td><td>the <em>history</em> record</td><td>the <em>detection</em></td></tr>
+<tr><td><b>knows anomalies?</b></td><td>no</td><td>no</td><td>yes (C1&ndash;C4)</td></tr>
+<tr><td><b>conditioning</b></td><td>none</td><td>&mdash;</td><td>FiLM / cross-attention on $c_t$</td></tr>
+<tr><td><b>status</b></td><td>trained &amp; <b>frozen</b> first</td><td>trained on A's $\gamma$, frozen</td><td>trained last</td></tr>
+</tbody></table>
+<p>Data flow: <code>window &rarr; A &rarr; (&gamma;, d)</code>; <code>&gamma; &rarr; B &rarr; c_t</code>;
+<code>(raw window, c_t) &rarr; C &rarr; anomaly score</code>.</p>
+<div class="box" style="background:#eef4f8;border-color:#cfe0ea">
+<strong>In plain terms.</strong> A single snapshot can't tell if you got <em>here</em> the wrong way. So three
+models split the work: <strong>A</strong> looks at one window and says <em>which operating mode</em> it is (a
+soft "90% mode&nbsp;3, 10% mode&nbsp;7") and how far it is from every mode. <strong>B</strong> watches those
+mode-readings over time and keeps a running, <em>queryable</em> memory of "which modes we've been in, in what
+order, for how long" — it only <em>remembers</em>, it never predicts or judges. <strong>C</strong> is the
+detector: it looks at the current window <em>and</em> is handed B's memory, then decides if anything is wrong.
+The memory is used to shape "what's normal here," not glued on as extra numbers, so a normal history can never
+hide a real problem.
+</div>
+
+<div class="model A">
+<h3><span class="A2">Model A</span> — mode discovery &amp; geometry-aware window encoder</h3>
+<dl>
+<dt>In plain terms</dt><dd style="font-style:italic;color:#345">Looks at one window and reports two things:
+<em>which</em> operating mode it is (a soft "90% mode 3, 10% mode 7"), and <em>how far</em> it sits from every
+mode. The "which" is for the historian; the "how far" is for the detector (a window far from everything still
+gets a confident nearest-mode, so the assignment alone would hide it — the distances don't).</dd>
+<dt>Architecture</dt><dd>VaDE: a VAE with a <strong>Gaussian-mixture latent prior</strong> of $K$ components
+(component $k$: mean $\mu_k$, covariance $\Sigma_k$; joint encode + cluster in latent space). Over-provisioned $K$; the anti-collapse recipe (variance floor,
+$\beta$ warm-up, covariance penalty, slow mixture-LR) keeps the imbalanced rare modes alive. <em>No FiLM.</em></dd>
+<dt>Input</dt><dd>a single window $\phi(W_t)$ (features or raw).</dd>
+<dt>Output (per window)</dt><dd>latent $z$; <strong>responsibility vector</strong> $\gamma\in\Delta^K$
+($\gamma_k=P(\text{mode }k\mid z)$); <strong>mode-distance vector</strong> $d\in\mathbb R^K$,
+Mahalanobis in latent $d_k=(z-\mu_k)^\top\Sigma_k^{-1}(z-\mu_k)$; and, once over the training set, the
+<strong>mode prior</strong> $\pi_k=\mathbb E[\gamma_k]$ (the marginal frequency B and C need for rarity).</dd>
+<dt>Loss</dt><dd>VaDE evidence lower bound (reconstruction + mixture-KL) + the anti-collapse terms. Normal data only.</dd>
+<dt>Rationale</dt><dd>$\gamma$ is the <em>regime identity</em> (vocabulary for B); $d$ is the <em>geometry</em> —
+$\gamma$ is a softmax of $-d$ and loses magnitude (an OOD window still has a confident nearest mode), whereas
+$d$ preserves "how far off-manifold," which detection needs.</dd>
+<dt>Objectives</dt><dd>recover the massive, imbalanced, implicit multimodality; provide a stable discrete vocabulary.</dd>
+<dt>Constraints</dt><dd>normal-only; <strong>frozen after training</strong> so B's vocabulary can't drift; no
+anomaly logic; $K$ large with the imbalanced tail preserved.</dd>
+</dl>
+</div>
+
+<div class="model B">
+<h3><span class="B2">Model B</span> — trainable trajectory encoder (queryable history)</h3>
+<dl>
+<dt>In plain terms</dt><dd style="font-style:italic;color:#543">Keeps a running "diary" of which modes the
+system has been in and in what order. It only <em>remembers the past</em> — it never predicts the future (much
+normal behaviour is unpredictable) and never judges anomalies. We check it is a good diary with two kinds of
+quiz: <em>exact</em> ("which mode were we in <em>k</em> steps ago?") and <em>presence</em> ("was mode Z around
+at all in the last while?") — if it answers both, near and far back, it has kept the history.</dd>
+<dt>Embedding (not tokenization)</dt>
+<dd>A's modes are <strong>fuzzy</strong> (a soft $\gamma_t$), so hard tokenization is wrong. Embed each step as a
+<strong>soft mixture of learned mode embeddings</strong>,
+<div class="eq">$$e_t=\sum_k \gamma_{t,k}\,m_k,$$</div>
+so a between-modes window sits <em>on the segment</em> between $m_A$ and $m_B$: a transition is a smooth
+$e$-trajectory and a forbidden path is an unusual one. ($m_k$ init from A's centroids.) <em>Note:</em>
+$e_t=\sum_k\gamma_{t,k}m_k=M\gamma_t$ <strong>is a linear layer on $\gamma$</strong>; prefer this anchored form
+over a free MLP on $\gamma_t$ for <strong>betweenness</strong> (a between-modes window stays between the anchors)
+and <strong>rare-mode robustness</strong> (each mode is anchored by its init, not starved for samples).</dd>
+<dt>Encoder</dt><dd>one <strong>long-range sequence model</strong> over $\{e_t\}$ — <strong>SSM / Mamba</strong>
+(or dilated-TCN), streaming with $\sim\!10^3$-step memory. Its recurrent state $s_t$ <em>is</em> the memory; a
+<strong>near/far readout</strong> of $s_t$ gives the context $c_t$ (near serves the instance head, far the
+containment head).</dd>
+<dt>Input</dt><dd>the stream of responsibilities $\gamma_t$ from frozen A.</dd>
+<dt>Output</dt><dd>trajectory context $c_t$ (a vector, or a few memory tokens for C's cross-attention).</dd>
+<dt>Loss — two query heads (no forecasting)</dt>
+<dd>Both heads read the shared $c_t$ and ask only about the <em>determined</em> past; both are
+rare/common-balanced so the common mode cannot flood them.<br>
+<strong>(a) Instance head</strong> (near, precise) — recover the mode at offset $k$:
+<div class="eq">$$\mathcal L_{\text{inst}}=\sum_t\sum_{k}\lambda_k\,\mathrm{CE}\big(\gamma_{t-k},\,r_\theta(c_t,\psi(k))\big),\quad k\in\{1,2,4,\dots,512\},\ \lambda_k\propto1/\pi.$$</div>
+Captures <strong>order and exact timing</strong> (transitions); far offsets force long memory
+($\psi(k)$ = a positional encoding of the query offset $k$).<br>
+<strong>(b) Containment head</strong> (far, coarse) — was mode $a$ present in a period $P=[t-b,\,t-a]$:
+<div class="eq">$$\mathcal L_{\text{cont}}=\sum_t\sum_{P,a}w_a\,\mathrm{BCE}\big(\mathbb 1[a\in P],\,q_\theta(c_t,P,a)\big),\quad w_a\propto1/\pi_a.$$</div>
+Captures <strong>occurrence, timing-robust</strong>, and is where <em>rare-state presence</em> is kept far back.
+<strong>Queries must be weighted, not uniform:</strong> sampled uniformly almost every $(P,a)$ has the same
+answer (the common mode is nearly always present, rare ones nearly always absent), so a trivial majority-class
+predictor would win and the head learns nothing; balance positive/negative answers and up-weight rare
+candidates ($w_a\propto1/\pi_a$) so no answer is the majority.<br>
+<em>Why two:</em> precise recall degrades with distance while containment persists, so instance serves the
+<strong>near</strong> readout and containment the <strong>far</strong> one. Asking only about the determined past
+keeps both <strong>unpredictability-proof</strong>; the learned selective state (Mamba's gate) does the actual
+writing, more on novel/rare steps than on repeats.</dd>
+<dt>Rationale</dt><dd>fuzzy modes &rarr; embed, don't tokenize; the past is <em>determined</em> so retrieval is
+well-posed; offset-parameterisation gives a tunable memory horizon. A faithful $c_t$ lets C catch invalid
+<em>paths</em> without an explicit transition graph.</dd>
+<dt>Optional extensions (add only if the lean core misses something)</dt>
+<dd><ul>
+<li><strong>Explicit surprise-gated writing</strong> — if the learned gate under-writes rare states, force it:
+$s_t=s_{t-1}+g_t\Delta_t$ with $g_t=\sigma\big(\mathrm{MLP}(e_t,s_{t-1},-\log\pi_{k_t},\lVert e_t-s^{\text{recent}}\rVert)\big)$
+($k_t=\arg\max\gamma_t$ the current mode; $s^{\text{recent}}$ = a fast EMA of $e$; surprise = rarity
+$-\log\pi$ + change-from-recent; non-forecasting; debounce flicker).</li>
+<li><strong>Presence features</strong> — per mode "time since last visited", so a one-step rare visit stays on
+the record regardless of duration.</li>
+<li><strong>Multi-resolution + maturity</strong> — split $c_t$ into short/med/long readouts with a per-resolution
+maturity signal, if a single horizon is not enough.</li>
+</ul></dd>
+<dt>Objectives</dt><dd>a faithful, queryable record of regime occupancy, order, and dwell — good enough that C
+catches invalid <em>paths</em> without an explicit transition graph.</dd>
+<dt>Constraints</dt><dd>normal-only; reset state at run boundaries; <strong>no forecasting, no anomaly logic</strong>;
+frozen after training. <em>Acceptance test:</em> the memory-horizon probe (query-accuracy vs offset) must clear a
+fidelity bar before C5 can use $c_t$ &mdash; e.g. mean accuracy $\gtrsim0.7$ at $k\le8$; an under-trained B
+(probe near chance) makes $c_t$ uninformative and C+B collapses onto C-alone. In practice reaching the bar needs
+<em>focused near-offset</em> training (offsets $\le64$) with clipped rarity weights, not merely more epochs.</dd>
+</dl>
+</div>
+
+<div class="model C">
+<h3><span class="C2">Model C</span> — trajectory-conditional anomaly detector</h3>
+<dl>
+<dt>In plain terms</dt><dd style="font-style:italic;color:#534">The actual detector. It looks at the current raw
+window and is <em>told</em> B's history, then asks "is this window normal <em>given</em> how we got here?" The
+history is used to <em>tune expectations</em> (not appended as extra numbers — that would let a normal history
+water down a real anomaly). One question — "is this (window, history) pair normal?" — catches all three fault
+kinds: a bad window on its own, a valid value that's wrong for the context, and a valid state reached by an
+impossible path. C1&ndash;C4 run on top unchanged.</dd>
+<dt>Architecture</dt><dd>a VaDE (its <em>own</em> mixture prior, own weights) over the <strong>raw window</strong>,
+with the trajectory context injected by conditioning: <strong>FiLM</strong> $h'=\gamma_{\text{F}}(c_t)\odot h+\beta_{\text{F}}(c_t)$ (scale/shift functions of $c_t$, distinct from the responsibility $\gamma$)
+when $c_t$ is a single vector, or <strong>cross-attention</strong> when B exposes a memory (window features
+query B's tokens). Same anti-collapse recipe as A. Optionally a $\pi_k(c_t)$ head so mode expectations are
+context-conditional.</dd>
+<dt>Input</dt><dd>the <strong>raw window</strong> (local detail) + trajectory context $c_t$ <em>via conditioning</em>
+(never concatenated).</dd>
+<dt>Output</dt><dd>a single anomaly score.</dd>
+<dt>Loss</dt><dd>conditioned VaDE ELBO on normal + anti-collapse. The scoring components below are then
+<em>fit</em> on normal (and on C1's generated near-anomalies); none uses real fault labels.</dd>
+<dt>Scoring — the C-score and its parts (C1&ndash;C4)</dt>
+<dd>All parts are conditioned on $c_t$ and read on the <em>window</em>. Each targets a specific error the base
+score alone leaves open (E1 false-positive on a rare-but-valid mode; E2 false-negative on an over-interpolated
+pocket; E3 calibration without labels).
+<ul style="margin-top:6px">
+<li><strong>Base</strong> — <em>whitened residual + latent NLL.</em> Reconstruct the window, residual
+$r=x-\hat x$; energy $s_{\mathrm{rec}}=\tfrac12\,r^\top\hat\Sigma^{-1}r$ with $\hat\Sigma$ the Ledoit-Wolf
+shrunk residual covariance (so A8's correlated/heteroscedastic normal noise is discounted, not flagged), plus
+nearest-component latent NLL $s_{\mathrm{lat}}=\min_k d_k$. <em>Why:</em> off-manifold in value <em>or</em> in
+latent geometry.</li>
+<li><strong>C1</strong> — <em>physically-guided contrast (supplies the boundary).</em> Manufactures
+<em>hard, close</em> pseudo-anomalies from channel-shuffle candidates, <strong>kept</strong> iff all three hold:
+(i) <em>off-mode</em> by a non-circular oracle &mdash; $\kappa$-NN distance to a fresh same-frame normal
+reference exceeds its $Q_{99}$ self-distance; (ii) <em>physically in-range</em> &mdash; each channel within its
+observed bounds; (iii) <em>hard</em> &mdash; its nearest-mode distance is only $1$&ndash;$2\times$ the normal envelope (the close band where E1/E2 live). Context-conditional on $c_t$.
+<em>Why:</em> normal-only data has no hard negatives; C1 draws the decision surface exactly where E1/E2 live,
+and everything supervised (C3 member, C4 threshold) calibrates against it &rarr; addresses <strong>E3</strong>.</li>
+<li><strong>C2</strong> — <em>basin-of-attraction agreement.</em> Descend the latent mixture potential
+$U(z)=-\log\sum_k\pi_k(c_t)\,\mathcal N(z;\mu_k,\Sigma_k)$ from $z$ to a fixed point $z^\star$; score the
+<em>disagreement</em>: path length $\lVert z-z^\star\rVert$ and whether $z^\star$'s basin matches the
+window's own responsibility. Normal windows sit in a basin and barely move; a pocket sits on a ridge and falls
+far into a basin it did not belong to. <em>Why:</em> catches the over-interpolation false-negative
+(<strong>E2</strong>) that a smooth decoder reconstructs too well.</li>
+<li><strong>C3</strong> — <em>ensemble (min-over-experts + supervised member).</em> (a) One PCA/subspace expert
+per mode; the reconstruction score is the <strong>min over experts</strong> &mdash; a window is normal if
+<em>some</em> mode explains it, so a rare-but-valid mode is not penalised by the others. (b) A gradient-boosted
+member trained normal-vs-C1, class-balanced per mode. <em>Why:</em> a single global model over-smooths the
+imbalanced tail and false-positives on rare modes (<strong>E1</strong>); the per-mode min plus C1-supervised
+member sharpen the boundary.</li>
+<li><strong>C4</strong> — <em>mode-conditional risk control.</em> <em>Decision rule:</em> a per-mode threshold
+$\tau_k=Q_{1-\alpha}\big(\text{fused scores of normal windows assigned to }k\big)$ at target false-alarm
+$\alpha$ (or matched to a target TPR on C1's anomalies when available); a window at mode $k$ fires iff its fused
+score $>\tau_k$. <em>Audit:</em> report the tail false-alarm rate
+$\mathrm{TFAR}=Q_{q}\big(\{\widehat{\mathrm{FPR}}_k:n_k\ge20\}\big)$ and its CVaR, so the <em>worst</em> mode's
+false-alarm, not the average, is the objective. <em>Why:</em> a single global threshold is set by the common
+mode and silently sacrifices the rare modes' false-alarm (<strong>E1</strong>); per-mode $\tau_k$ is label-free
+(<strong>E3</strong>).</li>
+<li><strong>C5</strong> &mdash; <em>mode-conditional trajectory context</em> (the transition-fault term).
+FiLM conditions the <em>window</em> decoder, so the base and C1&ndash;C4 stack scores $p(\text{window}\mid c_t)$:
+this catches snapshot and contextual faults but <strong>not</strong> a pure-<em>trajectory</em> fault
+(<code>bad_transition</code>), where the window is genuinely normal and the anomaly lives entirely in the
+<em>arrival path</em>. Add the complementary conditional $p(c_t\mid\text{mode})$: score how off-distribution
+$c_t$ is under the normal-$c_t$ law for the window's assigned mode,
+$s_{\mathrm{ctx}}=(c_t-\bar c_k)^\top\Sigma_{c,k}^{-1}(c_t-\bar c_k)$. A settled window reached via a
+<em>forbidden</em> predecessor has a $c_t$ that never precedes that mode in normal data &rarr; high
+$s_{\mathrm{ctx}}$. This is the graph-free realisation of "off-manifold $(\text{window},c_t)$ pair" for transition
+anomalies, and it is <strong>ablation-clean</strong> ($c_t\!=\!0\Rightarrow s_{\mathrm{ctx}}\!=\!0$, so a
+no-context control gets no trajectory signal). <em>Empirically decisive:</em> with a faithful B but without
+$s_{\mathrm{ctx}}$, C+B ties C-alone on <code>bad_transition</code> (a window-decoder cannot move a normal
+window); $s_{\mathrm{ctx}}$ is the term that separates it.</li>
+</ul>
+<strong>Fusion &rarr; one number.</strong> The C3 supervised member fuses
+$[\,s_{\mathrm{rec}},\,s_{\mathrm{lat}},\,\text{C2 features},\,\text{per-mode PCA min}\,]$; the trajectory-context
+$s_{\mathrm{ctx}}$ (C5) is combined on top (standardised sum, since C1's window-anomalies do not supervise it),
+and C4 calibrates <em>per mode</em>. So "one C-score" is literal, and every part is auditable.</dd>
+<dt>Rationale</dt><dd>detect "normal <em>given</em> history." Conditioning (not concatenation) means $c_t$ shapes
+the expected-normal but is never reconstructed &rarr; <strong>no dilution</strong>. All anomaly families become
+an off-manifold $(\text{window},c_t)$ pair, so one detector suffices.</dd>
+<dt>Objectives</dt><dd>a single unified detector covering snapshot, contextual, and transition anomalies, with
+per-mode false-alarm control.</dd>
+<dt>Constraints</dt><dd>normal-only; reconstructs/scores <em>only the window</em>; $c_t$ modulates but is never a
+target; trained after A and B; different weights from A.</dd>
+</dl>
+</div>
+
+<h2>Detection &amp; what each mechanism catches</h2>
+<p><strong>Detection = the single C-score.</strong> With a faithful B, the explicit mode-transition graph is
+redundant (it is a hand-coded special case of C-conditioned-on-good-B) and is dropped.</p>
+<table>
+<thead><tr><th>anomaly family</th><th>example</th><th>caught by</th></tr></thead>
+<tbody>
+<tr><td>snapshot</td><td>pocket (between modes), drift (out of bounds)</td><td>C — window off-manifold ($c_t$ irrelevant)</td></tr>
+<tr><td>contextual</td><td>valid value, wrong for the current regime</td><td>C — $(\text{window},c_t)$ off via conditioning</td></tr>
+<tr><td>transition / path</td><td>valid mode reached via a <em>forbidden</em> path</td><td>C5 &mdash; $c_t$ off the mode's normal arrival-context ($s_{\mathrm{ctx}}$); FiLM alone cannot</td></tr>
+</tbody></table>
+
+<h2>Training pipeline</h2>
+<ol>
+<li>Train <span class="A2" style="color:var(--A)"><b>A</b></span> on normal (VaDE + anti-collapse) &rarr; <b>freeze</b>; emit $(\gamma,d)$ per window.</li>
+<li>Train <span style="color:var(--B)"><b>B</b></span> on A's $\gamma$-stream (queryable-past loss) &rarr; pass the memory-horizon test &rarr; <b>freeze</b>; emit $c_t$.</li>
+<li>Train <span style="color:var(--C)"><b>C</b></span> on normal, conditioned on $c_t$ (FiLM &rarr; cross-attention), fit C1&ndash;C4 on normal.</li>
+<li>Detect via the C-score.</li>
+</ol>
+
+<h2>Global objectives &amp; constraints</h2>
+<ul>
+<li><b>Phenomena covered</b> (validated on the temporal-MIIM benchmark): massive imbalanced multimodality;
+bounded modes; anomaly pockets; low-density (rare-valid) normals; heterogeneous + quantized sensing; temporal
+multiscale; a mode-transition state machine with forbidden edges; per-mode dwell.</li>
+<li><b>Anomaly families</b>: snapshot (pocket, drift), contextual, transition/path.</li>
+<li><b>Invariants</b>: normal-only training; encode history not forecast; condition not concatenate; single
+conditional detector; per-mode false-alarm control (C4/TFAR); label-free model selection (held-out normal loss,
+C1-generated anomalies, memory-horizon probe).</li>
+</ul>
+
+<h2>Design review</h2>
+<p>A candid pass over the recipe: the one risk that can break it, the parts that are probably more than needed,
+and the questions to settle before building.</p>
+
+<div class="open">
+<h3 style="margin-top:0">Biggest risk &mdash; conditioning can <em>explain away</em> (the dual of dilution)</h3>
+<p>Principle (3) protects against a normal history <em>diluting</em> a real anomaly. The mirror risk is
+un-addressed: if FiLM / cross-attention is too expressive, a normal-looking history could let C reconstruct a
+genuinely off-manifold window and <em>lower</em> its score. The detection table's "snapshot &rarr; $c_t$
+irrelevant" only holds if this cannot happen. <strong>Safeguard:</strong> residual FiLM initialised to identity
+($\gamma\!\to\!1,\beta\!\to\!0$) and constrain context to <em>raise</em>, not fully <em>suppress</em>, the base
+off-manifold score (a non-negative context correction / monotone gate). <strong>Acceptance test:</strong>
+snapshot TPR must not fall when conditioning is switched on.</p>
+
+<h3>Redundancy / overkill (demote to fallback or gate behind an ablation)</h3>
+<ul>
+<li><b>B rare-state machinery</b>: the core keeps the two query heads (instance + rare-balanced containment)
+plus the learned selective state; explicit surprise-gating and presence features stay optional, added only if
+the core under-recalls rare states.</li>
+<li><b>Resolutions</b>: the core reads out two horizons (near for instance, far for containment); a third
+("med") resolution + per-resolution maturity stays optional.</li>
+<li><b>C's $\pi_k(c_t)$ context-prior head</b> overlaps with FiLM (both make expectations context-dependent).
+Ship FiLM alone first; add the head only if contextual/pocket faults survive.</li>
+<li><b>C2 basin descent</b> is the most expensive part (per-window latent optimisation) and only targets E2;
+the plain snapshot detector already reaches pocket $0.72$. Gate C2 behind an ablation showing it lifts pockets
+materially over base+C3.</li>
+</ul>
+
+<h3>Open questions to settle first</h3>
+<ul>
+<li><b>Run boundaries at inference:</b> B resets state at run boundaries, but a streaming CPS may have no clean
+boundary &mdash; define the reset trigger, or a soft "session" state, else the maturity signal is ill-posed.</li>
+<li><b>Non-stationarity / sensor drift</b> vs A's <em>frozen</em> vocabulary (A1 assumes stationarity):
+per-run normalisation or a learned session regime?</li>
+<li><b>Containment negatives</b> must be plausible-but-absent (mirror C1's hard-negative principle), or the head
+learns a triviality.</li>
+<li><b>Identifiability of B's mode embeddings $m_k$:</b> initialise from A's centroids and regularise toward
+them, else free $m_k$ can drift or collapse.</li>
+<li><b>Backbone for B</b> (dilated-TCN vs SSM/Mamba) and its memory-horizon target; FiLM vs cross-attention
+cost/benefit; $c_t$ dimension vs the window; whether A and C share a frozen backbone + adapters.</li>
+</ul>
+
+<h3>Decisive experiment (finding)</h3>
+<p>Does conditioning lift <code>bad_transition</code> off the snapshot floor ($0.057$) on the temporal benchmark,
+<em>with no transition graph</em>? The implementation separated two things.
+<strong>(1) B fidelity is necessary but not sufficient.</strong> An under-trained B leaves $c_t$ near chance and
+C+B collapses onto C-alone; focused near-offset training clears the memory-horizon bar (probe $\approx0.88$ at
+$k{=}1$, $0.77$ at $k{=}4$).
+<strong>(2) The conditional must be the right one.</strong> Even with a faithful B, the FiLM window-decoder
+(scoring $p(\text{window}\mid c_t)$) still <em>ties</em> C-alone on <code>bad_transition</code> (lift
+$\approx0$) &mdash; the window is genuinely normal, so no window-conditioned reconstruction can move it. The
+<strong>C5 trajectory-context score</strong> $s_{\mathrm{ctx}}=p(c_t\mid\text{mode})$ is the term that separates
+it, and it is ablation-clean (zero without context). So principle (4) still holds &mdash; a forbidden path is
+caught <em>graph-free</em> &mdash; but the realisation is $p(c_t\mid\text{mode})$, not the window-conditioned
+reconstruction.</p>
+<p><strong>Validated (temporal benchmark, 5% FPR).</strong> window-only C-alone: pocket $0.49$, drift $0.74$,
+<code>bad_transition</code> $0.16$ (a window detector cannot catch it). Adding the C5 context branch fused by an
+<em>asymmetric p-value OR</em> lifts <code>bad_transition</code> to $0.24$&ndash;$0.35$ (tunable against a small
+snapshot budget), and it is <strong>exactly $0$ without B</strong> ($c_t\!=\!0\Rightarrow$ no lift). Two
+alternatives were <em>falsified</em>: <strong>FiLM</strong>-on-window (lift $0$, window is normal) and
+<strong>concatenation</strong> $[\text{window}\oplus c_t]$ (the $\sim\!6{:}4$ window-to-context dim ratio lets
+the window dominate the clustering &mdash; latent-NLL for <code>bad_transition</code> stays at the floor). The
+working term is a <em>per-mode</em> (not pooled) Ledoit-Wolf context density; pooling across modes washes out the
+tight arrival-context structure the fault violates.</p>
+</div>
+
+</div>
+</body>
+</html>
