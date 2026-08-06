@@ -25,6 +25,10 @@ ZIP = os.path.join(HERE, "zenodo_LatAD_v1.0.zip")
 META = os.path.join(HERE, "zenodo_bundle", "zenodo.json")
 SANDBOX = "--sandbox" in sys.argv
 PUBLISH = "--publish" in sys.argv
+# --deposition <id>: reuse an existing draft (fix its metadata + publish) instead of
+# creating a new one, so the reserved DOI stays stable across a retry.
+DEP = next((sys.argv[i + 1] for i, a in enumerate(sys.argv)
+            if a == "--deposition" and i + 1 < len(sys.argv)), None)
 BASE = "https://sandbox.zenodo.org/api" if SANDBOX else "https://zenodo.org/api"
 
 
@@ -49,22 +53,26 @@ def req(method, url, data=None, headers=None, raw=False):
 
 
 def main():
-    if not os.path.exists(ZIP):
-        sys.exit(f"missing {ZIP} -- build it first (make_archive of zenodo_bundle).")
-    print(f"Target: {BASE}   publish={PUBLISH}")
+    print(f"Target: {BASE}   publish={PUBLISH}   deposition={DEP or 'new'}")
 
-    dep = req("POST", f"{BASE}/deposit/depositions",
-              data=b"{}", headers={"Content-Type": "application/json"})
-    dep_id = dep["id"]
-    bucket = dep["links"]["bucket"]
+    if DEP:
+        # reuse existing draft: fetch it, (re)attach corrected metadata, keep files/DOI
+        dep = req("GET", f"{BASE}/deposit/depositions/{DEP}")
+        dep_id = dep["id"]
+    else:
+        if not os.path.exists(ZIP):
+            sys.exit(f"missing {ZIP} -- build it first (make_archive of zenodo_bundle).")
+        dep = req("POST", f"{BASE}/deposit/depositions",
+                  data=b"{}", headers={"Content-Type": "application/json"})
+        dep_id = dep["id"]
+        with open(ZIP, "rb") as f:
+            req("PUT", f"{dep['links']['bucket']}/{os.path.basename(ZIP)}", data=f.read(),
+                headers={"Content-Type": "application/octet-stream"})
+        print(f"  uploaded     : {os.path.basename(ZIP)}")
+
     reserved = dep.get("metadata", {}).get("prereserve_doi", {}).get("doi", "(reserved on save)")
     print(f"  deposition id: {dep_id}")
     print(f"  reserved DOI : {reserved}")
-
-    with open(ZIP, "rb") as f:
-        req("PUT", f"{bucket}/{os.path.basename(ZIP)}", data=f.read(),
-            headers={"Content-Type": "application/octet-stream"})
-    print(f"  uploaded     : {os.path.basename(ZIP)}")
 
     meta = json.load(open(META, encoding="utf-8"))
     req("PUT", f"{BASE}/deposit/depositions/{dep_id}",

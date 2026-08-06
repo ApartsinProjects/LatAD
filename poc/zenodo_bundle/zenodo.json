@@ -10,9 +10,6 @@
     "keywords": ["anomaly detection", "cyber-physical systems", "Internet of Things", "industrial IoT", "unsupervised learning", "variational deep embedding", "Gaussian mixture model", "sensor time series", "fault detection"],
     "license": "MIT",
     "version": "1.0.0",
-    "language": "eng",
-    "related_identifiers": [
-      {"relation": "isSupplementTo", "identifier": "PAPER_DOI_HERE", "scheme": "doi"}
-    ]
+    "language": "eng"
   }
 }
