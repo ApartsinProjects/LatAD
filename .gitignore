@@ -9,3 +9,6 @@ poc/results/*.pkl
 *.npy
 poc/sota_bundle/results/
 poc/logs/
+
+# zenodo deposit artifact (regenerable)
+poc/zenodo_LatAD_v1.0.zip
