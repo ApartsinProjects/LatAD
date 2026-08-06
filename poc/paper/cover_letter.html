@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Cover Letter — IoT submission</title>
+<style>
+  :root{ --ink:#1a1a1a; --dim:#555; --rule:#d8d8d8; --accent:#0f5f8a; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:#f4f5f6; color:var(--ink);
+    font-family:"Palatino Linotype","Book Antiqua",Georgia,"Times New Roman",serif;
+    font-size:15px; line-height:1.55; }
+  .sheet{ max-width:720px; margin:28px auto; background:#fff; padding:54px 60px 64px;
+    box-shadow:0 1px 4px rgba(0,0,0,.10); }
+  .letterhead{ border-bottom:2px solid var(--accent); padding-bottom:14px; margin-bottom:26px; }
+  .letterhead .name{ font-size:19px; font-weight:700; letter-spacing:.01em; }
+  .letterhead .aff{ color:var(--dim); font-size:13px; line-height:1.4; margin-top:3px; }
+  .meta{ color:var(--dim); font-size:13.5px; margin:0 0 22px; }
+  .to{ margin:0 0 4px; }
+  .subject{ font-weight:700; margin:22px 0 20px; }
+  p{ margin:0 0 15px; text-align:justify; }
+  .sig{ margin-top:30px; }
+  .sig .rule{ width:220px; border-top:1px solid var(--rule); margin-bottom:6px; }
+  .muted{ color:var(--dim); font-size:13px; }
+  a{ color:var(--accent); }
+  @media print{ body{ background:#fff; } .sheet{ box-shadow:none; margin:0; max-width:none; padding:0; } }
+  @media (max-width:640px){ .sheet{ padding:32px 22px; } }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="letterhead">
+    <div class="name">Alexander Apartsin</div>
+    <div class="aff">School of Computer Science, Faculty of Sciences<br>
+      Holon Institute of Technology (HIT), 52 Golomb St., Holon 5810201, Israel<br>
+      alexanderap@hit.ac.il</div>
+  </div>
+
+  <p class="meta">[Date]</p>
+
+  <p class="to">To the Editorial Office<br>
+    <em>IoT</em> (ISSN 2624-831X), MDPI<br>
+    IoT@mdpi.com</p>
+
+  <p class="subject">Re: Submission of a Feature Paper &mdash; &ldquo;Modeling Normal Is All You Need:
+    Joint Latent Clustering for Anomaly Detection in Multimodal Cyber-Physical Systems&rdquo;</p>
+
+  <p>Dear Editors,</p>
+
+  <p>We are pleased to submit our manuscript, &ldquo;Modeling Normal Is All You Need: Joint Latent
+    Clustering for Anomaly Detection in Multimodal Cyber-Physical Systems,&rdquo; for consideration as a
+    Feature Paper in <em>IoT</em>, following the kind invitation extended by the Editorial Office.</p>
+
+  <p>Networked cyber-physical systems (CPS) form the sensing-and-actuation layer of industrial
+    Internet-of-Things deployments, where faults must be detected even though real faults are rare and
+    poorly represented in the available data. Detection therefore has to rely on a model of normal
+    behaviour rather than on representative fault examples. The central difficulty we address is that
+    normal CPS behaviour is not a single distribution but a union of many imbalanced, curved, and sparsely
+    populated operating regimes. We formalize this structure as ten assumptions, summarized as
+    <em>Massive, Implicit, Imbalanced Multimodality</em> (MIIM), and design a detector directly around
+    them: a jointly learned latent representation with an explicit Gaussian-mixture clustering of operating
+    modes, scored entirely in the latent space rather than by a density estimate or a reconstruction
+    error.</p>
+
+  <p>We evaluate the method under a deliberately fair protocol: raw point-wise metrics with no point
+    adjustment, a split between easy and difficult anomalies, prevalence-matched F1, and calibration on
+    normal data only. Across three real CPS benchmarks (WADI, HAI, and SKAB) the method achieves the best
+    overall and best difficult-case detection on all three (difficult-subset AUROC 0.831, 0.726, and
+    0.610), and it remains consistently ahead of three strong deep detectors (USAD, TranAD, and GDN)
+    re-scored under the same metrics. The gains are largest on the most multimodal systems, exactly as the
+    MIIM assumptions predict. The contributions are the MIIM assumption set, the difficulty-stratified
+    evaluation protocol, and the latent-only anomaly score.</p>
+
+  <p>The work fits squarely within the journal&rsquo;s scope, in particular &ldquo;IoT for the industry:
+    cyber-physical systems&rdquo; and &ldquo;AI and analytics in the IoT.&rdquo; To support
+    reproducibility, the trained model checkpoints and source code are openly archived on Zenodo
+    (DOI: <a href="https://doi.org/10.5281/zenodo.21821524">10.5281/zenodo.21821524</a>), and the
+    manuscript has been prepared using the official <em>IoT</em> Microsoft Word template.</p>
+
+  <p>We confirm that this manuscript is original, has not been published previously, and is not under
+    consideration for publication elsewhere. All authors have read and approved the submission and declare
+    no conflicts of interest. As the invited scholar, A. Apartsin is the first and corresponding author of
+    the manuscript.</p>
+
+  <p>Thank you for the invitation and for considering our work. We look forward to the review.</p>
+
+  <div class="sig">
+    <p>Sincerely,</p>
+    <div class="rule"></div>
+    <div><strong>Alexander Apartsin</strong></div>
+    <div class="muted">on behalf of the authors (A. Apartsin, Y. Aperstein)<br>
+      Holon Institute of Technology (HIT), Holon, Israel</div>
+  </div>
+
+</div>
+</body>
+</html>
