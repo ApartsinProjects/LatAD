@@ -61,32 +61,20 @@
 <a class="doclink no-docx no-print" href="paper.docx" download>&#8595;&nbsp;Download DOCX</a>
 
 <h1>Modeling Normal Is All You Need: Joint Latent Clustering for Anomaly Detection in Multimodal Cyber-Physical Systems</h1>
-<p class="authors">Alexander Apartsin</p>
-<p class="affil">Holon Institute of Technology (HIT), Holon, Israel</p>
-<p class="authors" style="margin-top:.5em">Yehudit Aperstein</p>
-<p class="affil">Afeka Academic College of Engineering, Tel Aviv, Israel</p>
+<p class="authors">Alexander Apartsin <sup>1,</sup><a href="#correspondence"><sup>*</sup></a> and Yehudit Aperstein <sup>2</sup></p>
+<p class="affil"><sup>1</sup> School of Computer Science, Faculty of Sciences, Holon Institute of Technology (HIT), 52 Golomb St., Holon 5810201, Israel; alexanderap@hit.ac.il</p>
+<p class="affil"><sup>2</sup> Intelligent Systems, Afeka Academic College of Engineering, 218 Bnei Efraim St., Tel Aviv 6910717, Israel; apersteiny@afeka.ac.il</p>
+<p class="affil" id="correspondence"><sup>*</sup> Correspondence: alexanderap@hit.ac.il</p>
 
 <div class="abstract">
 <h2>Abstract</h2>
-<p>Faults on a cyber-physical system (CPS) are too rare and unrepresentative to characterise, or even to select a model on, so detection must instead <em>model normal</em> behaviour; the standard point-adjusted evaluation, however, rewards detectors that never do. CPS
-normal behaviour is the union of many imbalanced, curved, thin-fringed operating regimes rather than a single
-blob; we state this structure as ten assumptions (A1&ndash;A10) abbreviated <em>Massive, Implicit, Imbalanced
-Multimodality</em> (MIIM). We model the normal law with a jointly learned latent representation plus explicit
-Gaussian-mixture mode clustering, scored in the latent rather than by a global density or a reconstruction
-residual, and evaluate under a deliberately fair protocol: raw point-wise metrics with no point adjustment, a
-trivial-detector difficulty split, prevalence-matched F1, and train-normal-only calibration. On three real CPS
-datasets (WADI, HAI, SKAB) the detector <strong>wins both the combined column and the difficult
-correlation/dynamics-fault column on all three</strong>, reaching difficult-subset AUROC 0.831 on HAI, 0.726 on
-WADI, and 0.610 on SKAB. The margin is largest on the two multimodal datasets the MIIM assumptions target and
-slimmest on the near-unimodal one, tracking multimodality as the thesis predicts, and it holds against three
-deep detectors (USAD, TranAD, GDN) re-computed with the same raw metrics, all of which collapse on the difficult
-subset. The methodological contributions are the MIIM assumption set, the difficulty-stratified fair protocol,
-and a latent-only score that drops reconstruction because a flexible decoder rebuilds the hard faults faithfully.</p>
+<p>Faults on a networked cyber-physical system (CPS), the sensing-and-actuation core of an industrial Internet-of-Things (IoT) deployment, are too rare and unrepresentative to characterise or to select a model on, so detection must instead <em>model normal</em> behaviour; the standard point-adjusted evaluation, however, rewards detectors that never do. CPS normal behaviour is the union of many imbalanced, curved, thin-fringed operating regimes rather than a single blob, a structure we state as ten assumptions (A1&ndash;A10) abbreviated <em>Massive, Implicit, Imbalanced Multimodality</em> (MIIM). We model the normal law with a jointly learned latent plus explicit Gaussian-mixture mode clustering, scored in the latent rather than by a global density or a reconstruction residual, and evaluate under a fair protocol: raw point-wise metrics, a trivial-detector difficulty split, prevalence-matched F1, and train-normal-only calibration. On three real CPS datasets (WADI, HAI, SKAB) the detector <strong>wins both the combined and the difficult column on all three</strong>, reaching difficult-subset AUROC 0.831 on HAI, 0.726 on WADI and 0.610 on SKAB. The margin is largest on the two multimodal datasets the assumptions target and slimmest on the near-unimodal one, and it holds against three deep detectors (USAD, TranAD, GDN) re-scored with the same raw metrics. The contributions are the MIIM assumption set, the difficulty-stratified protocol, and a latent-only score that drops reconstruction because a flexible decoder rebuilds the hard faults faithfully.</p>
 </div>
+<p class="keywords"><strong>Keywords:</strong> anomaly detection; cyber-physical systems; Internet of Things; industrial IoT; unsupervised learning; variational deep embedding; Gaussian mixture model; sensor time series; fault detection</p>
 
 <h2>1&nbsp;&nbsp;Introduction</h2>
 
-<p>A modern cyber-physical system (CPS), whether a water-treatment plant, an industrial control loop, or a rotating machine, integrates hundreds of sensors, embedded controllers, and physical actuators into a single tightly coupled unit that continuously senses its own state and acts upon it. This complexity puts its faults beyond enumeration: the combinations of component, control mode, and operating condition in which a fault can arise cannot be predefined, tested, or exhaustively sampled before deployment, and many faults develop slowly, as wear, drift, or degradation that shows no obvious symptom until it is well advanced and can escalate into unplanned downtime or a safety-critical failure. Because the faults cannot be specified in advance, they must be discovered from the system’s own behaviour as it operates, which is the task of anomaly detection [<a href="#r-chandola">22</a>]. That behaviour is richly observable: high-frequency measurements of vibration, current, temperature, pressure, and position, together with internal control signals, are recorded continuously and, in principle, carry an early signature of almost any developing fault.</p>
+<p>A modern cyber-physical system (CPS), whether a water-treatment plant, an industrial control loop, or a rotating machine, integrates hundreds of networked sensors, embedded controllers, and physical actuators, the sensing-and-actuation fabric of the industrial Internet of Things (IoT), into a single tightly coupled unit that continuously senses its own state and acts upon it. This complexity puts its faults beyond enumeration: the combinations of component, control mode, and operating condition in which a fault can arise cannot be predefined, tested, or exhaustively sampled before deployment, and many faults develop slowly, as wear, drift, or degradation that shows no obvious symptom until it is well advanced and can escalate into unplanned downtime or a safety-critical failure. Because the faults cannot be specified in advance, they must be discovered from the system’s own behaviour as it operates, which is the task of anomaly detection [<a href="#r-chandola">22</a>]. That behaviour is richly observable: high-frequency measurements of vibration, current, temperature, pressure, and position, together with internal control signals, are streamed continuously from the device&rsquo;s sensors as IoT telemetry and, in principle, carry an early signature of almost any developing fault.</p>
 
 <p>The task is commonly framed as characterising the anomalies, but that framing is misleading. Were a representative set of labelled faults available, the task would reduce to supervised classification; in practice genuine faults are rare and the few on record seldom span the ways a system can fail [<a href="#r-ruff">24</a>], so scarce faults cannot define the decision boundary and, as revisited below, cannot even be spent reliably on model selection. The information lies on the other side of the boundary, in the normal data, which is abundant and rarely exploited in full. Modelling that normal law faithfully is therefore the hard part of the problem, and cyber-physical normal is a law of a particular kind. Shaped by deterministic physics, hard actuator and setpoint limits, and engineered control, it is the union of many bounded, curved operating regimes, some common and many rare, each with legitimately low-density fringes, rather than a single statistical blob. A detector that mis-models this structure fails however it thresholds.</p>
 
@@ -139,32 +127,29 @@ unrealistic anomaly density) creating an illusion of progress; and a recent benc
 (SWaT and WADI sit among the datasets whose anomalies deviate univariately on close to all timesteps, with no
 long cross-channel-only segments), so a flat univariate model matches channel-dependent deep detectors.</p>
 
-<p>A parallel critique targets the dominant scoring mechanism itself. Reconstruction-based detectors assume that a model trained to reconstruct normal data reconstructs anomalies worse; Bouman and Heskes [<a href="#r-bouman">16</a>] show this assumption is unreliable, because anomalies lying far from normal data can be reconstructed perfectly in practice, and Gong et al. [<a href="#r-memae">17</a>] earlier showed that a deep autoencoder generalises well enough to rebuild anomalies and miss them. This is the theoretical counterpart of our Table 2 result that the reconstruction residual is at or below chance on correlation-break faults, and it motivates scoring in a clustered latent rather than through a reconstruction residual. A position paper by Sarfraz et al. [<a href="#r-sarfraz">18</a>] draws the two threads together, characterising the field as plagued by flawed evaluation metrics, inconsistent benchmarking, and unjustified design choices, and showing that state-of-the-art deep detectors effectively learn linear mappings that simple baselines reproduce; Wagner et al. [<a href="#r-timesead">19</a>] re-audit the widely used multivariate benchmarks, discard the ones with erroneous labels, and note the absence of any standard evaluation metric.</p>
+<p>A parallel critique targets the dominant scoring mechanism itself. Reconstruction-based detectors assume that a model trained to reconstruct normal data reconstructs anomalies worse; Bouman and Heskes [<a href="#r-bouman">16</a>] show this assumption is unreliable, because anomalies lying far from normal data can be reconstructed perfectly in practice, and Gong et al. [<a href="#r-memae">17</a>] earlier showed that a deep autoencoder generalises well enough to rebuild anomalies and miss them. This motivates scoring in a clustered latent rather than through a reconstruction residual. A position paper by Sarfraz et al. [<a href="#r-sarfraz">18</a>] draws the two threads together, characterising the field as plagued by flawed evaluation metrics, inconsistent benchmarking, and unjustified design choices, and showing that state-of-the-art deep detectors effectively learn linear mappings that simple baselines reproduce; Wagner et al. [<a href="#r-timesead">19</a>] re-audit the widely used multivariate benchmarks, discard the ones with erroneous labels, and note the absence of any standard evaluation metric.</p>
 
-<p>LatAD responds to these critiques directly. We report <em>raw</em> point-wise AUROC, F1 and FPR with no point
-adjustment for any method; we stratify by a trivial-detector difficulty split so that the discriminative
-difficult subset is reported separately from the easy majority that carries headline numbers; we match
-prevalence before comparing F1 across subsets; and we re-compute the deep SOTA baselines (USAD, TranAD, GDN) with the
-<em>same</em> raw metrics rather than quoting their point-adjusted published figures. Under this protocol the
-SOTA methods lose most of their apparent advantage on the difficult subset, which is exactly the phenomenon the
-critique predicts.</p>
+<p>LatAD adopts this critique as its evaluation protocol: raw point-wise AUROC, F1 and FPR with no point
+adjustment for any method; a trivial-detector difficulty split that separates the discriminative difficult
+subset from the easy majority that carries headline numbers; prevalence-matched F1; and re-computation of the
+deep SOTA baselines (USAD, TranAD, GDN) under the <em>same</em> raw metrics rather than their point-adjusted
+published figures (&sect;5).</p>
 
 <h3>2.2&nbsp;&nbsp;Latent and clustering models for anomaly detection</h3>
 <p>Our representation is Variational Deep Embedding (VaDE) [<a href="#r-vade">8</a>], a VAE with a Gaussian-mixture
 latent prior that learns representation and clusters jointly. DAGMM [<a href="#r-dagmm">9</a>] similarly couples
 an autoencoder with a Gaussian-mixture energy for anomaly detection; we borrow its variance-collapse
-regularisation but find, on these datasets, that scoring against explicit per-mode Gaussians in a jointly learned
-latent outperforms a learned-Gaussian energy. Our whitened residual uses the Ledoit&ndash;Wolf shrinkage
+regularisation but score against explicit per-mode Gaussians in a jointly learned latent rather than a
+learned-Gaussian energy (&sect;4). Our whitened residual uses the Ledoit&ndash;Wolf shrinkage
 covariance estimator [<a href="#r-lw">12</a>]. Classical baselines are Isolation Forest [<a href="#r-if">11</a>] and a deep autoencoder [<a href="#r-aead">21</a>], both fitted on the same window features, together with a trivial per-channel range detector that also defines the easy/difficult split.</p>
 
 <h3>2.3&nbsp;&nbsp;Deep multivariate CPS anomaly detection</h3>
 <p>USAD [<a href="#r-usad">6</a>] couples two adversarially trained autoencoders; TranAD [<a
 href="#r-tranad">7</a>] uses deep transformer networks with adversarial and self-conditioning training; GDN [<a
 href="#r-gdn">10</a>] learns a graph over channels and detects deviations from learned inter-channel relations.
-These define the modern SOTA on SWaT/WADI-style benchmarks. We compare against all three under raw metrics (GDN on
-WADI, where the graph-attention model fits our compute budget). Re-scored this way, all three
-collapse on the difficult subset (on WADI, USAD 0.554, TranAD 0.547 and GDN 0.582, against our 0.726),
-confirming that their apparent strength does not survive a raw, difficulty-stratified metric.</p>
+These define the modern SOTA on SWaT/WADI-style benchmarks. We compare against all three under the same raw,
+difficulty-stratified metrics (GDN on WADI, where the graph-attention model fits our compute budget); the
+re-scored comparison is reported in &sect;6.</p>
 
 <h3>2.4&nbsp;&nbsp;Benchmark datasets</h3>
 <p>We evaluate on three real CPS testbeds chosen to span the modality axis of the MIIM thesis. WADI [<a href="#r-wadi">13</a>] is a 123-channel water-distribution testbed from iTrust, and SWaT [<a href="#r-swat">20</a>] is its 51-channel water-treatment sibling; the two are the de facto standard multivariate CPS benchmarks and the primary targets of the evaluation critique above [<a href="#r-kim">1</a>,&nbsp;<a href="#r-wukeogh">3</a>]. HAI [<a href="#r-hai">14</a>] is a 59-channel hardware-in-the-loop industrial control testbed spanning several coupled processes, the most strongly multimodal of the three. SKAB [<a href="#r-skab">15</a>] is a smaller, contaminated 8-channel rotor and water-circulation benchmark, near-unimodal and, by our analysis, the only genuinely subtle set (a trivial univariate rule is near chance on it). We report WADI, HAI and SKAB, which contrast a large multimodal distribution network, a strongly multimodal plant and a near-unimodal rotor, so the difficulty-stratified results read directly against the MIIM structure of each dataset.</p>
@@ -207,7 +192,7 @@ design choice each motivates. A1&ndash;A8 shape the instantaneous window; A9&nda
   <td class="l">Density inside a mode is non-Gaussian &rarr; a parametric high-<em>K</em> mixture density head, not one Gaussian per mode.</td></tr>
 <tr><td><b>A5</b></td><td class="l"><b>Few levers</b> (low intrinsic dimension)</td>
   <td class="l">The independent control variables are far fewer than the observed channels; the rest follow deterministically or probabilistically.</td>
-  <td class="l">A low-dimensional learned latent (dim 10) suffices; faults appear as departures within that latent.</td></tr>
+  <td class="l">A low-dimensional learned latent (dim 6&ndash;16 across datasets) suffices; faults appear as departures within that latent.</td></tr>
 <tr><td><b>A6</b></td><td class="l"><b>Heavy tail</b> (Zipf imbalance)</td>
   <td class="l">Machines spend most of the record in a few steady regimes; startup, shutdown and rare manoeuvres occupy little of it, so an infrequent-but-normal point is easily mistaken for a fault.</td>
   <td class="l">Score against the <em>nearest</em> component, never the &#960;-weighted mixture, so a rare-but-valid mode is not penalised (iii).</td></tr>
@@ -240,6 +225,16 @@ detector or a raw reconstruction residual does not.</p>
 <p>The main model is <strong>VaDE&#8209;hard+resid(auto)</strong>. It has a representation stage (a VaDE that
 jointly learns a latent and a Gaussian-mixture prior) and a scoring stage (a stack of heads computed in the
 latent, all calibrated on train-normal). We describe each in turn.</p>
+
+<p>The reported detector operationalizes assumptions A1&ndash;A8. The mixture representation (A1, A7), the high-<em>K</em>
+density head (A2, A4), the low-dimensional latent (A5), the nearest-component score (A6) and per-feature
+standardisation (A8) are always active; the whitened-residual head (A8) and the basin-agreement head (A3) are
+<em>auto-gated</em> on train-normal signals and switch on only where a dataset calls for them (the residual on HAI,
+the basin where modes overlap), so an inapplicable head cannot backfire. This work therefore demonstrates a
+detector that leverages the instantaneous-structure assumptions A1&ndash;A8, and shows they already deliver the
+reported gains. Assumptions A9&ndash;A10 shape the trajectory rather than the window and are not exercised by these
+snapshot-detectable public benchmarks; extending the detector to explicit multiscale-temporal features (A9) and
+history-conditioned, path-dependent scoring (A10) is left to future work (&sect;7).</p>
 
 <h3>4.1&nbsp;&nbsp;Representation: Variational Deep Embedding (VaDE)</h3>
 
@@ -647,79 +642,59 @@ the trivial rule's Easy and Difficult performance is large enough that the split
 raw metrics, which makes our numbers look lower than point-adjusted leaderboard figures by design.</p>
 
 <h2>8&nbsp;&nbsp;Conclusion</h2>
-<p>We restated the structural assumptions of CPS normal data as an explicit MIIM list (A1&ndash;A10) and used
-them to motivate a detector that models normal as a jointly learned latent plus explicit mode clustering, scored
-in the latent by a mixture density and a rare-mode-safe nearest-component likelihood, with reconstruction dropped
-and two optional heads auto-gated on training-normal signals. Under a deliberately fair, raw-metric,
+<p>We restated the structural assumptions of CPS normal data as an explicit MIIM list (A1&ndash;A10) and built a
+detector that leverages the instantaneous-structure assumptions A1&ndash;A8, modelling normal as a jointly learned
+latent plus explicit mode clustering, scored in the latent by a mixture density and a rare-mode-safe
+nearest-component likelihood, with reconstruction dropped and two optional heads auto-gated on training-normal
+signals. Under a deliberately fair, raw-metric,
 difficulty-stratified protocol on three real CPS datasets, this detector wins the combined column and the
 difficult column on all three, with the margin largest exactly where the MIIM thesis predicts (the multimodal
 HAI and WADI) and slimmest on the near-unimodal SKAB. The result is a small but clean piece of evidence that the failure of standard detectors on CPS data is
 a modelling failure (treating multimodal normal as a single blob or a reconstruction target) and
-that jointly learning the latent and its modes, then scoring in that latent, is the fix. Next steps are multi-seed
-confidence intervals, a raw-waveform representation for SKAB, and a dataset that actually contains a
-history-dependent fault to exercise the trajectory assumptions.</p>
+that jointly learning the latent and its modes, then scoring in that latent, is the fix. This paper deliberately
+covers only the instantaneous-structure assumptions; extending the detector to the trajectory assumptions is the
+natural next step: explicit multiscale-temporal features (A9) and history-conditioned, path-dependent scoring
+(A10), together with multi-seed confidence intervals, a raw-waveform representation for SKAB, and a dataset that
+actually contains a history-dependent fault to exercise those trajectory assumptions.</p>
+
+<div class="backmatter">
+<p><strong>Author Contributions:</strong> Conceptualization, methodology, software, validation, formal analysis, investigation, writing (original draft preparation), and writing (review and editing), A.A. and Y.A. The authors contributed equally to all aspects of the work. All authors have read and agreed to the published version of the manuscript.</p>
+<p><strong>Funding:</strong> This research received no external funding.</p>
+<p><strong>Institutional Review Board Statement:</strong> Not applicable.</p>
+<p><strong>Informed Consent Statement:</strong> Not applicable.</p>
+<p><strong>Data Availability Statement:</strong> This study uses only publicly available community benchmark datasets and created no new data. WADI and SWaT are available from iTrust, Singapore University of Technology and Design (https://itrust.sutd.edu.sg/, access granted on request); HAI is available from its public release by ETRI; and SKAB is available from its public repository. The source code supporting the reported results is available from the corresponding author on reasonable request.</p>
+<p><strong>Conflicts of Interest:</strong> The authors declare no conflicts of interest.</p>
+</div>
 
 <hr>
 <h2>References</h2>
 <ol class="refs" start="1">
-<li id="r-kim">S. Kim, K. Choi, H.-S. Choi, B. Lee, and S. Yoon. &ldquo;Towards a Rigorous Evaluation of
-Time-Series Anomaly Detection.&rdquo; <em>Proceedings of the AAAI Conference on Artificial Intelligence</em>,
-2022, pp. 7194&ndash;7201. <a href="https://arxiv.org/abs/2109.05257">arXiv:2109.05257</a>,
-<a href="https://ojs.aaai.org/index.php/AAAI/article/view/20680">AAAI</a>.</li>
-<li id="r-garg">A. Garg, W. Zhang, J. Samaran, R. Savitha, and C.-S. Foo. &ldquo;An Evaluation of Anomaly
-Detection and Diagnosis in Multivariate Time Series.&rdquo; <em>IEEE Transactions on Neural Networks and Learning
-Systems</em>, 33(6):2508&ndash;2517, 2022. <a href="https://arxiv.org/abs/2109.11428">arXiv:2109.11428</a>,
-doi:10.1109/TNNLS.2021.3105827.</li>
-<li id="r-wukeogh">R. Wu and E. J. Keogh. &ldquo;Current Time Series Anomaly Detection Benchmarks are Flawed and
-are Creating the Illusion of Progress.&rdquo; <em>IEEE Transactions on Knowledge and Data Engineering</em>, 2023.
-<a href="https://arxiv.org/abs/2009.13807">arXiv:2009.13807</a>, doi:10.1109/TKDE.2021.3112126.</li>
-<li id="r-doshi">K. Doshi, S. Abudalou, and Y. Yilmaz. &ldquo;Reward Once, Penalize Once: Rectifying Time Series
-Anomaly Detection.&rdquo; <em>International Joint Conference on Neural Networks (IJCNN)</em>, 2022.
-<a href="https://arxiv.org/abs/2203.05167">arXiv:2203.05167</a>.</li>
-<li id="r-univar">M. Pinet, J. Cumin, S. Berlemont, and D. Vaufreydaz. &ldquo;Anomalies in Multivariate Time Series
-Benchmarks Are Mostly Univariate.&rdquo; arXiv preprint, 2026.
-<a href="https://arxiv.org/abs/2606.02670">arXiv:2606.02670</a>.</li>
-<li id="r-usad">J. Audibert, P. Michiardi, F. Guyard, S. Marti, and M. A. Zuluaga. &ldquo;USAD: UnSupervised
-Anomaly Detection on Multivariate Time Series.&rdquo; <em>Proceedings of the 26th ACM SIGKDD International
-Conference on Knowledge Discovery &amp; Data Mining (KDD)</em>, 2020.
-<a href="https://dl.acm.org/doi/10.1145/3394486.3403392">doi:10.1145/3394486.3403392</a>.</li>
-<li id="r-tranad">S. Tuli, G. Casale, and N. R. Jennings. &ldquo;TranAD: Deep Transformer Networks for Anomaly
-Detection in Multivariate Time Series Data.&rdquo; <em>Proceedings of the VLDB Endowment</em>, 15(6), 2022.
-<a href="https://arxiv.org/abs/2201.07284">arXiv:2201.07284</a>.</li>
-<li id="r-vade">Z. Jiang, Y. Zheng, H. Tan, B. Tang, and H. Zhou. &ldquo;Variational Deep Embedding: An
-Unsupervised and Generative Approach to Clustering.&rdquo; <em>Proceedings of the 26th International Joint
-Conference on Artificial Intelligence (IJCAI)</em>, 2017. <a href="https://arxiv.org/abs/1611.05148">arXiv:1611.05148</a>.</li>
-<li id="r-dagmm">B. Zong, Q. Song, M. R. Min, W. Cheng, C. Lumezanu, D. Cho, and H. Chen. &ldquo;Deep
-Autoencoding Gaussian Mixture Model for Unsupervised Anomaly Detection.&rdquo; <em>International Conference on
-Learning Representations (ICLR)</em>, 2018. <a href="https://openreview.net/forum?id=BJJLHbb0-">OpenReview</a>.</li>
-<li id="r-gdn">A. Deng and B. Hooi. &ldquo;Graph Neural Network-Based Anomaly Detection in Multivariate Time
-Series.&rdquo; <em>Proceedings of the AAAI Conference on Artificial Intelligence</em>, 2021.
-<a href="https://arxiv.org/abs/2106.06947">arXiv:2106.06947</a>.</li>
-<li id="r-if">F. T. Liu, K. M. Ting, and Z.-H. Zhou. &ldquo;Isolation Forest.&rdquo; <em>IEEE International
-Conference on Data Mining (ICDM)</em>, 2008, pp. 413&ndash;422. <a href="https://doi.org/10.1109/ICDM.2008.17">doi:10.1109/ICDM.2008.17</a>.</li>
-<li id="r-lw">O. Ledoit and M. Wolf. &ldquo;A Well-Conditioned Estimator for Large-Dimensional Covariance
-Matrices.&rdquo; <em>Journal of Multivariate Analysis</em>, 88(2):365&ndash;411, 2004.
-<a href="https://doi.org/10.1016/S0047-259X(03)00096-4">doi:10.1016/S0047-259X(03)00096-4</a>.</li>
-<li id="r-wadi">C. M. Ahmed, V. R. Palleti, and A. P. Mathur. &ldquo;WADI: A Water Distribution Testbed for
-Research in the Design of Secure Cyber Physical Systems.&rdquo; <em>Proceedings of the 3rd International Workshop
-on Cyber-Physical Systems for Smart Water Networks (CySWATER)</em>, 2017.
-<a href="https://doi.org/10.1145/3055366.3055375">doi:10.1145/3055366.3055375</a>.</li>
-<li id="r-hai">H.-K. Shin, W. Lee, J.-H. Yun, and H. Kim. &ldquo;HAI 1.0: HIL-based Augmented ICS Security
-Dataset.&rdquo; <em>13th USENIX Workshop on Cyber Security Experimentation and Test (CSET)</em>, 2020.
-<a href="https://www.usenix.org/conference/cset20/presentation/shin">USENIX</a>.</li>
-<li id="r-skab">I. D. Katser and V. O. Kozitsin. &ldquo;Skoltech Anomaly Benchmark (SKAB).&rdquo; Kaggle
-dataset, 2020. <a href="https://www.kaggle.com/dsv/1693952">doi:10.34740/kaggle/dsv/1693952</a>.</li>
-<li id="r-bouman">R. Bouman and T. Heskes. &ldquo;Autoencoders for Anomaly Detection are Unreliable.&rdquo; arXiv preprint, 2025. <a href="https://arxiv.org/abs/2501.13864">arXiv:2501.13864</a>.</li>
-<li id="r-memae">D. Gong, L. Liu, V. Le, B. Saha, M. R. Mansour, S. Venkatesh, and A. van den Hengel. &ldquo;Memorizing Normality to Detect Anomaly: Memory-augmented Deep Autoencoder for Unsupervised Anomaly Detection.&rdquo; <em>Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)</em>, 2019. <a href="https://arxiv.org/abs/1904.02639">arXiv:1904.02639</a>.</li>
-<li id="r-sarfraz">M. S. Sarfraz, M.-Y. Chen, L. Layer, K. Peng, and M. Koulakis. &ldquo;Position: Quo Vadis, Unsupervised Time Series Anomaly Detection?&rdquo; <em>Proceedings of the 41st International Conference on Machine Learning (ICML)</em>, 2024. <a href="https://arxiv.org/abs/2405.02678">arXiv:2405.02678</a>.</li>
-<li id="r-timesead">D. Wagner, T. Michels, F. C. F. Schulz, A. Nair, M. Rudolph, and M. Kloft. &ldquo;TimeSeAD: Benchmarking Deep Multivariate Time-Series Anomaly Detection.&rdquo; <em>Transactions on Machine Learning Research (TMLR)</em>, 2023. <a href="https://openreview.net/forum?id=iMmsCI0JsS">OpenReview</a>.</li>
-<li id="r-swat">A. P. Mathur and N. O. Tippenhauer. &ldquo;SWaT: A Water Treatment Testbed for Research and Training on ICS Security.&rdquo; <em>2016 International Workshop on Cyber-physical Systems for Smart Water Networks (CySWater)</em>, 2016. <a href="https://doi.org/10.1109/CySWater.2016.7469060">doi:10.1109/CySWater.2016.7469060</a>.</li>
-<li id="r-aead">M. Sakurada and T. Yairi. &ldquo;Anomaly Detection Using Autoencoders with Nonlinear Dimensionality Reduction.&rdquo; <em>Proceedings of the MLSDA 2014 2nd Workshop on Machine Learning for Sensory Data Analysis</em>, 2014, pp. 4&ndash;11. <a href="https://doi.org/10.1145/2689746.2689747">doi:10.1145/2689746.2689747</a>.</li>
-<li id="r-chandola">V. Chandola, A. Banerjee, and V. Kumar. &ldquo;Anomaly Detection: A Survey.&rdquo; <em>ACM Computing Surveys</em>, 41(3):Article&nbsp;15, 2009. <a href="https://doi.org/10.1145/1541880.1541882">doi:10.1145/1541880.1541882</a>.</li>
-<li id="r-pang">G. Pang, C. Shen, L. Cao, and A. van den Hengel. &ldquo;Deep Learning for Anomaly Detection: A Review.&rdquo; <em>ACM Computing Surveys</em>, 54(2):Article&nbsp;38, 2021. <a href="https://arxiv.org/abs/2007.02500">arXiv:2007.02500</a>, doi:10.1145/3439950.</li>
-<li id="r-ruff">L. Ruff, J. R. Kauffmann, R. A. Vandermeulen, G. Montavon, W. Samek, M. Kloft, T. G. Dietterich, and K.-R. M&uuml;ller. &ldquo;A Unifying Review of Deep and Shallow Anomaly Detection.&rdquo; <em>Proceedings of the IEEE</em>, 109(5):756&ndash;795, 2021. <a href="https://arxiv.org/abs/2009.11732">arXiv:2009.11732</a>, doi:10.1109/JPROC.2021.3052449.</li>
-<li id="r-tsreview">A. Bl&aacute;zquez-Garc&iacute;a, A. Conde, U. Mori, and J. A. Lozano. &ldquo;A Review on Outlier/Anomaly Detection in Time Series Data.&rdquo; <em>ACM Computing Surveys</em>, 54(3):Article&nbsp;56, 2021. <a href="https://arxiv.org/abs/2002.04236">arXiv:2002.04236</a>, doi:10.1145/3444690.</li>
-<li id="r-icssurvey">Y. Hu, A. Yang, H. Li, Y. Sun, and L. Sun. &ldquo;A Survey of Intrusion Detection on Industrial Control Systems.&rdquo; <em>International Journal of Distributed Sensor Networks</em>, 14(8), 2018. <a href="https://doi.org/10.1177/1550147718794615">doi:10.1177/1550147718794615</a>.</li>
+<li id="r-kim">Kim, S.; Choi, K.; Choi, H.-S.; Lee, B.; Yoon, S. Towards a rigorous evaluation of time-series anomaly detection. In Proceedings of the AAAI Conference on Artificial Intelligence, Virtual, 22 February&ndash;1 March 2022; Volume 36, pp. 7194&ndash;7201. <a href="https://doi.org/10.1609/aaai.v36i7.20680">https://doi.org/10.1609/aaai.v36i7.20680</a>.</li>
+<li id="r-garg">Garg, A.; Zhang, W.; Samaran, J.; Savitha, R.; Foo, C.-S. An evaluation of anomaly detection and diagnosis in multivariate time series. <em>IEEE Trans. Neural Netw. Learn. Syst.</em> <strong>2022</strong>, <em>33</em>, 2508&ndash;2517. <a href="https://doi.org/10.1109/TNNLS.2021.3105827">https://doi.org/10.1109/TNNLS.2021.3105827</a>.</li>
+<li id="r-wukeogh">Wu, R.; Keogh, E.J. Current time series anomaly detection benchmarks are flawed and are creating the illusion of progress. <em>IEEE Trans. Knowl. Data Eng.</em> <strong>2023</strong>, <em>35</em>, 2421&ndash;2429. <a href="https://doi.org/10.1109/TKDE.2021.3112126">https://doi.org/10.1109/TKDE.2021.3112126</a>.</li>
+<li id="r-doshi">Doshi, K.; Abudalou, S.; Yilmaz, Y. Reward once, penalize once: Rectifying time series anomaly detection. In Proceedings of the International Joint Conference on Neural Networks (IJCNN), Padua, Italy, 18&ndash;23 July 2022. <a href="https://arxiv.org/abs/2203.05167">arXiv:2203.05167</a>.</li>
+<li id="r-univar">Pinet, M.; Cumin, J.; Berlemont, S.; Vaufreydaz, D. Anomalies in multivariate time series benchmarks are mostly univariate. <em>arXiv</em> <strong>2026</strong>, arXiv:2606.02670. <a href="https://arxiv.org/abs/2606.02670">https://arxiv.org/abs/2606.02670</a>.</li>
+<li id="r-usad">Audibert, J.; Michiardi, P.; Guyard, F.; Marti, S.; Zuluaga, M.A. USAD: Unsupervised anomaly detection on multivariate time series. In Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery &amp; Data Mining (KDD), Virtual Event, CA, USA, 23&ndash;27 August 2020; pp. 3395&ndash;3404. <a href="https://doi.org/10.1145/3394486.3403392">https://doi.org/10.1145/3394486.3403392</a>.</li>
+<li id="r-tranad">Tuli, S.; Casale, G.; Jennings, N.R. TranAD: Deep transformer networks for anomaly detection in multivariate time series data. <em>Proc. VLDB Endow.</em> <strong>2022</strong>, <em>15</em>, 1201&ndash;1214. <a href="https://doi.org/10.14778/3514061.3514067">https://doi.org/10.14778/3514061.3514067</a>.</li>
+<li id="r-vade">Jiang, Z.; Zheng, Y.; Tan, H.; Tang, B.; Zhou, H. Variational deep embedding: An unsupervised and generative approach to clustering. In Proceedings of the 26th International Joint Conference on Artificial Intelligence (IJCAI), Melbourne, Australia, 19&ndash;25 August 2017; pp. 1965&ndash;1972. <a href="https://doi.org/10.24963/ijcai.2017/273">https://doi.org/10.24963/ijcai.2017/273</a>.</li>
+<li id="r-dagmm">Zong, B.; Song, Q.; Min, M.R.; Cheng, W.; Lumezanu, C.; Cho, D.; Chen, H. Deep autoencoding Gaussian mixture model for unsupervised anomaly detection. In Proceedings of the International Conference on Learning Representations (ICLR), Vancouver, BC, Canada, 30 April&ndash;3 May 2018. <a href="https://openreview.net/forum?id=BJJLHbb0-">https://openreview.net/forum?id=BJJLHbb0-</a>.</li>
+<li id="r-gdn">Deng, A.; Hooi, B. Graph neural network-based anomaly detection in multivariate time series. In Proceedings of the AAAI Conference on Artificial Intelligence, Virtual, 2&ndash;9 February 2021; Volume 35, pp. 4027&ndash;4035. <a href="https://doi.org/10.1609/aaai.v35i5.16523">https://doi.org/10.1609/aaai.v35i5.16523</a>.</li>
+<li id="r-if">Liu, F.T.; Ting, K.M.; Zhou, Z.-H. Isolation forest. In Proceedings of the 2008 Eighth IEEE International Conference on Data Mining (ICDM), Pisa, Italy, 15&ndash;19 December 2008; pp. 413&ndash;422. <a href="https://doi.org/10.1109/ICDM.2008.17">https://doi.org/10.1109/ICDM.2008.17</a>.</li>
+<li id="r-lw">Ledoit, O.; Wolf, M. A well-conditioned estimator for large-dimensional covariance matrices. <em>J. Multivar. Anal.</em> <strong>2004</strong>, <em>88</em>, 365&ndash;411. <a href="https://doi.org/10.1016/S0047-259X(03)00096-4">https://doi.org/10.1016/S0047-259X(03)00096-4</a>.</li>
+<li id="r-wadi">Ahmed, C.M.; Palleti, V.R.; Mathur, A.P. WADI: A water distribution testbed for research in the design of secure cyber physical systems. In Proceedings of the 3rd International Workshop on Cyber-Physical Systems for Smart Water Networks (CySWATER), Pittsburgh, PA, USA, 21 April 2017; pp. 25&ndash;28. <a href="https://doi.org/10.1145/3055366.3055375">https://doi.org/10.1145/3055366.3055375</a>.</li>
+<li id="r-hai">Shin, H.-K.; Lee, W.; Yun, J.-H.; Kim, H. HAI 1.0: HIL-based augmented ICS security dataset. In Proceedings of the 13th USENIX Workshop on Cyber Security Experimentation and Test (CSET), Virtual, 10 August 2020. <a href="https://www.usenix.org/conference/cset20/presentation/shin">https://www.usenix.org/conference/cset20/presentation/shin</a>.</li>
+<li id="r-skab">Katser, I.D.; Kozitsin, V.O. <em>Skoltech Anomaly Benchmark (SKAB)</em>; Kaggle: 2020. <a href="https://doi.org/10.34740/kaggle/dsv/1693952">https://doi.org/10.34740/kaggle/dsv/1693952</a>.</li>
+<li id="r-bouman">Bouman, R.; Heskes, T. Autoencoders for anomaly detection are unreliable. <em>arXiv</em> <strong>2025</strong>, arXiv:2501.13864. <a href="https://arxiv.org/abs/2501.13864">https://arxiv.org/abs/2501.13864</a>.</li>
+<li id="r-memae">Gong, D.; Liu, L.; Le, V.; Saha, B.; Mansour, M.R.; Venkatesh, S.; van den Hengel, A. Memorizing normality to detect anomaly: Memory-augmented deep autoencoder for unsupervised anomaly detection. In Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV), Seoul, Republic of Korea, 27 October&ndash;2 November 2019; pp. 1705&ndash;1714. <a href="https://arxiv.org/abs/1904.02639">arXiv:1904.02639</a>.</li>
+<li id="r-sarfraz">Sarfraz, M.S.; Chen, M.-Y.; Layer, L.; Peng, K.; Koulakis, M. Position: Quo vadis, unsupervised time series anomaly detection? In Proceedings of the 41st International Conference on Machine Learning (ICML), Vienna, Austria, 21&ndash;27 July 2024. <a href="https://arxiv.org/abs/2405.02678">arXiv:2405.02678</a>.</li>
+<li id="r-timesead">Wagner, D.; Michels, T.; Schulz, F.C.F.; Nair, A.; Rudolph, M.; Kloft, M. TimeSeAD: Benchmarking deep multivariate time-series anomaly detection. <em>Trans. Mach. Learn. Res.</em> <strong>2023</strong>. <a href="https://openreview.net/forum?id=iMmsCI0JsS">https://openreview.net/forum?id=iMmsCI0JsS</a>.</li>
+<li id="r-swat">Mathur, A.P.; Tippenhauer, N.O. SWaT: A water treatment testbed for research and training on ICS security. In Proceedings of the 2016 International Workshop on Cyber-Physical Systems for Smart Water Networks (CySWater), Vienna, Austria, 11 April 2016; pp. 31&ndash;36. <a href="https://doi.org/10.1109/CySWater.2016.7469060">https://doi.org/10.1109/CySWater.2016.7469060</a>.</li>
+<li id="r-aead">Sakurada, M.; Yairi, T. Anomaly detection using autoencoders with nonlinear dimensionality reduction. In Proceedings of the MLSDA 2014 2nd Workshop on Machine Learning for Sensory Data Analysis, Gold Coast, Australia, 2 December 2014; pp. 4&ndash;11. <a href="https://doi.org/10.1145/2689746.2689747">https://doi.org/10.1145/2689746.2689747</a>.</li>
+<li id="r-chandola">Chandola, V.; Banerjee, A.; Kumar, V. Anomaly detection: A survey. <em>ACM Comput. Surv.</em> <strong>2009</strong>, <em>41</em>, 15. <a href="https://doi.org/10.1145/1541880.1541882">https://doi.org/10.1145/1541880.1541882</a>.</li>
+<li id="r-pang">Pang, G.; Shen, C.; Cao, L.; van den Hengel, A. Deep learning for anomaly detection: A review. <em>ACM Comput. Surv.</em> <strong>2021</strong>, <em>54</em>, 38. <a href="https://doi.org/10.1145/3439950">https://doi.org/10.1145/3439950</a>.</li>
+<li id="r-ruff">Ruff, L.; Kauffmann, J.R.; Vandermeulen, R.A.; Montavon, G.; Samek, W.; Kloft, M.; Dietterich, T.G.; M&uuml;ller, K.-R. A unifying review of deep and shallow anomaly detection. <em>Proc. IEEE</em> <strong>2021</strong>, <em>109</em>, 756&ndash;795. <a href="https://doi.org/10.1109/JPROC.2021.3052449">https://doi.org/10.1109/JPROC.2021.3052449</a>.</li>
+<li id="r-tsreview">Bl&aacute;zquez-Garc&iacute;a, A.; Conde, A.; Mori, U.; Lozano, J.A. A review on outlier/anomaly detection in time series data. <em>ACM Comput. Surv.</em> <strong>2021</strong>, <em>54</em>, 56. <a href="https://doi.org/10.1145/3444690">https://doi.org/10.1145/3444690</a>.</li>
+<li id="r-icssurvey">Hu, Y.; Yang, A.; Li, H.; Sun, Y.; Sun, L. A survey of intrusion detection on industrial control systems. <em>Int. J. Distrib. Sens. Netw.</em> <strong>2018</strong>, <em>14</em>, 1550147718794615. <a href="https://doi.org/10.1177/1550147718794615">https://doi.org/10.1177/1550147718794615</a>.</li>
 </ol>
 
 </body>
