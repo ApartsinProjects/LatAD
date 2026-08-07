@@ -1,0 +1,26 @@
+{
+ "WADI": {
+  "partic_ratio": 26.5,
+  "nchan": 123,
+  "mode_gini": 0.342,
+  "scale_spread": 1.9
+ },
+ "HAI": {
+  "partic_ratio": 16.1,
+  "nchan": 59,
+  "mode_gini": 0.389,
+  "scale_spread": 1.0
+ },
+ "SKAB": {
+  "partic_ratio": 5.2,
+  "nchan": 8,
+  "mode_gini": 0.482,
+  "scale_spread": 1.0
+ },
+ "SWaT": {
+  "partic_ratio": 14.6,
+  "nchan": 51,
+  "mode_gini": 0.525,
+  "scale_spread": 1.0
+ }
+}
