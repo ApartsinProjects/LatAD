@@ -1,0 +1,8 @@
+{
+ "dataset": "HAI",
+ "diag80": 0.789,
+ "full_Ks": 0.787,
+ "full_8": 0.785,
+ "bayes": 0.788,
+ "agglo": 0.814
+}

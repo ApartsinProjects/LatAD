@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>LatAD — Dataset access requests</title>
+<style>
+  :root{ --ink:#16202a; --dim:#5a6b78; --line:#dce4ea; --accent:#0f5f8a; --card:#fff; --bg:#eef1f4; --warn:#9a6a12; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; font-size:15px; line-height:1.5; }
+  .wrap{ max-width:820px; margin:26px auto; padding:0 18px 50px; }
+  h1{ font-size:22px; margin:0 0 4px; }
+  .sub{ color:var(--dim); font-size:13.5px; margin:0 0 22px; }
+  .card{ background:var(--card); border:1px solid var(--line); border-radius:11px; padding:20px 22px;
+    margin:0 0 20px; box-shadow:0 1px 3px rgba(16,40,50,.05); }
+  .card h2{ font-size:17px; margin:0 0 2px; }
+  .tag{ display:inline-block; font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+    padding:2px 8px; border-radius:20px; margin-left:8px; vertical-align:middle; }
+  .t-gate{ background:#fde7d6; color:var(--warn); } .t-domain{ background:#e4eff5; color:var(--accent); }
+  .why{ color:var(--dim); font-size:13.5px; margin:6px 0 14px; }
+  .meta{ font-size:13px; margin:0 0 10px; }
+  .meta b{ color:var(--ink); } .meta code{ background:#f2f5f7; padding:1px 6px; border-radius:4px; font-size:12.5px; }
+  .email{ background:#f8fafb; border:1px solid var(--line); border-left:3px solid var(--accent);
+    border-radius:6px; padding:14px 16px; font-family:"SFMono-Regular",Consolas,monospace; font-size:12.7px;
+    line-height:1.55; white-space:pre-wrap; color:#233038; }
+  .verify{ color:var(--warn); font-size:12.5px; margin-top:8px; }
+  a{ color:var(--accent); }
+  .have{ background:#eaf6ee; border-color:#bfe3cb; }
+  .have h2{ color:#1c7a3f; }
+  @media print{ body{ background:#fff; } .card{ box-shadow:none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Dataset access requests</h1>
+  <p class="sub">Gated real-hardware CPS datasets worth requesting for the LatAD study (anomaly detection in
+  industrial-IoT / cyber-physical systems). Verify each recipient address before sending; the email bodies are
+  ready to copy. Sender: Alexander Apartsin (HIT) &amp; Yehudit Aperstein (Afeka).</p>
+
+  <!-- EPIC -->
+  <div class="card">
+    <h2>EPIC — iTrust Electric Power &amp; Intelligent Control testbed<span class="tag t-domain">Power / new domain</span><span class="tag t-gate">Gated</span></h2>
+    <p class="why">A real physical power-grid CPS testbed with sensors + actuators — the highest-value addition
+    (a new domain: electric power), from the same iTrust source you already used for SWaT/WADI, so you likely
+    qualify immediately.</p>
+    <p class="meta"><b>Send to:</b> <code>itrust@sutd.edu.sg</code> &nbsp;|&nbsp;
+      <b>or the request form:</b> <a href="https://itrust.sutd.edu.sg/itrust-labs_datasets/">itrust.sutd.edu.sg/itrust-labs_datasets</a></p>
+    <p class="meta"><b>Subject:</b> Dataset request — EPIC testbed (existing iTrust dataset user)</p>
+    <div class="email">Dear iTrust Labs team,
+
+I am a researcher at Holon Institute of Technology (Israel) working on unsupervised anomaly detection for cyber-physical systems and the industrial IoT, together with my co-author Prof. Yehudit Aperstein (Afeka Academic College of Engineering).
+
+We have previously obtained and used the SWaT and WADI datasets from iTrust in our work. We are now extending our evaluation across additional real cyber-physical domains, and we would be grateful for access to the EPIC (Electric Power and Intelligent Control) dataset for academic, non-commercial research use.
+
+We will cite the dataset and iTrust in any resulting publication (a manuscript is in preparation for the MDPI journal IoT). Please let us know the access procedure and any data-use agreement to sign.
+
+Thank you very much for your time and for maintaining these testbeds.
+
+Best regards,
+Alexander Apartsin
+School of Computer Science, Faculty of Sciences
+Holon Institute of Technology (HIT), Holon, Israel
+alexanderap@hit.ac.il</div>
+    <p class="verify">Verify: confirm the current request mechanism on the iTrust datasets page (they sometimes use a Google Form rather than email).</p>
+  </div>
+
+  <!-- EngineAD -->
+  <div class="card">
+    <h2>EngineAD — real vehicle engine telemetry<span class="tag t-domain">Automotive / new domain</span><span class="tag t-gate">Gated</span></h2>
+    <p class="why">Real commercial-vehicle engine telemetry with expert-annotated incipient faults — the one
+    genuine automotive option. Caveat: it ships preprocessed (8 principal components, 300-step segments,
+    segment-level labels), so it may not slot cleanly into our raw multivariate-window pipeline; request it, then
+    we assess fit.</p>
+    <p class="meta"><b>Send to:</b> <code>narges.armanfard@mcgill.ca</code> &nbsp;(Prof. Narges Armanfard, McGill — corresponding author) &nbsp;|&nbsp;
+      <b>repo:</b> <a href="https://github.com/Armanfard-Lab/EngineAD">github.com/Armanfard-Lab/EngineAD</a></p>
+    <p class="meta"><b>Subject:</b> Access request — EngineAD dataset (academic research)</p>
+    <div class="email">Dear Prof. Armanfard,
+
+I am a researcher at Holon Institute of Technology (Israel), working with Prof. Yehudit Aperstein (Afeka Academic College of Engineering) on unsupervised anomaly detection for cyber-physical systems and the industrial IoT.
+
+We are evaluating our method across diverse real cyber-physical domains, and the automotive domain is currently under-represented in the public benchmarks. We came across your EngineAD dataset (real vehicle engine telemetry with expert-annotated faults) and would be very grateful for access for academic, non-commercial research use.
+
+We would of course cite your paper and dataset in any resulting publication. Please let us know the access procedure and any data-use agreement required.
+
+Thank you very much for making this work available.
+
+Best regards,
+Alexander Apartsin
+School of Computer Science, Faculty of Sciences
+Holon Institute of Technology (HIT), Holon, Israel
+alexanderap@hit.ac.il</div>
+    <p class="verify">Verify: confirm the corresponding-author address from the EngineAD paper / repo before sending; the Borealis Dataverse (DOI 10.5683/SP3/TX13P1) also has a "request access" button.</p>
+  </div>
+
+  <!-- Already obtained -->
+  <div class="card have">
+    <h2>Already obtained — no request needed</h2>
+    <p class="meta"><b>SWaT, WADI</b> (iTrust water testbeds) — already downloaded and in use. If you want the
+    newest revisions, the same iTrust form covers them.</p>
+    <p class="meta"><b>Ungated, no request:</b> HAI (GitHub), MetroPT-3 (UCI), ESA-ADB (Zenodo, real satellite — if
+    you want the space domain later).</p>
+  </div>
+</div>
+</body>
+</html>

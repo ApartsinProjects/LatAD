@@ -1,0 +1,8 @@
+{
+ "dataset": "HAI",
+ "density": 0.794,
+ "knn_latent": 0.79,
+ "flexible": 0.789,
+ "prototype": 0.789,
+ "snap": 0.789
+}

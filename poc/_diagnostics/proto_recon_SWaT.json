@@ -1,0 +1,8 @@
+{
+ "dataset": "SWaT",
+ "density": 0.952,
+ "knn_latent": 0.968,
+ "flexible": 0.968,
+ "prototype": 0.95,
+ "snap": 0.95
+}

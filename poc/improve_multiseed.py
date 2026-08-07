@@ -14,7 +14,7 @@ from models_vade import train_vade
 from compare_baselines import ae_scores
 import eda_real as E
 
-CFG = {"WADI": (20, 10), "HAI": (40, 16), "SKAB": (16, 6), "SWaT": (40, 16)}
+CFG = {"WADI": (20, 10), "HAI": (40, 16), "SKAB": (16, 6), "SWaT": (40, 16), "BATADAL": (15, 10), "TEP": (40, 16), "MetroPT": (20, 10)}
 SEEDS = [0, 1, 2, 3, 4]
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "_diagnostics"); os.makedirs(OUT, exist_ok=True)

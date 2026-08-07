@@ -1,0 +1,7 @@
+{
+ "dataset": "SKAB",
+ "diag80": 0.465,
+ "vade_diag": 0.453,
+ "vade_full": 0.434,
+ "vade_lw": 0.464
+}

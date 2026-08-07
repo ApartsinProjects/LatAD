@@ -1,0 +1,8 @@
+{
+ "dataset": "SMD",
+ "density": 0.964,
+ "knn_latent": 0.961,
+ "flexible": 0.964,
+ "prototype": 0.957,
+ "snap": 0.957
+}

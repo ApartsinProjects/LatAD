@@ -1,0 +1,8 @@
+{
+ "dataset": "PSM",
+ "density": 0.48,
+ "knn_latent": 0.522,
+ "flexible": 0.75,
+ "prototype": 0.702,
+ "snap": 0.702
+}

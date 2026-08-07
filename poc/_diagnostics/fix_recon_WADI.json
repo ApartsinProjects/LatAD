@@ -1,0 +1,21 @@
+{
+ "dataset": "WADI",
+ "density_only": 0.721,
+ "density+recon": 0.535,
+ "recon_helps": false,
+ "gate_fires": 0.0,
+ "gate_vals": [
+  [
+   1.11,
+   0.87
+  ],
+  [
+   1.06,
+   0.86
+  ],
+  [
+   1.06,
+   0.87
+  ]
+ ]
+}

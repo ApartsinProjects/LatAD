@@ -1,0 +1,21 @@
+{
+ "dataset": "SWaT",
+ "density_only": 0.952,
+ "density+recon": 0.965,
+ "recon_helps": true,
+ "gate_fires": 0.0,
+ "gate_vals": [
+  [
+   0.77,
+   0.85
+  ],
+  [
+   0.79,
+   0.84
+  ],
+  [
+   0.8,
+   0.8
+  ]
+ ]
+}

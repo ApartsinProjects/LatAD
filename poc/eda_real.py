@@ -97,14 +97,74 @@ def _raw_swat(downsample=10, warmup_drop=0.02, test_normal_frac=0.2):
     return Xn_tr, Xa_raw, ya, sens
 
 
+def _raw_psm(warmup_drop=0.0):
+    """PSM (Pooled Server Metrics, eBay/RANSynCoders): ungated, 25 features, per-timestep
+    labels. train.csv is all-normal; test.csv carries normals (0) and anomalies (1)."""
+    import os, pandas as pd
+    base = os.path.join(os.path.dirname(os.path.abspath(__file__)), "datasets", "_new", "RANSynCoders", "data")
+    drop = ["timestamp_(min)"]
+    prep = lambda df: df.drop(columns=drop).apply(pd.to_numeric, errors="coerce").ffill().bfill().fillna(0.0).values.astype(np.float32)
+    tr = pd.read_csv(f"{base}/train.csv"); te = pd.read_csv(f"{base}/test.csv")
+    sens = [c for c in tr.columns if c not in drop]
+    Xn_tr = prep(tr); Xa_raw = prep(te)
+    ya = pd.read_csv(f"{base}/test_label.csv")["label"].values.astype(int)
+    return Xn_tr, Xa_raw, ya, sens
+
+
+def _raw_metropt():
+    """MetroPT-3 (real Porto-metro air-compressor APU): 15 real sensor/actuator channels, 1 Hz
+    (downsampled to 1 min). Labels from published air-leak failure windows."""
+    import os
+    d = np.load(os.path.join(os.path.dirname(os.path.abspath(__file__)), "datasets", "_new", "MetroPT3", "metropt_data.npz"), allow_pickle=True)
+    return d["Xn"], d["Xa"], d["ya"], list(d["sens"])
+
+
+def _raw_tep():
+    """TEP (Tennessee Eastman Process, Rieth 2017): SIMULATED chemical-process benchmark.
+    52 vars = 41 xmeas sensors + 11 xmv actuators; anomalies = faulty runs (20 fault types)."""
+    import os
+    d = np.load(os.path.join(os.path.dirname(os.path.abspath(__file__)), "datasets", "_new", "TEP", "tep_data.npz"), allow_pickle=True)
+    return d["Xn"], d["Xa"], d["ya"], list(d["sens"])
+
+
+def _raw_batadal():
+    """BATADAL (Battle of the Attack Detection Algorithms): real water-distribution CPS
+    (C-Town, EPANET hydraulics). 43 SCADA channels: 7 tank levels (sensors), pump/valve
+    pressures + pump flows/status (actuators). dataset03 = 1yr attack-free train;
+    dataset04 = test with ATT_FLAG (1=attack). Genuine sensors+actuators+physics."""
+    import os, pandas as pd
+    base = os.path.join(os.path.dirname(os.path.abspath(__file__)), "datasets", "_new", "BATADAL")
+    tr = pd.read_csv(f"{base}/BATADAL_dataset03.csv"); tr.columns = [c.strip() for c in tr.columns]
+    te = pd.read_csv(f"{base}/BATADAL_dataset04.csv"); te.columns = [c.strip() for c in te.columns]
+    drop = ["DATETIME", "ATT_FLAG"]
+    sens = [c for c in tr.columns if c not in drop]
+    prep = lambda df: df[sens].apply(pd.to_numeric, errors="coerce").ffill().bfill().fillna(0.0).values.astype(np.float32)
+    Xn = prep(tr); Xa = prep(te)
+    ya = (te["ATT_FLAG"].values == 1).astype(int)
+    return Xn, Xa, ya, sens
+
+
+def _raw_smd(machine="1-1"):
+    """SMD (Server Machine Dataset, OmniAnomaly): ungated, 38 channels, per-timestep labels.
+    Each machine is a separate stream (do not concatenate across machines)."""
+    import os
+    base = os.path.join(os.path.dirname(os.path.abspath(__file__)), "datasets", "_new",
+                        "OmniAnomaly", "ServerMachineDataset")
+    Xn_tr = np.loadtxt(f"{base}/train/machine-{machine}.txt", delimiter=",").astype(np.float32)
+    Xa_raw = np.loadtxt(f"{base}/test/machine-{machine}.txt", delimiter=",").astype(np.float32)
+    ya = np.loadtxt(f"{base}/test_label/machine-{machine}.txt", delimiter=",").astype(int)
+    return Xn_tr, Xa_raw, ya, [f"c{i}" for i in range(Xn_tr.shape[1])]
+
+
 # (window, stride) per dataset. Unified to (60, 30): W=60 is empirically the best SKAB window
 # (0.671 vs 0.66@W30 / 0.61@W120) and HAI stride 60->30 adds overlap; consistent across all so the
 # table matches the sweep scripts (SKAB at the old W=20 spuriously lost to USAD).
 RAW = {"SKAB": (_raw_skab, 60, 30), "HAI": (_raw_hai, 60, 30), "WADI": (_raw_wadi, 60, 30),
-       "SWaT": (_raw_swat, 60, 30)}
+       "SWaT": (_raw_swat, 60, 30), "PSM": (_raw_psm, 60, 30),
+       "SMD": ((lambda: _raw_smd("1-1")), 60, 30), "BATADAL": (_raw_batadal, 60, 30), "TEP": (_raw_tep, 60, 30), "MetroPT": (_raw_metropt, 60, 30)}
 # clip is WADI-specific: WADI has glitch/shifted channels (up to 1e8 sigma); HAI's big
 # excursions are REAL attack signal (clipping hurts), SKAB is already in range (no-op).
-CLIP = {"WADI": 10.0, "HAI": None, "SKAB": None, "SWaT": None}
+CLIP = {"WADI": 10.0, "HAI": None, "SKAB": None, "SWaT": None, "PSM": None, "SMD": None, "BATADAL": None, "TEP": None, "MetroPT": None}
 
 
 def load(name, clip="auto"):

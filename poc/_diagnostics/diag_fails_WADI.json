@@ -1,0 +1,23 @@
+{
+ "dataset": "WADI",
+ "density": {
+  "mean": 0.721,
+  "std": 0.043
+ },
+ "nearest": {
+  "mean": 0.653,
+  "std": 0.021
+ },
+ "recon": {
+  "mean": 0.487,
+  "std": 0.011
+ },
+ "IF_feat": {
+  "mean": 0.68,
+  "std": 0.011
+ },
+ "anom_in_normal_latent": {
+  "mean": 0.0,
+  "std": 0.0
+ }
+}

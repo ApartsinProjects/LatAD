@@ -1,0 +1,8 @@
+{
+ "dataset": "PSM",
+ "diag80": 0.474,
+ "full_Ks": 0.505,
+ "full_8": 0.523,
+ "bayes": 0.506,
+ "agglo": 0.518
+}

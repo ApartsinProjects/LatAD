@@ -1,0 +1,23 @@
+{
+ "dataset": "SWaT",
+ "density": {
+  "mean": 0.952,
+  "std": 0.005
+ },
+ "nearest": {
+  "mean": 0.912,
+  "std": 0.007
+ },
+ "recon": {
+  "mean": 0.964,
+  "std": 0.0
+ },
+ "IF_feat": {
+  "mean": 0.86,
+  "std": 0.009
+ },
+ "anom_in_normal_latent": {
+  "mean": 0.0,
+  "std": 0.0
+ }
+}

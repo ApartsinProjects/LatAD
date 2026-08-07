@@ -1,0 +1,7 @@
+{
+ "dataset": "PSM",
+ "diag80": 0.474,
+ "vade_diag": 0.508,
+ "vade_full": 0.497,
+ "vade_lw": 0.496
+}

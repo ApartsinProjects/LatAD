@@ -1,0 +1,8 @@
+{
+ "dataset": "SMD",
+ "diag80": 0.96,
+ "full_Ks": 0.966,
+ "full_8": 0.965,
+ "bayes": 0.969,
+ "agglo": 0.963
+}

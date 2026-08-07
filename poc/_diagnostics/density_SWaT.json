@@ -1,0 +1,8 @@
+{
+ "dataset": "SWaT",
+ "diag80": 0.955,
+ "full_Ks": 0.942,
+ "full_8": 0.895,
+ "bayes": 0.94,
+ "agglo": 0.964
+}

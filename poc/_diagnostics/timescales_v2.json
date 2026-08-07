@@ -1,0 +1,34 @@
+{
+ "WADI": {
+  "ar1_tau_med": 41.8,
+  "ar1_spread": 696.8,
+  "spec_period_med": 110.6,
+  "xcorr_lag_med": 77.0,
+  "xcorr_spread": 100.0,
+  "log10_ar1tau_std": 0.902
+ },
+ "HAI": {
+  "ar1_tau_med": 1224.1,
+  "ar1_spread": 23338.8,
+  "spec_period_med": 853.5,
+  "xcorr_lag_med": 71.0,
+  "xcorr_spread": 100.0,
+  "log10_ar1tau_std": 1.325
+ },
+ "SKAB": {
+  "ar1_tau_med": 504.7,
+  "ar1_spread": 5254.7,
+  "spec_period_med": 711.0,
+  "xcorr_lag_med": 5.0,
+  "xcorr_spread": 100.0,
+  "log10_ar1tau_std": 1.293
+ },
+ "SWaT": {
+  "ar1_tau_med": 78.8,
+  "ar1_spread": 2571.0,
+  "spec_period_med": 137.5,
+  "xcorr_lag_med": 40.0,
+  "xcorr_spread": 100.0,
+  "log10_ar1tau_std": 0.898
+ }
+}

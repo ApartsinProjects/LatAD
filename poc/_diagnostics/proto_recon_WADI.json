@@ -1,0 +1,8 @@
+{
+ "dataset": "WADI",
+ "density": 0.721,
+ "knn_latent": 0.671,
+ "flexible": 0.414,
+ "prototype": 0.439,
+ "snap": 0.439
+}

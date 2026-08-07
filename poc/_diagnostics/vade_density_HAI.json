@@ -1,0 +1,7 @@
+{
+ "dataset": "HAI",
+ "diag80": 0.789,
+ "vade_diag": 0.797,
+ "vade_full": 0.803,
+ "vade_lw": 0.808
+}

@@ -1,0 +1,23 @@
+{
+ "dataset": "SMD",
+ "density": {
+  "mean": 0.964,
+  "std": 0.001
+ },
+ "nearest": {
+  "mean": 0.955,
+  "std": 0.009
+ },
+ "recon": {
+  "mean": 0.964,
+  "std": 0.002
+ },
+ "IF_feat": {
+  "mean": 0.858,
+  "std": 0.011
+ },
+ "anom_in_normal_latent": {
+  "mean": 1.0,
+  "std": 0.0
+ }
+}

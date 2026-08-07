@@ -1,0 +1,21 @@
+{
+ "dataset": "SMD",
+ "density_only": 0.964,
+ "density+recon": 0.968,
+ "recon_helps": false,
+ "gate_fires": 0.33,
+ "gate_vals": [
+  [
+   0.99,
+   0.56
+  ],
+  [
+   1.01,
+   0.46
+  ],
+  [
+   1.01,
+   0.55
+  ]
+ ]
+}

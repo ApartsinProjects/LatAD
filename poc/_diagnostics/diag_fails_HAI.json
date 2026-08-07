@@ -1,0 +1,23 @@
+{
+ "dataset": "HAI",
+ "density": {
+  "mean": 0.794,
+  "std": 0.014
+ },
+ "nearest": {
+  "mean": 0.792,
+  "std": 0.022
+ },
+ "recon": {
+  "mean": 0.69,
+  "std": 0.002
+ },
+ "IF_feat": {
+  "mean": 0.627,
+  "std": 0.006
+ },
+ "anom_in_normal_latent": {
+  "mean": 0.0,
+  "std": 0.0
+ }
+}

@@ -1,0 +1,7 @@
+{
+ "dataset": "WADI",
+ "diag80": 0.707,
+ "vade_diag": 0.647,
+ "vade_full": 0.684,
+ "vade_lw": 0.67
+}

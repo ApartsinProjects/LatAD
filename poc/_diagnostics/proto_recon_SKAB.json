@@ -1,0 +1,8 @@
+{
+ "dataset": "SKAB",
+ "density": 0.46,
+ "knn_latent": 0.46,
+ "flexible": 0.498,
+ "prototype": 0.497,
+ "snap": 0.497
+}

@@ -1,0 +1,21 @@
+{
+ "dataset": "SKAB",
+ "density_only": 0.46,
+ "density+recon": 0.456,
+ "recon_helps": false,
+ "gate_fires": 1.0,
+ "gate_vals": [
+  [
+   0.48,
+   0.27
+  ],
+  [
+   0.47,
+   0.23
+  ],
+  [
+   0.5,
+   0.19
+  ]
+ ]
+}

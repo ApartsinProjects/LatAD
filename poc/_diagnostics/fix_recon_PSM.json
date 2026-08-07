@@ -1,0 +1,21 @@
+{
+ "dataset": "PSM",
+ "density_only": 0.48,
+ "density+recon": 0.658,
+ "recon_helps": true,
+ "gate_fires": 0.0,
+ "gate_vals": [
+  [
+   1.33,
+   0.62
+  ],
+  [
+   1.26,
+   0.64
+  ],
+  [
+   1.32,
+   0.64
+  ]
+ ]
+}

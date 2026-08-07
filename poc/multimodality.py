@@ -21,10 +21,10 @@ from sklearn.metrics import silhouette_score
 from scipy.stats import skew, kurtosis
 import eda_real as E
 
-DATASETS = ["WADI", "HAI", "SKAB", "SWaT"]
+DATASETS = ["WADI", "HAI", "SWaT", "MetroPT"]
 KMAX = 25
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "_diagnostics"); os.makedirs(OUT, exist_ok=True)
-COL = {"WADI": "#1f4e79", "HAI": "#0f7d84", "SKAB": "#c0392b", "SWaT": "#9a6a12"}
+COL = {"WADI": "#1f4e79", "HAI": "#0f7d84", "SKAB": "#c0392b", "SWaT": "#9a6a12", "BATADAL": "#7d5ba6", "TEP": "#c1440e"}
 
 
 def bimodality_coeff(X, npc=5):

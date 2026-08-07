@@ -1,0 +1,8 @@
+{
+ "dataset": "SKAB",
+ "diag80": 0.465,
+ "full_Ks": 0.436,
+ "full_8": 0.438,
+ "bayes": 0.428,
+ "agglo": 0.457
+}

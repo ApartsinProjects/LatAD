@@ -1,0 +1,8 @@
+{
+ "dataset": "WADI",
+ "diag80": 0.707,
+ "full_Ks": 0.725,
+ "full_8": 0.667,
+ "bayes": 0.726,
+ "agglo": 0.71
+}

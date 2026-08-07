@@ -270,16 +270,21 @@ class VaDE(nn.Module):
         return self
 
     @torch.no_grad()
-    def anomaly_score_hard(self, x, use_recon=False, use_resid=False, use_basin=False):
-        """Improved head: latent density NLL + diagonal nearest-mode NLL, each z-normalised
-        against TRAIN-normal, then summed. `use_recon=False` drops the harmful reconstruction
-        term. `use_resid` adds the responsibility-weighted whitened residual (True|False|'auto'
-        via held-out-normal generalisation; needs `fit_resid_head`). `use_basin` subtracts the
+    def anomaly_score_hard(self, x, use_recon=False, use_resid=False, use_basin=False, use_near=True):
+        """Improved head: latent density NLL + (optional) diagonal nearest-mode NLL, each
+        z-normalised against TRAIN-normal, then summed. `use_recon=False` drops the harmful
+        reconstruction term. `use_near` adds the nearest-mode NLL to the base; an ablation across
+        four datasets shows the high-K density head subsumes it (density-only >= density+nearest
+        on WADI/HAI/SWaT, negligible on SKAB), so the reported model uses density-only base.
+        `use_resid` adds the responsibility-weighted whitened residual (True|False|'auto' via
+        held-out-normal generalisation; needs `fit_resid_head`). `use_basin` subtracts the
         C2 basin-agreement rescue (True|False|'auto'; auto-scaled by train ambiguity ratio, so
         'auto' is a no-op on crisp-mode data; needs `fit_basin_head`)."""
         dens, diag_nll = self._hard_components(x)
         dm, ds, nm, ns = self._hd_ref
-        score = (dens - dm) / ds + (diag_nll - nm) / ns
+        score = (dens - dm) / ds
+        if use_near:
+            score = score + (diag_nll - nm) / ns
         if use_recon and self.res_whitener is not None:
             x_t = _as_tensor(x, self)
             r = _recon_energy(x_t, self.decode(self.encode(x_t)[0]), self.res_whitener)

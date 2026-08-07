@@ -1,0 +1,23 @@
+{
+ "dataset": "PSM",
+ "density": {
+  "mean": 0.48,
+  "std": 0.013
+ },
+ "nearest": {
+  "mean": 0.514,
+  "std": 0.012
+ },
+ "recon": {
+  "mean": 0.741,
+  "std": 0.002
+ },
+ "IF_feat": {
+  "mean": 0.695,
+  "std": 0.006
+ },
+ "anom_in_normal_latent": {
+  "mean": 0.0,
+  "std": 0.0
+ }
+}

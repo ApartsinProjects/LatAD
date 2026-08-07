@@ -1,0 +1,7 @@
+{
+ "dataset": "SWaT",
+ "diag80": 0.955,
+ "vade_diag": 0.933,
+ "vade_full": 0.955,
+ "vade_lw": 0.957
+}

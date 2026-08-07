@@ -1,0 +1,23 @@
+{
+ "dataset": "SKAB",
+ "density": {
+  "mean": 0.46,
+  "std": 0.022
+ },
+ "nearest": {
+  "mean": 0.478,
+  "std": 0.012
+ },
+ "recon": {
+  "mean": 0.45,
+  "std": 0.007
+ },
+ "IF_feat": {
+  "mean": 0.525,
+  "std": 0.005
+ },
+ "anom_in_normal_latent": {
+  "mean": 0.667,
+  "std": 0.471
+ }
+}
