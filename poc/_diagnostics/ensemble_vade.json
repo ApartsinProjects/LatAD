@@ -1,0 +1,29 @@
+{
+ "WADI": {
+  "LatAD": 0.701,
+  "IF": 0.675,
+  "ens_max": 0.814,
+  "ens_top3": 0.823,
+  "rescued": 0.7,
+  "fires": 1,
+  "fires_normal": 1
+ },
+ "HAI": {
+  "LatAD": 0.814,
+  "IF": 0.63,
+  "ens_max": 0.774,
+  "ens_top3": 0.774,
+  "rescued": 0.82,
+  "fires": 90,
+  "fires_normal": 25
+ },
+ "SWaT": {
+  "LatAD": 0.962,
+  "IF": 0.853,
+  "ens_max": 0.967,
+  "ens_top3": 0.971,
+  "rescued": 0.959,
+  "fires": 7,
+  "fires_normal": 5
+ }
+}

@@ -996,3 +996,28 @@ HAI. It is NOT integrable as a UNIVERSAL auto-gated head: on the SWaT ceiling it
 but harms, and no label-free gate distinguishes "generalizes-and-helps" from
 "generalizes-but-redundant". Reportable as a WADI-specific extension / future work, NOT a
 headline all-three claim. (mine_head.py, mine_head.json.)
+
+### 2.NEW3 (rev4) Subspace-bagged VaDE ensemble (user idea) — WADI breakthrough + theory
+
+Idea (user): an ensemble of VaDE latent+clustering models, each trained on a RANDOM SENSOR
+SUBSET, aggregated (max / top-3 mean of standardized latent-density scores). Grounded in
+A5 (few levers -> low-dim subsets capture them), A1/A2/A4 (per-subset multimodal density),
+A7 (per-subset mode discovery). ensemble_vade.py, K=24 members, small VaDE (NCL20,LD8,EP20).
+
+Standalone difficult-subset AUROC (ens_top3):
+  WADI 0.823  (LatAD 0.701, IF 0.675, common-mode head 0.755) -- BIG WIN, best WADI result.
+  HAI  0.774  (LatAD 0.814 still best -- subset bagging loses HAI's full cross-channel ctx).
+  SWaT 0.971  (LatAD 0.962) -- slightly better, ceiling.
+Complementary to LatAD: ensemble best on WADI/SWaT, LatAD best on HAI. Both are reasonable
+detectors on all three (never anti-signal), unlike the common-mode head.
+
+THEORY (paper/reviews/ENSEMBLE_DENSITY_THEORY.md): sparse anomaly in m<<d channels ->
+SNR_full ~ ||d_S||/sqrt(d) vs SNR_sub ~ ||d_S||/sqrt(m) (WADI ~5x gain); the VAE encoder is
+a rate-distortion coder that DISCARDS the low-variance directions sparse anomalies occupy;
+subspaces restore the anomaly's variance share; max-aggregation = union bound over K experts;
+feature bagging = variance reduction; composite-likelihood view avoids the dxd covariance.
+Clean tie-in: Isolation Forest IS a subspace ensemble (why it alone resists WADI dilution and
+ties LatAD); our subspace-VaDE is its learned-density generalization (0.823 > IF 0.675).
+
+Fusion LatAD+ensemble (ens_fuse.py): first clean run had a NaN member poisoning HAI/SWaT
+top-3 (fixed with nan_to_num guard); re-running for the all-3 aggregation + significance.

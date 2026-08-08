@@ -1,0 +1,68 @@
+{
+ "WADI": {
+  "LatAD": [
+   0.69,
+   0.027
+  ],
+  "rescued": [
+   0.687,
+   0.027
+  ],
+  "compet": "IF",
+  "compet_auroc": 0.677,
+  "fires": 7,
+  "fires_normal": 4,
+  "sig_vs_compet": {
+   "diff": 0.01,
+   "ci": [
+    -0.082,
+    0.104
+   ],
+   "p_le_0": 0.3645
+  }
+ },
+ "HAI": {
+  "LatAD": [
+   0.811,
+   0.016
+  ],
+  "rescued": [
+   0.83,
+   0.016
+  ],
+  "compet": "AE",
+  "compet_auroc": 0.757,
+  "fires": 195,
+  "fires_normal": 100,
+  "sig_vs_compet": {
+   "diff": 0.072,
+   "ci": [
+    0.038,
+    0.106
+   ],
+   "p_le_0": 0.0
+  }
+ },
+ "SWaT": {
+  "LatAD": [
+   0.96,
+   0.006
+  ],
+  "rescued": [
+   0.953,
+   0.005
+  ],
+  "compet": "linres",
+  "compet_auroc": 0.959,
+  "fires": 10,
+  "fires_normal": 9,
+  "sig_vs_compet": {
+   "diff": -0.007,
+   "ci": [
+    -0.017,
+    0.002
+   ],
+   "p_le_0": 0.9395
+  }
+ }
+}
