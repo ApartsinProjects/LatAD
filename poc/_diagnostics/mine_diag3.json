@@ -1,0 +1,23 @@
+{
+ "WADI": {
+  "n_groups": 7,
+  "head": 0.755,
+  "LatAD": 0.701,
+  "fuse_max": 0.77,
+  "fuse_sum": 0.77
+ },
+ "HAI": {
+  "n_groups": 6,
+  "head": 0.394,
+  "LatAD": 0.814,
+  "fuse_max": 0.454,
+  "fuse_sum": 0.394
+ },
+ "SWaT": {
+  "n_groups": 5,
+  "head": 0.716,
+  "LatAD": 0.962,
+  "fuse_max": 0.617,
+  "fuse_sum": 0.716
+ }
+}

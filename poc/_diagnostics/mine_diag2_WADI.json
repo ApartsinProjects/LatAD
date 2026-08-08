@@ -1,0 +1,29 @@
+{
+ "n_groups": 7,
+ "group_sizes": [
+  3,
+  5,
+  6,
+  8,
+  9,
+  10,
+  21
+ ],
+ "mined_analyzer_group": [
+  "1_AIT_001_PV",
+  "1_AIT_003_PV",
+  "2A_AIT_001_PV",
+  "2A_AIT_003_PV",
+  "2A_AIT_004_PV",
+  "2B_AIT_001_PV",
+  "2B_AIT_003_PV",
+  "2B_AIT_004_PV"
+ ],
+ "mined_group_size": 8,
+ "difficult_AUROC": {
+  "head_common_mode_scan": 0.755,
+  "LatAD": 0.701,
+  "IF": 0.675,
+  "LatAD_plus_rescue": 0.567
+ }
+}

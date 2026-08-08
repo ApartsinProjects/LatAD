@@ -946,3 +946,30 @@ framing is the most defensible honest "leads on all three": best method on the s
 subset of every dataset, significant on HAI. Only remaining untried substantive idea is a
 normalizing-flow latent density, which the density-head-≈-LOF evidence (§2.26) predicts
 will not beat the current high-K GMM; not run.
+
+### 2.NEW2 (rev4) Hard-anomaly mining -> common-mode-block-level head (GPTConsult-guided)
+
+Mined the difficult windows LatAD scores most normal (mine_hard.py). Signature: sustained
+FLAT ~2-3 sigma coordinated DIPS in a correlated cluster of water-quality analyzers
+(WADI 1/2A/2B_AIT_003/004) that preserve inter-channel correlation (LinRes misses, low
+linres_pct) and marginal range (sub-threshold max|z|) and sit in a populated latent region
+(density misses). HAI misses = valve/flow shifts that LinRes DOES catch (complementary).
+
+ChatGPT extension ideas (reviews/LatAD_extension_ideas_ChatGPT.md): "coherent block
+translation" - a small correlated group moves along its common-mode direction; leave-ONE-out
+residual is masked; the missing statistic is the block's common-mode LEVEL (sqrt(m) amplified).
+
+Falsifiable diagnostic (mine_diag.py) on the mined analyzer group: z_common large NEGATIVE
+(-2.5 med) and z_contrast ORDINARY (confirmed coherent translation), BUT the leave-group-out
+EXTERNAL residual FAILS (normal |z_external| 4.64 > difficult 2.15; S_block AUROC 0.21) - the
+external channels do not predict analyzer level (ChatGPT's stated failure mode). The
+UNCONDITIONED common-mode level -z_common gets WADI-difficult AUROC 0.746 > LatAD 0.701.
+
+Leak-free version (mine_diag2/3.py): 7 correlation communities auto-discovered from
+TRAIN-NORMAL only; the analyzer community (AIT_001/003/004 x trains 1/2A/2B, size 8) is
+auto-recovered (NOT cherry-picked). Calibrated max-over-groups common-mode head:
+  WADI-difficult AUROC 0.755 (head) / 0.77 (fused) > LatAD 0.701 > IF 0.675;
+  HAI head 0.394 (useless), SWaT head 0.716 - BLIND fusion DESTROYS HAI 0.814->0.45 and
+  SWaT 0.962->0.62. => the head MUST be AUTO-GATED (fire WADI, off HAI/SWaT).
+Status: promising NEW WADI win path (0.77 vs IF 0.677 is a real gap, unlike the 0.013 tie).
+Needs: a train-normal-only gate + per-seed + episode-bootstrap significance before any claim.
