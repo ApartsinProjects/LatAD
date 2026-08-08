@@ -1,0 +1,350 @@
+{
+ "WADI": {
+  "n": {
+   "anom": 56,
+   "easy": 37,
+   "difficult": 19
+  },
+  "rows": {
+   "trivial max|z|": {
+    "all": {
+     "auroc": 0.558,
+     "f1": 0.0
+    },
+    "easy": {
+     "auroc": 0.687,
+     "f1": 0.0
+    },
+    "difficult": {
+     "auroc": 0.307,
+     "f1": 0.0
+    }
+   },
+   "Isolation Forest": {
+    "all": {
+     "auroc": 0.726,
+     "auroc_sd": 0.007,
+     "f1": 0.375
+    },
+    "easy": {
+     "auroc": 0.751,
+     "auroc_sd": 0.01,
+     "f1": 0.373
+    },
+    "difficult": {
+     "auroc": 0.677,
+     "auroc_sd": 0.011,
+     "f1": 0.149
+    }
+   },
+   "AutoEncoder": {
+    "all": {
+     "auroc": 0.743,
+     "auroc_sd": 0.001,
+     "f1": 0.604
+    },
+    "easy": {
+     "auroc": 0.907,
+     "auroc_sd": 0.002,
+     "f1": 0.724
+    },
+    "difficult": {
+     "auroc": 0.425,
+     "auroc_sd": 0.005,
+     "f1": 0.218
+    }
+   },
+   "LinRes (one-hot)": {
+    "all": {
+     "auroc": 0.595,
+     "f1": 0.215
+    },
+    "easy": {
+     "auroc": 0.699,
+     "f1": 0.214
+    },
+    "difficult": {
+     "auroc": 0.392,
+     "f1": 0.174
+    }
+   },
+   "USAD": {
+    "all": {
+     "auroc": 0.698,
+     "f1": 0.516
+    },
+    "easy": {
+     "auroc": 0.901,
+     "f1": 0.658
+    },
+    "difficult": {
+     "auroc": 0.303,
+     "f1": 0.033
+    }
+   },
+   "TranAD": {
+    "all": {
+     "auroc": 0.721,
+     "f1": 0.556
+    },
+    "easy": {
+     "auroc": 0.921,
+     "f1": 0.686
+    },
+    "difficult": {
+     "auroc": 0.333,
+     "f1": 0.039
+    }
+   },
+   "VaDE-hard+resid (ours)": {
+    "all": {
+     "auroc": 0.792,
+     "auroc_sd": 0.012,
+     "f1": 0.563
+    },
+    "easy": {
+     "auroc": 0.845,
+     "auroc_sd": 0.007,
+     "f1": 0.678
+    },
+    "difficult": {
+     "auroc": 0.69,
+     "auroc_sd": 0.027,
+     "f1": 0.216
+    }
+   }
+  }
+ },
+ "HAI": {
+  "n": {
+   "anom": 652,
+   "easy": 485,
+   "difficult": 167
+  },
+  "rows": {
+   "trivial max|z|": {
+    "all": {
+     "auroc": 0.806,
+     "f1": 0.666
+    },
+    "easy": {
+     "auroc": 0.966,
+     "f1": 0.8
+    },
+    "difficult": {
+     "auroc": 0.34,
+     "f1": 0.011
+    }
+   },
+   "Isolation Forest": {
+    "all": {
+     "auroc": 0.844,
+     "auroc_sd": 0.011,
+     "f1": 0.418
+    },
+    "easy": {
+     "auroc": 0.919,
+     "auroc_sd": 0.016,
+     "f1": 0.469
+    },
+    "difficult": {
+     "auroc": 0.627,
+     "auroc_sd": 0.005,
+     "f1": 0.055
+    }
+   },
+   "AutoEncoder": {
+    "all": {
+     "auroc": 0.923,
+     "auroc_sd": 0.001,
+     "f1": 0.744
+    },
+    "easy": {
+     "auroc": 0.98,
+     "auroc_sd": 0.0,
+     "f1": 0.789
+    },
+    "difficult": {
+     "auroc": 0.757,
+     "auroc_sd": 0.003,
+     "f1": 0.343
+    }
+   },
+   "LinRes (one-hot)": {
+    "all": {
+     "auroc": 0.779,
+     "f1": 0.483
+    },
+    "easy": {
+     "auroc": 0.846,
+     "f1": 0.581
+    },
+    "difficult": {
+     "auroc": 0.586,
+     "f1": 0.121
+    }
+   },
+   "USAD": {
+    "all": {
+     "auroc": 0.849,
+     "f1": 0.706
+    },
+    "easy": {
+     "auroc": 0.97,
+     "f1": 0.841
+    },
+    "difficult": {
+     "auroc": 0.497,
+     "f1": 0.023
+    }
+   },
+   "TranAD": {
+    "all": {
+     "auroc": 0.834,
+     "f1": 0.693
+    },
+    "easy": {
+     "auroc": 0.968,
+     "f1": 0.825
+    },
+    "difficult": {
+     "auroc": 0.445,
+     "f1": 0.019
+    }
+   },
+   "VaDE-hard+resid (ours)": {
+    "all": {
+     "auroc": 0.933,
+     "auroc_sd": 0.007,
+     "f1": 0.712
+    },
+    "easy": {
+     "auroc": 0.975,
+     "auroc_sd": 0.004,
+     "f1": 0.773
+    },
+    "difficult": {
+     "auroc": 0.811,
+     "auroc_sd": 0.016,
+     "f1": 0.356
+    }
+   }
+  }
+ },
+ "SWaT": {
+  "n": {
+   "anom": 182,
+   "easy": 144,
+   "difficult": 38
+  },
+  "rows": {
+   "trivial max|z|": {
+    "all": {
+     "auroc": 0.988,
+     "f1": 0.972
+    },
+    "easy": {
+     "auroc": 1.0,
+     "f1": 1.0
+    },
+    "difficult": {
+     "auroc": 0.943,
+     "f1": 0.848
+    }
+   },
+   "Isolation Forest": {
+    "all": {
+     "auroc": 0.959,
+     "auroc_sd": 0.003,
+     "f1": 0.91
+    },
+    "easy": {
+     "auroc": 0.987,
+     "auroc_sd": 0.002,
+     "f1": 0.961
+    },
+    "difficult": {
+     "auroc": 0.853,
+     "auroc_sd": 0.011,
+     "f1": 0.661
+    }
+   },
+   "AutoEncoder": {
+    "all": {
+     "auroc": 0.987,
+     "auroc_sd": 0.001,
+     "f1": 0.933
+    },
+    "easy": {
+     "auroc": 1.0,
+     "auroc_sd": 0.0,
+     "f1": 0.989
+    },
+    "difficult": {
+     "auroc": 0.939,
+     "auroc_sd": 0.006,
+     "f1": 0.613
+    }
+   },
+   "LinRes (one-hot)": {
+    "all": {
+     "auroc": 0.991,
+     "f1": 0.948
+    },
+    "easy": {
+     "auroc": 1.0,
+     "f1": 0.99
+    },
+    "difficult": {
+     "auroc": 0.959,
+     "f1": 0.698
+    }
+   },
+   "USAD": {
+    "all": {
+     "auroc": 0.973,
+     "f1": 0.948
+    },
+    "easy": {
+     "auroc": 1.0,
+     "f1": 0.989
+    },
+    "difficult": {
+     "auroc": 0.871,
+     "f1": 0.73
+    }
+   },
+   "TranAD": {
+    "all": {
+     "auroc": 0.972,
+     "f1": 0.948
+    },
+    "easy": {
+     "auroc": 1.0,
+     "f1": 0.99
+    },
+    "difficult": {
+     "auroc": 0.867,
+     "f1": 0.725
+    }
+   },
+   "VaDE-hard+resid (ours)": {
+    "all": {
+     "auroc": 0.991,
+     "auroc_sd": 0.002,
+     "f1": 0.947
+    },
+    "easy": {
+     "auroc": 0.999,
+     "auroc_sd": 0.002,
+     "f1": 0.976
+    },
+    "difficult": {
+     "auroc": 0.96,
+     "auroc_sd": 0.006,
+     "f1": 0.752
+    }
+   }
+  }
+ }
+}
