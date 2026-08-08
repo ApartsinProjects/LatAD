@@ -68,7 +68,7 @@
 
 <div class="abstract">
 <h2>Abstract</h2>
-<p>Fault detection in networked cyber-physical systems (CPS), which form the sensing and actuation layer of industrial Internet-of-Things deployments, is difficult because faults are rare and poorly represented in available data. Detection must therefore rely on models of normal behaviour rather than representative fault examples. However, existing AI methods often fail because they ignore the unique structure of CPS, where stochastic behaviour is constrained by physical laws, engineered control logic, and numerous operating regimes. More generally, normal CPS behaviour is not a single distribution, but a union of many imbalanced, curved, and sparsely populated regimes. We formalize this structure through ten assumptions, A1&ndash;A10, summarized as <em>Massive, Implicit, Imbalanced Multimodality</em> (MIIM). Based on these assumptions, we jointly learn a latent representation and a Gaussian-mixture clustering of operating modes. Anomaly scores are computed in the clustered latent space rather than from data-space reconstruction error. Aggregate scores are dominated by trivially detectable faults, so we evaluate under raw point-wise metrics with a difficulty split that isolates the stealthy, joint-structure faults a simple per-channel detector cannot see. Across three real CPS attack benchmarks (WADI, HAI, and SWaT), the detector attains the best overall AUROC on every dataset (0.792, 0.933, and 0.991). On the stealthy difficult subset it is strongest on HAI (0.811 over five seeds, a statistically significant margin over the next-best baseline, paired episode-bootstrap 95% CI on the difference [0.015, 0.089]), and it matches the strongest baseline on WADI (0.690) and SWaT (0.960); the HAI advantage persists under a stronger difficulty split that also removes any window separable by a single per-channel statistic. On WADI and HAI, whose difficult faults are reconstructable but improbable sensor combinations that reconstruction error cannot separate from normal, the deep detectors USAD and TranAD collapse to 0.30&ndash;0.50. The contributions are the MIIM assumptions, the difficulty-stratified protocol, and a latent-primary anomaly score with an auto-gated reconstruction-residual head.</p>
+<p>Fault detection in networked cyber-physical systems (CPS), which form the sensing and actuation layer of industrial Internet-of-Things deployments, is difficult because faults are rare and poorly represented in available data. Detection must therefore rely on models of normal behaviour rather than representative fault examples. However, existing AI methods often fail because they ignore the unique structure of CPS, where stochastic behaviour is constrained by physical laws, engineered control logic, and numerous operating regimes. More generally, normal CPS behaviour is not a single distribution, but a union of many imbalanced, curved, and sparsely populated regimes. We formalize this structure through ten assumptions, A1&ndash;A10, summarized as <em>Massive, Implicit, Imbalanced Multimodality</em> (MIIM). Based on these assumptions, we jointly learn a latent representation and a Gaussian-mixture clustering of operating modes. Anomaly scores are computed in the clustered latent space rather than from data-space reconstruction error. Aggregate scores are dominated by trivially detectable faults, so we evaluate under raw point-wise metrics with a difficulty split that isolates the stealthy, joint-structure faults a simple per-channel detector cannot see. Across three real CPS attack benchmarks (WADI, HAI, and SWaT), the detector attains the best overall AUROC on every dataset (0.792, 0.933, and 0.991). On the stealthy difficult subset it is strongest on HAI (0.811 over five seeds, a statistically significant margin over the next-best baseline, paired episode-bootstrap 95% CI on the difference [0.015, 0.089]), and it matches the strongest baseline on WADI (0.690) and SWaT (0.960); the HAI advantage persists under a stronger difficulty split that also removes any window separable by a single per-channel statistic. On a stricter double-hard subset that additionally removes windows a linear cross-channel predictor separates, the detector has the highest mean AUROC on all three datasets, with statistically supported superiority on HAI and numerical leads on the smaller WADI and single-episode SWaT subsets. On WADI and HAI, whose difficult faults are reconstructable but improbable sensor combinations that reconstruction error cannot separate from normal, the deep detectors USAD and TranAD collapse to 0.30&ndash;0.50. The contributions are the MIIM assumptions, the difficulty-stratified protocol, and a latent-primary anomaly score with an auto-gated reconstruction-residual head.</p>
 </div>
 <p class="keywords"><strong>Keywords:</strong> anomaly detection; cyber-physical systems; Internet of Things; industrial IoT; unsupervised learning; variational deep embedding; Gaussian mixture model; sensor time series; fault detection</p>
 
@@ -308,7 +308,7 @@ per dataset.</p>
 dataset). The reconstruction residual is near chance on WADI (0.490) and, although informative on HAI (0.689),
 it stays below the latent term (0.760) and drags the summed joint score down; the latent likelihood carries the
 signal but a single diagonal Gaussian per mode is coarse. A multi-seed, three-dataset head ablation is reported
-in Table 4.</caption>
+in Table 5.</caption>
 <thead><tr><th class="l">Score term</th><th>WADI</th><th>HAI</th></tr></thead>
 <tbody>
 <tr><td class="l">(a) reconstruction residual <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mi>r</mi><mi>&#8868;</mi></msup><msup><mi>&#931;</mi><mrow><mo>&#8722;</mo><mn>1</mn></mrow></msup><mi>r</mi></mrow></math></td><td>0.490</td><td>0.689</td></tr>
@@ -579,6 +579,42 @@ advantage is not an artefact of the particular statistic that defines difficulty
 Forest 0.710, ours 0.697) and SWaT remains a ceiling case (trivial rule 0.929), consistent with the canonical
 split.</p>
 
+<p><strong>The double-hard subset.</strong> As a secondary robustness stress test we intersect the failures of the
+two simplest baseline families. A window is <em>double-hard</em> if it is an anomaly separated by <em>neither</em>
+the univariate max|z| rule <em>nor</em> the one-hot linear cross-channel predictor (LinRes), with both
+99th-percentile thresholds fixed on train-normal only and the detector under test playing no role in constructing
+the subset. This subset is not an unbiased benchmark against the two detectors that define it, which fail on it by
+construction; it isolates the anomalies that remain once both marginal and simple linear cross-channel structure
+is removed. Table 4 reports its per-method AUROC. The detector attains the highest mean AUROC on all three
+datasets (WADI 0.601, HAI 0.806, SWaT 0.921). Statistical superiority is established only on HAI, where 19 attack
+episodes support an episode-block bootstrap: the paired difference over the AutoEncoder is +0.076 (95% CI
+[0.038, 0.119]). The WADI subset rests on five episodes and is a numerical lead over Isolation Forest (0.601 vs
+0.599), not a significant difference; the 18 SWaT windows come from a single attack episode, so no episode-level
+generalisation is claimed there. The subset genuinely removes ceiling signal rather than selecting an easier
+favourable slice: on SWaT the trivial-rule AUROC falls from 0.943 on the difficult subset to 0.880 here, and the
+AutoEncoder collapses on WADI (0.336).</p>
+
+<div class="tblwrap">
+<table>
+<caption><strong>Table 4.</strong> Double-hard subset AUROC (five-seed mean&plusmn;standard deviation for the
+learned detectors). The double-hard subset keeps only anomaly windows separated by neither the univariate max|z|
+rule nor the linear cross-channel predictor, both thresholded on train-normal at the 99th percentile; it is a
+baseline-independent stress test, not an unbiased comparison against those two filters. Windows / distinct attack
+episodes: WADI 11&nbsp;/&nbsp;5, HAI 84&nbsp;/&nbsp;19, SWaT 18&nbsp;/&nbsp;1. The detector has the highest mean
+AUROC on all three datasets; the difference is statistically supported only on HAI (episode-block bootstrap), a
+numerical lead on WADI (five episodes), and a single-episode result on SWaT.</caption>
+<thead><tr><th class="l">Method</th><th>WADI</th><th>HAI</th><th>SWaT</th></tr></thead>
+<tbody>
+<tr><td class="l">trivial max|z|</td><td>0.283</td><td>0.349</td><td>0.880</td></tr>
+<tr><td class="l">Isolation Forest</td><td>0.599&plusmn;0.013</td><td>0.635&plusmn;0.012</td><td>0.789&plusmn;0.011</td></tr>
+<tr><td class="l">AutoEncoder</td><td>0.336&plusmn;0.007</td><td>0.730&plusmn;0.003</td><td>0.890&plusmn;0.010</td></tr>
+<tr><td class="l">LinRes (one-hot)</td><td>0.251</td><td>0.465</td><td>0.914</td></tr>
+<tr><td class="l">USAD</td><td>0.257</td><td>0.471</td><td>0.785</td></tr>
+<tr><td class="l">TranAD</td><td>0.276</td><td>0.418</td><td>0.779</td></tr>
+<tr><td class="l"><b>VaDE-hard+resid (ours)</b></td><td class="win">0.601&plusmn;0.027</td><td class="win">0.806&plusmn;0.019</td><td class="win">0.921&plusmn;0.012</td></tr>
+</tbody></table>
+</div>
+
 <p><strong>Deep SOTA under raw metrics.</strong> Re-computed with raw point-wise metrics, the deep detectors USAD
 and TranAD collapse on the difficult subset of the two joint-structure benchmarks: they fall to 0.497 and 0.445
 on HAI and to 0.303 and 0.333 on WADI, near or below chance and far below our 0.690&ndash;0.811, even while they
@@ -657,7 +693,7 @@ auto-gated residual head where it demonstrably helps (&sect;4.3&nbsp;iv).</p>
 
 <div class="tblwrap">
 <table>
-<caption><strong>Table 4.</strong> Difficult-subset AUROC by score head, five-seed mean&plusmn;standard deviation
+<caption><strong>Table 5.</strong> Difficult-subset AUROC by score head, five-seed mean&plusmn;standard deviation
 on all three datasets (an independent five-seed run; the final row reproduces the Table 3 headline within seed
 variation). <em>recon</em> is the whitened reconstruction residual (the term the base score omits); <em>base</em>
 is density+nearest; <em>base+resid</em> adds the auto-gated residual head; <em>LatAD</em> is the reported model
@@ -673,7 +709,7 @@ is density+nearest; <em>base+resid</em> adds the auto-gated residual head; <em>L
 </tbody></table>
 </div>
 
-<p>Table 4 decomposes the score into its heads across five seeds and all three datasets. On WADI the reconstruction
+<p>Table 5 decomposes the score into its heads across five seeds and all three datasets. On WADI the reconstruction
 residual alone is near chance (0.475) while the latent density carries the signal (0.694); on HAI reconstruction is
 informative but the weakest head (0.695) and the density head dominates (0.802). The residual head, where the gate
 turns it on, lifts the base score exactly where reconstruction is informative (HAI 0.801&rarr;0.820, SWaT
@@ -721,7 +757,10 @@ residual head. Under a deliberately fair, raw-metric, difficulty-stratified prot
 benchmarks, this detector attains the best overall AUROC on every dataset and is strongest on the difficult subset
 over five seeds, most decisively and significantly on HAI (a paired episode-bootstrap 95% CI of [0.015, 0.089]
 over the next-best baseline), where the difficult faults break joint structure and the reconstruction-based
-detectors collapse; on WADI and SWaT it ties the strongest baseline. The mechanism is that reconstruction scores reachability while a density in a clustered latent
+detectors collapse; on WADI and SWaT it ties the strongest baseline. On a stricter double-hard subset that keeps
+only anomalies separated by neither a univariate nor a linear cross-channel rule, the detector has the highest
+mean AUROC on all three datasets, with statistically supported superiority on HAI and numerical leads on the
+smaller WADI and single-episode SWaT subsets. The mechanism is that reconstruction scores reachability while a density in a clustered latent
 scores probability, and the CPS faults that matter are reconstructable but improbable; treating multimodal normal
 as a single blob or a reconstruction target is a modelling failure, and jointly learning the latent and its modes,
 then scoring in that latent, is what delivers the difficult-subset advantage. Extending the detector to the trajectory assumptions, with

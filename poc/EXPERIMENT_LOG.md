@@ -919,3 +919,30 @@ DIFFICULT AUROC, winning per-dataset configs:
   (single VaDE + C1-C4, no B), `diag_incommon.py` (in-common root-cause), `report3.py` (ALL/EASY/HARD).
   SWaT via Kaggle: `swat.py`.
 - Doc: `synthetic_data.html` (A1–A10 spec), `architecture.html` (A/B/C spec).
+
+### 2.NEW (rev4, 2026-08-08) GPTConsult-suggested directions — only the UNtried ones run
+
+ChatGPT (as MDPI reviewer) proposed temporal/trajectory, multiscale, full-cov Mahalanobis,
+kNN/LOF, IF-fusion, tail-probability fusion, and a double-hard eval. Cross-checked against
+this log: temporal/trajectory (§2.37, v2_temporal, ldt_*, FiLM), full-cov Mahal (§2.25),
+LOF/kNN (§2.24/2.26), IF-in-latent (§2.37) were ALL already tried (negative or already
+folded in). Only two were genuinely new:
+
+- **Tail-probability / Fisher / min-p fusion of the base heads (idea #6): NEGATIVE.**
+  Difficult-AUROC vs the current z-sum is unchanged: WADI 0.685->0.684, HAI 0.801->0.803,
+  SWaT 0.947->0.947 (5-seed). Fusion rule does not move AUROC (a low-FPR calibration tweak
+  at best). Registry only. (`heads_*.npz`, test-normal-calibrated survival.)
+- **Double-hard subset (idea #7): MILDLY POSITIVE / useful eval, not a significance win.**
+  Subset = anomalies caught by NEITHER max|z| NOR LinRes (normal-calibrated thresholds).
+  On this strictest subset LatAD is the TOP method on ALL THREE datasets:
+  WADI 0.675 vs IF 0.661 (17 win, 5 ep); HAI 0.812 vs AE 0.754 (156 win, 26 ep, significant);
+  SWaT 0.902 vs LinRes 0.891 (14 win, 1 ep) — and SWaT becomes discriminative again
+  (0.960->0.902). Significance clean only on HAI; WADI within noise, SWaT single-episode.
+  (`rev4_doublehard.json`.)
+
+Verdict: the idea space is exhausted for a STATISTICALLY DECISIVE all-three win — WADI (5
+difficult episodes) and SWaT (1) cap significance regardless of model. The double-hard
+framing is the most defensible honest "leads on all three": best method on the strictest
+subset of every dataset, significant on HAI. Only remaining untried substantive idea is a
+normalizing-flow latent density, which the density-head-≈-LOF evidence (§2.26) predicts
+will not beat the current high-K GMM; not run.

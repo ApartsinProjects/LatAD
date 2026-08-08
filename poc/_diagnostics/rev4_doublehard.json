@@ -1,0 +1,125 @@
+{
+ "WADI": {
+  "n_canonical": 19,
+  "n_double_hard": 11,
+  "n_episodes": 5,
+  "lin_thr": 0.1883,
+  "competitor": "IF",
+  "significance": {
+   "diff": 0.002,
+   "diff_ci": [
+    -0.109,
+    0.255
+   ],
+   "p_le_0": 0.4635
+  },
+  "rows": {
+   "trivial max|z|": {
+    "auroc": 0.283
+   },
+   "IF": {
+    "auroc": 0.599,
+    "sd": 0.013
+   },
+   "AE": {
+    "auroc": 0.336,
+    "sd": 0.007
+   },
+   "linres": {
+    "auroc": 0.251
+   },
+   "USAD": {
+    "auroc": 0.257
+   },
+   "TranAD": {
+    "auroc": 0.276
+   },
+   "LatAD": {
+    "auroc": 0.601,
+    "sd": 0.027
+   }
+  }
+ },
+ "HAI": {
+  "n_canonical": 167,
+  "n_double_hard": 84,
+  "n_episodes": 19,
+  "lin_thr": 0.2233,
+  "competitor": "AE",
+  "significance": {
+   "diff": 0.076,
+   "diff_ci": [
+    0.038,
+    0.119
+   ],
+   "p_le_0": 0.0
+  },
+  "rows": {
+   "trivial max|z|": {
+    "auroc": 0.349
+   },
+   "IF": {
+    "auroc": 0.635,
+    "sd": 0.012
+   },
+   "AE": {
+    "auroc": 0.73,
+    "sd": 0.003
+   },
+   "linres": {
+    "auroc": 0.465
+   },
+   "USAD": {
+    "auroc": 0.471
+   },
+   "TranAD": {
+    "auroc": 0.418
+   },
+   "LatAD": {
+    "auroc": 0.806,
+    "sd": 0.019
+   }
+  }
+ },
+ "SWaT": {
+  "n_canonical": 38,
+  "n_double_hard": 18,
+  "n_episodes": 1,
+  "lin_thr": 0.174,
+  "competitor": "linres",
+  "significance": {
+   "diff": 0.007,
+   "diff_ci": [
+    -0.007,
+    0.021
+   ],
+   "p_le_0": 0.1755
+  },
+  "rows": {
+   "trivial max|z|": {
+    "auroc": 0.88
+   },
+   "IF": {
+    "auroc": 0.789,
+    "sd": 0.011
+   },
+   "AE": {
+    "auroc": 0.89,
+    "sd": 0.01
+   },
+   "linres": {
+    "auroc": 0.914
+   },
+   "USAD": {
+    "auroc": 0.785
+   },
+   "TranAD": {
+    "auroc": 0.779
+   },
+   "LatAD": {
+    "auroc": 0.921,
+    "sd": 0.012
+   }
+  }
+ }
+}

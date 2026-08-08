@@ -78,7 +78,12 @@ def _patch_harness(repo, fp32=True):
         "_t.nn.TransformerDecoder.forward = _dec_fwd\n"
         "_np_orig = _t.Tensor.numpy\n"
         "def _np_cpu(self, *a, **k): return _np_orig(self.detach().cpu(), *a, **k)\n"
-        "try:\n\t_t.Tensor.numpy = _np_cpu\nexcept Exception as _e:\n\tprint('[patch] numpy patch failed', _e, flush=True)\n")
+        "try:\n\t_t.Tensor.numpy = _np_cpu\nexcept Exception as _e:\n\tprint('[patch] numpy patch failed', _e, flush=True)\n"
+        # multi-seed: seed all RNGs from SOTA_SEED so repeated runs give independent draws
+        "import os as _os3, random as _r3, numpy as _np3\n"
+        "_SD = int(_os3.environ.get('SOTA_SEED', '0'))\n"
+        "_t.manual_seed(_SD); _np3.random.seed(_SD); _r3.seed(_SD)\n"
+        "try:\n\t_t.cuda.manual_seed_all(_SD)\nexcept Exception:\n\tpass\n")
     mp = mp.replace("from pprint import pprint\n", "from pprint import pprint\n" + mpatch, 1)
     mp = mp.replace("num_epochs = 5", "num_epochs = int(os.environ.get('NEPOCHS', '5'))")
     # USAD training: replace per-window SGD (one optimizer.step per window, ~N iterations/epoch)
@@ -105,8 +110,9 @@ def _patch_harness(repo, fp32=True):
     # dump per-timestep score + labels under the REAL dataset name (args.dataset is always the
     # 'WADI' slot, so using it would make all datasets race on one file). Guard pot_eval so a POT
     # hiccup cannot lose an already-dumped score array.
-    save = ("\tnp.save('/results/score_'+args.model+'_'+os.environ.get('REAL_DS','WADI')+'.npy', lossFinal)\n"
-            "\tnp.save('/results/labels_'+args.model+'_'+os.environ.get('REAL_DS','WADI')+'.npy', labelsFinal)\n")
+    _sfx = "os.environ.get('REAL_DS','WADI')+'_s'+os.environ.get('SOTA_SEED','0')"
+    save = ("\tnp.save('/results/score_'+args.model+'_'+" + _sfx + "+'.npy', lossFinal)\n"
+            "\tnp.save('/results/labels_'+args.model+'_'+" + _sfx + "+'.npy', labelsFinal)\n")
     tgt = "\tresult, _ = pot_eval(lossTfinal, lossFinal, labelsFinal)"
     guarded = save + "\ttry:\n\t\tresult, _ = pot_eval(lossTfinal, lossFinal, labelsFinal)\n\texcept Exception as _e:\n\t\tprint('[pot] skipped', _e, flush=True); result = {}\n"
     mp = mp.replace(tgt, guarded, 1)
@@ -115,13 +121,15 @@ def _patch_harness(repo, fp32=True):
 
 
 @app.function(cpu=8.0, timeout=3 * 60 * 60, memory=16384, volumes={"/results": results_vol})
-def run_one(ds: str, model: str, epochs: int = 5, fp32: bool = True) -> dict:
+def run_one(ds: str, model: str, epochs: int = 5, fp32: bool = True, seed: int = 0) -> dict:
     import subprocess, os, sys, time, threading, numpy as np
     from sklearn.metrics import f1_score, roc_auc_score
     os.environ["MKL_THREADING_LAYER"] = "GNU"
     os.environ["MKL_SERVICE_FORCE_INTEL"] = "0"
     os.environ["NEPOCHS"] = str(epochs)
     os.environ["REAL_DS"] = ds                          # real dataset for the score-dump filename
+    os.environ["SOTA_SEED"] = str(seed)                 # multi-seed: RNG seed + score-dump suffix
+    _tag = f"{model}_{ds}_s{seed}"
     os.environ["OMP_NUM_THREADS"] = "8"; os.environ["MKL_NUM_THREADS"] = "8"
 
     def sh(cmd, **kw):
@@ -135,7 +143,7 @@ def run_one(ds: str, model: str, epochs: int = 5, fp32: bool = True) -> dict:
     ok_dump = _patch_harness(repo, fp32=fp32)
     print(f"[sota] patched ds={ds} model={model} fp32={fp32} dump={'ok' if ok_dump else 'FAIL'}", flush=True)
 
-    for stale in (f"/results/score_{model}_{ds}.npy", f"/results/labels_{model}_{ds}.npy"):
+    for stale in (f"/results/score_{_tag}.npy", f"/results/labels_{_tag}.npy"):
         try: os.remove(stale)                       # avoid a crashed run reporting a prior run's scores
         except OSError: pass
     pfx = PFX[ds]
@@ -209,8 +217,8 @@ def run_one(ds: str, model: str, epochs: int = 5, fp32: bool = True) -> dict:
         import traceback; rc, log = 99, traceback.format_exc(); print(log, flush=True)
     train_s = round(time.time() - t0, 1)
 
-    res = {"dataset": ds, "model": model, "rc": rc, "train_s": train_s, "epochs": epochs, "fp32": fp32}
-    sp = f"/results/score_{model}_{ds}.npy"; lp = f"/results/labels_{model}_{ds}.npy"
+    res = {"dataset": ds, "model": model, "seed": seed, "rc": rc, "train_s": train_s, "epochs": epochs, "fp32": fp32}
+    sp = f"/results/score_{_tag}.npy"; lp = f"/results/labels_{_tag}.npy"
     if os.path.exists(sp) and os.path.exists(lp):
         s = np.load(sp); y = np.load(lp).astype(int)
         s = s.mean(1) if s.ndim > 1 else s
@@ -226,8 +234,8 @@ def run_one(ds: str, model: str, epochs: int = 5, fp32: bool = True) -> dict:
             m = (yy == 0) | easy; res["raw_EASY"] = metrics(s[m], yy[m])
     else:
         res["error"] = "no score dumped"; res["log_tail"] = log[-2000:]
-    Path(f"/results/one_{ds}_{model}.json").write_text(json.dumps(res, indent=2)); results_vol.commit()
-    print(f"[sota] DONE {ds}:{model} rc={rc} {train_s}s raw_ALL={res.get('raw_ALL')} "
+    Path(f"/results/one_{_tag}.json").write_text(json.dumps(res, indent=2)); results_vol.commit()
+    print(f"[sota] DONE {_tag} rc={rc} {train_s}s raw_ALL={res.get('raw_ALL')} "
           f"raw_HARD={res.get('raw_HARD')}", flush=True)
     return res
 
@@ -237,21 +245,31 @@ def run_one(ds: str, model: str, epochs: int = 5, fp32: bool = True) -> dict:
 EPO = {"USAD": 30, "TranAD": 5, "GDN": 5}
 
 
+# models run over multiple seeds (stochastic learned baselines); others run single-seed.
+MULTISEED = {"USAD", "TranAD"}
+
+
 @app.local_entrypoint()
 def main(datasets: str = "WADI,HAI,SWaT", models: str = "USAD,TranAD,GDN",
-         epochs: int = 0, smoke: str = "", fp32: bool = True):
+         epochs: int = 0, smoke: str = "", fp32: bool = True, seeds: str = "0,1,2,3,4"):
     ep = lambda m: (epochs if epochs else EPO.get(m, 5))
-    if smoke:                                            # e.g. "WADI:USAD"
-        d, m = smoke.split(":"); matrix = [(d, m, ep(m), fp32)]
+    seed_list = [int(s) for s in str(seeds).split(",") if s != ""]
+    if smoke:                                            # e.g. "WADI:GDN" (single seed 0)
+        d, m = smoke.split(":"); matrix = [(d, m, ep(m), fp32, 0)]
     else:
-        matrix = [(d, m, ep(m), fp32) for d in datasets.split(",") for m in models.split(",")]
-    print(f"[sota] launching {len(matrix)} parallel jobs: {[(d,m) for d,m,_,_ in matrix]}", flush=True)
-    results = list(run_one.starmap(matrix))             # parallel: one container per (ds,model)
+        matrix = []
+        for d in datasets.split(","):
+            for m in models.split(","):
+                ss = seed_list if m in MULTISEED else [0]   # GDN etc.: single seed
+                for sd in ss:
+                    matrix.append((d, m, ep(m), fp32, sd))
+    print(f"[sota] launching {len(matrix)} parallel jobs: {[(d,m,s) for d,m,_,_,s in matrix]}", flush=True)
+    results = list(run_one.starmap(matrix))             # parallel: one container per (ds,model,seed)
     (HERE / "results").mkdir(exist_ok=True)
     (HERE / "results" / "sota_matrix.json").write_text(json.dumps(results, indent=2))
     print("\n==================== SUMMARY ====================")
-    for r in sorted(results, key=lambda x: (x.get("dataset", ""), x.get("model", ""))):
+    for r in sorted(results, key=lambda x: (x.get("dataset", ""), x.get("model", ""), x.get("seed", 0))):
         a = r.get("raw_ALL", {}); h = r.get("raw_HARD", {})
-        print(f"{r.get('dataset'):5} {r.get('model'):7} rc={r.get('rc')} {r.get('train_s')}s "
+        print(f"{r.get('dataset'):5} {r.get('model'):7} s{r.get('seed')} rc={r.get('rc')} {r.get('train_s')}s "
               f"| ALL auroc={a.get('AUROC')} f1={a.get('bestF1')} "
               f"| HARD auroc={h.get('AUROC')} f1={h.get('bestF1')} | n_eh={r.get('n_easy_hard')}")
