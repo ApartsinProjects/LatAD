@@ -1,0 +1,41 @@
+  WADI seed 0 done
+  WADI seed 1 done
+  WADI seed 2 done
+  WADI seed 3 done
+  WADI seed 4 done
+
+=== WADI (difficult n=19) ===
+    recon        difficult-AUROC 0.475±0.004
+    density      difficult-AUROC 0.694±0.027
+    nearest      difficult-AUROC 0.665±0.033
+    base         difficult-AUROC 0.685±0.03
+    base+resid   difficult-AUROC 0.685±0.03
+    LatAD        difficult-AUROC 0.685±0.03
+  HAI seed 0 done
+  HAI seed 1 done
+  HAI seed 2 done
+  HAI seed 3 done
+  HAI seed 4 done
+
+=== HAI (difficult n=167) ===
+    recon        difficult-AUROC 0.695±0.004
+    density      difficult-AUROC 0.802±0.011
+    nearest      difficult-AUROC 0.797±0.008
+    base         difficult-AUROC 0.801±0.01
+    base+resid   difficult-AUROC 0.82±0.01
+    LatAD        difficult-AUROC 0.82±0.01
+  SWaT seed 0 done
+  SWaT seed 1 done
+  SWaT seed 2 done
+  SWaT seed 3 done
+  SWaT seed 4 done
+
+=== SWaT (difficult n=38) ===
+    recon        difficult-AUROC 0.965±0.002
+    density      difficult-AUROC 0.952±0.008
+    nearest      difficult-AUROC 0.922±0.01
+    base         difficult-AUROC 0.947±0.007
+    base+resid   difficult-AUROC 0.96±0.002
+    LatAD        difficult-AUROC 0.96±0.002
+
+saved -> E:\Projects\Backlog\LatAD\poc\_diagnostics/rev4_ablation.json

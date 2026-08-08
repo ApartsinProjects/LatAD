@@ -1,0 +1,29 @@
+
+=== WADI ===  anom=56  canonical-difficult=19 -> stronger-difficult=20 (removed 2)
+    trivial max|z|           difficult-AUROC 0.334
+    Isolation Forest         difficult-AUROC 0.71±0.011
+    AutoEncoder              difficult-AUROC 0.452±0.004
+    LinRes (one-hot)         difficult-AUROC 0.395
+    USAD                     difficult-AUROC 0.37
+    TranAD                   difficult-AUROC 0.395
+    VaDE-hard+resid (ours)   difficult-AUROC 0.697±0.024
+
+=== HAI ===  anom=652  canonical-difficult=167 -> stronger-difficult=110 (removed 86)
+    trivial max|z|           difficult-AUROC 0.471
+    Isolation Forest         difficult-AUROC 0.528±0.006
+    AutoEncoder              difficult-AUROC 0.604±0.005
+    LinRes (one-hot)         difficult-AUROC 0.622
+    USAD                     difficult-AUROC 0.501
+    TranAD                   difficult-AUROC 0.465
+    VaDE-hard+resid (ours)   difficult-AUROC 0.675±0.027
+
+=== SWaT ===  anom=182  canonical-difficult=38 -> stronger-difficult=30 (removed 10)
+    trivial max|z|           difficult-AUROC 0.929
+    Isolation Forest         difficult-AUROC 0.808±0.014
+    AutoEncoder              difficult-AUROC 0.921±0.008
+    LinRes (one-hot)         difficult-AUROC 0.949
+    USAD                     difficult-AUROC 0.859
+    TranAD                   difficult-AUROC 0.858
+    VaDE-hard+resid (ours)   difficult-AUROC 0.95±0.007
+
+saved -> E:\Projects\Backlog\LatAD\poc\_diagnostics/rev4_stronger_split.json

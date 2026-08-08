@@ -1,0 +1,75 @@
+{
+ "n_windows": 1087,
+ "n_anom": 182,
+ "n_easy": 144,
+ "n_difficult": 38,
+ "n_attack_episodes_total": 1,
+ "n_attack_episodes_with_difficult": 1,
+ "difficult_windows_per_episode": [
+  38
+ ],
+ "competitor": "linres",
+ "difficult_paired": {
+  "auroc": 0.96,
+  "auroc_ci": [
+   0.955,
+   0.965
+  ],
+  "compet_auroc": 0.959,
+  "compet_ci": [
+   0.951,
+   0.967
+  ],
+  "diff": 0.001,
+  "diff_ci": [
+   -0.008,
+   0.009
+  ],
+  "p_diff_le_0": 0.475,
+  "n_boot": 2000
+ },
+ "deployable": {
+  "LatAD": {
+   "auprc": 0.97,
+   "auprc_sd": 0.014,
+   "tpr_at_1pct_fpr": 0.945,
+   "tpr_at_1pct_fpr_sd": 0.013,
+   "prec_at_normal_q99": 0.945,
+   "prec_at_normal_q99_sd": 0.001,
+   "f1_normal_q99": 0.945,
+   "f1_normal_q99_sd": 0.007
+  },
+  "IF": {
+   "auprc": 0.933,
+   "auprc_sd": 0.004,
+   "tpr_at_1pct_fpr": 0.866,
+   "tpr_at_1pct_fpr_sd": 0.013,
+   "prec_at_normal_q99": 0.94,
+   "prec_at_normal_q99_sd": 0.001,
+   "f1_normal_q99": 0.902,
+   "f1_normal_q99_sd": 0.008
+  },
+  "AE": {
+   "auprc": 0.968,
+   "auprc_sd": 0.002,
+   "tpr_at_1pct_fpr": 0.885,
+   "tpr_at_1pct_fpr_sd": 0.0,
+   "prec_at_normal_q99": 0.942,
+   "prec_at_normal_q99_sd": 0.0,
+   "f1_normal_q99": 0.912,
+   "f1_normal_q99_sd": 0.0
+  },
+  "USAD": {
+   "auprc": 0.951,
+   "tpr_at_1pct_fpr": 0.912,
+   "prec_at_normal_q99": 0.943,
+   "f1_normal_q99": 0.927
+  },
+  "TranAD": {
+   "auprc": 0.953,
+   "tpr_at_1pct_fpr": 0.929,
+   "prec_at_normal_q99": 0.944,
+   "f1_normal_q99": 0.936
+  }
+ }
+}

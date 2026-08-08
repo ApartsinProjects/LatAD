@@ -1,0 +1,89 @@
+{
+ "WADI": {
+  "n_difficult": 19,
+  "heads": {
+   "recon": {
+    "auroc": 0.475,
+    "auroc_sd": 0.004
+   },
+   "density": {
+    "auroc": 0.694,
+    "auroc_sd": 0.027
+   },
+   "nearest": {
+    "auroc": 0.665,
+    "auroc_sd": 0.033
+   },
+   "base": {
+    "auroc": 0.685,
+    "auroc_sd": 0.03
+   },
+   "base+resid": {
+    "auroc": 0.685,
+    "auroc_sd": 0.03
+   },
+   "LatAD": {
+    "auroc": 0.685,
+    "auroc_sd": 0.03
+   }
+  }
+ },
+ "HAI": {
+  "n_difficult": 167,
+  "heads": {
+   "recon": {
+    "auroc": 0.695,
+    "auroc_sd": 0.004
+   },
+   "density": {
+    "auroc": 0.802,
+    "auroc_sd": 0.011
+   },
+   "nearest": {
+    "auroc": 0.797,
+    "auroc_sd": 0.008
+   },
+   "base": {
+    "auroc": 0.801,
+    "auroc_sd": 0.01
+   },
+   "base+resid": {
+    "auroc": 0.82,
+    "auroc_sd": 0.01
+   },
+   "LatAD": {
+    "auroc": 0.82,
+    "auroc_sd": 0.01
+   }
+  }
+ },
+ "SWaT": {
+  "n_difficult": 38,
+  "heads": {
+   "recon": {
+    "auroc": 0.965,
+    "auroc_sd": 0.002
+   },
+   "density": {
+    "auroc": 0.952,
+    "auroc_sd": 0.008
+   },
+   "nearest": {
+    "auroc": 0.922,
+    "auroc_sd": 0.01
+   },
+   "base": {
+    "auroc": 0.947,
+    "auroc_sd": 0.007
+   },
+   "base+resid": {
+    "auroc": 0.96,
+    "auroc_sd": 0.002
+   },
+   "LatAD": {
+    "auroc": 0.96,
+    "auroc_sd": 0.002
+   }
+  }
+ }
+}
