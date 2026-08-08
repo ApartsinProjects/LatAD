@@ -1,0 +1,80 @@
+{
+ "WADI": {
+  "LatAD": 0.69,
+  "ensemble": 0.784,
+  "compet": "IF",
+  "compet_auroc": 0.677,
+  "fused_max": [
+   0.737,
+   0.093
+  ],
+  "fused_mean": [
+   0.788,
+   0.0
+  ],
+  "fused_tailmax": [
+   0.787,
+   0.002
+  ],
+  "fused_max_vs_compet": {
+   "diff": 0.061,
+   "ci": [
+    -0.061,
+    0.208
+   ],
+   "p_le_0": 0.1945
+  }
+ },
+ "HAI": {
+  "LatAD": 0.811,
+  "ensemble": 0.5,
+  "compet": "AE",
+  "compet_auroc": 0.757,
+  "fused_max": [
+   0.5,
+   0.0
+  ],
+  "fused_mean": [
+   0.5,
+   0.0
+  ],
+  "fused_tailmax": [
+   0.806,
+   0.012
+  ],
+  "fused_max_vs_compet": {
+   "diff": -0.257,
+   "ci": [
+    -0.358,
+    -0.144
+   ],
+   "p_le_0": 1.0
+  }
+ },
+ "SWaT": {
+  "LatAD": 0.96,
+  "ensemble": 0.5,
+  "compet": "linres",
+  "compet_auroc": 0.959,
+  "fused_max": [
+   0.5,
+   0.0
+  ],
+  "fused_mean": [
+   0.5,
+   0.0
+  ],
+  "fused_tailmax": [
+   0.973,
+   0.002
+  ],
+  "fused_max_vs_compet": {
+   "diff": -0.459,
+   "ci": [
+    -0.467,
+    -0.451
+   ],
+   "p_le_0": 1.0
+  }
+ }
+}

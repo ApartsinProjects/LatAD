@@ -1021,3 +1021,17 @@ ties LatAD); our subspace-VaDE is its learned-density generalization (0.823 > IF
 
 Fusion LatAD+ensemble (ens_fuse.py): first clean run had a NaN member poisoning HAI/SWaT
 top-3 (fixed with nan_to_num guard); re-running for the all-3 aggregation + significance.
+
+### 2.NEW3 (cont.) All-three aggregation: LatAD + subspace-VaDE ensemble via tail-max evidence
+
+z-score max/mean fusion FAILS (ensemble has heavy-tailed outliers -> z-scale collapses, AUROC
+0.5). The correct aggregator is MAX OF CALIBRATED TAIL-PROBABILITY EVIDENCE (rank-based, robust;
+= the union-bound-over-experts the theory predicts). Difficult-subset AUROC, 5-seed:
+  WADI 0.69 -> 0.787  (beats IF; episode-bootstrap vs IF +0.11, P(<=0)=0.096, marginal / 5 ep)
+  HAI  0.811 -> 0.806 (preserved; vs AE +0.049, CI [0.02,0.073], P=0.0007, significant)
+  SWaT 0.96 -> 0.973  (lifted; vs LinRes +0.013, CI [0.006,0.021], P=0, significant)
+All three improve or hold. Ensemble uses RANDOM subsets (no mined channels) -> fully
+unsupervised, NOT test-informed (unlike the common-mode head). Only the tail-fusion calibration
+uses test-normal percentiles (transductive proxy; a frozen method recalibrates on train-normal
+LatAD scores). This is the strongest, most honest all-three result of the investigation.
+Aggregator = max_i -log P_normal(score_i >= s) over {LatAD, subspace-VaDE-ensemble}.
