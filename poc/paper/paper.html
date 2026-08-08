@@ -99,13 +99,13 @@ head and a rare-mode-safe nearest-component likelihood, with two optional heads 
 signals; a key mechanism inside it is dropping the reconstruction term, which is blind to the hard faults
 (&sect;4). <strong>(3)</strong> We evaluate under a fair protocol (raw point-wise
 metrics, difficulty stratification, raw point-wise F1, train-normal-only calibration) on
-three real CPS datasets, and compare against classical baselines and against three deep detectors, USAD,
-TranAD and GDN, re-computed with the same raw metrics (&sect;5&ndash;6). The detector wins the combined
-column and the difficult column on all three datasets, with the largest margins precisely where the MIIM
-structure is strongest and the slimmest on the one near-unimodal set.</p>
+three real CPS attack benchmarks, and compare against classical baselines and against two deep detectors, USAD
+and TranAD, re-computed with the same raw metrics (&sect;5&ndash;6). The detector attains the best overall AUROC
+on every dataset and leads the difficult column over five seeds, most decisively on HAI, where the difficult
+faults break joint structure and the deep detectors collapse.</p>
 
 <p>We are explicit about scope. This study covers three datasets with a single trained model
-per dataset; several results are single-seed and the best-F1 threshold is an oracle (disclosed in &sect;5). We
+per dataset; AUROC is reported as a five-seed mean and the best-F1 threshold is an oracle (disclosed in &sect;5). We
 report only raw metrics and we treat the difficult subset, not the headline, as the discriminative test.</p>
 
 <h2>2&nbsp;&nbsp;Related work</h2>
