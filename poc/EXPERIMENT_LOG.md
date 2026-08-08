@@ -1035,3 +1035,22 @@ unsupervised, NOT test-informed (unlike the common-mode head). Only the tail-fus
 uses test-normal percentiles (transductive proxy; a frozen method recalibrates on train-normal
 LatAD scores). This is the strongest, most honest all-three result of the investigation.
 Aggregator = max_i -log P_normal(score_i >= s) over {LatAD, subspace-VaDE-ensemble}.
+
+### 2.NEW3 (FIRM-UP / REFUTATION) The subspace-VaDE ensemble WADI win is NOT robust
+
+Firming up the exploratory ensemble (leak-free train-normal calibration + multi-seed) REFUTED it:
+- Robustness across the random subset draw (m=24, K=24): seed0 WADI-difficult 0.823, seed1 0.445.
+  The exploratory 0.823 was a lucky draw whose subsets happened to cover the sparse analyzer block.
+- Large K did NOT fix it (union-bound intuition fails): K=120, m=16 gave WADI max 0.383 / top3 0.390
+  / top10 0.413 -- BELOW chance. With many mostly-irrelevant subsets, the max/top-k aggregation is
+  dominated by normal-window multiple-testing noise; the rare signal-bearing subsets are drowned.
+- Leak-free firmup (3 replicas, train-normal calibration): WADI fused 0.524+-0.055 (< LatAD 0.70,
+  P(<=0)=0.98 vs IF) -- the ensemble contributed no reliable WADI signal.
+
+CONCLUSION: the "all three win" via LatAD+subspace-VaDE tail-max fusion does NOT survive rigorous
+multi-seed / robustness testing; it was an artifact of a favorable (m, K, seed) combination. The
+theory (SNR gain, rate-distortion, union bound) is sound in principle but random channel subsets
+do not reliably cover a ~5-8 channel block in 123-d at feasible K, and naive max-aggregation lets
+normal-window multiplicity dominate. NOT added to the paper. Paper stands: WADI = honest tie +
+double-hard leadership. A correlation-GUIDED (not random) subset ensemble would be the principled
+fix but is test-informed/needs its own frozen validation -> future work.
