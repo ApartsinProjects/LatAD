@@ -973,3 +973,26 @@ auto-recovered (NOT cherry-picked). Calibrated max-over-groups common-mode head:
   SWaT 0.962->0.62. => the head MUST be AUTO-GATED (fire WADI, off HAI/SWaT).
 Status: promising NEW WADI win path (0.77 vs IF 0.677 is a real gap, unlike the 0.013 tie).
 Needs: a train-normal-only gate + per-seed + episode-bootstrap significance before any claim.
+
+### 2.NEW2 (cont.) Auto-gated common-mode head: WADI win, but SWaT breaks the gate
+
+Built the head as a real auto-gated component (mine_head.py). Gate = held-out-normal
+generalization (frac of held-out train-normal exceeding the fit-normal 99.5th pct):
+WADI 0.0015 (ON), HAI 0.1153 (OFF), SWaT 0.0022 (ON). Rank-gaussianized head, gated
+weighted fusion w=0.5, 5-seed:
+  WADI  LatAD 0.69 -> FUSED 0.77 (IF 0.677); episode-bootstrap fused-IF diff +0.093,
+        CI [-0.018, 0.187], P(<=0)=0.049  (marginally significant; 5 episodes cap it).
+  HAI   gate OFF -> preserved 0.811.
+  SWaT  gate ON but head is redundant/HARMFUL (0.96 -> 0.72): the head generalizes on
+        SWaT normal yet mis-ranks SWaT anomalies.
+Guard attempts to turn SWaT off from train-normal ONLY both FAIL to separate WADI from
+SWaT: generalization ratio (WADI 0.886 vs SWaT 0.951) and complementarity
+spearman(head,LatAD)_normal (WADI 0.209 vs SWaT 0.275) are too close.
+
+CONCLUSION: the common-mode head is a validated, leak-free, mechanism-grounded WADI
+detector that recovers the coherent-block-translation anomalies (WADI-difficult 0.755
+standalone / 0.77 gated-fused, marginally beats IF 0.677) and auto-gates correctly against
+HAI. It is NOT integrable as a UNIVERSAL auto-gated head: on the SWaT ceiling it generalizes
+but harms, and no label-free gate distinguishes "generalizes-and-helps" from
+"generalizes-but-redundant". Reportable as a WADI-specific extension / future work, NOT a
+headline all-three claim. (mine_head.py, mine_head.json.)
