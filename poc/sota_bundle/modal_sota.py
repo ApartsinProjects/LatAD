@@ -95,28 +95,18 @@ def _patch_harness(repo, fp32=True):
         mp = mp.replace(".double()", ".float()")
         mp = mp.replace("torch.DoubleTensor", "torch.FloatTensor")
         mp = mp.replace("torch.float64", "torch.float32").replace("torch.double", "torch.float32")
-    # CUDA device move: model + dgl graph to GPU; batches to GPU at backprop entry.
-    mp = mp.replace(
-        "model = model_class(dims).double()" if not fp32 else "model = model_class(dims).float()",
-        ("model = model_class(dims).float()\n" if fp32 else "model = model_class(dims).double()\n") +
-        "\tif _t.cuda.is_available():\n"
-        "\t\tmodel = model.cuda()\n"
-        "\t\tfor _a in ('g','graph','edge_index'):\n"
-        "\t\t\tif hasattr(model,_a) and hasattr(getattr(model,_a),'to'):\n"
-        "\t\t\t\ttry: setattr(model,_a, getattr(model,_a).to('cuda'))\n"
-        "\t\t\t\texcept Exception as _e: print('[dev] graph move fail', _e, flush=True)\n"
-        "\t\tprint('[dev] model on cuda:', next(model.parameters()).is_cuda, flush=True)")
+    # CPU-only: batched USAD + already-batched TranAD are fast on CPU; GPU only added per-window
+    # kernel-launch overhead (and forcing data onto CUDA broke TranAD's torch.FloatTensor(data)).
+    # set_grad_enabled(False) on the eval pass keeps the per-window loop from building an autograd graph.
     mp = mp.replace(
         "def backprop(epoch, model, data, dataO, optimizer, scheduler, training = True):",
         "def backprop(epoch, model, data, dataO, optimizer, scheduler, training = True):\n"
-        "\t_t.set_grad_enabled(bool(training))\n"
-        "\tif _t.cuda.is_available() and next(model.parameters()).is_cuda:\n"
-        "\t\ttry: data, dataO = data.cuda().float(), dataO.cuda().float()\n"
-        "\t\texcept Exception: pass")
-    # dump aggregate per-timestep score + labels; guard pot_eval so an fp32/POT hiccup
-    # cannot lose an already-dumped score array.
-    save = ("\tnp.save(f'/results/score_{args.model}_{args.dataset}.npy', lossFinal)\n"
-            "\tnp.save(f'/results/labels_{args.model}_{args.dataset}.npy', labelsFinal)\n")
+        "\t_t.set_grad_enabled(bool(training))")
+    # dump per-timestep score + labels under the REAL dataset name (args.dataset is always the
+    # 'WADI' slot, so using it would make all datasets race on one file). Guard pot_eval so a POT
+    # hiccup cannot lose an already-dumped score array.
+    save = ("\tnp.save('/results/score_'+args.model+'_'+os.environ.get('REAL_DS','WADI')+'.npy', lossFinal)\n"
+            "\tnp.save('/results/labels_'+args.model+'_'+os.environ.get('REAL_DS','WADI')+'.npy', labelsFinal)\n")
     tgt = "\tresult, _ = pot_eval(lossTfinal, lossFinal, labelsFinal)"
     guarded = save + "\ttry:\n\t\tresult, _ = pot_eval(lossTfinal, lossFinal, labelsFinal)\n\texcept Exception as _e:\n\t\tprint('[pot] skipped', _e, flush=True); result = {}\n"
     mp = mp.replace(tgt, guarded, 1)
@@ -124,14 +114,15 @@ def _patch_harness(repo, fp32=True):
     return save in mp
 
 
-@app.function(gpu="A10G", timeout=2 * 60 * 60, memory=16384, volumes={"/results": results_vol})
+@app.function(cpu=8.0, timeout=3 * 60 * 60, memory=16384, volumes={"/results": results_vol})
 def run_one(ds: str, model: str, epochs: int = 5, fp32: bool = True) -> dict:
     import subprocess, os, sys, time, threading, numpy as np
     from sklearn.metrics import f1_score, roc_auc_score
     os.environ["MKL_THREADING_LAYER"] = "GNU"
     os.environ["MKL_SERVICE_FORCE_INTEL"] = "0"
     os.environ["NEPOCHS"] = str(epochs)
-    os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
+    os.environ["REAL_DS"] = ds                          # real dataset for the score-dump filename
+    os.environ["OMP_NUM_THREADS"] = "8"; os.environ["MKL_NUM_THREADS"] = "8"
 
     def sh(cmd, **kw):
         print(f"[sota] $ {cmd}", flush=True)
