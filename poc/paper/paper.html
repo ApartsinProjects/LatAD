@@ -158,8 +158,9 @@ uncertainty to sharpen sensitivity to normal patterns, and CATCH [<a href="#r-ca
 correlations through frequency-domain patching. Both remain reconstruction-based, so the mechanism analysis of
 &sect;7 predicts they too will miss the reconstructable-but-improbable joint faults that define our difficult
 subset. We benchmark USAD and TranAD, the reconstruction- and transformer-based deep detectors, under the same
-raw, difficulty-stratified metrics (the re-scored comparison is in &sect;6), and leave a raw-metric evaluation of
-these newer detectors and of the cross-channel GDN, whose published evaluation uses point adjustment, to future
+raw, difficulty-stratified metrics over five seeds (the re-scored comparison is in &sect;6), and additionally
+re-run the cross-channel GDN under the identical raw protocol where its per-window graph training was tractable
+(SWaT). A raw-metric evaluation of the newer reconstruction detectors (SensitiveHUE, CATCH) is left to future
 work.</p>
 
 <p>Beyond public benchmarks, sensor-driven condition monitoring and fault prediction in operational CPS motivate
@@ -467,9 +468,11 @@ flag.</p>
 window features, together with a linear cross-channel baseline (LinRes): a leave-one-channel-out linear regression
 that predicts each channel's window summary from the others, with discrete actuator channels one-hot encoded,
 scored by its residual. For modern SOTA we re-run USAD [<a href="#r-usad">22</a>] and TranAD
-[<a href="#r-tranad">23</a>] through the TranAD evaluation harness and score them with the <em>same raw point-wise
-metrics</em>, aggregating their per-timestep scores onto our window grid (with an integer-ratio correction for
-HAI's downsampling).
+[<a href="#r-tranad">23</a>] through the TranAD evaluation harness over five seeds and score them with the
+<em>same raw point-wise metrics</em>, aggregating their per-timestep scores onto our window grid (with an
+integer-ratio correction for HAI's downsampling). We also re-run the graph-based GDN [<a href="#r-gdn">24</a>]
+under the identical protocol; its per-window graph training completed within our compute budget only on SWaT,
+where it matches the other deep detectors (difficult-subset AUROC 0.871, below ours).
 We do <em>not</em> apply point adjustment to any method. This is deliberate: point adjustment inflates F1 so
 severely that a random score outscores every deep model (&sect;2), so a fair comparison must use raw metrics for
 all methods, including the published SOTA. We also report a pedagogical <em>trivial</em> baseline, the
@@ -487,9 +490,10 @@ five seeds.</p>
 <table>
 <caption><strong>Table 3.</strong> Per-dataset, per-subset results [AUROC, F1] on three real CPS attack
 benchmarks. AUROC is leak-free; F1 is the best raw point-wise F1 over thresholds. Higher is better. Learned
-detectors (Isolation Forest, AutoEncoder, and the VaDE family) report AUROC as mean&plusmn;standard deviation
-over five seeds. Bold = best AUROC in that dataset&times;subset column (ties bolded jointly). &ldquo;Ours&rdquo;
-= the VaDE-hard+resid(auto) headline model. The <em>trivial max|z|</em> row is the univariate range rule that
+detectors (Isolation Forest, AutoEncoder, USAD, TranAD, and the VaDE family) report AUROC as
+mean&plusmn;standard deviation over five seeds; GDN, whose per-window graph training completed only on SWaT within
+our compute budget, is reported single-run on SWaT. Bold = best AUROC in that dataset&times;subset column (ties
+bolded jointly). &ldquo;Ours&rdquo; = the VaDE-hard+resid(auto) headline model. The <em>trivial max|z|</em> row is the univariate range rule that
 defines the difficulty split (&sect;5.3): strong on Easy and near chance on Difficult, which is what makes the
 split meaningful. <em>LinRes</em> is a leave-one-channel-out linear cross-channel predictor, a simple
 correlation baseline.</caption>
@@ -510,8 +514,8 @@ correlation baseline.</caption>
 <tr><td class="l">Isolation Forest</td><td>Baseline</td><td>0.726&plusmn;0.007</td><td>0.375</td><td>0.751&plusmn;0.010</td><td>0.373</td><td>0.677&plusmn;0.011</td><td>0.149</td></tr>
 <tr><td class="l">AutoEncoder</td><td>Baseline</td><td>0.743&plusmn;0.001</td><td>0.604</td><td>0.907&plusmn;0.002</td><td>0.724</td><td>0.425&plusmn;0.005</td><td>0.218</td></tr>
 <tr><td class="l">LinRes (one-hot)</td><td>Baseline</td><td>0.595</td><td>0.215</td><td>0.699</td><td>0.214</td><td>0.392</td><td>0.174</td></tr>
-<tr><td class="l">USAD</td><td>SOTA</td><td>0.698</td><td>0.516</td><td>0.901</td><td>0.658</td><td>0.303</td><td>0.033</td></tr>
-<tr><td class="l">TranAD</td><td>SOTA</td><td>0.721</td><td>0.556</td><td class="win">0.921</td><td>0.686</td><td>0.333</td><td>0.039</td></tr>
+<tr><td class="l">USAD</td><td>SOTA</td><td>0.700&plusmn;0.001</td><td>0.512</td><td>0.903&plusmn;0.002</td><td>0.655</td><td>0.305&plusmn;0.004</td><td>0.030</td></tr>
+<tr><td class="l">TranAD</td><td>SOTA</td><td>0.717&plusmn;0.003</td><td>0.571</td><td class="win">0.918&plusmn;0.002</td><td>0.708</td><td>0.325&plusmn;0.004</td><td>0.025</td></tr>
 <tr><td class="l"><b>VaDE-hard+resid(auto)</b></td><td>Ours</td><td class="win">0.792&plusmn;0.012</td><td>0.563</td><td>0.845&plusmn;0.007</td><td>0.678</td><td class="win">0.690&plusmn;0.027</td><td>0.216</td></tr>
 
 <tr><td class="l" colspan="8" style="background:#eef3f8;text-align:left"><b>HAI</b> &nbsp;<span class="small">(anom 652 = 485 easy + 167 difficult)</span></td></tr>
@@ -519,8 +523,8 @@ correlation baseline.</caption>
 <tr><td class="l">Isolation Forest</td><td>Baseline</td><td>0.844&plusmn;0.011</td><td>0.418</td><td>0.919&plusmn;0.016</td><td>0.469</td><td>0.627&plusmn;0.005</td><td>0.055</td></tr>
 <tr><td class="l">AutoEncoder</td><td>Baseline</td><td>0.923&plusmn;0.001</td><td>0.744</td><td class="win">0.980&plusmn;0.000</td><td>0.789</td><td>0.757&plusmn;0.003</td><td>0.343</td></tr>
 <tr><td class="l">LinRes (one-hot)</td><td>Baseline</td><td>0.779</td><td>0.483</td><td>0.846</td><td>0.581</td><td>0.586</td><td>0.121</td></tr>
-<tr><td class="l">USAD</td><td>SOTA</td><td>0.849</td><td>0.706</td><td>0.970</td><td>0.841</td><td>0.497</td><td>0.023</td></tr>
-<tr><td class="l">TranAD</td><td>SOTA</td><td>0.834</td><td>0.693</td><td>0.968</td><td>0.825</td><td>0.445</td><td>0.019</td></tr>
+<tr><td class="l">USAD</td><td>SOTA</td><td>0.843&plusmn;0.005</td><td>0.699</td><td>0.969&plusmn;0.001</td><td>0.833</td><td>0.477&plusmn;0.018</td><td>0.022</td></tr>
+<tr><td class="l">TranAD</td><td>SOTA</td><td>0.834&plusmn;0.002</td><td>0.693</td><td>0.968&plusmn;0.000</td><td>0.824</td><td>0.444&plusmn;0.010</td><td>0.019</td></tr>
 <tr><td class="l"><b>VaDE-hard+resid(auto)</b></td><td>Ours</td><td class="win">0.933&plusmn;0.007</td><td>0.712</td><td>0.975&plusmn;0.004</td><td>0.773</td><td class="win">0.811&plusmn;0.016</td><td>0.356</td></tr>
 
 <tr><td class="l" colspan="8" style="background:#eef3f8;text-align:left"><b>SWaT</b> &nbsp;<span class="small">(anom 182 = 144 easy + 38 difficult)</span></td></tr>
@@ -528,8 +532,9 @@ correlation baseline.</caption>
 <tr><td class="l">Isolation Forest</td><td>Baseline</td><td>0.959&plusmn;0.003</td><td>0.910</td><td>0.987&plusmn;0.002</td><td>0.961</td><td>0.853&plusmn;0.011</td><td>0.661</td></tr>
 <tr><td class="l">AutoEncoder</td><td>Baseline</td><td>0.987&plusmn;0.001</td><td>0.933</td><td class="win">1.000&plusmn;0.000</td><td>0.989</td><td>0.939&plusmn;0.006</td><td>0.613</td></tr>
 <tr><td class="l">LinRes (one-hot)</td><td>Baseline</td><td class="win">0.991</td><td>0.948</td><td class="win">1.000</td><td>0.990</td><td>0.959</td><td>0.698</td></tr>
-<tr><td class="l">USAD</td><td>SOTA</td><td>0.973</td><td>0.948</td><td class="win">1.000</td><td>0.989</td><td>0.871</td><td>0.730</td></tr>
-<tr><td class="l">TranAD</td><td>SOTA</td><td>0.972</td><td>0.948</td><td class="win">1.000</td><td>0.990</td><td>0.867</td><td>0.725</td></tr>
+<tr><td class="l">USAD</td><td>SOTA</td><td>0.972&plusmn;0.001</td><td>0.948</td><td class="win">1.000&plusmn;0.000</td><td>0.989</td><td>0.867&plusmn;0.005</td><td>0.705</td></tr>
+<tr><td class="l">TranAD</td><td>SOTA</td><td>0.972&plusmn;0.000</td><td>0.952</td><td class="win">1.000&plusmn;0.000</td><td>0.990</td><td>0.867&plusmn;0.001</td><td>0.726</td></tr>
+<tr><td class="l">GDN</td><td>SOTA</td><td>0.973</td><td>0.946</td><td class="win">1.000</td><td>0.990</td><td>0.871</td><td>0.698</td></tr>
 <tr><td class="l"><b>VaDE-hard+resid(auto)</b></td><td>Ours</td><td class="win">0.991&plusmn;0.002</td><td>0.947</td><td>0.999&plusmn;0.002</td><td>0.976</td><td class="win">0.960&plusmn;0.006</td><td>0.752</td></tr>
 </tbody>
 </table>
@@ -542,8 +547,8 @@ The detector thus leads the combined column on all three datasets.</p>
 
 <p><strong>Difficult, joint-structure faults.</strong> This is where the design earns its keep (Figure 1). The clearest
 demonstration is HAI: the model reaches 0.811 on the difficult subset (167 difficult windows spanning 26 distinct
-attack episodes), well above the AutoEncoder (0.757) and far above the deep detectors USAD (0.497) and TranAD
-(0.445), which sit near chance. This margin over the AutoEncoder is statistically significant: an episode-block
+attack episodes), well above the AutoEncoder (0.757) and far above the deep detectors USAD (0.477) and TranAD
+(0.444), which sit near chance. This margin over the AutoEncoder is statistically significant: an episode-block
 bootstrap of the paired difference (resampling attack episodes and normal windows, averaged over the five seeds)
 gives +0.054 with a 95% confidence interval of [0.015, 0.089] and an estimated P(difference&nbsp;&#8804;&nbsp;0) of
 0.002. On WADI the model reaches 0.690, statistically indistinguishable from Isolation Forest (0.677; paired 95%
@@ -616,9 +621,9 @@ numerical lead on WADI (five episodes), and a single-episode result on SWaT.</ca
 </div>
 
 <p><strong>Deep SOTA under raw metrics.</strong> Re-computed with raw point-wise metrics, the deep detectors USAD
-and TranAD collapse on the difficult subset of the two joint-structure benchmarks: they fall to 0.497 and 0.445
-on HAI and to 0.303 and 0.333 on WADI, near or below chance and far below our 0.690&ndash;0.811, even while they
-remain strong on Easy (0.90&ndash;0.97). This is the concrete face of the &ldquo;illusion of success&rdquo;:
+and TranAD collapse on the difficult subset of the two joint-structure benchmarks: over five seeds they fall to
+0.477 and 0.444 on HAI and to 0.305 and 0.325 on WADI, near or below chance and far below our 0.690&ndash;0.811,
+even while they remain strong on Easy (0.90&ndash;0.97). This is the concrete face of the &ldquo;illusion of success&rdquo;:
 models that look strong under point-adjusted F1 have little difficult-fault signal once the metric is raw.</p>
 
 <figure>
@@ -673,7 +678,7 @@ latent-plus-clustering detector <strong>attains the best overall AUROC on every 
 difficult subset over five seeds</strong>. The clearest demonstration is HAI, whose difficult faults genuinely
 break joint structure: the detector reaches 0.811, a statistically significant margin over the next-best baseline
 (paired episode-bootstrap 95% CI [0.015, 0.089]), while the deep detectors USAD and TranAD fall near chance
-(0.45&ndash;0.50); on WADI and SWaT it ties the strongest baseline at the top of the difficult column. Modelling normal as a jointly learned latent plus explicit mode clustering, and scoring by
+(0.44&ndash;0.48); on WADI and SWaT it ties the strongest baseline at the top of the difficult column. Modelling normal as a jointly learned latent plus explicit mode clustering, and scoring by
 probability in that latent, is what delivers the difficult-subset advantage.</p>
 
 <p><strong>Why reconstruction fails and density wins.</strong> The deep detectors USAD and TranAD score by
