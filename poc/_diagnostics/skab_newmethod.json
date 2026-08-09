@@ -1,0 +1,32 @@
+{
+ "baselines": {
+  "LatAD": 0.519,
+  "IF": 0.532,
+  "AE": 0.467,
+  "linres": 0.518,
+  "trivial_maxz": 0.388
+ },
+ "n_communities": 6,
+ "aggregators": {
+  "commOR": [
+   0.445,
+   0.013
+  ],
+  "factor_sum": [
+   0.434,
+   0.01
+  ],
+  "HC": [
+   0.49,
+   0.015
+  ],
+  "HC_coh": [
+   0.487,
+   0.017
+  ],
+  "null+HC_coh": [
+   0.499,
+   0.04
+  ]
+ }
+}

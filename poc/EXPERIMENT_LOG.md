@@ -1137,3 +1137,15 @@ Every dataset >= LatAD and >= best baseline; HAI/SWaT significant IMPROVEMENTS o
 just preserved). Other notable: HC_coh alone 0.836/0.782/0.967; commOR_cohsqrt 0.845 best WADI;
 factor_sum(level-sum) best pure-dense SWaT 0.957. Confirms: sum=dense, max=sparse, HC adapts,
 cohesion weight helps, null covers HAI. Cached experts -> all instant/reusable.
+
+### 2.NEW3 (SKAB negative control) new method gives NO gain on low-dim SKAB (mechanism confirmed)
+
+Falsification test (skab_newmethod.py; registry only, NOT in paper). SKAB = 8 channels (vs WADI
+123). Theory: the guided community-density ensemble helps only by undoing SPARSE-fault dilution
+in HIGH dimension, so it should NOT help low-dim SKAB. Confirmed:
+  SKAB difficult-AUROC: LatAD 0.519, IF 0.532, AE 0.467, LinRes 0.518 (all ~chance);
+  new method commOR 0.445, factor_sum 0.434, HC 0.490, HC_coh 0.487, null+HC_coh 0.499 -> NO gain.
+  Only 6 (trivial) HAC communities on 8 channels. VERDICT: no dilution to undo -> no gain.
+Negative control that validates the mechanism: gain is confined to high-dimensional datasets
+(WADI 0.69->0.78-0.84) and absent on low-dim SKAB. Also reconfirms SKAB's difficult subset is
+~chance for every method (why it was dropped).
