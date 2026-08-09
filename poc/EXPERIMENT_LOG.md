@@ -1054,3 +1054,19 @@ do not reliably cover a ~5-8 channel block in 123-d at feasible K, and naive max
 normal-window multiplicity dominate. NOT added to the paper. Paper stands: WADI = honest tie +
 double-hard leadership. A correlation-GUIDED (not random) subset ensemble would be the principled
 fix but is test-informed/needs its own frozen validation -> future work.
+
+### 2.NEW3 (aggregation fix) q90 min-prob quantile is best, but coverage is the real constraint
+
+User proposal: aggregate by MIN probability (OR-of-experts) and use a low quantile (~5%) to drop
+outlier members. Tested across 3 subset seeds (K=48, m=24, held-out-normal-calibrated aggregate):
+  aggregator  seed0  seed1  seed2   mean+-std
+  max         0.63   0.424  0.464   0.51+-0.09
+  q90         0.787  0.578  0.549   0.64+-0.11   <- BEST aggregator every seed (validates the idea)
+  q95         0.781  0.489  0.48    0.58+-0.14
+  top10       0.779  0.521  0.518   0.61+-0.12
+q90 (drop top 10% outlier members) beats strict max/top3 in every seed. BUT it does not fix
+robustness: still 0.79->0.55 across RANDOM subset draws, 2/3 seeds < IF 0.677. The binding
+constraint is COVERAGE of the sparse ~8-channel block by random subsets, not the aggregator.
+FIX: deterministic coverage via train-normal correlation-community members (unsupervised) +
+q90 min-prob aggregation -> the guided ensemble generalization of the common-mode head (which is
+already robust at 0.755, being deterministic). Next experiment.
