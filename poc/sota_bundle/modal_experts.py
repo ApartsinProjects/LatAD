@@ -33,9 +33,9 @@ app = modal.App("latad-experts", image=image)
 MAXSZ = 25
 
 
-@app.function(cpu=8.0, memory=49152, timeout=3 * 60 * 60)
-def experts(name: str, nseeds: int = 3) -> dict:
-    import sys, numpy as np, warnings
+@app.function(cpu=8.0, memory=65536, timeout=5 * 60 * 60)
+def experts(name: str, nseeds: int = 3, seed_base: int = 0, use_full: int = 0) -> dict:
+    import sys, gc, numpy as np, warnings
     warnings.filterwarnings("ignore"); sys.path.insert(0, "/app")
     from scipy.cluster.hierarchy import linkage, to_tree
     from scipy.spatial.distance import squareform
@@ -66,21 +66,33 @@ def experts(name: str, nseeds: int = 3) -> dict:
     def sf(Xw, S): return np.nan_to_num(np.ascontiguousarray(Xw[:, [b * nch + c for b in range(6) for c in S]]))
     S = len(comms); ncal = len(Xn) - nfit; ntest = len(Xa)
     Cal = np.zeros((nseeds, S, ncal), np.float32); Tst = np.zeros((nseeds, S, ntest), np.float32)
-    for sd in range(nseeds):
+    for si in range(nseeds):
+        sd = seed_base + si
+        nfail = 0
         for gi, G in enumerate(comms):
-            Ff, Fc, Ft = sf(Xn[:nfit], G), sf(Xn[nfit:], G), sf(Xa, G)
-            m2, s2 = Ff.mean(0), Ff.std(0) + 1e-9
-            Ztr = np.nan_to_num(((Ff - m2) / s2)).astype(np.float32)
-            Zc2 = np.nan_to_num(((Fc - m2) / s2)).astype(np.float32)
-            Zt2 = np.nan_to_num(((Ft - m2) / s2)).astype(np.float32)
-            v = train_vade(Ztr, n_clusters=min(20, max(6, len(G))),
-                           latent_dim=min(8, max(3, len(G) // 2)), epochs=15, warmup=4, seed=sd, device="cpu")
-            v.fit_latent_density(Ztr, k_density=min(50, max(12, nfit // 12)))
-            cc = np.asarray(v.anomaly_score_hard(Zc2, use_resid=False, use_basin=False))
-            tt = np.asarray(v.anomaly_score_hard(Zt2, use_resid=False, use_basin=False)); del v
-            cm, cs = cc.mean(), cc.std() + 1e-9
-            Cal[sd, gi] = np.nan_to_num((cc - cm) / cs); Tst[sd, gi] = np.nan_to_num((tt - cm) / cs)
-        print(f"[{name}] seed {sd}: {S} experts trained", flush=True)
+            try:
+                Ff, Fc, Ft = sf(Xn[:nfit], G), sf(Xn[nfit:], G), sf(Xa, G)
+                m2, s2 = Ff.mean(0), Ff.std(0) + 1e-9
+                cl = lambda A: np.clip(np.nan_to_num(((A - m2) / s2), posinf=10.0, neginf=-10.0), -10, 10).astype(np.float32)
+                Ztr, Zc2, Zt2 = cl(Ff), cl(Fc), cl(Ft)
+                v = train_vade(Ztr, n_clusters=min(20, max(6, len(G))),
+                               latent_dim=min(8, max(3, len(G) // 2)), epochs=15, warmup=4, seed=sd, device="cpu")
+                v.fit_latent_density(Ztr, k_density=min(50, max(12, nfit // 12)))
+                if use_full:   # apply A8 (per-community whitened residual) + A3 (basin) inside each expert
+                    v.fit_residual_whitener(Ztr); v.fit_resid_head(Ztr); v.fit_basin_head(Ztr)
+                ur = "auto" if use_full else False; ub = "auto" if use_full else False
+                cc = np.asarray(v.anomaly_score_hard(Zc2, use_resid=ur, use_basin=ub))
+                tt = np.asarray(v.anomaly_score_hard(Zt2, use_resid=ur, use_basin=ub)); del v
+                cm, cs = cc.mean(), cc.std() + 1e-9
+                if not (np.isfinite(cm) and cs > 0):
+                    raise ValueError("non-finite expert scores")
+                Cal[si, gi] = np.nan_to_num((cc - cm) / cs); Tst[si, gi] = np.nan_to_num((tt - cm) / cs)
+                del Ff, Fc, Ft, Ztr, Zc2, Zt2, cc, tt
+            except Exception as e:
+                Cal[si, gi] = 0.0; Tst[si, gi] = 0.0; nfail += 1
+                print(f"[{name}] seed {sd} comm {gi} (|G|={len(G)}) skipped: {e}", flush=True)
+            gc.collect()
+        print(f"[{name}] seed {sd}: {S} experts trained ({nfail} skipped)", flush=True)
 
     if not np.all(np.isfinite(Cal)) or not np.all(np.isfinite(Tst)):
         Cal = np.nan_to_num(Cal); Tst = np.nan_to_num(Tst)
@@ -90,26 +102,28 @@ def experts(name: str, nseeds: int = 3) -> dict:
     out = dict(name=name, S=S, comm_size=[len(g) for g in comms], comm_cohesion=coh,
                comm_channels=chpad.tolist(),
                calib_surprise=Cal, test_surprise=Tst,
-               y=B["y"], hard=(B["y"].astype(int) == 1) & ~((B["y"].astype(int) == 1) & (B["maxz"] > float(B["maxz_thr"]))),
-               LatAD=B["LatAD"], IF=B["IF"], AE=B["AE"], linres=B["linres"])
+               y=B["y"], hard=(B["y"].astype(int) == 1) & ~((B["y"].astype(int) == 1) & (B["maxz"] > float(B["maxz_thr"]))))
     print(f"[{name}] DONE experts={S}", flush=True)
     return out
 
 
 @app.local_entrypoint()
-def main(datasets: str = "WADI,HAI,SWaT", seeds: int = 3):
+def main(datasets: str = "WADI,HAI,SWaT", seeds: int = 3, full: int = 0):
     import numpy as np
     ds = datasets.split(",")
-    outdir = HERE / "experts"; outdir.mkdir(exist_ok=True)
-    for r in run_ds_iter(ds, seeds):
-        name = r["name"]
-        np.savez(outdir / f"expert_{name}.npz",
-                 comm_size=np.array(r["comm_size"]), comm_cohesion=np.array(r["comm_cohesion"]),
-                 comm_channels=np.array(r["comm_channels"]),
-                 calib_surprise=r["calib_surprise"], test_surprise=r["test_surprise"],
-                 y=r["y"], hard=r["hard"], LatAD=r["LatAD"], IF=r["IF"], AE=r["AE"], linres=r["linres"])
-        print(f"saved experts/expert_{name}.npz  (S={r['S']})")
-
-
-def run_ds_iter(ds, seeds):
-    return list(experts.starmap([(d, seeds) for d in ds]))
+    outdir = HERE / ("experts_full" if full else "experts"); outdir.mkdir(exist_ok=True)
+    for d in ds:
+        # seeds are independent -> run them as parallel containers (wall-clock ~= one seed)
+        cals, tsts, meta = [], [], None
+        for s, r in enumerate(experts.starmap([(d, 1, s, full) for s in range(seeds)], return_exceptions=True)):
+            if isinstance(r, Exception):
+                print(f"[{d}] seed {s} errored: {r}", flush=True); continue
+            cals.append(np.asarray(r["calib_surprise"])[0]); tsts.append(np.asarray(r["test_surprise"])[0]); meta = r
+        if meta is None:
+            print(f"[{d}] ALL seeds failed", flush=True); continue
+        np.savez(outdir / f"expert_{d}.npz",
+                 comm_size=np.array(meta["comm_size"]), comm_cohesion=np.array(meta["comm_cohesion"]),
+                 comm_channels=np.array(meta["comm_channels"]),
+                 calib_surprise=np.stack(cals), test_surprise=np.stack(tsts),
+                 y=meta["y"], hard=meta["hard"])
+        print(f"[{d}] saved {len(cals)}/{seeds} seeds (parallel, S={meta['S']})", flush=True)

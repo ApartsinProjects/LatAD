@@ -174,12 +174,13 @@ class VaDE(nn.Module):
         diag_nll = -self._log_pz_given_c(_as_tensor(z, self)).max(dim=1).values.cpu().numpy()  # V1
         return dens, diag_nll
 
-    def fit_latent_density(self, x, k_density=80, seed=0):
+    def fit_latent_density(self, x, k_density=80, seed=None):
         """Fit a high-K diagonal GMM on the NORMAL latent (the parametric density
         head) and record the two components' train-normal mean/std so the fused
         score is calibrated against normal (NOT against the test batch, whose
         outliers would otherwise set the z-scale and swamp the signal). Stores
         only GMM params + 4 scalars -- no data retained."""
+        if seed is None: seed = getattr(self, "_seed", 0)
         self.latent_gmm = GaussianMixture(
             n_components=k_density, covariance_type="diag", reg_covar=1e-3,
             random_state=seed).fit(self._encode_mean(x))
@@ -210,12 +211,13 @@ class VaDE(nn.Module):
         mk = np.stack([self._rlw.get(k, self._rglob).mahalanobis(Q) for k in range(self.K)], 1)
         return (G * mk).sum(1)
 
-    def fit_resid_head(self, x, red_dim=30, min_mode=30, seed=0):
+    def fit_resid_head(self, x, red_dim=30, min_mode=30, seed=None):
         """Fit the responsibility-weighted whitened-residual head on NORMAL data:
         reduce residual to `red_dim`, per-mode LedoitWolf precision, calibrate on
         train. Also stores an AUTO gate = per-mode residual heteroscedasticity
         (how much per-mode covariance departs from the global): high => the residual
         carries mode-specific structure worth using (HAI); low => skip it (WADI)."""
+        if seed is None: seed = getattr(self, "_seed", 0)
         from sklearn.decomposition import PCA
         from sklearn.covariance import LedoitWolf
         R = self._residual(x); G = self._responsibilities(x); a = G.argmax(1)
@@ -257,10 +259,11 @@ class VaDE(nn.Module):
             ag += (self._log_pz_given_c(zp).argmax(1).cpu().numpy() == base)
         return ag / R
 
-    def fit_basin_head(self, x, amb_level=0.5, base_lam=2.5, deadzone=0.15, seed=0):
+    def fit_basin_head(self, x, amb_level=0.5, base_lam=2.5, deadzone=0.15, seed=None):
         """Calibrate the basin rescue purely on training normals: lambda scales with the RATIO
         of train-normal windows that are 'between modes' (max responsibility < amb_level). Crisp
         modes -> ~0 -> off (WADI/HAI); overlapping -> fires (SKAB). No score-threshold constant."""
+        if seed is None: seed = getattr(self, "_seed", 0)
         self._basin_zstd = self._encode_mean(x).std(0)
         maxr = self._responsibilities(x).max(1)
         self._basin_frac_amb = float((maxr < amb_level).mean())
@@ -389,6 +392,7 @@ def train_vade(x, n_clusters, latent_dim=10, hidden=(128, 64),
     """
     torch.manual_seed(seed)
     model = VaDE(x.shape[1], latent_dim, hidden, n_clusters).to(device)
+    model._seed = seed   # heads (density/resid/basin) default to this seed, not a fixed 0
 
     # ---- pretrain (plain VAE) so the latent is meaningful before clustering ----
     opt = torch.optim.Adam(list(model.encoder.parameters())
