@@ -93,9 +93,9 @@ decoder reconstructs them faithfully.</p>
 <p>This paper makes three contributions. <strong>(1)</strong> We state the structural assumptions of CPS normal
 data as an explicit list, A1&ndash;A10, that we abbreviate MIIM (<em>Massive, Implicit, Imbalanced
 Multimodality</em>) and tie each assumption to a concrete choice for <em>modeling normal</em> (&sect;3).
-<strong>(2)</strong> We build a detector whose whole design is faithfully modeling that normal law: a jointly
-learned latent plus explicit Gaussian-mixture mode clustering (VaDE), scored in the latent by a mixture density
-head and a rare-mode-safe nearest-component likelihood; a key mechanism is demoting reconstruction from the
+<strong>(2)</strong> We build a detector, one concrete realization of these assumptions, whose whole design is
+faithfully modeling that normal law: a jointly learned latent plus explicit Gaussian-mixture mode clustering
+(VaDE), scored in the latent by a mixture density head and a rare-mode-safe nearest-component likelihood; a key mechanism is demoting reconstruction from the
 default score, since a flexible decoder reconstructs the hard faults faithfully, while an optional
 reconstruction-residual head is auto-gated back on only where it provably generalises to held-out normal
 (&sect;4). <strong>(3)</strong> We evaluate under a fair protocol (raw point-wise
@@ -253,6 +253,19 @@ detector that leverages the instantaneous-structure assumptions A1&ndash;A8, and
 reported gains. Assumptions A9&ndash;A10 shape the trajectory rather than the window and are not exercised by these
 snapshot-detectable public benchmarks; extending the detector to explicit multiscale-temporal features (A9) and
 history-conditioned, path-dependent scoring (A10) is left to future work (&sect;7).</p>
+
+<p><strong>One realization of the assumptions.</strong> A1&ndash;A10 specify <em>what</em> a model of CPS normal
+must capture &mdash; a massive, implicit, imbalanced multimodal law with thin fringes and rare regimes &mdash; not
+<em>how</em> to implement it. The detector described below is one concrete realization, reported in full so that
+each of its choices is auditable; but each choice is a point in a larger design space that the same assumptions
+admit. Regime separation (A1, A7) is realized here by a jointly learned VaDE Gaussian mixture, yet the assumptions
+equally admit correlation-structure clustering or other unsupervised partitioners. Intra-mode density (A2, A4) is
+realized here by a single high-<em>K</em> latent mixture, yet equally by non-parametric estimators or by ensembles
+of lower-dimensional density models, which resist the dilution of a sparse joint fault in a high-dimensional
+score. The cross-channel term (A8) is realized here by a whitened reconstruction residual, yet equally by explicit
+factorised likelihoods over correlated channel groups. We therefore treat the MIIM assumptions, not any single
+estimator, as the portable contribution: the model of &sect;4 shows that the assumptions <em>can</em> be realized
+and that doing so delivers the reported gains, and &sect;7 returns to these alternative routes as future work.</p>
 
 <h3>4.1&nbsp;&nbsp;Representation: Variational Deep Embedding (VaDE)</h3>
 
@@ -744,6 +757,19 @@ instantaneous-structure assumptions A1&ndash;A8. Extending it with multiscale-te
 history-conditioned, path-dependent scoring (A10) is the natural next step; the public benchmarks used here are
 snapshot-detectable, so exercising the trajectory assumptions requires data that contains a history-dependent
 fault.</p>
+
+<p><strong>Alternative realizations of the assumptions.</strong> Because the MIIM assumptions fix the structure to
+model rather than the estimator (&sect;4), they open a family of detectors beyond the one reported here, and two
+routes are especially promising. First, <em>regime separation</em> (A1, A7) need not come from a single global
+latent mixture: correlation-structure clustering can recover the operating-mode groups directly, and a hierarchy
+of such groups yields a multiscale decomposition of the normal law. Second, and relatedly, <em>density estimation</em>
+(A2, A4) need not be a single high-dimensional model: an ensemble of lower-dimensional density models, one per
+correlated channel group, keeps a sparse joint fault from being diluted in a full-dimensional score, since a
+fault confined to a few channels is a small fraction of the total dimensionality and is easily averaged away
+globally. How to combine such per-group densities is itself an assumption-dependent choice &mdash; a summed
+factorised likelihood is powerful when the fault is dense, a maximum over groups when it is sparse &mdash; and a
+sparsity-adaptive combination is the principled reconciliation. We regard these as concrete next realizations of
+the same assumption set rather than departures from it.</p>
 
 <p><strong>Limitations.</strong> Three boundary conditions apply: three datasets, one trained model per dataset,
 and a single instantaneous representation. AUROC is threshold-free and reported as a five-seed mean; the F1 column
