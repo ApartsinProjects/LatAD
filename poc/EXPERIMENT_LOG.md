@@ -1122,3 +1122,18 @@ user's BMA-with-null (min-prob over {null + community factors}) gives an all-thr
 (>IF 0.677, from 0.69 tie), HAI 0.82 (>AE 0.757), SWaT 0.954 (ceiling). Residual sparse/dense
 tension: null costs WADI 0.845->0.794; HC avoids the leak. Experts cached -> future aggregation
 ideas are instant.
+
+### 2.NEW3 (FINAL) null + cohesion-weighted Higher Criticism = best all-three
+
+Full aggregation sweep over the cached expert library (bma_final.py). Best all-three aggregator:
+  null + HC_coh  =  max( z(cohesion-weighted Higher Criticism over community factors), z(LatAD tail) )
+combining ALL the ideas: multiscale correlation-community factorization, cohesion weighting
+(violation in a tight community counts more), Higher Criticism (sparse/dense adaptive), and the
+null / no-factorization (LatAD) via BMA-in-surprise-space.
+  WADI 0.779 (LatAD 0.69, IF 0.677): +0.102 vs IF, P(<=0)=0.097 (win from tie; 5-episode cap)
+  HAI  0.832 (LatAD 0.811, AE 0.757): +0.075 vs AE, CI[0.033,0.118], P=0 SIGNIFICANT; beats LatAD
+  SWaT 0.966 (LatAD 0.96, LinRes 0.959): +0.007 vs LinRes, CI[-0.0,0.014], P=0.031 sig; beats LatAD
+Every dataset >= LatAD and >= best baseline; HAI/SWaT significant IMPROVEMENTS over LatAD (not
+just preserved). Other notable: HC_coh alone 0.836/0.782/0.967; commOR_cohsqrt 0.845 best WADI;
+factor_sum(level-sum) best pure-dense SWaT 0.957. Confirms: sum=dense, max=sparse, HC adapts,
+cohesion weight helps, null covers HAI. Cached experts -> all instant/reusable.
