@@ -1,0 +1,5 @@
+  WADI seed 0: max 0.762  q90 0.74  q95 0.833  sum 0.749  top5 0.833
+  WADI seed 1: max 0.872  q90 0.73  q95 0.793  sum 0.754  top5 0.851
+  WADI seed 2: max 0.615  q90 0.706  q95 0.76  sum 0.756  top5 0.682
+=== WADI: 45 communities | LatAD 0.69 (compet IF 0.677) | ens {'max': [np.float64(0.75), np.float64(0.105)], 'q90': [np.float64(0.725), np.float64(0.014)], 'q95': [np.float64(0.795), np.float64(0.03)], 'sum': [np.float64(0.753), np.float64(0.003)], 'top5': [np.float64(0.789), np.float64(0.076)]} | FUSED [np.float64(0.736), np.float64(0.013)]
+  HAI seed 0: max 0.745  q90 0.763  q95 0.748  sum 0.746  top5 0.761

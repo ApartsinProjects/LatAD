@@ -1070,3 +1070,27 @@ constraint is COVERAGE of the sparse ~8-channel block by random subsets, not the
 FIX: deterministic coverage via train-normal correlation-community members (unsupervised) +
 q90 min-prob aggregation -> the guided ensemble generalization of the common-mode head (which is
 already robust at 0.755, being deterministic). Next experiment.
+
+### 2.NEW3 (GUIDED) HAC-community ensemble + density factorization -> ROBUST WADI win
+
+Method A (guided_ensemble.py): members = nested correlation communities from HAC on train-normal
+1-|rho| (average linkage), every dendrogram subtree size [3,25], overlapping by nesting (WADI: 45
+communities; the analyzer block appears deterministically at sizes 4/8/10). One VaDE latent-density
+member per community; aggregate calibrated on held-out train-normal. DETERMINISTIC coverage ->
+robustness is over VaDE inits only.
+
+WADI difficult-AUROC (3 seeds, mean+-std) vs LatAD 0.69 / IF 0.677:
+  sum (factorized joint NLL) 0.753+-0.003   <- MOST ROBUST (validates the "factoring probability"
+                                                view: p(x)~prod_G p_G, -log p = sum of factor NLLs)
+  q95                        0.795+-0.030   <- highest mean
+  q90 (min-prob)             0.725+-0.014
+  max (strict OR)            0.750+-0.105   <- high variance, as predicted
+  top5                       0.789+-0.076
+The guided version is ROBUST (std 0.003-0.03) where the RANDOM-subset version was an artifact
+(0.82/0.45). Coverage, made deterministic by the community hierarchy, was the binding constraint.
+SWaT seed0: q90 0.971 (~LatAD 0.962, ceiling preserved). HAI: OOM on this low-RAM host (14819
+windows x VaDE scoring) -> needs a higher-RAM/cloud run to complete the all-three picture.
+
+Status: FIRST robust WADI improvement (0.69 -> 0.75-0.80, beats IF, unsupervised HAC communities,
+theory-grounded density factorization). Remaining for a paper claim: HAI on cloud, episode-bootstrap
+significance, train-normal LatAD-calibrated fusion, frozen out-of-sample eval.
