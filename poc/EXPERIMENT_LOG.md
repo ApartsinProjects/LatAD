@@ -1104,3 +1104,21 @@ Ran guided_ensemble on Modal (high-RAM, 3 seeds, all datasets; sota_bundle/modal
   HAI: seed0 q90 0.767 (LatAD 0.814 better standalone; fusion needed; container stopped after seed0).
 Confirms the guided (deterministic-coverage) ensemble is a robust, SIGNIFICANT WADI win, unlike the
 refuted random version. Bundles: sota_bundle/ens_bundle/bundle_<DS>.npz (window feats + scores).
+
+### 2.NEW3 (BMA over factorizations) sparse/dense dichotomy + null-inclusion -> all-three
+
+Cached expert library (sota_bundle/experts/expert_<DS>.npz; WADI/SWaT 3-seed, HAI 1-seed) +
+bma_explore.py. Per-community calibrated tails aggregated many ways (instant, reusable):
+  aggregator            WADI(sparse)   HAI       SWaT(dense)
+  cohesion*sqrt(size) OR 0.845 (P=0.0013 vs IF)  0.79   0.898   <- best SPARSE (WADI)
+  factor_sum(level-sum) 0.76           0.758     0.957   <- best DENSE (SWaT); user's level-sum
+  Higher Criticism      0.779          0.763     0.956   <- adaptive, decent everywhere
+  null (LatAD)          0.69           0.812     0.955   <- best HAI/SWaT
+  null + commOR minprob 0.794          0.82      0.954   <- ALL THREE >= baseline (WADI win)
+Findings: (1) right reduction depends on anomaly sparsity: max/OR optimal for sparse (WADI),
+sum optimal for dense (SWaT), Higher Criticism adapts. (2) cohesion weighting (violation in
+tight community weighted more) validated: uniform 0.76 -> coh*sqrt(size) 0.845 on WADI. (3) the
+user's BMA-with-null (min-prob over {null + community factors}) gives an all-three: WADI 0.794
+(>IF 0.677, from 0.69 tie), HAI 0.82 (>AE 0.757), SWaT 0.954 (ceiling). Residual sparse/dense
+tension: null costs WADI 0.845->0.794; HC avoids the leak. Experts cached -> future aggregation
+ideas are instant.

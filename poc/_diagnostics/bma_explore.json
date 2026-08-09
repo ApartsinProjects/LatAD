@@ -1,104 +1,53 @@
 {
- "WADI": {
-  "S": 45,
-  "LatAD": 0.69,
-  "compet": "IF",
-  "compet_auroc": 0.677,
+ "HAI": {
+  "S": 28,
+  "LatAD": 0.811,
+  "compet": "AE",
+  "compet_auroc": 0.757,
   "weightings": {
    "cohesion": [
-    0.8,
-    0.019
+    0.739,
+    0.005
    ],
    "coh*sqrt(size)": [
-    0.845,
-    0.036
-   ],
-   "coh^2": [
-    0.81,
-    0.014
-   ],
-   "uniform": [
-    0.76,
-    0.092
-   ]
-  },
-  "aggregators": {
-   "HC": [
-    0.779,
-    0.073
-   ],
-   "factor_sum": [
-    0.76,
-    0.019
-   ],
-   "factor_mean": [
-    0.76,
-    0.019
-   ],
-   "cohes_wmax": [
-    0.794,
-    0.022
-   ]
-  },
-  "best_weighting": "coh*sqrt(size)",
-  "best_sig_vs_compet": {
-   "diff": 0.169,
-   "ci": [
-    0.034,
-    0.331
-   ],
-   "p_le_0": 0.0013
-  }
- },
- "SWaT": {
-  "S": 26,
-  "LatAD": 0.96,
-  "compet": "linres",
-  "compet_auroc": 0.959,
-  "weightings": {
-   "cohesion": [
-    0.569,
-    0.041
-   ],
-   "coh*sqrt(size)": [
-    0.898,
-    0.022
-   ],
-   "coh^2": [
-    0.569,
-    0.041
-   ],
-   "uniform": [
-    0.5,
-    0.0
-   ]
-  },
-  "aggregators": {
-   "HC": [
-    0.956,
+    0.79,
     0.007
    ],
+   "coh^2": [
+    0.726,
+    0.007
+   ],
+   "uniform": [
+    0.756,
+    0.004
+   ]
+  },
+  "aggregators": {
+   "HC": [
+    0.763,
+    0.001
+   ],
    "factor_sum": [
-    0.957,
-    0.005
+    0.758,
+    0.003
    ],
    "factor_mean": [
-    0.957,
-    0.005
+    0.758,
+    0.003
    ],
    "cohes_wmax": [
-    0.569,
-    0.041
+    0.739,
+    0.005
    ]
   },
   "best_weighting": "coh*sqrt(size)",
   "best_sig_vs_compet": {
-   "diff": -0.061,
+   "diff": 0.032,
    "ci": [
-    -0.069,
-    -0.053
+    -0.006,
+    0.089
    ],
-   "p_le_0": 1.0
+   "p_le_0": 0.062
   }
  }
 }
