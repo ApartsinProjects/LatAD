@@ -1094,3 +1094,13 @@ windows x VaDE scoring) -> needs a higher-RAM/cloud run to complete the all-thre
 Status: FIRST robust WADI improvement (0.69 -> 0.75-0.80, beats IF, unsupervised HAC communities,
 theory-grounded density factorization). Remaining for a paper claim: HAI on cloud, episode-bootstrap
 significance, train-normal LatAD-calibrated fusion, frozen out-of-sample eval.
+
+### 2.NEW3 (Modal) Guided HAC ensemble confirmed: WADI SIGNIFICANT win (P=0 vs IF)
+
+Ran guided_ensemble on Modal (high-RAM, 3 seeds, all datasets; sota_bundle/modal_ensemble.py):
+  WADI (45 comms): sum 0.756+-0.007 (vs IF 0.677: diff +0.08, CI [0.034,0.141], P=0.0 SIGNIFICANT);
+        q95 0.804+-0.03; fused(sum tail-max w/ LatAD) vs IF +0.046, P=0.078.
+  SWaT (26 comms): sum 0.952+-0.004 (ceiling); fused vs LinRes +0.009, CI[0.001,0.017], P=0.016 sig.
+  HAI: seed0 q90 0.767 (LatAD 0.814 better standalone; fusion needed; container stopped after seed0).
+Confirms the guided (deterministic-coverage) ensemble is a robust, SIGNIFICANT WADI win, unlike the
+refuted random version. Bundles: sota_bundle/ens_bundle/bundle_<DS>.npz (window feats + scores).
