@@ -68,25 +68,25 @@
 
 <div class="abstract">
 <h2>Abstract</h2>
-<p>Fault detection in networked cyber-physical systems (CPS), which form the sensing and actuation layer of industrial Internet-of-Things deployments, is difficult because faults are rare and poorly represented in available data. Detection must therefore rely on models of normal behaviour rather than representative fault examples. However, existing AI methods often fail because they ignore the unique structure of CPS, where stochastic behaviour is constrained by physical laws, engineered control logic, and numerous operating regimes. More generally, normal CPS behaviour is not a single distribution, but a union of many imbalanced, curved, and sparsely populated regimes. We formalize this structure through ten assumptions, A1&ndash;A10, summarized as <em>Massive, Implicit, Imbalanced Multimodality</em> (MIIM). Based on these assumptions, we jointly learn a latent representation and a Gaussian-mixture clustering of operating modes. Anomaly scores are computed in the clustered latent space rather than from data-space reconstruction error. Aggregate scores are dominated by trivially detectable faults, so we evaluate under raw point-wise metrics with a difficulty split that isolates the stealthy, joint-structure faults a simple per-channel detector cannot see. Across three real CPS attack benchmarks (WADI, HAI, and SWaT), the detector attains the best overall AUROC on every dataset (0.792, 0.933, and 0.991). On the stealthy difficult subset it is strongest on HAI (0.811 over five seeds, a statistically significant margin over the next-best baseline, paired episode-bootstrap 95% CI on the difference [0.015, 0.089]), and it matches the strongest baseline on WADI (0.690) and SWaT (0.960); the HAI advantage persists under a stronger difficulty split that also removes any window separable by a single per-channel statistic. On a stricter double-hard subset that additionally removes windows a linear cross-channel predictor separates, the detector has the highest mean AUROC on all three datasets, with statistically supported superiority on HAI and numerical leads on the smaller WADI and single-episode SWaT subsets. On WADI and HAI, whose difficult faults are reconstructable but improbable sensor combinations that reconstruction error cannot separate from normal, the deep detectors USAD and TranAD collapse to 0.30&ndash;0.50. The contributions are the MIIM assumptions, the difficulty-stratified protocol, and a latent-primary anomaly score with an auto-gated reconstruction-residual head.</p>
+<p>Fault detection in networked cyber-physical systems (CPS), which form the sensing and actuation layer of industrial Internet-of-Things deployments, is difficult because faults are rare and poorly represented in available data. Detection must therefore rely on models of normal behaviour rather than representative fault examples. However, existing AI methods often fail because they ignore the unique structure of CPS, where stochastic behaviour is constrained by physical laws, engineered control logic, and numerous operating regimes. More generally, normal CPS behaviour is not a single distribution, but a union of many imbalanced, curved, and sparsely populated regimes. We formalize this structure through ten assumptions, A1&ndash;A10, summarized as <em>Massive, Implicit, Imbalanced Multimodality</em> (MIIM). Based on these assumptions, we jointly learn a latent representation and a Gaussian-mixture clustering of operating regimes. Anomaly scores are computed in the clustered latent space rather than from data-space reconstruction error. Aggregate scores are dominated by trivially detectable faults, so we evaluate under raw point-wise metrics with a difficulty split that isolates the stealthy, joint-structure faults a simple per-channel detector cannot see. Across three real CPS attack benchmarks (WADI, HAI, and SWaT), the detector attains the best overall AUROC on every dataset (0.792, 0.933, and 0.991). On the stealthy difficult subset it is strongest on HAI (0.811 over five seeds, a statistically significant margin over the next-best baseline, paired episode-bootstrap 95% CI on the difference [0.015, 0.089]), and it matches the strongest baseline on WADI (0.690) and SWaT (0.960); the HAI advantage persists under a stronger difficulty split that also removes any window separable by a single per-channel statistic. On a stricter double-hard subset that additionally removes windows a linear cross-channel predictor separates, the detector has the highest mean AUROC on all three datasets, with statistically supported superiority on HAI and numerical leads on the smaller WADI and single-episode SWaT subsets. On WADI and HAI, whose difficult faults are reconstructable but improbable sensor combinations that reconstruction error cannot separate from normal, the deep detectors USAD and TranAD collapse to 0.30&ndash;0.50. The contributions are the MIIM assumptions, the difficulty-stratified protocol, and a latent-primary anomaly score with an auto-gated reconstruction-residual head.</p>
 </div>
 <p class="keywords"><strong>Keywords:</strong> anomaly detection; cyber-physical systems; Internet of Things; industrial IoT; unsupervised learning; variational deep embedding; Gaussian mixture model; sensor time series; fault detection</p>
 
 <h2>1&nbsp;&nbsp;Introduction</h2>
 
-<p>A modern cyber-physical system (CPS), whether a water-treatment plant, an industrial control loop, or a rotating machine, integrates hundreds of networked sensors, embedded controllers, and physical actuators, the sensing-and-actuation fabric of the industrial Internet of Things (IoT), into a single tightly coupled unit that continuously senses its own state and acts upon it. This complexity puts its faults beyond enumeration: the combinations of component, control mode, and operating condition in which a fault can arise cannot be predefined, tested, or exhaustively sampled before deployment, and many faults develop slowly, as wear, drift, or degradation that shows no obvious symptom until it is well advanced and can escalate into unplanned downtime or a safety-critical failure. Because the faults cannot be specified in advance, they must be discovered from the system’s own behaviour as it operates, which is the task of anomaly detection [<a href="#r-chandola">1</a>]. That behaviour is richly observable: high-frequency measurements of vibration, current, temperature, pressure, and position, together with internal control signals, are streamed continuously from the device&rsquo;s sensors as IoT telemetry and, in principle, carry an early signature of almost any developing fault.</p>
+<p>A modern cyber-physical system (CPS), whether a water-treatment plant, an industrial control loop, or a rotating machine, integrates hundreds of networked sensors, embedded controllers, and physical actuators, the sensing-and-actuation fabric of the industrial Internet of Things (IoT), into a single tightly coupled unit that continuously senses its own state and acts upon it. This complexity puts its faults beyond enumeration: the combinations of component, control regime, and operating condition in which a fault can arise cannot be predefined, tested, or exhaustively sampled before deployment, and many faults develop slowly, as wear, drift, or degradation that shows no obvious symptom until it is well advanced and can escalate into unplanned downtime or a safety-critical failure. Because the faults cannot be specified in advance, they must be discovered from the system’s own behaviour as it operates, which is the task of anomaly detection [<a href="#r-chandola">1</a>]. That behaviour is richly observable: high-frequency measurements of vibration, current, temperature, pressure, and position, together with internal control signals, are streamed continuously from the device&rsquo;s sensors as IoT telemetry and, in principle, carry an early signature of almost any developing fault.</p>
 
 <p>The task is commonly framed as characterising the anomalies, but that framing is misleading. Were a representative set of labelled faults available, the task would reduce to supervised classification; in practice genuine faults are rare and the few on record seldom span the ways a system can fail [<a href="#r-ruff">2</a>], so scarce faults cannot define the decision boundary and, as revisited below, cannot even be spent reliably on model selection. The information lies on the other side of the boundary, in the normal data, which is abundant and rarely exploited in full. Modelling that normal law faithfully is therefore the hard part of the problem, and cyber-physical normal is a law of a particular kind. Shaped by deterministic physics, hard actuator and setpoint limits, and engineered control, it is the union of many bounded, curved operating regimes, some common and many rare, each with legitimately low-density fringes, rather than a single statistical blob. A detector that mis-models this structure fails however it thresholds.</p>
 
-<p>A fault is anything that leaves this union of normal regimes, and the interesting ones stay <em>inside</em> the marginal envelope of every channel while breaking the joint structure: a correlation break, a between-mode pocket, a history-inconsistent state. These faults are invisible to any per-channel range rule, and, as we show, to a reconstruction residual as well.</p>
+<p>A fault is anything that leaves this union of normal regimes, and the interesting ones stay <em>inside</em> the marginal envelope of every channel while breaking the joint structure: a correlation break, a between-regime pocket, a history-inconsistent state. These faults are invisible to any per-channel range rule, and, as we show, to a reconstruction residual as well.</p>
 
 <p>Two problems make progress on this task hard to measure. The first is evaluation. The dominant metric in the
 literature, point-adjusted F1, inflates scores so severely that a <em>random</em> anomaly score can beat every
 published deep model [<a href="#r-kim">3</a>, <a href="#r-garg">4</a>]; and even under raw metrics, public CPS
 benchmarks are dominated by anomalies that a one-line univariate rule already separates [<a
 href="#r-wukeogh">3</a>], so a high headline number certifies little. The second is modelling. If normal is a
-union of many imbalanced modes, then a global anomaly model cannot represent it (a single blob under-fits the
-regime structure), a single deep autoencoder alarms on rare-but-valid modes (the trust-eroding false positive),
+union of many imbalanced regimes, then a global anomaly model cannot represent it (a single blob under-fits the
+regime structure), a single deep autoencoder alarms on rare-but-valid regimes (the trust-eroding false positive),
 and a reconstruction residual is blind to exactly the joint-structure faults that matter because a flexible
 decoder reconstructs them faithfully.</p>
 
@@ -94,8 +94,8 @@ decoder reconstructs them faithfully.</p>
 data as an explicit list, A1&ndash;A10, that we abbreviate MIIM (<em>Massive, Implicit, Imbalanced
 Multimodality</em>) and tie each assumption to a concrete choice for <em>modeling normal</em> (&sect;3).
 <strong>(2)</strong> We build a detector, one concrete realization of these assumptions, whose whole design is
-faithfully modeling that normal law: a jointly learned latent plus explicit Gaussian-mixture mode clustering
-(VaDE), scored in the latent by a mixture density head and a rare-mode-safe nearest-component likelihood; a key mechanism is demoting reconstruction from the
+faithfully modeling that normal law: a jointly learned latent plus explicit Gaussian-mixture regime clustering
+(VaDE), scored in the latent by a mixture density head and a rare-regime-safe nearest-component likelihood; a key mechanism is demoting reconstruction from the
 default score, since a flexible decoder reconstructs the hard faults faithfully, while an optional
 reconstruction-residual head is auto-gated back on only where it provably generalises to held-out normal
 (&sect;4). <strong>(3)</strong> We evaluate under a fair protocol (raw point-wise
@@ -144,7 +144,7 @@ subset from the easy majority that carries headline numbers; and re-computation 
 <p>Our representation is Variational Deep Embedding (VaDE) [<a href="#r-vade">17</a>], a VAE with a Gaussian-mixture
 latent prior that learns representation and clusters jointly. DAGMM [<a href="#r-dagmm">18</a>] similarly couples
 an autoencoder with a Gaussian-mixture energy for anomaly detection; we borrow its variance-collapse
-regularisation but score against explicit per-mode Gaussians in a jointly learned latent rather than a
+regularisation but score against explicit per-regime Gaussians in a jointly learned latent rather than a
 learned-Gaussian energy (&sect;4). Our whitened residual uses the Ledoit&ndash;Wolf shrinkage
 covariance estimator [<a href="#r-lw">19</a>]. Classical baselines are Isolation Forest [<a href="#r-if">20</a>] and a deep autoencoder [<a href="#r-aead">21</a>], both fitted on the same window features, together with a trivial per-channel range detector that also defines the easy/difficult split.</p>
 
@@ -170,11 +170,11 @@ rotorcraft flight controls [<a href="#r-rotorcraft">30</a>]. LatAD generalises t
 multimodal-latent anomaly detection.</p>
 
 <h3>2.4&nbsp;&nbsp;Benchmark datasets</h3>
-<p>We evaluate on three real CPS attack testbeds. WADI [<a href="#r-wadi">31</a>] is a 123-channel water-distribution testbed from iTrust, and SWaT [<a href="#r-swat">32</a>] is its 51-channel water-treatment sibling; the two are the de facto standard multivariate CPS benchmarks and the primary targets of the evaluation critique above [<a href="#r-kim">3</a>,&nbsp;<a href="#r-wukeogh">5</a>]. HAI [<a href="#r-hai">33</a>] is a 59-channel hardware-in-the-loop industrial control testbed spanning several coupled processes. All three carry real executed attacks and are strongly multimodal (BIC-optimal mode counts <em>K</em>* &ge; 22; &sect;3), so the difficulty-stratified results read directly against the MIIM structure of each dataset.</p>
+<p>We evaluate on three real CPS attack testbeds. WADI [<a href="#r-wadi">31</a>] is a 123-channel water-distribution testbed from iTrust, and SWaT [<a href="#r-swat">32</a>] is its 51-channel water-treatment sibling; the two are the de facto standard multivariate CPS benchmarks and the primary targets of the evaluation critique above [<a href="#r-kim">3</a>,&nbsp;<a href="#r-wukeogh">5</a>]. HAI [<a href="#r-hai">33</a>] is a 59-channel hardware-in-the-loop industrial control testbed spanning several coupled processes. All three carry real executed attacks and are strongly multimodal (BIC-optimal regime counts <em>K</em>* &ge; 22; &sect;3), so the difficulty-stratified results read directly against the MIIM structure of each dataset.</p>
 
 <h2>3&nbsp;&nbsp;The MIIM assumptions about CPS normal data</h2>
 
-<p>We model the normal law of a CPS as a mixture over reachable operating modes,
+<p>We model the normal law of a CPS as a mixture over reachable operating regimes,
 <span class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
   <mrow><mi>p</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
   <munderover><mo>&#8721;</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>K</mi></munderover>
@@ -184,8 +184,8 @@ multimodal-latent anomaly detection.</p>
 where each component <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msub><mi>p</mi><mi>k</mi></msub></math> is a bounded, oriented, curved patch of observation space. The ten
 assumptions of Table 1 describe the qualitative structure of this mixture; each is grounded in a physical property
 of CPS operation and each motivates a specific design choice in the detector of &sect;4. We call the resulting
-property <em>MIIM</em>: the sample is <strong>M</strong>assive, the mode structure is <strong>I</strong>mplicit
-(unlabelled and only approximately recoverable), the mode occupancy is <strong>I</strong>mbalanced, and normal
+property <em>MIIM</em>: the sample is <strong>M</strong>assive, the regime structure is <strong>I</strong>mplicit
+(unlabelled and only approximately recoverable), the regime occupancy is <strong>I</strong>mbalanced, and normal
 is <strong>M</strong>ultimodal.</p>
 
 <div class="tblwrap">
@@ -199,24 +199,24 @@ design choice each motivates. A1&ndash;A8 shape the instantaneous window; A9&nda
 <tr><td><b>A1</b></td><td class="l"><b>Regime mixture</b> (multimodality)</td>
   <td class="l">A plant or vehicle cycles through discrete operating regimes (idle, cruise, load steps); normal is their union, not one blob.</td>
   <td class="l">Model normal as an explicit mixture, not a global density: the latent GMM prior of VaDE.</td></tr>
-<tr><td><b>A2</b></td><td class="l"><b>Mode explosion</b> (exponential mode growth)</td>
-  <td class="l">A CPS is built from many interacting subsystems; each added element multiplies reachable regimes, so mode count grows with complexity.</td>
+<tr><td><b>A2</b></td><td class="l"><b>Regime explosion</b> (exponential regime growth)</td>
+  <td class="l">A CPS is built from many interacting subsystems; each added element multiplies reachable regimes, so regime count grows with complexity.</td>
   <td class="l">Use a high number of components <em>K</em> (and a high-<em>K</em> density head) rather than a handful.</td></tr>
-<tr><td><b>A3</b></td><td class="l"><b>Hard envelopes</b> (bounded modes; thin between-mode pockets)</td>
+<tr><td><b>A3</b></td><td class="l"><b>Hard envelopes</b> (bounded regimes; thin between-regime pockets)</td>
   <td class="l">Controllers hold each regime within setpoint/actuator bands; the space between regimes is passed through, rarely dwelt in, leaving thin anomalous pockets.</td>
-  <td class="l">A between-mode point must score anomalous even when every channel is in range: the basin-agreement head (v).</td></tr>
-<tr><td><b>A4</b></td><td class="l"><b>Thin fringes</b> (intra-mode sparsity)</td>
-  <td class="l">Within a mode the system dwells near a typical operating point and reaches the edges only occasionally; each mode holds legitimate low-density regions near its boundary.</td>
-  <td class="l">Density inside a mode is non-Gaussian &rarr; a parametric high-<em>K</em> mixture density head, not one Gaussian per mode.</td></tr>
+  <td class="l">A between-regime point must score anomalous even when every channel is in range: the basin-agreement head (v).</td></tr>
+<tr><td><b>A4</b></td><td class="l"><b>Thin fringes</b> (intra-regime sparsity)</td>
+  <td class="l">Within a regime the system dwells near a typical operating point and reaches the edges only occasionally; each regime holds legitimate low-density regions near its boundary.</td>
+  <td class="l">Density inside a regime is non-Gaussian &rarr; a parametric high-<em>K</em> mixture density head, not one Gaussian per regime.</td></tr>
 <tr><td><b>A5</b></td><td class="l"><b>Few levers</b> (low intrinsic dimension)</td>
   <td class="l">The independent control variables are far fewer than the observed channels; the rest follow deterministically or probabilistically.</td>
   <td class="l">A low-dimensional learned latent (dim 6&ndash;16 across datasets) suffices; faults appear as departures within that latent.</td></tr>
 <tr><td><b>A6</b></td><td class="l"><b>Heavy tail</b> (Zipf imbalance)</td>
   <td class="l">Machines spend most of the record in a few steady regimes; startup, shutdown and rare manoeuvres occupy little of it, so an infrequent-but-normal point is easily mistaken for a fault.</td>
-  <td class="l">Score against the <em>nearest</em> component, never the &#960;-weighted mixture, so a rare-but-valid mode is not penalised (iii).</td></tr>
-<tr><td><b>A7</b></td><td class="l"><b>Hidden regimes</b> (latent, implicit modes)</td>
-  <td class="l">True regimes are an emergent artifact of coupling and are not logged; modes must be discovered approximately from raw streams.</td>
-  <td class="l">Discover modes jointly with the representation (VaDE), unsupervised; never use mode labels.</td></tr>
+  <td class="l">Score against the <em>nearest</em> component, never the &#960;-weighted mixture, so a rare-but-valid regime is not penalised (iii).</td></tr>
+<tr><td><b>A7</b></td><td class="l"><b>Hidden regimes</b> (latent, implicit regimes)</td>
+  <td class="l">True regimes are an emergent artifact of coupling and are not logged; regimes must be discovered approximately from raw streams.</td>
+  <td class="l">Discover regimes jointly with the representation (VaDE), unsupervised; never use regime labels.</td></tr>
 <tr><td><b>A8</b></td><td class="l"><b>Mixed signals</b> (heterogeneous, typed channels)</td>
   <td class="l">The bus carries sensors, actuators, discrete states and setpoints, each with its own range, resolution and correlated noise.</td>
   <td class="l">Per-feature standardisation on train-normal; a whitened (Mahalanobis) residual that respects per-channel scale and cross-channel correlation (iv).</td></tr>
@@ -233,8 +233,8 @@ design choice each motivates. A1&ndash;A8 shape the instantaneous window; A9&nda
 xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>N</mi></math> large) and the mixture is
 approximately <strong>stationary</strong> within a run. An exploratory analysis of the three datasets (&sect;5)
 confirms that the MIIM structure is present but <em>implicit</em> (A7): cluster sizes are heavy-tailed and
-Bayesian-information-criterion (BIC) mode counts keep improving past several dozen components on HAI and WADI,
-yet the modes overlap (silhouette 0.08&ndash;0.19) rather than separating crisply. This is precisely the regime
+Bayesian-information-criterion (BIC) regime counts keep improving past several dozen components on HAI and WADI,
+yet the regimes overlap (silhouette 0.08&ndash;0.19) rather than separating crisply. This is precisely the regime
 in which a jointly learned latent, scored in the latent by a mixture density, pays off, and in which a global
 detector or a raw reconstruction residual does not.</p>
 
@@ -248,18 +248,18 @@ latent, all calibrated on train-normal). We describe each in turn.</p>
 density head (A2, A4), the low-dimensional latent (A5), the nearest-component score (A6) and per-feature
 standardisation (A8) are always active; the whitened-residual head (A8) and the basin-agreement head (A3) are
 <em>auto-gated</em> on train-normal signals and switch on only where a dataset calls for them (the residual on HAI,
-the basin where modes overlap), so an inapplicable head cannot backfire. This work therefore demonstrates a
+the basin where regimes overlap), so an inapplicable head cannot backfire. This work therefore demonstrates a
 detector that leverages the instantaneous-structure assumptions A1&ndash;A8, and shows they already deliver the
 reported gains. Assumptions A9&ndash;A10 shape the trajectory rather than the window and are not exercised by these
 snapshot-detectable public benchmarks; extending the detector to explicit multiscale-temporal features (A9) and
 history-conditioned, path-dependent scoring (A10) is left to future work (&sect;7).</p>
 
 <p><strong>One realization of the assumptions.</strong> A1&ndash;A10 specify <em>what</em> a model of CPS normal
-must capture &mdash; a massive, implicit, imbalanced multimodal law with thin fringes and rare regimes &mdash; not
+must capture (a massive, implicit, imbalanced multimodal law with thin fringes and rare regimes), not
 <em>how</em> to implement it. The detector described below is one concrete realization, reported in full so that
 each of its choices is auditable; but each choice is a point in a larger design space that the same assumptions
 admit. Regime separation (A1, A7) is realized here by a jointly learned VaDE Gaussian mixture, yet the assumptions
-equally admit correlation-structure clustering or other unsupervised partitioners. Intra-mode density (A2, A4) is
+equally admit correlation-structure clustering or other unsupervised partitioners. Intra-regime density (A2, A4) is
 realized here by a single high-<em>K</em> latent mixture, yet equally by non-parametric estimators or by ensembles
 of lower-dimensional density models, which resist the dilution of a sparse joint fault in a high-dimensional
 score. The cross-channel term (A8) is realized here by a whitened reconstruction residual, yet equally by explicit
@@ -270,7 +270,7 @@ and that doing so delivers the reported gains, and &sect;7 returns to these alte
 <h3>4.1&nbsp;&nbsp;Representation: Variational Deep Embedding (VaDE)</h3>
 
 <p>VaDE [<a href="#r-vade">17</a>] is a variational autoencoder whose latent prior is a Gaussian mixture, so the
-representation and the operating-mode clusters are learned <em>together</em> (A1, A7) rather than one after the
+representation and the operating-regime clusters are learned <em>together</em> (A1, A7) rather than one after the
 other. An encoder maps a window feature vector <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>x</mi></math> to a latent Gaussian <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>q</mi><mo stretchy="false">(</mo><mi>z</mi><mo>&#8739;</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>N</mi><mo stretchy="false">(</mo><mi>&#956;</mi><mo>,</mo><mtext>diag</mtext><mspace width="0.1em"/><msup><mi>&#963;</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow></math>; a decoder reconstructs <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mover><mi>x</mi><mo>^</mo></mover></math>; and the prior is
 <span class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
   <mrow><mi>p</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>=</mo>
@@ -312,7 +312,7 @@ plain-VAE pretraining, GMM initialisation on the encoded means, then joint optim
 <h3>4.2&nbsp;&nbsp;Scoring: why we demote reconstruction</h3>
 
 <p>The natural VaDE anomaly score is the joint negative log-likelihood: a whitened reconstruction residual plus
-a latent term. On the <em>difficult</em> faults (correlation breaks and between-mode pockets) this
+a latent term. On the <em>difficult</em> faults (correlation breaks and between-regime pockets) this
 is exactly wrong. Table 2 decomposes the two terms by their difficult-subset AUROC on a single trained model
 per dataset.</p>
 
@@ -321,7 +321,7 @@ per dataset.</p>
 <caption><strong>Table 2.</strong> Difficult-subset AUROC of the two natural score terms (single trained model per
 dataset). The reconstruction residual is near chance on WADI (0.490) and, although informative on HAI (0.689),
 it stays below the latent term (0.760) and drags the summed joint score down; the latent likelihood carries the
-signal but a single diagonal Gaussian per mode is coarse. A multi-seed, three-dataset head ablation is reported
+signal but a single diagonal Gaussian per regime is coarse. A multi-seed, three-dataset head ablation is reported
 in Table 5.</caption>
 <thead><tr><th class="l">Score term</th><th>WADI</th><th>HAI</th></tr></thead>
 <tbody>
@@ -345,7 +345,7 @@ z-normalised against its train-normal mean and standard deviation, so the operat
 by the test batch.</p>
 
 <h4>(i)&ndash;(ii)&nbsp;Latent mixture-density head (parametric KDE for non-Gaussian pockets)</h4>
-<p>Because each mode has a non-uniform interior with thin fringes (A4), one Gaussian per mode is too coarse. We
+<p>Because each regime has a non-uniform interior with thin fringes (A4), one Gaussian per regime is too coarse. We
 fit a high-<em>K</em> diagonal Gaussian mixture on the train-normal latent (<math
 xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>K</mi><mo>=</mo><mn>80</mn></mrow></math>
 by default) as a parametric kernel-density estimate, and score a window by its density negative
@@ -358,9 +358,9 @@ log-likelihood:</p>
   <mi>N</mi><mo stretchy="false">(</mo><mi>z</mi><mo>&#8739;</mo><msub><mi>a</mi><mi>m</mi></msub><mo>,</mo><mtext>diag</mtext><mspace width="0.1em"/><msubsup><mi>b</mi><mi>m</mi><mn>2</mn></msubsup><mo stretchy="false">)</mo><mo>.</mo></mrow>
 </math></span>
 
-<h4>(iii)&nbsp;Nearest-component NLL (rare-mode-safe)</h4>
+<h4>(iii)&nbsp;Nearest-component NLL (rare-regime-safe)</h4>
 <p>Under heavy-tailed imbalance (A6) a valid point in a rare, low-<math
-xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>&#960;</mi></math> mode must not be flagged
+xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>&#960;</mi></math> regime must not be flagged
 solely for being rare. We therefore use the <em>closest</em> component, not the &#960;-weighted mixture:</p>
 <span class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
   <mrow><msub><mi>s</mi><mtext>near</mtext></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
@@ -368,9 +368,9 @@ solely for being rare. We therefore use the <em>closest</em> component, not the 
   <mi>log</mi><mspace width="0.15em"/>
   <mi>N</mi><mo stretchy="false">(</mo><mi>z</mi><mo>&#8739;</mo><msub><mi>&#956;</mi><mi>c</mi></msub><mo>,</mo><mtext>diag</mtext><mspace width="0.1em"/><msubsup><mi>&#963;</mi><mi>c</mi><mn>2</mn></msubsup><mo stretchy="false">)</mo><mo>.</mo></mrow>
 </math></span>
-<p>Using the maximum over components rather than the Bayesian mixture sum keeps a rare-mode signal that the
+<p>Using the maximum over components rather than the Bayesian mixture sum keeps a rare-regime signal that the
 mixture sum washes out (A6): the nearest-component distance retains a deviation confined to a single sparsely
-populated mode, whereas the mixture sum averages it away. The base
+populated regime, whereas the mixture sum averages it away. The base
 score is the sum of the two z-normalised heads,
 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>s</mi><mn>0</mn></msub><mo>=</mo><mtext>z</mtext><mo stretchy="false">(</mo><msub><mi>s</mi><mtext>dens</mtext></msub><mo stretchy="false">)</mo><mo>+</mo><mtext>z</mtext><mo stretchy="false">(</mo><msub><mi>s</mi><mtext>near</mtext></msub><mo stretchy="false">)</mo></mrow></math>.</p>
 
@@ -378,7 +378,7 @@ score is the sum of the two z-normalised heads,
 <p>On some datasets the fault <em>does</em> surface in reconstruction. The optional residual head reduces the
 per-channel residual <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>r</mi></math> to
 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mn>30</mn></math> dimensions, fits a
-Ledoit&ndash;Wolf-shrunk [<a href="#r-lw">19</a>] precision per mode, and combines the per-mode whitened
+Ledoit&ndash;Wolf-shrunk [<a href="#r-lw">19</a>] precision per regime, and combines the per-regime whitened
 energies by responsibility:</p>
 <span class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
   <mrow><msub><mi>s</mi><mtext>resid</mtext></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
@@ -386,17 +386,17 @@ energies by responsibility:</p>
   <msub><mi>&#947;</mi><mi>k</mi></msub><mspace width="0.15em"/>
   <msubsup><mi>r</mi><mi>k</mi><mi>&#8868;</mi></msubsup><msubsup><mi>&#931;</mi><mi>k</mi><mrow><mo>&#8722;</mo><mn>1</mn></mrow></msubsup><msub><mi>r</mi><mi>k</mi></msub><mo>.</mo></mrow>
 </math></span>
-<p>The head is <em>auto-gated</em> by a held-out-normal generalisation test: per-mode precisions are fitted on
+<p>The head is <em>auto-gated</em> by a held-out-normal generalisation test: per-regime precisions are fitted on
 the first 80% of train-normal and scored on the last 20%; if held-out normal scores much higher (the residual
 overfits / drifts), the ratio <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>q</mi><mn>95</mn></msub><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo><mo>/</mo><msub><mi>q</mi><mn>95</mn></msub><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></math> is large and the head is switched off. Empirically the ratio is 5.24 on
 WADI (off) and 1.17 on HAI (on): the residual carries the fault on HAI but is dead on WADI, and the gate
 recovers exactly this pattern from train-normal alone.</p>
 
 <h4>(v)&nbsp;Optional basin-agreement rescue, auto-scaled</h4>
-<p>Between-mode pockets (A3) are the dangerous false negative on datasets whose modes overlap. We perturb the
+<p>Between-regime pockets (A3) are the dangerous false negative on datasets whose regimes overlap. We perturb the
 latent with Gaussian noise <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>R</mi></math>
-times and measure <em>agreement</em>, the fraction of perturbed copies that keep the clean argmax mode. A
-rare-but-valid point sits deep in one basin (high agreement, demote); a between-mode point flips modes under
+times and measure <em>agreement</em>, the fraction of perturbed copies that keep the clean argmax regime. A
+rare-but-valid point sits deep in one basin (high agreement, demote); a between-regime point flips regimes under
 perturbation (low agreement, keep). The rescue subtracts a scaled, train-normal-calibrated agreement:</p>
 <span class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
   <mrow><mi>s</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>s</mi><mn>0</mn></msub><mo>+</mo>
@@ -407,16 +407,16 @@ perturbation (low agreement, keep). The rescue subtracts a scaled, train-normal-
 </math></span>
 <p>where <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>&#961;</mi></math> is the fraction
 of train-normal windows that are ambiguous (maximum responsibility below 0.5) and <math
-xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>&#948;</mi></math> a dead-zone. On crisp-mode
+xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>&#948;</mi></math> a dead-zone. On crisp-regime
 data (WADI, HAI, SWaT) <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#961;</mi><mo>&#8776;</mo><mn>0.05</mn></mrow></math> gives <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#955;</mi><mo>=</mo><mn>0</mn></mrow></math> and the rescue is an exact no-op; the basin head is
-a design provision for datasets with heavily overlapping modes; it stays inactive on all three benchmarks here and
-is therefore not part of the empirical contribution, with its validation on overlapping-mode data left to future
+a design provision for datasets with heavily overlapping regimes; it stays inactive on all three benchmarks here and
+is therefore not part of the empirical contribution, with its validation on overlapping-regime data left to future
 work. Thus the reported model configures its heads purely from training-normal statistics, with no test-set
 tuning: the residual head fires on HAI and SWaT, and both optional heads stay off on WADI.</p>
 
 <div class="note"><strong>Auto-gating summary.</strong> Base heads (i&ndash;iii) run on every dataset. The
 residual head (iv) fires when it generalises to held-out normal (HAI and SWaT: on; WADI: off). The basin head (v)
-fires when train-normal modes overlap; it is a near no-op on all three datasets here. All calibration uses
+fires when train-normal regimes overlap; it is a near no-op on all three datasets here. All calibration uses
 train-normal only.</div>
 
 <h2>5&nbsp;&nbsp;Experimental methodology</h2>
@@ -691,22 +691,22 @@ latent-plus-clustering detector <strong>attains the best overall AUROC on every 
 difficult subset over five seeds</strong>. The clearest demonstration is HAI, whose difficult faults genuinely
 break joint structure: the detector reaches 0.811, a statistically significant margin over the next-best baseline
 (paired episode-bootstrap 95% CI [0.015, 0.089]), while the deep detectors USAD and TranAD fall near chance
-(0.44&ndash;0.48); on WADI and SWaT it ties the strongest baseline at the top of the difficult column. Modelling normal as a jointly learned latent plus explicit mode clustering, and scoring by
+(0.44&ndash;0.48); on WADI and SWaT it ties the strongest baseline at the top of the difficult column. Modelling normal as a jointly learned latent plus explicit regime clustering, and scoring by
 probability in that latent, is what delivers the difficult-subset advantage.</p>
 
 <p><strong>Why reconstruction fails and density wins.</strong> The deep detectors USAD and TranAD score by
 reconstruction, and reconstruction measures <em>reachability</em> (can the decoder reproduce this vector?), not
 <em>probability</em> (is this vector likely under normal?). On multimodal normal data the two diverge: a flexible
-decoder trained to reproduce several modes interpolates between them, so an improbable between-mode or
-in-mode-tail combination sits inside the decoder's reachable range and reconstructs with low error. We verify this
+decoder trained to reproduce several regimes interpolates between them, so an improbable between-regime or
+in-regime-tail combination sits inside the decoder's reachable range and reconstructs with low error. We verify this
 directly on WADI. The difficult anomalies stay on the normal manifold (PCA off-subspace residual AUROC 0.43) and
 reconstruct as well as normal (reconstruction-error AUROC 0.43), yet the latent density flags them (0.74). A
 controlled probe makes the mechanism explicit: synthetic improbable combinations formed by averaging two normal
-windows from different modes reconstruct even better than real normal (reconstruction AUROC 0.08), while the
+windows from different regimes reconstruct even better than real normal (reconstruction AUROC 0.08), while the
 latent density separates them cleanly (0.72). Scoring by density in the clustered latent replaces reachability
 with probability, which is exactly what reconstruction cannot see. This is why the base score omits reconstruction
 and scores in the jointly learned latent, with a high-<em>K</em> density head for non-Gaussian fringes (A4) and a
-rare-mode-safe nearest-component likelihood (A6); reconstruction is added back only through the optional,
+rare-regime-safe nearest-component likelihood (A6); reconstruction is added back only through the optional,
 auto-gated residual head where it demonstrably helps (&sect;4.3&nbsp;iv).</p>
 
 <div class="tblwrap">
@@ -761,15 +761,43 @@ fault.</p>
 <p><strong>Alternative realizations of the assumptions.</strong> Because the MIIM assumptions fix the structure to
 model rather than the estimator (&sect;4), they open a family of detectors beyond the one reported here, and two
 routes are especially promising. First, <em>regime separation</em> (A1, A7) need not come from a single global
-latent mixture: correlation-structure clustering can recover the operating-mode groups directly, and a hierarchy
+latent mixture: correlation-structure clustering can recover the operating-regime groups directly, and a hierarchy
 of such groups yields a multiscale decomposition of the normal law. Second, and relatedly, <em>density estimation</em>
 (A2, A4) need not be a single high-dimensional model: an ensemble of lower-dimensional density models, one per
 correlated channel group, keeps a sparse joint fault from being diluted in a full-dimensional score, since a
 fault confined to a few channels is a small fraction of the total dimensionality and is easily averaged away
-globally. How to combine such per-group densities is itself an assumption-dependent choice &mdash; a summed
-factorised likelihood is powerful when the fault is dense, a maximum over groups when it is sparse &mdash; and a
+globally. How to combine such per-group densities is itself an assumption-dependent choice: a summed
+factorised likelihood is powerful when the fault is dense, a maximum over groups when it is sparse, and a
 sparsity-adaptive combination is the principled reconciliation. We regard these as concrete next realizations of
 the same assumption set rather than departures from it.</p>
+
+<p><strong>A multiscale regime-density decomposition.</strong> The route above can be stated precisely. Let
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#119966;</mi></mrow></math> be a set
+of correlated channel groups (communities of the train-normal correlation graph, taken at one or several
+scales of a regime hierarchy), and model each group's density
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msub><mi>p</mi><mi>G</mi></msub></math>
+separately. Under a group factorisation the normal law and its surprise decompose as</p>
+<span class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+  <mrow><mo>&#8722;</mo><mi>log</mi><mspace width="0.15em"/><mi>p</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>&#8776;</mo>
+  <munder><mo>&#8721;</mo><mrow><mi>G</mi><mo>&#8712;</mo><mi>&#119966;</mi></mrow></munder>
+  <msub><mi>s</mi><mi>G</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>,</mo>
+  <mspace width="1.2em"/>
+  <msub><mi>s</mi><mi>G</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+  <mo>&#8722;</mo><mi>log</mi><mspace width="0.15em"/><msub><mi>p</mi><mi>G</mi></msub><mo stretchy="false">(</mo><msub><mi>x</mi><mi>G</mi></msub><mo stretchy="false">)</mo><mo>.</mo></mrow>
+</math></span>
+<p>A detector scores a window by a combination of the per-group surprises,
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mo>&#8853;</mo><mrow><mi>G</mi><mo>&#8712;</mo><mi>&#119966;</mi></mrow></msub><msub><mi>w</mi><mi>G</mi></msub><mspace width="0.1em"/><msub><mi>s</mi><mi>G</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math>,
+where the group weight <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msub><mi>w</mi><mi>G</mi></msub></math>
+rises with the group's internal correlation (a density violation inside a tightly coupled regime is more diagnostic).
+The combination <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mo>&#8853;</mo></math> encodes the
+fault's expected extent: summation (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mo>&#8721;</mo></math>)
+is the factorised joint likelihood, optimal when a fault perturbs many groups; a maximum
+(<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>max</mi></math>) is a union bound over groups,
+optimal when the fault is confined to one; and a sparsity-adaptive statistic (for instance Higher Criticism over
+the per-group tail probabilities) interpolates between them without assuming the extent in advance. The
+single-model detector of &sect;4 is the degenerate case
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#119966;</mi><mo>=</mo><mo>{</mo><mtext>all channels</mtext><mo>}</mo></mrow></math>,
+and it can itself be included as one group so a dense, whole-system fault is never missed.</p>
 
 <p><strong>Limitations.</strong> Three boundary conditions apply: three datasets, one trained model per dataset,
 and a single instantaneous representation. AUROC is threshold-free and reported as a five-seed mean; the F1 column
@@ -782,7 +810,7 @@ leaderboard figures by design.</p>
 <h2>8&nbsp;&nbsp;Conclusion</h2>
 <p>We restated the structural assumptions of CPS normal data as an explicit MIIM list (A1&ndash;A10) and built a
 detector that leverages the instantaneous-structure assumptions A1&ndash;A8: it models normal as a jointly learned
-latent plus explicit mode clustering, scored in the latent by a mixture density and a rare-mode-safe
+latent plus explicit regime clustering, scored in the latent by a mixture density and a rare-regime-safe
 nearest-component likelihood, with reconstruction demoted from the default score to an optional, auto-gated
 residual head. Under a deliberately fair, raw-metric, difficulty-stratified protocol on three real CPS attack
 benchmarks, this detector attains the best overall AUROC on every dataset and is strongest on the difficult subset
@@ -793,7 +821,7 @@ only anomalies separated by neither a univariate nor a linear cross-channel rule
 mean AUROC on all three datasets, with statistically supported superiority on HAI and numerical leads on the
 smaller WADI and single-episode SWaT subsets. The mechanism is that reconstruction scores reachability while a density in a clustered latent
 scores probability, and the CPS faults that matter are reconstructable but improbable; treating multimodal normal
-as a single blob or a reconstruction target is a modelling failure, and jointly learning the latent and its modes,
+as a single blob or a reconstruction target is a modelling failure, and jointly learning the latent and its regimes,
 then scoring in that latent, is what delivers the difficult-subset advantage. Extending the detector to the trajectory assumptions, with
 multiscale-temporal features (A9) and history-conditioned scoring (A10), and to stealthy attacks that remain
 within observed operating envelopes, are the natural next steps.</p>
