@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cover Letter to the Editor &ndash; IoT (MDPI)</title>
+<style>
+  body{font-family:"Georgia","Times New Roman",serif;color:#1a1a1a;background:#fff;line-height:1.6;
+    max-width:720px;margin:0 auto;padding:48px 28px 96px;font-size:17px}
+  h1{font-size:1.35rem;margin:0 0 .2em;font-weight:700}
+  .meta{color:#555;font-size:.95rem;margin:0 0 1.8em}
+  p{margin:.9em 0;text-align:justify}
+  .sig{margin-top:2em}
+  a{color:#1f4e79}
+  .back{position:fixed;top:12px;right:14px;background:#f6f8fa;border:1px solid #d8d8d8;border-radius:5px;
+    padding:5px 11px;font-family:"Helvetica Neue",Arial,sans-serif;font-size:.78rem;color:#1f4e79;text-decoration:none}
+  .rev-highlight{background:#fff176;border-radius:2px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+</style>
+</head>
+<body>
+<a class="back no-print" href="IoT2.html">&#8592;&nbsp;Back to manuscript</a>
+
+<h1>Cover Letter</h1>
+<p class="meta">To the Editor-in-Chief, <em>IoT</em> (MDPI)<br>
+Re: Submission of an original research article</p>
+
+<p>Dear Editor,</p>
+
+<p>We are pleased to submit our manuscript, &ldquo;Modeling Normal Is All You Need: Joint Latent Clustering for
+Anomaly Detection in Multimodal Industrial-IoT Cyber-Physical Systems,&rdquo; for consideration as a research article in
+<em>IoT</em>.</p>
+
+<p>Cyber-physical systems form the sensing-and-actuation layer of the <span class="rev-highlight">Industrial Internet of Things (IIoT)</span>, and
+detecting their faults <span class="rev-highlight">and cyberattacks</span> from streaming telemetry, without labeled failures, is a central problem for <span class="rev-highlight">IIoT</span> reliability
+and security. Our work addresses a specific, under-recognized failure mode: a CPS state can be individually normal
+on every sensor and can be reconstructed accurately by a deep model, yet be highly improbable under normal joint
+operation. We show that reconstruction-based detectors, the current standard, measure whether a state is reachable
+rather than whether it is probable, and therefore miss exactly these stealthy, in-envelope faults.</p>
+
+<p>Our detector, LatAD, models normal behavior as a union of operating regimes in a jointly learned latent space and
+scores anomalies by probability rather than reconstruction. Because a plant is an assembly of physically coupled
+subsystems, LatAD factorizes that probability over subsystems recovered without supervision as communities of the
+normal-data correlation graph, and combines the per-subsystem evidence by a cohesion-weighted, sparsity-adaptive
+statistic, so that a local fault a whole-plant score would dilute is instead concentrated. Evaluated under a
+deliberately fair protocol (raw point-wise metrics, difficulty stratification, and train-normal-only calibration)
+on three real <span class="rev-highlight">IIoT / industrial-control testbeds</span> (WADI, HAI, and SWaT), LatAD attains the best overall AUROC on every dataset
+(0.862, 0.949, 0.993) and leads the stealthy difficult subset of all three, by a statistically significant margin on
+HAI (95% confidence interval [0.046, 0.160]), while the reconstruction-based deep detectors USAD and TranAD fall to
+0.30&ndash;0.48 on exactly the faults that matter.</p>
+
+<p>We believe the work fits the scope of <em>IoT</em> in <span class="rev-highlight">Industrial-IoT security, edge intelligence,</span> condition monitoring, and
+predictive maintenance, and that its evaluation methodology (raw, difficulty-stratified metrics) is of independent
+interest to the community. <span class="rev-highlight">Because LatAD calibrates from normal telemetry alone, it can be commissioned per site without labeled
+attacks and scored in a gateway or edge monitoring pipeline, matching how IIoT systems are deployed and operated.</span> The manuscript is original, has not been published previously, and is not under
+consideration by any other journal. All source code and trained model checkpoints supporting the reported results
+are openly archived on Zenodo. The authors declare no conflicts of interest.</p>
+
+<p>We thank you for considering our submission and look forward to the reviewers&rsquo; feedback.</p>
+
+<p class="sig">Sincerely,<br>
+Alexander Apartsin (Holon Institute of Technology) and Yehudit Aperstein (Afeka Academic College of Engineering)<br>
+Corresponding author: Yehudit Aperstein, <a href="mailto:apersteiny@afeka.ac.il">apersteiny@afeka.ac.il</a></p>
+</body>
+</html>

@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modeling Normal Is All You Need: Joint Latent Clustering for Anomaly Detection in Multimodal Industrial-IoT Cyber-Physical Systems</title>
+<style>
+  :root{
+    --text:#1a1a1a; --muted:#555; --rule:#d8d8d8; --accent:#1f4e79; --soft:#f6f8fa;
+    --code:#f2f2f2;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:"Georgia","Times New Roman",serif;
+    color:var(--text); background:#fff; line-height:1.55;
+    max-width:820px; margin:0 auto; padding:48px 28px 96px;
+    font-size:17px;
+  }
+  h1{font-size:1.85rem; line-height:1.25; margin:0 0 .2em; text-align:center; font-weight:700}
+  .authors{text-align:center; color:var(--muted); font-size:1rem; margin:.2em 0 .1em}
+  .affil{text-align:center; color:var(--muted); font-size:.9rem; font-style:italic; margin:0 0 1.6em}
+  h2{font-size:1.28rem; margin:2.2em 0 .5em; padding-bottom:.15em; border-bottom:1px solid var(--rule); font-weight:700}
+  h3{font-size:1.08rem; margin:1.5em 0 .3em; font-weight:700}
+  h4{font-size:1rem; margin:1.2em 0 .2em; font-weight:700; font-style:italic}
+  p{margin:.55em 0; text-align:justify}
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+  .abstract{background:var(--soft); border:1px solid var(--rule); border-radius:6px; padding:16px 22px; margin:1.4em 0}
+  .abstract h2{border:none; margin:0 0 .3em; font-size:1.05rem}
+  .abstract p{font-size:.96rem}
+  code,.mono{font-family:"SFMono-Regular","Consolas","Menlo",monospace; font-size:.86em; background:var(--code); padding:1px 4px; border-radius:3px}
+  pre{background:var(--code); padding:12px 14px; border-radius:6px; overflow-x:auto; font-size:.82rem; line-height:1.4}
+  table{border-collapse:collapse; width:100%; margin:1em 0; font-size:.82rem; font-family:"Helvetica Neue",Arial,sans-serif}
+  .tblwrap{overflow-x:auto; margin:1em 0}
+  th,td{border:1px solid var(--rule); padding:5px 8px; text-align:center}
+  th{background:var(--soft); font-weight:700}
+  td.l,th.l{text-align:left}
+  caption{caption-side:top; text-align:left; font-size:.82rem; color:var(--muted); margin-bottom:.4em; font-family:"Helvetica Neue",Arial,sans-serif}
+  .win{font-weight:700; color:#1f6d3a}
+  figure{margin:1.4em 0; text-align:center}
+  figcaption{font-size:.82rem; color:var(--muted); margin-top:.5em; text-align:left; font-family:"Helvetica Neue",Arial,sans-serif}
+  .eq{display:block; text-align:center; margin:.8em 0; overflow-x:auto}
+  math{font-size:1.02em}
+  .small{font-size:.85rem; color:var(--muted)}
+  ol.refs{padding-left:1.4em; font-size:.86rem}
+  ol.refs li{margin:.5em 0; text-align:left}
+  .assum{font-size:.82rem}
+  .assum td.l{text-align:left}
+  .note{background:#fff8e8; border-left:3px solid #d8a72a; padding:8px 14px; margin:1em 0; font-size:.9rem}
+  sup.fn{font-size:.7em}
+  .toc{font-size:.9rem; color:var(--muted)}
+  hr{border:none; border-top:1px solid var(--rule); margin:2em 0}
+  .center{text-align:center}
+  .doclinks{position:fixed;top:12px;right:14px;z-index:20;display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+  .doclink{background:#f6f8fa;border:1px solid #d8d8d8;border-radius:5px;padding:5px 11px;font-family:"Helvetica Neue",Arial,sans-serif;font-size:.78rem;color:#1f4e79;text-decoration:none;box-shadow:0 1px 2px rgba(0,0,0,.06);white-space:nowrap}
+  .doclink:hover{background:#eef3f8;text-decoration:none}
+  @media print{.doclink{display:none}}
+  .rev-highlight{background:#fff176;border-radius:2px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+</style>
+</head>
+<body>
+<div class="doclinks no-docx no-print">
+<a class="doclink" href="paper_mdpi.docx" download>&#8595;&nbsp;DOCX (MDPI IoT format)</a>
+<a class="doclink" href="IoT2_cover_letter.html">&#9993;&nbsp;Cover letter to editor</a>
+<a class="doclink" href="journal_info.html">&#8505;&nbsp;Journal info (ranking, APC)</a>
+</div>
+
+<h1>Modeling Normal Is All You Need: Joint Latent Clustering for Anomaly Detection in Multimodal <span class="rev-highlight">Industrial-IoT</span> Cyber-Physical Systems</h1>
+<p class="authors">Alexander Apartsin <sup>1</sup> and Yehudit Aperstein <sup>2,</sup><a href="#correspondence"><sup>*</sup></a></p>
+<p class="affil"><sup>1</sup> School of Computer Science, Faculty of Sciences, Holon Institute of Technology (HIT), 52 Golomb St., Holon 5810201, Israel; alexanderap@hit.ac.il</p>
+<p class="affil"><sup>2</sup> Intelligent Systems, Afeka Academic College of Engineering, 218 Bnei Efraim St., Tel Aviv 6910717, Israel; apersteiny@afeka.ac.il</p>
+<p class="affil" id="correspondence"><sup>*</sup> Correspondence: apersteiny@afeka.ac.il</p>
+
+<div class="abstract">
+<h2>Abstract</h2>
+<p><span class="rev-highlight">The Industrial Internet of Things (IIoT) instruments physical processes with networked sensors and controllers that stream multivariate telemetry, and monitoring this telemetry for faults and cyberattacks is essential to reliability and safety. Machine learning is the natural tool, but failures are rare and seldom labeled, so supervised detection is impractical: a detector must learn normal behavior from unlabeled telemetry alone.</span> In cyber-physical systems this normal law is structured: a union of many imbalanced operating regimes shaped by physics and control, formalized as ten <em>Massive, Implicit, Imbalanced Multimodality</em> (MIIM) assumptions. That structure exposes a blind spot of the dominant approach: a fault can be individually normal on every sensor and reconstruct accurately, yet improbable under normal joint operation, so reconstruction-based detectors measure reachability rather than probability and miss it. Our detector, LatAD, learns a latent Gaussian-mixture clustering of regimes (VaDE), scores anomalies by density, and factorizes that density over correlation-community subsystems combined by a cohesion-weighted statistic. On three real <span class="rev-highlight">IIoT testbeds</span> LatAD attains the best AUROC (WADI 0.862, HAI 0.949, SWaT 0.993) and leads the difficult subset of all three, notably on HAI (0.849; a significant +0.09, 95% CI [0.046, 0.160]); USAD and TranAD fall to 0.30&ndash;0.48 on these reconstructable-but-improbable faults.</p>
+</div>
+<p class="keywords"><strong>Keywords:</strong> <span class="rev-highlight">Industrial Internet of Things (IIoT); IoT anomaly detection; cyber-physical systems; industrial control systems; anomaly detection; unsupervised learning; sensor telemetry; fault detection</span></p>
+
+<h2>1&nbsp;&nbsp;Introduction</h2>
+
+<p>A cyber-physical system can be faulty even when every sensor reads within its normal range and a deep model reconstructs the full sensor vector accurately. The reason is that reconstruction and normality answer different questions: reconstruction asks whether a state can be reproduced, whereas detection needs to know whether normal operation is ever likely to occupy it. In a tightly coupled plant, vehicle, or machine, normal behavior is spread across many operating regimes shaped by physics, actuator limits, and control logic, so a correlation break, or a state that falls between two legitimate regimes, can be perfectly reconstructable yet deeply improbable. These are the faults that matter most for condition monitoring and predictive maintenance: early warnings that stay inside familiar sensor ranges while violating the joint structure of normal operation. This paper detects them by modeling that joint structure, scoring probability rather than reconstruction, and,
+because faults are as local as the physics that produces them, factorizing that probability over the plant&rsquo;s
+own subsystems.</p>
+
+<p>A modern CPS (a water-treatment plant, an industrial control loop, a rotating machine) couples hundreds of networked sensors, controllers, and actuators into a unit that continuously senses its own state and acts on it: the sensing-and-actuation fabric of the <span class="rev-highlight">Industrial Internet of Things (IIoT)</span>. This complexity puts its faults beyond enumeration: no test campaign can sample every combination of component, control regime, and operating condition in which a fault can arise, and many faults develop slowly, as wear or drift with no obvious symptom, until they surface as unplanned downtime or a safety-critical failure. Because the faults cannot be specified in advance, they must be discovered from the system&rsquo;s own behavior as it operates, the task of anomaly detection [<a href="#r-chandola">1</a>]. That behavior is richly observable: vibration, current, temperature, pressure, and position, together with internal control signals, stream continuously as <span class="rev-highlight">IIoT</span> telemetry and carry an early signature of almost any developing fault.</p>
+
+<p class="rev-highlight">In an IIoT deployment this telemetry does not remain on the device: field sensors and programmable logic controllers feed edge gateways and SCADA historians that aggregate, window, and forward the multivariate stream, so unsupervised anomaly detection is the operative safeguard for IIoT reliability and security [<a href="#r-iotsurvey">2</a>]. The stakes are cyber-physical: an anomalous window can indicate sensor degradation, actuator malfunction, a developing process fault, or a control-plane manipulation or intrusion, and because the digital and physical layers are coupled, a missed anomaly can propagate from a tampered setpoint into the physical process [<a href="#r-iottaxon">3</a>]. Labeled faults are precisely what an IIoT operator lacks: normal telemetry accumulates continuously across a fleet of devices and operating regimes, whereas each specific fault or attack is rare, diverse, and often system-specific, so learning the plant&rsquo;s normal law from normal data alone is the practical route to detection at IIoT scale [<a href="#r-iotae">4</a>].</p>
+
+<p>The task is often framed as characterizing the anomalies, but that framing is misleading. With a representative set of labeled faults the task would reduce to supervised classification; in practice genuine faults are rare and the few on record seldom span the ways a system can fail [<span class="rev-highlight"><a href="#r-ruff">5</a></span>], so they cannot define the decision boundary, and they cannot even be spent reliably on model selection. The usable information lies on the other side of the boundary, in the normal data, which is abundant and rarely exploited in full. Modeling that normal law faithfully is therefore the hard part of the problem, and cyber-physical normal is a law of a particular kind: shaped by deterministic physics, hard actuator and setpoint limits, and engineered control, it is the union of many bounded, curved operating regimes, some common and many rare, each with legitimately low-density fringes, rather than a single statistical blob. A detector that mis-models this structure fails however it thresholds.</p>
+
+<p>A fault is anything that leaves this union of normal regimes, and the operationally difficult ones stay <em>inside</em> the marginal envelope of every channel while breaking the joint structure: a correlation break, a between-regime pocket, a history-inconsistent state. These faults are invisible to any per-channel range rule, and, as we show, to a reconstruction residual as well, because the question is not whether a flexible decoder can reproduce the state but whether normal operation is likely to occupy it. Reconstruction measures reachability; detection needs probability.</p>
+
+<p>Two obstacles have obscured this failure mode. The first is modeling. If normal is a union of many imbalanced
+regimes, a global anomaly model under-fits the regime structure, a single deep autoencoder alarms on rare-but-valid
+regimes (the trust-eroding false positive), and a reconstruction residual is blind to exactly the joint-structure
+faults that matter, because a flexible decoder reconstructs them faithfully.</p>
+
+<p>The second is evaluation. The dominant metric in the literature, point-adjusted F1, inflates scores so severely
+that a <em>random</em> anomaly score can beat every published deep model [<span class="rev-highlight"><a href="#r-kim">6</a></span>, <span class="rev-highlight"><a href="#r-garg">7</a></span>];
+and even under raw metrics, public CPS benchmarks are dominated by anomalies that a one-line univariate rule already
+separates [<span class="rev-highlight"><a href="#r-wukeogh">8</a></span>], so a high headline number certifies little. Progress on the faults that matter
+cannot be measured until the easy majority is separated from the discriminative minority.</p>
+
+<p>This paper makes three contributions. <strong>(1)</strong> We state the structural assumptions of CPS normal
+data as an explicit list, A1&ndash;A10, abbreviated MIIM (<em>Massive, Implicit, Imbalanced Multimodality</em>), and
+tie each assumption to a concrete choice for modeling normal (&sect;3). <strong>(2)</strong> We build
+<strong>LatAD</strong>, a detector whose whole design is modeling that normal law: a jointly learned latent with
+explicit Gaussian-mixture regime clustering (VaDE), scored in the latent by a mixture-density head and a
+rare-regime-safe nearest-component likelihood (&sect;4). Its key mechanism is demoting reconstruction from the default
+score, since a flexible decoder reconstructs the hard faults faithfully; reconstruction re-enters only through an
+optional residual head, switched on by a gate that tests generalization on held-out normal data. Its headline
+realization factorizes this density over the plant&rsquo;s own subsystems, recovered unsupervised as communities of
+the normal-data correlation graph, and combines the per-subsystem surprises by cohesion-weighted Higher Criticism,
+so a local fault that a single global density dilutes is concentrated instead (&sect;4.4). <strong>(3)</strong>
+We evaluate under a fair protocol (raw point-wise metrics, difficulty stratification, train-normal-only calibration)
+on three real <span class="rev-highlight">IIoT / industrial-control testbeds (WADI, HAI, SWaT)</span>, comparing against classical baselines and the deep detectors USAD and TranAD
+re-computed with the same raw metrics (&sect;5&ndash;6). LatAD attains the best overall AUROC on every dataset and
+leads the difficult subset of all three, most decisively on HAI, where the difficult faults break joint structure,
+the deep detectors collapse to near chance, and LatAD&rsquo;s margin is statistically significant.</p>
+
+<p>Because aggregate benchmark scores are dominated by easy marginal excursions, the central test throughout is
+performance on the difficult subset, the anomalies a simple per-channel detector cannot separate, not the headline
+number. The study covers three datasets with a single trained configuration per dataset; AUROC is reported as a
+five-seed mean, and the best-F1 threshold is a test-swept oracle disclosed in &sect;5.</p>
+
+<h2>2&nbsp;&nbsp;Related work</h2>
+
+<p>Anomaly detection is the unsupervised or semi-supervised task of flagging departures from a model of normal behavior, adopted precisely because labeled anomalies are too scarce to train a classifier [<a href="#r-chandola">1</a>,&nbsp;<span class="rev-highlight"><a href="#r-pang">9</a></span>,&nbsp;<span class="rev-highlight"><a href="#r-ruff">5</a></span>]. On time series it must additionally respect temporal and cross-channel dependence [<span class="rev-highlight"><a href="#r-tsreview">10</a></span>], and on cyber-physical and industrial control systems it underpins physics-aware intrusion and fault detection [<span class="rev-highlight"><a href="#r-icssurvey">11</a></span>]. LatAD sits squarely in this line: unsupervised, trained on normal only, and specialised to the multimodal structure of cyber-physical normal behavior.</p>
+
+<h3 class="rev-highlight">2.1&nbsp;&nbsp;Anomaly detection in the Industrial IoT and edge intelligence</h3>
+<p class="rev-highlight">Anomaly and intrusion detection is a core reliability-and-security function of the Industrial Internet of Things, where networked sensing, actuation, and industrial processes are monitored continuously from streaming telemetry rather than from packet-level network traces alone [<a href="#r-iotsurvey">2</a>,&nbsp;<a href="#r-iottaxon">3</a>]. Because representative labeled faults and attacks are scarce and system-specific, the field leans on unsupervised, one-class, and normal-only models: deep autoencoders and related density models are trained on normal IoT telemetry and flag departures from it [<a href="#r-iotae">4</a>,&nbsp;<a href="#r-tsadreview">12</a>], a setting LatAD shares. A parallel thread pushes detection to the network edge: moving inference onto gateways and industrial edge nodes reduces telemetry backhaul and enables local response, at the cost of compute, memory, and latency budgets that shape model design [<a href="#r-edgeint">13</a>,&nbsp;<a href="#r-iotlora">14</a>,&nbsp;<a href="#r-iotedgeai">15</a>]. IIoT deployments are also heterogeneous and multimodal at fleet scale, with many devices, subsystems, and operating regimes whose distributional structure a single global model captures poorly [<a href="#r-iottaxon">3</a>]. LatAD addresses a complementary IIoT problem: detecting process-level anomalies in multivariate sensor and actuator telemetry when only normal operation is available for training, and doing so per physical subsystem rather than through one plant-wide score.</p>
+
+<h3>2.2&nbsp;&nbsp;The illusion of progress in time-series anomaly-detection evaluation</h3>
+<p>A line of critical work shows that the standard evaluation of time-series anomaly detection is unreliable.
+Kim et al. [<span class="rev-highlight"><a href="#r-kim">6</a></span>] demonstrate that the ubiquitous <em>point-adjustment</em> protocol
+(marking an entire ground-truth anomaly segment as detected if any single point in it is flagged) inflates
+F1 so drastically that a <em>random</em> anomaly score achieves higher point-adjusted F1 than every state-of-the-art
+model on SWaT and WADI. Garg et al. [<span class="rev-highlight"><a href="#r-garg">7</a></span>] independently reproduce this inflation and show
+that simple baselines (PCA, channel-wise autoencoders) beat elaborate deep models once metrics are made rigorous,
+and that deep methods often fail to detect even simple anomalies. Doshi et al. [<span class="rev-highlight"><a href="#r-doshi">16</a></span>]
+diagnose the point-adjustment reward structure and propose a rectified evaluation, and proximity- and event-aware
+metrics such as PATE [<span class="rev-highlight"><a href="#r-pate">17</a></span>] move beyond point adjustment altogether. The critique now spans metrics and benchmarks alike. Wu and Keogh
+[<span class="rev-highlight"><a href="#r-wukeogh">8</a></span>] argue that many popular benchmarks are flawed (triviality, mislabelling and
+unrealistic anomaly density) creating an illusion of progress; and a recent benchmark analysis
+[<span class="rev-highlight"><a href="#r-univar">18</a></span>] finds that anomaly segments in multivariate CPS benchmarks are mostly univariate
+(SWaT and WADI sit among the datasets whose anomalies deviate univariately on close to all timesteps, with no
+long cross-channel-only segments), so a flat univariate model matches channel-dependent deep detectors. Recent
+large-scale benchmarks confirm that detector rankings are strongly dataset-dependent [<span class="rev-highlight"><a href="#r-tab">19</a></span>],
+which is why we read every method per dataset and per difficulty subset rather than by a single headline number.</p>
+
+<p>A parallel critique targets the dominant scoring mechanism itself. Reconstruction-based detectors assume that a model trained to reconstruct normal data reconstructs anomalies worse; Bouman and Heskes [<span class="rev-highlight"><a href="#r-bouman">20</a></span>] show this assumption is unreliable, because anomalies lying far from normal data can be reconstructed perfectly in practice, and Gong et al. [<span class="rev-highlight"><a href="#r-memae">21</a></span>] earlier showed that a deep autoencoder generalizes well enough to rebuild anomalies and miss them. This motivates scoring in a clustered latent rather than through a reconstruction residual. A position paper by Sarfraz et al. [<span class="rev-highlight"><a href="#r-sarfraz">22</a></span>] draws the two threads together, characterizing the field as plagued by flawed evaluation metrics, inconsistent benchmarking, and unjustified design choices, and showing that state-of-the-art deep detectors effectively learn linear mappings that simple baselines reproduce; Wagner et al. [<span class="rev-highlight"><a href="#r-timesead">23</a></span>] re-audit the widely used multivariate benchmarks, discard the ones with erroneous labels, and note the absence of any standard evaluation metric.</p>
+
+<p>LatAD adopts this critique as its evaluation protocol: raw point-wise AUROC and F1 with no point
+adjustment for any method; a trivial-detector difficulty split that separates the discriminative difficult
+subset from the easy majority that carries headline numbers; and re-computation of the deep SOTA baselines
+(USAD and TranAD) under the <em>same</em> raw metrics rather than their point-adjusted published figures
+(&sect;5).</p>
+
+<h3>2.3&nbsp;&nbsp;Latent and clustering models for anomaly detection</h3>
+<p>Our representation is Variational Deep Embedding (VaDE) [<span class="rev-highlight"><a href="#r-vade">24</a></span>], a VAE with a Gaussian-mixture
+latent prior that learns representation and clusters jointly. DAGMM [<span class="rev-highlight"><a href="#r-dagmm">25</a></span>] similarly couples
+an autoencoder with a Gaussian-mixture energy for anomaly detection; we borrow its variance-collapse
+regularisation but score against explicit per-regime Gaussians in a jointly learned latent rather than a
+learned-Gaussian energy (&sect;4). Our whitened residual uses the Ledoit&ndash;Wolf shrinkage
+covariance estimator [<span class="rev-highlight"><a href="#r-lw">26</a></span>]. Classical baselines are Isolation Forest [<span class="rev-highlight"><a href="#r-if">27</a></span>] and a deep autoencoder [<span class="rev-highlight"><a href="#r-aead">28</a></span>], both fitted on the same window features, together with a trivial per-channel range detector that also defines the easy/difficult split.</p>
+
+<h3>2.4&nbsp;&nbsp;Deep multivariate CPS anomaly detection</h3>
+<p>USAD [<span class="rev-highlight"><a href="#r-usad">29</a></span>] couples two adversarially trained autoencoders; TranAD [<span class="rev-highlight"><a
+href="#r-tranad">30</a></span>] uses deep transformer networks with adversarial and self-conditioning training; GDN [<span class="rev-highlight"><a
+href="#r-gdn">31</a></span>] learns a graph over channels and detects deviations from learned inter-channel relations.
+These define a widely used deep SOTA on SWaT/WADI-style benchmarks. More recent detectors refine rather than
+abandon reconstruction: SensitiveHUE [<span class="rev-highlight"><a href="#r-sensitivehue">32</a></span>] models per-variable heteroscedastic
+uncertainty to sharpen sensitivity to normal patterns, and CATCH [<span class="rev-highlight"><a href="#r-catch">33</a></span>] learns channel
+correlations through frequency-domain patching. Both remain reconstruction-based, so the mechanism analysis of
+&sect;7 suggests they inherit the same blind spot on the reconstructable-but-improbable joint faults that define our
+difficult subset. We benchmark USAD and TranAD, the reconstruction- and transformer-based deep detectors, under the same
+raw, difficulty-stratified metrics over five seeds (the re-scored comparison is in &sect;6), and additionally
+re-run the cross-channel GDN under the identical raw protocol where its per-window graph training was tractable
+(SWaT). A raw-metric evaluation of the newer reconstruction detectors (SensitiveHUE, CATCH) is left to future
+work.</p>
+
+<p>Beyond public benchmarks, sensor-driven condition monitoring and fault prediction in operational CPS motivate
+modeling the multivariate sensor stream directly: vibration-based machine diagnostics [<span class="rev-highlight"><a href="#r-gearbox">34</a></span>,&nbsp;<span class="rev-highlight"><a href="#r-vibdecomp">35</a></span>],
+structural-health monitoring of rotorcraft components [<span class="rev-highlight"><a href="#r-bolt">36</a></span>], and fault prediction in
+rotorcraft flight controls [<span class="rev-highlight"><a href="#r-rotorcraft">37</a></span>]. LatAD generalizes this applied line to unsupervised,
+multimodal-latent anomaly detection.</p>
+
+<h3>2.5&nbsp;&nbsp;Benchmark datasets</h3>
+<p>We evaluate on three real CPS attack testbeds. WADI [<span class="rev-highlight"><a href="#r-wadi">38</a></span>] is a 123-channel water-distribution testbed from iTrust, and SWaT [<span class="rev-highlight"><a href="#r-swat">39</a></span>] is its 51-channel water-treatment sibling; the two are the de facto standard multivariate CPS benchmarks and the primary targets of the evaluation critique above [<span class="rev-highlight"><a href="#r-kim">6</a></span>,&nbsp;<span class="rev-highlight"><a href="#r-wukeogh">8</a></span>]. HAI [<span class="rev-highlight"><a href="#r-hai">40</a></span>] is a 59-channel hardware-in-the-loop industrial control testbed spanning several coupled processes. All three carry real executed attacks and are strongly multimodal (BIC-optimal regime counts <em>K</em>* &ge; 22; &sect;3), so the difficulty-stratified results read directly against the MIIM structure of each dataset.</p>
+
+<h2>3&nbsp;&nbsp;The MIIM assumptions about <span class="rev-highlight">IIoT/CPS normal telemetry</span></h2>
+
+<p>We model the normal law of a CPS as a mixture over reachable operating regimes,
+<span class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+  <mrow><mi>p</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+  <munderover><mo>&#8721;</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>K</mi></munderover>
+  <msub><mi>&#960;</mi><mi>k</mi></msub><mspace width="0.15em"/>
+  <msub><mi>p</mi><mi>k</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow>
+</math></span>
+where each component <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msub><mi>p</mi><mi>k</mi></msub></math> is a bounded, oriented, curved patch of observation space. The ten
+assumptions of Table 1 describe the qualitative structure of this mixture; each is grounded in a physical property
+of CPS operation and each motivates a specific design choice in the detector of &sect;4. We call the resulting
+property <em>MIIM</em>: the sample is <strong>M</strong>assive, the regime structure is <strong>I</strong>mplicit
+(unlabeled and only approximately recoverable), the regime occupancy is <strong>I</strong>mbalanced, and normal
+is <strong>M</strong>ultimodal. Two consequences matter for detection. Normality is multimodal in regime space; and
+because the few levers of A5 drive typed, correlated channel groups (A8), deviations are often local to one tightly
+coupled subsystem. LatAD therefore models regime probability at subsystem scale, not only at whole-plant scale
+(&sect;4.4).</p>
+
+<div class="tblwrap">
+<table class="assum">
+<caption><strong>Table 1.</strong> The ten CPS normal-data assumptions, their physical origin, and the detector
+design choice each motivates. A1&ndash;A8 shape the instantaneous window; A9&ndash;A10 shape the trajectory.</caption>
+<thead><tr>
+  <th>ID</th><th class="l">Assumption</th><th class="l">CPS rationale</th><th class="l">Motivates (design choice)</th>
+</tr></thead>
+<tbody>
+<tr><td><b>A1</b></td><td class="l"><b>Regime mixture</b> (multimodality)</td>
+  <td class="l">A plant or vehicle cycles through discrete operating regimes (idle, cruise, load steps); normal is their union, not one blob.</td>
+  <td class="l">Model normal as an explicit mixture, not a global density: the latent GMM prior of VaDE.</td></tr>
+<tr><td><b>A2</b></td><td class="l"><b>Regime explosion</b> (exponential regime growth)</td>
+  <td class="l">A CPS is built from many interacting subsystems; each added element multiplies reachable regimes, so regime count grows with complexity.</td>
+  <td class="l">Use a high number of components <em>K</em> (and a high-resolution density head) rather than a handful.</td></tr>
+<tr><td><b>A3</b></td><td class="l"><b>Hard envelopes</b> (bounded regimes; thin between-regime pockets)</td>
+  <td class="l">Controllers hold each regime within setpoint/actuator bands; the space between regimes is passed through, rarely dwelt in, leaving thin anomalous pockets.</td>
+  <td class="l">A between-regime point must score anomalous even when every channel is in range: the basin-agreement head (iv).</td></tr>
+<tr><td><b>A4</b></td><td class="l"><b>Thin fringes</b> (intra-regime sparsity)</td>
+  <td class="l">Within a regime the system dwells near a typical operating point and reaches the edges only occasionally; each regime holds legitimate low-density regions near its boundary.</td>
+  <td class="l">Density inside a regime is non-Gaussian &rarr; a parametric high-resolution mixture density head, not one Gaussian per regime.</td></tr>
+<tr><td><b>A5</b></td><td class="l"><b>Few levers</b> (low intrinsic dimension)</td>
+  <td class="l">The independent control variables are far fewer than the observed channels; the rest follow deterministically or probabilistically.</td>
+  <td class="l">A low-dimensional learned latent (dim 10&ndash;16 across datasets) suffices; faults appear as departures within that latent.</td></tr>
+<tr><td><b>A6</b></td><td class="l"><b>Heavy tail</b> (Zipf imbalance)</td>
+  <td class="l">Machines spend most of the record in a few steady regimes; startup, shutdown and rare manoeuvres occupy little of it, so an infrequent-but-normal point is easily mistaken for a fault.</td>
+  <td class="l">Score against the <em>nearest</em> component, never the &#960;-weighted mixture, so a rare-but-valid regime is not penalized (ii).</td></tr>
+<tr><td><b>A7</b></td><td class="l"><b>Hidden regimes</b> (latent, implicit regimes)</td>
+  <td class="l">True regimes are an emergent artifact of coupling and are not logged; regimes must be discovered approximately from raw streams.</td>
+  <td class="l">Discover regimes jointly with the representation (VaDE), unsupervised; never use regime labels.</td></tr>
+<tr><td><b>A8</b></td><td class="l"><b>Mixed signals</b> (heterogeneous, typed channels)</td>
+  <td class="l">The bus carries sensors, actuators, discrete states and setpoints, each with its own range, resolution and correlated noise.</td>
+  <td class="l">Per-feature standardization on train-normal; a whitened (Mahalanobis) residual that respects per-channel scale and cross-channel correlation (iii).</td></tr>
+<tr><td><b>A9</b></td><td class="l"><b>Many clocks</b> (multiscale dynamics)</td>
+  <td class="l">Physical inertia sets per-channel time constants (thermal slow, electrical fast); only some regime&rarr;regime transitions are legal, each with a characteristic dwell.</td>
+  <td class="l">Fixed-length windows with per-channel statistics as features; motivates explicit temporal features, left to future work (&sect;7).</td></tr>
+<tr><td><b>A10</b></td><td class="l"><b>Path dependence</b> (history-conditioned normality)</td>
+  <td class="l">A fault is defined relative to operational history: the same instantaneous state can be normal or faulty depending on how the system arrived there.</td>
+  <td class="l">In principle a trajectory branch; on these snapshot-detectable public benchmarks (each fault visible in a single window, without history) it is inert (see &sect;7), so the reported model is window-only.</td></tr>
+</tbody></table>
+</div>
+
+<p>Two standing qualifiers apply throughout: the sample is <strong>massive</strong> (<math
+xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>N</mi></math> large) and the mixture is
+approximately <strong>stationary</strong> within a run. Measured on train-normal, the MIIM structure is present but
+<em>implicit</em> (A7): cluster sizes are heavy-tailed, and Bayesian-information-criterion (BIC) regime counts keep
+improving past two dozen components (BIC-optimal <math xmlns="http://www.w3.org/1998/Math/MathML"
+display="inline"><msup><mi>K</mi><mo>&#8727;</mo></msup></math> of 22, 24, and 25 on WADI, HAI, and SWaT). The
+regimes overlap on WADI and HAI (silhouette 0.06 and 0.08, on a scale where 1 is well-separated clusters and 0 is
+overlapping) but separate more crisply on SWaT (0.29), and this
+ordering tracks where the design pays off: the two overlapping datasets are exactly where the regime-community
+factorization gains most, since a single global density blurs local structure there, while crisp SWaT is a ceiling
+for every method (&sect;6). This is the regime in which a jointly learned latent, scored by a mixture density and
+factorized over subsystems, pays off and a global detector or a raw reconstruction residual does not.</p>
+
+<h2>4&nbsp;&nbsp;Method</h2>
+
+<p>We call the detector <strong>LatAD</strong>, and preview its pipeline before the details: windowed <span class="rev-highlight">multivariate IIoT telemetry</span>
+&rarr; correlation-community subsystems &rarr; one regime-density model per community plus a global expert &rarr;
+calibrated per-community tail probabilities &rarr; cohesion-weighted Higher Criticism &rarr; anomaly score. Two
+stages implement it. A representation stage, a VaDE, jointly learns a latent and a Gaussian-mixture regime prior; a
+scoring stage computes a stack of density heads in that latent, all calibrated on train-normal. The headline
+<strong>LatAD (regime-community)</strong> estimates this density per subsystem (&sect;4.4); the base ablation
+<strong>LatAD (global density)</strong> estimates it once over the whole channel set. Because every community uses
+the same representation and heads, we describe those first, then the regime-community realization.</p>
+
+<p>The reported detector realizes assumptions A1, A2, A4&ndash;A8 and architecturally supports A3. The mixture representation (A1, A7), the high-resolution
+density head (A2, A4), the low-dimensional latent (A5), the nearest-component score (A6) and per-feature
+standardization (A8) are always active; the whitened-residual head (A8) and the basin-agreement head (A3) are
+<em>auto-gated</em> on train-normal signals and switch on only where a dataset calls for them: the residual
+activates on HAI and SWaT, and the basin head activates only when train-normal regime assignments are ambiguous,
+which none of these three datasets trigger, so A3 is architecturally supported but inactive here. The gated heads
+did not reduce performance on any of these datasets, and the reported gains come from the always-active heads, with
+the auto-gated residual head adding to them on HAI and SWaT (Table 5). Assumptions A9&ndash;A10 shape the trajectory rather than the window and are not exercised by these
+snapshot-detectable public benchmarks; extending the detector to explicit multiscale-temporal features (A9) and
+history-conditioned, path-dependent scoring (A10) is left to future work (&sect;7).</p>
+
+<p><strong>One realization of the assumptions.</strong> A1&ndash;A10 specify <em>what</em> a model of CPS normal must
+capture, not <em>how</em> to implement it; the detector below is one concrete realization of A1&ndash;A8, reported in
+full so that every choice is auditable, and &sect;7 surveys the design space the same assumptions admit.</p>
+
+<h3>4.1&nbsp;&nbsp;Representation: Variational Deep Embedding (VaDE)</h3>
+
+<p>VaDE [<span class="rev-highlight"><a href="#r-vade">24</a></span>] is a variational autoencoder whose latent prior is a Gaussian mixture, so the
+representation and the operating-regime clusters are learned <em>together</em> (A1, A7) rather than one after the
+other. An encoder maps a window feature vector <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>x</mi></math> to a latent Gaussian <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>q</mi><mo stretchy="false">(</mo><mi>z</mi><mo>&#8739;</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>N</mi><mo stretchy="false">(</mo><mi>&#956;</mi><mo>,</mo><mtext>diag</mtext><mspace width="0.1em"/><msup><mi>&#963;</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow></math>; a decoder reconstructs <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mover><mi>x</mi><mo>^</mo></mover></math>; and the prior is
+<span class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+  <mrow><mi>p</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>=</mo>
+  <munderover><mo>&#8721;</mo><mrow><mi>c</mi><mo>=</mo><mn>1</mn></mrow><mi>K</mi></munderover>
+  <msub><mi>&#960;</mi><mi>c</mi></msub><mspace width="0.15em"/>
+  <mi>N</mi><mo stretchy="false">(</mo><mi>z</mi><mo>&#8739;</mo>
+  <msub><mi>&#956;</mi><mi>c</mi></msub><mo>,</mo>
+  <mtext>diag</mtext><mspace width="0.1em"/><msubsup><mi>&#963;</mi><mi>c</mi><mn>2</mn></msubsup>
+  <mo stretchy="false">)</mo><mo>,</mo></mrow>
+</math></span>
+with mixture parameters <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>{</mo><msub><mi>&#960;</mi><mi>c</mi></msub><mo>,</mo><msub><mi>&#956;</mi><mi>c</mi></msub><mo>,</mo><msub><mi>&#963;</mi><mi>c</mi></msub><mo>}</mo></mrow></math> learned jointly with the networks. The training
+objective is the negative evidence lower bound; per window it is</p>
+
+<span class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+  <mrow>
+    <mi>&#8466;</mi><mo>=</mo>
+    <munder><mo>&#8721;</mo><mi>j</mi></munder>
+    <msup><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>j</mi></msub><mo>&#8722;</mo><msub><mover><mi>x</mi><mo>^</mo></mover><mi>j</mi></msub><mo stretchy="false">)</mo></mrow><mn>2</mn></msup>
+    <mo>+</mo><mi>&#946;</mi>
+    <munder><mo>&#8721;</mo><mi>c</mi></munder>
+    <msub><mi>&#947;</mi><mi>c</mi></msub>
+    <mrow><mo>[</mo>
+      <mtext>KL</mtext><mo stretchy="false">(</mo><mi>q</mi><mo>&#8739;</mo><mo>&#8739;</mo>
+      <mi>N</mi><mo stretchy="false">(</mo><msub><mi>&#956;</mi><mi>c</mi></msub><mo>,</mo><msubsup><mi>&#963;</mi><mi>c</mi><mn>2</mn></msubsup><mo stretchy="false">)</mo><mo stretchy="false">)</mo>
+      <mo>+</mo><mi>log</mi><mfrac><msub><mi>&#947;</mi><mi>c</mi></msub><msub><mi>&#960;</mi><mi>c</mi></msub></mfrac>
+    <mo>]</mo></mrow><mo>,</mo>
+  </mrow>
+</math></span>
+
+<p>where <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#947;</mi><mi>c</mi></msub><mo>&#8733;</mo><msub><mi>&#960;</mi><mi>c</mi></msub><mspace width="0.1em"/><mi>N</mi><mo stretchy="false">(</mo><mi>z</mi><mo>&#8739;</mo><msub><mi>&#956;</mi><mi>c</mi></msub><mo>,</mo><msubsup><mi>&#963;</mi><mi>c</mi><mn>2</mn></msubsup><mo stretchy="false">)</mo></mrow></math> are the responsibilities (the posterior probability that a window belongs to regime <em>c</em>). Three standard measures prevent the
+well-known cluster collapse in which many components are abandoned during joint training: a KL/cluster
+<em>warm-up</em> that anneals <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>&#946;</mi></math> from 0 to 1 so the encoder settles on the pretrained mixture
+initialisation before the prior is pulled around; a DAGMM-style [<span class="rev-highlight"><a href="#r-dagmm">25</a></span>] penalty on tiny
+component variances (a variance floor plus a <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><munder><mo>&#8721;</mo><mi>c</mi></munder><msubsup><mi>&#963;</mi><mi>c</mi><mrow><mo>&#8722;</mo><mn>2</mn></mrow></msubsup></math> term); and a slower learning rate on the mixture parameters so
+the GMM initialisation (fitted on the pretrained latent) is refined, not destroyed. Training proceeds as
+plain-VAE pretraining, GMM initialisation on the encoded means, then joint optimization of the full objective.</p>
+
+<h3>4.2&nbsp;&nbsp;Scoring: why we demote reconstruction</h3>
+
+<p>The natural VaDE anomaly score is the joint negative log-likelihood: a whitened reconstruction residual plus
+a latent term. On the <em>difficult</em> faults (correlation breaks and between-regime pockets) this
+is exactly wrong. Table 2 decomposes the two terms by their difficult-subset AUROC on a single trained model
+per dataset.</p>
+
+<div class="tblwrap">
+<table>
+<caption><strong>Table 2.</strong> Difficult-subset AUROC of the two natural score terms (single trained model per
+dataset). The reconstruction residual is near chance on WADI (0.490) and, although informative on HAI (0.689),
+it stays below the latent term (0.760) and drags the summed joint score down; the latent likelihood carries the
+signal but a single diagonal Gaussian per regime is coarse. A multi-seed, three-dataset head ablation is reported
+in Table 5.</caption>
+<thead><tr><th class="l">Score term</th><th>WADI</th><th>HAI</th></tr></thead>
+<tbody>
+<tr><td class="l">(a) reconstruction residual <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mi>r</mi><mi>&#8868;</mi></msup><msup><mi>&#931;</mi><mrow><mo>&#8722;</mo><mn>1</mn></mrow></msup><mi>r</mi></mrow></math></td><td>0.490</td><td>0.689</td></tr>
+<tr><td class="l">(b) latent NLL (nearest diagonal component)</td><td>0.663</td><td>0.760</td></tr>
+<tr><td class="l">(a)+(b) joint NLL (naive VaDE score)</td><td>0.494</td><td>0.689</td></tr>
+</tbody></table>
+</div>
+
+<p>The mechanism is that a flexible decoder <em>reconstructs the fault faithfully</em>: a correlation-break
+window has in-range marginals, so the decoder rebuilds it and the residual is near chance or reversed. Demoting
+reconstruction from the default score improves the difficult subset on the two joint-structure benchmarks (WADI and
+HAI). The base scoring stack therefore works entirely in the jointly learned latent; reconstruction re-enters
+only through the optional, auto-gated residual head (&sect;4.3&nbsp;iii), which fires only where it provably
+generalizes to held-out normal (HAI and SWaT here, not WADI).</p>
+
+<h3>4.3&nbsp;&nbsp;The scoring stack</h3>
+
+<p>Let <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi><mo>=</mo><mi>&#956;</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math> be the encoder mean. The base score sums two latent heads, each
+z-normalized against its train-normal mean and standard deviation, so the operating scale is set by normal, not
+by the test batch.</p>
+
+<h4>(i)&nbsp;Latent mixture-density head (parametric KDE for non-Gaussian pockets)</h4>
+<p>Because each regime has a non-uniform interior with thin fringes (A4), one Gaussian per regime is too coarse. We
+fit a high-resolution diagonal Gaussian mixture on the train-normal latent (<math
+xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><mo>=</mo><mn>80</mn></mrow></math>
+components by default, distinct from the VaDE regime count <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>K</mi></math>)
+as a parametric kernel-density estimate, and score a window by its density negative
+log-likelihood:</p>
+<span class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+  <mrow><msub><mi>s</mi><mtext>dens</mtext></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+  <mo>&#8722;</mo><mi>log</mi>
+  <munderover><mo>&#8721;</mo><mrow><mi>m</mi><mo>=</mo><mn>1</mn></mrow><mn>80</mn></munderover>
+  <msub><mi>w</mi><mi>m</mi></msub><mspace width="0.15em"/>
+  <mi>N</mi><mo stretchy="false">(</mo><mi>z</mi><mo>&#8739;</mo><msub><mi>a</mi><mi>m</mi></msub><mo>,</mo><mtext>diag</mtext><mspace width="0.1em"/><msubsup><mi>b</mi><mi>m</mi><mn>2</mn></msubsup><mo stretchy="false">)</mo><mo>.</mo></mrow>
+</math></span>
+
+<h4>(ii)&nbsp;Nearest-component NLL (rare-regime-safe)</h4>
+<p>Under heavy-tailed imbalance (A6) a valid point in a rare, low-<math
+xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>&#960;</mi></math> regime must not be flagged
+solely for being rare. We therefore use the <em>closest</em> component, not the &#960;-weighted mixture:</p>
+<span class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+  <mrow><msub><mi>s</mi><mtext>near</mtext></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+  <mo>&#8722;</mo><munder><mi>max</mi><mi>c</mi></munder>
+  <mi>log</mi><mspace width="0.15em"/>
+  <mi>N</mi><mo stretchy="false">(</mo><mi>z</mi><mo>&#8739;</mo><msub><mi>&#956;</mi><mi>c</mi></msub><mo>,</mo><mtext>diag</mtext><mspace width="0.1em"/><msubsup><mi>&#963;</mi><mi>c</mi><mn>2</mn></msubsup><mo stretchy="false">)</mo><mo>.</mo></mrow>
+</math></span>
+<p>Using the maximum over components rather than the Bayesian mixture sum keeps a rare-regime signal that the
+mixture sum washes out (A6): the nearest-component distance retains a deviation confined to a single sparsely
+populated regime, whereas the mixture sum averages it away. The base
+score is the sum of the two z-normalized heads,
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>s</mi><mn>0</mn></msub><mo>=</mo><mtext>z</mtext><mo stretchy="false">(</mo><msub><mi>s</mi><mtext>dens</mtext></msub><mo stretchy="false">)</mo><mo>+</mo><mtext>z</mtext><mo stretchy="false">(</mo><msub><mi>s</mi><mtext>near</mtext></msub><mo stretchy="false">)</mo></mrow></math>.</p>
+
+<h4>(iii)&nbsp;Optional responsibility-weighted whitened residual, auto-gated</h4>
+<p>On some datasets the fault <em>does</em> surface in reconstruction. The optional residual head reduces the
+per-channel residual <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>r</mi></math> by
+principal-component analysis (fit on train-normal) to
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mn>30</mn></math> dimensions, fits a
+Ledoit&ndash;Wolf-shrunk [<span class="rev-highlight"><a href="#r-lw">26</a></span>] precision <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msub><mi>&#931;</mi><mi>k</mi></msub></math> per regime, and combines the per-regime whitened
+energies of that reduced residual by responsibility:</p>
+<span class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+  <mrow><msub><mi>s</mi><mtext>resid</mtext></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
+  <munderover><mo>&#8721;</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>K</mi></munderover>
+  <msub><mi>&#947;</mi><mi>k</mi></msub><mspace width="0.15em"/>
+  <msubsup><mi>r</mi><mi>k</mi><mi>&#8868;</mi></msubsup><msubsup><mi>&#931;</mi><mi>k</mi><mrow><mo>&#8722;</mo><mn>1</mn></mrow></msubsup><msub><mi>r</mi><mi>k</mi></msub><mo>.</mo></mrow>
+</math></span>
+<p>Here <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msub><mi>r</mi><mi>k</mi></msub></math> is the reduced residual whitened by regime <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>k</mi></math>&rsquo;s precision <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msub><mi>&#931;</mi><mi>k</mi></msub></math>, and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msub><mi>&#947;</mi><mi>k</mi></msub></math> is the window&rsquo;s responsibility for regime <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>k</mi></math>. The head is <em>auto-gated</em> by a held-out-normal generalization test: per-regime precisions are fitted on
+the first 80% of train-normal (split A) and scored on the last 20% (split B); if held-out normal scores much higher
+(the residual overfits or drifts), the ratio <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>q</mi><mn>95</mn></msub><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo><mo>/</mo><msub><mi>q</mi><mn>95</mn></msub><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></math> exceeds 1.5 and the head is switched off. Empirically the ratio is
+5.24 on WADI (off), 1.17 on HAI (on), and 0.85 on SWaT (on): the residual carries the fault on HAI and SWaT but is
+dead on WADI, and the gate recovers this pattern from train-normal alone.</p>
+
+<h4>(iv)&nbsp;Optional basin-agreement rescue, auto-scaled</h4>
+<p>Between-regime pockets (A3) are the dangerous false negative on datasets whose regimes overlap. We perturb the
+latent with Gaussian noise <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>R</mi></math>
+times and measure <em>agreement</em>, the fraction of perturbed copies that keep the clean argmax regime. A
+rare-but-valid point sits deep in one basin (high agreement, demote); a between-regime point flips regimes under
+perturbation (low agreement, keep). The rescue subtracts a scaled, train-normal-calibrated agreement:</p>
+<span class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+  <mrow><mi>s</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>s</mi><mn>0</mn></msub><mo>+</mo>
+  <msub><mi>s</mi><mtext>resid</mtext></msub><mo>&#8722;</mo>
+  <mi>&#955;</mi><mspace width="0.1em"/><mtext>z</mtext><mo stretchy="false">(</mo><mtext>agree</mtext><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>,</mo>
+  <mspace width="1em"/>
+  <mi>&#955;</mi><mo>=</mo><msub><mi>&#955;</mi><mn>0</mn></msub><mo>&#8901;</mo><mi>max</mi><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mi>&#961;</mi><mo>&#8722;</mo><mi>&#948;</mi><mo stretchy="false">)</mo><mo>,</mo></mrow>
+</math></span>
+<p>where <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>&#961;</mi></math> is the fraction
+of train-normal windows that are ambiguous (maximum responsibility below 0.5) and <math
+xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>&#948;</mi></math> a dead-zone. Although WADI and
+HAI regimes overlap in silhouette terms (&sect;3), their per-window assignments stay confident: the ambiguous
+fraction <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#961;</mi><mo>&#8776;</mo><mn>0.05</mn></mrow></math> on all three datasets, so <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#955;</mi><mo>=</mo><mn>0</mn></mrow></math> and the rescue is inactive. The basin head is a provision
+for heavily overlapping regimes and awaits data that exercises it. The reported model thus configures its heads
+purely from train-normal statistics, with no test-set tuning: the residual head fires on HAI and SWaT, and both
+optional heads stay off on WADI.</p>
+
+<div class="note"><strong>Auto-gating summary.</strong> Base heads (i&ndash;ii) run on every dataset. The
+residual head (iii) fires when it generalizes to held-out normal (HAI and SWaT: on; WADI: off). The basin head (iv)
+activates when a non-trivial fraction of train-normal windows have ambiguous regime assignments; that fraction is
+near zero on all three datasets here, so it is a no-op. All calibration uses train-normal only.</div>
+
+<h3>4.4&nbsp;&nbsp;Regime-community density (the headline realization)</h3>
+
+<p>The stack of &sect;4.1&ndash;4.3 estimates one density over the whole channel set. Its headline realization
+estimates density <em>per subsystem</em> instead, and the reason is physical. A CPS is an assembly of coupled
+subsystems, process units, control loops, and conservation-linked flows, each binding a small group of sensors and
+actuators through tight local correlation while remaining only loosely coupled to the rest of the plant (WADI&rsquo;s
+parallel treatment trains, SWaT&rsquo;s six sequential stages, HAI&rsquo;s coupled boiler, turbine, and water
+processes). Mass and energy balances correlate the channels within a unit, a control loop ties a measurement to its
+setpoint, and a shared control lever drives its dependent channels together, so the few independent levers of A5 and
+the typed, correlated channels of A8 surface as blocks of the channel correlation graph. Agglomerative clustering on
+the train-normal correlation graph groups the channels into nested communities <math
+xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>G</mi></math> (dendrogram subtrees of size 3 to 25
+channels) that serve as data-driven proxies for these subsystems, with no supervision and no plant schematic.</p>
+
+<p>Faults inherit the same locality: a stuck valve, a drifting analyzer, or a fouled sensor perturbs its own
+subsystem while the rest of the plant runs normally, so an incipient fault is typically confined to one community, a
+handful of channels out of hundreds. A single global density dilutes such a local violation across the full
+dimensionality (a single-group shift is a vanishing fraction of WADI&rsquo;s 738-dimensional feature, 123 channels
+&#215; 6 statistics), whereas a
+per-community density concentrates it. For each community <math xmlns="http://www.w3.org/1998/Math/MathML"
+display="inline"><mi>G</mi></math> we therefore fit the full detector of &sect;4.1&ndash;4.3 on that
+community&rsquo;s channels alone and read its calibrated surprise <math xmlns="http://www.w3.org/1998/Math/MathML"
+display="inline"><msub><mi>s</mi><mi>G</mi></msub></math> (the train-normal upper-tail negative log-probability),
+and we include the global detector as an unfactorized <em>null</em> expert so the detector retains sensitivity to
+dense whole-system faults. Summing the per-community surprises gives a simple pooled score (because the communities
+are nested subtrees and can overlap, this sum is an over-complete pooling rather than an exact factorization),</p>
+
+<span class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+  <mrow><mo>&#8722;</mo><mi>log</mi><mspace width="0.15em"/><mi>p</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>&#8776;</mo>
+  <munder><mo>&#8721;</mo><mrow><mi>G</mi><mo>&#8712;</mo><mi>&#119966;</mi></mrow></munder>
+  <msub><mi>s</mi><mi>G</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>,</mo></mrow>
+</math></span>
+
+<p>and the detector scores a window by a weighted combination <math xmlns="http://www.w3.org/1998/Math/MathML"
+display="inline"><mrow><mi>s</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mo>&#8853;</mo><mrow><mi>G</mi><mo>&#8712;</mo><mi>&#119966;</mi></mrow></msub><msub><mi>w</mi><mi>G</mi></msub><mspace width="0.1em"/><msub><mi>s</mi><mi>G</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math>.
+The weight <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msub><mi>w</mi><mi>G</mi></msub></math>
+grows with the community&rsquo;s internal cohesion (its mean absolute pairwise channel correlation), because a density violation
+inside a tightly coupled subsystem (A8) is more diagnostic than the same deviation in a loosely coupled one. The
+combiner <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mo>&#8853;</mo></math> must adapt to the
+fault&rsquo;s unknown extent: summation is optimal when the fault perturbs many communities, a maximum when it is
+confined to one, and Higher Criticism [<span class="rev-highlight"><a href="#r-hc">41</a></span>], a sparse-signal statistic that asks whether more communities are
+mildly surprised than chance allows, interpolates between the two without assuming the extent in advance. Writing the
+per-community upper-tail p-values for the <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>S</mi></math> community experts in ascending order <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>p</mi><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></msub><mo>&#8804;</mo><mo>&#8943;</mo><mo>&#8804;</mo><msub><mi>p</mi><mrow><mo stretchy="false">(</mo><mi>S</mi><mo stretchy="false">)</mo></mrow></msub></mrow></math>, the statistic is</p>
+<span class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+  <mrow><mtext>HC</mtext><mo>=</mo><munder><mi>max</mi><mrow><mi>i</mi><mo>:</mo><msub><mi>p</mi><mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></msub><mo>&lt;</mo><mn>1</mn><mo>/</mo><mn>2</mn></mrow></munder>
+  <mfrac>
+    <mrow><msqrt><mi>S</mi></msqrt><mspace width="0.15em"/><mo stretchy="false">(</mo><mi>i</mi><mo>/</mo><mi>S</mi><mo>&#8722;</mo><msub><mi>p</mi><mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></msub><mo stretchy="false">)</mo></mrow>
+    <msqrt><mrow><msub><mi>p</mi><mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></msub><mo stretchy="false">(</mo><mn>1</mn><mo>&#8722;</mo><msub><mi>p</mi><mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></msub><mo stretchy="false">)</mo></mrow></msqrt>
+  </mfrac><mo>,</mo></mrow>
+</math></span>
+<p>over the surprising tail. Cohesion weighting raises each p-value to the power
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>w</mi><mi>G</mi></msub><mo>/</mo><mover><mi>w</mi><mo>&#8254;</mo></mover></mrow></math> before sorting, with
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>w</mi><mi>G</mi></msub><mo>=</mo><msub><mtext>coh</mtext><mi>G</mi></msub><msqrt><mrow><mo>&#8739;</mo><mi>G</mi><mo>&#8739;</mo></mrow></msqrt></mrow></math>
+(community cohesion times root size) and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mover><mi>w</mi><mo>&#8254;</mo></mover></math> their mean, so a violation in a tight, large subsystem
+weighs more; every p-value is a train-normal upper-tail probability, so the combiner is calibrated on normal alone.
+The factorization also localizes: the per-community surprises rank the plant&rsquo;s subsystems by how implicated they
+are, turning a plant-wide alarm into a subsystem-level lead for the operator. The reported
+<strong>LatAD (regime-community)</strong> combines the communities by cohesion-weighted Higher Criticism and fuses
+that with the null expert by summing the two in train-normal z-score units; the single-latent <strong>LatAD (global
+density)</strong> of &sect;4.1&ndash;4.3 is the degenerate case <math xmlns="http://www.w3.org/1998/Math/MathML"
+display="inline"><mrow><mi>&#119966;</mi><mo>=</mo><mo>{</mo><mtext>all channels</mtext><mo>}</mo></mrow></math>
+and is reported as the base ablation. The detector occupies one point on each of four design axes: representation
+(VaDE), density estimation (itself two decisions, community construction and surprise aggregation), scoring heads,
+and calibration. Appendix A ablates the density-estimation axis.</p>
+
+<h2>5&nbsp;&nbsp;Experimental methodology</h2>
+
+<h3>5.1&nbsp;&nbsp;Datasets</h3>
+<p>We use three real CPS datasets and no synthetic data in the results tables. <span class="rev-highlight">All three are instrumented Industrial-IoT / industrial-control-system testbeds: networked sensors, actuators, and programmable logic controllers stream multivariate telemetry from a live physical process, and each carries real executed attacks, making them standard proxies for IIoT security-monitoring and condition-monitoring workloads.</span></p>
+<ul>
+<li><strong>WADI</strong> [<span class="rev-highlight"><a href="#r-wadi">38</a></span>], a water-distribution testbed, 123 sensor/actuator
+channels. Roughly a quarter of channels are near-constant in normal operation; these are attack <em>carriers</em>,
+not noise, and are kept. A few channels carry physically impossible standardized values (a channel constant at
+zero in the 14-day normal record, another recalibrated between files); standardized features are clipped to
+&plusmn;10&#963; to cap such sensor glitches. WADI is downsampled 10&times; on both streams, with the train and
+test horizons matched.</li>
+<li><strong>HAI</strong> [<span class="rev-highlight"><a href="#r-hai">40</a></span>], a hardware-in-the-loop industrial control system
+testbed (HAI 20.07), 59 channels, a multi-process plant. No clipping (its large excursions are real attack
+signal).</li>
+<li><strong>SWaT</strong> [<span class="rev-highlight"><a href="#r-swat">39</a></span>], the Secure Water Treatment testbed from iTrust, a
+51-channel six-stage water-treatment plant with real executed attacks. No clipping. SWaT is downsampled 10&times;
+on both streams, with the train and test horizons matched. Because SWaT&rsquo;s attack record is a continuous attack
+period, the first 2% of the normal record (plant warm-up) is dropped and the last 20% of the normal record is held
+out to supply the normal windows of the test set; all calibration still uses train-normal only.</li>
+</ul>
+
+<p>Temporal 10&times; downsampling of WADI and SWaT (both natively 1&nbsp;Hz over many days) is standard practice on
+these benchmarks: it matches the 10-second median protocol of GDN [<span class="rev-highlight"><a href="#r-gdn">31</a></span>] and lies within the
+downsampling range USAD [<span class="rev-highlight"><a href="#r-usad">29</a></span>] reports as leaving detection performance largely unchanged. HAI is
+used at native resolution.</p>
+
+<h3>5.2&nbsp;&nbsp;Windows and features</h3>
+<p>Each raw channel is standardized to zero mean and unit variance using train-normal statistics only (A8). We
+then slide a fixed window of length <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>W</mi><mo>=</mo><mn>60</mn></mrow></math> with stride 30 across the standardized stream. Each window is summarized by
+six per-channel statistics: mean (level), standard deviation (variability), minimum, maximum, first-to-last
+difference (net trend), and range, concatenated into one flat feature vector, so a <math
+xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>C</mi></math>-channel window becomes a <math
+xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>6</mn><mi>C</mi></mrow></math>-dimensional
+input. A window is labeled anomalous if more than 5% of its timesteps are attack timesteps. Model inputs are
+additionally per-feature standardized on train-normal before the encoder. The window size and stride are unified
+across all three datasets. The reported model uses these static per-channel features; explicit multiscale
+temporal features (slope, velocity, spectral band power) motivated by A9 are left to future work (&sect;7).</p>
+
+<p><strong>Model configuration.</strong> The VaDE uses <math xmlns="http://www.w3.org/1998/Math/MathML"
+display="inline"><mi>K</mi></math> mixture components and latent dimension set per dataset (WADI 20 and 10, HAI 40
+and 16, SWaT 40 and 16); the density head is a diagonal mixture of 80 components (capped at one tenth of the
+train-window count), the residual head is reduced to 30 dimensions, and windows are length 60 with stride 30. The
+basin head uses <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>R</mi><mo>=</mo><mn>16</mn></mrow></math>
+perturbations at noise scale 0.5&#963;, dead-zone <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#948;</mi><mo>=</mo><mn>0.15</mn></mrow></math>
+and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#955;</mi><mn>0</mn></msub><mo>=</mo><mn>2.5</mn></mrow></math>;
+since the ambiguous-window fraction is &#8776;&nbsp;0.05 on all three datasets, below <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>&#948;</mi></math>, its scale is zero throughout.
+Correlation communities are agglomerative-clustering (average-linkage) subtrees of size 3 to 25 on the train-normal
+channel-correlation graph, yielding 45, 28, and 26 communities on WADI, HAI, and SWaT. All settings are shared
+across datasets except the per-dataset mixture size and latent dimension.</p>
+
+<h3>5.3&nbsp;&nbsp;Difficulty stratification</h3>
+<p>A trivial detector scores each window by the maximum absolute standardized per-channel window mean, <math
+xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><munder><mi>max</mi><mi>ch</mi></munder><mo>&#8739;</mo><mi>z</mi><mo>&#8739;</mo></mrow></math> (here <em>z</em> is a standardized per-channel value, not the
+latent <em>z</em> of &sect;4.3), the simplest &ldquo;is any channel out of its normal
+range&rdquo; rule. An anomaly window is labeled <strong>easy</strong> if this trivial score exceeds the 99th
+percentile of train-normal, and <strong>difficult</strong> otherwise. Difficult windows are those this max-mean
+rule does not separate; &sect;6 confirms the HAI advantage persists under a stronger split that also removes
+windows flagged by any of the six per-channel statistics, so difficulty is not defined by a single hand-picked
+statistic. We report all methods on three subsets:
+<strong>Easy</strong>, <strong>Difficult</strong>, and <strong>All</strong>. In every subset the positive class is
+that subset&rsquo;s anomaly windows and the negative class is the full set of normal windows, so the subsets differ
+only in which anomalies they include. The difficult column is the discriminative one.</p>
+
+<h3>5.4&nbsp;&nbsp;Comparable metrics</h3>
+<p>We report two raw, point-wise metrics (each scored window is one evaluation point, with no point adjustment) and are explicit about their comparability across subsets.</p>
+<ul>
+<li><strong>AUROC</strong> (the probability that a randomly chosen anomaly window outranks a randomly chosen normal
+window, 0.5 being chance) is prevalence-independent, hence directly comparable across Easy/Difficult/All, and
+requires no threshold. It is our primary cross-subset metric, reported as a five-seed mean for the learned
+detectors.</li>
+<li><strong>F1</strong> is the best raw point-wise F1 over score thresholds (an oracle, field-standard threshold,
+disclosed plainly), computed per seed and averaged over the five seeds for the learned detectors. Because the subsets differ in positive count it is not directly comparable across them and
+serves as a secondary, within-subset figure.</li>
+</ul>
+<p>All model fitting and all calibration (density head, nearest-component reference, residual precisions and
+gate, basin scale and reference, and every z-normalization) use train-normal data only. Test data never enters
+training or calibration. AUROC is leak-free; only the F1 threshold uses the test-swept oracle, which we
+flag.</p>
+
+<h3>5.5&nbsp;&nbsp;Baselines and SOTA re-computation</h3>
+<p>Classical baselines are Isolation Forest [<span class="rev-highlight"><a href="#r-if">27</a></span>] and a deep autoencoder, both on the same
+window features, together with a linear cross-channel baseline (LinRes): a leave-one-channel-out linear regression
+that predicts each channel's window summary from the others, with discrete actuator channels one-hot encoded,
+scored by its residual. For modern SOTA we re-run USAD [<span class="rev-highlight"><a href="#r-usad">29</a></span>] and TranAD
+[<span class="rev-highlight"><a href="#r-tranad">30</a></span>] through the TranAD evaluation harness over five seeds and score them with the
+<em>same raw point-wise metrics</em>, aggregating their per-timestep scores onto our window grid. For HAI, the SOTA
+harness produces scores at a downsampled rate, so we map them to our full-resolution window grid by an integer-ratio
+correction; our detector and all local baselines use HAI at native resolution. We also re-run the graph-based GDN [<span class="rev-highlight"><a href="#r-gdn">31</a></span>]
+under the identical protocol; its per-window graph training completed within our compute budget only on SWaT,
+where it matches the other deep detectors (difficult-subset AUROC 0.871, below ours).
+We do <em>not</em> apply point adjustment to any method. This is deliberate: point adjustment inflates F1 so
+severely that a random score outscores every deep model (&sect;2), so a fair comparison must use raw metrics for
+all methods, including the published SOTA. We also report a diagnostic <em>trivial</em> baseline, the
+maximum absolute standardized per-channel window mean, the same score that defines the difficulty split (&sect;5.3),
+whose behavior by construction is strong on Easy and near chance on Difficult.</p>
+
+<h2>6&nbsp;&nbsp;Results</h2>
+
+<p>Table 3 reports AUROC and best raw point-wise F1 for every method on the three datasets and the three
+subsets. The headline model is <strong>LatAD (regime-community)</strong> (&sect;4.4). Bold marks the best AUROC within a
+column across all methods; AUROC for the learned detectors is reported as mean&plusmn;standard deviation over
+five seeds.</p>
+
+<div class="tblwrap">
+<table>
+<caption><strong>Table 3.</strong> Per-dataset, per-subset results [AUROC, F1] on three real CPS attack benchmarks
+(higher is better; AUROC is leak-free, F1 is the best raw point-wise F1 over thresholds). Learned detectors report
+AUROC as mean&plusmn;standard deviation over five seeds (the standard deviation is omitted where it rounds to
+0.000); GDN, whose per-window graph training completed only on SWaT
+within our compute budget, is single-run on SWaT. Bold marks the best AUROC in each dataset&times;subset column
+(ties bolded jointly). <strong>LatAD (regime-community)</strong> is the headline detector (&sect;4.4);
+<strong>LatAD (global density)</strong> is its single-latent base ablation. Baselines are defined in &sect;5.5.</caption>
+<thead>
+<tr>
+  <th class="l" rowspan="2">Method</th><th rowspan="2">Group</th>
+  <th colspan="2">All</th><th colspan="2">Easy</th><th colspan="2">Difficult</th>
+</tr>
+<tr>
+  <th>AUROC</th><th>F1</th>
+  <th>AUROC</th><th>F1</th>
+  <th>AUROC</th><th>F1</th>
+</tr>
+</thead>
+<tbody>
+<tr><td class="l" colspan="8" style="background:#eef3f8;text-align:left"><b>WADI</b> &nbsp;<span class="small">(anom 56 = 37 easy + 19 difficult)</span></td></tr>
+<tr><td class="l">trivial max|z|</td><td>Baseline</td><td>0.558</td><td>0.000</td><td>0.687</td><td>0.000</td><td>0.307</td><td>0.000</td></tr>
+<tr><td class="l">Isolation Forest</td><td>Baseline</td><td>0.726&plusmn;0.007</td><td>0.378</td><td>0.751&plusmn;0.010</td><td>0.378</td><td>0.677&plusmn;0.011</td><td>0.150</td></tr>
+<tr><td class="l">AutoEncoder</td><td>Baseline</td><td>0.743&plusmn;0.001</td><td>0.611</td><td>0.907&plusmn;0.002</td><td>0.724</td><td>0.425&plusmn;0.005</td><td>0.223</td></tr>
+<tr><td class="l">LinRes (one-hot)</td><td>Baseline</td><td>0.595</td><td>0.214</td><td>0.699</td><td>0.220</td><td>0.392</td><td>0.182</td></tr>
+<tr><td class="l">USAD</td><td>SOTA</td><td>0.700&plusmn;0.001</td><td>0.519</td><td>0.903&plusmn;0.002</td><td>0.652</td><td>0.305&plusmn;0.004</td><td>0.030</td></tr>
+<tr><td class="l">TranAD</td><td>SOTA</td><td>0.717&plusmn;0.003</td><td>0.572</td><td class="win">0.918&plusmn;0.002</td><td>0.717</td><td>0.325&plusmn;0.004</td><td>0.026</td></tr>
+<tr><td class="l">LatAD (global density)</td><td>Ours</td><td>0.792&plusmn;0.012</td><td>0.565</td><td>0.845&plusmn;0.007</td><td>0.680</td><td>0.690&plusmn;0.027</td><td>0.222</td></tr>
+<tr><td class="l"><b>LatAD (regime-community)</b></td><td>Ours</td><td class="win">0.862&plusmn;0.017</td><td>0.692</td><td>0.896&plusmn;0.012</td><td>0.762</td><td class="win">0.796&plusmn;0.041</td><td>0.367</td></tr>
+
+<tr><td class="l" colspan="8" style="background:#eef3f8;text-align:left"><b>HAI</b> &nbsp;<span class="small">(anom 652 = 485 easy + 167 difficult)</span></td></tr>
+<tr><td class="l">trivial max|z|</td><td>Baseline</td><td>0.806</td><td>0.666</td><td>0.966</td><td>0.800</td><td>0.340</td><td>0.000</td></tr>
+<tr><td class="l">Isolation Forest</td><td>Baseline</td><td>0.844&plusmn;0.011</td><td>0.418</td><td>0.919&plusmn;0.016</td><td>0.468</td><td>0.627&plusmn;0.005</td><td>0.059</td></tr>
+<tr><td class="l">AutoEncoder</td><td>Baseline</td><td>0.923&plusmn;0.001</td><td>0.733</td><td>0.980</td><td>0.803</td><td>0.757&plusmn;0.003</td><td>0.340</td></tr>
+<tr><td class="l">LinRes (one-hot)</td><td>Baseline</td><td>0.779</td><td>0.499</td><td>0.846</td><td>0.605</td><td>0.586</td><td>0.121</td></tr>
+<tr><td class="l">USAD</td><td>SOTA</td><td>0.843&plusmn;0.005</td><td>0.691</td><td>0.969&plusmn;0.001</td><td>0.823</td><td>0.477&plusmn;0.018</td><td>0.018</td></tr>
+<tr><td class="l">TranAD</td><td>SOTA</td><td>0.834&plusmn;0.002</td><td>0.692</td><td>0.968</td><td>0.824</td><td>0.444&plusmn;0.010</td><td>0.015</td></tr>
+<tr><td class="l">LatAD (global density)</td><td>Ours</td><td>0.933&plusmn;0.007</td><td>0.714</td><td>0.975&plusmn;0.004</td><td>0.780</td><td>0.811&plusmn;0.016</td><td>0.365</td></tr>
+<tr><td class="l"><b>LatAD (regime-community)</b></td><td>Ours</td><td class="win">0.949&plusmn;0.004</td><td>0.756</td><td class="win">0.983&plusmn;0.002</td><td>0.822</td><td class="win">0.849&plusmn;0.018</td><td>0.364</td></tr>
+
+<tr><td class="l" colspan="8" style="background:#eef3f8;text-align:left"><b>SWaT</b> &nbsp;<span class="small">(anom 182 = 144 easy + 38 difficult)</span></td></tr>
+<tr><td class="l">trivial max|z|</td><td>Baseline</td><td>0.988</td><td>0.972</td><td class="win">1.000</td><td>1.000</td><td>0.943</td><td>0.848</td></tr>
+<tr><td class="l">Isolation Forest</td><td>Baseline</td><td>0.959&plusmn;0.003</td><td>0.914</td><td>0.987&plusmn;0.002</td><td>0.960</td><td>0.853&plusmn;0.011</td><td>0.659</td></tr>
+<tr><td class="l">AutoEncoder</td><td>Baseline</td><td>0.987&plusmn;0.001</td><td>0.933</td><td class="win">1.000</td><td>0.997</td><td>0.939&plusmn;0.006</td><td>0.648</td></tr>
+<tr><td class="l">LinRes (one-hot)</td><td>Baseline</td><td>0.991</td><td>0.948</td><td class="win">1.000</td><td>0.997</td><td>0.959</td><td>0.710</td></tr>
+<tr><td class="l">USAD</td><td>SOTA</td><td>0.972&plusmn;0.001</td><td>0.948</td><td class="win">1.000</td><td>0.997</td><td>0.867&plusmn;0.005</td><td>0.718</td></tr>
+<tr><td class="l">TranAD</td><td>SOTA</td><td>0.972</td><td>0.950</td><td class="win">1.000</td><td>0.997</td><td>0.867&plusmn;0.001</td><td>0.737</td></tr>
+<tr><td class="l">GDN</td><td>SOTA</td><td>0.973</td><td>0.946</td><td class="win">1.000</td><td>0.990</td><td>0.871</td><td>0.698</td></tr>
+<tr><td class="l">LatAD (global density)</td><td>Ours</td><td>0.991&plusmn;0.002</td><td>0.950</td><td>0.999&plusmn;0.002</td><td>0.974</td><td>0.960&plusmn;0.006</td><td>0.761</td></tr>
+<tr><td class="l"><b>LatAD (regime-community)</b></td><td>Ours</td><td class="win">0.993&plusmn;0.001</td><td>0.966</td><td class="win">1.000</td><td>0.985</td><td class="win">0.969&plusmn;0.006</td><td>0.855</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>Overall detection.</strong> LatAD attains the best All-subset AUROC of any method on every dataset:
+WADI 0.862, HAI 0.949 and SWaT 0.993, clearing every baseline and both deep detectors on all three, including the
+strong classical baselines at the SWaT ceiling. The gain over the single-latent base (LatAD global density, 0.792 /
+0.933 / 0.991) comes from factorizing the density over regime communities (&sect;4.4), and is largest on the
+difficult subset, where it matters most.</p>
+
+<p><strong>Difficult, joint-structure faults.</strong> This is where the design earns its keep (Figure 1). The clearest
+demonstration is HAI: LatAD reaches 0.849 on the difficult subset (167 windows spanning 26 attack episodes), well
+above the AutoEncoder (0.757) and far above the deep detectors USAD (0.477) and TranAD (0.444), which sit near
+chance. The margin over the AutoEncoder is statistically significant: an episode-block bootstrap of the paired
+difference (resampling attack episodes and normal windows, averaged over five seeds) gives +0.092 with a 95%
+confidence interval of [0.046, 0.160] and P(difference&nbsp;&#8804;&nbsp;0)&nbsp;&#8776;&nbsp;0. On WADI the deep
+detectors collapse to 0.30&ndash;0.33 while LatAD reaches 0.796, a lead over Isolation Forest (0.677) that the same
+bootstrap places near significance (+0.12, 95% CI [&#8722;0.005, 0.257], P&nbsp;&#8776;&nbsp;0.03); the
+regime-community factorization is what turns the earlier single-latent tie (0.690) into this lead. On SWaT the
+difficult subset is only mildly difficult (the trivial rule already scores 0.943), so every method is strong (LatAD
+0.969, the linear baseline 0.959) and its 38 windows come from a single attack episode, making SWaT a ceiling case
+rather than a discriminative test. The advantage over the deep detectors is largest exactly where the difficult
+anomalies are reconstructable yet improbable (WADI, HAI), and vanishes on SWaT, whose difficult anomalies are large
+multivariate deviations every method detects.</p>
+
+<p><strong>Trivially separable anomalies.</strong> On the easy subset every method is strong and the ranking is
+uninformative, by construction: the easy subset is exactly the anomalies a univariate max-mean rule already flags,
+and the trivial rule itself tops the easy column on SWaT (1.000).</p>
+
+<p><strong>Validity of the difficulty split.</strong> The trivial max|z| rule is strong on Easy by construction
+(SWaT 1.000, HAI 0.966, WADI 0.687) and drops to near chance on the difficult subset of the two benchmarks that
+carry genuine joint-structure faults (WADI 0.307, HAI 0.340): the difficult subset is precisely the anomalies
+this univariate max-mean rule cannot see, so a method that scores well there is detecting joint structure the rule
+misses. On SWaT the rule stays strong on the difficult subset (0.943), which is why SWaT is a strong overall
+benchmark but not a discriminative test of joint-structure detection.</p>
+
+<p><strong>Robustness to a stronger difficulty definition.</strong> The canonical split flags a window easy only
+when the maximum absolute standardized per-channel <em>mean</em> exceeds its 99th train-normal percentile, so a
+window could in principle be &ldquo;difficult&rdquo; yet be separable by a different univariate statistic. We
+therefore repeat the analysis with a stronger split that labels a window easy if the maximum over <em>all six</em>
+standardized per-channel statistics (mean, standard deviation, minimum, maximum, first-to-last difference, and
+range) exceeds its 99th train-normal percentile, removing any window a single univariate statistic separates. On
+the resulting HAI difficult subset (110 windows) the detector still leads every baseline (0.675, versus 0.622 for
+the linear cross-channel baseline, 0.604 for the AutoEncoder, and 0.528 for Isolation Forest), so its HAI
+advantage is not an artifact of the particular statistic that defines difficulty. WADI remains a tie (Isolation
+Forest 0.710, ours 0.697) and SWaT remains a ceiling case (trivial rule 0.929), consistent with the canonical
+split.</p>
+
+<p><strong>The double-hard subset.</strong> As a secondary robustness stress test we intersect the failures of the
+two simplest baseline families: a window is <em>double-hard</em> if it is an anomaly separated by <em>neither</em>
+the univariate max|z| rule <em>nor</em> the one-hot linear cross-channel predictor (LinRes), with both
+99th-percentile thresholds fixed on train-normal only and the detector under test playing no role in constructing
+the subset. Table 4 reports its per-method AUROC: LatAD attains the highest mean on all three datasets (WADI 0.728,
+HAI 0.819, SWaT 0.936). Statistical superiority is established on HAI, where 19 attack episodes support an
+episode-block bootstrap and the paired difference over the AutoEncoder is +0.089 (95% CI [0.020, 0.194]); the WADI
+subset rests on five episodes and is a numerical lead over Isolation Forest (0.728 vs 0.599, P&nbsp;&#8776;&nbsp;0.05),
+and the 18 SWaT windows come from a single attack episode, so no episode-level generalization is claimed there. The
+subset removes ceiling signal rather than selecting a favorable slice: the trivial-rule AUROC falls from 0.943 on
+the difficult subset to 0.880 here, and the AutoEncoder collapses on WADI (0.336). By construction the two baselines
+that define the subset fail on it and are shown for completeness, not as an unbiased comparison.</p>
+
+<div class="tblwrap">
+<table>
+<caption><strong>Table 4.</strong> Double-hard subset AUROC (five-seed mean&plusmn;standard deviation for the
+learned detectors). The double-hard subset keeps only anomaly windows separated by neither the univariate max|z|
+rule nor the linear cross-channel predictor, both thresholded on train-normal at the 99th percentile; it is a
+stress test independent of the detector under test (which plays no role in constructing it), not an unbiased
+comparison against those two filters. Windows / distinct attack
+episodes: WADI 11&nbsp;/&nbsp;5, HAI 84&nbsp;/&nbsp;19, SWaT 18&nbsp;/&nbsp;1. The detector has the highest mean
+AUROC on all three datasets; the difference is statistically supported only on HAI (episode-block bootstrap), a
+numerical lead on WADI (five episodes), and a single-episode result on SWaT.</caption>
+<thead><tr><th class="l">Method</th><th>WADI</th><th>HAI</th><th>SWaT</th></tr></thead>
+<tbody>
+<tr><td class="l">trivial max|z|</td><td>0.283</td><td>0.349</td><td>0.880</td></tr>
+<tr><td class="l">Isolation Forest</td><td>0.599&plusmn;0.013</td><td>0.635&plusmn;0.012</td><td>0.789&plusmn;0.011</td></tr>
+<tr><td class="l">AutoEncoder</td><td>0.336&plusmn;0.007</td><td>0.730&plusmn;0.003</td><td>0.890&plusmn;0.010</td></tr>
+<tr><td class="l">LinRes (one-hot)</td><td>0.251</td><td>0.465</td><td>0.914</td></tr>
+<tr><td class="l">USAD</td><td>0.258&plusmn;0.007</td><td>0.442&plusmn;0.021</td><td>0.780&plusmn;0.006</td></tr>
+<tr><td class="l">TranAD</td><td>0.272&plusmn;0.002</td><td>0.418&plusmn;0.009</td><td>0.777&plusmn;0.003</td></tr>
+<tr><td class="l">LatAD (global density)</td><td>0.601&plusmn;0.027</td><td>0.806&plusmn;0.019</td><td>0.921&plusmn;0.012</td></tr>
+<tr><td class="l"><b>LatAD (regime-community)</b></td><td class="win">0.728&plusmn;0.077</td><td class="win">0.819&plusmn;0.020</td><td class="win">0.936&plusmn;0.013</td></tr>
+</tbody></table>
+</div>
+
+<p><strong>Deep SOTA under raw metrics.</strong> Re-computed with raw point-wise metrics, the deep detectors USAD
+and TranAD collapse on the difficult subset of the two joint-structure benchmarks: over five seeds they fall to
+0.477 and 0.444 on HAI and to 0.305 and 0.325 on WADI, near or below chance and far below our 0.796&ndash;0.849,
+even while they remain strong on Easy (0.90&ndash;0.97). This is the concrete face of the &ldquo;illusion of success&rdquo;:
+models that look strong under point-adjusted F1 have little difficult-fault signal once the metric is raw.</p>
+
+<figure>
+<svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica Neue,Arial,sans-serif" font-size="12">
+  <text x="360" y="20" text-anchor="middle" font-size="13" font-weight="bold">Difficult-subset AUROC by method (higher is better)</text>
+  <line x1="70" y1="250" x2="700" y2="250" stroke="#888"/>
+  <line x1="70" y1="60" x2="70" y2="250" stroke="#888"/>
+  <g fill="#666" text-anchor="end">
+    <text x="64" y="254">0.3</text><text x="64" y="227">0.4</text><text x="64" y="200">0.5</text><text x="64" y="173">0.6</text><text x="64" y="145">0.7</text><text x="64" y="118">0.8</text><text x="64" y="91">0.9</text><text x="64" y="64">1.0</text>
+  </g>
+  <g stroke="#eee"><line x1="70" y1="250" x2="700" y2="250"/><line x1="70" y1="223" x2="700" y2="223"/><line x1="70" y1="196" x2="700" y2="196"/><line x1="70" y1="169" x2="700" y2="169"/><line x1="70" y1="141" x2="700" y2="141"/><line x1="70" y1="114" x2="700" y2="114"/><line x1="70" y1="87" x2="700" y2="87"/></g>
+  <g>
+    <text x="165" y="270" text-anchor="middle" font-weight="bold">WADI</text>
+    <rect x="110" y="147.7" width="16" height="102.3" fill="#9fb8cf"/>
+    <rect x="129" y="216.1" width="16" height="33.9" fill="#c9c9c9"/>
+    <rect x="148" y="225.0" width="16" height="25.0" fill="#8a9a5b"/>
+    <rect x="167" y="248.6" width="16" height="1.4" fill="#e3b7a0"/>
+    <rect x="186" y="243.2" width="16" height="6.8" fill="#d59a7a"/>
+    <rect x="205" y="115.4" width="16" height="134.6" fill="#1f4e79"/>
+  </g>
+  <g>
+    <text x="375" y="270" text-anchor="middle" font-weight="bold">HAI</text>
+    <rect x="320" y="161.2" width="16" height="88.8" fill="#9fb8cf"/>
+    <rect x="339" y="126.0" width="16" height="124.0" fill="#c9c9c9"/>
+    <rect x="358" y="172.4" width="16" height="77.6" fill="#8a9a5b"/>
+    <rect x="377" y="202.0" width="16" height="48.0" fill="#e3b7a0"/>
+    <rect x="396" y="210.9" width="16" height="39.1" fill="#d59a7a"/>
+    <rect x="415" y="101.0" width="16" height="149.0" fill="#1f4e79"/>
+  </g>
+  <g>
+    <text x="585" y="270" text-anchor="middle" font-weight="bold">SWaT</text>
+    <rect x="530" y="99.9" width="16" height="150.1" fill="#9fb8cf"/>
+    <rect x="549" y="76.6" width="16" height="173.4" fill="#c9c9c9"/>
+    <rect x="568" y="71.1" width="16" height="178.9" fill="#8a9a5b"/>
+    <rect x="587" y="96.1" width="16" height="153.9" fill="#e3b7a0"/>
+    <rect x="606" y="96.1" width="16" height="153.9" fill="#d59a7a"/>
+    <rect x="625" y="68.4" width="16" height="181.6" fill="#1f4e79"/>
+  </g>
+  <g stroke="#333" stroke-width="1">
+    <line x1="118" y1="144.7" x2="118" y2="150.7"/><line x1="114" y1="144.7" x2="122" y2="144.7"/><line x1="114" y1="150.7" x2="122" y2="150.7"/>
+    <line x1="137" y1="214.7" x2="137" y2="217.4"/><line x1="133" y1="214.7" x2="141" y2="214.7"/><line x1="133" y1="217.4" x2="141" y2="217.4"/>
+    <line x1="175" y1="247.6" x2="175" y2="249.7"/><line x1="171" y1="247.6" x2="179" y2="247.6"/><line x1="171" y1="249.7" x2="179" y2="249.7"/>
+    <line x1="194" y1="242.1" x2="194" y2="244.3"/><line x1="190" y1="242.1" x2="198" y2="242.1"/><line x1="190" y1="244.3" x2="198" y2="244.3"/>
+    <line x1="213" y1="104.2" x2="213" y2="126.5"/><line x1="209" y1="104.2" x2="217" y2="104.2"/><line x1="209" y1="126.5" x2="217" y2="126.5"/>
+    <line x1="328" y1="159.9" x2="328" y2="162.6"/><line x1="324" y1="159.9" x2="332" y2="159.9"/><line x1="324" y1="162.6" x2="332" y2="162.6"/>
+    <line x1="347" y1="125.1" x2="347" y2="126.8"/><line x1="343" y1="125.1" x2="351" y2="125.1"/><line x1="343" y1="126.8" x2="351" y2="126.8"/>
+    <line x1="385" y1="197.1" x2="385" y2="206.8"/><line x1="381" y1="197.1" x2="389" y2="197.1"/><line x1="381" y1="206.8" x2="389" y2="206.8"/>
+    <line x1="404" y1="208.2" x2="404" y2="213.6"/><line x1="400" y1="208.2" x2="408" y2="208.2"/><line x1="400" y1="213.6" x2="408" y2="213.6"/>
+    <line x1="423" y1="96.1" x2="423" y2="105.9"/><line x1="419" y1="96.1" x2="427" y2="96.1"/><line x1="419" y1="105.9" x2="427" y2="105.9"/>
+    <line x1="538" y1="96.9" x2="538" y2="102.9"/><line x1="534" y1="96.9" x2="542" y2="96.9"/><line x1="534" y1="102.9" x2="542" y2="102.9"/>
+    <line x1="557" y1="74.9" x2="557" y2="78.2"/><line x1="553" y1="74.9" x2="561" y2="74.9"/><line x1="553" y1="78.2" x2="561" y2="78.2"/>
+    <line x1="595" y1="94.7" x2="595" y2="97.5"/><line x1="591" y1="94.7" x2="599" y2="94.7"/><line x1="591" y1="97.5" x2="599" y2="97.5"/>
+    <line x1="614" y1="95.8" x2="614" y2="96.4"/><line x1="610" y1="95.8" x2="618" y2="95.8"/><line x1="610" y1="96.4" x2="618" y2="96.4"/>
+    <line x1="633" y1="66.8" x2="633" y2="70.0"/><line x1="629" y1="66.8" x2="637" y2="66.8"/><line x1="629" y1="70.0" x2="637" y2="70.0"/>
+  </g>
+  <g font-size="11">
+    <rect x="80" y="24" width="12" height="12" fill="#9fb8cf"/><text x="96" y="33">Isolation Forest</text>
+    <rect x="240" y="24" width="12" height="12" fill="#c9c9c9"/><text x="256" y="33">AutoEncoder</text>
+    <rect x="380" y="24" width="12" height="12" fill="#8a9a5b"/><text x="396" y="33">LinRes (one-hot)</text>
+    <rect x="80" y="39" width="12" height="12" fill="#e3b7a0"/><text x="96" y="48">USAD</text>
+    <rect x="240" y="39" width="12" height="12" fill="#d59a7a"/><text x="256" y="48">TranAD</text>
+    <rect x="380" y="39" width="12" height="12" fill="#1f4e79"/><text x="396" y="48">LatAD (ours)</text>
+  </g>
+</svg>
+<figcaption><strong>Figure 1.</strong> Difficult-subset AUROC by method (five-seed mean; whiskers show &plusmn;1 SD over seeds for the multi-seed detectors: Isolation Forest, AutoEncoder, USAD, TranAD, and LatAD). LatAD leads on all three datasets, significantly on HAI (0.849, a +0.09 margin over the AutoEncoder, 95% CI [0.046, 0.160]) and near-significantly on WADI (0.796 vs Isolation Forest 0.677); the deep detectors USAD and TranAD fall to 0.30&ndash;0.48 on WADI and HAI, whose difficult faults break the joint structure of normal operation, and rise only on SWaT, whose difficult faults are large deviations every method detects.</figcaption>
+</figure>
+
+<h2>7&nbsp;&nbsp;Discussion</h2>
+
+<p><strong>What the results show.</strong> Under a fair protocol (raw point-wise metrics, difficulty
+stratification, and train-normal-only calibration) on three real CPS attack benchmarks, LatAD <strong>attains the
+best overall AUROC on every dataset and leads the difficult subset of all three over five seeds</strong>. The
+clearest demonstration is HAI, whose difficult faults break joint structure: LatAD reaches 0.849, a statistically
+significant margin over the next-best baseline (paired episode-bootstrap 95% CI [0.046, 0.160]), while the deep
+detectors USAD and TranAD fall near chance (0.44&ndash;0.48); on WADI the regime-community factorization turns a
+prior single-latent tie into a near-significant lead (0.796, P&nbsp;&#8776;&nbsp;0.03), and SWaT is a ceiling.
+Modeling normal as a jointly learned latent plus explicit regime clustering, scored by probability and factorized
+over the plant&rsquo;s subsystems, is what delivers the advantage.</p>
+
+<p><strong>Why reconstruction fails and density wins.</strong> The deep detectors USAD and TranAD score by
+reconstruction, and reconstruction measures <em>reachability</em> (can the decoder reproduce this vector?), not
+<em>probability</em> (is this vector likely under normal?). On multimodal normal data the two diverge: a flexible
+decoder trained to reproduce several regimes interpolates between them, so an improbable between-regime or
+in-regime-tail combination sits inside the decoder's reachable range and reconstructs with low error. We verify this
+directly on WADI with a single-model diagnostic probe (one seed). The difficult anomalies stay on the normal
+manifold (PCA off-subspace residual AUROC 0.43) and reconstruct as well as normal (autoencoder reconstruction-error
+AUROC 0.43), yet the latent density flags them (0.74). A
+controlled probe makes the mechanism explicit: 1000 synthetic improbable combinations, each formed by averaging two
+normal windows from different regimes, reconstruct even better than real normal (reconstruction AUROC 0.08 against
+train-normal windows, WADI, one seed), while the latent density separates them cleanly (0.72). Scoring by density in the clustered latent replaces reachability
+with probability, which is exactly what reconstruction cannot see. This is why the base score omits reconstruction
+and scores in the jointly learned latent, with a high-resolution density head for non-Gaussian fringes (A4) and a
+rare-regime-safe nearest-component likelihood (A6); reconstruction is added back only through the optional,
+auto-gated residual head where it demonstrably helps (&sect;4.3&nbsp;iii).</p>
+
+<p><strong>Why local density beats global density.</strong> The reconstructable-but-improbable argument explains why
+we score density rather than reconstruction; a second mechanism explains why we score it per subsystem. A fault
+confined to one correlated channel group is, in the full-dimensional latent, a small perturbation of a mostly-normal
+state, so its surprise is averaged down by the many communities that stay normal, and the global density under-weights
+exactly the local violations that matter. Estimating density inside each community removes that dilution, and
+combining the per-community surprises by a sparsity-adaptive statistic recovers a signal carried by a few communities
+that a global sum would wash out. This is the mechanism behind the WADI gain (Table A1): the coordinated drift of a
+small analyzer group is improbable within its own subsystem yet unremarkable in the whole-plant density, so
+factorization turns the single-latent tie into a lead.</p>
+
+<div class="tblwrap">
+<table>
+<caption><strong>Table 5.</strong> Difficult-subset AUROC by score head, five-seed mean&plusmn;standard deviation
+on all three datasets (an independent five-seed run). <em>recon</em> is the whitened reconstruction residual (the term the base score omits); <em>base</em>
+is density+nearest; the final row adds the auto-gated residual head, which is by definition the single-latent
+<em>LatAD (global density)</em> configuration and reproduces its Table 3 row within seed variation; its per-community
+application (&sect;4.4) gives the headline detector. The basin head (iv) is inactive (&#955;&nbsp;=&nbsp;0) on all
+three datasets and is omitted.</caption>
+<thead><tr><th class="l">Score head</th><th>WADI</th><th>HAI</th><th>SWaT</th></tr></thead>
+<tbody>
+<tr><td class="l">reconstruction residual (dropped term)</td><td>0.475&plusmn;0.004</td><td>0.695&plusmn;0.004</td><td>0.965&plusmn;0.002</td></tr>
+<tr><td class="l">latent density</td><td>0.694&plusmn;0.027</td><td>0.802&plusmn;0.011</td><td>0.952&plusmn;0.008</td></tr>
+<tr><td class="l">nearest-component NLL</td><td>0.665&plusmn;0.033</td><td>0.797&plusmn;0.008</td><td>0.922&plusmn;0.010</td></tr>
+<tr><td class="l">base (density + nearest)</td><td>0.685&plusmn;0.030</td><td>0.801&plusmn;0.010</td><td>0.947&plusmn;0.007</td></tr>
+<tr><td class="l"><b>base + resid (auto) = LatAD (global density)</b></td><td>0.685&plusmn;0.030</td><td>0.820&plusmn;0.010</td><td>0.960&plusmn;0.002</td></tr>
+</tbody></table>
+</div>
+
+<p>Table 5 decomposes the score into its heads across five seeds and all three datasets. On WADI the reconstruction
+residual alone is near chance (0.475) while the latent density carries the signal (0.694); on HAI reconstruction is
+informative but the weakest head (0.695) and the density head dominates (0.802). The residual head, where the gate
+turns it on, lifts the base score exactly where reconstruction is informative (HAI 0.801&rarr;0.820, SWaT
+0.947&rarr;0.960) and stays off on WADI. On SWaT reconstruction is in fact the strongest single head (0.965),
+consistent with SWaT's difficult faults being large deviations that reconstruction catches, which is why the gate
+keeps the residual head on there and why SWaT is a ceiling rather than a joint-structure test. The decomposition
+supports the mechanism at the head level: the latent density is what carries the joint-structure benchmarks, and
+reconstruction contributes only where it demonstrably generalizes.</p>
+
+<p><strong>Auto-gating adapts one architecture to three datasets.</strong> The winning signal is
+dataset-dependent, so rather than hand-select we gate two optional heads by purely train-normal signals: a
+responsibility-weighted whitened residual (gated by held-out-normal generalization; active on HAI and SWaT) and a
+basin-agreement head (gated by the ambiguous-normal ratio; a no-op on all three benchmarks here). The single
+global-density configuration then adapts itself: the residual head activates on HAI and SWaT, where the
+fault leaves a whitened-residual signal, and stays off on WADI, whose difficult faults are pure low-density
+pockets in the latent.</p>
+
+<p><strong>The residual frontier on WADI.</strong> A minority of WADI difficult windows are attack-onset/offset
+edges whose fault content is near-absent: 2&ndash;3&#963; dips on a few correlated channels, sitting inside the
+normal tail, where normal CPS operation is itself noisy. None of the evaluated snapshot detectors, ours or the deep baselines,
+separates these at a low false-alarm budget; they are an intrinsic property of the data rather than of any one
+detector. Reaching them would require information beyond the instantaneous window, such as a physics-informed
+process residual, which we leave to future work.</p>
+
+<p><strong>Trajectory assumptions A9&ndash;A10.</strong> The reported model is window-only and leverages the
+instantaneous-structure assumptions A1&ndash;A8. Extending it with multiscale-temporal features (A9) and
+history-conditioned, path-dependent scoring (A10) is the natural next step; the public benchmarks used here are
+snapshot-detectable, so exercising the trajectory assumptions requires data that contains a history-dependent
+fault.</p>
+
+<p><strong>Alternative realizations and validation.</strong> The MIIM assumptions fix the structure to model
+rather than the estimator, so the detector of &sect;4 is one point in a larger design space. The regime-community
+realization (&sect;4.4) exercises the factorization and sparsity-adaptive-combination routes; further routes remain
+open within the same assumption set: non-parametric or normalizing-flow densities per community, alternative
+unsupervised partitioners, and a deeper multiscale community hierarchy than the current nested-subtree construction.
+Because the community construction and the cohesion-weighted Higher Criticism combiner were developed on these three
+benchmarks, the regime-community realization should be validated on additional, untouched CPS systems before its
+per-dataset gains are treated as established; its build and calibration use train-normal data only, so the extension
+is directly testable on additional CPS systems.</p>
+
+<p class="rev-highlight"><strong>Implications for IIoT deployment.</strong> The detector maps onto a standard Industrial-IoT monitoring
+pipeline: field sensors and programmable logic controllers emit telemetry that an edge gateway or SCADA historian
+aggregates into the same fixed windows used here; the trained encoder and per-community density models then score
+each completed window online, and an alarm together with the most-surprised community is forwarded to the operator,
+maintenance, or security stack. Two properties make this practical for IIoT: all model fitting and calibration use
+train-normal data only, so a site can be commissioned from its own normal telemetry without labeled attacks, and the
+per-community score localizes an anomaly to a physical subsystem rather than issuing only a plant-wide flag. Scoring
+is sequential, with each completed window evaluated without access to future observations. This is a deployment
+architecture rather than an experimentally evaluated configuration.</p>
+<p class="rev-highlight">Pushing inference to the network edge (a gateway or the device itself) reduces telemetry backhaul and enables local
+response, but the regime-community realization instantiates one density model per community, so its inference cost
+grows with the number of subsystems. Where that footprint matters, adaptive-inference optimizations are a natural
+fit: early-exit cascades terminate computation early on inputs that are already confidently normal and cut average
+inference cost substantially, for example CalexNet [<a href="#r-calexnet">42</a>], a cascade-aligned early-exit method
+reported to reduce inference cost by roughly 30 to 70 percent, which applies directly to the per-community expert
+stack on constrained edge hardware. We report no parameter count, memory, latency, or energy measurements here, so
+LatAD&rsquo;s suitability for a specific edge device remains to be established experimentally, a target for future
+work; the scoring architecture is compatible in principle with gateway-side streaming inference.</p>
+
+<p><strong>Limitations.</strong> Three boundary conditions apply: three datasets, one trained configuration per
+dataset (evaluated over five seeds), and a single instantaneous representation. AUROC is threshold-free and reported
+as a five-seed mean; the F1 column is a best-threshold raw F1. The easy/difficult split is a property of one cut, the trivial
+detector's 99th-percentile-of-train-normal threshold; a different percentile would redraw the boundary between the
+subsets, though the gap between the trivial rule's Easy and Difficult performance is large enough that the split is
+not knife-edge. We report only raw point-wise metrics, which makes our numbers lower than point-adjusted
+leaderboard figures by design.</p>
+
+<h2>8&nbsp;&nbsp;Conclusion</h2>
+<p>We restated the structural assumptions of CPS normal data as an explicit MIIM list (A1&ndash;A10) and built
+LatAD, a detector that models normal as a jointly learned latent plus explicit regime clustering, scores anomalies
+by probability in that latent rather than by reconstruction, and factorizes the density over the plant&rsquo;s
+correlation-community subsystems. Under a deliberately fair, raw-metric, difficulty-stratified protocol on three
+real CPS attack benchmarks, LatAD attains the best overall AUROC on every dataset and leads the difficult subset of
+all three, significantly on HAI (paired 95% CI [0.046, 0.160]) and near-significantly on WADI, where the
+reconstruction-based deep detectors collapse.</p>
+
+<p>The mechanism is simple to state. Reconstruction scores reachability; a density in a clustered latent scores
+probability; and the CPS faults that matter are reconstructable but improbable. Treating multimodal normal as a
+single blob, or as a reconstruction target, is a modeling failure.</p>
+
+<p><span class="rev-highlight">These results position normal-only latent-density modeling as an anomaly-monitoring approach for multivariate IIoT telemetry, particularly where labels are scarce and anomalous behavior is local to a coupled physical subsystem.</span> Two properties make the detector well-suited to condition monitoring and predictive maintenance: scoring against
+the nearest regime keeps rare-but-valid states (startups, rare manoeuvres) from paging an operator, and the
+regime-community density catches in-envelope, subsystem-local faults that stay inside every alarm limit. Extending
+LatAD to the trajectory assumptions (A9, A10) and validating the regime-community realization on additional CPS
+systems are the natural next steps.</p>
+
+<div class="backmatter">
+<p><strong>Author Contributions:</strong> Conceptualization, methodology, software, validation, formal analysis, investigation, writing (original draft preparation), and writing (review and editing), A.A. and Y.A. The authors contributed equally to all aspects of the work. All authors have read and agreed to the published version of the manuscript.</p>
+<p><strong>Funding:</strong> This research received no external funding.</p>
+<p><strong>Institutional Review Board Statement:</strong> Not applicable.</p>
+<p><strong>Informed Consent Statement:</strong> Not applicable.</p>
+<p><strong>Data Availability Statement:</strong> This study uses only publicly available community benchmark datasets and created no new data. WADI and SWaT are available from iTrust, Singapore University of Technology and Design (https://itrust.sutd.edu.sg/, access granted on request); HAI is available from its public release by ETRI. The trained model checkpoints (one per dataset) and the source code supporting the reported results are openly archived on Zenodo at https://doi.org/10.5281/zenodo.21821524. Each checkpoint contains learned parameters only, not the underlying data; each is trained with a fixed seed and reproduces that seed's scores, and the released scripts reproduce the five-seed aggregates reported in the tables.</p>
+<p><strong>Conflicts of Interest:</strong> The authors declare no conflicts of interest.</p>
+</div>
+
+<h2>Appendix A. Ablation over the design axes</h2>
+
+<p>LatAD is one point on each design axis of &sect;4: representation, density estimation (single global versus a
+regime-community ensemble, itself construction plus aggregation), scoring heads, and calibration. Table A1 varies the
+density-estimation axes on the difficult subset, holding the rest fixed. Factorizing the global density over regime
+communities lifts all three datasets, most on WADI, whose sparse coordinated-drift faults a global density dilutes;
+fitting the full per-community scoring heads (adding the A8 whitened residual inside each subsystem) further lifts
+HAI, where the hard valve and flow deviations are correlation-conditional; and among the sparsity-adaptive combiners,
+cohesion-weighted Higher Criticism is the only one that leads on all three, because it weights a violation by the
+coupling strength of the subsystem it occurs in (A8) while adapting to the fault&rsquo;s extent.</p>
+
+<div class="tblwrap">
+<table>
+<caption><strong>Table A1.</strong> Design-axis ablation, difficult-subset AUROC (five-seed mean). Top block: the
+factorization axis (single global density, then the regime-community ensemble with density-only versus full
+per-community heads). Bottom block: the aggregation axis over the full-stack experts (how per-community surprises
+are combined). Every aggregation-block row is fused with the global null expert: the first four sum the community
+combiner and the null expert in train-normal z-score units (the headline fusion), while the last fuses unweighted
+Higher Criticism with the null expert by a maximum instead. The headline detector is the full per-community,
+cohesion-weighted Higher Criticism row.</caption>
+<thead><tr><th class="l">Ablation</th><th>WADI</th><th>HAI</th><th>SWaT</th></tr></thead>
+<tbody>
+<tr><td class="l" colspan="4" style="background:#eef3f8;text-align:left"><b>Factorization (density-estimation axis)</b></td></tr>
+<tr><td class="l">LatAD (global density), no factorization</td><td>0.690</td><td>0.811</td><td>0.960</td></tr>
+<tr><td class="l">LatAD (regime-community), density-only experts</td><td>0.799</td><td>0.814</td><td>0.968</td></tr>
+<tr><td class="l"><b>LatAD (regime-community), full per-community heads</b></td><td>0.796</td><td>0.849</td><td>0.969</td></tr>
+<tr><td class="l" colspan="4" style="background:#eef3f8;text-align:left"><b>Aggregation (over full-stack experts)</b></td></tr>
+<tr><td class="l">sum (of community surprises)</td><td>0.747</td><td>0.828</td><td>0.968</td></tr>
+<tr><td class="l">max (most-surprised community)</td><td>0.749</td><td>0.802</td><td>0.964</td></tr>
+<tr><td class="l">Higher Criticism (unweighted)</td><td>0.753</td><td>0.828</td><td>0.968</td></tr>
+<tr><td class="l"><b>cohesion-weighted Higher Criticism (headline)</b></td><td class="win">0.796</td><td class="win">0.849</td><td class="win">0.969</td></tr>
+<tr><td class="l">Higher Criticism with null expert, max-fused</td><td>0.744</td><td>0.846</td><td>0.964</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<h2>References</h2>
+<ol class="refs" start="1">
+<li id="r-chandola">Chandola, V.; Banerjee, A.; Kumar, V. Anomaly detection: A survey. <em>ACM Comput. Surv.</em> <strong>2009</strong>, <em>41</em>, 15. <a href="https://doi.org/10.1145/1541880.1541882">https://doi.org/10.1145/1541880.1541882</a>.</li>
+<li id="r-iotsurvey" class="rev-highlight">Sallam, S.; El Barachi, M.; Li, N. Intrusion detection on the Internet of Things: A comprehensive review and gap analysis toward real-time, lightweight, adaptive, and autonomous security. <em>IoT</em> <strong>2026</strong>, <em>7</em>, 16. <a href="https://doi.org/10.3390/iot7010016">https://doi.org/10.3390/iot7010016</a>.</li>
+<li id="r-iottaxon" class="rev-highlight">Jaddoa, A.; Alharbi, H.; Hommadi, A.; Ismael, H.A. Toward scalable and sustainable detection systems: A behavioural taxonomy and utility-based framework for security detection in IoT and IIoT. <em>IoT</em> <strong>2025</strong>, <em>6</em>, 62. <a href="https://doi.org/10.3390/iot6040062">https://doi.org/10.3390/iot6040062</a>.</li>
+<li id="r-iotae" class="rev-highlight">Alaghbari, K.A.; Lim, H.-S.; Saad, M.H.M.; Yong, Y.S. Deep autoencoder-based integrated model for anomaly detection and efficient feature extraction in IoT networks. <em>IoT</em> <strong>2023</strong>, <em>4</em>, 345&ndash;365. <a href="https://doi.org/10.3390/iot4030016">https://doi.org/10.3390/iot4030016</a>.</li>
+<li id="r-ruff">Ruff, L.; Kauffmann, J.R.; Vandermeulen, R.A.; Montavon, G.; Samek, W.; Kloft, M.; Dietterich, T.G.; M&uuml;ller, K.-R. A unifying review of deep and shallow anomaly detection. <em>Proc. IEEE</em> <strong>2021</strong>, <em>109</em>, 756&ndash;795. <a href="https://doi.org/10.1109/JPROC.2021.3052449">https://doi.org/10.1109/JPROC.2021.3052449</a>.</li>
+<li id="r-kim">Kim, S.; Choi, K.; Choi, H.-S.; Lee, B.; Yoon, S. Towards a rigorous evaluation of time-series anomaly detection. In Proceedings of the AAAI Conference on Artificial Intelligence, Virtual, 22 February&ndash;1 March 2022; Volume 36, pp. 7194&ndash;7201. <a href="https://doi.org/10.1609/aaai.v36i7.20680">https://doi.org/10.1609/aaai.v36i7.20680</a>.</li>
+<li id="r-garg">Garg, A.; Zhang, W.; Samaran, J.; Savitha, R.; Foo, C.-S. An evaluation of anomaly detection and diagnosis in multivariate time series. <em>IEEE Trans. Neural Netw. Learn. Syst.</em> <strong>2022</strong>, <em>33</em>, 2508&ndash;2517. <a href="https://doi.org/10.1109/TNNLS.2021.3105827">https://doi.org/10.1109/TNNLS.2021.3105827</a>.</li>
+<li id="r-wukeogh">Wu, R.; Keogh, E.J. Current time series anomaly detection benchmarks are flawed and are creating the illusion of progress. <em>IEEE Trans. Knowl. Data Eng.</em> <strong>2023</strong>, <em>35</em>, 2421&ndash;2429. <a href="https://doi.org/10.1109/TKDE.2021.3112126">https://doi.org/10.1109/TKDE.2021.3112126</a>.</li>
+<li id="r-pang">Pang, G.; Shen, C.; Cao, L.; van den Hengel, A. Deep learning for anomaly detection: A review. <em>ACM Comput. Surv.</em> <strong>2021</strong>, <em>54</em>, 38. <a href="https://doi.org/10.1145/3439950">https://doi.org/10.1145/3439950</a>.</li>
+<li id="r-tsreview">Bl&aacute;zquez-Garc&iacute;a, A.; Conde, A.; Mori, U.; Lozano, J.A. A review on outlier/anomaly detection in time series data. <em>ACM Comput. Surv.</em> <strong>2021</strong>, <em>54</em>, 56. <a href="https://doi.org/10.1145/3444690">https://doi.org/10.1145/3444690</a>.</li>
+<li id="r-icssurvey">Hu, Y.; Yang, A.; Li, H.; Sun, Y.; Sun, L. A survey of intrusion detection on industrial control systems. <em>Int. J. Distrib. Sens. Netw.</em> <strong>2018</strong>, <em>14</em>, 1550147718794615. <a href="https://doi.org/10.1177/1550147718794615">https://doi.org/10.1177/1550147718794615</a>.</li>
+<li id="r-tsadreview" class="rev-highlight">Choi, K.; Yi, J.; Park, C.; Yoon, S. Deep learning for anomaly detection in time-series data: Review, analysis, and guidelines. <em>IEEE Access</em> <strong>2021</strong>, <em>9</em>, 120043&ndash;120065. <a href="https://doi.org/10.1109/ACCESS.2021.3107975">https://doi.org/10.1109/ACCESS.2021.3107975</a>.</li>
+<li id="r-edgeint" class="rev-highlight">Zhou, Z.; Chen, X.; Li, E.; Zeng, L.; Luo, K.; Zhang, J. Edge intelligence: Paving the last mile of artificial intelligence with edge computing. <em>Proc. IEEE</em> <strong>2019</strong>, <em>107</em>, 1738&ndash;1762. <a href="https://doi.org/10.1109/JPROC.2019.2918951">https://doi.org/10.1109/JPROC.2019.2918951</a>.</li>
+<li id="r-iotlora" class="rev-highlight">Esteves, G.; Fidalgo, F.; Cruz, N.; Sim&atilde;o, J. Long-range wide area network intrusion detection at the edge. <em>IoT</em> <strong>2024</strong>, <em>5</em>, 871&ndash;900. <a href="https://doi.org/10.3390/iot5040040">https://doi.org/10.3390/iot5040040</a>.</li>
+<li id="r-iotedgeai" class="rev-highlight">Al Rawajbeh, M.; Maria Soosai, A.J.; Ramasamy, L.K.; Khan, F. Trustworthy adaptive AI for real-time intrusion detection in industrial IoT security. <em>IoT</em> <strong>2025</strong>, <em>6</em>, 53. <a href="https://doi.org/10.3390/iot6030053">https://doi.org/10.3390/iot6030053</a>.</li>
+<li id="r-doshi">Doshi, K.; Abudalou, S.; Yilmaz, Y. Reward once, penalize once: Rectifying time series anomaly detection. In Proceedings of the International Joint Conference on Neural Networks (IJCNN), Padua, Italy, 18&ndash;23 July 2022. <a href="https://arxiv.org/abs/2203.05167">arXiv:2203.05167</a>.</li>
+<li id="r-pate">Ghorbani, R.; Reinders, M.J.T.; Tax, D.M.J. PATE: Proximity-aware time series anomaly evaluation. In Proceedings of the 30th ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD), Barcelona, Spain, 25&ndash;29 August 2024; pp. 872&ndash;883. <a href="https://doi.org/10.1145/3637528.3671971">https://doi.org/10.1145/3637528.3671971</a>.</li>
+<li id="r-univar">Pinet, M.; Cumin, J.; Berlemont, S.; Vaufreydaz, D. Anomalies in multivariate time series benchmarks are mostly univariate. <em>arXiv</em> <strong>2026</strong>, arXiv:2606.02670. <a href="https://arxiv.org/abs/2606.02670">https://arxiv.org/abs/2606.02670</a>.</li>
+<li id="r-tab">Qiu, X.; Li, Z.; Wu, X.; Hu, J.; Guo, C.; Yang, B.; Jensen, C.S. TAB: Unified benchmarking of time series anomaly detection methods. <em>Proc. VLDB Endow.</em> <strong>2025</strong>. <a href="https://arxiv.org/abs/2506.18046">arXiv:2506.18046</a>.</li>
+<li id="r-bouman">Bouman, R.; Heskes, T. Autoencoders for anomaly detection are unreliable. <em>arXiv</em> <strong>2025</strong>, arXiv:2501.13864. <a href="https://arxiv.org/abs/2501.13864">https://arxiv.org/abs/2501.13864</a>.</li>
+<li id="r-memae">Gong, D.; Liu, L.; Le, V.; Saha, B.; Mansour, M.R.; Venkatesh, S.; van den Hengel, A. Memorizing normality to detect anomaly: Memory-augmented deep autoencoder for unsupervised anomaly detection. In Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV), Seoul, Republic of Korea, 27 October&ndash;2 November 2019; pp. 1705&ndash;1714. <a href="https://arxiv.org/abs/1904.02639">arXiv:1904.02639</a>.</li>
+<li id="r-sarfraz">Sarfraz, M.S.; Chen, M.-Y.; Layer, L.; Peng, K.; Koulakis, M. Position: Quo vadis, unsupervised time series anomaly detection? In Proceedings of the 41st International Conference on Machine Learning (ICML), Vienna, Austria, 21&ndash;27 July 2024. <a href="https://arxiv.org/abs/2405.02678">arXiv:2405.02678</a>.</li>
+<li id="r-timesead">Wagner, D.; Michels, T.; Schulz, F.C.F.; Nair, A.; Rudolph, M.; Kloft, M. TimeSeAD: Benchmarking deep multivariate time-series anomaly detection. <em>Trans. Mach. Learn. Res.</em> <strong>2023</strong>. <a href="https://openreview.net/forum?id=iMmsCI0JsS">https://openreview.net/forum?id=iMmsCI0JsS</a>.</li>
+<li id="r-vade">Jiang, Z.; Zheng, Y.; Tan, H.; Tang, B.; Zhou, H. Variational deep embedding: An unsupervised and generative approach to clustering. In Proceedings of the 26th International Joint Conference on Artificial Intelligence (IJCAI), Melbourne, Australia, 19&ndash;25 August 2017; pp. 1965&ndash;1972. <a href="https://doi.org/10.24963/ijcai.2017/273">https://doi.org/10.24963/ijcai.2017/273</a>.</li>
+<li id="r-dagmm">Zong, B.; Song, Q.; Min, M.R.; Cheng, W.; Lumezanu, C.; Cho, D.; Chen, H. Deep autoencoding Gaussian mixture model for unsupervised anomaly detection. In Proceedings of the International Conference on Learning Representations (ICLR), Vancouver, BC, Canada, 30 April&ndash;3 May 2018. <a href="https://openreview.net/forum?id=BJJLHbb0-">https://openreview.net/forum?id=BJJLHbb0-</a>.</li>
+<li id="r-lw">Ledoit, O.; Wolf, M. A well-conditioned estimator for large-dimensional covariance matrices. <em>J. Multivar. Anal.</em> <strong>2004</strong>, <em>88</em>, 365&ndash;411. <a href="https://doi.org/10.1016/S0047-259X(03)00096-4">https://doi.org/10.1016/S0047-259X(03)00096-4</a>.</li>
+<li id="r-if">Liu, F.T.; Ting, K.M.; Zhou, Z.-H. Isolation forest. In Proceedings of the 2008 Eighth IEEE International Conference on Data Mining (ICDM), Pisa, Italy, 15&ndash;19 December 2008; pp. 413&ndash;422. <a href="https://doi.org/10.1109/ICDM.2008.17">https://doi.org/10.1109/ICDM.2008.17</a>.</li>
+<li id="r-aead">Sakurada, M.; Yairi, T. Anomaly detection using autoencoders with nonlinear dimensionality reduction. In Proceedings of the MLSDA 2014 2nd Workshop on Machine Learning for Sensory Data Analysis, Gold Coast, Australia, 2 December 2014; pp. 4&ndash;11. <a href="https://doi.org/10.1145/2689746.2689747">https://doi.org/10.1145/2689746.2689747</a>.</li>
+<li id="r-usad">Audibert, J.; Michiardi, P.; Guyard, F.; Marti, S.; Zuluaga, M.A. USAD: Unsupervised anomaly detection on multivariate time series. In Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery &amp; Data Mining (KDD), Virtual Event, CA, USA, 23&ndash;27 August 2020; pp. 3395&ndash;3404. <a href="https://doi.org/10.1145/3394486.3403392">https://doi.org/10.1145/3394486.3403392</a>.</li>
+<li id="r-tranad">Tuli, S.; Casale, G.; Jennings, N.R. TranAD: Deep transformer networks for anomaly detection in multivariate time series data. <em>Proc. VLDB Endow.</em> <strong>2022</strong>, <em>15</em>, 1201&ndash;1214. <a href="https://doi.org/10.14778/3514061.3514067">https://doi.org/10.14778/3514061.3514067</a>.</li>
+<li id="r-gdn">Deng, A.; Hooi, B. Graph neural network-based anomaly detection in multivariate time series. In Proceedings of the AAAI Conference on Artificial Intelligence, Virtual, 2&ndash;9 February 2021; Volume 35, pp. 4027&ndash;4035. <a href="https://doi.org/10.1609/aaai.v35i5.16523">https://doi.org/10.1609/aaai.v35i5.16523</a>.</li>
+<li id="r-sensitivehue">Feng, Y.; Zhang, W.; Fu, Y.; Jiang, W.; Zhu, J.; Ren, W. SensitiveHUE: Multivariate time series anomaly detection by enhancing the sensitivity to normal patterns. In Proceedings of the 30th ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD), Barcelona, Spain, 25&ndash;29 August 2024; pp. 782&ndash;793. <a href="https://doi.org/10.1145/3637528.3671919">https://doi.org/10.1145/3637528.3671919</a>.</li>
+<li id="r-catch">Wu, X.; Qiu, X.; Li, Z.; Hu, Y.; Guo, C.; Xu, X.; Yang, B. CATCH: Channel-aware multivariate time series anomaly detection via frequency patching. In Proceedings of the International Conference on Learning Representations (ICLR), Singapore, 24&ndash;28 April 2025. <a href="https://arxiv.org/abs/2410.12261">arXiv:2410.12261</a>.</li>
+<li id="r-gearbox">Gildish, E.; Grebshtein, M.; Aperstein, Y.; Makienko, I. Vibration-based estimation of gearbox operating conditions: Machine learning approach. In Proceedings of the 2023 International Conference on Control, Automation and Diagnosis (ICCAD), Rome, Italy, 10&ndash;12 May 2023; pp. 1&ndash;6. <a href="https://doi.org/10.1109/ICCAD57653.2023.10152303">https://doi.org/10.1109/ICCAD57653.2023.10152303</a>.</li>
+<li id="r-vibdecomp">Gildish, E.; Grebshtein, M.; Aperstein, Y.; Makienko, I. Vibration signal decomposition using dilated CNN. <em>Proc. Annu. Conf. PHM Soc.</em> <strong>2023</strong>, <em>15</em>. <a href="https://doi.org/10.36001/phmconf.2023.v15i1.3502">https://doi.org/10.36001/phmconf.2023.v15i1.3502</a>.</li>
+<li id="r-bolt">Gildish, E.; Grebshtein, M.; Aperstein, Y.; Kushnirski, A.; Makienko, I. Helicopter bolt loosening monitoring using vibrations and machine learning. <em>PHM Soc. Eur. Conf.</em> <strong>2022</strong>, <em>7</em>, 146&ndash;155. <a href="https://doi.org/10.36001/phme.2022.v7i1.3322">https://doi.org/10.36001/phme.2022.v7i1.3322</a>.</li>
+<li id="r-rotorcraft">Shavit, D.; Davidovits, M.; Kushnirsky, A.; Aperstein, Y. Temporal causality-based feature selection for fault prediction in rotorcraft flight controls. <em>IFAC-PapersOnLine</em> <strong>2022</strong>, <em>55</em>, 235&ndash;239. <a href="https://doi.org/10.1016/j.ifacol.2022.04.199">https://doi.org/10.1016/j.ifacol.2022.04.199</a>.</li>
+<li id="r-wadi">Ahmed, C.M.; Palleti, V.R.; Mathur, A.P. WADI: A water distribution testbed for research in the design of secure cyber physical systems. In Proceedings of the 3rd International Workshop on Cyber-Physical Systems for Smart Water Networks (CySWATER), Pittsburgh, PA, USA, 21 April 2017; pp. 25&ndash;28. <a href="https://doi.org/10.1145/3055366.3055375">https://doi.org/10.1145/3055366.3055375</a>.</li>
+<li id="r-swat">Mathur, A.P.; Tippenhauer, N.O. SWaT: A water treatment testbed for research and training on ICS security. In Proceedings of the 2016 International Workshop on Cyber-Physical Systems for Smart Water Networks (CySWater), Vienna, Austria, 11 April 2016; pp. 31&ndash;36. <a href="https://doi.org/10.1109/CySWater.2016.7469060">https://doi.org/10.1109/CySWater.2016.7469060</a>.</li>
+<li id="r-hai">Shin, H.-K.; Lee, W.; Yun, J.-H.; Kim, H. HAI 1.0: HIL-based augmented ICS security dataset. In Proceedings of the 13th USENIX Workshop on Cyber Security Experimentation and Test (CSET), Virtual, 10 August 2020. <a href="https://www.usenix.org/conference/cset20/presentation/shin">https://www.usenix.org/conference/cset20/presentation/shin</a>.</li>
+<li id="r-hc">Donoho, D.; Jin, J. Higher criticism for detecting sparse heterogeneous mixtures. <em>Ann. Stat.</em> <strong>2004</strong>, <em>32</em>, 962&ndash;994. <a href="https://doi.org/10.1214/009053604000000265">https://doi.org/10.1214/009053604000000265</a>.</li>
+<li id="r-calexnet" class="rev-highlight">Aperstein, Y.; Apartsin, A. CalexNet: Soft cascade-aligned training and calibration for lightweight early-exit branches. <em>Electronics</em> <strong>2026</strong>, <em>15</em>, 2149. <a href="https://doi.org/10.3390/electronics15102149">https://doi.org/10.3390/electronics15102149</a>.</li>
+</ol>
+
+</body>
+</html>
