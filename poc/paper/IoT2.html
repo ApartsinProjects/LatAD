@@ -174,7 +174,7 @@ cannot be measured until the easy majority is separated from the discriminative 
 
 <p class="rev2-highlight">LatAD addresses the modeling obstacle: it replaces the reconstruction residual of USAD- and TranAD-style deep detectors with a probability score in a jointly learned latent regime space, factorized over the plant&rsquo;s physical subsystems. The evaluation obstacle it addresses by adopting the critique&rsquo;s protocol, raw metrics with difficulty stratification, which we use rather than claim as a contribution.</p>
 
-<p class="rev2-highlight">A note on scope. Anomalies in a cyber-physical system arise from faults as much as from attacks: a drifting sensor, a worn actuator, or a slowly developing process fault alongside a deliberate intrusion. The operationally costly ones are frequently slow, an incipient malfunction that stays within the normal per-channel envelope while gradually crossing operating regimes, which is harder to catch than an abrupt, out-of-range event [<a href="#r-incip">10</a>]. Open CPS datasets with real labeled anomalies are scarce and attack-centric: the few public testbeds inject discrete, largely abrupt attacks [<a href="#r-wukeogh">9</a>], while operational plant telemetry with labeled faults is seldom released for safety and security reasons. <span class="rev2-highlight">These public testbeds are also small: SWaT (51 channels, 11 days), WADI (122 channels, 16 days), and HAI (59 channels, about 25 days) each span tens of channels, days to weeks, and a single nominal regime, whereas an operating plant, aircraft, or vehicle instruments orders of magnitude more streams over months to years and moves through many regimes [<a href="#r-bdg2">11</a>] (&sect;2.5).</span> Slowly-progressing and between-regime faults are therefore underrepresented in public benchmarks, which shapes what any method can be exercised on and motivates the assumptions we examine in &sect;7 (<span class="rev2-highlight">A8, between-regime overlap, specified but not realized by the reported model, its masking form coupled to A10; A9, multiscale structure, present in the data yet exploited here only as a complementary lever; and A10, path dependence, measured absent on these snapshot-detectable benchmarks</span>).</p>
+<p class="rev2-highlight">A note on scope. Anomalies in a cyber-physical system arise from faults as much as from attacks: a drifting sensor, a worn actuator, or a slowly developing process fault alongside a deliberate intrusion. The operationally costly ones are frequently slow, an incipient malfunction that stays within the normal per-channel envelope while gradually crossing operating regimes, which is harder to catch than an abrupt, out-of-range event [<a href="#r-incip">10</a>]. Open CPS datasets with real labeled anomalies are scarce and attack-centric: the few public testbeds inject discrete, largely abrupt attacks [<a href="#r-wukeogh">9</a>], while operational plant telemetry with labeled faults is seldom released for safety and security reasons. <span class="rev2-highlight">These public testbeds are also small: SWaT (51 channels, 11 days), WADI (122 channels, 16 days), and HAI (59 channels, about 25 days) each span tens of channels, days to weeks, and a single nominal regime, whereas an operating plant, aircraft, or vehicle instruments orders of magnitude more streams over months to years and moves through many regimes [<a href="#r-bdg2">11</a>] (&sect;2.5).</span> Slowly-progressing and between-regime faults are therefore underrepresented in public benchmarks, which shapes what any method can be exercised on and motivates the <span class="rev2-highlight">trajectory assumptions examined in &sect;7</span><span class="rev-del"> (A8, between-regime overlap, specified but not realized by the reported model, its masking form coupled to A10; A9, multiscale structure, present in the data yet exploited here only as a complementary lever; and A10, path dependence, measured absent on these snapshot-detectable benchmarks)</span>.</p>
 
 <p>This paper makes three contributions. <strong>(1)</strong> We state the structural assumptions of CPS normal
 data as an explicit list, A1&ndash;A10, abbreviated MIIM (<em>Massive, Implicit, Imbalanced Multimodality</em>), and
@@ -185,11 +185,11 @@ rare-regime-safe nearest-component likelihood (&sect;4). Its key mechanism is de
 score, since a flexible decoder reconstructs the hard faults faithfully; reconstruction re-enters only through an
 optional residual head, switched on by a gate that tests generalization on held-out normal data. Its headline
 realization factorizes this density over the plant&rsquo;s own subsystems, recovered unsupervised as communities of
-the normal-data correlation graph, and combines the per-subsystem surprises by cohesion-weighted Higher Criticism<span class="rev2-highlight"> (HC)</span>,
+the normal-data correlation graph, and combines the per-subsystem surprises by cohesion-weighted Higher Criticism<span class="rev2-highlight"> (HC), a statistic that flags when more subsystems are mildly surprised than chance allows,</span>
 so a local fault that a single global density dilutes is concentrated instead (&sect;4.4). <strong>(3)</strong>
 We evaluate under a fair protocol (raw point-wise metrics, difficulty stratification, train-normal-only calibration)
 on three real <span class="rev-highlight">IIoT / industrial-control testbeds (WADI, HAI, SWaT)</span>, comparing against classical baselines and the deep detectors USAD and TranAD
-re-computed with the same raw metrics (&sect;5&ndash;6). LatAD attains the best overall <span class="rev2-highlight">AUROC (area under the ROC curve)</span> on every dataset and
+re-computed with the same raw metrics (&sect;5&ndash;6). LatAD attains the best overall <span class="rev2-highlight">AUROC (area under the ROC curve)</span> on <span class="rev-del">every dataset</span><span class="rev2-highlight">HAI and SWaT</span> and
 leads the difficult subset of all three, most decisively on HAI, where the difficult faults break joint structure,
 the deep detectors collapse to near chance, and LatAD&rsquo;s margin is statistically significant.</p>
 
@@ -232,18 +232,18 @@ subset from the easy majority that carries headline numbers; and re-computation 
 (&sect;5).</span></p>
 
 <h3>2.3&nbsp;&nbsp;Latent and clustering models for anomaly detection</h3>
-<p><span class="rev2-highlight">Latent and clustering models detect anomalies by learning a representation of normal and scoring departures in that space. Variational Deep Embedding (VaDE) [<span class="rev-highlight"><a href="#r-vade">27</a></span>] pairs a variational autoencoder with a Gaussian-mixture latent prior, learning representation and clusters jointly, and DAGMM [<span class="rev-highlight"><a href="#r-dagmm">28</a></span>] couples an autoencoder with a Gaussian-mixture energy.</span> <span class="rev2-highlight">One-class methods place normal inside a learned boundary: Deep SVDD [<a href="#r-deepsvdd">29</a>] maps normal points near a fixed latent center and scores by distance to it, and THOC [<a href="#r-thoc">30</a>] extends this to multiscale temporal one-class hyperspheres; OmniAnomaly [<a href="#r-omni">31</a>] scores multivariate telemetry by reconstruction probability under a stochastic-recurrent latent. These methods all score against a single global model of normal; none estimates density per physical subsystem under regime imbalance, the gap this paper addresses.</span> <span class="rev2-highlight">Closest to our aim, Birihanu and Lend&aacute;k [<a href="#r-birihanu">32</a>] flag ICS anomalies from a latent correlation matrix scored by a multivariate Gaussian, whereas we factorize a learned latent density over correlation communities and combine them by Higher Criticism.</span> <span class="rev2-highlight">Standard tools used later are Ledoit&ndash;Wolf shrinkage [<span class="rev-highlight"><a href="#r-lw">33</a></span>] for whitened residuals, and Isolation Forest [<span class="rev-highlight"><a href="#r-if">34</a></span>] and deep autoencoders [<span class="rev-highlight"><a href="#r-aead">35</a></span>] as baselines.</span></p>
+<p><span class="rev2-highlight">Latent and clustering models detect anomalies by learning a representation of normal and scoring departures in that space. Variational Deep Embedding (VaDE) [<span class="rev-highlight"><a href="#r-vade">27</a></span>] pairs a variational autoencoder with a Gaussian-mixture latent prior, learning representation and clusters jointly, and DAGMM [<span class="rev-highlight"><a href="#r-dagmm">28</a></span>] couples an autoencoder with a Gaussian-mixture energy.</span> <span class="rev2-highlight">One-class methods place normal inside a learned boundary: Deep SVDD [<a href="#r-deepsvdd">29</a>] maps normal points near a fixed latent center and scores by distance to it, and THOC [<a href="#r-thoc">30</a>] extends this to multiscale temporal one-class hyperspheres; OmniAnomaly [<a href="#r-omni">31</a>] scores multivariate telemetry by reconstruction probability under a stochastic-recurrent latent. These methods all score against a single global model of normal; none estimates density per physical subsystem under regime imbalance, the gap this paper addresses.</span> <span class="rev2-highlight">Closest to our aim, Birihanu and Lend&aacute;k [<a href="#r-birihanu">32</a>] flag industrial-control-system (ICS) anomalies from a latent correlation matrix scored by a multivariate Gaussian, whereas we factorize a learned latent density over correlation communities and combine them by Higher Criticism.</span> <span class="rev2-highlight">Standard tools used later are Ledoit&ndash;Wolf shrinkage [<span class="rev-highlight"><a href="#r-lw">33</a></span>] for whitened residuals, and Isolation Forest [<span class="rev-highlight"><a href="#r-if">34</a></span>] and deep autoencoders [<span class="rev-highlight"><a href="#r-aead">35</a></span>] as baselines.</span></p>
 
 <h3>2.4&nbsp;&nbsp;Deep multivariate CPS anomaly detection</h3>
 <p>USAD [<span class="rev-highlight"><a href="#r-usad">36</a></span>] couples two adversarially trained autoencoders; TranAD [<span class="rev-highlight"><a href="#r-tranad">37</a></span>] uses deep transformer networks with adversarial and self-conditioning training; GDN [<span class="rev-highlight"><a href="#r-gdn">38</a></span>] learns a graph over channels and detects deviations from learned inter-channel relations. <span class="rev2-highlight">Graph mixture-of-experts routing likewise injects hierarchical graph structure into entity representations for GNN detectors [<a href="#r-graphmoe">39</a>], whereas we route per-community density experts by cohesion-weighted Higher Criticism rather than a learned gate.</span>
-These define a widely used deep SOTA on SWaT/WADI-style benchmarks. More recent detectors refine rather than
+These define a widely used deep <span class="rev2-highlight">state-of-the-art (SOTA)</span> on SWaT/WADI-style benchmarks. More recent detectors refine rather than
 abandon reconstruction: SensitiveHUE [<span class="rev-highlight"><a href="#r-sensitivehue">40</a></span>] models per-variable heteroscedastic
 uncertainty to sharpen sensitivity to normal patterns, and CATCH [<span class="rev-highlight"><a href="#r-catch">41</a></span>] learns channel
 correlations through frequency-domain patching. Both remain reconstruction-based, so the mechanism analysis of
 &sect;7 suggests they inherit the same blind spot on the reconstructable-but-improbable joint faults that define our
 difficult subset. We benchmark USAD and TranAD, the reconstruction- and transformer-based deep detectors, under the same
 raw, difficulty-stratified metrics over five seeds (the re-scored comparison is in &sect;6). <span class="rev2-highlight">We also benchmark the
-cross-channel GDN under the identical raw protocol as a construct-matched, single-seed SOTA baseline, re-aggregating its
+cross-channel GDN under the identical raw protocol as a construct-matched <span class="rev2-highlight">(scored on the same windows and difficulty subsets)</span>, single-seed SOTA baseline, re-aggregating its
 per-timestep scores onto our window grid (&sect;5.5); on the difficult subset it collapses on HAI (0.481) alongside USAD
 and TranAD, a graph detector failing on the same reconstructable-but-improbable faults.</span> A raw-metric evaluation of the newer reconstruction detectors (SensitiveHUE, CATCH) is left to future
 work.</p>
@@ -269,7 +269,7 @@ multimodal-latent anomaly detection.</p>
 </math></span>
 where each component <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msub><mi>p</mi><mi>k</mi></msub></math> is a bounded, oriented, curved patch of observation space. The ten
 assumptions of Table 1 describe the qualitative structure of this mixture; each is grounded in a physical property
-of CPS operation and each motivates a specific design choice in the detector of &sect;4. <span class="rev2-highlight">These properties are not a universal law but a checklist that CPS normal may exhibit to varying degrees: a given dataset realizes some strongly, others weakly or not at all. LatAD is built to exploit each property when it is present and to reduce to a standard latent-density model when it is absent, so a property that a corpus does not exhibit (here A8) simply leaves the corresponding component inactive rather than degrading the detector.</span> We call the resulting
+of CPS operation and each motivates a specific design choice in the detector of &sect;4. <span class="rev2-highlight">These properties are not a universal law but a checklist that CPS normal may exhibit to varying degrees: a given dataset realizes some strongly, others weakly or not at all. LatAD is built to exploit each property when it is present and to reduce to a standard latent-density model when it is absent.</span><span class="rev-del"> A property that a corpus does not exhibit (here A8) simply leaves the corresponding component inactive rather than degrading the detector.</span> We call the resulting
 property <em>MIIM</em>: the sample is <strong>M</strong>assive, the regime structure is <strong>I</strong>mplicit
 (unlabeled and only approximately recoverable), the regime occupancy is <strong>I</strong>mbalanced, and normal
 is <strong>M</strong>ultimodal. Two consequences matter for detection. Normality is multimodal in regime space; and
@@ -280,7 +280,7 @@ coupled subsystem. LatAD therefore models regime probability at subsystem scale,
 <div class="tblwrap">
 <table class="assum">
 <caption><strong>Table 1.</strong> The ten CPS normal-data assumptions, their physical origin, and the detector
-design choice each motivates. A1&ndash;A8 shape the instantaneous window; A9&ndash;A10 shape the trajectory.<span class="rev2-highlight"> The last column names the LatAD design section and mechanism that realizes each assumption. Rows are grouped into A1&ndash;A7, realized and validated on the three real testbeds, and A8&ndash;A10, specified for completeness but not observed in the datasets studied.</span></caption>
+design choice each motivates. A1&ndash;A8 shape the instantaneous window; A9&ndash;A10 shape the trajectory.<span class="rev2-highlight"> The last column names the LatAD design section and mechanism that realizes each assumption. Rows are grouped into A1&ndash;A7, realized and validated on the three real testbeds, and A8&ndash;A10, specified but not realized by the reported window-only model (A8&rsquo;s precondition present but its heavy overlap not exercised, A9 present in the data, A10 measured absent).</span></caption>
 <thead><tr>
   <th>ID</th><th class="l">Assumption</th><th class="l">CPS rationale</th><th class="l">Motivates (design choice)</th><th class="l rev2-highlight">Realized by (&sect;)</th>
 </tr></thead>
@@ -305,7 +305,7 @@ design choice each motivates. A1&ndash;A8 shape the instantaneous window; A9&nda
 <tr><td><b>A5</b></td><td class="l"><b>Heavy tail</b> (Zipf imbalance)</td>
   <td class="l">Machines spend most of the record in a few steady regimes; startup, shutdown and rare manoeuvres occupy little of it, so an infrequent-but-normal point is easily mistaken for a fault.</td>
   <td class="l">Score against the <em>nearest</em> component, never the &#960;-weighted mixture, so a rare-but-valid regime is not penalized (ii).</td>
-  <td class="l rev2-highlight">Nearest-component NLL head (&sect;4.3, ii).</td></tr>
+  <td class="l rev2-highlight">Nearest-component negative-log-likelihood (NLL) head (&sect;4.3, ii).</td></tr>
 <tr><td><b>A6</b></td><td class="l"><b>Hidden regimes</b> (latent, implicit regimes)</td>
   <td class="l">True regimes are an emergent artifact of coupling and are not logged; regimes must be discovered approximately from raw streams.</td>
   <td class="l">Discover regimes jointly with the representation (VaDE), unsupervised; never use regime labels.</td>
@@ -338,9 +338,9 @@ improving past two dozen components (BIC-optimal <math xmlns="http://www.w3.org/
 display="inline"><msup><mi>K</mi><mo>&#8727;</mo></msup></math> of 22, 24, and 25 on WADI, HAI, and SWaT<span class="rev2-highlight">, on a component grid extended to 25</span>). The
 regimes are <span class="rev2-highlight">least separated</span> on WADI and HAI (silhouette 0.06 and 0.08, on a scale where 1 is well-separated clusters and 0 is
 <span class="rev2-highlight">adjacent, touching clusters</span>) but separate more crisply on SWaT (0.29)<span class="rev-del">, and this</span><span class="rev2-highlight">. This</span>
-ordering tracks where the design pays off: <span class="rev2-highlight">the two least-separated datasets are where the regime-community
-factorization gains most, since a single global density blurs local structure there, and the more separable SWaT
-gains less but still improves (&sect;6). (This low silhouette reflects a partition slicing a continuous regime ridge, not heavy mode overlap between distinct regimes, which Appendix&nbsp;C finds absent.)</span> This is the regime in which a jointly learned latent, scored by a mixture density and
+ordering tracks where the design pays off: <span class="rev2-highlight">the regime-community
+factorization gains most on WADI, and by a similar margin on HAI and SWaT, since a single global density blurs local
+structure (&sect;6).</span> This is the regime in which a jointly learned latent, scored by a mixture density and
 factorized over subsystems, pays off and a global detector or a raw reconstruction residual does not.</p>
 
 <h2>4&nbsp;&nbsp;Method</h2>
@@ -424,7 +424,7 @@ the same representation and heads, we describe those first, then the regime-comm
   <text x="348" y="672" font-size="9" fill="#5a4a3a">per-community</text>
   <text x="348" y="684" font-size="9" fill="#5a4a3a">surprises (K)</text>
   <g filter="url(#f2sh)"><rect x="70" y="648" width="166" height="46" rx="6" fill="#ecf6ee" stroke="#1f7a3a" stroke-width="1.2"/></g>
-  <text x="153" y="668" text-anchor="middle" font-size="10" font-weight="700" fill="#1a1a2e">Global null expert</text>
+  <text x="153" y="668" text-anchor="middle" font-size="10" font-weight="700" fill="#1a1a2e">Whole-plant expert</text>
   <text x="153" y="683" text-anchor="middle" font-size="8.8" fill="#33404d">dataset-level regimes</text>
   <path d="M 205 694 C 220 706, 235 708, 258 711" fill="none" stroke="#33404d" stroke-width="1.4" marker-end="url(#f2arr)"/>
   <g filter="url(#f2sh)"><rect x="150" y="712" width="380" height="72" rx="6" fill="#f4f6f8" stroke="#33404d" stroke-width="1.6"/></g>
@@ -439,16 +439,16 @@ the same representation and heads, we describe those first, then the regime-comm
   <text x="22" y="900" font-size="9" font-style="italic" fill="#5a4a3a">Tags [A#] mark the MIIM assumption each block realizes:</text>
   <text x="22" y="913" font-size="9" font-style="italic" fill="#5a4a3a">[A7] correlated channels / subsystems &#183; [A1/A6] jointly learned regimes &#183; [A3] mixture density &#183; [A5] rare-regime safe &#183; [A7] auto-gated whitened residual</text>
 </svg>
-<figcaption class="rev2-highlight"><strong>Figure 2.</strong> LatAD workflow. A window of multivariate telemetry is reduced to per-channel statistical features; the normal-data channel correlation graph is split into subsystems (communities, A7); and each community, together with a global null expert, is scored by a VaDE latent Gaussian-mixture model of normal regimes (A1/A6) through two always-on base latent heads (mixture density, A3; nearest-component NLL, A5) and one optional auto-gated whitened-residual head (A7). Reconstruction is demoted and the base score is computed in the latent space. The per-community surprises are combined by cohesion-weighted Higher Criticism into the anomaly score and the most-surprised community. Bracketed tags mark the MIIM assumption each block realizes.</figcaption>
+<figcaption class="rev2-highlight"><strong>Figure 2.</strong> LatAD workflow. A window of multivariate telemetry is reduced to per-channel statistical features; the normal-data channel correlation graph is split into subsystems (communities, A7); and each community, together with a whole-plant expert, is scored by a VaDE latent Gaussian-mixture model of normal regimes (A1/A6) through two always-on base latent heads (mixture density, A3; nearest-component NLL, A5) and one optional auto-gated whitened-residual head (A7). Reconstruction is demoted and the base score is computed in the latent space. The per-community surprises are combined by cohesion-weighted Higher Criticism into the anomaly score and the most-surprised community. Bracketed tags mark the MIIM assumption each block realizes.</figcaption>
 </figure>
 
-<p>The reported detector realizes assumptions A1&ndash;A7 <span class="rev2-highlight">and specifies A8 without realizing it</span>. The mixture representation (A1, A6), the high-resolution
+<p>The reported detector realizes assumptions A1&ndash;A7. The mixture representation (A1, A6), the high-resolution
 density head (A2, A3), the low-dimensional latent (A4), the nearest-component score (A5) and per-feature
 standardization (A7) are always active; the whitened-residual head (A7) is
-<em>auto-gated</em> on train-normal signals and switches on only where a dataset calls for it<span class="rev2-highlight">, activating on HAI and SWaT</span>. <span class="rev2-highlight">A8 (between-regime overlap) is specified for completeness but its heavy-overlap form was not observed in the datasets studied (the adjacency precondition is present, the overlap is not): the reported model carries no dedicated overlap head, and &sect;7 shows that the apparent SKAB signal attributed to A8 is a variance-floor artifact of the estimator. Its masking form is coupled to A10 and left as future work.</span> The gated <span class="rev2-highlight">residual head</span>
+<em>auto-gated</em> on train-normal signals and <span class="rev2-highlight">activates on HAI and SWaT (Table 6)</span>. <span class="rev2-highlight">A8 (between-regime overlap) is specified in Table 1, but the overlap it posits is absent from the datasets studied, so it is deferred to future work (&sect;7, Appendix&nbsp;C).</span> The gated <span class="rev2-highlight">residual head</span>
 did not reduce performance on any of these datasets, and the reported gains come from the always-active heads, with
-the auto-gated residual head adding to them on HAI and SWaT (Table 6). Assumptions A9&ndash;A10 shape the trajectory rather than the window and are not exercised by these
-snapshot-detectable public benchmarks; extending the detector to explicit multiscale-temporal features (A9) and
+the auto-gated residual head adding to them on HAI and SWaT (Table 6). Assumptions A9&ndash;A10 shape the trajectory rather than the window and are <span class="rev2-highlight">only weakly exercised (A9) or measured absent (A10) on these
+snapshot-detectable public benchmarks</span>; extending the detector to explicit multiscale-temporal features (A9) and
 history-conditioned, path-dependent scoring (A10) is left to future work (&sect;7).</p>
 
 <p><strong>One realization of the assumptions.</strong> A1&ndash;A10 specify <em>what</em> a model of CPS normal must
@@ -533,7 +533,7 @@ overfits the normal reference and is gated off)</span>.</p>
 <span class="rev2-highlight">standardized (recentered and rescaled)</span> against its train-normal mean and standard deviation, so the operating scale is set by normal, not
 by the test batch.</p>
 
-<h4>(i)&nbsp;Latent mixture-density head (parametric KDE for non-Gaussian pockets)</h4>
+<h4>(i)&nbsp;Latent mixture-density head (parametric kernel-density estimate, KDE, for non-Gaussian pockets)</h4>
 <p>Because each regime has a non-uniform interior with thin fringes (A3), one Gaussian per regime is too coarse. We
 fit a high-resolution diagonal Gaussian mixture on the train-normal latent (<math
 xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><mo>=</mo><mn>80</mn></mrow></math>
@@ -573,7 +573,7 @@ score is the sum of the two <span class="rev2-highlight">standardized</span> hea
 per-channel residual <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>r</mi></math> by
 principal-component analysis (fit on train-normal) to
 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mn>30</mn></math> dimensions, fits a
-Ledoit&ndash;Wolf-shrunk [<span class="rev-highlight"><a href="#r-lw">33</a></span>] precision <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msub><mi>&#931;</mi><mi>k</mi></msub></math> per regime, and combines the per-regime whitened
+Ledoit&ndash;Wolf-shrunk [<span class="rev-highlight"><a href="#r-lw">33</a></span>] <span class="rev2-highlight">(a covariance estimate regularized toward the identity, stable when channels outnumber samples)</span> precision <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msub><mi>&#931;</mi><mi>k</mi></msub></math> per regime, and combines the per-regime whitened
 energies of that reduced residual by responsibility:</p>
 <span class="eq"><span class="eqno rev2-highlight">(6)</span><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
   <mrow><msub><mi>s</mi><mtext>resid</mtext></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
@@ -593,10 +593,10 @@ SWaT but not on WADI, and the gate recovers this pattern from train-normal alone
   <mrow><mi>s</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>s</mi><mn>0</mn></msub><mo>+</mo>
   <msub><mi>s</mi><mtext>resid</mtext></msub><mo>.</mo></mrow>
 </math></span>
-<p><span class="rev-del">[An optional basin-agreement rescue head that subtracted a scaled, train-normal-calibrated regime-agreement term was described here.]</span> <span class="rev2-highlight">The stack has no head for A8 (between-regime overlap): that assumption is specified for completeness (&sect;3) but not realized by this model. The fraction of train-normal windows with ambiguous regime assignments (maximum responsibility below 0.5), which such a head would gate on, is <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#961;</mi><mo>&#8804;</mo><mn>0.02</mn></mrow></math> on WADI, HAI, and SWaT (0.01 / 0.02 / 0.00), and <span class="rev2-highlight">&sect;7 finds no heavy between-regime overlap on any dataset studied under valid observation-space metrics</span>. Equation (7) is therefore the detector's complete window score.</span> The reported model configures its heads purely from train-normal statistics, with no test-set tuning: the residual head fires on HAI and SWaT and stays off on WADI.</p>
+<p><span class="rev-del">[An optional basin-agreement rescue head that subtracted a scaled, train-normal-calibrated regime-agreement term was described here.]</span> <span class="rev2-highlight">The stack has no head for A8 (between-regime overlap): that assumption is specified in Table&nbsp;1 (&sect;3) but not realized by this model, so Equation (7) is the detector's complete window score.</span> The reported model configures its heads purely from train-normal statistics, with no test-set tuning: the residual head fires on HAI and SWaT and stays off on WADI.</p>
 
 <div class="note"><strong>Auto-gating summary.</strong> Base heads (i&ndash;ii) run on every dataset. The
-residual head (iii) fires when it generalizes to held-out normal (HAI and SWaT: on; WADI: off). <span class="rev2-highlight">The reported model has no overlap head: A8's heavy-overlap form was not observed in any dataset studied, its precondition notwithstanding (&sect;7).</span> All calibration uses train-normal only.</div>
+residual head (iii) fires when it generalizes to held-out normal (HAI and SWaT: on; WADI: off). All calibration uses train-normal only.</div>
 
 <h3>4.4&nbsp;&nbsp;Regime-community density (the headline realization) <span class="rev2-highlight">(the subsystem-factorization stage; Figure&nbsp;2, community fan-out and HC combiner)</span></h3>
 
@@ -621,7 +621,7 @@ per-community density concentrates it. For each community <math xmlns="http://ww
 display="inline"><mi>G</mi></math> we therefore fit the full detector of &sect;4.1&ndash;4.3 on that
 community&rsquo;s channels alone <span class="rev2-highlight">(a <em>separate</em> small VaDE per community, each with its own encoder, Gaussian mixture, and scoring heads, its regime count and latent dimension scaled to the community size <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#8739;</mo><mi>G</mi><mo>&#8739;</mo></mrow></math>; nothing is shared across communities except the input window features, so the model is a stack of independent per-subsystem experts, tens per plant, plus one global expert)</span><span class="rev-del"> and read</span><span class="rev2-highlight">. We read</span> its calibrated surprise <math xmlns="http://www.w3.org/1998/Math/MathML"
 display="inline"><msub><mi>s</mi><mi>G</mi></msub></math> (the train-normal upper-tail negative log-probability),
-and we include the global detector as an unfactorized <em>null</em> expert so the detector retains sensitivity to
+and we include the global detector as an unfactorized <span class="rev-del"><em>null</em></span><span class="rev2-highlight"><em>whole-plant</em></span> expert so the detector retains sensitivity to
 dense whole-system faults. Summing the per-community surprises gives a simple pooled score (because the communities
 are nested subtrees and can overlap, this sum is an over-complete pooling rather than an exact factorization),</p>
 
@@ -656,7 +656,7 @@ weighs more; every p-value is a train-normal upper-tail probability, so the comb
 The factorization also localizes: the per-community surprises rank the plant&rsquo;s subsystems by how implicated they
 are, turning a plant-wide alarm into a subsystem-level lead for the operator. The reported
 <strong>LatAD (regime-community)</strong> combines the communities by cohesion-weighted Higher Criticism and fuses
-that with the null expert by summing the two in train-normal z-score units; the single-latent <strong>LatAD (global
+that with the <span class="rev-del">null</span><span class="rev2-highlight">whole-plant</span> expert by summing the two in train-normal standardized units; the single-latent <strong>LatAD (global
 density)</strong> of &sect;4.1&ndash;4.3 is the degenerate case <math xmlns="http://www.w3.org/1998/Math/MathML"
 display="inline"><mrow><mi>&#119966;</mi><mo>=</mo><mo>{</mo><mtext>all channels</mtext><mo>}</mo></mrow></math>
 and is reported as the base ablation. The detector occupies one point on each of four design axes: representation
@@ -676,7 +676,7 @@ recordings (its train-normal mean 9.09 and standard deviation 0.16 shift to a te
 122 channels.</span> <span class="rev2-highlight">Remaining standardized features are clipped to
 &plusmn;10&#963; to cap sensor glitches (for example a channel constant at zero in the 14-day normal record).</span> WADI is downsampled 10&times; on both streams, with the train and
 test horizons matched.</li>
-<li><strong>HAI</strong> [<span class="rev-highlight"><a href="#r-hai">51</a></span>], a hardware-in-the-loop <span class="rev2-highlight">(HIL)</span> industrial control system
+<li><strong>HAI</strong> [<span class="rev-highlight"><a href="#r-hai">51</a></span>], a hardware-in-the-loop <span class="rev2-highlight">(HIL, a real controller driving a simulated plant)</span> industrial control system
 testbed (HAI 20.07), 59 channels, a multi-process plant. No clipping (its large excursions are real attack
 signal).</li>
 <li><strong>SWaT</strong> [<span class="rev-highlight"><a href="#r-swat">52</a></span>], the Secure Water Treatment testbed from iTrust, a
@@ -704,7 +704,7 @@ input. A window is labeled anomalous if more than 5% of its timesteps are attack
 additionally per-feature standardized on train-normal before the encoder. The window size and stride are unified
 across all three datasets. The reported model uses these static per-channel features. <span class="rev2-highlight">A controlled representation
 check (Appendix&nbsp;A, Table&nbsp;A2) confirms the latent-density mechanism is what carries the result: swapping in a richer
-ten-feature temporal/spectral representation changes the global-density score negligibly on WADI (+0.002) and modestly on
+ten-feature temporal/spectral representation changes the global-density score negligibly on WADI (&minus;0.009) and modestly on
 SWaT and HAI (+0.026, +0.072), so explicit multiscale temporal features motivated by A9 are a complementary lever, left
 to future work (&sect;7).</span></p>
 
@@ -750,7 +750,7 @@ that respects the serial dependence of the data. Normal windows are resampled by
 length <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#8968;</mo><mi>W</mi><mo>/</mo><mtext>stride</mtext><mo>&#8969;</mo><mo>+</mo><mn>1</mn></mrow></math>
 windows (3 on WADI, 4 on HAI and SWaT), so overlapping windows are resampled as blocks; anomalous windows are resampled
 by an episode-level bootstrap that draws whole attack episodes with replacement and contributes their difficult windows,
-preserving within-attack dependence. From 2000 resamples (1000 on HAI) we report the 95% confidence interval of the
+preserving within-attack dependence. From 2000 resamples we report the 95% confidence interval of the
 paired difference by the percentile method (the 2.5th and 97.5th quantiles) and a one-sided <em>p</em>-value as the
 fraction of resamples in which the difference is at most zero.</p>
 
@@ -801,14 +801,14 @@ AUROC as mean&plusmn;standard deviation over five seeds (the standard deviation 
 <tbody>
 <tr><td class="l" colspan="8" style="background:#eef3f8;text-align:left"><b>WADI</b> &nbsp;<span class="small rev2-highlight">(anom 56 = 26 easy + 30 difficult)</span></td></tr>
 <tr class="rev2-highlight"><td class="l">trivial max|u|</td><td>Baseline</td><td>0.786</td><td>0.62</td><td class="win">0.999</td><td>0.98</td><td>0.601</td><td>0.13</td></tr>
-<tr class="rev2-highlight"><td class="l">Isolation Forest</td><td>Baseline</td><td>0.725</td><td>0.39</td><td>0.829</td><td>0.42</td><td>0.634</td><td>0.17</td></tr>
-<tr class="rev2-highlight"><td class="l">AutoEncoder</td><td>Baseline</td><td>0.792</td><td>0.55</td><td>0.981</td><td>0.82</td><td>0.628</td><td>0.18</td></tr>
+<tr class="rev2-highlight"><td class="l">Isolation Forest</td><td>Baseline</td><td>0.725&plusmn;0.005</td><td>0.39</td><td>0.829&plusmn;0.007</td><td>0.42</td><td>0.634&plusmn;0.006</td><td>0.17</td></tr>
+<tr class="rev2-highlight"><td class="l">AutoEncoder</td><td>Baseline</td><td>0.792&plusmn;0.002</td><td>0.55</td><td>0.981&plusmn;0.001</td><td>0.82</td><td>0.628&plusmn;0.004</td><td>0.18</td></tr>
 <tr class="rev2-highlight"><td class="l">LinRes (one-hot)</td><td>Baseline</td><td class="win">0.834</td><td>0.68</td><td>0.932</td><td>0.73</td><td>0.750</td><td>0.53</td></tr>
 <tr class="rev2-highlight"><td class="l">USAD</td><td>SOTA</td><td>0.757</td><td>0.49</td><td>0.962</td><td>0.73</td><td>0.579</td><td>0.16</td></tr>
 <tr class="rev2-highlight"><td class="l">TranAD</td><td>SOTA</td><td>0.786</td><td>0.54</td><td>0.986</td><td>0.74</td><td>0.613</td><td>0.20</td></tr>
 <tr class="rev2-highlight"><td class="l">GDN</td><td>SOTA</td><td>0.801</td><td>&ndash;</td><td>0.963</td><td>&ndash;</td><td>0.660</td><td>&ndash;</td></tr>
-<tr class="rev2-highlight"><td class="l">LatAD (global density)</td><td>Ours</td><td>0.717</td><td>0.34</td><td>0.813</td><td>0.32</td><td>0.634</td><td>0.18</td></tr>
-<tr class="rev2-highlight"><td class="l"><b>LatAD (regime-community)</b></td><td>Ours</td><td>0.827</td><td>0.57</td><td>0.892</td><td>0.58</td><td class="win">0.771</td><td>0.42</td></tr>
+<tr class="rev2-highlight"><td class="l">LatAD (global density)</td><td>Ours</td><td>0.717&plusmn;0.006</td><td>0.34</td><td>0.813&plusmn;0.016</td><td>0.32</td><td>0.634&plusmn;0.011</td><td>0.18</td></tr>
+<tr class="rev2-highlight"><td class="l"><b>LatAD (regime-community)</b></td><td>Ours</td><td>0.827&plusmn;0.009</td><td>0.57</td><td>0.892&plusmn;0.009</td><td>0.58</td><td class="win">0.771&plusmn;0.023</td><td>0.42</td></tr>
 
 <tr><td class="l" colspan="8" style="background:#eef3f8;text-align:left"><b>HAI</b> &nbsp;<span class="small">(anom 652 = 485 easy + 167 difficult)</span></td></tr>
 <tr><td class="l">trivial max|u|</td><td>Baseline</td><td>0.806</td><td>0.666</td><td>0.966</td><td>0.800</td><td>0.340</td><td>0.000</td></tr>
@@ -819,18 +819,18 @@ AUROC as mean&plusmn;standard deviation over five seeds (the standard deviation 
 <tr><td class="l">TranAD</td><td>SOTA</td><td>0.834&plusmn;0.002</td><td>0.692</td><td>0.968</td><td>0.824</td><td>0.444&plusmn;0.010</td><td>0.015</td></tr>
 <tr class="rev2-highlight"><td class="l">GDN</td><td>SOTA</td><td>0.845</td><td>&ndash;</td><td>0.970</td><td>&ndash;</td><td>0.481</td><td>&ndash;</td></tr>
 <tr><td class="l">LatAD (global density)</td><td>Ours</td><td>0.933&plusmn;0.007</td><td>0.714</td><td>0.975&plusmn;0.004</td><td>0.780</td><td>0.811&plusmn;0.016</td><td>0.365</td></tr>
-<tr><td class="l"><b>LatAD (regime-community)</b></td><td>Ours</td><td class="win"><span class="rev2-highlight">0.948&plusmn;0.004</span></td><td><span class="rev2-highlight">0.76</span></td><td class="win"><span class="rev2-highlight">0.984&plusmn;0.002</span></td><td><span class="rev2-highlight">0.82</span></td><td class="win"><span class="rev2-highlight">0.845&plusmn;0.018</span></td><td><span class="rev2-highlight">0.36</span></td></tr>
+<tr><td class="l"><b>LatAD (regime-community)</b></td><td>Ours</td><td class="win"><span class="rev2-highlight">0.948&plusmn;0.004</span></td><td><span class="rev2-highlight">0.760</span></td><td class="win"><span class="rev2-highlight">0.984&plusmn;0.002</span></td><td><span class="rev2-highlight">0.820</span></td><td class="win"><span class="rev2-highlight">0.845&plusmn;0.018</span></td><td><span class="rev2-highlight">0.360</span></td></tr>
 
 <tr><td class="l" colspan="8" style="background:#eef3f8;text-align:left"><b>SWaT</b> &nbsp;<span class="small rev2-highlight">(anom 233 = 148 easy + 85 difficult)</span></td></tr>
 <tr class="rev2-highlight"><td class="l">trivial max|u|</td><td>Baseline</td><td>0.871</td><td>0.771</td><td class="win">1.000</td><td>0.969</td><td>0.646</td><td>0.206</td></tr>
 <tr class="rev2-highlight"><td class="l">Isolation Forest</td><td>Baseline</td><td>0.821&plusmn;0.003</td><td>0.680</td><td>0.933&plusmn;0.002</td><td>0.874</td><td>0.627&plusmn;0.007</td><td>0.259</td></tr>
-<tr class="rev2-highlight"><td class="l">AutoEncoder</td><td>Baseline</td><td>0.899&plusmn;0.002</td><td>0.800</td><td>0.996&plusmn;0.000</td><td>0.980</td><td>0.729&plusmn;0.007</td><td>0.349</td></tr>
+<tr class="rev2-highlight"><td class="l">AutoEncoder</td><td>Baseline</td><td>0.899&plusmn;0.002</td><td>0.800</td><td>0.996</td><td>0.980</td><td>0.729&plusmn;0.007</td><td>0.349</td></tr>
 <tr class="rev2-highlight"><td class="l">LinRes (one-hot)</td><td>Baseline</td><td>0.920</td><td>0.821</td><td class="win">1.000</td><td>0.976</td><td>0.782</td><td>0.391</td></tr>
 <tr class="rev2-highlight"><td class="l">USAD</td><td>SOTA</td><td>0.873</td><td>0.796</td><td>0.996</td><td>0.980</td><td>0.658</td><td>0.270</td></tr>
 <tr class="rev2-highlight"><td class="l">TranAD</td><td>SOTA</td><td>0.873</td><td>0.796</td><td>0.998</td><td>0.980</td><td>0.655</td><td>0.266</td></tr>
 <tr class="rev2-highlight"><td class="l">GDN</td><td>SOTA</td><td>0.876</td><td>&ndash;</td><td>0.997</td><td>&ndash;</td><td>0.665</td><td>&ndash;</td></tr>
 <tr class="rev2-highlight"><td class="l">LatAD (global density)</td><td>Ours</td><td>0.927&plusmn;0.002</td><td>0.797</td><td>0.998&plusmn;0.001</td><td>0.952</td><td>0.804&plusmn;0.007</td><td>0.437</td></tr>
-<tr class="rev2-highlight"><td class="l"><b>LatAD (regime-community)</b></td><td>Ours</td><td class="win">0.938&plusmn;0.002</td><td>0.83</td><td>0.995&plusmn;0.000</td><td>0.92</td><td class="win">0.837&plusmn;0.004</td><td>0.57</td></tr>
+<tr class="rev2-highlight"><td class="l"><b>LatAD (regime-community)</b></td><td>Ours</td><td class="win">0.938&plusmn;0.002</td><td>0.830</td><td>0.995</td><td>0.920</td><td class="win">0.837&plusmn;0.004</td><td>0.570</td></tr>
 </tbody>
 </table>
 </div>
@@ -847,21 +847,25 @@ demonstration is HAI: <span class="rev2-highlight">LatAD reaches 0.845 on the di
 above the AutoEncoder (0.757) and far above the deep detectors USAD (0.477) and TranAD (0.444), which sit near
 chance. The margin over the AutoEncoder is statistically significant: an episode-block bootstrap of the paired
 difference (resampling attack episodes and normal windows, averaged over five seeds) gives +0.088 with a 95%
-confidence interval of [0.042, 0.157] and P(difference&nbsp;&#8804;&nbsp;0)&nbsp;&#8776;&nbsp;0. On canonical SWaT
+confidence interval of [0.042, 0.157] and P(difference&nbsp;&#8804;&nbsp;0)&nbsp;&#8776;&nbsp;0.</span></p>
+
+<p><span class="rev2-highlight">On canonical SWaT
 the difficult subset is genuinely discriminative (85 windows across 23 attack episodes, the trivial rule falling to
 0.646): LatAD reaches 0.837 against the strongest linear baseline 0.782, and the same bootstrap makes the margin
-significant (+0.055, 95% CI [0.012, 0.104], P&nbsp;=&nbsp;0.007). On WADI LatAD reaches 0.771 (30 difficult windows
-over 8 attack episodes), ahead of every learned detector
-(linear cross-channel 0.750, Isolation Forest 0.634, AutoEncoder 0.628, TranAD 0.613, USAD 0.579); the lead over the
-strongest baseline, the linear one, is numerical (+0.020, 95% CI [&#8722;0.161, 0.205], P&nbsp;=&nbsp;0.46 over 8 episodes),
-so LatAD is significantly ahead of every learned detector on WADI and ties only the linear baseline. The WADI lead is
-carried by the community density aggregation (HC_coh 0.795): the single-latent global density collapses to 0.634 on
-this artifact-free subset, below the linear baseline, so the community factorization rather than the single latent
-supplies the WADI signal. On the full set the linear baseline is marginally ahead of LatAD (0.834 vs 0.827). The
-43-to-30 change in the WADI difficult count removes twelve constant-channel-flip windows that a difficulty-stratification
-artifact (an inconsistent clip across datasets, now fixed) had left in the difficult subset. The advantage over
-the reconstruction-based deep detectors is largest exactly where the difficult anomalies are reconstructable yet
-improbable, most decisively on HAI, where those detectors fall to near chance.</span></p>
+significant (+0.055, 95% CI [0.012, 0.104], P&nbsp;=&nbsp;0.007).</span></p>
+
+<p><span class="rev2-highlight">On WADI LatAD reaches 0.771 (30 difficult windows over 8 attack episodes), significantly ahead of every learned
+detector. A per-detector episode-block bootstrap of the paired difference clears each one with P&nbsp;&lt;&nbsp;0.05: vs
+the AutoEncoder +0.142 (P&nbsp;=&nbsp;0.001), USAD +0.192 (P&nbsp;=&nbsp;0.000), TranAD +0.157 (P&nbsp;=&nbsp;0.0005),
+Isolation Forest +0.136 (P&nbsp;=&nbsp;0.000), and GDN +0.111 (P&nbsp;=&nbsp;0.000). LatAD ties only the linear baseline
+LinRes (0.750): +0.020, 95% CI [&#8722;0.161, 0.205], P&nbsp;=&nbsp;0.46 over 8 episodes. The WADI lead is
+carried by the community density aggregation (cohesion-weighted Higher Criticism over the community experts, 0.795): the
+single-latent global density collapses to 0.634 on this difficult subset, below the linear baseline, so the community
+factorization rather than the single latent supplies the WADI signal. On the full set the linear baseline is marginally
+ahead of LatAD (0.834 vs 0.827).</span></p>
+
+<p><span class="rev2-highlight">The advantage over the reconstruction-based deep detectors is largest exactly where the difficult anomalies are
+reconstructable yet improbable, most decisively on HAI, where those detectors fall to near chance.</span></p>
 
 <p><strong>Trivially separable anomalies.</strong> On the easy subset every method is strong and the ranking is
 uninformative, by construction: the easy subset is exactly the anomalies a univariate max-mean rule already flags,
@@ -913,8 +917,8 @@ lead on WADI (+0.056, 95% CI [&#8722;0.244, 0.305], P&nbsp;=&nbsp;0.43, 7 episod
 <thead><tr><th class="l">Method</th><th>WADI</th><th>HAI</th><th>SWaT</th></tr></thead>
 <tbody>
 <tr class="rev2-highlight"><td class="l">trivial max|u|</td><td>0.493</td><td>0.349</td><td>0.581</td></tr>
-<tr class="rev2-highlight"><td class="l">Isolation Forest</td><td>0.530</td><td>0.635&plusmn;0.012</td><td>0.578&plusmn;0.009</td></tr>
-<tr class="rev2-highlight"><td class="l">AutoEncoder</td><td>0.535</td><td>0.730&plusmn;0.003</td><td>0.666&plusmn;0.010</td></tr>
+<tr class="rev2-highlight"><td class="l">Isolation Forest</td><td>0.530&plusmn;0.009</td><td>0.635&plusmn;0.012</td><td>0.578&plusmn;0.009</td></tr>
+<tr class="rev2-highlight"><td class="l">AutoEncoder</td><td>0.535&plusmn;0.004</td><td>0.730&plusmn;0.003</td><td>0.666&plusmn;0.010</td></tr>
 <tr class="rev2-highlight"><td class="l">LinRes (one-hot)</td><td>0.606</td><td>0.465</td><td>0.688</td></tr>
 <tr class="rev2-highlight"><td class="l">USAD</td><td>0.466</td><td>0.442&plusmn;0.021</td><td>0.609</td></tr>
 <tr class="rev2-highlight"><td class="l">TranAD</td><td>0.489</td><td>0.418&plusmn;0.009</td><td>0.604</td></tr>
@@ -927,7 +931,7 @@ lead on WADI (+0.056, 95% CI [&#8722;0.244, 0.305], P&nbsp;=&nbsp;0.43, 7 episod
 <p><strong>Deep SOTA under raw metrics.</strong> Re-computed with raw point-wise metrics, the deep detectors USAD
 <span class="rev2-highlight">and TranAD fall to
 0.477 and 0.444 on the HAI difficult subset, near or below chance and far below LatAD's 0.845, even while they
-remain strong on Easy (0.90&ndash;0.97). On WADI and canonical SWaT they trail LatAD by a wide margin without
+remain strong on Easy (0.96&ndash;1.00). On WADI and canonical SWaT they trail LatAD by a wide margin without
 collapsing (WADI 0.579 / 0.613 versus 0.771; SWaT 0.658 / 0.655 versus 0.837).</span> This is the concrete face of the &ldquo;illusion of success&rdquo;:
 models that look strong under point-adjusted F1 have little difficult-fault signal once the metric is raw<span class="rev2-highlight">, and lose most sharply where the fault breaks joint structure</span>.</p>
 
@@ -940,60 +944,69 @@ models that look strong under point-adjusted F1 have little difficult-fault sign
     <text x="64" y="254">0.3</text><text x="64" y="227">0.4</text><text x="64" y="200">0.5</text><text x="64" y="173">0.6</text><text x="64" y="145">0.7</text><text x="64" y="118">0.8</text><text x="64" y="91">0.9</text><text x="64" y="64">1.0</text>
   </g>
   <g stroke="#eee"><line x1="70" y1="250" x2="700" y2="250"/><line x1="70" y1="223" x2="700" y2="223"/><line x1="70" y1="196" x2="700" y2="196"/><line x1="70" y1="169" x2="700" y2="169"/><line x1="70" y1="141" x2="700" y2="141"/><line x1="70" y1="114" x2="700" y2="114"/><line x1="70" y1="87" x2="700" y2="87"/></g>
+  <!-- rev2: bars regenerated with a single axis-consistent transform y = 250 - (v-0.3)*271.43;
+       GDN bar added to each group (Table 3); WADI whiskers added (IF/AE/LatAD 5-seed SD). -->
   <g>
-    <text x="165" y="270" text-anchor="middle" font-weight="bold">WADI</text>
-    <rect x="110" y="161.3" width="16" height="88.7" fill="#9fb8cf"/>
-    <rect x="129" y="162.9" width="16" height="87.1" fill="#c9c9c9"/>
-    <rect x="148" y="130.4" width="16" height="119.6" fill="#8a9a5b"/>
-    <rect x="167" y="175.9" width="16" height="74.1" fill="#e3b7a0"/>
-    <rect x="186" y="166.8" width="16" height="83.2" fill="#d59a7a"/>
-    <rect x="205" y="124.9" width="16" height="125.1" fill="#1f4e79"/>
+    <text x="162" y="270" text-anchor="middle" font-weight="bold">WADI</text>
+    <rect x="100" y="159.3" width="16" height="90.7" fill="#9fb8cf"/>
+    <rect x="118" y="161.0" width="16" height="89.0" fill="#c9c9c9"/>
+    <rect x="136" y="127.9" width="16" height="122.1" fill="#8a9a5b"/>
+    <rect x="154" y="174.3" width="16" height="75.7" fill="#e3b7a0"/>
+    <rect x="172" y="165.0" width="16" height="85.0" fill="#d59a7a"/>
+    <rect x="190" y="152.3" width="16" height="97.7" fill="#9578b8"/>
+    <rect x="208" y="122.2" width="16" height="127.8" fill="#1f4e79"/>
   </g>
   <g>
-    <text x="375" y="270" text-anchor="middle" font-weight="bold">HAI</text>
-    <rect x="320" y="161.2" width="16" height="88.8" fill="#9fb8cf"/>
-    <rect x="339" y="126.0" width="16" height="124.0" fill="#c9c9c9"/>
-    <rect x="358" y="172.4" width="16" height="77.6" fill="#8a9a5b"/>
-    <rect x="377" y="202.0" width="16" height="48.0" fill="#e3b7a0"/>
-    <rect x="396" y="210.9" width="16" height="39.1" fill="#d59a7a"/>
-    <rect x="415" y="105.2" width="16" height="144.8" fill="#1f4e79"/>
+    <text x="372" y="270" text-anchor="middle" font-weight="bold">HAI</text>
+    <rect x="310" y="161.2" width="16" height="88.8" fill="#9fb8cf"/>
+    <rect x="328" y="126.0" width="16" height="124.0" fill="#c9c9c9"/>
+    <rect x="346" y="172.4" width="16" height="77.6" fill="#8a9a5b"/>
+    <rect x="364" y="202.0" width="16" height="48.0" fill="#e3b7a0"/>
+    <rect x="382" y="210.9" width="16" height="39.1" fill="#d59a7a"/>
+    <rect x="400" y="200.9" width="16" height="49.1" fill="#9578b8"/>
+    <rect x="418" y="102.1" width="16" height="147.9" fill="#1f4e79"/>
   </g>
   <g>
-    <text x="585" y="270" text-anchor="middle" font-weight="bold">SWaT</text>
-    <rect x="530" y="161.7" width="16" height="88.3" fill="#9fb8cf"/>
-    <rect x="549" y="134.2" width="16" height="115.8" fill="#c9c9c9"/>
-    <rect x="568" y="119.9" width="16" height="130.1" fill="#8a9a5b"/>
-    <rect x="587" y="153.3" width="16" height="96.7" fill="#e3b7a0"/>
-    <rect x="606" y="154.1" width="16" height="95.9" fill="#d59a7a"/>
-    <rect x="625" y="107.3" width="16" height="142.7" fill="#1f4e79"/>
+    <text x="582" y="270" text-anchor="middle" font-weight="bold">SWaT</text>
+    <rect x="520" y="161.2" width="16" height="88.8" fill="#9fb8cf"/>
+    <rect x="538" y="133.6" width="16" height="116.4" fill="#c9c9c9"/>
+    <rect x="556" y="119.2" width="16" height="130.8" fill="#8a9a5b"/>
+    <rect x="574" y="152.8" width="16" height="97.2" fill="#e3b7a0"/>
+    <rect x="592" y="153.6" width="16" height="96.4" fill="#d59a7a"/>
+    <rect x="610" y="150.9" width="16" height="99.1" fill="#9578b8"/>
+    <rect x="628" y="104.2" width="16" height="145.8" fill="#1f4e79"/>
   </g>
   <g stroke="#333" stroke-width="1">
-    <line x1="328" y1="159.9" x2="328" y2="162.6"/><line x1="324" y1="159.9" x2="332" y2="159.9"/><line x1="324" y1="162.6" x2="332" y2="162.6"/>
-    <line x1="347" y1="125.1" x2="347" y2="126.8"/><line x1="343" y1="125.1" x2="351" y2="125.1"/><line x1="343" y1="126.8" x2="351" y2="126.8"/>
-    <line x1="385" y1="197.1" x2="385" y2="206.8"/><line x1="381" y1="197.1" x2="389" y2="197.1"/><line x1="381" y1="206.8" x2="389" y2="206.8"/>
-    <line x1="404" y1="208.2" x2="404" y2="213.6"/><line x1="400" y1="208.2" x2="408" y2="208.2"/><line x1="400" y1="213.6" x2="408" y2="213.6"/>
-    <line x1="423" y1="100.4" x2="423" y2="110.0"/><line x1="419" y1="100.4" x2="427" y2="100.4"/><line x1="419" y1="110.0" x2="427" y2="110.0"/>
-    <line x1="538" y1="159.8" x2="538" y2="163.6"/><line x1="534" y1="159.8" x2="542" y2="159.8"/><line x1="534" y1="163.6" x2="542" y2="163.6"/>
-    <line x1="557" y1="132.3" x2="557" y2="136.1"/><line x1="553" y1="132.3" x2="561" y2="132.3"/><line x1="553" y1="136.1" x2="561" y2="136.1"/>
-    <line x1="633" y1="106.2" x2="633" y2="108.4"/><line x1="629" y1="106.2" x2="637" y2="106.2"/><line x1="629" y1="108.4" x2="637" y2="108.4"/>
+    <line x1="108" y1="157.7" x2="108" y2="161.0"/><line x1="104" y1="157.7" x2="112" y2="157.7"/><line x1="104" y1="161.0" x2="112" y2="161.0"/>
+    <line x1="126" y1="159.9" x2="126" y2="162.1"/><line x1="122" y1="159.9" x2="130" y2="159.9"/><line x1="122" y1="162.1" x2="130" y2="162.1"/>
+    <line x1="216" y1="115.9" x2="216" y2="128.4"/><line x1="212" y1="115.9" x2="220" y2="115.9"/><line x1="212" y1="128.4" x2="220" y2="128.4"/>
+    <line x1="318" y1="159.9" x2="318" y2="162.6"/><line x1="314" y1="159.9" x2="322" y2="159.9"/><line x1="314" y1="162.6" x2="322" y2="162.6"/>
+    <line x1="336" y1="125.1" x2="336" y2="126.8"/><line x1="332" y1="125.1" x2="340" y2="125.1"/><line x1="332" y1="126.8" x2="340" y2="126.8"/>
+    <line x1="372" y1="197.1" x2="372" y2="206.8"/><line x1="368" y1="197.1" x2="376" y2="197.1"/><line x1="368" y1="206.8" x2="376" y2="206.8"/>
+    <line x1="390" y1="208.2" x2="390" y2="213.6"/><line x1="386" y1="208.2" x2="394" y2="208.2"/><line x1="386" y1="213.6" x2="394" y2="213.6"/>
+    <line x1="426" y1="97.2" x2="426" y2="107.0"/><line x1="422" y1="97.2" x2="430" y2="97.2"/><line x1="422" y1="107.0" x2="430" y2="107.0"/>
+    <line x1="528" y1="159.3" x2="528" y2="163.1"/><line x1="524" y1="159.3" x2="532" y2="159.3"/><line x1="524" y1="163.1" x2="532" y2="163.1"/>
+    <line x1="546" y1="131.7" x2="546" y2="135.5"/><line x1="542" y1="131.7" x2="550" y2="131.7"/><line x1="542" y1="135.5" x2="550" y2="135.5"/>
+    <line x1="636" y1="103.2" x2="636" y2="105.3"/><line x1="632" y1="103.2" x2="640" y2="103.2"/><line x1="632" y1="105.3" x2="640" y2="105.3"/>
   </g>
   <g font-size="11">
     <rect x="80" y="24" width="12" height="12" fill="#9fb8cf"/><text x="96" y="33">Isolation Forest</text>
-    <rect x="240" y="24" width="12" height="12" fill="#c9c9c9"/><text x="256" y="33">AutoEncoder</text>
-    <rect x="380" y="24" width="12" height="12" fill="#8a9a5b"/><text x="396" y="33">LinRes (one-hot)</text>
-    <rect x="80" y="39" width="12" height="12" fill="#e3b7a0"/><text x="96" y="48">USAD</text>
-    <rect x="240" y="39" width="12" height="12" fill="#d59a7a"/><text x="256" y="48">TranAD</text>
-    <rect x="380" y="39" width="12" height="12" fill="#1f4e79"/><text x="396" y="48">LatAD (ours)</text>
+    <rect x="210" y="24" width="12" height="12" fill="#c9c9c9"/><text x="226" y="33">AutoEncoder</text>
+    <rect x="340" y="24" width="12" height="12" fill="#8a9a5b"/><text x="356" y="33">LinRes (one-hot)</text>
+    <rect x="470" y="24" width="12" height="12" fill="#e3b7a0"/><text x="486" y="33">USAD</text>
+    <rect x="80" y="39" width="12" height="12" fill="#d59a7a"/><text x="96" y="48">TranAD</text>
+    <rect x="210" y="39" width="12" height="12" fill="#9578b8"/><text x="226" y="48">GDN</text>
+    <rect x="340" y="39" width="12" height="12" fill="#1f4e79"/><text x="356" y="48">LatAD (ours)</text>
   </g>
 </svg>
 <figcaption><strong><span class="rev2-highlight">Figure 3.</span></strong> <span class="rev2-highlight">Difficult-subset AUROC by method (five-seed mean for the learned detectors; whiskers show &plusmn;1 SD over seeds where it exceeds zero, for Isolation Forest, AutoEncoder, USAD, TranAD, and LatAD).</span> <span class="rev2-highlight">LatAD leads on all three datasets: significantly over the strongest baseline on HAI (0.845, a +0.088 margin over the AutoEncoder, 95% CI [0.042, 0.157]) and on canonical SWaT (0.837 vs the linear baseline 0.782, P&nbsp;=&nbsp;0.007), and ahead of every learned detector on WADI (0.771, tying the linear baseline over 8 episodes). On HAI's joint-structure faults the deep detectors USAD and TranAD fall to 0.44&ndash;0.48, near chance; on WADI and SWaT they trail LatAD without collapsing.</span></figcaption>
 </figure>
 
-<p class="rev2-highlight"><strong>Where the gain comes from.</strong> The difficult-subset advantage is driven primarily by cross-channel density modeling rather than by the window representation, which is a separate and smaller complementary lever (Appendix&nbsp;A, Table&nbsp;A2). Replacing the cross-channel latent density with a channel-independent product of per-channel densities (Table 5) collapses the advantage on exactly the two datasets where LatAD wins significantly: the cross-channel density adds +0.200 on HAI and +0.141 on canonical SWaT over the channel-independent baseline, while on the artifact-free WADI difficult subset it adds essentially nothing (<span class="rev2-highlight">+0.017</span>). WADI&rsquo;s difficult anomalies are single-channel or linear, so per-channel marginals already suffice; a rescaled analyzer channel (<code>2B_AIT_002_PV</code>) in the public WADI release inflates single-channel separability and is excluded from the evaluation (&sect;5.1). The head-level decomposition (Table 6) and the factorization/aggregation ablation (Table A1) localize the same gain: the latent density anchors the base score, and factorizing it over correlation communities lifts the difficult subset further, most on the overlapping-regime datasets (&sect;3).</p>
+<p class="rev2-highlight"><strong>Where the gain comes from.</strong> The difficult-subset advantage is driven primarily by cross-channel density modeling rather than by the window representation, which is a separate and smaller complementary lever (Appendix&nbsp;A, Table&nbsp;A2). Replacing the cross-channel latent density with a channel-independent product of per-channel densities (Table 5) collapses the advantage on exactly the two datasets where LatAD wins significantly: the cross-channel density adds +0.200 on HAI and +0.141 on SWaT over the channel-independent baseline, while on the WADI difficult subset it adds essentially nothing (<span class="rev2-highlight">+0.017</span>). WADI&rsquo;s difficult anomalies are single-channel or linear, so per-channel marginals already suffice; a rescaled analyzer channel (<code>2B_AIT_002_PV</code>) in the public WADI release inflates single-channel separability and is excluded from the evaluation (&sect;5.1). The head-level decomposition (Table 6) and the factorization/aggregation ablation (Table A1) localize the same gain: the latent density anchors the base score, and factorizing it over correlation communities lifts the difficult subset further, most on WADI and by a similar margin on HAI and SWaT (Appendix&nbsp;A).</p>
 
 <div class="tblwrap rev2-highlight">
 <table>
-<caption class="rev2-highlight"><strong>Table 5.</strong> Source of gain: difficult-subset AUROC (five-seed mean&plusmn;standard deviation) of the cross-channel latent density against a channel-independent product of per-channel densities, on the artifact-free WADI, canonical SWaT, and HAI difficult subsets (<span class="rev2-highlight">30</span>&nbsp;/&nbsp;85&nbsp;/&nbsp;167 anomaly windows). The cross-channel gain is carried by HAI and SWaT; on cleaned WADI it is essentially zero, because WADI&rsquo;s difficult anomalies are single-channel or linear and per-channel marginals already suffice.</caption>
+<caption class="rev2-highlight"><strong>Table 5.</strong> Source of gain: difficult-subset AUROC (five-seed mean&plusmn;standard deviation) of the cross-channel latent density against a channel-independent product of per-channel densities, on the WADI, HAI, and SWaT difficult subsets (30&nbsp;/&nbsp;167&nbsp;/&nbsp;85 anomaly windows). The cross-channel gain is carried by HAI and SWaT; on WADI it is essentially zero, because WADI&rsquo;s difficult anomalies are single-channel or linear and per-channel marginals already suffice. Bold marks the cross-channel gains that survive the significance test.</caption>
 <thead><tr><th class="l">Density model</th><th>WADI</th><th>HAI</th><th>SWaT</th></tr></thead>
 <tbody>
 <tr class="rev2-highlight"><td class="l">cross-channel latent density</td><td>0.656&plusmn;0.016</td><td>0.789&plusmn;0.018</td><td>0.795&plusmn;0.010</td></tr>
@@ -1011,7 +1024,7 @@ clearest demonstration is HAI, whose difficult faults break joint structure: Lat
 significant margin over the next-best baseline (paired episode-bootstrap 95% CI <span class="rev2-highlight">[0.042, 0.157]</span>), while the deep
 detectors USAD and TranAD fall near chance (0.44&ndash;0.48). <span class="rev2-highlight">On canonical SWaT the lead is also significant
 (0.837 versus the linear baseline 0.782, P&nbsp;=&nbsp;0.007), and on WADI the difficult-subset lead is carried by the
-community density aggregation (HC_coh 0.795): the single-latent global density collapses to 0.634 on the artifact-free
+community density aggregation (cohesion-weighted Higher Criticism, 0.795): the single-latent global density collapses to 0.634 on the difficult
 subset, below the linear baseline, while the fused detector reaches 0.771, ahead of every learned detector though not
 separable from the linear baseline over 8 episodes.</span>
 Modeling normal as a jointly learned latent plus explicit regime clustering, scored by probability and factorized
@@ -1040,8 +1053,8 @@ exactly the local violations that matter. Estimating density inside each communi
 combining the per-community surprises by a sparsity-adaptive statistic recovers a signal carried by a few communities
 that a global sum would wash out. This is the mechanism behind the WADI gain (Table A1): <span class="rev2-highlight">a coordinated
 drift confined to a small correlated subsystem is improbable within that subsystem's own density yet unremarkable in
-the whole-plant density, so factorization lifts the single-latent global density (0.634 on the clean WADI difficult
-subset, below the linear baseline) to the community-density lead (HC_coh 0.795), and the fused detector reaches
+the whole-plant density, so factorization lifts the single-latent global density (0.634 on the WADI difficult
+subset, below the linear baseline) to the community-density lead (cohesion-weighted Higher Criticism, 0.795), and the fused detector reaches
 0.771.</span></p>
 
 <div class="tblwrap">
@@ -1050,7 +1063,7 @@ subset, below the linear baseline) to the community-density lead (HC_coh 0.795),
 on all three datasets (an independent five-seed run). <em>recon</em> is the whitened reconstruction residual (the term the base score omits); <span class="rev2-highlight"><em>latent density</em> is the <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><mo>=</mo><mn>80</mn></mrow></math>-component density head of Equation&nbsp;(4) and <em>nearest-component NLL</em> is the head of Equation&nbsp;(5);</span> <em>base</em>
 is density+nearest; the final row adds the auto-gated residual head, which is by definition the single-latent
 <em>LatAD (global density)</em> configuration and reproduces its Table 3 row within seed variation; its per-community
-application (&sect;4.4) gives the headline detector. <span class="rev2-highlight">The model has no A8 overlap head, so none appears here.</span></caption>
+application (&sect;4.4) gives the headline detector. <span class="rev2-highlight">Bold marks the LatAD (global density) configuration, not a column maximum.</span></caption>
 <thead><tr><th class="l">Score head</th><th>WADI</th><th>HAI</th><th>SWaT</th></tr></thead>
 <tbody>
 <tr class="rev2-highlight"><td class="l">reconstruction residual (dropped term)</td><td>0.740&plusmn;0.002</td><td>0.695&plusmn;0.004</td><td>0.835&plusmn;0.000</td></tr>
@@ -1071,13 +1084,13 @@ SWaT's difficult faults being larger multivariate deviations that reconstruction
 keeps it on there. The decomposition supports the mechanism at the head level: the latent density anchors the base
 score, and reconstruction is added back only where it generalizes to held-out normal.</span></p>
 
-<p><strong>Auto-gating adapts one architecture to three datasets.</strong> The winning signal is
-dataset-dependent, so rather than hand-select we gate <span class="rev2-highlight">the optional whitened-residual head by a purely train-normal signal, its</span> held-out-normal generalization<span class="rev2-highlight"> (active on HAI and SWaT)</span>. The single
+<p class="rev-del"><strong>Auto-gating adapts one architecture to three datasets.</strong> The winning signal is
+dataset-dependent, so rather than hand-select we gate the optional whitened-residual head by a purely train-normal signal, its held-out-normal generalization (active on HAI and SWaT). The single
 global-density configuration then adapts itself: the residual head activates on HAI and SWaT, where the
 fault leaves a whitened-residual signal, and stays off on WADI, whose difficult faults are pure low-density
 pockets in the latent.</p>
 
-<p class="rev2-highlight"><strong>Assumption A8 (between-regime overlap): specified, partly defended, and coupled to A10.</strong> A8 posits neighbouring regimes lying close in observation space, so a window could be improbable while every channel stays within its normal range. Its precondition is present on nearly every real CPS dataset we examined: adjacent-but-distinct regime pairs are the rule across WADI, HAI, SWaT, Cranfield, MetroPT [<a href="#r-metropt">53</a>], and the SMD server machines [<a href="#r-omni">31</a>] (94 to 100&nbsp;percent of train-normal mass sits in a discovered regime that has a valley-separated neighbour within twice its own normal envelope, the closest pairs 2.2 to 3.9 Mahalanobis units apart), and on the Cranfield rig with physical setpoint labels the operating points are separated by tens of within-regime standard deviations (pairwise linear-discriminant error at most 3.3&nbsp;percent, overlap coefficient at most 0.016). What is absent is heavy mode overlap itself. The evidence earlier read as A8 came from a cluster-responsibility screen that is blind by construction: on a synthetic 50-percent-overlap positive control, whose large Bayes error a valid metric must report, responsibility entropy stayed flat and rated the regimes as maximally crisp, and it likewise assigns a genuine between-mode window (observation-density percentile 0.000) responsibility 1.000. Under valid observation-space metrics (overlap coefficient, density-valley ratio, cross-regime nearest-neighbour share, and discriminant error) the overlap is absent on every benchmark, and the SKAB [<a href="#r-skab">54</a>] signal that appeared to witness it is a variance-floor artifact of the estimator on a 400-window sample that collapses under empirically estimated component variances (Appendix&nbsp;C). The A8 failure mode itself, an extreme of one regime absorbed by an adjacent regime, or an isolated anomaly absorbed by a wide cluster, is not triggered by these benchmarks' anomalies: the anomaly-masking rate is at or below its lag-matched regime-switch base rate on all fourteen labelled real streams screened, and on a positive control the effect is identifiable only through the path, because a snapshot cannot distinguish a masked anomaly from a legitimate regime switch. A8-as-masking is therefore an A10 problem. The one variant the reported model already defends is over-coverage: a wide two-component head misses about 80&nbsp;percent of WADI's isolated anomalies, whereas the shipped 80-component density head (&sect;4.3&nbsp;i) misses about 13&nbsp;percent, so the head's resolution removes the over-smoothing failure directly, and an explicit local-density (kNN) head adds nothing on top of it (Spearman 0.90 to 0.93 with the density head on train-normal). A8 is thus specified, its over-coverage variant defended by the density-head resolution and its masking variant coupled to A10, and it is verifiable at operational scale, where regimes are more numerous and switch less often (Appendix&nbsp;C). The reported model carries no dedicated overlap head, and A8 is left with the trajectory assumption A10 as future work.</p>
+<p class="rev2-highlight"><strong>Assumption A8 (between-regime overlap): specified, over-coverage defended, masking coupled to A10.</strong> A8 posits regimes lying so close in observation space that a window can be improbable while every channel stays in range. Its precondition, adjacent-but-distinct regimes, holds on every multi-loop plant we screened (WADI, HAI, SWaT, Cranfield, MetroPT [<a href="#r-metropt">53</a>], and the SMD server machines [<a href="#r-omni">31</a>]: 94 to 100&nbsp;percent of train-normal mass sits in a discovered regime with a valley-separated neighbour within twice its own normal envelope). The overlap itself is absent: under four observation-space measures (overlap coefficient, density-valley ratio, cross-regime nearest-neighbour share, and discriminant error) no benchmark approaches the 30-percent-overlap positive control, and the labelled anomaly-masking rate never exceeds its lag-matched regime-switch base rate (Appendix&nbsp;C, Table&nbsp;C1). The one A8 variant the reported model already defends is over-coverage: a wide two-component head misses about 80&nbsp;percent of WADI's isolated anomalies, the 80-component density head of &sect;4.3&nbsp;(i) about 13&nbsp;percent. Masking, the remaining variant, is identifiable only through the path by which a window arrived, so it belongs with A10 and is left to operational-scale data (Appendix&nbsp;C). The reported model carries no dedicated overlap head.</p>
 
 <p><strong>The residual frontier on WADI.</strong> <span class="rev2-highlight">A minority of WADI difficult windows carry near-absent
 instantaneous fault content and sit inside the normal tail, where normal CPS operation is itself noisy. No evaluated
@@ -1090,11 +1103,11 @@ leave to future work.</span></p>
 benchmark leaves training coverage thin. On HAI one operating regime is almost absent from the training record
 (0.4% of train windows against 6.3% of test) and appears as a contiguous block of test-normal windows after
 training ends, a recording-duration limit rather than a fault. LatAD's own regime model flags this block as an unseen
-regime, and its false alarms at a 5% budget concentrate there. Excluding that single train-empty regime label-free
-(no anomaly is removed; 18.4% of test-normal windows) raises the headline model from AUROC 0.948 to 0.965,
-difficult-subset AUROC 0.845 to 0.890, and the true-positive rate at a 5% false-alarm budget from 0.789 to 0.916;
-every detector improves and LatAD leads throughout. The main tables report the full test set; we note the effect as
-a secondary view and as evidence that the regime-community model diagnoses its own coverage gaps.</p>
+regime, and its false alarms at a 5% budget concentrate there. Excluding that regime, a label-free operation that
+removes 18.4% of test-normal windows and no anomaly, lifts a secondary coverage-diagnostic view of the headline model
+(in that pass all-subset AUROC 0.948 to 0.965, difficult-subset 0.845 to 0.890, and the true-positive rate at a 5%
+false-alarm budget 0.789 to 0.916), with LatAD leading throughout. The main tables report the full test set; we note
+the effect as a secondary view and as evidence that the regime-community model diagnoses its own coverage gaps.</p>
 
 <p><strong>Trajectory assumptions A9&ndash;A10.</strong> The reported model is window-only and leverages the
 instantaneous-structure assumptions A1&ndash;A7 (A8 is specified but not realized). <span class="rev2-highlight">A9 (multiscale, many clocks) is
@@ -1111,7 +1124,7 @@ shuffle floor, on all three benchmarks, once windows whose history already conta
 history-conditioned, path-dependent scoring (A10) is the natural next step; exercising the trajectory assumptions further requires data that contains a history-dependent
 fault.</p>
 
-<p class="rev2-highlight"><strong>Benchmark scale and the trajectory assumptions.</strong> Assumptions A8 (between-regime proximity and masking), A9 (multiscale, many-clocks structure), and A10 (path dependence) concern properties that surface most clearly when a system has many channels, long duration, and rich regime variability. The public CPS benchmarks cannot fully exercise them: with a single nominal regime and days of data there is little between-regime masking to observe, few independent clocks that separate difficult faults, and short trajectories with limited path history. Verifying A8 through A10 therefore calls for operational-scale data, for example the multi-year, thousand-stream Building Data Genome Project 2 [<a href="#r-bdg2">11</a>], the fleet run-to-failure trajectories of N-CMAPSS [<a href="#r-ncmapss">47</a>], or historian exports from an instrumented plant. This is the primary axis for follow-up evaluation.</p>
+<p class="rev2-highlight"><strong>Benchmark scale and the trajectory assumptions.</strong> Assumptions A8 (between-regime proximity and masking), A9 (multiscale, many-clocks structure), and A10 (path dependence) concern properties that surface most clearly when a system has many channels, long duration, and rich regime variability. The public CPS benchmarks cannot fully exercise them: with one nominal operating mode (though the mixture discovers many sub-regimes within it) and days of data there is little between-regime masking to observe and short trajectories with limited path history. Exercising A8 through A10 on history-dependent faults therefore calls for operational-scale data, for example the multi-year, thousand-stream Building Data Genome Project 2 [<a href="#r-bdg2">11</a>], the fleet run-to-failure trajectories of N-CMAPSS [<a href="#r-ncmapss">47</a>], or historian exports from an instrumented plant. This is the primary axis for follow-up evaluation.</p>
 
 <p><strong>Alternative realizations and validation.</strong> The MIIM assumptions fix the structure to model
 rather than the estimator, so the detector of &sect;4 is one point in a larger design space. The regime-community
@@ -1123,11 +1136,8 @@ unsupervised partitioners, and a deeper multiscale community hierarchy than the 
 states (TABOR [<a href="#r-tabor">57</a>]) are complementary realizations of A7 that this instantaneous, all-Gaussian
 model does not use.</span>
 Because the community construction and the cohesion-weighted Higher Criticism combiner were developed on these three
-benchmarks, the regime-community realization should be validated on additional, untouched CPS systems before its
-per-dataset gains are treated as established; its build and calibration use train-normal data only, so the extension
-is directly testable on additional CPS systems. <span class="rev2-highlight">The community construction and combiner settings were fixed
-before the artifact-free WADI and canonical SWaT evaluations reported here, so those two datasets are effectively
-out-of-sample confirmations of a design frozen on their earlier versions.</span></p>
+benchmarks, <span class="rev2-highlight">validation on additional CPS systems is the next test of the regime-community realization; its build and calibration use train-normal data only, so that test requires no labels. The community construction and combiner settings were fixed
+before the WADI and SWaT evaluations reported here, so those two results are out-of-sample confirmations of the design.</span></p>
 
 <p class="rev-highlight"><strong>Implications for IIoT deployment.</strong> The detector maps onto a standard Industrial-IoT monitoring
 pipeline: field sensors and programmable logic controllers emit telemetry that an edge gateway or SCADA historian
@@ -1136,8 +1146,8 @@ each completed window online, and an alarm together with the most-surprised comm
 maintenance, or security stack. Two properties make this practical for IIoT: all model fitting and calibration use
 train-normal data only, so a site can be commissioned from its own normal telemetry without labeled attacks, and the
 per-community score localizes an anomaly to a physical subsystem rather than issuing only a plant-wide flag. Scoring
-is sequential, with each completed window evaluated without access to future observations. This is a deployment
-architecture rather than an experimentally evaluated configuration.</p>
+is sequential, with each completed window evaluated without access to future observations. <span class="rev-del">This is a deployment
+architecture rather than an experimentally evaluated configuration.</span><span class="rev2-highlight">The training and inference cost of this configuration is measured in Appendix&nbsp;B (Table&nbsp;B1).</span></p>
 <p class="rev-highlight">Pushing inference to the network edge (a gateway or the device itself) reduces telemetry backhaul and enables local
 response, but the regime-community realization instantiates one density model per community, so its inference cost
 grows with the number of subsystems. Where that footprint matters, adaptive-inference optimizations are a natural
@@ -1151,7 +1161,7 @@ further-reduction route on top of these figures for the per-community stack on c
 
 <p><strong>Limitations.</strong> Three boundary conditions apply: three datasets, one trained configuration per
 dataset (evaluated over five seeds), and a single instantaneous representation. <span class="rev2-highlight">Two further boundaries follow from
-the data: WADI results are on the artifact-free 122-channel set with the rescaled analyzer channel removed
+the data: WADI results are on the 122-channel set with the rescaled analyzer channel removed
 (&sect;5.1), and HAI's test record contains one operating regime almost absent from training, so its full-test-set
 numbers include a train-empty regime; all reported numbers use the full test set.</span> AUROC is threshold-free and reported
 as a five-seed mean; the F1 column is a best-threshold raw F1. The easy/difficult split is a property of one cut, the trivial
@@ -1177,7 +1187,7 @@ single blob, or as a reconstruction target, is a modeling failure.</p>
 <p><span class="rev-highlight">These results position normal-only latent-density modeling as an anomaly-monitoring approach for multivariate IIoT telemetry, particularly where labels are scarce and anomalous behavior is local to a coupled physical subsystem.</span> Two properties make the detector well-suited to condition monitoring and predictive maintenance: scoring against
 the nearest regime keeps rare-but-valid states (startups, rare manoeuvres) from paging an operator, and the
 regime-community density catches in-envelope, subsystem-local faults that stay inside every alarm limit. Extending
-LatAD to the trajectory assumptions (A9, A10) and validating the regime-community realization on additional CPS
+LatAD to the trajectory assumptions <span class="rev-del">(A9, A10)</span><span class="rev2-highlight">(A9, A10, and the masking form of A8 coupled to A10)</span> and validating the regime-community realization on additional CPS
 systems are the natural next steps.</p>
 
 <div class="backmatter">
@@ -1194,11 +1204,11 @@ systems are the natural next steps.</p>
 <p>LatAD is one point on each design axis of &sect;4: representation, density estimation (single global versus a
 regime-community ensemble, itself construction plus aggregation), scoring heads, and calibration. Table A1 varies the
 density-estimation axes on the difficult subset, holding the rest fixed. Factorizing the global density over regime
-communities lifts all three datasets, most on WADI, whose sparse coordinated-drift faults a global density dilutes;
-<span class="rev2-highlight">on WADI the density-only community aggregation (HC_coh) carries the whole effect, lifting the single-latent global density from 0.634 to 0.795, whereas the whitened-residual fusion is mildly counterproductive there and the fused headline is 0.771;</span>
-fitting the full per-community scoring heads (adding the A7 whitened residual inside each subsystem) further lifts
-HAI, where the hard valve and flow deviations are correlation-conditional; and among the sparsity-adaptive combiners,
-cohesion-weighted Higher Criticism is the one that leads on all three <span class="rev2-highlight">once the community density and its fusion are combined (and, on WADI, the density-only aggregation leads outright)</span>, because it weights a violation by the
+communities lifts all three datasets, most on WADI, whose difficult faults are confined to small correlated subsystems that a global density dilutes;
+<span class="rev2-highlight">on WADI the community aggregation carries the whole effect, lifting the single-latent global density from 0.634 to 0.795 through cohesion-weighted Higher Criticism over the per-community experts, and fusing in the whole-plant expert (the headline fusion) is mildly counterproductive there, so the fused headline settles at 0.771;
+on HAI and SWaT the whole-plant-expert fusion instead lifts the score, most on HAI, where the hard valve and flow deviations are correlation-conditional;</span>
+and among the sparsity-adaptive combiners,
+cohesion-weighted Higher Criticism is the one that leads on all three <span class="rev2-highlight">once the community experts and the whole-plant expert are fused (and, on WADI, the community aggregation without that fusion leads outright)</span>, because it weights a violation by the
 coupling strength of the subsystem it occurs in (A7) while adapting to the fault&rsquo;s extent.</p>
 
 <div class="tblwrap">
@@ -1206,22 +1216,22 @@ coupling strength of the subsystem it occurs in (A7) while adapting to the fault
 <caption><strong>Table A1.</strong> Design-axis ablation, difficult-subset AUROC (five-seed mean). Top block: the
 factorization axis (single global density, then the regime-community ensemble with density-only versus full
 per-community heads). Bottom block: the aggregation axis over the full-stack experts (how per-community surprises
-are combined). Every aggregation-block row is fused with the global null expert: the first four sum the community
-combiner and the null expert in train-normal z-score units (the headline fusion), while the last fuses unweighted
-Higher Criticism with the null expert by a maximum instead. The headline detector is the full per-community,
+are combined). Every aggregation-block row is fused with the global <span class="rev-del">null</span><span class="rev2-highlight">whole-plant</span> expert: the first four sum the community
+combiner and the <span class="rev-del">null</span><span class="rev2-highlight">whole-plant</span> expert in train-normal <span class="rev-del">z-score</span><span class="rev2-highlight">standardized</span> units (the headline fusion), while the last fuses unweighted
+Higher Criticism with the <span class="rev-del">null</span><span class="rev2-highlight">whole-plant</span> expert by a maximum instead. The headline detector is the full per-community,
 cohesion-weighted Higher Criticism row.</caption>
 <thead><tr><th class="l">Ablation</th><th>WADI</th><th>HAI</th><th>SWaT</th></tr></thead>
 <tbody>
 <tr><td class="l" colspan="4" style="background:#eef3f8;text-align:left"><b>Factorization (density-estimation axis)</b></td></tr>
 <tr class="rev2-highlight"><td class="l">LatAD (global density), no factorization</td><td>0.634</td><td>0.811</td><td>0.804</td></tr>
-<tr class="rev2-highlight"><td class="l">LatAD (regime-community), density-only experts (HC_coh)</td><td class="win">0.795</td><td>0.801</td><td>0.822</td></tr>
-<tr class="rev2-highlight"><td class="l"><b>LatAD (regime-community), full per-community heads</b></td><td>0.771</td><td>0.845</td><td>0.837</td></tr>
+<tr class="rev2-highlight"><td class="l">LatAD (regime-community), cohesion-weighted HC, no whole-plant-expert fusion</td><td class="win">0.795</td><td>0.801</td><td>0.822</td></tr>
+<tr class="rev2-highlight"><td class="l"><b>LatAD (regime-community), cohesion-weighted HC + whole-plant expert (headline)</b></td><td>0.771</td><td>0.845</td><td>0.837</td></tr>
 <tr><td class="l" colspan="4" style="background:#eef3f8;text-align:left"><b>Aggregation (over full-stack experts)</b></td></tr>
 <tr class="rev2-highlight"><td class="l">sum (of community surprises)</td><td>0.698</td><td>0.827</td><td>0.805</td></tr>
 <tr class="rev2-highlight"><td class="l">max (most-surprised community)</td><td>0.712</td><td>0.809</td><td>0.804</td></tr>
 <tr class="rev2-highlight"><td class="l">Higher Criticism (unweighted)</td><td>0.760</td><td>0.793</td><td>0.826</td></tr>
 <tr class="rev2-highlight"><td class="l"><b>cohesion-weighted Higher Criticism (headline)</b></td><td>0.771</td><td class="win">0.845</td><td class="win">0.837</td></tr>
-<tr class="rev2-highlight"><td class="l">Higher Criticism with null expert, max-fused</td><td>0.749</td><td>0.770</td><td>0.811</td></tr>
+<tr class="rev2-highlight"><td class="l">Higher Criticism with whole-plant expert, max-fused</td><td>0.749</td><td>0.770</td><td>0.811</td></tr>
 </tbody></table>
 </div>
 
@@ -1244,43 +1254,42 @@ comparison isolating the representation axis; the absolute values use a reduced 
 the headline numbers of Tables&nbsp;3&ndash;5.</caption>
 <thead><tr><th class="l">Representation</th><th>WADI</th><th>HAI</th><th>SWaT</th></tr></thead>
 <tbody>
-<tr class="rev2-highlight"><td class="l">six summary statistics (headline)</td><td>0.673&plusmn;0.006</td><td>0.743&plusmn;0.011</td><td>0.750&plusmn;0.014</td></tr>
-<tr class="rev2-highlight"><td class="l">ten-feature temporal/spectral</td><td>0.675&plusmn;0.015</td><td>0.814&plusmn;0.007</td><td>0.776&plusmn;0.007</td></tr>
-<tr class="rev2-highlight"><td class="l">temporal &minus; statistics</td><td>+0.002</td><td>+0.072</td><td>+0.026</td></tr>
+<tr class="rev2-highlight"><td class="l">six summary statistics (used by LatAD)</td><td>0.634&plusmn;0.011</td><td>0.743&plusmn;0.011</td><td>0.750&plusmn;0.014</td></tr>
+<tr class="rev2-highlight"><td class="l">ten-feature temporal/spectral</td><td>0.626&plusmn;0.017</td><td>0.814&plusmn;0.007</td><td>0.776&plusmn;0.007</td></tr>
+<tr class="rev2-highlight"><td class="l">temporal &minus; statistics</td><td>&minus;0.009</td><td>+0.072</td><td>+0.026</td></tr>
 </tbody></table>
 </div>
 
 <h2 class="rev2-highlight">Appendix B. Computational cost</h2>
 <p class="rev2-highlight">Table&nbsp;B1 reports training wall-clock and per-window inference latency for LatAD and the deep baselines,
-benchmarked on one shared GPU machine plus a CPU edge proxy. In training, LatAD-global fits in 3.2, 16, and 3.5&nbsp;s on
+benchmarked on one Modal A10G GPU (24&nbsp;GB) plus a Modal 8-vCPU CPU edge proxy, the same hardware for every method. In training, LatAD-global fits in 3.2, 16, and 3.5&nbsp;s on
 WADI, HAI, and SWaT, against 231, 898, and 163&nbsp;s for TranAD and 96, 592, and 95&nbsp;s for USAD, so LatAD trains roughly
 47 to 72 times faster than TranAD. Per-window GPU latency is 0.7 to 13&nbsp;ms for the global model and 17 to 32&nbsp;ms per
 window (batch&nbsp;1; up to about 52&nbsp;ms at batch&nbsp;256) for the full regime-community stack, against 0.15&nbsp;ms for a plain
 autoencoder; a CPU edge proxy scores a window in 0.6 to 14.6&nbsp;ms (global) and 14.5 to 25&nbsp;ms (community). The models
 are small (100 to 209&nbsp;k parameters global, 0.78 to 1.25&nbsp;M community) and run within about 3.5 to 3.9&nbsp;GB of host
-memory, placing both configurations inside gateway-class real-time budgets.</p>
+memory and tens of MB of GPU memory (Table&nbsp;B1, peak 20 to 29&nbsp;MB for LatAD), placing both configurations inside gateway-class real-time budgets.</p>
 
 <div class="tblwrap rev2-highlight">
 <table>
-<caption class="rev2-highlight"><strong>Table B1.</strong> Training and inference cost, per dataset (WADI&nbsp;/&nbsp;HAI&nbsp;/&nbsp;SWaT), on one shared
-GPU machine plus a CPU edge proxy. <em>Train s</em> is training wall-clock; <em>ms/win</em> is per-window latency at batch&nbsp;1.
-LatAD-global trains 47&ndash;72&#215; faster than TranAD, and both LatAD configurations run within about 3.5&ndash;3.9&nbsp;GB of host
-memory. Deep-baseline CPU-edge latency was not measured (&ndash;).</caption>
-<thead><tr><th class="l">Method</th><th>Params (W/H/S)</th><th>Train s (W/H/S)</th><th>GPU ms/win (W/H/S)</th><th>CPU-edge ms/win (W/H/S)</th></tr></thead>
+<caption class="rev2-highlight"><strong>Table B1.</strong> Training and inference cost, per dataset (WADI&nbsp;/&nbsp;HAI&nbsp;/&nbsp;SWaT), measured on one Modal A10G GPU (24&nbsp;GB) plus a Modal 8-vCPU CPU edge proxy (the same hardware for every method). <em>Train s</em> is training wall-clock; <em>ms/win</em> is per-window latency at batch&nbsp;1; <em>Peak GPU MB</em> is the peak CUDA memory during inference.
+LatAD-global trains 47&ndash;72&#215; faster than TranAD; both LatAD configurations run within about 3.5&ndash;3.9&nbsp;GB of host
+memory and use tens of MB of GPU memory. Deep-baseline CPU-edge latency was not measured (&ndash;).</caption>
+<thead><tr><th class="l">Method</th><th>Params (W/H/S)</th><th>Train s (W/H/S)</th><th>GPU ms/win (W/H/S)</th><th>Peak GPU MB (W/H/S)</th><th>CPU-edge ms/win (W/H/S)</th></tr></thead>
 <tbody>
-<tr><td class="l"><b>LatAD (global)</b></td><td>209k / 112k / 100k</td><td>3.2 / 16 / 3.5</td><td>0.7 / 13.0 / 13.0</td><td>0.6 / 14.6 / 14.5</td></tr>
-<tr><td class="l"><b>LatAD (regime-community)</b></td><td>1.25M / 0.81M / 0.78M</td><td>50 / 195 / 38</td><td>32.4 / 18.5 / 17.2</td><td>25.0 / 16.2 / 14.5</td></tr>
-<tr><td class="l">TranAD</td><td>1.27M / 0.30M / 0.23M</td><td>231 / 898 / 163</td><td>2.0 / 2.0 / 1.9</td><td>&ndash;</td></tr>
-<tr><td class="l">USAD</td><td>32k / 16k / 14k</td><td>96 / 592 / 95</td><td>0.41 / 0.41 / 0.41</td><td>&ndash;</td></tr>
-<tr><td class="l">AutoEncoder</td><td>97k / 48k / 42k</td><td>0.2 / 0.0 / 0.0</td><td>0.16 / 0.15 / 0.15</td><td>0.08 / 0.07 / 0.07</td></tr>
+<tr><td class="l"><b>LatAD (global)</b></td><td>209k / 112k / 100k</td><td>3.2 / 16 / 3.5</td><td>0.7 / 13.0 / 13.0</td><td>19.9 / 19.4 / 19.7</td><td>0.6 / 14.6 / 14.5</td></tr>
+<tr><td class="l"><b>LatAD (regime-community)</b></td><td>1.25M / 0.81M / 0.78M</td><td>50 / 195 / 38</td><td>32.4 / 18.5 / 17.2</td><td>28.7 / 25.1 / 24.8</td><td>25.0 / 16.2 / 14.5</td></tr>
+<tr><td class="l">TranAD</td><td>1.27M / 0.30M / 0.23M</td><td>231 / 898 / 163</td><td>2.0 / 2.0 / 1.9</td><td>62.7 / 42.3 / 38.9</td><td>&ndash;</td></tr>
+<tr><td class="l">USAD</td><td>32k / 16k / 14k</td><td>96 / 592 / 95</td><td>0.41 / 0.41 / 0.41</td><td>12.2 / 19.4 / 19.2</td><td>&ndash;</td></tr>
+<tr><td class="l">AutoEncoder</td><td>97k / 48k / 42k</td><td>0.2 / &lt;0.1 / &lt;0.1</td><td>0.16 / 0.15 / 0.15</td><td>28.9 / 45.6 / 24.2</td><td>0.08 / 0.07 / 0.07</td></tr>
 </tbody></table>
 </div>
 
 <h2 class="rev2-highlight">Appendix C. Between-regime overlap (A8) screen</h2>
-<p class="rev2-highlight">This appendix reports the measurements behind the A8 conclusion in &sect;7. An earlier version of this screen measured
-overlap by cluster responsibility (how confidently the fitted mixture assigns each normal window to one regime); that
-metric is invalid for A8, because a softmax posterior is crisp whenever a window is far from all components as well as
-when it sits at one, so it cannot see a between-mode pocket. On a synthetic pair of regimes whose Bayes error runs from
+<p class="rev2-highlight">This appendix reports the measurements behind the A8 conclusion in &sect;7. Cluster responsibility (how confidently the
+fitted mixture assigns each normal window to one regime) is not a valid overlap measure: a softmax posterior is crisp
+both when a window sits at a component and when it is far from all of them, so it cannot see a between-mode pocket. On
+a synthetic pair of regimes whose Bayes error runs from
 30&nbsp;percent to 2&nbsp;percent the responsibility entropy stays flat, and it assigns a genuine between-mode window
 (observation-density percentile 0.000) responsibility 1.000. We therefore measure A8 in observation space, with four
 label-free quantities on the standardized window features: the <em>close-distinct pair mass</em> (the share of
@@ -1288,12 +1297,12 @@ train-normal mass in a discovered regime that has a density-valley-separated nei
 envelope, the A8 precondition), the <em>nearest-pair overlap coefficient</em> and density-valley ratio (heavy mode
 overlap itself), the labelled <em>anomaly-masking rate</em> beside its lag-matched regime-switch base rate (an anomaly
 of one regime absorbed by an adjacent one), and the <em>isolated-and-missed rate by head resolution</em> (the
-over-coverage failure of a low-resolution density head). Two synthetic controls calibrate them: a 30-percent-overlap
-regime pair, and a drifting-onto-a-neighbour excursion with a matched drift-into-empty-space negative control. Table&nbsp;C1
-reports the three benchmarks, the physically labelled Cranfield rig [<a href="#r-cranfield">59</a>], SKAB, and the controls; a broader screen (adding
+over-coverage failure of a low-resolution density head). A synthetic control calibrates them: a 30-percent-overlap
+regime pair (the positive control in Table&nbsp;C1). Table&nbsp;C1
+reports the three benchmarks, the physically labelled Cranfield rig [<a href="#r-cranfield">59</a>], SKAB, and the control; a broader screen (adding
 MetroPT [<a href="#r-metropt">53</a>], four SMD server-machine entities [<a href="#r-omni">31</a>], and the Paderborn bearing
-testbed) gives the same picture. The A8 precondition holds on every multi-loop plant (close-distinct mass 0.94 to 1.00);
-the overlap, the masking excess over the base rate, and the over-coverage miss of the shipped 80-component head are all
+testbed) gives the same picture. The A8 precondition holds on every multi-loop plant (close-distinct mass 0.99 to 1.00 in Table&nbsp;C1, 0.94 to 1.00 across the broader screen);
+the overlap, the masking excess over the base rate, and the over-coverage miss of the 80-component head are all
 absent.</p>
 
 <div class="tblwrap rev2-highlight">
@@ -1305,7 +1314,7 @@ neighbour within twice its own envelope, with the smallest distinct-pair Mahalan
 discovered-regime pair mean (max); heavy overlap would approach the 30-percent-Bayes-error control (0.61). <em>Masking
 rate / base</em> is the labelled anomaly-masking rate beside its lag-matched regime-switch base rate; an excess would
 indicate A8-masking. <em>Isolated-missed</em> is the share of isolated anomalies scored below the 99th train percentile
-by a wide two-component head versus the shipped 80-component head. Synthetic positive controls calibrate each column.</caption>
+by a wide two-component head versus the 80-component head. Synthetic positive controls calibrate each column.</caption>
 <thead><tr><th class="l">Dataset</th><th>Close-distinct mass (min <em>D</em>)</th><th>Overlap coeff., mean (max)</th><th>Masking rate / base</th><th>Isolated-missed, wide / 80-comp</th></tr></thead>
 <tbody>
 <tr class="rev2-highlight"><td class="l">WADI</td><td>1.00 (2.8)</td><td>0.09 (0.27)</td><td>0.010 / 0.100</td><td>0.80 / 0.13</td></tr>
@@ -1317,15 +1326,7 @@ by a wide two-component head versus the shipped 80-component head. Synthetic pos
 </tbody></table>
 </div>
 
-<p class="rev2-highlight"><strong>The SKAB witness is an estimator artifact and cannot witness A8 either way.</strong> The one dataset that appeared to exhibit A8, SKAB [<a href="#r-skab">54</a>] (a
-400-window rotor rig), does not survive scrutiny on either metric. Its high responsibility entropy (0.29) and the apparent basin-head lift
-on the difficult subset are a variance-floor artifact of the VaDE estimator on so few windows: the model&rsquo;s component
-log-variance floor of log(0.05) manufactures the overlap, and refitting the SKAB latent with empirically estimated
-component variances drops the entropy to 0.045&ndash;0.048, indistinguishable from WADI&rsquo;s 0.053&ndash;0.057, collapsing the
-apparent lift to about zero on every seed. Independently, the observation-space screen finds SKAB has no close-distinct
-regime pairs at all (0 of 12; it is a single-loop rig), so it does not exhibit even the A8 precondition. Because the
-responsibility metric is blind to between-mode geometry in both directions, SKAB is no longer framed as a near-witness;
-A8 is specified for completeness but not demonstrated on any dataset in this study.</p>
+<p class="rev2-highlight"><strong>SKAB.</strong> SKAB [<a href="#r-skab">54</a>], a 400-window rotor rig, has no close-distinct regime pairs (0 of 12; it is a single-loop rig), so it does not exhibit the A8 precondition. Its responsibility entropy of 0.29 is a variance-floor artifact: the VaDE component log-variance floor of log(0.05) manufactures apparent overlap on so few windows, and refitting with empirically estimated component variances drops the entropy to 0.045 to 0.048, the same as WADI (0.053 to 0.057), with the basin-head lift on the difficult subset going to zero on every seed. A8 is specified for completeness but not demonstrated on any dataset in this study.</p>
 
 <hr>
 <h2>References</h2>

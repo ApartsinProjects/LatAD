@@ -40,8 +40,9 @@ e.g., LatAD, IIoT, CPS, SCADA, etc.</blockquote>
 <p class="resp"><b class="lead">Response: change made.</b> LatAD is given its full form at first use in the
 abstract ("Our detector, LatAD (Latent-density Anomaly Detector)"), and CPS, IIoT, and SCADA are expanded in
 Section 1 ("A cyber-physical system (CPS)"; "Industrial Internet of Things (IIoT)"; "Supervisory Control and
-Data Acquisition (SCADA) historians"). The remaining body abbreviations (VaDE, GMM, NLL, HC, BIC, AUROC, F1)
-are now expanded at first textual use.</p>
+Data Acquisition (SCADA) historians"). The remaining abbreviations (VaDE, GMM, NLL, HC, BIC, AUROC, F1, ICS,
+SOTA, KDE) are expanded at first use in the main text; the abstract keeps the compact forms and the main text
+re-expands them.</p>
 
 <h2>Comment 2. The abstract spends most of its length on the problems of existing methods; highlight LatAD's technical contribution.</h2>
 <blockquote>The abstract spends most of its length introducing the problems of existing anomaly detection
@@ -113,12 +114,13 @@ so a site is commissioned from its own normal data without labeled attacks.</p>
 <blockquote>What is the relationship between the MIIM presented in Section 3 and the LatAD detector presented in
 Section 4? Are they studied independently or closely related? Please add an explanation of their
 relationship.</blockquote>
-<p class="resp"><b class="lead">Response: change made.</b> Section 3 now states the relationship explicitly:
-MIIM is the specification and LatAD is one realization of it, each assumption grounded in a physical property
-of CPS operation and each motivating a specific design choice in the detector of Section 4. They are closely
-related and evaluated together. Table 1 now carries a "Realized by" column naming, for every assumption, the
-LatAD design section and mechanism that implements it, and the rows are grouped into the realized-and-validated
-block (A1 to A7) and the specified-for-future-work block (A8 to A10), so the mapping is visible at a glance.</p>
+<p class="resp"><b class="lead">Response: change made.</b> Section 3 now adds a checklist sentence stating that
+MIIM is a specification a dataset realizes to varying degrees, and Section 4 opens by stating the relationship
+explicitly: "A1 to A10 specify what a model of CPS normal must capture, not how to implement it; the detector
+below is one concrete realization of A1 to A7." Table 1 now carries a "Realized by" column naming, for every
+assumption, the LatAD design section and mechanism that implements it, and the rows are grouped into the
+realized-and-validated block (A1 to A7) and the specified-for-future-work block (A8 to A10), so the mapping is
+visible at a glance.</p>
 
 <h2>Comment 9. Section 4 readability: map Sections 4.1 to 4.4 to pipeline stages and add a LatAD workflow figure.</h2>
 <blockquote>The readability of Section 4 needs to be improved. Sections 4.1 to 4.4 barely mention LatAD in the
@@ -152,8 +154,9 @@ Section 5.3 ... the symbol conflict is still serious. It is suggested to replace
 Section 4.2 or Section 5.3.</blockquote>
 <p class="resp"><b class="lead">Response: change made.</b> The conflict is resolved. The latent variable keeps
 the symbol z, the standardization operator is renamed std(.), and the trivial-rule per-channel value is
-renamed u throughout Tables 3 and 4 and the prose (Sections 5.3 and 5.5, Section 6). The former disambiguation
-clause is no longer needed and is removed.</p>
+renamed u throughout Tables 3 and 4 and the prose (Sections 5.3 and 5.5, Section 6). The old disambiguation
+clause is replaced by a short parenthetical at first use in Section 5.3, and the remaining "z-score units"
+phrasing in Section 4.4 and the Table A1 caption is changed to "standardized units."</p>
 
 <h2>Comment 12. Typesetting: unify paragraph indentation and number all equations.</h2>
 <blockquote>Typesetting issues: Some paragraphs begin flush left, while others are indented. Please unify the
@@ -168,7 +171,7 @@ well-presented.</blockquote>
 <p class="resp"><b class="lead">Response: change made.</b> The results section was rewritten around the
 corrected, construct-matched numbers, with the significance test and window and episode counts stated for each
 dataset, and a new source-of-gain table (Table 5) added. A construct-matched graph baseline (GDN) was added
-to Table 3. Figures 1 and 2 were added and the results chart renumbered Figure 3 with a corrected caption. We
+to Tables 3 and 4 and to Figure 3. Figures 1 and 2 were added and the results chart renumbered Figure 3 with a corrected caption. We
 revised the front matter and the longer sentences, and a language pass over the whole manuscript is applied to
 the submitted version.</p>
 

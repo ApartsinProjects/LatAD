@@ -44,7 +44,7 @@ your direct requests and then summarize the principal changes and where to find 
 <h2>Summary of the principal changes</h2>
 <ul>
   <li><b>New construct-matched baseline (GDN).</b> The graph-based detector GDN is now run on all three
-  canonical streams under the identical protocol and reported in Table 3. This replaces the earlier
+  canonical streams under the identical protocol and reported in Tables 3 and 4 and in Figure 3. This replaces the earlier
   statement that GDN did not complete, which was inaccurate; GDN is now a full baseline (Sections 2.4,
   5.5, and 7).</li>
   <li><b>Corrected numbers.</b> The WADI difficult subset was re-derived from 43 to 30 windows after we
@@ -95,30 +95,32 @@ detectable" is thus now a measured finding, not an assumption (Table 1, Section 
 <p class="resp"><b class="lead">Response.</b> The nearest-component likelihood is isolated as a standalone
 score head in Table 6 (difficult-subset AUROC WADI 0.603, HAI 0.797, SWaT 0.723), alongside the mixture
 density and the density-plus-nearest base, and its design rationale is stated as assumption A5 in Table 1.
-On these three benchmarks the nearest-component and mixture scores are close, because the benchmarks lack
-the operating-regime imbalance that separates them: their normal windows sit almost entirely within a single
-dominant regime, the same reason the A8 overlap is absent. The nearest-component likelihood is a rare-regime
-<em>safety</em> property, so its distinctive benefit appears only under a regime imbalance that the public
-testbeds do not contain. We therefore support it with the head-level isolation in Table 6 and the A5 design
-argument, and we tie the missing stress case to the new benchmark-scale discussion (Section 2.5, Section 7),
-which argues that rare-regime behavior surfaces at operational scale. We state this plainly rather than
-claim a benefit on data that does not exercise the property.</p>
+It is a rare-regime <em>safety</em> term: its role is to keep a valid window in a sparsely populated regime
+from being flagged for rarity alone, protecting the false-alarm rate rather than raising the aggregate score,
+and on a dataset without such rare-regime false alarms it can sit marginally below the density head alone
+(Table 6, WADI; Section 4.3 ii). Its distinctive benefit over the mixture NLL, and the rare-regime
+false-positive question, would surface under the operating-regime imbalance sweep you propose. We did not run
+that imbalance sweep, and we support the head here with the Table 6 head-level isolation and the A5 design
+argument rather than assert a benefit we did not measure.</p>
 
 <h3>3. Report training and inference cost for edge deployment</h3>
 <blockquote>... report training and inference cost for edge deployment ...</blockquote>
 <p class="resp"><b class="lead">Response.</b> Added. Appendix B and Table B1 report parameter count, training
-wall-clock, per-window inference latency, and host memory for LatAD (global and regime-community) and the
-deep baselines, on one shared GPU machine plus a CPU edge proxy. LatAD-global trains in 3.2 / 16 / 3.5 s on
+wall-clock, per-window inference latency, peak GPU memory, and host memory for LatAD (global and regime-community)
+and the deep baselines, measured on one Modal A10G GPU (24 GB) plus a Modal 8-vCPU CPU edge proxy, the same
+hardware for every method. LatAD-global trains in 3.2 / 16 / 3.5 s on
 WADI / HAI / SWaT, roughly 47 to 72 times faster than TranAD; per-window latency stays within gateway-class
 budgets (0.7 to 13 ms global, 17 to 32 ms for the full community stack), a CPU edge proxy scores a window in
-0.6 to 14.6 ms (global), and both configurations run within about 3.5 to 3.9 GB of host memory. The former
-"no measurements" sentence in the deployment paragraph of Section 7 now points to these numbers.</p>
+0.6 to 14.6 ms (global), peak GPU memory is tens of MB (about 20 to 29 MB for LatAD), and both configurations
+run within about 3.5 to 3.9 GB of host memory. These cost measurements are added in Appendix B and Table B1, and
+the deployment paragraph in Section 7 is reworded so it no longer denies them.</p>
 
 <h3>4. Use a time-aware statistical test</h3>
 <blockquote>... use a time-aware statistical test ...</blockquote>
 <p class="resp"><b class="lead">Response.</b> Every significance statement is on an episode-block bootstrap
 that resamples whole attack episodes together with contiguous normal blocks, applied uniformly to all three
-datasets and to every reported confidence interval and P-value (Sections 6, Table 4, Figure 3). The
+datasets and to every reported confidence interval and P-value (defined in Section 5.4; results in Section 6,
+Table 4, Figure 3). The
 confidence interval is the two-sided 2.5 / 97.5 percentile of the paired difference and P is the one-sided
 bootstrap probability that the difference is at most zero. On the difficult subset the margin is significant
 on HAI (+0.088, 95 percent CI [0.042, 0.157], P about 0) and canonical SWaT (+0.055, 95 percent CI [0.012,
