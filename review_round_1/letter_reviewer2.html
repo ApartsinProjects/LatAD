@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Response to Reviewer 2 - IoT-4522779</title>
+<style>
+  body{font-family:"Times New Roman",Georgia,serif;color:#1a1a1a;line-height:1.5;
+    max-width:820px;margin:0 auto;padding:36px 30px 70px;font-size:16px}
+  h1{font-size:1.4rem;margin:0 0 .2em}
+  h2{font-size:1.08rem;margin:1.5em 0 .35em;border-bottom:1px solid #ccc;padding-bottom:.15em}
+  .meta{color:#555;font-size:.95rem;margin:0 0 1.4em}
+  blockquote{margin:.6em 0;padding:.5em .9em;border-left:3px solid #9aa7b4;
+    background:#f4f6f8;font-style:italic;color:#33404d}
+  .resp{margin:.5em 0 1.1em}
+  .resp b.lead{color:#1f4e79}
+  ul{margin:.4em 0 .8em;padding-left:1.4em}
+  li{margin:.25em 0}
+  .close{margin-top:1.8em}
+</style>
+</head>
+<body>
+
+<h1>Response to Reviewer 2</h1>
+<p class="meta">
+Manuscript IoT-4522779, MDPI <em>IoT</em><br>
+Title: Modeling Normal Is All You Need: Joint Latent Clustering for Anomaly Detection in Multimodal Industrial-IoT Cyber-Physical Systems<br>
+Authors: Alexander Apartsin and Yehudit Aperstein
+</p>
+
+<p>Dear Reviewer,</p>
+
+<p>Thank you for the thorough reading and for the clear, specific suggestions on the abstract, introduction,
+related work, figures, notation, and typesetting. We found them very useful, and the revised paper follows
+them closely. We address each point below, quoting your comment and then giving the change and its location.
+New and changed text is highlighted in green in the revised manuscript, and deletions are struck.</p>
+
+<h2>Comment 1. Expand each abbreviation at first use (LatAD, IIoT, CPS, SCADA, and so on).</h2>
+<blockquote>When an abbreviation first appears in the abstract or main text, its full form should be provided,
+e.g., LatAD, IIoT, CPS, SCADA, etc.</blockquote>
+<p class="resp"><b class="lead">Response: change made.</b> LatAD is given its full form at first use in the
+abstract ("Our detector, LatAD (Latent-density Anomaly Detector)"), and CPS, IIoT, and SCADA are expanded in
+Section 1 ("A cyber-physical system (CPS)"; "Industrial Internet of Things (IIoT)"; "Supervisory Control and
+Data Acquisition (SCADA) historians"). The remaining body abbreviations (VaDE, GMM, NLL, HC, BIC, AUROC, F1)
+are now expanded at first textual use.</p>
+
+<h2>Comment 2. The abstract spends most of its length on the problems of existing methods; highlight LatAD's technical contribution.</h2>
+<blockquote>The abstract spends most of its length introducing the problems of existing anomaly detection
+methods, while providing very little introduction to the principle of the paper's core contribution, LatAD.
+Please highlight the technical contributions of this paper in the abstract.</blockquote>
+<p class="resp"><b class="lead">Response: change made.</b> The abstract was rebalanced toward the mechanism:
+"Our detector, LatAD (Latent-density Anomaly Detector), models normal as a jointly learned latent Gaussian
+mixture (VaDE) and scores by probability rather than reconstruction, factorizing the density over
+correlation-community subsystems and combining per-subsystem surprises by cohesion-weighted Higher Criticism;
+reconstruction re-enters only through an auto-gated residual head." It now carries one headline result per
+claim (best overall AUROC on HAI 0.948 and SWaT 0.938, a significant lead on the difficult subset of HAI and
+SWaT) and closes on the code and checkpoint release.</p>
+
+<h2>Comment 3. The introduction logic is unclear; delete the first-paragraph method sentence, keep contributions out of paragraph 1, and add CPS background.</h2>
+<blockquote>The logic of the Introduction is not clear enough and should be carefully revised. In the first
+paragraph, the last sentence, "This paper detects them by XXX," should be deleted. The paper's contributions
+should not be introduced in the first paragraph of the Introduction. It is suggested to add background on
+cyber-physical systems in the first paragraph.</blockquote>
+<p class="resp"><b class="lead">Response: change made.</b> The "This paper detects them by ..." sentence is
+struck (shown as a deletion), no contributions appear in the first paragraph, and Section 1 now opens with
+CPS and IIoT background: "A cyber-physical system (CPS) couples networked sensors, actuators, and controllers
+with a physical process, forming the sensing-and-actuation layer of the Industrial Internet of Things (IIoT);
+monitoring its telemetry for faults and attacks is central to reliability and safety." The contributions are
+stated later in Section 1, after the problem and the two obstacles are set out.</p>
+
+<h2>Comment 4. Page 2, line 71: "the task is often framed as ..." - state which task.</h2>
+<blockquote>On Page 2, line 71, "the task is often framed as XXX"-what task does "the task" specifically refer
+to? Please state it clearly.</blockquote>
+<p class="resp"><b class="lead">Response: change made.</b> The sentence now names the task explicitly (Section
+1): "Unsupervised anomaly detection for CPS telemetry is often framed as characterizing the anomalies, but
+that framing is misleading."</p>
+
+<h2>Comment 5. The "two obstacles": does LatAD contribute to both, and what problem does it address or improve?</h2>
+<blockquote>The paper states that modeling and evaluation are "two obstacles that have obscured this failure
+mode." Has LatAD made contributions to both aspects? What specific problem is LatAD proposed to address, or
+what existing method does it improve? Please explain clearly.</blockquote>
+<p class="resp"><b class="lead">Response: change made.</b> A dedicated paragraph in Section 1 states this
+directly: "LatAD addresses the modeling obstacle: it replaces the reconstruction residual of USAD- and
+TranAD-style deep detectors with a probability score in a jointly learned latent regime space, factorized
+over the plant's physical subsystems. The evaluation obstacle it addresses by adopting the critique's
+protocol, raw metrics with difficulty stratification, which we use rather than claim as a contribution." So
+LatAD is a modeling contribution; on evaluation it adopts an existing protocol rather than claiming novelty.</p>
+
+<h2>Comment 6. Restructure Related Work: move the anomaly-detection definition to the introduction, delete the three LatAD self-descriptions, rewrite Section 2.3, and delete Section 2.5.</h2>
+<blockquote>The structure of the Related Work section also has major problems ... move the definition of anomaly
+detection to the Introduction ... delete the last sentence of the first paragraph, "LatAD sits squarely in
+this line XXX"; the last sentence of Section 2.1, "LatAD addresses a complementary IIoT problem XXX"; and the
+last paragraph of Section 2.2, "LatAD adopts this critique as XXX." Section 2.3 is entirely an introduction to
+LatAD and needs to be rewritten. Section 2.5 is suggested to be deleted.</blockquote>
+<p class="resp"><b class="lead">Response: change made.</b> The anomaly-detection definition is relocated to
+Section 1. The three LatAD self-descriptions (the last sentence of the Related Work preamble, the last
+sentence of Section 2.1, and the last paragraph of Section 2.2) are struck. Section 2.3 is rewritten as a
+neutral survey of latent and clustering models and now cites Deep SVDD, OmniAnomaly, and THOC. The former
+Section 2.5 "Benchmark datasets" is removed; in its place Section 2.5 is now "Benchmark scale", a short
+scholarly paragraph on the size of public CPS benchmarks versus operational scale, which supports the scoping
+of assumptions A8 to A10 (a pointer to Section 5.1 covers the dataset details).</p>
+
+<h2>Comment 7. Add a system-model or application-scenario diagram showing where in the IIoT LatAD collects data and detects.</h2>
+<blockquote>Add a system model diagram or an application scenario diagram that shows at which stage of the
+Industrial IoT the proposed LatAD method collects data and performs anomaly detection.</blockquote>
+<p class="resp"><b class="lead">Response: change made.</b> Figure 1 (Section 1) shows the IIoT monitoring
+context: field sensors and PLCs feed an edge gateway or SCADA historian that aggregates and windows the
+multivariate telemetry, LatAD scores each completed window online, and an anomaly alarm together with the
+most-surprised subsystem is forwarded to the operator, maintenance, or security stack. It is referenced from
+the Section 1 text, and the caption notes that model fitting and calibration use train-normal telemetry only,
+so a site is commissioned from its own normal data without labeled attacks.</p>
+
+<h2>Comment 8. Explain the relationship between MIIM (Section 3) and the LatAD detector (Section 4).</h2>
+<blockquote>What is the relationship between the MIIM presented in Section 3 and the LatAD detector presented in
+Section 4? Are they studied independently or closely related? Please add an explanation of their
+relationship.</blockquote>
+<p class="resp"><b class="lead">Response: change made.</b> Section 3 now states the relationship explicitly:
+MIIM is the specification and LatAD is one realization of it, each assumption grounded in a physical property
+of CPS operation and each motivating a specific design choice in the detector of Section 4. They are closely
+related and evaluated together. Table 1 now carries a "Realized by" column naming, for every assumption, the
+LatAD design section and mechanism that implements it, and the rows are grouped into the realized-and-validated
+block (A1 to A7) and the specified-for-future-work block (A8 to A10), so the mapping is visible at a glance.</p>
+
+<h2>Comment 9. Section 4 readability: map Sections 4.1 to 4.4 to pipeline stages and add a LatAD workflow figure.</h2>
+<blockquote>The readability of Section 4 needs to be improved. Sections 4.1 to 4.4 barely mention LatAD in the
+main text ... Which parts of the LatAD detector pipeline do the representation stage and scoring stage
+correspond to? Please add a figure to introduce the LatAD workflow.</blockquote>
+<p class="resp"><b class="lead">Response: change made.</b> Each Section 4 heading now names its pipeline stage:
+Section 4.1 "Representation: Variational Deep Embedding (VaDE) (the representation stage; Figure 2, top)";
+Section 4.3 "The scoring stack (the scoring stage; Figure 2, per-community heads)"; and Section 4.4
+"Regime-community density (the subsystem-factorization stage; Figure 2, community fan-out and HC combiner)".
+Figure 2, the LatAD workflow with each block tagged by the assumption it serves, is added and referenced from
+the Section 4 preamble.</p>
+
+<h2>Comment 10. Is VaDE plus density plus residual fitted separately per community, or is the encoder shared? Report training time, GPU memory, and inference latency.</h2>
+<blockquote>Is VaDE + density head + residual head fitted separately for each community? Or is the encoder
+shared? The paper does not report training time, GPU memory, or inference latency, which is critical for IIoT
+edge deployment.</blockquote>
+<p class="resp"><b class="lead">Response: change made.</b> Section 4.4 now states the architecture explicitly:
+for each community we fit a separate small VaDE, each with its own encoder, Gaussian mixture, and scoring
+heads, its regime count and latent dimension scaled to the community size; nothing is shared across
+communities except the input window features, so the model is a stack of independent per-subsystem experts
+plus one global expert. The encoder is therefore not shared. Cost is now reported in Appendix B and Table B1:
+parameter count, training wall-clock, per-window inference latency, and host memory for LatAD (global and
+regime-community) and the deep baselines, on one shared GPU machine plus a CPU edge proxy. LatAD-global
+trains in 3.2 / 16 / 3.5 s on WADI / HAI / SWaT (roughly 47 to 72 times faster than TranAD), per-window
+latency is 0.7 to 13 ms global and 17 to 32 ms for the full community stack, and both configurations run
+within about 3.5 to 3.9 GB of host memory.</p>
+
+<h2>Comment 11. The symbol z denotes both a latent variable (Section 4.3) and a standardized per-channel value (Section 5.3); replace one.</h2>
+<blockquote>The symbol z denotes a latent variable in Section 4.3 but a standardized per-channel value in
+Section 5.3 ... the symbol conflict is still serious. It is suggested to replace z with another symbol in
+Section 4.2 or Section 5.3.</blockquote>
+<p class="resp"><b class="lead">Response: change made.</b> The conflict is resolved. The latent variable keeps
+the symbol z, the standardization operator is renamed std(.), and the trivial-rule per-channel value is
+renamed u throughout Tables 3 and 4 and the prose (Sections 5.3 and 5.5, Section 6). The former disambiguation
+clause is no longer needed and is removed.</p>
+
+<h2>Comment 12. Typesetting: unify paragraph indentation and number all equations.</h2>
+<blockquote>Typesetting issues: Some paragraphs begin flush left, while others are indented. Please unify the
+format. None of the equations in the paper are numbered.</blockquote>
+<p class="resp"><b class="lead">Response: change made.</b> All nine display equations are now numbered (1) to
+(9), right-aligned (Sections 3, 4.1, 4.3, and 4.4). Paragraph-indentation is unified under one body style,
+applied at the DOCX build stage so that every paragraph follows the same first-line-indent convention.</p>
+
+<h2>On results clarity, English, and figures.</h2>
+<blockquote>The results should be clearer, the English could be improved, and the figures and tables should be
+well-presented.</blockquote>
+<p class="resp"><b class="lead">Response: change made.</b> The results section was rewritten around the
+corrected, construct-matched numbers, with the significance test and window and episode counts stated for each
+dataset, and a new source-of-gain table (Table 5) added. A construct-matched graph baseline (GDN) was added
+to Table 3. Figures 1 and 2 were added and the results chart renumbered Figure 3 with a corrected caption. We
+revised the front matter and the longer sentences, and a language pass over the whole manuscript is applied to
+the submitted version.</p>
+
+<p class="close">Thank you again for the detailed suggestions, which improved the clarity and structure of
+the paper considerably.</p>
+
+<p>Sincerely,<br>
+Alexander Apartsin and Yehudit Aperstein</p>
+
+</body>
+</html>

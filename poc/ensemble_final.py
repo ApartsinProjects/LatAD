@@ -20,8 +20,10 @@ import eda_real as E
 from onehot_filter import build_feats, loco_residual
 
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "_diagnostics")
-CFG = {"WADI": (20, 10), "HAI": (40, 16), "SWaT": (40, 16)}   # (K, latent); W/stride from eda_real
-COMPET = {"WADI": "IF", "HAI": "AE", "SWaT": "linres"}          # strongest classical baseline per dataset
+CFG = {"WADI": (20, 10), "HAI": (40, 16), "SWaT": (40, 16),
+       "WADI_clean": (20, 10), "SWaT_canon": (40, 16)}          # (K, latent); W/stride from eda_real
+COMPET = {"WADI": "IF", "HAI": "AE", "SWaT": "linres",
+          "WADI_clean": "linres", "SWaT_canon": "linres"}       # strongest classical baseline per dataset
 RNG = np.random.default_rng(0)
 REPS = int(os.environ.get("BOOT_REPS", "2000"))                 # set 0 to skip the slow bootstrap
 OUTJSON = os.environ.get("OUT_JSON", "ensemble_final.json")
@@ -31,8 +33,13 @@ KEYMAP = {"trivial max|z|": "maxz"}
 
 
 def surv(ref, v):
+    # Rank-based upper-tail survival. FIX 1 (saturation): the floor is 1/(n+1) -- the finest
+    # resolution the reference set of size n supports -- instead of a fixed 1e-4. With a fixed floor
+    # the train-normal-calibrated null tail saturated (its own extreme values all pinned to -log(1e-4)),
+    # compressing the fused z-scale and dropping null+HC (HAI 0.846->0.77). The adaptive floor
+    # de-saturates the tail so the max-fused combiner is stable.
     o = np.sort(ref); r = np.searchsorted(o, v, side="right") / len(o)
-    return -np.log(np.clip(1 - r, 1e-4, 1.0))
+    return -np.log(np.clip(1 - r, 1.0 / (len(o) + 1), 1.0))
 
 
 def pval(ref, v):
@@ -115,26 +122,41 @@ def ensemble_scores(name):
     coh = Ex["comm_cohesion"].astype(float); size = Ex["comm_size"].astype(float)
     w = coh * np.sqrt(size)
     lat = d["LatAD"]; nseed = min(Tst.shape[0], lat.shape[0]); nm = y == 0; S = Tst.shape[1]
+    # FIX 1 (calibration leak): the fusion z-scale and the LatAD null tail must be calibrated on
+    # TRAIN-normal, not on the test-normal windows (nm = y==0) selected with the test labels.
+    #  - HC/HC_coh and the community tails are already computed against the experts' held-out 20%
+    #    TRAIN-normal calibration slice (Cal), so their INPUTS are clean; only their z-scale leaked.
+    #    Reference = the aggregates recomputed on that same Cal slice (calib-vs-calib).
+    #  - The LatAD null tail reference = the global model's TRAIN scores (LatAD_train), matching the
+    #    experts' 80/20 construction: density fit on the 80% fit slice, scale taken from train-normal.
+    #  Test LatAD scores (lat) are unchanged, so the standalone LatAD column and I2 are preserved.
+    if "LatAD_train" not in d.files:
+        raise KeyError(f"{name}: scores npz lacks LatAD_train (rebuild with build_scores_table for FIX 1)")
+    lat_tr = d["LatAD_train"]
     wn = w / (w.max() + 1e-9)
     keys = ["HC", "HC_coh", "null+HC",                 # p-value-level aggregation (current)
             "sum+LatAD", "max+LatAD", "cohmax+LatAD", "HC+LatAD", "HCcoh+LatAD", "q95+LatAD"]  # density then LatAD post-proc
     acc = {k: [] for k in keys}
     for sd in range(nseed):
-        tails = np.stack([surv(Cal[sd, g], Tst[sd, g]) for g in range(S)])   # per-community surprise
+        tails = np.stack([surv(Cal[sd, g], Tst[sd, g]) for g in range(S)])   # per-community surprise (test)
         P = np.stack([pval(Cal[sd, g], Tst[sd, g]) for g in range(S)])
         hc = HC(P); hc_coh = HC(P, wt=w)
-        nulltail = surv(lat[sd][nm], lat[sd])
-        z = lambda s: (s - s[nm].mean()) / (s[nm].std() + 1e-9)
-        zl = z(nulltail)                                # LatAD post-processing signal (z vs normal)
+        # calibration references on the TRAIN-normal Cal slice (no test labels)
+        tails_c = np.stack([surv(Cal[sd, g], Cal[sd, g]) for g in range(S)])
+        Pc = np.stack([pval(Cal[sd, g], Cal[sd, g]) for g in range(S)])
+        hc_c = HC(Pc); hccoh_c = HC(Pc, wt=w)
+        z = lambda s, r: (s - r.mean()) / (r.std() + 1e-9)     # scale from a train-normal reference r
+        nulltail = surv(lat_tr[sd], lat[sd])                   # LatAD tail vs TRAIN scores
+        zl = z(nulltail, surv(lat_tr[sd], lat_tr[sd]))         # scale vs train-normal null tail
         acc["HC"].append(hc); acc["HC_coh"].append(hc_coh)
-        acc["null+HC"].append(np.maximum(z(hc), zl))
+        acc["null+HC"].append(np.maximum(z(hc, hc_c), zl))
         # aggregate the community densities into ONE score, then fuse with LatAD (z-summed post-proc)
-        acc["sum+LatAD"].append(z(tails.sum(0)) + zl)
-        acc["max+LatAD"].append(z(tails.max(0)) + zl)
-        acc["cohmax+LatAD"].append(z((wn[:, None] * tails).max(0)) + zl)
-        acc["HC+LatAD"].append(z(hc) + zl)
-        acc["HCcoh+LatAD"].append(z(hc_coh) + zl)
-        acc["q95+LatAD"].append(z(np.quantile(tails, 0.95, axis=0)) + zl)
+        acc["sum+LatAD"].append(z(tails.sum(0), tails_c.sum(0)) + zl)
+        acc["max+LatAD"].append(z(tails.max(0), tails_c.max(0)) + zl)
+        acc["cohmax+LatAD"].append(z((wn[:, None] * tails).max(0), (wn[:, None] * tails_c).max(0)) + zl)
+        acc["HC+LatAD"].append(z(hc, hc_c) + zl)
+        acc["HCcoh+LatAD"].append(z(hc_coh, hccoh_c) + zl)
+        acc["q95+LatAD"].append(z(np.quantile(tails, 0.95, axis=0), np.quantile(tails_c, 0.95, axis=0)) + zl)
     return {k: np.stack(v) for k, v in acc.items()}, y, d, nseed
 
 

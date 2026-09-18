@@ -25,7 +25,7 @@ image = (
     .pip_install("numpy<2", "scikit-learn", "scipy")
     .add_local_file(str(HERE.parent / "models_vade.py"), "/app/models_vade.py")
 )
-for ds in ["WADI", "HAI", "SWaT"]:
+for ds in ["WADI", "HAI", "SWaT", "WADI_clean", "SWaT_canon"]:
     f = HERE / "ens_bundle" / f"bundle_{ds}.npz"
     if f.exists():
         image = image.add_local_file(str(f), f"/app/bundle_{ds}.npz")

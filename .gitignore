@@ -7,8 +7,32 @@ poc/results/*.pkl
 
 # data arrays (gated-data-derived, large) — never commit
 *.npy
+*.npz
 poc/sota_bundle/results/
 poc/logs/
+
+# reviewer-round experiment outputs (E2–E5), kept local until they become paper numbers
+poc/_diagnostics/rev4_timeaware.json
+poc/_diagnostics/a3_skab_witness.json
+poc/_diagnostics/e2_*.json
+poc/_diagnostics/e3_*.json
+poc/_diagnostics/e5_*.json
+poc/_diagnostics/a3_witness*.log
+poc/runpod/
+
+# Modal credentials — never in the repo
+.modal.toml
+*.modaltoken
+poc/.secrets/
+*.modal_env
+modal_keys*
+*modal_key*
+
+# Kaggle credentials — never in the repo
+kaggle.json
+kaggle_token*
+*.kaggle_env
+.kaggle/
 
 # zenodo deposit artifact (regenerable)
 poc/zenodo_LatAD_v1.0.zip

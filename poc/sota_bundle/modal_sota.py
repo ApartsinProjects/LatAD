@@ -19,7 +19,7 @@ import modal
 HERE = Path(__file__).parent.resolve()
 # per-dataset array sets (train/test/labels + trivial-split arrays for easy/difficult)
 NPY = []
-for pfx in ["wadi", "HAI", "SWaT"]:
+for pfx in ["wadi", "wadi_clean", "HAI", "SWaT", "SWaT_canon"]:
     NPY += [f"{pfx}_train.npy", f"{pfx}_test.npy", f"{pfx}_labels.npy",
             f"{pfx}_triv_test.npy", f"{pfx}_triv_thr.npy"]
 
@@ -36,7 +36,7 @@ for f in NPY:
 app = modal.App("latad-sota", image=image)
 results_vol = modal.Volume.from_name("latad-sota-results", create_if_missing=True)
 
-PFX = {"WADI": "wadi", "HAI": "HAI", "SWaT": "SWaT"}
+PFX = {"WADI": "wadi", "WADI_clean": "wadi_clean", "HAI": "HAI", "SWaT": "SWaT", "SWaT_canon": "SWaT_canon"}
 
 
 def _patch_harness(repo, fp32=True):
@@ -116,12 +116,37 @@ def _patch_harness(repo, fp32=True):
     tgt = "\tresult, _ = pot_eval(lossTfinal, lossFinal, labelsFinal)"
     guarded = save + "\ttry:\n\t\tresult, _ = pot_eval(lossTfinal, lossFinal, labelsFinal)\n\texcept Exception as _e:\n\t\tprint('[pot] skipped', _e, flush=True); result = {}\n"
     mp = mp.replace(tgt, guarded, 1)
+    # GDN (and MTAD_GAT/MSCRED/CAE_M, unaffected here since we never select them) trains with ONE
+    # optimizer.step() per window in a pure Python loop (src/models.py backprop, elif branch) -
+    # no batching path exists for the DGL graph-attention forward, unlike USAD above. n_window=5
+    # with stride 1 means #train-windows == #train-rows, so wall-clock is linear in ROW COUNT, not
+    # feature count (confirmed empirically: WADI 123ch/78458rows ~21.7ms/window vs SWaT-mirror
+    # 51ch/108748rows ~3.5ms/window vs HAI 59ch/550800rows ~4.7ms/window - HAI's much higher row
+    # count, not its channel count, is why it never finished). Consecutive windows overlap in 4/5
+    # rows, so TRAINING on a stride-GDN_STRIDE subset of windows (still full n_window=5 context per
+    # step, just non-overlapping instead of overlapping) is the standard non-overlapping-window
+    # training regime, not a degenerate shortcut - the model, loss and graph are unchanged. TEST
+    # windows are left at full density (stride 1) so every timestep still gets a score, preserving
+    # the raw per-timestep protocol shared with USAD/TranAD.
+    mp = mp.replace(
+        "\tif model.name in ['Attention', 'DAGMM', 'USAD', 'MSCRED', 'CAE_M', 'GDN', 'MTAD_GAT', 'MAD_GAN'] or 'TranAD' in model.name: \n"
+        "\t\ttrainD, testD = convert_to_windows(trainD, model), convert_to_windows(testD, model)",
+        "\tif model.name in ['Attention', 'DAGMM', 'USAD', 'MSCRED', 'CAE_M', 'GDN', 'MTAD_GAT', 'MAD_GAN'] or 'TranAD' in model.name: \n"
+        "\t\ttrainD, testD = convert_to_windows(trainD, model), convert_to_windows(testD, model)\n"
+        "\t\tif model.name == 'GDN':\n"
+        "\t\t\t_stride = int(os.environ.get('GDN_STRIDE', '1'))\n"
+        "\t\t\tif _stride > 1:\n"
+        "\t\t\t\tprint(f'[gdn] train windows {trainD.shape[0]} -> stride {_stride} -> "
+        "{trainD[::_stride].shape[0]} (test stays dense, {testD.shape[0]} windows)', flush=True)\n"
+        "\t\t\t\ttrainD = trainD[::_stride]; trainO = trainD\n",
+        1)
     P(f"{repo}/main.py").write_text(mp)
     return save in mp
 
 
-@app.function(cpu=8.0, timeout=3 * 60 * 60, memory=16384, volumes={"/results": results_vol})
-def run_one(ds: str, model: str, epochs: int = 5, fp32: bool = True, seed: int = 0) -> dict:
+@app.function(cpu=8.0, timeout=4 * 60 * 60, memory=16384, volumes={"/results": results_vol})
+def run_one(ds: str, model: str, epochs: int = 5, fp32: bool = True, seed: int = 0,
+            gdn_stride: int = 1, max_s: int = 13500) -> dict:
     import subprocess, os, sys, time, threading, numpy as np
     from sklearn.metrics import f1_score, roc_auc_score
     os.environ["MKL_THREADING_LAYER"] = "GNU"
@@ -129,6 +154,7 @@ def run_one(ds: str, model: str, epochs: int = 5, fp32: bool = True, seed: int =
     os.environ["NEPOCHS"] = str(epochs)
     os.environ["REAL_DS"] = ds                          # real dataset for the score-dump filename
     os.environ["SOTA_SEED"] = str(seed)                 # multi-seed: RNG seed + score-dump suffix
+    os.environ["GDN_STRIDE"] = str(gdn_stride)          # GDN train-window subsampling (test stays dense)
     _tag = f"{model}_{ds}_s{seed}"
     os.environ["OMP_NUM_THREADS"] = "8"; os.environ["MKL_NUM_THREADS"] = "8"
 
@@ -190,7 +216,7 @@ def run_one(ds: str, model: str, epochs: int = 5, fp32: bool = True, seed: int =
         except Exception as e:
             print(f"[gpu] {tag} err {e}", flush=True)
 
-    def stream_run(cmd, env, max_s=6600):
+    def stream_run(cmd, env, max_s=max_s):
         p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
                              text=True, bufsize=1, env=env)
         killed = {"v": False}
@@ -251,19 +277,21 @@ MULTISEED = {"USAD", "TranAD"}
 
 @app.local_entrypoint()
 def main(datasets: str = "WADI,HAI,SWaT", models: str = "USAD,TranAD,GDN",
-         epochs: int = 0, smoke: str = "", fp32: bool = True, seeds: str = "0,1,2,3,4"):
+         epochs: int = 0, smoke: str = "", fp32: bool = True, seeds: str = "0,1,2,3,4",
+         gdn_stride: int = 1, max_s: int = 13500):
     ep = lambda m: (epochs if epochs else EPO.get(m, 5))
+    gs = lambda m: (gdn_stride if m == "GDN" else 1)
     seed_list = [int(s) for s in str(seeds).split(",") if s != ""]
     if smoke:                                            # e.g. "WADI:GDN" (single seed 0)
-        d, m = smoke.split(":"); matrix = [(d, m, ep(m), fp32, 0)]
+        d, m = smoke.split(":"); matrix = [(d, m, ep(m), fp32, 0, gs(m), max_s)]
     else:
         matrix = []
         for d in datasets.split(","):
             for m in models.split(","):
                 ss = seed_list if m in MULTISEED else [0]   # GDN etc.: single seed
                 for sd in ss:
-                    matrix.append((d, m, ep(m), fp32, sd))
-    print(f"[sota] launching {len(matrix)} parallel jobs: {[(d,m,s) for d,m,_,_,s in matrix]}", flush=True)
+                    matrix.append((d, m, ep(m), fp32, sd, gs(m), max_s))
+    print(f"[sota] launching {len(matrix)} parallel jobs: {[(d,m,s) for d,m,_,_,s,_,_ in matrix]}", flush=True)
     results = list(run_one.starmap(matrix))             # parallel: one container per (ds,model,seed)
     (HERE / "results").mkdir(exist_ok=True)
     (HERE / "results" / "sota_matrix.json").write_text(json.dumps(results, indent=2))

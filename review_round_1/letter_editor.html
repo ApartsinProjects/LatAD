@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Response to the Academic Editor - IoT-4522779</title>
+<style>
+  body{font-family:"Times New Roman",Georgia,serif;color:#1a1a1a;line-height:1.5;
+    max-width:820px;margin:0 auto;padding:36px 30px 70px;font-size:16px}
+  h1{font-size:1.4rem;margin:0 0 .2em}
+  h2{font-size:1.12rem;margin:1.6em 0 .4em;border-bottom:1px solid #ccc;padding-bottom:.15em}
+  h3{font-size:1rem;margin:1.3em 0 .3em;color:#20303f}
+  .meta{color:#555;font-size:.95rem;margin:0 0 1.4em}
+  blockquote{margin:.6em 0;padding:.5em .9em;border-left:3px solid #9aa7b4;
+    background:#f4f6f8;font-style:italic;color:#33404d}
+  .resp{margin:.5em 0 1.1em}
+  .resp b.lead{color:#1f4e79}
+  .loc{color:#555;font-size:.92rem}
+  ul{margin:.4em 0 .8em;padding-left:1.4em}
+  li{margin:.25em 0}
+  .close{margin-top:1.8em}
+</style>
+</head>
+<body>
+
+<h1>Response to the Academic Editor</h1>
+<p class="meta">
+Manuscript IoT-4522779, MDPI <em>IoT</em><br>
+Title: Modeling Normal Is All You Need: Joint Latent Clustering for Anomaly Detection in Multimodal Industrial-IoT Cyber-Physical Systems<br>
+Authors: Alexander Apartsin and Yehudit Aperstein
+</p>
+
+<p>Dear Academic Editor,</p>
+
+<p>Thank you for handling our manuscript and for a clear, actionable set of requests. We are grateful
+for the care you and both Reviewers gave the paper. The revision addresses every point: we validated or
+remeasured the previously unused assumptions, added a construct-matched graph baseline, benchmarked
+computational cost, put every significance claim on a time-aware footing, added an ablation that isolates
+the source of the gain, and reworked the front matter, figures, notation, and typesetting. Along the way
+we re-audited every reported number against its source artifact and corrected them where an artifact had
+inflated a result; the corrected numbers are used throughout, and the main conclusions hold and are in
+one respect sharper. A point-by-point response to each Reviewer accompanies this letter. Below we answer
+your direct requests and then summarize the principal changes and where to find them.</p>
+
+<h2>Summary of the principal changes</h2>
+<ul>
+  <li><b>New construct-matched baseline (GDN).</b> The graph-based detector GDN is now run on all three
+  canonical streams under the identical protocol and reported in Table 3. This replaces the earlier
+  statement that GDN did not complete, which was inaccurate; GDN is now a full baseline (Sections 2.4,
+  5.5, and 7).</li>
+  <li><b>Corrected numbers.</b> The WADI difficult subset was re-derived from 43 to 30 windows after we
+  fixed a difficulty-stratification artifact (an inconsistent per-dataset clip that had left 12 trivially
+  separable constant-channel-flip windows in the difficult subset). Together with two earlier data-quality
+  corrections (the rescaled WADI analyzer channel dropped and the canonical December-2015 SWaT release
+  adopted, Section 5.1), all result tables were rebuilt. The headline difficult-subset AUROC is HAI 0.845,
+  SWaT 0.837, WADI 0.771.</li>
+  <li><b>A8, A9, A10 remeasured.</b> The between-regime assumption (renumbered A8) is reframed with valid
+  observation-space metrics; A9 (multiscale structure) is shown present and partly exploitable; A10 (path
+  dependence) is measured absent with a passing positive control (Table 1, Section 7, Appendix C).</li>
+  <li><b>Dataset-scale scholarship.</b> A new discussion of public-benchmark scale versus operational
+  scale is added (Introduction, new Section 2.5, and Section 7), with new references, arguing that A8 to
+  A10 are properties best verified at operational scale.</li>
+  <li><b>Change-marked manuscript.</b> New and changed text is highlighted in green in the revised
+  <code>IoT2.html</code>; deletions are struck. Every response below cites the section, table, or figure
+  it changed.</li>
+</ul>
+
+<h2>Your direct requests</h2>
+
+<h3>1. Validate the assumptions that are currently unused (A3, A9, A10)</h3>
+<blockquote>Please validate the assumptions that are currently unused (A3, A9, A10) ...</blockquote>
+<p class="resp"><b class="lead">Response.</b> We reframed the MIIM specification from ten realized
+assumptions to ten assumptions of which <b>seven are realized by the detector and validated here (A1 to A7)
+and three are specified for future work (A8 to A10)</b>. Table 1 is now grouped into these two blocks and
+carries a "Realized by" column mapping each assumption to the design section that implements it.</p>
+<p class="resp">A note on numbering: the between-regime assumption the Reviewer and you refer to as "A3" (the
+one that motivated the basin-agreement head) has been renumbered <b>A8</b>, so that the seven realized
+instantaneous-window properties are contiguous A1 to A7. Its status was remeasured rather than simply
+scoped. The earlier apparent SKAB signal for it came from a cluster-responsibility screen that is blind by
+construction: on a synthetic 50 percent-overlap positive control that screen rated the regimes as maximally
+crisp, and it also proved to be a variance-floor artifact of the estimator on SKAB's 400-window sample
+(Appendix C, Table C1). Under valid observation-space metrics the A8 precondition (adjacent but distinct
+regimes) is present on nearly every real CPS dataset, but heavy mode overlap is absent; the masking form is
+detectable only with the trajectory (which couples A8 to A10), and the over-coverage form is already
+defended by the 80-component density head. A8 is therefore specified, partly defended, and verifiable at
+operational scale (Section 7, Appendix C).</p>
+<p class="resp">A9 (multiscale structure) is present in the data as a measured property: per-channel
+autocorrelation timescales span 3.4 to 3.7 decades on all three plants, and a longer window adds about
++0.06 difficult-subset AUROC on HAI, corroborating the +0.072 from explicit temporal features in Appendix
+A. A10 (path dependence) is measured absent on these snapshot-detectable benchmarks by three conditional
+scorers, each validated against a passing synthetic positive control and an order-shuffle guard; "snapshot
+detectable" is thus now a measured finding, not an assumption (Table 1, Section 7).</p>
+
+<h3>2. Direct experimental support for the rare-regime-safe nearest-component likelihood</h3>
+<blockquote>... provide direct experimental support for the rare-regime-safe nearest-component likelihood ...</blockquote>
+<p class="resp"><b class="lead">Response.</b> The nearest-component likelihood is isolated as a standalone
+score head in Table 6 (difficult-subset AUROC WADI 0.603, HAI 0.797, SWaT 0.723), alongside the mixture
+density and the density-plus-nearest base, and its design rationale is stated as assumption A5 in Table 1.
+On these three benchmarks the nearest-component and mixture scores are close, because the benchmarks lack
+the operating-regime imbalance that separates them: their normal windows sit almost entirely within a single
+dominant regime, the same reason the A8 overlap is absent. The nearest-component likelihood is a rare-regime
+<em>safety</em> property, so its distinctive benefit appears only under a regime imbalance that the public
+testbeds do not contain. We therefore support it with the head-level isolation in Table 6 and the A5 design
+argument, and we tie the missing stress case to the new benchmark-scale discussion (Section 2.5, Section 7),
+which argues that rare-regime behavior surfaces at operational scale. We state this plainly rather than
+claim a benefit on data that does not exercise the property.</p>
+
+<h3>3. Report training and inference cost for edge deployment</h3>
+<blockquote>... report training and inference cost for edge deployment ...</blockquote>
+<p class="resp"><b class="lead">Response.</b> Added. Appendix B and Table B1 report parameter count, training
+wall-clock, per-window inference latency, and host memory for LatAD (global and regime-community) and the
+deep baselines, on one shared GPU machine plus a CPU edge proxy. LatAD-global trains in 3.2 / 16 / 3.5 s on
+WADI / HAI / SWaT, roughly 47 to 72 times faster than TranAD; per-window latency stays within gateway-class
+budgets (0.7 to 13 ms global, 17 to 32 ms for the full community stack), a CPU edge proxy scores a window in
+0.6 to 14.6 ms (global), and both configurations run within about 3.5 to 3.9 GB of host memory. The former
+"no measurements" sentence in the deployment paragraph of Section 7 now points to these numbers.</p>
+
+<h3>4. Use a time-aware statistical test</h3>
+<blockquote>... use a time-aware statistical test ...</blockquote>
+<p class="resp"><b class="lead">Response.</b> Every significance statement is on an episode-block bootstrap
+that resamples whole attack episodes together with contiguous normal blocks, applied uniformly to all three
+datasets and to every reported confidence interval and P-value (Sections 6, Table 4, Figure 3). The
+confidence interval is the two-sided 2.5 / 97.5 percentile of the paired difference and P is the one-sided
+bootstrap probability that the difference is at most zero. On the difficult subset the margin is significant
+on HAI (+0.088, 95 percent CI [0.042, 0.157], P about 0) and canonical SWaT (+0.055, 95 percent CI [0.012,
+0.104], P = 0.007); on WADI the lead over the linear baseline is numerical (+0.020, 95 percent CI [-0.161,
+0.205], P = 0.46 over 8 attack episodes), and we state plainly that WADI is not separable from the linear
+baseline at that episode count.</p>
+
+<h3>5. Add ablations isolating the source of the gain</h3>
+<blockquote>... add ablations isolating the source of the gain ...</blockquote>
+<p class="resp"><b class="lead">Response.</b> Added as a main-text table. Table 5 (Section 6) replaces the
+cross-channel latent density with a channel-independent product of per-channel densities: the cross-channel
+density adds <b>+0.200 on HAI and +0.141 on canonical SWaT</b> over the channel-independent baseline, the two
+datasets where LatAD wins significantly, and essentially nothing on the artifact-free WADI difficult subset
+(+0.017), whose difficult anomalies are single-channel or linear. The head-level decomposition (Table 6) and
+the factorization ladder (Table A1) localize the same gain to the density heads and the regime-community
+factorization, and the representation check (Table A2) shows the window representation is a smaller,
+complementary lever. The gain is therefore cross-channel density modeling, not the window representation.</p>
+
+<h2>Requests forwarded from Reviewer 2</h2>
+<p class="resp">The writing and structure items you forwarded are all addressed and are detailed in the
+Reviewer 2 letter: the abstract is rebalanced toward LatAD's mechanism and the introduction is restructured
+with CPS background and no contributions in the first paragraph (abstract, Section 1); Related Work is
+restructured, with the anomaly-detection definition moved to the introduction, the LatAD self-descriptions
+removed, Section 2.3 rewritten as a neutral survey, and the old Section 2.5 replaced by a benchmark-scale
+section (Sections 1, 2.1 to 2.5); a system-model figure (Figure 1) and a LatAD workflow figure (Figure 2)
+are added and referenced; the notation conflict for z is resolved by keeping the latent z, renaming the
+standardization operator, and renaming the trivial-rule per-channel value u (Sections 4.3, 5.3); and all
+nine display equations are numbered (1) to (9), with paragraph-indentation unification applied at the DOCX
+build stage.</p>
+
+<h2>Point-by-point response and revised manuscript</h2>
+<blockquote>Please submit a point-by-point response with the revised manuscript.</blockquote>
+<p class="resp"><b class="lead">Response.</b> This letter, together with the accompanying Reviewer 1 and
+Reviewer 2 letters, is the point-by-point response. The revised manuscript is change-marked: new and changed
+text is highlighted and deletions are struck, and each response above cites the section, table, or figure it
+changed.</p>
+
+<p class="close">We believe the revision meets every request and that the corrected, construct-matched
+evaluation makes the paper stronger. Thank you again for your time and guidance.</p>
+
+<p>Sincerely,<br>
+Alexander Apartsin and Yehudit Aperstein</p>
+
+</body>
+</html>

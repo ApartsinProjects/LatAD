@@ -47,6 +47,22 @@ def _raw_wadi(downsample=10):
     return Xn, Xa, ya, sens
 
 
+def _raw_wadi_clean(downsample=10):
+    """WADI with the inter-recording ARTIFACT channel dropped. 2B_AIT_002_PV is rescaled
+    between the normal recording (train mean ~9.1, std 0.16) and the attack recording
+    (normal rows mean ~4503) -- a sensor rescale/break, not an operating state -- which after
+    train standardization saturates the +/-10-sigma clip as a constant offset and (a) inflates
+    raw-feature detectors' false alarms and (b) corrupts the max|u| difficulty split. Dropping
+    it follows standard practice of removing recalibrated/unstable WADI channels (cf. GDN,
+    TranAD). The ~30 constant STATUS/actuator channels are KEPT (legitimately constant in
+    normal; a flip is real attack signal); the two AIT_004 analyzers (~2 sigma drift) are kept.
+    Everything else matches _raw_wadi."""
+    Xn, Xa, ya, sens = _raw_wadi(downsample=downsample)
+    drop = {"2B_AIT_002_PV"}
+    keep = [i for i, c in enumerate(sens) if c not in drop]
+    return Xn[:, keep], Xa[:, keep], ya, [sens[i] for i in keep]
+
+
 def _raw_skab():
     import pandas as pd
     CH = ["Accelerometer1RMS", "Accelerometer2RMS", "Current", "Pressure",
@@ -97,6 +113,23 @@ def _raw_swat(downsample=10, warmup_drop=0.02, test_normal_frac=0.2):
     return Xn_tr, Xa_raw, ya, sens
 
 
+def _raw_swat_canonical(downsample=10, warmup_drop=0.02):
+    """CANONICAL Dec-2015 SWaT. Train = the Normal recording; test = the official
+    SWaT_Dataset_Attack_v0 (4-day attack log with normal periods INTERLEAVED and a per-row
+    Normal/Attack label, ~12.1% attack), replacing the attack-only accessible mirror. Cached
+    from the iTrust xlsx to swat_attack_canonical.npz. Channels + scale verified identical to
+    our normal (median per-channel mean diff 0.2%). Comparable to published SWaT numbers."""
+    import os, numpy as np, pandas as pd, swat as _s
+    here = os.path.dirname(os.path.abspath(__file__))
+    d = np.load(os.path.join(here, "datasets", "_new", "SWaT_canonical", "swat_attack_canonical.npz"),
+                allow_pickle=True)
+    Xa = d["Xa"].astype(np.float32); ya = d["ya"].astype(int); sens = list(d["sens"])
+    nrm = _s._read("normal.csv"); nrm.columns = [c.strip() for c in nrm.columns]
+    prep = lambda df: df[sens].apply(pd.to_numeric, errors="coerce").ffill().bfill().fillna(0.0).values.astype(np.float32)
+    Xn = prep(nrm)[int(len(nrm) * warmup_drop):][::downsample]     # full normal recording as train
+    return Xn, Xa[::downsample], ya[::downsample], sens
+
+
 def _raw_psm(warmup_drop=0.0):
     """PSM (Pooled Server Metrics, eBay/RANSynCoders): ungated, 25 features, per-timestep
     labels. train.csv is all-normal; test.csv carries normals (0) and anomalies (1)."""
@@ -116,6 +149,16 @@ def _raw_metropt():
     (downsampled to 1 min). Labels from published air-leak failure windows."""
     import os
     d = np.load(os.path.join(os.path.dirname(os.path.abspath(__file__)), "datasets", "_new", "MetroPT3", "metropt_data.npz"), allow_pickle=True)
+    return d["Xn"], d["Xa"], d["ya"], list(d["sens"])
+
+
+def _raw_wind_scada():
+    """Wind-turbine SCADA (EDP Open Data), turbine T06: 79 numeric 10-min channels. Normal = healthy
+    windows (>14 d from any failure); anomaly = the 72 h before each of 7 failures (incipient
+    degradation). Built by _diagnostics/build_wind_scada.py. Exploratory (A3/A9-A10 screen)."""
+    import os
+    d = np.load(os.path.join(os.path.dirname(os.path.abspath(__file__)), "datasets", "_new",
+                             "wind_scada", "wind_t06.npz"), allow_pickle=True)
     return d["Xn"], d["Xa"], d["ya"], list(d["sens"])
 
 
@@ -156,15 +199,45 @@ def _raw_smd(machine="1-1"):
     return Xn_tr, Xa_raw, ya, [f"c{i}" for i in range(Xn_tr.shape[1])]
 
 
+def _raw_paderborn(bearings=("K001", "K002", "K003", "K004", "K005"), signal="vibration_1"):
+    """Paderborn / KAt bearing dataset (raw ~64 kHz vibration). Additive loader used by the A3
+    modality screen; NOT registered in RAW (raw vibration is not a SCADA multivariate stream, so it
+    does not go through load()'s continuous windowing -- the A3 screen builds per-recording band-power
+    frame sequences instead, see _diagnostics/a3_screen_smd_pu.py). Returns per-recording raw signals
+    grouped so the "regimes" are the 4 operating conditions (speed/load-torque/radial-force settings).
+
+    Returns list of dicts: {bearing, cond, run, sig (1D float32 array)} for each .mat recording.
+    Operating conditions: N09_M07_F10, N15_M01_F10, N15_M07_F04, N15_M07_F10."""
+    import os, glob, scipy.io as sio
+    base = os.path.join(os.path.dirname(os.path.abspath(__file__)), "datasets", "_new", "Paderborn")
+    recs = []
+    for b in bearings:
+        for f in sorted(glob.glob(os.path.join(base, b, f"*_{b}_*.mat"))):
+            stem = os.path.splitext(os.path.basename(f))[0]           # e.g. N09_M07_F10_K001_1
+            cond = "_".join(stem.split("_")[:3])
+            run = stem.split("_")[-1]
+            m = sio.loadmat(f, squeeze_me=True, struct_as_record=False)
+            s = m[stem]
+            sig = None
+            for e in np.atleast_1d(s.Y):
+                if str(e.Name) == signal:
+                    sig = np.asarray(e.Data, np.float32); break
+            if sig is None:
+                continue
+            recs.append({"bearing": b, "cond": cond, "run": run, "sig": sig})
+    return recs
+
+
 # (window, stride) per dataset. Unified to (60, 30): W=60 is empirically the best SKAB window
 # (0.671 vs 0.66@W30 / 0.61@W120) and HAI stride 60->30 adds overlap; consistent across all so the
 # table matches the sweep scripts (SKAB at the old W=20 spuriously lost to USAD).
 RAW = {"SKAB": (_raw_skab, 60, 30), "HAI": (_raw_hai, 60, 30), "WADI": (_raw_wadi, 60, 30),
-       "SWaT": (_raw_swat, 60, 30), "PSM": (_raw_psm, 60, 30),
-       "SMD": ((lambda: _raw_smd("1-1")), 60, 30), "BATADAL": (_raw_batadal, 60, 30), "TEP": (_raw_tep, 60, 30), "MetroPT": (_raw_metropt, 60, 30)}
+       "WADI_clean": (_raw_wadi_clean, 60, 30),
+       "SWaT": (_raw_swat, 60, 30), "SWaT_canon": (_raw_swat_canonical, 60, 30), "PSM": (_raw_psm, 60, 30),
+       "SMD": ((lambda: _raw_smd("1-1")), 60, 30), "BATADAL": (_raw_batadal, 60, 30), "TEP": (_raw_tep, 60, 30), "MetroPT": (_raw_metropt, 60, 30), "WindSCADA": (_raw_wind_scada, 60, 30)}
 # clip is WADI-specific: WADI has glitch/shifted channels (up to 1e8 sigma); HAI's big
 # excursions are REAL attack signal (clipping hurts), SKAB is already in range (no-op).
-CLIP = {"WADI": 10.0, "HAI": None, "SKAB": None, "SWaT": None, "PSM": None, "SMD": None, "BATADAL": None, "TEP": None, "MetroPT": None}
+CLIP = {"WADI": 10.0, "WADI_clean": 10.0, "HAI": None, "SKAB": None, "SWaT": None, "SWaT_canon": None, "PSM": None, "SMD": None, "BATADAL": None, "TEP": None, "MetroPT": None, "WindSCADA": 10.0}
 
 
 def load(name, clip="auto"):

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Response to Reviewer 1 - IoT-4522779</title>
+<style>
+  body{font-family:"Times New Roman",Georgia,serif;color:#1a1a1a;line-height:1.5;
+    max-width:820px;margin:0 auto;padding:36px 30px 70px;font-size:16px}
+  h1{font-size:1.4rem;margin:0 0 .2em}
+  h2{font-size:1.08rem;margin:1.5em 0 .35em;border-bottom:1px solid #ccc;padding-bottom:.15em}
+  .meta{color:#555;font-size:.95rem;margin:0 0 1.4em}
+  blockquote{margin:.6em 0;padding:.5em .9em;border-left:3px solid #9aa7b4;
+    background:#f4f6f8;font-style:italic;color:#33404d}
+  .resp{margin:.5em 0 1.1em}
+  .resp b.lead{color:#1f4e79}
+  ul{margin:.4em 0 .8em;padding-left:1.4em}
+  li{margin:.25em 0}
+  .close{margin-top:1.8em}
+</style>
+</head>
+<body>
+
+<h1>Response to Reviewer 1</h1>
+<p class="meta">
+Manuscript IoT-4522779, MDPI <em>IoT</em><br>
+Title: Modeling Normal Is All You Need: Joint Latent Clustering for Anomaly Detection in Multimodal Industrial-IoT Cyber-Physical Systems<br>
+Authors: Alexander Apartsin and Yehudit Aperstein
+</p>
+
+<p>Dear Reviewer,</p>
+
+<p>Thank you for a careful and constructive reading and for finding the research content interesting. Your
+comments pushed us to validate or remeasure the previously unused assumptions, to support the
+nearest-component score directly, to benchmark computational cost, to put every significance claim on a
+time-aware footing, and to isolate the source of the gain. We address each point below, giving the change we
+made and where to find it, or a rebuttal with the supporting evidence. While preparing the revision we also
+re-audited every number and corrected a difficulty-stratification artifact on WADI; the corrected numbers are
+used throughout and are reflected in the responses.</p>
+
+<h2>Comment 1. A9 and A10 are unused, and the basin-agreement head (A3) is inactive on all three datasets; run data that activates them or limit the contribution to the validated assumptions.</h2>
+<blockquote>This manuscript introduces ten structural assumptions from A1 to A10, but the current model does
+not fully realize them. A9 and A10 are not used in the model, while the basin-agreement head for A3 is
+inactive on all three datasets. More experiments are needed on data that can activate and test these
+assumptions, otherwise the contribution should be limited to the assumptions that are actually validated.</blockquote>
+<p class="resp"><b class="lead">Response: change made and assumptions remeasured.</b> We now present MIIM as
+ten assumptions of which seven are realized by the detector and validated here (A1 to A7) and three are
+specified for future work (A8 to A10). Table 1 is grouped into these two blocks and gains a "Realized by"
+column mapping each assumption to the design section that implements it. The between-regime assumption whose
+basin head you note as inactive (your "A3") is renumbered <b>A8</b>, so the realized instantaneous-window
+properties are contiguous A1 to A7.</p>
+<p class="resp">Rather than only scoping A8 down, we remeasured it. The earlier apparent signal came from a
+cluster-responsibility screen that is blind by construction: on a synthetic 50 percent-overlap positive
+control it rated the regimes as maximally crisp, and on SKAB the signal proved to be a variance-floor
+artifact of the estimator on a 400-window sample (Appendix C, Table C1). Under valid observation-space
+metrics the A8 precondition (adjacent but distinct regimes) is present on nearly every real CPS dataset
+screened, but heavy mode overlap is absent; the masking form of A8 is detectable only through the trajectory,
+which couples it to A10, and the over-coverage form is already defended by the shipped 80-component density
+head (a wide two-component head misses about 80 percent of WADI's isolated anomalies, the 80-component head
+about 13 percent). A8 is therefore specified, partly defended, and verifiable at operational scale (Section
+7, Appendix C).</p>
+<p class="resp">A9 (multiscale structure) is present in the data as a measured property: per-channel
+autocorrelation timescales span 3.4 to 3.7 decades on all three plants, and a longer 600-sample window adds
+about +0.06 difficult-subset AUROC on HAI, corroborating the +0.072 that explicit temporal features add in
+Appendix A. A10 (path dependence) is measured absent on these snapshot-detectable benchmarks by three
+conditional scorers (a linear autoregressor, a nearest-neighbour successor model, and a regime-transition
+matrix), each validated against a passing synthetic positive control and guarded by an order-shuffle control.
+"Snapshot detectable" is thus now a measured finding for these benchmarks, not an assumption (Table 1,
+Section 7). Because the public benchmarks are small and snapshot-detectable, we added a benchmark-scale
+discussion (Section 2.5, Section 7) arguing that exercising A8 to A10 further requires operational-scale data
+with history-dependent faults.</p>
+
+<h2>Comment 2. The nearest-component likelihood lacks direct support: compare mixture NLL, nearest-component NLL, and other imbalance-aware scores across regime-imbalance ratios, with attention to the false-positive rate of rare normal regimes.</h2>
+<blockquote>The rare-regime-safe nearest-component likelihood in this manuscript lacks direct experimental
+support. Experiments under different regime imbalance ratios should compare mixture NLL, nearest-component
+NLL, and other imbalance-aware scoring methods, with more attention to the false-positive rate of rare normal
+regimes.</blockquote>
+<p class="resp"><b class="lead">Response: rebuttal plus head-level isolation.</b> The nearest-component
+likelihood is isolated as a standalone score head in Table 6, with difficult-subset AUROC 0.603 on WADI,
+0.797 on HAI, and 0.723 on SWaT, reported beside the mixture density and the density-plus-nearest base; its
+design rationale is stated as assumption A5 in Table 1 ("score against the nearest component, never the
+weighted mixture, so a rare-but-valid regime is not penalized"). On these three benchmarks the
+nearest-component and mixture scores are close, because the benchmarks lack the operating-regime imbalance
+that separates them: their normal windows sit almost entirely within one dominant regime, the same reason the
+A8 overlap is absent (Comment 1). The nearest-component likelihood is a rare-regime safety property, so its
+distinctive benefit, and the rare-regime false-positive question you raise, surface only under a regime
+imbalance the public testbeds do not exhibit. We support it here with the Table 6 isolation and the A5 design
+argument, and we tie the missing stress case to the new benchmark-scale discussion (Section 2.5, Section 7).
+We prefer to state this plainly rather than assert a benefit on data that does not exercise the property.</p>
+
+<h2>Comment 3. The regime-community design trains many models; evaluate its practical cost under the same hardware as the baselines.</h2>
+<blockquote>The regime-community design in this manuscript trains separate representation and density models
+for many communities, which may introduce much higher cost than a single global detector. More experiments
+are needed to evaluate the practical cost of this design under the same hardware setting as the main
+baselines.</blockquote>
+<p class="resp"><b class="lead">Response: change made.</b> We added Appendix B and Table B1, reporting
+parameter count, training wall-clock, per-window inference latency, and host memory for LatAD (global and
+regime-community) and the deep baselines on one shared GPU machine plus a CPU edge proxy. The regime-community
+stack does instantiate one small density model per subsystem, and Table B1 quantifies the resulting cost:
+training 50 / 195 / 38 s on WADI / HAI / SWaT and per-window latency of 17 to 32 ms (up to about 52 ms at
+batch 256), against LatAD-global at 3.2 / 16 / 3.5 s and 0.7 to 13 ms. Even so, LatAD-global trains roughly
+47 to 72 times faster than TranAD (231 / 898 / 163 s), both configurations run within about 3.5 to 3.9 GB of
+host memory, and both stay inside gateway-class real-time budgets on the CPU edge proxy. Section 4.4 now
+states the architecture explicitly (a separate small VaDE per community, nothing shared but the input window
+features, plus one global expert), and the deployment paragraph in Section 7 points at these numbers.</p>
+
+<h2>Comment 4. Sliding windows are strongly time-correlated; use a time-aware test on all three datasets, and clarify the WADI confidence interval and p-value.</h2>
+<blockquote>The sliding windows in this manuscript are strongly correlated in time, so ordinary resampling may
+underestimate the confidence interval. A time-aware statistical test should be used on all three datasets, and
+the definition of the confidence interval and p-value on WADI should be clarified.</blockquote>
+<p class="resp"><b class="lead">Response: change made.</b> Every significance statement is on an episode-block
+bootstrap that resamples whole attack episodes together with contiguous normal blocks, rather than independent
+windows, applied uniformly to all three datasets and to every reported confidence interval and P-value
+(Section 6, Table 4, Figure 3). We define both quantities: the confidence interval is the two-sided
+2.5 / 97.5 percentile of the paired difference, and P is the one-sided bootstrap probability that the
+difference is at most zero.</p>
+<ul>
+  <li><b>HAI difficult subset:</b> +0.088, 95 percent CI [0.042, 0.157], P about 0 (167 windows, 26
+  episodes).</li>
+  <li><b>Canonical SWaT difficult subset:</b> +0.055, 95 percent CI [0.012, 0.104], P = 0.007 (85 windows,
+  23 episodes).</li>
+  <li><b>WADI difficult subset (clarified):</b> +0.020, 95 percent CI [-0.161, 0.205], P = 0.46 over 8 attack
+  episodes. WADI's difficult subset spans only 8 episodes, so we state plainly that the lead over the linear
+  baseline is not statistically separable at that episode count; LatAD is significantly ahead of every learned
+  detector on WADI and ties only the linear baseline.</li>
+</ul>
+<p class="resp">On the double-hard subset the same test gives HAI +0.084 (95 percent CI [0.019, 0.189],
+P = 0.0005) and SWaT +0.085 (95 percent CI [0.030, 0.146], P = 0.0005), with WADI a numerical lead over 7
+episodes (Table 4). All intervals were recomputed from persisted scores, with no retraining.</p>
+
+<h2>Comment 5. Six static window statistics: run raw-sequential, temporal, or spectral experiments and ablations to verify whether the gain comes from cross-channel density or from the window representation.</h2>
+<blockquote>This manuscript mainly uses six static statistics from each window, so the source of the performance
+gain is still unclear. Experiments with raw sequential input and temporal or spectral information are needed
+to verify whether the gain mainly comes from cross-channel density modeling or from the current window
+representation.</blockquote>
+<p class="resp"><b class="lead">Response: change made, the source of the gain is now isolated.</b> We added a
+main-text source-of-gain table (Table 5, Section 6) that swaps the cross-channel latent density for a
+channel-independent product of per-channel densities, holding the representation fixed. The cross-channel
+density adds <b>+0.200 on HAI and +0.141 on canonical SWaT</b> over the channel-independent baseline, the two
+datasets where LatAD wins significantly, and essentially nothing on the artifact-free WADI difficult subset
+(+0.017), whose difficult anomalies are single-channel or linear so per-channel marginals already suffice. To
+address the representation directly, Table A2 re-runs the same latent-density detector with a richer
+ten-feature temporal and spectral representation in place of the six statistics: it is immaterial on WADI and
+adds +0.072 on HAI and +0.026 on SWaT, so an expanded temporal representation is a smaller, complementary
+lever aligned with A9, not the source of the reported advantage. The head-level decomposition (Table 6) and
+the factorization ladder (Table A1) localize the same gain to the density heads and the regime-community
+factorization. The gain is therefore cross-channel density modeling rather than the window representation.</p>
+
+<h2>Comment on English, figures, and conclusions.</h2>
+<blockquote>The English could be improved to more clearly express the research. Figures and tables, and the
+conclusions, should be improved.</blockquote>
+<p class="resp"><b class="lead">Response: change made.</b> We revised the front matter and the longer sentences
+flagged during restructuring, and a language pass over the whole manuscript is applied to the submitted
+version. Two vector figures were added (Figure 1, the IIoT system-model context; Figure 2, the LatAD workflow,
+assumption-tagged), the difficult-subset results chart is renumbered Figure 3 with a corrected caption, and
+Tables 3 to 6 and A1 were regenerated on the corrected, construct-matched data, with GDN added as a new
+baseline in Table 3. The Conclusion (Section 8) was rewritten to match the scoped claims and the corrected
+significance pattern: best overall AUROC on HAI and SWaT, a lead on the difficult subset of all three, with
+significant margins on HAI and canonical SWaT and a lead over every learned detector on WADI.</p>
+
+<p class="close">Thank you again for the detailed and helpful review. We believe the revision answers each
+point, and where the answer is a limitation we have stated it plainly.</p>
+
+<p>Sincerely,<br>
+Alexander Apartsin and Yehudit Aperstein</p>
+
+</body>
+</html>

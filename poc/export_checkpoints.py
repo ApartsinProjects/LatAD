@@ -14,8 +14,8 @@ from models_vade import train_vade
 import eda_real as E
 
 # mirror report_table.py exactly
-CFG = {"WADI": (20, 10), "HAI": (40, 16), "SKAB": (16, 6)}   # (K, latent_dim)
-STRIDE = {"WADI": 30, "HAI": 30, "SKAB": 30}
+CFG = {"WADI": (20, 10), "HAI": (40, 16), "SKAB": (16, 6), "SWaT": (40, 16)}   # (K, latent_dim); SWaT matches build_scores_table.py
+STRIDE = {"WADI": 30, "HAI": 30, "SKAB": 30, "SWaT": 30}
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "zenodo_bundle", "checkpoints")
 
 
