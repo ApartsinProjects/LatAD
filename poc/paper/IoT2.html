@@ -144,7 +144,7 @@
   <text x="575" y="209" text-anchor="middle" font-size="9" fill="#5a4a3a">surprise score</text>
   <line x1="643" y1="194" x2="643" y2="246" stroke="#1f4e79" stroke-width="1.6" marker-end="url(#f1arrB)"/>
   <text x="651" y="224" font-size="9" fill="#5a4a3a">alerts +</text>
-  <text x="651" y="235" font-size="9" fill="#5a4a3a">diagnosis</text>
+  <text x="651" y="235" font-size="9" fill="#5a4a3a">triage shortlist</text>
   <g filter="url(#f1sh)"><rect x="450" y="248" width="248" height="40" rx="6" fill="#eef2f6" stroke="#4a5568" stroke-width="1.2"/></g>
   <text x="574" y="266" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1a1a2e">Operator / maintenance / security</text>
   <text x="574" y="280" text-anchor="middle" font-size="9" font-style="italic" fill="#5a4a3a">triage and response</text>
@@ -159,12 +159,11 @@
 
 <p><span class="rev2-highlight">Unsupervised anomaly detection for CPS telemetry</span> is often framed as characterizing the anomalies, but that framing is misleading. With a representative set of labeled faults the task would reduce to supervised classification; in practice genuine faults are rare and the few on record seldom span the ways a system can fail [<span class="rev-highlight"><a href="#r-ruff">3</a></span>], so they cannot define the decision boundary, and they cannot even be spent reliably on model selection. The usable information lies on the other side of the boundary, in the normal data, which is abundant and rarely exploited in full. Modeling that normal law faithfully is therefore the hard part of the problem<span class="rev-del">, and cyber-physical</span><span class="rev2-highlight">. Cyber-physical</span> normal is a law of a particular kind: shaped by deterministic physics, hard actuator and setpoint limits, and engineered control, it is the union of many bounded, curved operating regimes, some common and many rare, each with legitimately low-density fringes, rather than a single statistical blob. A detector that mis-models this structure fails however it thresholds.</p>
 
-<p>A fault is anything that leaves this union of normal regimes, and the operationally difficult ones stay <em>inside</em> the marginal envelope of every channel while breaking the joint structure: a correlation break, a between-regime pocket, a history-inconsistent state. These faults are invisible to any per-channel range rule, and, as we show, to a reconstruction residual as well, because the question is not whether a flexible decoder can reproduce the state but whether normal operation is likely to occupy it. Reconstruction measures reachability; detection needs probability.</p>
+<p>A fault is anything that leaves this union of normal regimes, and the operationally difficult ones stay <em>inside</em> the marginal envelope of every channel while breaking the joint structure: a correlation break, a between-regime pocket, a history-inconsistent state. These faults are invisible to any per-channel range rule, and, as we show, <span class="rev-del">to a reconstruction residual as well</span><span class="rev2-highlight">to the reconstruction residual the deep detectors score with, which on HAI places these faults no better than chance</span>, because the question is not whether a flexible decoder can reproduce the state but whether normal operation is likely to occupy it. Reconstruction measures reachability; detection needs probability.</p>
 
 <p>Two obstacles have obscured this failure mode. The first is modeling. If normal is a union of many imbalanced
 regimes, a global anomaly model under-fits the regime structure, a single deep autoencoder alarms on rare-but-valid
-regimes (the trust-eroding false positive), and a reconstruction residual is blind to exactly the joint-structure
-faults that matter, because a flexible decoder reconstructs them faithfully.</p>
+regimes (the trust-eroding false positive), <span class="rev-del">and a reconstruction residual is blind to exactly the joint-structure faults that matter, because a flexible decoder reconstructs them faithfully.</span><span class="rev2-highlight">and the reconstruction residual the deep detectors score with misses exactly the reconstructable-but-improbable joint-structure faults that matter, because a flexible decoder reconstructs them faithfully; where a fault does leave a reconstruction signal, a regime-conditioned residual stays competitive and is auto-gated back in.</span></p>
 
 <p>The second is evaluation. The dominant metric in the literature, point-adjusted <span class="rev2-highlight">F1 (the harmonic mean of precision and recall)</span>, inflates scores so severely
 that a <em>random</em> anomaly score can beat every published deep model [<span class="rev-highlight"><a href="#r-kim">7</a></span>, <span class="rev-highlight"><a href="#r-garg">8</a></span>];
@@ -203,7 +202,7 @@ five-seed mean, and the best-F1 threshold is a test-swept oracle disclosed in &s
 <p><span class="rev-del">Anomaly detection is the unsupervised or semi-supervised task of flagging departures from a model of normal behavior, adopted precisely because labeled anomalies are too scarce to train a classifier [1, 9, 5].</span> <span class="rev2-highlight">On time series, anomaly detection must respect temporal and cross-channel dependence [<span class="rev-highlight"><a href="#r-tsreview">12</a></span>], and on cyber-physical and industrial control systems it underpins physics-aware intrusion and fault detection [<span class="rev-highlight"><a href="#r-icssurvey">13</a></span>].</span><span class="rev-del">LatAD sits squarely in this line: unsupervised, trained on normal only, and specialised to the multimodal structure of cyber-physical normal behavior.</span></p>
 
 <h3 class="rev-highlight">2.1&nbsp;&nbsp;Anomaly detection in the Industrial IoT and edge intelligence</h3>
-<p class="rev-highlight">Anomaly and intrusion detection is a core reliability-and-security function of the Industrial Internet of Things, where networked sensing, actuation, and industrial processes are monitored continuously from streaming telemetry rather than from packet-level network traces alone [<a href="#r-iotsurvey">4</a>,&nbsp;<a href="#r-iottaxon">5</a>]. Because representative labeled faults and attacks are scarce and system-specific, the field leans on unsupervised, one-class, and normal-only models: deep autoencoders and related density models are trained on normal IoT telemetry and flag departures from it [<a href="#r-iotae">6</a>,&nbsp;<a href="#r-tsadreview">14</a>], a setting LatAD shares. A parallel thread pushes detection to the network edge: moving inference onto gateways and industrial edge nodes reduces telemetry backhaul and enables local response, at the cost of compute, memory, and latency budgets that shape model design [<a href="#r-edgeint">15</a>,&nbsp;<a href="#r-iotlora">16</a>,&nbsp;<a href="#r-iotedgeai">17</a>]. IIoT deployments are also heterogeneous and multimodal at fleet scale, with many devices, subsystems, and operating regimes whose distributional structure a single global model captures poorly [<a href="#r-iottaxon">5</a>]. <span class="rev2-highlight">Global autoencoders trained across such heterogeneity develop detection blind spots on multi-product CPS that grade-specific models recover [<a href="#r-islam">18</a>], reinforcing our regime-latent factorization over a single plant-wide model.</span> <span class="rev-del">LatAD addresses a complementary IIoT problem: detecting process-level anomalies in multivariate sensor and actuator telemetry when only normal operation is available for training, and doing so per physical subsystem rather than through one plant-wide score.</span> <span class="rev2-highlight">Process-level, subsystem-localized detection from normal-only telemetry, under regime imbalance, remains open.</span></p>
+<p class="rev-highlight">Anomaly and intrusion detection is a core reliability-and-security function of the Industrial Internet of Things, where networked sensing, actuation, and industrial processes are monitored continuously from streaming telemetry rather than from packet-level network traces alone [<a href="#r-iotsurvey">4</a>,&nbsp;<a href="#r-iottaxon">5</a>]. Because representative labeled faults and attacks are scarce and system-specific, the field leans on unsupervised, one-class, and normal-only models: deep autoencoders and related density models are trained on normal IoT telemetry and flag departures from it [<a href="#r-iotae">6</a>,&nbsp;<a href="#r-tsadreview">14</a>], a setting LatAD shares. A parallel thread pushes detection to the network edge: moving inference onto gateways and industrial edge nodes reduces telemetry backhaul and enables local response, at the cost of compute, memory, and latency budgets that shape model design [<a href="#r-edgeint">15</a>,&nbsp;<a href="#r-iotlora">16</a>,&nbsp;<a href="#r-iotedgeai">17</a>]. IIoT deployments are also heterogeneous and multimodal at fleet scale, with many devices, subsystems, and operating regimes whose distributional structure a single global model captures poorly [<a href="#r-iottaxon">5</a>]. <span class="rev2-highlight">Global autoencoders trained across such heterogeneity develop detection blind spots on multi-product CPS that grade-specific models recover [<a href="#r-islam">18</a>], reinforcing our factorization of the density over correlation-community subsystems rather than a single plant-wide model.</span> <span class="rev-del">LatAD addresses a complementary IIoT problem: detecting process-level anomalies in multivariate sensor and actuator telemetry when only normal operation is available for training, and doing so per physical subsystem rather than through one plant-wide score.</span> <span class="rev2-highlight">Process-level, subsystem-localized detection from normal-only telemetry, under regime imbalance, remains open.</span></p>
 
 <h3>2.2&nbsp;&nbsp;The illusion of progress in time-series anomaly-detection evaluation</h3>
 <p>A line of critical work shows that the standard evaluation of time-series anomaly detection is unreliable.
@@ -255,8 +254,7 @@ rotorcraft flight controls [<span class="rev-highlight"><a href="#r-rotorcraft">
 multimodal-latent anomaly detection.</p>
 
 <h3><span class="rev-del">2.5&nbsp;&nbsp;Benchmark datasets</span> <span class="rev2-highlight">2.5&nbsp;&nbsp;Benchmark scale</span></h3>
-<p><span class="rev-del">We evaluate on three real CPS attack testbeds. WADI [38] is a 123-channel water-distribution testbed from iTrust, and SWaT [39] is its 51-channel water-treatment sibling; the two are the de facto standard multivariate CPS benchmarks and the primary targets of the evaluation critique above [6, 8]. HAI [40] is a 59-channel hardware-in-the-loop industrial control testbed spanning several coupled processes. All three carry real executed attacks and are strongly multimodal (BIC-optimal regime counts <em>K</em>* &ge; 22; &sect;3), so the difficulty-stratified results read directly against the MIIM structure of each dataset.</span> <span class="rev2-highlight">(Per-dataset details are given in Section 5.1.)</span></p>
-<p class="rev2-highlight">The water-treatment and ICS-security datasets used here and elsewhere (SWaT, WADI, BATADAL [<a href="#r-batadal">46</a>], HAI) and the multivariate-telemetry sets (SMD, MSL, SMAP, PSM) share a scale profile: roughly 10 to 120 channels, days-to-weeks duration, and one nominal operating mode. BATADAL extends to about a year but keeps only 43 hourly variables; N-CMAPSS [<a href="#r-ncmapss">47</a>] reaches a 40-unit fleet with full run-to-failure trajectories but exposes only 14 sensors. The Building Data Genome Project 2 [<a href="#r-bdg2">11</a>], with 3,053 meters across 1,636 buildings over two years, and process historians that carry thousands to tens of thousands of tags, illustrate the operational scale these security benchmarks do not reach. A parallel line of work argues that benchmark realism, not model novelty, now limits measured progress (Wu and Keogh [<a href="#r-wukeogh">9</a>]; Sarfraz et al. [<a href="#r-sarfraz">25</a>]; TSB-UAD [<a href="#r-tsbuad">48</a>]). We therefore read every method per dataset and per difficulty subset, and flag operational scale as the setting in which the trajectory assumptions A9 and A10 and the masking form of A8 become testable (&sect;7).</p>
+<p><span class="rev-del">We evaluate on three real CPS attack testbeds. WADI [38] is a 123-channel water-distribution testbed from iTrust, and SWaT [39] is its 51-channel water-treatment sibling; the two are the de facto standard multivariate CPS benchmarks and the primary targets of the evaluation critique above [6, 8]. HAI [40] is a 59-channel hardware-in-the-loop industrial control testbed spanning several coupled processes. All three carry real executed attacks and are strongly multimodal (BIC-optimal regime counts <em>K</em>* &ge; 22; &sect;3), so the difficulty-stratified results read directly against the MIIM structure of each dataset.</span> <span class="rev2-highlight">Per-dataset details are given in &sect;5.1. The water-treatment and ICS-security datasets used here and elsewhere (SWaT, WADI, BATADAL [<a href="#r-batadal">46</a>], HAI) and the multivariate-telemetry sets (SMD, MSL, SMAP, PSM) share a scale profile: roughly 10 to 120 channels, days-to-weeks duration, and one nominal operating mode. BATADAL extends to about a year but keeps only 43 hourly variables; N-CMAPSS [<a href="#r-ncmapss">47</a>] reaches a 40-unit fleet with full run-to-failure trajectories but exposes only 14 sensors. The Building Data Genome Project 2 [<a href="#r-bdg2">11</a>], with 3,053 meters across 1,636 buildings over two years, and process historians that carry thousands to tens of thousands of tags, illustrate the operational scale these security benchmarks do not reach. A parallel line of work argues that benchmark realism, not model novelty, now limits measured progress (Wu and Keogh [<a href="#r-wukeogh">9</a>]; Sarfraz et al. [<a href="#r-sarfraz">25</a>]; TSB-UAD [<a href="#r-tsbuad">48</a>]). We therefore read every method per dataset and per difficulty subset, and flag operational scale as the setting in which the trajectory assumptions A9 and A10 and the masking form of A8 become testable (&sect;7).</span></p>
 
 <h2>3&nbsp;&nbsp;The MIIM assumptions about <span class="rev-highlight">IIoT/CPS normal telemetry</span></h2>
 
@@ -593,7 +591,7 @@ SWaT but not on WADI, and the gate recovers this pattern from train-normal alone
   <mrow><mi>s</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>s</mi><mn>0</mn></msub><mo>+</mo>
   <msub><mi>s</mi><mtext>resid</mtext></msub><mo>.</mo></mrow>
 </math></span>
-<p><span class="rev-del">[An optional basin-agreement rescue head that subtracted a scaled, train-normal-calibrated regime-agreement term was described here.]</span> <span class="rev2-highlight">Equation&nbsp;(7) is the detector's complete window score; A8 (between-regime overlap) is specified in Table&nbsp;1 (&sect;3) and addressed in &sect;7 rather than by a dedicated head.</span> The reported model configures its heads purely from train-normal statistics, with no test-set tuning<span class="rev-del">: the residual head fires on HAI and SWaT and stays off on WADI</span><span class="rev2-highlight">.</span></p>
+<p><span class="rev-del">[An optional basin-agreement rescue head that subtracted a scaled, train-normal-calibrated regime-agreement term was described here.]</span> <span class="rev2-highlight">Equation&nbsp;(7) is the detector's complete window score.</span> The reported model configures its heads purely from train-normal statistics, with no test-set tuning<span class="rev-del">: the residual head fires on HAI and SWaT and stays off on WADI</span><span class="rev2-highlight">.</span></p>
 
 <div class="note"><strong>Auto-gating summary.</strong> Base heads (i&ndash;ii) run on every dataset. The
 residual head (iii) fires when it generalizes to held-out normal (HAI and SWaT: on; WADI: off). All calibration uses train-normal only.</div>
@@ -654,7 +652,7 @@ per-community upper-tail p-values for the <math xmlns="http://www.w3.org/1998/Ma
 (community cohesion times root size) and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mover><mi>w</mi><mo>&#8254;</mo></mover></math> their mean, so a violation in a tight, large subsystem
 weighs more; every p-value is a train-normal upper-tail probability, so the combiner is calibrated on normal alone.
 The factorization also localizes: the per-community surprises rank the plant&rsquo;s subsystems by how implicated they
-are, <span class="rev-del">turning a plant-wide alarm into a subsystem-level lead for the operator.</span><span class="rev2-highlight">ranked by their train-normal upper-tail p-value (the quantity the Higher-Criticism combiner already uses), so a plant-wide alarm becomes a subsystem triage shortlist; Section&nbsp;7 (Table&nbsp;7) validates that a three-community shortlist contains an attacked subsystem in 68 to 79 percent of HAI and SWaT attacks.</span> The reported
+are, <span class="rev-del">turning a plant-wide alarm into a subsystem-level lead for the operator.</span><span class="rev2-highlight">ordered by their train-normal upper-tail p-value (the quantity the Higher-Criticism combiner already uses), so a plant-wide alarm becomes a subsystem triage shortlist; Section&nbsp;7 (Table&nbsp;7) validates that a three-community shortlist contains an attacked subsystem in 68 to 79 percent of HAI and SWaT attacks.</span> The reported
 <strong>LatAD (regime-community)</strong> combines the communities by cohesion-weighted Higher Criticism and fuses
 that with the <span class="rev-del">null</span><span class="rev2-highlight">whole-plant</span> expert by summing the two in train-normal standardized units; the single-latent <strong>LatAD (global
 density)</strong> of &sect;4.1&ndash;4.3 is the degenerate case <math xmlns="http://www.w3.org/1998/Math/MathML"
@@ -783,7 +781,7 @@ five seeds.</p>
 <caption><strong>Table 3.</strong> Per-dataset, per-subset results [AUROC, F1] on three real CPS attack benchmarks
 (higher is better; AUROC is leak-free, F1 is the best raw point-wise F1 over thresholds). <span class="rev-del">Learned detectors report
 AUROC as mean&plusmn;standard deviation over five seeds (the standard deviation is omitted where it rounds to
-0.000).</span><span class="rev2-highlight">Isolation Forest, the AutoEncoder, and LatAD report AUROC as mean&plusmn;standard deviation over five seeds on all three datasets; USAD and TranAD are five-seed on HAI (standard deviations shown) and a single run on WADI and canonical SWaT (no standard deviation).</span> <span class="rev2-highlight">GDN is included as a construct-matched, single-seed SOTA baseline: its per-timestep scores are re-aggregated onto the same window grid and difficulty subsets as every other method (&sect;5.5), and are scored by AUROC only (F1 not computed; shown as &ldquo;&ndash;&rdquo;).</span> Bold marks the best AUROC in each dataset&times;subset column
+0.000).</span><span class="rev2-highlight">Isolation Forest, the AutoEncoder, and LatAD report AUROC as mean&plusmn;standard deviation over five seeds on all three datasets (the standard deviation is omitted where it rounds to 0.000); USAD and TranAD are five-seed on HAI (standard deviations shown) and a single run on WADI and canonical SWaT (no standard deviation).</span> <span class="rev2-highlight">GDN is included as a construct-matched, single-seed SOTA baseline: its per-timestep scores are re-aggregated onto the same window grid and difficulty subsets as every other method (&sect;5.5), and are scored by AUROC only (F1 not computed; shown as &ldquo;&ndash;&rdquo;).</span> Bold marks the best AUROC in each dataset&times;subset column
 (ties bolded jointly). <strong>LatAD (regime-community)</strong> is the headline detector (&sect;4.4);
 <strong>LatAD (global density)</strong> is its single-latent base ablation. Baselines are defined in &sect;5.5.</caption>
 <thead>
@@ -905,7 +903,7 @@ that define the subset fail on it and are shown for completeness, not as an unbi
 <div class="tblwrap">
 <table>
 <caption><strong>Table 4.</strong> Double-hard subset AUROC (five-seed mean&plusmn;standard deviation for the
-learned detectors). The double-hard subset keeps only anomaly windows separated by neither the univariate max|u|
+learned detectors).<span class="rev2-highlight"> USAD and TranAD are single-run on WADI and canonical SWaT and GDN is single-seed throughout, as in Table&nbsp;3; the standard deviation is omitted where it rounds to 0.000.</span> The double-hard subset keeps only anomaly windows separated by neither the univariate max|u|
 rule nor the linear cross-channel predictor, both thresholded on train-normal at the 99th percentile; it is a
 stress test independent of the detector under test (which plays no role in constructing it), not an unbiased
 comparison against those two filters. <span class="rev2-highlight">Windows / distinct attack
@@ -943,8 +941,6 @@ models that look strong under point-adjusted F1 have little difficult-fault sign
     <text x="64" y="254">0.3</text><text x="64" y="227">0.4</text><text x="64" y="200">0.5</text><text x="64" y="173">0.6</text><text x="64" y="145">0.7</text><text x="64" y="118">0.8</text><text x="64" y="91">0.9</text><text x="64" y="64">1.0</text>
   </g>
   <g stroke="#eee"><line x1="70" y1="250" x2="700" y2="250"/><line x1="70" y1="223" x2="700" y2="223"/><line x1="70" y1="196" x2="700" y2="196"/><line x1="70" y1="169" x2="700" y2="169"/><line x1="70" y1="141" x2="700" y2="141"/><line x1="70" y1="114" x2="700" y2="114"/><line x1="70" y1="87" x2="700" y2="87"/></g>
-  <!-- rev2: bars regenerated with a single axis-consistent transform y = 250 - (v-0.3)*271.43;
-       GDN bar added to each group (Table 3); WADI whiskers added (IF/AE/LatAD 5-seed SD). -->
   <g>
     <text x="162" y="270" text-anchor="middle" font-weight="bold">WADI</text>
     <rect x="100" y="159.3" width="16" height="90.7" fill="#9fb8cf"/>
@@ -1038,15 +1034,14 @@ reconstruction-based deep detectors show this on the difficult subsets: they tra
 near chance on HAI (USAD 0.477, TranAD 0.444, and the graph detector GDN 0.481, which learns inter-channel relations
 yet collapses on the same faults), whose difficult faults are reconstructable but improbable. At the
 head level (Table 6) the whitened reconstruction residual is the weakest base head on HAI (0.695) while the latent
-density carries the signal (0.802).</span> <span class="rev2-highlight">Scoring by density rather than reconstruction is the right default for the
-deployed reconstruction detectors: the single latent-density head, with no residual term and no factorization,
-exceeds USAD and TranAD on the difficult subset of all three plants (HAI 0.802 against 0.477 and 0.444; SWaT 0.794
-against 0.658 and 0.655; WADI 0.656 against 0.579 and 0.613) and matches GDN on WADI (0.660). The margin is largest
-where the faults are reconstructable but improbable: on HAI the reconstruction detectors place the difficult attacks
-at the median of normal operation while the density head places them at the 93rd percentile, and 27 percent of
+density carries the signal (0.802).</span> <span class="rev2-highlight">Scoring by density rather than reconstruction is the right default: the single latent-density head, with no residual term and no factorization,
+exceeds the reconstruction-based deep detectors USAD and TranAD on the difficult subset of all three plants (HAI 0.802 against 0.477 and 0.444; SWaT 0.794
+against 0.658 and 0.655; WADI 0.656 against 0.579 and 0.613) and is within noise of GDN on WADI (0.656 versus 0.660). The margin is largest
+where the faults are reconstructable but improbable. On HAI the reconstruction detectors place the difficult attacks
+at the median of normal operation, whereas the density head places them at the 93rd percentile; 27 percent of
 HAI&rsquo;s difficult attacks reconstruct at least as well as a typical normal window yet fall above the 90th normal
-percentile in density; on WADI that share is zero and 70 percent of the difficult attacks are weak under both scores,
-which is why the community factorization, not the head, carries the WADI gain. <span class="rev2-highlight">Figure&nbsp;A1 illustrates this reachability-versus-probability crossover on synthetic data.</span> A reconstruction residual
+percentile in density. On WADI that share is zero, and 70 percent of the difficult attacks are weak under both scores,
+which is why the community factorization rather than the head carries the WADI gain. <span class="rev2-highlight">Figure&nbsp;A1 illustrates this reachability-versus-probability crossover on synthetic data.</span> A reconstruction residual
 <em>whitened on train-normal</em> (Table 6) is a stronger term than the reconstruction the deep detectors score with;
 it overtakes the density head on WADI and SWaT, and this is precisely why LatAD keeps it as a gated head where it
 generalizes to held-out normal instead of discarding reconstruction.</span> Scoring by density in the clustered latent replaces reachability
@@ -1073,7 +1068,7 @@ subset, below the linear baseline) to the community-density lead (cohesion-weigh
 on all three datasets (an independent five-seed run). <em>recon</em> is the whitened reconstruction residual (the term the base score omits); <span class="rev2-highlight"><em>latent density</em> is the <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><mo>=</mo><mn>80</mn></mrow></math>-component density head of Equation&nbsp;(4) and <em>nearest-component NLL</em> is the head of Equation&nbsp;(5);</span> <em>base</em>
 is density+nearest; the final row adds the auto-gated residual head, which is by definition the single-latent
 <em>LatAD (global density)</em> configuration and reproduces its Table 3 row within seed variation; its per-community
-application (&sect;4.4) gives the headline detector. <span class="rev2-highlight">Bold marks the LatAD (global density) configuration, not a column maximum.</span> <span class="rev2-highlight">The reconstruction row is the whitened residual; the deployed reconstruction detectors of Table&nbsp;3 score 0.44 to 0.66 on the same difficult subsets.</span></caption>
+application (&sect;4.4) gives the headline detector. <span class="rev2-highlight">Bold marks the LatAD (global density) configuration, not a column maximum.</span> <span class="rev2-highlight">The reconstruction row is the whitened residual; the deep reconstruction detectors of Table&nbsp;3 score 0.44 to 0.67 on the same difficult subsets.</span></caption>
 <thead><tr><th class="l">Score head</th><th>WADI</th><th>HAI</th><th>SWaT</th></tr></thead>
 <tbody>
 <tr class="rev2-highlight"><td class="l">reconstruction residual (dropped term)</td><td>0.740&plusmn;0.002</td><td>0.695&plusmn;0.004</td><td>0.835&plusmn;0.000</td></tr>
@@ -1100,7 +1095,7 @@ global-density configuration then adapts itself: the residual head activates on 
 fault leaves a whitened-residual signal, and stays off on WADI, whose difficult faults are pure low-density
 pockets in the latent.</p>
 
-<p class="rev2-highlight"><strong>Assumption A8 (between-regime overlap)<span class="rev-del">: specified, over-coverage defended, masking coupled to A10</span>.</strong> A8 posits regimes lying so close in observation space that a window can be improbable while every channel stays in range.<span class="rev2-highlight"> It has two failure modes: over-coverage (a density head so coarse that its normal mass spreads across the gap between regimes and covers an isolated anomaly) and masking (an anomaly of one regime absorbed by an adjacent regime's density).</span> Its precondition, adjacent-but-distinct regimes, holds on every multi-loop plant we screened (WADI, HAI, SWaT, Cranfield, MetroPT [<a href="#r-metropt">53</a>], and the SMD server machines [<a href="#r-omni">31</a>]: 94 to 100&nbsp;percent of train-normal mass sits in a discovered regime with a valley-separated neighbor within twice its own normal envelope). The heavy overlap itself is absent: under four observation-space measures <span class="rev-del">(overlap coefficient, density-valley ratio, cross-regime nearest-neighbor share, and discriminant error)</span><span class="rev2-highlight">(two of which are tabulated in Table&nbsp;C1: the overlap coefficient and the density-valley ratio)</span> no benchmark approaches the 30-percent-overlap positive control, and the labeled anomaly-masking rate never exceeds its lag-matched regime-switch base rate (Appendix&nbsp;C, Table&nbsp;C1). <span class="rev-del">The one A8 variant the reported model already defends is over-coverage:</span><span class="rev2-highlight">The over-coverage mode is already defended by the reported model:</span> a wide two-component head misses about 80&nbsp;percent of WADI's isolated anomalies, the 80-component density head of &sect;4.3&nbsp;(i) about 13&nbsp;percent. <span class="rev-del">Masking, the remaining variant,</span><span class="rev2-highlight">The masking mode</span> is identifiable only through the path by which a window arrived, so it belongs with A10 and is left to operational-scale data (Appendix&nbsp;C). The reported model carries no dedicated overlap head.</p>
+<p class="rev2-highlight"><strong>Assumption A8 (between-regime overlap)<span class="rev-del">: specified, over-coverage defended, masking coupled to A10</span>.</strong> A8 posits regimes lying so close in observation space that a window can be improbable while every channel stays in range.<span class="rev2-highlight"> It has two failure modes: over-coverage (a density head so coarse that its normal mass spreads across the gap between regimes and covers an isolated anomaly) and masking (an anomaly of one regime absorbed by an adjacent regime's density).</span> Its precondition, adjacent-but-distinct regimes, holds on every multi-loop plant we screened (WADI, HAI, SWaT, Cranfield, MetroPT [<a href="#r-metropt">53</a>], and the SMD server machines [<a href="#r-omni">31</a>]: 94 to 100&nbsp;percent of train-normal mass sits in a discovered regime with a valley-separated neighbor within twice its own normal envelope). The heavy overlap itself is absent: under four observation-space measures <span class="rev-del">(overlap coefficient, density-valley ratio, cross-regime nearest-neighbor share, and discriminant error)</span><span class="rev2-highlight">(the overlap coefficient is tabulated in Table&nbsp;C1, alongside its close-distinct-mass, masking-rate, and isolated-anomaly over-coverage columns)</span> no benchmark approaches the 30-percent-overlap positive control, and the labeled anomaly-masking rate never exceeds its lag-matched regime-switch base rate (Appendix&nbsp;C, Table&nbsp;C1). <span class="rev-del">The one A8 variant the reported model already defends is over-coverage:</span><span class="rev2-highlight">The over-coverage mode is already defended by the reported model:</span> a wide two-component head misses about 80&nbsp;percent of WADI's isolated anomalies, the 80-component density head of &sect;4.3&nbsp;(i) about 13&nbsp;percent. <span class="rev-del">Masking, the remaining variant,</span><span class="rev2-highlight">The masking mode</span> is identifiable only through the path by which a window arrived, so it belongs with A10 and is left to operational-scale data (Appendix&nbsp;C). The reported model carries no dedicated overlap head.</p>
 
 <p><strong>The residual frontier on WADI.</strong> <span class="rev2-highlight">A minority of WADI difficult windows carry near-absent
 instantaneous fault content and sit inside the normal tail, where normal CPS operation is itself noisy. No evaluated
@@ -1161,20 +1156,21 @@ architecture rather than an experimentally evaluated configuration.</span><span 
 
 <p class="rev2-highlight"><strong>Subsystem localization.</strong> A three-community shortlist ranked by train-normal p-value contains the
 attacked subsystem in 68 to 79 percent of HAI and SWaT attacks, against 49 to 56 percent for a random shortlist of
-the same size. The per-community surprises also localize. Ranking communities by their train-normal upper-tail
-p-value (the quantity the Higher-Criticism combiner already uses; communities whose calibration surprise is
-degenerate carry no p-value and are not ranked) and naming the top community per attack episode, the named community
-contains an attacked channel in 46 percent of SWaT attacks (11 of 24, coverage-aware random 22 percent,
-P&nbsp;=&nbsp;0.004) and 40 percent of HAI attacks (15 of 38, random 25 percent, P&nbsp;=&nbsp;0.02), and a
-three-community shortlist contains it in 79 and 68 percent (random 49 and 56 percent). The named community averages
+the same size (Table&nbsp;7). The ranking is the one the Higher Criticism combiner already computes: communities are
+ordered by their train-normal upper-tail p-value (communities whose calibration surprise is degenerate carry no
+p-value and are not ranked), and the top community is named once per attack episode. That single named community
+contains an attacked channel in 46 percent of SWaT attacks (11 of 24) and 39 percent of HAI attacks (15 of 38),
+against a coverage-aware random baseline (the chance that a randomly named community of the same size contains an
+attacked channel) of 22 and 25 percent (P&nbsp;=&nbsp;0.004 and P&nbsp;=&nbsp;0.02). The named community averages
 six channels of 51 (SWaT) and 59 (HAI). WADI, with 9 attacks whose targets are published and 7 of them inside any
 community, is directionally the same (3 of 9 at top-1, random 13 percent) but too small to test. The attack targets
 are read from the published per-testbed attack tables [<a href="#r-wadi">50</a>,&nbsp;<a href="#r-hai">51</a>,&nbsp;<a href="#r-swat">52</a>].
 Two limits apply. (i)&nbsp;A community whose surprise drifts above its calibration range is named disproportionately
 often even on normal windows, so the pointer is a triage shortlist rather than a diagnosis. (ii)&nbsp;Larger
-communities are easier to hit, so the shortlist is reported at its size; against a size-weighted random baseline the
-SWaT margin holds while HAI&rsquo;s top-1 margin is small, which is why the top-3 shortlist is the comfortable
-headline.</p>
+communities are easier to hit, so the named-community size is reported and the top-3 headline is stated against the
+coverage-aware baseline; against a size-weighted random baseline (a community drawn with probability proportional to
+its size) the SWaT top-1 margin holds (0.46 versus 0.35) while HAI&rsquo;s top-1 margin is small (0.42 versus 0.37,
+WADI 0.43 versus 0.19), which is why the three-community shortlist is the headline figure.</p>
 
 <div class="tblwrap">
 <table>
@@ -1220,7 +1216,7 @@ faults are reconstructable but improbable.</span></p>
 
 <p>The mechanism is simple to state. Reconstruction scores reachability; a density in a clustered latent scores
 probability; and the CPS faults that matter are reconstructable but improbable. Treating multimodal normal as a
-single blob, or as a reconstruction target, is a modeling failure.</p>
+single blob<span class="rev-del">, or as a reconstruction target, is a modeling failure.</span><span class="rev2-highlight">, or scoring it by reconstruction alone, misses the reconstructable-but-improbable faults, starkest on HAI, where the deep detectors fall to chance; where a fault leaves a reconstruction signal the residual is competitive and LatAD gates it back in.</span></p>
 
 <p><span class="rev-highlight">These results position normal-only latent-density modeling as an anomaly-monitoring approach for multivariate IIoT telemetry, particularly where labels are scarce and anomalous behavior is local to a coupled physical subsystem.</span> Two properties make the detector well-suited to condition monitoring and predictive maintenance: scoring against
 the nearest regime keeps rare-but-valid states (startups, rare maneuvers) from paging an operator, and the
@@ -1242,10 +1238,10 @@ systems are the natural next steps.</p>
 <p>LatAD is one point on each design axis of &sect;4: representation, density estimation (single global versus a
 regime-community ensemble, itself construction plus aggregation), scoring heads, and calibration. Table A1 varies the
 density-estimation axes on the difficult subset, holding the rest fixed. Factorizing the global density over regime
-communities lifts all three datasets, most on WADI, whose difficult faults are confined to small correlated subsystems that a global density dilutes;
-<span class="rev2-highlight">on WADI the community aggregation carries the whole effect, lifting the single-latent global density from 0.634 to 0.795 through cohesion-weighted Higher Criticism over the per-community experts, and fusing in the whole-plant expert (the headline fusion) is mildly counterproductive there, so the fused headline settles at 0.771;
-on HAI and SWaT the whole-plant-expert fusion instead lifts the score, most on HAI, where the hard valve and flow deviations are correlation-conditional;</span>
-and among the sparsity-adaptive combiners,
+communities lifts all three datasets, most on WADI, whose difficult faults are confined to small correlated subsystems that a global density dilutes.
+<span class="rev2-highlight">On WADI the community aggregation carries the whole effect: cohesion-weighted Higher Criticism over the per-community experts lifts the single-latent global density from 0.634 to 0.795, and fusing in the whole-plant expert (the headline fusion) costs a little, so the fused headline settles at 0.771.
+On HAI and SWaT the whole-plant-expert fusion instead lifts the score, most on HAI, where the hard valve and flow deviations are correlation-conditional.</span>
+Among the sparsity-adaptive combiners,
 cohesion-weighted Higher Criticism is the one that leads on all three datasets<span class="rev-del"> once the community experts and the whole-plant expert are fused (and, on WADI, the community aggregation without that fusion leads outright)</span><span class="rev2-highlight"> (all aggregation rules here fused with the whole-plant expert)</span>, because it weights a violation by the
 coupling strength of the subsystem it occurs in (A7) while adapting to the fault&rsquo;s extent.</p>
 
@@ -1298,13 +1294,15 @@ the headline numbers of Tables&nbsp;3&ndash;5.</caption>
 </tbody></table>
 </div>
 
+<p class="rev2-highlight">Figure&nbsp;A1 closes the appendix with a synthetic illustration of the reachability-versus-probability mechanism discussed in &sect;7: as a fault moves from off-manifold to between-regime, density overtakes reconstruction, and the crossover comes earlier for better-separated regimes.</p>
+
 <figure class="rev2-highlight">
 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="360pt" height="244.8pt" viewBox="0 0 360 244.8" xmlns="http://www.w3.org/2000/svg" version="1.1">
  <metadata>
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-09-18T21:09:28.378067</dc:date>
+    <dc:date>2026-09-18T21:31:16.218721</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -1339,12 +1337,12 @@ z
     <g id="xtick_1">
      <g id="line2d_1">
       <defs>
-       <path id="m1f95ac76c9" d="M 0 0 
+       <path id="m1deaea14a5" d="M 0 0 
 L 0 3.5 
 " style="stroke: #000000; stroke-width: 0.8"/>
       </defs>
       <g>
-       <use xlink:href="#m1f95ac76c9" x="69.413182" y="202.84" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m1deaea14a5" x="69.413182" y="202.84" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_1">
@@ -1389,7 +1387,7 @@ z
     <g id="xtick_2">
      <g id="line2d_2">
       <g>
-       <use xlink:href="#m1f95ac76c9" x="122.705909" y="202.84" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m1deaea14a5" x="122.705909" y="202.84" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_2">
@@ -1430,7 +1428,7 @@ z
     <g id="xtick_3">
      <g id="line2d_3">
       <g>
-       <use xlink:href="#m1f95ac76c9" x="175.998636" y="202.84" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m1deaea14a5" x="175.998636" y="202.84" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_3">
@@ -1466,7 +1464,7 @@ z
     <g id="xtick_4">
      <g id="line2d_4">
       <g>
-       <use xlink:href="#m1f95ac76c9" x="229.291364" y="202.84" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m1deaea14a5" x="229.291364" y="202.84" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_4">
@@ -1513,7 +1511,7 @@ z
     <g id="xtick_5">
      <g id="line2d_5">
       <g>
-       <use xlink:href="#m1f95ac76c9" x="282.584091" y="202.84" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m1deaea14a5" x="282.584091" y="202.84" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_5">
@@ -1569,7 +1567,7 @@ z
     <g id="xtick_6">
      <g id="line2d_6">
       <g>
-       <use xlink:href="#m1f95ac76c9" x="335.876818" y="202.84" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m1deaea14a5" x="335.876818" y="202.84" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_6">
@@ -1598,8 +1596,8 @@ z
      </g>
     </g>
     <g id="text_7">
-     <!-- fault in-envelope-ness  (0 = off-manifold, 1 = between-regime) -->
-     <g transform="translate(44.817656 231.116562) scale(0.1 -0.1)">
+     <!-- fault position  (0 = off-manifold, 1 = between-regime) -->
+     <g transform="translate(67.61375 231.116562) scale(0.1 -0.1)">
       <defs>
        <path id="DejaVuSans-66" d="M 2375 4863 
 L 2375 4384 
@@ -1706,101 +1704,6 @@ L 1172 4494
 z
 " transform="scale(0.015625)"/>
        <path id="DejaVuSans-20" transform="scale(0.015625)"/>
-       <path id="DejaVuSans-69" d="M 603 3500 
-L 1178 3500 
-L 1178 0 
-L 603 0 
-L 603 3500 
-z
-M 603 4863 
-L 1178 4863 
-L 1178 4134 
-L 603 4134 
-L 603 4863 
-z
-" transform="scale(0.015625)"/>
-       <path id="DejaVuSans-6e" d="M 3513 2113 
-L 3513 0 
-L 2938 0 
-L 2938 2094 
-Q 2938 2591 2744 2837 
-Q 2550 3084 2163 3084 
-Q 1697 3084 1428 2787 
-Q 1159 2491 1159 1978 
-L 1159 0 
-L 581 0 
-L 581 3500 
-L 1159 3500 
-L 1159 2956 
-Q 1366 3272 1645 3428 
-Q 1925 3584 2291 3584 
-Q 2894 3584 3203 3211 
-Q 3513 2838 3513 2113 
-z
-" transform="scale(0.015625)"/>
-       <path id="DejaVuSans-2d" d="M 313 2009 
-L 1997 2009 
-L 1997 1497 
-L 313 1497 
-L 313 2009 
-z
-" transform="scale(0.015625)"/>
-       <path id="DejaVuSans-65" d="M 3597 1894 
-L 3597 1613 
-L 953 1613 
-Q 991 1019 1311 708 
-Q 1631 397 2203 397 
-Q 2534 397 2845 478 
-Q 3156 559 3463 722 
-L 3463 178 
-Q 3153 47 2828 -22 
-Q 2503 -91 2169 -91 
-Q 1331 -91 842 396 
-Q 353 884 353 1716 
-Q 353 2575 817 3079 
-Q 1281 3584 2069 3584 
-Q 2775 3584 3186 3129 
-Q 3597 2675 3597 1894 
-z
-M 3022 2063 
-Q 3016 2534 2758 2815 
-Q 2500 3097 2075 3097 
-Q 1594 3097 1305 2825 
-Q 1016 2553 972 2059 
-L 3022 2063 
-z
-" transform="scale(0.015625)"/>
-       <path id="DejaVuSans-76" d="M 191 3500 
-L 800 3500 
-L 1894 563 
-L 2988 3500 
-L 3597 3500 
-L 2284 0 
-L 1503 0 
-L 191 3500 
-z
-" transform="scale(0.015625)"/>
-       <path id="DejaVuSans-6f" d="M 1959 3097 
-Q 1497 3097 1228 2736 
-Q 959 2375 959 1747 
-Q 959 1119 1226 758 
-Q 1494 397 1959 397 
-Q 2419 397 2687 759 
-Q 2956 1122 2956 1747 
-Q 2956 2369 2687 2733 
-Q 2419 3097 1959 3097 
-z
-M 1959 3584 
-Q 2709 3584 3137 3096 
-Q 3566 2609 3566 1747 
-Q 3566 888 3137 398 
-Q 2709 -91 1959 -91 
-Q 1206 -91 779 398 
-Q 353 888 353 1747 
-Q 353 2609 779 3096 
-Q 1206 3584 1959 3584 
-z
-" transform="scale(0.015625)"/>
        <path id="DejaVuSans-70" d="M 1159 525 
 L 1159 -1331 
 L 581 -1331 
@@ -1825,6 +1728,27 @@ Q 1159 1113 1420 752
 Q 1681 391 2138 391 
 Q 2594 391 2855 752 
 Q 3116 1113 3116 1747 
+z
+" transform="scale(0.015625)"/>
+       <path id="DejaVuSans-6f" d="M 1959 3097 
+Q 1497 3097 1228 2736 
+Q 959 2375 959 1747 
+Q 959 1119 1226 758 
+Q 1494 397 1959 397 
+Q 2419 397 2687 759 
+Q 2956 1122 2956 1747 
+Q 2956 2369 2687 2733 
+Q 2419 3097 1959 3097 
+z
+M 1959 3584 
+Q 2709 3584 3137 3096 
+Q 3566 2609 3566 1747 
+Q 3566 888 3137 398 
+Q 2709 -91 1959 -91 
+Q 1206 -91 779 398 
+Q 353 888 353 1747 
+Q 353 2609 779 3096 
+Q 1206 3584 1959 3584 
 z
 " transform="scale(0.015625)"/>
        <path id="DejaVuSans-73" d="M 2834 3397 
@@ -1858,6 +1782,38 @@ Q 2034 3584 2315 3537
 Q 2597 3491 2834 3397 
 z
 " transform="scale(0.015625)"/>
+       <path id="DejaVuSans-69" d="M 603 3500 
+L 1178 3500 
+L 1178 0 
+L 603 0 
+L 603 3500 
+z
+M 603 4863 
+L 1178 4863 
+L 1178 4134 
+L 603 4134 
+L 603 4863 
+z
+" transform="scale(0.015625)"/>
+       <path id="DejaVuSans-6e" d="M 3513 2113 
+L 3513 0 
+L 2938 0 
+L 2938 2094 
+Q 2938 2591 2744 2837 
+Q 2550 3084 2163 3084 
+Q 1697 3084 1428 2787 
+Q 1159 2491 1159 1978 
+L 1159 0 
+L 581 0 
+L 581 3500 
+L 1159 3500 
+L 1159 2956 
+Q 1366 3272 1645 3428 
+Q 1925 3584 2291 3584 
+Q 2894 3584 3203 3211 
+Q 3513 2838 3513 2113 
+z
+" transform="scale(0.015625)"/>
        <path id="DejaVuSans-28" d="M 1984 4856 
 Q 1566 4138 1362 3434 
 Q 1159 2731 1159 2009 
@@ -1882,6 +1838,13 @@ L 4684 1631
 L 4684 1100 
 L 678 1100 
 L 678 1631 
+z
+" transform="scale(0.015625)"/>
+       <path id="DejaVuSans-2d" d="M 313 2009 
+L 1997 2009 
+L 1997 1497 
+L 313 1497 
+L 313 2009 
 z
 " transform="scale(0.015625)"/>
        <path id="DejaVuSans-6d" d="M 3328 2828 
@@ -1975,6 +1938,31 @@ L 1159 4863
 L 1159 2969 
 z
 " transform="scale(0.015625)"/>
+       <path id="DejaVuSans-65" d="M 3597 1894 
+L 3597 1613 
+L 953 1613 
+Q 991 1019 1311 708 
+Q 1631 397 2203 397 
+Q 2534 397 2845 478 
+Q 3156 559 3463 722 
+L 3463 178 
+Q 3153 47 2828 -22 
+Q 2503 -91 2169 -91 
+Q 1331 -91 842 396 
+Q 353 884 353 1716 
+Q 353 2575 817 3079 
+Q 1281 3584 2069 3584 
+Q 2775 3584 3186 3129 
+Q 3597 2675 3597 1894 
+z
+M 3022 2063 
+Q 3016 2534 2758 2815 
+Q 2500 3097 2075 3097 
+Q 1594 3097 1305 2825 
+Q 1016 2553 972 2059 
+L 3022 2063 
+z
+" transform="scale(0.015625)"/>
        <path id="DejaVuSans-77" d="M 269 3500 
 L 844 3500 
 L 1563 769 
@@ -2062,62 +2050,54 @@ z
       <use xlink:href="#DejaVuSans-6c" transform="translate(159.863281 0)"/>
       <use xlink:href="#DejaVuSans-74" transform="translate(187.646484 0)"/>
       <use xlink:href="#DejaVuSans-20" transform="translate(226.855469 0)"/>
-      <use xlink:href="#DejaVuSans-69" transform="translate(258.642578 0)"/>
-      <use xlink:href="#DejaVuSans-6e" transform="translate(286.425781 0)"/>
-      <use xlink:href="#DejaVuSans-2d" transform="translate(349.804688 0)"/>
-      <use xlink:href="#DejaVuSans-65" transform="translate(385.888672 0)"/>
-      <use xlink:href="#DejaVuSans-6e" transform="translate(447.412109 0)"/>
-      <use xlink:href="#DejaVuSans-76" transform="translate(510.791016 0)"/>
-      <use xlink:href="#DejaVuSans-65" transform="translate(569.970703 0)"/>
-      <use xlink:href="#DejaVuSans-6c" transform="translate(631.494141 0)"/>
-      <use xlink:href="#DejaVuSans-6f" transform="translate(659.277344 0)"/>
-      <use xlink:href="#DejaVuSans-70" transform="translate(720.458984 0)"/>
-      <use xlink:href="#DejaVuSans-65" transform="translate(783.935547 0)"/>
-      <use xlink:href="#DejaVuSans-2d" transform="translate(845.458984 0)"/>
-      <use xlink:href="#DejaVuSans-6e" transform="translate(881.542969 0)"/>
-      <use xlink:href="#DejaVuSans-65" transform="translate(944.921875 0)"/>
-      <use xlink:href="#DejaVuSans-73" transform="translate(1006.445312 0)"/>
-      <use xlink:href="#DejaVuSans-73" transform="translate(1058.544922 0)"/>
-      <use xlink:href="#DejaVuSans-20" transform="translate(1110.644531 0)"/>
-      <use xlink:href="#DejaVuSans-20" transform="translate(1142.431641 0)"/>
-      <use xlink:href="#DejaVuSans-28" transform="translate(1174.21875 0)"/>
-      <use xlink:href="#DejaVuSans-30" transform="translate(1213.232422 0)"/>
-      <use xlink:href="#DejaVuSans-20" transform="translate(1276.855469 0)"/>
-      <use xlink:href="#DejaVuSans-3d" transform="translate(1308.642578 0)"/>
-      <use xlink:href="#DejaVuSans-20" transform="translate(1392.431641 0)"/>
-      <use xlink:href="#DejaVuSans-6f" transform="translate(1424.21875 0)"/>
-      <use xlink:href="#DejaVuSans-66" transform="translate(1485.400391 0)"/>
-      <use xlink:href="#DejaVuSans-66" transform="translate(1520.605469 0)"/>
-      <use xlink:href="#DejaVuSans-2d" transform="translate(1550.310547 0)"/>
-      <use xlink:href="#DejaVuSans-6d" transform="translate(1586.394531 0)"/>
-      <use xlink:href="#DejaVuSans-61" transform="translate(1683.806641 0)"/>
-      <use xlink:href="#DejaVuSans-6e" transform="translate(1745.085938 0)"/>
-      <use xlink:href="#DejaVuSans-69" transform="translate(1808.464844 0)"/>
-      <use xlink:href="#DejaVuSans-66" transform="translate(1836.248047 0)"/>
-      <use xlink:href="#DejaVuSans-6f" transform="translate(1871.453125 0)"/>
-      <use xlink:href="#DejaVuSans-6c" transform="translate(1932.634766 0)"/>
-      <use xlink:href="#DejaVuSans-64" transform="translate(1960.417969 0)"/>
-      <use xlink:href="#DejaVuSans-2c" transform="translate(2023.894531 0)"/>
-      <use xlink:href="#DejaVuSans-20" transform="translate(2055.681641 0)"/>
-      <use xlink:href="#DejaVuSans-31" transform="translate(2087.46875 0)"/>
-      <use xlink:href="#DejaVuSans-20" transform="translate(2151.091797 0)"/>
-      <use xlink:href="#DejaVuSans-3d" transform="translate(2182.878906 0)"/>
-      <use xlink:href="#DejaVuSans-20" transform="translate(2266.667969 0)"/>
-      <use xlink:href="#DejaVuSans-62" transform="translate(2298.455078 0)"/>
-      <use xlink:href="#DejaVuSans-65" transform="translate(2361.931641 0)"/>
-      <use xlink:href="#DejaVuSans-74" transform="translate(2423.455078 0)"/>
-      <use xlink:href="#DejaVuSans-77" transform="translate(2462.664062 0)"/>
-      <use xlink:href="#DejaVuSans-65" transform="translate(2544.451172 0)"/>
-      <use xlink:href="#DejaVuSans-65" transform="translate(2605.974609 0)"/>
-      <use xlink:href="#DejaVuSans-6e" transform="translate(2667.498047 0)"/>
-      <use xlink:href="#DejaVuSans-2d" transform="translate(2730.876953 0)"/>
-      <use xlink:href="#DejaVuSans-72" transform="translate(2766.960938 0)"/>
-      <use xlink:href="#DejaVuSans-65" transform="translate(2805.824219 0)"/>
-      <use xlink:href="#DejaVuSans-67" transform="translate(2867.347656 0)"/>
-      <use xlink:href="#DejaVuSans-69" transform="translate(2930.824219 0)"/>
-      <use xlink:href="#DejaVuSans-6d" transform="translate(2958.607422 0)"/>
-      <use xlink:href="#DejaVuSans-65" transform="translate(3056.019531 0)"/>
-      <use xlink:href="#DejaVuSans-29" transform="translate(3117.542969 0)"/>
+      <use xlink:href="#DejaVuSans-70" transform="translate(258.642578 0)"/>
+      <use xlink:href="#DejaVuSans-6f" transform="translate(322.119141 0)"/>
+      <use xlink:href="#DejaVuSans-73" transform="translate(383.300781 0)"/>
+      <use xlink:href="#DejaVuSans-69" transform="translate(435.400391 0)"/>
+      <use xlink:href="#DejaVuSans-74" transform="translate(463.183594 0)"/>
+      <use xlink:href="#DejaVuSans-69" transform="translate(502.392578 0)"/>
+      <use xlink:href="#DejaVuSans-6f" transform="translate(530.175781 0)"/>
+      <use xlink:href="#DejaVuSans-6e" transform="translate(591.357422 0)"/>
+      <use xlink:href="#DejaVuSans-20" transform="translate(654.736328 0)"/>
+      <use xlink:href="#DejaVuSans-20" transform="translate(686.523438 0)"/>
+      <use xlink:href="#DejaVuSans-28" transform="translate(718.310547 0)"/>
+      <use xlink:href="#DejaVuSans-30" transform="translate(757.324219 0)"/>
+      <use xlink:href="#DejaVuSans-20" transform="translate(820.947266 0)"/>
+      <use xlink:href="#DejaVuSans-3d" transform="translate(852.734375 0)"/>
+      <use xlink:href="#DejaVuSans-20" transform="translate(936.523438 0)"/>
+      <use xlink:href="#DejaVuSans-6f" transform="translate(968.310547 0)"/>
+      <use xlink:href="#DejaVuSans-66" transform="translate(1029.492188 0)"/>
+      <use xlink:href="#DejaVuSans-66" transform="translate(1064.697266 0)"/>
+      <use xlink:href="#DejaVuSans-2d" transform="translate(1094.402344 0)"/>
+      <use xlink:href="#DejaVuSans-6d" transform="translate(1130.486328 0)"/>
+      <use xlink:href="#DejaVuSans-61" transform="translate(1227.898438 0)"/>
+      <use xlink:href="#DejaVuSans-6e" transform="translate(1289.177734 0)"/>
+      <use xlink:href="#DejaVuSans-69" transform="translate(1352.556641 0)"/>
+      <use xlink:href="#DejaVuSans-66" transform="translate(1380.339844 0)"/>
+      <use xlink:href="#DejaVuSans-6f" transform="translate(1415.544922 0)"/>
+      <use xlink:href="#DejaVuSans-6c" transform="translate(1476.726562 0)"/>
+      <use xlink:href="#DejaVuSans-64" transform="translate(1504.509766 0)"/>
+      <use xlink:href="#DejaVuSans-2c" transform="translate(1567.986328 0)"/>
+      <use xlink:href="#DejaVuSans-20" transform="translate(1599.773438 0)"/>
+      <use xlink:href="#DejaVuSans-31" transform="translate(1631.560547 0)"/>
+      <use xlink:href="#DejaVuSans-20" transform="translate(1695.183594 0)"/>
+      <use xlink:href="#DejaVuSans-3d" transform="translate(1726.970703 0)"/>
+      <use xlink:href="#DejaVuSans-20" transform="translate(1810.759766 0)"/>
+      <use xlink:href="#DejaVuSans-62" transform="translate(1842.546875 0)"/>
+      <use xlink:href="#DejaVuSans-65" transform="translate(1906.023438 0)"/>
+      <use xlink:href="#DejaVuSans-74" transform="translate(1967.546875 0)"/>
+      <use xlink:href="#DejaVuSans-77" transform="translate(2006.755859 0)"/>
+      <use xlink:href="#DejaVuSans-65" transform="translate(2088.542969 0)"/>
+      <use xlink:href="#DejaVuSans-65" transform="translate(2150.066406 0)"/>
+      <use xlink:href="#DejaVuSans-6e" transform="translate(2211.589844 0)"/>
+      <use xlink:href="#DejaVuSans-2d" transform="translate(2274.96875 0)"/>
+      <use xlink:href="#DejaVuSans-72" transform="translate(2311.052734 0)"/>
+      <use xlink:href="#DejaVuSans-65" transform="translate(2349.916016 0)"/>
+      <use xlink:href="#DejaVuSans-67" transform="translate(2411.439453 0)"/>
+      <use xlink:href="#DejaVuSans-69" transform="translate(2474.916016 0)"/>
+      <use xlink:href="#DejaVuSans-6d" transform="translate(2502.699219 0)"/>
+      <use xlink:href="#DejaVuSans-65" transform="translate(2600.111328 0)"/>
+      <use xlink:href="#DejaVuSans-29" transform="translate(2661.634766 0)"/>
      </g>
     </g>
    </g>
@@ -2125,12 +2105,12 @@ z
     <g id="ytick_1">
      <g id="line2d_7">
       <defs>
-       <path id="m515e4255a7" d="M 0 0 
+       <path id="m2399b555d5" d="M 0 0 
 L -3.5 0 
 " style="stroke: #000000; stroke-width: 0.8"/>
       </defs>
       <g>
-       <use xlink:href="#m515e4255a7" x="56.09" y="188.458048" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m2399b555d5" x="56.09" y="188.458048" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_8">
@@ -2155,7 +2135,7 @@ z
     <g id="ytick_2">
      <g id="line2d_8">
       <g>
-       <use xlink:href="#m515e4255a7" x="56.09" y="164.099267" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m2399b555d5" x="56.09" y="164.099267" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_9">
@@ -2205,7 +2185,7 @@ z
     <g id="ytick_3">
      <g id="line2d_9">
       <g>
-       <use xlink:href="#m515e4255a7" x="56.09" y="139.740486" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m2399b555d5" x="56.09" y="139.740486" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_10">
@@ -2221,7 +2201,7 @@ z
     <g id="ytick_4">
      <g id="line2d_10">
       <g>
-       <use xlink:href="#m515e4255a7" x="56.09" y="115.381705" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m2399b555d5" x="56.09" y="115.381705" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_11">
@@ -2237,7 +2217,7 @@ z
     <g id="ytick_5">
      <g id="line2d_11">
       <g>
-       <use xlink:href="#m515e4255a7" x="56.09" y="91.022925" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m2399b555d5" x="56.09" y="91.022925" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_12">
@@ -2252,7 +2232,7 @@ z
     <g id="ytick_6">
      <g id="line2d_12">
       <g>
-       <use xlink:href="#m515e4255a7" x="56.09" y="66.664144" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m2399b555d5" x="56.09" y="66.664144" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_13">
@@ -2267,7 +2247,7 @@ z
     <g id="ytick_7">
      <g id="line2d_13">
       <g>
-       <use xlink:href="#m515e4255a7" x="56.09" y="42.305363" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m2399b555d5" x="56.09" y="42.305363" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_14">
@@ -2282,7 +2262,7 @@ z
     <g id="ytick_8">
      <g id="line2d_14">
       <g>
-       <use xlink:href="#m515e4255a7" x="56.09" y="17.946582" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m2399b555d5" x="56.09" y="17.946582" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_15">
@@ -2489,9 +2469,9 @@ L 202.645 97.02574
 L 229.291364 66.502699 
 L 282.584091 32.048422 
 L 335.876818 19.529091 
-" clip-path="url(#pcaa6f28f56)" style="fill: none; stroke: #1f77b4; stroke-width: 1.5; stroke-linecap: square"/>
+" clip-path="url(#pb7376853f4)" style="fill: none; stroke: #1f77b4; stroke-width: 1.5; stroke-linecap: square"/>
     <defs>
-     <path id="mc9c26448d7" d="M 0 2 
+     <path id="m44578e6c6a" d="M 0 2 
 C 0.530406 2 1.03916 1.789267 1.414214 1.414214 
 C 1.789267 1.03916 2 0.530406 2 0 
 C 2 -0.530406 1.789267 -1.03916 1.414214 -1.414214 
@@ -2503,14 +2483,14 @@ C -1.03916 1.789267 -0.530406 2 0 2
 z
 " style="stroke: #1f77b4"/>
     </defs>
-    <g clip-path="url(#pcaa6f28f56)">
-     <use xlink:href="#mc9c26448d7" x="69.413182" y="194.110909" style="fill: #1f77b4; stroke: #1f77b4"/>
-     <use xlink:href="#mc9c26448d7" x="122.705909" y="175.122969" style="fill: #1f77b4; stroke: #1f77b4"/>
-     <use xlink:href="#mc9c26448d7" x="175.998636" y="121.201289" style="fill: #1f77b4; stroke: #1f77b4"/>
-     <use xlink:href="#mc9c26448d7" x="202.645" y="97.02574" style="fill: #1f77b4; stroke: #1f77b4"/>
-     <use xlink:href="#mc9c26448d7" x="229.291364" y="66.502699" style="fill: #1f77b4; stroke: #1f77b4"/>
-     <use xlink:href="#mc9c26448d7" x="282.584091" y="32.048422" style="fill: #1f77b4; stroke: #1f77b4"/>
-     <use xlink:href="#mc9c26448d7" x="335.876818" y="19.529091" style="fill: #1f77b4; stroke: #1f77b4"/>
+    <g clip-path="url(#pb7376853f4)">
+     <use xlink:href="#m44578e6c6a" x="69.413182" y="194.110909" style="fill: #1f77b4; stroke: #1f77b4"/>
+     <use xlink:href="#m44578e6c6a" x="122.705909" y="175.122969" style="fill: #1f77b4; stroke: #1f77b4"/>
+     <use xlink:href="#m44578e6c6a" x="175.998636" y="121.201289" style="fill: #1f77b4; stroke: #1f77b4"/>
+     <use xlink:href="#m44578e6c6a" x="202.645" y="97.02574" style="fill: #1f77b4; stroke: #1f77b4"/>
+     <use xlink:href="#m44578e6c6a" x="229.291364" y="66.502699" style="fill: #1f77b4; stroke: #1f77b4"/>
+     <use xlink:href="#m44578e6c6a" x="282.584091" y="32.048422" style="fill: #1f77b4; stroke: #1f77b4"/>
+     <use xlink:href="#m44578e6c6a" x="335.876818" y="19.529091" style="fill: #1f77b4; stroke: #1f77b4"/>
     </g>
    </g>
    <g id="line2d_16">
@@ -2521,9 +2501,9 @@ L 202.645 64.788247
 L 229.291364 44.619718 
 L 282.584091 28.927521 
 L 335.876818 31.149041 
-" clip-path="url(#pcaa6f28f56)" style="fill: none; stroke: #ff7f0e; stroke-width: 1.5; stroke-linecap: square"/>
+" clip-path="url(#pb7376853f4)" style="fill: none; stroke: #ff7f0e; stroke-width: 1.5; stroke-linecap: square"/>
     <defs>
-     <path id="maf350e6a9a" d="M 0 2 
+     <path id="m40f862d8bc" d="M 0 2 
 C 0.530406 2 1.03916 1.789267 1.414214 1.414214 
 C 1.789267 1.03916 2 0.530406 2 0 
 C 2 -0.530406 1.789267 -1.03916 1.414214 -1.414214 
@@ -2535,14 +2515,14 @@ C -1.03916 1.789267 -0.530406 2 0 2
 z
 " style="stroke: #ff7f0e"/>
     </defs>
-    <g clip-path="url(#pcaa6f28f56)">
-     <use xlink:href="#maf350e6a9a" x="69.413182" y="192.567104" style="fill: #ff7f0e; stroke: #ff7f0e"/>
-     <use xlink:href="#maf350e6a9a" x="122.705909" y="161.36134" style="fill: #ff7f0e; stroke: #ff7f0e"/>
-     <use xlink:href="#maf350e6a9a" x="175.998636" y="94.883521" style="fill: #ff7f0e; stroke: #ff7f0e"/>
-     <use xlink:href="#maf350e6a9a" x="202.645" y="64.788247" style="fill: #ff7f0e; stroke: #ff7f0e"/>
-     <use xlink:href="#maf350e6a9a" x="229.291364" y="44.619718" style="fill: #ff7f0e; stroke: #ff7f0e"/>
-     <use xlink:href="#maf350e6a9a" x="282.584091" y="28.927521" style="fill: #ff7f0e; stroke: #ff7f0e"/>
-     <use xlink:href="#maf350e6a9a" x="335.876818" y="31.149041" style="fill: #ff7f0e; stroke: #ff7f0e"/>
+    <g clip-path="url(#pb7376853f4)">
+     <use xlink:href="#m40f862d8bc" x="69.413182" y="192.567104" style="fill: #ff7f0e; stroke: #ff7f0e"/>
+     <use xlink:href="#m40f862d8bc" x="122.705909" y="161.36134" style="fill: #ff7f0e; stroke: #ff7f0e"/>
+     <use xlink:href="#m40f862d8bc" x="175.998636" y="94.883521" style="fill: #ff7f0e; stroke: #ff7f0e"/>
+     <use xlink:href="#m40f862d8bc" x="202.645" y="64.788247" style="fill: #ff7f0e; stroke: #ff7f0e"/>
+     <use xlink:href="#m40f862d8bc" x="229.291364" y="44.619718" style="fill: #ff7f0e; stroke: #ff7f0e"/>
+     <use xlink:href="#m40f862d8bc" x="282.584091" y="28.927521" style="fill: #ff7f0e; stroke: #ff7f0e"/>
+     <use xlink:href="#m40f862d8bc" x="335.876818" y="31.149041" style="fill: #ff7f0e; stroke: #ff7f0e"/>
     </g>
    </g>
    <g id="line2d_17">
@@ -2553,9 +2533,9 @@ L 202.645 42.233099
 L 229.291364 43.718172 
 L 282.584091 59.554086 
 L 335.876818 66.563461 
-" clip-path="url(#pcaa6f28f56)" style="fill: none; stroke: #2ca02c; stroke-width: 1.5; stroke-linecap: square"/>
+" clip-path="url(#pb7376853f4)" style="fill: none; stroke: #2ca02c; stroke-width: 1.5; stroke-linecap: square"/>
     <defs>
-     <path id="m9c248cfb01" d="M 0 2 
+     <path id="m669130f6f1" d="M 0 2 
 C 0.530406 2 1.03916 1.789267 1.414214 1.414214 
 C 1.789267 1.03916 2 0.530406 2 0 
 C 2 -0.530406 1.789267 -1.03916 1.414214 -1.414214 
@@ -2567,20 +2547,20 @@ C -1.03916 1.789267 -0.530406 2 0 2
 z
 " style="stroke: #2ca02c"/>
     </defs>
-    <g clip-path="url(#pcaa6f28f56)">
-     <use xlink:href="#m9c248cfb01" x="69.413182" y="191.363239" style="fill: #2ca02c; stroke: #2ca02c"/>
-     <use xlink:href="#m9c248cfb01" x="122.705909" y="135.557001" style="fill: #2ca02c; stroke: #2ca02c"/>
-     <use xlink:href="#m9c248cfb01" x="175.998636" y="60.758222" style="fill: #2ca02c; stroke: #2ca02c"/>
-     <use xlink:href="#m9c248cfb01" x="202.645" y="42.233099" style="fill: #2ca02c; stroke: #2ca02c"/>
-     <use xlink:href="#m9c248cfb01" x="229.291364" y="43.718172" style="fill: #2ca02c; stroke: #2ca02c"/>
-     <use xlink:href="#m9c248cfb01" x="282.584091" y="59.554086" style="fill: #2ca02c; stroke: #2ca02c"/>
-     <use xlink:href="#m9c248cfb01" x="335.876818" y="66.563461" style="fill: #2ca02c; stroke: #2ca02c"/>
+    <g clip-path="url(#pb7376853f4)">
+     <use xlink:href="#m669130f6f1" x="69.413182" y="191.363239" style="fill: #2ca02c; stroke: #2ca02c"/>
+     <use xlink:href="#m669130f6f1" x="122.705909" y="135.557001" style="fill: #2ca02c; stroke: #2ca02c"/>
+     <use xlink:href="#m669130f6f1" x="175.998636" y="60.758222" style="fill: #2ca02c; stroke: #2ca02c"/>
+     <use xlink:href="#m669130f6f1" x="202.645" y="42.233099" style="fill: #2ca02c; stroke: #2ca02c"/>
+     <use xlink:href="#m669130f6f1" x="229.291364" y="43.718172" style="fill: #2ca02c; stroke: #2ca02c"/>
+     <use xlink:href="#m669130f6f1" x="282.584091" y="59.554086" style="fill: #2ca02c; stroke: #2ca02c"/>
+     <use xlink:href="#m669130f6f1" x="335.876818" y="66.563461" style="fill: #2ca02c; stroke: #2ca02c"/>
     </g>
    </g>
    <g id="line2d_18">
     <path d="M 56.09 91.022925 
 L 349.2 91.022925 
-" clip-path="url(#pcaa6f28f56)" style="fill: none; stroke: #000000; stroke-width: 0.7; stroke-linecap: square"/>
+" clip-path="url(#pb7376853f4)" style="fill: none; stroke: #000000; stroke-width: 0.7; stroke-linecap: square"/>
    </g>
    <g id="patch_3">
     <path d="M 56.09 202.84 
@@ -2650,7 +2630,7 @@ L 69.39 19.968906
 L 76.39 19.968906 
 " style="fill: none; stroke: #1f77b4; stroke-width: 1.5; stroke-linecap: square"/>
      <g>
-      <use xlink:href="#mc9c26448d7" x="69.39" y="19.968906" style="fill: #1f77b4; stroke: #1f77b4"/>
+      <use xlink:href="#m44578e6c6a" x="69.39" y="19.968906" style="fill: #1f77b4; stroke: #1f77b4"/>
      </g>
     </g>
     <g id="text_19">
@@ -2747,7 +2727,7 @@ L 69.39 30.243594
 L 76.39 30.243594 
 " style="fill: none; stroke: #ff7f0e; stroke-width: 1.5; stroke-linecap: square"/>
      <g>
-      <use xlink:href="#maf350e6a9a" x="69.39" y="30.243594" style="fill: #ff7f0e; stroke: #ff7f0e"/>
+      <use xlink:href="#m40f862d8bc" x="69.39" y="30.243594" style="fill: #ff7f0e; stroke: #ff7f0e"/>
      </g>
     </g>
     <g id="text_20">
@@ -2798,7 +2778,7 @@ L 69.39 40.518281
 L 76.39 40.518281 
 " style="fill: none; stroke: #2ca02c; stroke-width: 1.5; stroke-linecap: square"/>
      <g>
-      <use xlink:href="#m9c248cfb01" x="69.39" y="40.518281" style="fill: #2ca02c; stroke: #2ca02c"/>
+      <use xlink:href="#m669130f6f1" x="69.39" y="40.518281" style="fill: #2ca02c; stroke: #2ca02c"/>
      </g>
     </g>
     <g id="text_21">
@@ -2860,12 +2840,12 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="pcaa6f28f56">
+  <clipPath id="pb7376853f4">
    <rect x="56.09" y="10.8" width="293.11" height="192.04"/>
   </clipPath>
  </defs>
 </svg>
-<figcaption class="rev2-highlight"><strong>Figure A1.</strong> Synthetic illustration of the reachability-versus-probability mechanism. On toy data with five Gaussian regimes, the difficult-subset gap between a latent-density score and a reconstruction score (AUROC density minus AUROC reconstruction) is plotted as a fault moves from off-manifold (reconstructable and caught by reconstruction) to between-regime (reconstructable but improbable), at three regime separations. Density overtakes reconstruction as faults become more in-envelope, and the crossover is earlier for better-separated regimes. This is a synthetic mechanism illustration, not a claim about the benchmarks.</figcaption>
+<figcaption class="rev2-highlight"><strong>Figure A1.</strong> Synthetic illustration of the reachability-versus-probability mechanism. On toy data with five Gaussian regimes, the difficult-subset gap between a latent-density score and a reconstruction score (AUROC density minus AUROC reconstruction) is plotted as a fault moves from off-manifold (reconstructable and caught by reconstruction) to between-regime (reconstructable but improbable), at three regime separations. Density overtakes reconstruction as faults become more in-envelope, and the crossover is earlier for better-separated regimes. This is a synthetic mechanism illustration; the benchmark results are in Section&nbsp;6.</figcaption>
 </figure>
 
 <h2 class="rev2-highlight">Appendix B. Computational cost</h2>

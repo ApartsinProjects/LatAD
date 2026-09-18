@@ -59,6 +59,12 @@ your direct requests and then summarize the principal changes and where to find 
   <li><b>Dataset-scale scholarship.</b> A new discussion of public-benchmark scale versus operational
   scale is added (Introduction, new Section 2.5, and Section 7), with new references, arguing that A8 to
   A10 are properties best verified at operational scale.</li>
+  <li><b>New validated additions.</b> A subsystem-localization evaluation is added (new Table 7, Section 7):
+  a three-community shortlist ranked by train-normal p-value contains the attacked subsystem in 68 to 79
+  percent of HAI and SWaT attacks, against 49 to 56 percent for a random shortlist of the same size. The
+  head-level density-versus-reconstruction comparison in Section 7 is sharpened (the single latent-density
+  head beats the deep reconstruction detectors USAD and TranAD on the difficult subset of all three plants),
+  and the mechanism is illustrated on synthetic data in a new Figure A1.</li>
   <li><b>Change-marked manuscript.</b> New and changed text is highlighted in green in the revised
   <code>IoT2.html</code>; deletions are struck. Every response below cites the section, table, or figure
   it changed.</li>
@@ -77,8 +83,8 @@ one that motivated the basin-agreement head) has been renumbered <b>A8</b>, so t
 instantaneous-window properties are contiguous A1 to A7. Its status was remeasured rather than simply
 scoped. The earlier apparent SKAB signal for it came from a cluster-responsibility screen that is blind by
 construction: on a synthetic overlap positive control (30 to 2 percent Bayes error) that screen rated the regimes as maximally
-crisp, and it also proved to be a variance-floor artifact of the estimator on SKAB's 400-window sample
-(Appendix C, Table C1). Under valid observation-space metrics the A8 precondition (adjacent but distinct
+crisp, and SKAB is the one screened dataset with no close-distinct regime pair at all (a single-loop
+400-window rig; Appendix C, Table C1). Under valid observation-space metrics the A8 precondition (adjacent but distinct
 regimes) is present on nearly every real CPS dataset, but heavy mode overlap is absent; the masking form is
 detectable only with the trajectory (which couples A8 to A10), and the over-coverage form is already
 defended by the 80-component density head. A8 is therefore specified, partly defended, and verifiable at
