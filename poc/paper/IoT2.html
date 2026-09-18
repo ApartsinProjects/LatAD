@@ -654,7 +654,7 @@ per-community upper-tail p-values for the <math xmlns="http://www.w3.org/1998/Ma
 (community cohesion times root size) and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mover><mi>w</mi><mo>&#8254;</mo></mover></math> their mean, so a violation in a tight, large subsystem
 weighs more; every p-value is a train-normal upper-tail probability, so the combiner is calibrated on normal alone.
 The factorization also localizes: the per-community surprises rank the plant&rsquo;s subsystems by how implicated they
-are, turning a plant-wide alarm into a subsystem-level lead for the operator. The reported
+are, <span class="rev-del">turning a plant-wide alarm into a subsystem-level lead for the operator.</span><span class="rev2-highlight">ranked by their train-normal upper-tail p-value (the quantity the Higher-Criticism combiner already uses), so a plant-wide alarm becomes a subsystem triage shortlist; Section&nbsp;7 (Table&nbsp;7) validates that a three-community shortlist contains an attacked subsystem in 68 to 79 percent of HAI and SWaT attacks.</span> The reported
 <strong>LatAD (regime-community)</strong> combines the communities by cohesion-weighted Higher Criticism and fuses
 that with the <span class="rev-del">null</span><span class="rev2-highlight">whole-plant</span> expert by summing the two in train-normal standardized units; the single-latent <strong>LatAD (global
 density)</strong> of &sect;4.1&ndash;4.3 is the degenerate case <math xmlns="http://www.w3.org/1998/Math/MathML"
@@ -1033,12 +1033,23 @@ over the plant&rsquo;s subsystems, is what delivers the advantage.</p>
 reconstruction, and reconstruction measures <em>reachability</em> (can the decoder reproduce this vector?), not
 <em>probability</em> (is this vector likely under normal?). On multimodal normal data the two diverge: a flexible
 decoder trained to reproduce several regimes interpolates between them, so an improbable between-regime or
-in-regime-tail combination sits inside the decoder's reachable range and reconstructs with low error. <span class="rev2-highlight">The
+in-regime-tail combination sits inside the decoder's reachable range and reconstructs with low error. <span class="rev-del">The
 reconstruction-based deep detectors show this on the difficult subsets: they trail LatAD on all three and fall to
 near chance on HAI (USAD 0.477, TranAD 0.444, and the graph detector GDN 0.481, which learns inter-channel relations
 yet collapses on the same faults), whose difficult faults are reconstructable but improbable. At the
 head level (Table 6) the whitened reconstruction residual is the weakest base head on HAI (0.695) while the latent
-density carries the signal (0.802).</span> Scoring by density in the clustered latent replaces reachability
+density carries the signal (0.802).</span> <span class="rev2-highlight">Scoring by density rather than reconstruction is the right default for the
+deployed reconstruction detectors: the single latent-density head, with no residual term and no factorization,
+exceeds USAD and TranAD on the difficult subset of all three plants (HAI 0.802 against 0.477 and 0.444; SWaT 0.794
+against 0.658 and 0.655; WADI 0.656 against 0.579 and 0.613) and matches GDN on WADI (0.660). The margin is largest
+where the faults are reconstructable but improbable: on HAI the reconstruction detectors place the difficult attacks
+at the median of normal operation while the density head places them at the 93rd percentile, and 27 percent of
+HAI&rsquo;s difficult attacks reconstruct at least as well as a typical normal window yet fall above the 90th normal
+percentile in density; on WADI that share is zero and 70 percent of the difficult attacks are weak under both scores,
+which is why the community factorization, not the head, carries the WADI gain. A reconstruction residual
+<em>whitened on train-normal</em> (Table 6) is a stronger term than the reconstruction the deep detectors score with;
+it overtakes the density head on WADI and SWaT, and this is precisely why LatAD keeps it as a gated head where it
+generalizes to held-out normal instead of discarding reconstruction.</span> Scoring by density in the clustered latent replaces reachability
 with probability, which is exactly what reconstruction cannot see. This is why the base score omits reconstruction
 and scores in the jointly learned latent, with a high-resolution density head for non-Gaussian fringes (A3) and a
 rare-regime-safe nearest-component likelihood (A5); reconstruction is added back only through the optional,
@@ -1062,7 +1073,7 @@ subset, below the linear baseline) to the community-density lead (cohesion-weigh
 on all three datasets (an independent five-seed run). <em>recon</em> is the whitened reconstruction residual (the term the base score omits); <span class="rev2-highlight"><em>latent density</em> is the <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><mo>=</mo><mn>80</mn></mrow></math>-component density head of Equation&nbsp;(4) and <em>nearest-component NLL</em> is the head of Equation&nbsp;(5);</span> <em>base</em>
 is density+nearest; the final row adds the auto-gated residual head, which is by definition the single-latent
 <em>LatAD (global density)</em> configuration and reproduces its Table 3 row within seed variation; its per-community
-application (&sect;4.4) gives the headline detector. <span class="rev2-highlight">Bold marks the LatAD (global density) configuration, not a column maximum.</span></caption>
+application (&sect;4.4) gives the headline detector. <span class="rev2-highlight">Bold marks the LatAD (global density) configuration, not a column maximum.</span> <span class="rev2-highlight">The reconstruction row is the whitened residual; the deployed reconstruction detectors of Table&nbsp;3 score 0.44 to 0.66 on the same difficult subsets.</span></caption>
 <thead><tr><th class="l">Score head</th><th>WADI</th><th>HAI</th><th>SWaT</th></tr></thead>
 <tbody>
 <tr class="rev2-highlight"><td class="l">reconstruction residual (dropped term)</td><td>0.740&plusmn;0.002</td><td>0.695&plusmn;0.004</td><td>0.835&plusmn;0.000</td></tr>
@@ -1144,9 +1155,37 @@ aggregates into the same fixed windows used here; the trained encoder and per-co
 each completed window online, and an alarm together with the most-surprised community is forwarded to the operator,
 maintenance, or security stack. Two properties make this practical for IIoT: all model fitting and calibration use
 train-normal data only, so a site can be commissioned from its own normal telemetry without labeled attacks, and the
-per-community score localizes an anomaly to a physical subsystem rather than issuing only a plant-wide flag. Scoring
+per-community score <span class="rev-del">localizes an anomaly to a physical subsystem rather than issuing only a plant-wide flag</span><span class="rev2-highlight">turns a plant-wide alarm into a subsystem triage shortlist rather than only a plant-wide flag (validated below, Table&nbsp;7)</span>. Scoring
 is sequential, with each completed window evaluated without access to future observations. <span class="rev-del">This is a deployment
 architecture rather than an experimentally evaluated configuration.</span><span class="rev2-highlight">The training and inference cost of this configuration is measured in Appendix&nbsp;B (Table&nbsp;B1).</span></p>
+
+<p class="rev2-highlight"><strong>Subsystem localization.</strong> A three-community shortlist ranked by train-normal p-value contains the
+attacked subsystem in 68 to 79 percent of HAI and SWaT attacks, against 49 to 56 percent for a random shortlist of
+the same size. The per-community surprises also localize. Ranking communities by their train-normal upper-tail
+p-value (the quantity the Higher-Criticism combiner already uses; communities whose calibration surprise is
+degenerate carry no p-value and are not ranked) and naming the top community per attack episode, the named community
+contains an attacked channel in 46 percent of SWaT attacks (11 of 24, coverage-aware random 22 percent,
+P&nbsp;=&nbsp;0.004) and 40 percent of HAI attacks (15 of 38, random 25 percent, P&nbsp;=&nbsp;0.02), and a
+three-community shortlist contains it in 79 and 68 percent (random 49 and 56 percent). The named community averages
+six channels of 51 (SWaT) and 59 (HAI). WADI, with 9 attacks whose targets are published and 7 of them inside any
+community, is directionally the same (3 of 9 at top-1, random 13 percent) but too small to test. The attack targets
+are read from the published per-testbed attack tables [<a href="#r-wadi">50</a>,&nbsp;<a href="#r-hai">51</a>,&nbsp;<a href="#r-swat">52</a>].
+Two limits apply. (i)&nbsp;A community whose surprise drifts above its calibration range is named disproportionately
+often even on normal windows, so the pointer is a triage shortlist rather than a diagnosis. (ii)&nbsp;Larger
+communities are easier to hit, so the shortlist is reported at its size; against a size-weighted random baseline the
+SWaT margin holds while HAI&rsquo;s top-1 margin is small, which is why the top-3 shortlist is the comfortable
+headline.</p>
+
+<div class="tblwrap">
+<table>
+<caption class="rev2-highlight"><strong>Table 7.</strong> Subsystem localization at the attack-episode level, rank rule (communities ordered by their train-normal upper-tail p-value; degenerate-calibration communities are unranked). <em>Top-1</em> names the single most-surprised community; <em>top-3</em> is a three-community shortlist. The random baselines are coverage-aware (the chance that a randomly named community of the same resolution contains an attacked channel), averaged over episodes. Bold marks the two datasets with enough episodes to test the margin.</caption>
+<thead><tr class="rev2-highlight"><th class="l">Dataset</th><th>Attack episodes (targets known)</th><th>Named-community size (channels / plant)</th><th>Top-1</th><th>Random top-1</th><th>Top-3</th><th>Random top-3</th></tr></thead>
+<tbody>
+<tr class="rev2-highlight"><td class="l">SWaT</td><td>24</td><td>6.5 / 51</td><td><b>0.46</b></td><td>0.22</td><td><b>0.79</b></td><td>0.49</td></tr>
+<tr class="rev2-highlight"><td class="l">HAI</td><td>38</td><td>5.6 / 59</td><td><b>0.39</b></td><td>0.25</td><td><b>0.68</b></td><td>0.56</td></tr>
+<tr class="rev2-highlight"><td class="l">WADI</td><td>9 (7 coverable)</td><td>5.4 / 122</td><td>0.33</td><td>0.13</td><td>0.56</td><td>0.31</td></tr>
+</tbody></table>
+</div>
 <p class="rev-highlight">Pushing inference to the network edge (a gateway or the device itself) reduces telemetry backhaul and enables local
 response, but the regime-community realization instantiates one density model per community, so its inference cost
 grows with the number of subsystems. Where that footprint matters, adaptive-inference optimizations are a natural
