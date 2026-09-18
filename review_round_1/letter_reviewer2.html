@@ -115,8 +115,8 @@ so a site is commissioned from its own normal data without labeled attacks.</p>
 Section 4? Are they studied independently or closely related? Please add an explanation of their
 relationship.</blockquote>
 <p class="resp"><b class="lead">Response: change made.</b> Section 3 now adds a checklist sentence stating that
-MIIM is a specification a dataset realizes to varying degrees, and Section 4 opens by stating the relationship
-explicitly: "A1 to A10 specify what a model of CPS normal must capture, not how to implement it; the detector
+MIIM is a specification a dataset realizes to varying degrees, and Section 4 states the relationship
+explicitly, immediately after the workflow figure: "A1 to A10 specify what a model of CPS normal must capture, not how to implement it; the detector
 below is one concrete realization of A1 to A7." Table 1 now carries a "Realized by" column naming, for every
 assumption, the LatAD design section and mechanism that implements it, and the rows are grouped into the
 realized-and-validated block (A1 to A7) and the specified-for-future-work block (A8 to A10), so the mapping is
@@ -142,7 +142,7 @@ for each community we fit a separate small VaDE, each with its own encoder, Gaus
 heads, its regime count and latent dimension scaled to the community size; nothing is shared across
 communities except the input window features, so the model is a stack of independent per-subsystem experts
 plus one global expert. The encoder is therefore not shared. Cost is now reported in Appendix B and Table B1:
-parameter count, training wall-clock, per-window inference latency, and host memory for LatAD (global and
+parameter count, training wall-clock, per-window inference latency, peak GPU memory, and host memory for LatAD (global and
 regime-community) and the deep baselines, on one shared GPU machine plus a CPU edge proxy. LatAD-global
 trains in 3.2 / 16 / 3.5 s on WADI / HAI / SWaT (roughly 47 to 72 times faster than TranAD), per-window
 latency is 0.7 to 13 ms global and 17 to 32 ms for the full community stack, and both configurations run

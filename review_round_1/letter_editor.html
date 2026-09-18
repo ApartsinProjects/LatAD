@@ -76,7 +76,7 @@ carries a "Realized by" column mapping each assumption to the design section tha
 one that motivated the basin-agreement head) has been renumbered <b>A8</b>, so that the seven realized
 instantaneous-window properties are contiguous A1 to A7. Its status was remeasured rather than simply
 scoped. The earlier apparent SKAB signal for it came from a cluster-responsibility screen that is blind by
-construction: on a synthetic 50 percent-overlap positive control that screen rated the regimes as maximally
+construction: on a synthetic overlap positive control (30 to 2 percent Bayes error) that screen rated the regimes as maximally
 crisp, and it also proved to be a variance-floor artifact of the estimator on SKAB's 400-window sample
 (Appendix C, Table C1). Under valid observation-space metrics the A8 precondition (adjacent but distinct
 regimes) is present on nearly every real CPS dataset, but heavy mode overlap is absent; the masking form is
@@ -124,9 +124,10 @@ Table 4, Figure 3). The
 confidence interval is the two-sided 2.5 / 97.5 percentile of the paired difference and P is the one-sided
 bootstrap probability that the difference is at most zero. On the difficult subset the margin is significant
 on HAI (+0.088, 95 percent CI [0.042, 0.157], P about 0) and canonical SWaT (+0.055, 95 percent CI [0.012,
-0.104], P = 0.007); on WADI the lead over the linear baseline is numerical (+0.020, 95 percent CI [-0.161,
-0.205], P = 0.46 over 8 attack episodes), and we state plainly that WADI is not separable from the linear
-baseline at that episode count.</p>
+0.104], P = 0.007); on WADI LatAD is significantly ahead of every learned detector (the AutoEncoder, USAD,
+TranAD, Isolation Forest, and GDN, each cleared at P &lt; 0.05 by the same per-detector episode-block bootstrap),
+and ties only the linear baseline (+0.020, 95 percent CI [-0.161, 0.205], P = 0.46 over 8 attack episodes),
+where we state plainly that WADI is not separable from the linear baseline at that episode count.</p>
 
 <h3>5. Add ablations isolating the source of the gain</h3>
 <blockquote>... add ablations isolating the source of the gain ...</blockquote>
