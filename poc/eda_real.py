@@ -113,21 +113,60 @@ def _raw_swat(downsample=10, warmup_drop=0.02, test_normal_frac=0.2):
     return Xn_tr, Xa_raw, ya, sens
 
 
+def _swat_rowhashes(A, dec=3):
+    """Row hashes of a raw-feature matrix (rounded to `dec` decimals) for exact set-difference /
+    leak detection. Rounding makes the CSV-mirror head and the xlsx-derived test rows comparable
+    despite tiny float-representation differences (they match to <1e-4)."""
+    import numpy as np
+    Ar = np.round(np.asarray(A, np.float64), dec)
+    return [r.tobytes() for r in np.ascontiguousarray(Ar)]
+
+
 def _raw_swat_canonical(downsample=10, warmup_drop=0.02):
-    """CANONICAL Dec-2015 SWaT. Train = the Normal recording; test = the official
-    SWaT_Dataset_Attack_v0 (4-day attack log with normal periods INTERLEAVED and a per-row
-    Normal/Attack label, ~12.1% attack), replacing the attack-only accessible mirror. Cached
-    from the iTrust xlsx to swat_attack_canonical.npz. Channels + scale verified identical to
-    our normal (median per-channel mean diff 0.2%). Comparable to published SWaT numbers."""
-    import os, numpy as np, pandas as pd, swat as _s
+    """CANONICAL Dec-2015 SWaT. Test = the official SWaT_Dataset_Attack_v0 (4-day attack log with
+    normal periods INTERLEAVED and a per-row Normal/Attack label, ~12.1% attack), cached from the
+    iTrust xlsx to swat_attack_canonical.npz.
+
+    LEAK FIX (2026-09-19): train on the OFFICIAL iTrust Dec-2015 normal recording
+    (swat_normal_canonical.npz, 495,000 rows x 51 real channels; AIT201/MV101/MV201/MV303 are
+    genuine here, AIT201's true range ~[251.7,272.5]). This replaces the earlier leak in which the
+    Kaggle-mirror normal.csv began with the exact test-normal rows (100% test-normal leak). There is
+    exactly ONE coincidental raw-row-hash collision between the official normal and the test-normal
+    rows; it is removed by the same set-difference so _assert_swat_no_leak passes (0.000 overlap,
+    fail-fast).
+
+    Note: 14 pump/UV status channels are still constant in the official normal (they never switch in
+    the recording; a few flip in test). Standardising a train-constant channel with (std + 1e-8)
+    turns any test deviation into a divide-by-eps blow-up, so (i) inputs are bounded by the +-10
+    sigma A2 envelope (CLIP["SWaT_canon"] = 10.0, as WADI treats its glitch channels) and (ii)
+    train-constant channels are excluded from the max|z| difficulty axis (train std <= 1e-6)."""
+    import os, numpy as np
     here = os.path.dirname(os.path.abspath(__file__))
     d = np.load(os.path.join(here, "datasets", "_new", "SWaT_canonical", "swat_attack_canonical.npz"),
                 allow_pickle=True)
     Xa = d["Xa"].astype(np.float32); ya = d["ya"].astype(int); sens = list(d["sens"])
-    nrm = _s._read("normal.csv"); nrm.columns = [c.strip() for c in nrm.columns]
-    prep = lambda df: df[sens].apply(pd.to_numeric, errors="coerce").ffill().bfill().fillna(0.0).values.astype(np.float32)
-    Xn = prep(nrm)[int(len(nrm) * warmup_drop):][::downsample]     # full normal recording as train
-    return Xn, Xa[::downsample], ya[::downsample], sens
+    nn = np.load(os.path.join(here, "datasets", "_new", "SWaT_canonical", "swat_normal_canonical.npz"),
+                 allow_pickle=True)
+    assert list(nn["sens"]) == sens, "official normal channel order != attack channel order"
+    V = nn["Xn"].astype(np.float32)                                # official Dec-2015 normal recording
+    tn_set = set(_swat_rowhashes(Xa[ya == 0]))                     # exact test-normal raw rows
+    keep = np.array([h not in tn_set for h in _swat_rowhashes(V)])  # drop the 1 coincidental collision
+    Xn = V[keep][int(keep.sum() * warmup_drop):][::downsample]     # official normal as train
+    Xa_ds, ya_ds = Xa[::downsample], ya[::downsample]
+    _assert_swat_no_leak(Xn, Xa_ds, ya_ds)                         # STEP 4: fail-fast leak guard
+    return Xn, Xa_ds, ya_ds, sens
+
+
+def _assert_swat_no_leak(Xn, Xa, ya):
+    """Fail-fast guard: raise if ANY test-normal raw row is present in the SWaT train set. Cheap
+    (rounded row-hash set intersection). Prevents the normal.csv-mirror leak from silently
+    returning after a data refresh."""
+    tn = Xa[ya.astype(int) == 0]
+    inter = set(_swat_rowhashes(Xn)) & set(_swat_rowhashes(tn))
+    if inter:
+        raise AssertionError(
+            f"SWaT leak: {len(inter)} test-normal raw row(s) found inside the train set "
+            f"(overlap must be 0). Check _raw_swat_canonical set-difference.")
 
 
 def _raw_psm(warmup_drop=0.0):
@@ -237,7 +276,14 @@ RAW = {"SKAB": (_raw_skab, 60, 30), "HAI": (_raw_hai, 60, 30), "WADI": (_raw_wad
        "SMD": ((lambda: _raw_smd("1-1")), 60, 30), "BATADAL": (_raw_batadal, 60, 30), "TEP": (_raw_tep, 60, 30), "MetroPT": (_raw_metropt, 60, 30), "WindSCADA": (_raw_wind_scada, 60, 30)}
 # clip is WADI-specific: WADI has glitch/shifted channels (up to 1e8 sigma); HAI's big
 # excursions are REAL attack signal (clipping hurts), SKAB is already in range (no-op).
-CLIP = {"WADI": 10.0, "WADI_clean": 10.0, "HAI": None, "SKAB": None, "SWaT": None, "SWaT_canon": None, "PSM": None, "SMD": None, "BATADAL": None, "TEP": None, "MetroPT": None, "WindSCADA": 10.0}
+# LEAK-FIX consequence (2026-09-19): the CLEAN SWaT_canon train has train-constant channels (7
+# unrecorded in the mirror's Normal_v0 + genuine status/setpoints). Standardising them with
+# (std + 1e-8) turns any test deviation into a ~1e8-sigma divide-by-eps artifact that collapses
+# the max|z| difficulty axis (all anomalies -> Easy) and drives AE/LatAD to chance. The A2 envelope
+# (+-10 sigma) bounds these artifacts uniformly, exactly as it already does for WADI's glitch
+# channels; SWaT_canon was previously None only under the leak's false no-constant-channel
+# assumption. HAI/WADI unchanged.
+CLIP = {"WADI": 10.0, "WADI_clean": 10.0, "HAI": None, "SKAB": None, "SWaT": None, "SWaT_canon": 10.0, "PSM": None, "SMD": None, "BATADAL": None, "TEP": None, "MetroPT": None, "WindSCADA": 10.0}
 
 
 def load(name, clip="auto"):
