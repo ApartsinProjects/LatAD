@@ -79,7 +79,7 @@
 
 <div class="abstract">
 <h2>Abstract</h2>
-<p><span class="rev2-highlight">The Industrial Internet of Things streams multivariate telemetry from physical processes, and monitoring it for faults and attacks must learn normal from unlabeled data alone. Cyber-physical normal is a union of many imbalanced operating regimes that also drifts as components age, so a fault can read within range on every sensor and reconstruct accurately while being improbable under normal joint operation: reconstruction-based detectors measure reachability rather than probability and miss it. We present LatAD, which models normal as a jointly learned latent Gaussian mixture (VaDE) and scores by probability rather than reconstruction, factorizing the density over correlation-community subsystems and combining per-subsystem surprises by cohesion-weighted Higher Criticism. We evaluate under a two-stage, detector-agnostic difficulty stratification that strips trivially and linearly separable anomalies. On three real testbeds LatAD leads the difficult subset: significantly on HAI (0.845, where the deep detectors USAD and TranAD fall to 0.44&ndash;0.50), and over every nonlinear detector on WADI (0.771). Measured drift is 1.5%, 39%, and 69% of test-normal windows on WADI, HAI, and SWaT; on the severely non-stationary SWaT record a causal drift-aware anomaly typing brings the difficult subset to 0.723. Code and checkpoints are released (Zenodo).</span></p>
+<p><span class="rev2-highlight">The Industrial Internet of Things streams multivariate telemetry from physical processes, and monitoring it for faults and attacks must learn normal from unlabeled data alone. Cyber-physical normal is a union of many imbalanced operating regimes that also drifts as components age, so a faulty state can remain within every sensor's normal range and still reconstruct accurately while being improbable under normal joint operation: reconstruction-based detectors measure reachability rather than probability and miss it. We present LatAD, which models normal as a jointly learned latent Gaussian mixture (VaDE) and scores by probability rather than reconstruction, factorizing the density over correlation-community subsystems and combining per-subsystem surprises by cohesion-weighted Higher Criticism. We evaluate under a detector-agnostic difficulty stratification: a channel rule strips trivially separable anomalies to form the difficult subset, and a secondary linear-subspace filter forms a double-hard subset. On three real testbeds LatAD leads the difficult subset: significantly on HAI (0.845, where the deep detectors USAD and TranAD fall to 0.44&ndash;0.50), and over every nonlinear detector on WADI (0.771). Measured drift is 1.5%, 39%, and 69% of test-normal windows on WADI, HAI, and SWaT; on the severely non-stationary SWaT record a causal drift-aware anomaly typing brings the difficult subset to 0.723. Code and checkpoints are released (Zenodo).</span></p>
 </div>
 <p class="keywords"><strong>Keywords:</strong> <span class="rev-highlight">Industrial Internet of Things (IIoT); IoT anomaly detection; cyber-physical systems; industrial control systems; anomaly detection; unsupervised learning; sensor telemetry; fault detection</span></p>
 
@@ -183,7 +183,7 @@ mixture-density head and a rare-regime-safe nearest-component likelihood, factor
 (communities of the normal-data correlation graph) and combined by cohesion-weighted Higher Criticism (HC), a statistic
 that flags when more subsystems are mildly surprised than chance allows, so a local fault that a single global density
 dilutes is concentrated and localized to its subsystem (&sect;4). Reconstruction is demoted and re-enters only through a
-gated residual head. <strong>(C2) A two-stage, detector-agnostic difficulty stratification.</strong> A channel-based rule
+gated residual head. <strong>(C2) A detector-agnostic difficulty stratification.</strong> A channel-based rule
 separates the trivially detectable anomalies and a linear principal-component subspace filter (Hotelling&nbsp;<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msup><mi>T</mi><mn>2</mn></msup></math>
 and squared prediction error) separates the linearly detectable ones, leaving a difficult and a double-hard subset that
 the detector under test plays no part in constructing (&sect;5&ndash;6). <strong>(C3) A drift-aware anomaly typing.</strong> A causal per-community decomposition into a slow
@@ -518,12 +518,12 @@ overfits the normal reference and is gated off)</span>.</p>
 <span class="rev2-highlight">standardized (recentered and rescaled)</span> against its train-normal mean and standard deviation, so the operating scale is set by normal, not
 by the test batch.</p>
 
-<h4>(i)&nbsp;Latent mixture-density head (parametric kernel-density estimate, KDE, for non-Gaussian pockets)</h4>
+<h4>(i)&nbsp;Latent mixture-density head (a high-resolution Gaussian-mixture density estimator for non-Gaussian pockets)</h4>
 <p>Because each regime has a non-uniform interior with thin fringes (A3), one Gaussian per regime is too coarse. We
 fit a high-resolution diagonal Gaussian mixture on the train-normal latent (<math
 xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><mo>=</mo><mn>80</mn></mrow></math>
 components by default, distinct from the VaDE regime count <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>K</mi></math>)
-as a parametric kernel-density estimate, and score a window by its density negative
+as a high-resolution Gaussian-mixture density estimator, and score a window by its density negative
 log-likelihood:</p>
 <span class="eq"><span class="eqno rev2-highlight">(4)</span><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
   <mrow><msub><mi>s</mi><mtext>dens</mtext></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
@@ -577,9 +577,9 @@ SWaT but not on WADI, and the gate recovers this pattern from train-normal alone
 <p><span class="rev2-highlight">The reported detector scores a window by summing the base score and, where the residual head is gated on, the whitened residual:</span></p>
 <span class="eq"><span class="eqno rev2-highlight">(7)</span><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
   <mrow><mi>s</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>s</mi><mn>0</mn></msub><mo>+</mo>
-  <msub><mi>s</mi><mtext>resid</mtext></msub><mo>.</mo></mrow>
+  <mi>g</mi><mspace width="0.1em"/><msub><mi>s</mi><mtext>resid</mtext></msub><mo>.</mo></mrow>
 </math></span>
-<p><span class="rev2-highlight">Equation&nbsp;(7) is the detector's complete window score.</span> The reported model configures its heads purely from train-normal statistics, with no test-set tuning<span class="rev-del">: the residual head fires on HAI and SWaT and stays off on WADI</span><span class="rev2-highlight">.</span></p>
+<p><span class="rev2-highlight">Equation&nbsp;(7) is the detector's complete window score, with <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>g</mi><mo>&#8712;</mo><mo>{</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>}</mo></mrow></math> the train-normal auto-gate on the residual head (&sect;4.3&nbsp;iii; <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>g</mi><mo>=</mo><mn>0</mn></mrow></math> on WADI).</span> The reported model configures its heads purely from train-normal statistics, with no test-set tuning<span class="rev-del">: the residual head fires on HAI and SWaT and stays off on WADI</span><span class="rev2-highlight">.</span></p>
 
 <div class="note rev-del"><strong>Auto-gating summary.</strong> Base heads (i&ndash;ii) run on every dataset. The
 residual head (iii) fires when it generalizes to held-out normal (HAI and SWaT: on; WADI: off). All calibration uses train-normal only.</div>
@@ -718,7 +718,7 @@ serves as a secondary, within-subset figure.</li>
 </ul>
 <p>All model fitting and all calibration (density head, nearest-component reference, residual precisions and
 gate, and every <span class="rev2-highlight">head standardization</span>) use train-normal data only.<span class="rev-del"> Test data never enters
-training or calibration.</span> AUROC is leak-free; only the F1 threshold uses the test-swept oracle, which we
+training or calibration.</span> AUROC uses no test-set tuning (all fitting and calibration use train-normal only); only the F1 threshold uses the test-swept oracle, which we
 flag.</p>
 
 <p class="rev2-highlight"><strong>Significance testing.</strong> Where a difficult-subset margin is called significant, we test the paired
@@ -730,11 +730,11 @@ preserving within-attack dependence. From 2000 resamples we report the 95% confi
 paired difference by the percentile method (the 2.5th and 97.5th quantiles) and a one-sided <em>p</em>-value as the
 fraction of resamples in which the difference is at most zero.</p>
 
-<h3>5.5&nbsp;&nbsp;Baselines and SOTA re-computation</h3>
+<h3>5.5&nbsp;&nbsp;Baselines and deep detectors</h3>
 <p>Classical baselines are Isolation Forest [<span class="rev-highlight"><a href="#r-if">34</a></span>] and a deep autoencoder, both on the same
 window features, together with a linear cross-channel baseline (LinRes): a leave-one-channel-out linear regression
 that predicts each channel's window summary from the others, with discrete actuator channels one-hot encoded,
-scored by its residual. <span class="rev2-highlight">Baseline settings are listed in Appendix&nbsp;D (Table&nbsp;D2).</span> For modern SOTA we re-run USAD [<span class="rev-highlight"><a href="#r-usad">36</a></span>] and TranAD
+scored by its residual. <span class="rev2-highlight">Baseline settings are listed in Appendix&nbsp;D (Table&nbsp;D2).</span> For modern SOTA we run USAD [<span class="rev-highlight"><a href="#r-usad">36</a></span>] and TranAD
 [<span class="rev-highlight"><a href="#r-tranad">37</a></span>] through the TranAD evaluation harness <span class="rev2-highlight">over five seeds on all three datasets</span> and score them with the
 <em>same raw point-wise metrics</em>, aggregating their per-timestep scores onto our window grid. For HAI, the SOTA
 harness produces scores at a downsampled rate, so we map them to our full-resolution window grid by an integer-ratio
@@ -758,7 +758,7 @@ five seeds.</span></p>
 <div class="tblwrap">
 <table>
 <caption><strong>Table 2.</strong> Per-dataset, per-subset results [AUROC, F1] on three real CPS attack benchmarks
-(higher is better; AUROC is leak-free, F1 is the best raw point-wise F1 over thresholds). <span class="rev-del">Learned detectors report
+(higher is better; AUROC uses no test-set tuning, F1 is the best raw point-wise F1 over thresholds). <span class="rev-del">Learned detectors report
 AUROC as mean&plusmn;standard deviation over five seeds (the standard deviation is omitted where it rounds to
 0.000).</span><span class="rev2-highlight">Isolation Forest, the AutoEncoder, USAD, TranAD, and LatAD report AUROC as mean&plusmn;standard deviation over five seeds on all three datasets (the standard deviation is omitted where it rounds to 0.000).</span> <span class="rev2-highlight">GDN is included as a construct-matched, single-seed SOTA baseline: its per-timestep scores are re-aggregated onto the same window grid and difficulty subsets as every other method (&sect;5.5), and are scored by AUROC only (F1 not computed; shown as &ldquo;&ndash;&rdquo;).</span> Bold marks the best AUROC in each dataset&times;subset column
 (ties bolded jointly). <strong>LatAD (regime-community)</strong> is the reported detector (&sect;4.4);
@@ -834,8 +834,8 @@ zero). A drift-aware changepoint decomposition of the same community surprises r
 
 <p><span class="rev2-highlight">On WADI LatAD reaches 0.771 (30 difficult windows over 8 attack episodes), significantly ahead of every nonlinear
 detector. A per-detector episode-block bootstrap of the paired difference clears each one with P&nbsp;&lt;&nbsp;0.05: vs
-the AutoEncoder +0.143 (P&nbsp;=&nbsp;0.001), USAD +0.192 (P&nbsp;=&nbsp;0.000), TranAD +0.157 (P&nbsp;=&nbsp;0.0005),
-Isolation Forest +0.136 (P&nbsp;=&nbsp;0.000), and GDN +0.111 (P&nbsp;=&nbsp;0.000). LatAD ties only the linear baseline
+the AutoEncoder +0.143 (P&nbsp;=&nbsp;0.001), USAD +0.192 (P&nbsp;&lt;&nbsp;0.0005), TranAD +0.157 (P&nbsp;=&nbsp;0.0005),
+Isolation Forest +0.136 (P&nbsp;&lt;&nbsp;0.0005), and GDN +0.111 (P&nbsp;&lt;&nbsp;0.0005). LatAD is not significantly different from the linear baseline
 LinRes (0.750): +0.020, 95% CI [&#8722;0.161, 0.205], P&nbsp;=&nbsp;0.46 over 8 episodes. The WADI lead is
 carried by the community density aggregation (cohesion-weighted Higher Criticism over the community experts, 0.795): the
 single-latent global density scores 0.634 on this difficult subset, so the community
@@ -1291,8 +1291,7 @@ the headline numbers of the main results table (Table&nbsp;2).</caption>
 
 <div class="tblwrap">
 <table>
-<caption><strong>Table A3.</strong> Difficult-subset AUROC of the two natural score terms (single trained model per
-dataset). <span class="rev-del">On HAI the reconstruction residual (0.689) is informative but stays below the latent term (0.760) and drags
+<caption><strong>Table A3.</strong> Difficult-subset AUROC of the two natural score terms (single trained model per dataset; shown for WADI and HAI). <span class="rev-del">On HAI the reconstruction residual (0.689) is informative but stays below the latent term (0.760) and drags
 the summed joint score down to 0.689, so demoting reconstruction helps; on WADI the residual is in fact informative
 (0.742), but (as Table A6 and &sect;4.3&nbsp;iii show) it does not generalize to held-out normal and is gated off the
 reported model, whose gain instead comes from factorizing the latent density over subsystems.</span> <span class="rev2-highlight">These are single-seed values for one trained model per dataset and differ slightly from the corresponding five-seed means in the full three-dataset head ablation of Table&nbsp;A6.</span></caption>
@@ -1344,9 +1343,9 @@ recovers the LatAD (regime-community) SWaT double-hard AUROC to 0.671.</span></c
 <div class="tblwrap">
 <table>
 <caption><strong>Table A6.</strong> Difficult-subset AUROC by score head, five-seed mean&plusmn;standard deviation
-on all three datasets (an independent five-seed run). <em>recon</em> is the whitened reconstruction residual (the term the base score omits); <span class="rev2-highlight"><em>latent density</em> is the <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><mo>=</mo><mn>80</mn></mrow></math>-component density head of Equation&nbsp;(4) and <em>nearest-component NLL</em> is the head of Equation&nbsp;(5);</span> <em>base</em>
+on all three datasets (a five-seed run). <em>recon</em> is the whitened reconstruction residual (the term the base score omits); <span class="rev2-highlight"><em>latent density</em> is the <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><mo>=</mo><mn>80</mn></mrow></math>-component density head of Equation&nbsp;(4) and <em>nearest-component NLL</em> is the head of Equation&nbsp;(5);</span> <em>base</em>
 is density+nearest; the final row adds the auto-gated residual head, which is by definition the single-latent
-<em>LatAD (global density)</em> configuration and reproduces its Table 2 row within seed variation; its per-community
+<em>LatAD (global density)</em> configuration and agrees with its Table 2 row within seed variation; its per-community
 application (&sect;4.4) gives the reported detector. <span class="rev2-highlight">Bold marks the LatAD (global density) configuration, not a column maximum.</span> <span class="rev-del">The reconstruction row is the whitened residual; the deep reconstruction detectors of Table&nbsp;2 score 0.44 to 0.67 on the same difficult subsets.</span></caption>
 <thead><tr><th class="l">Score head</th><th>WADI</th><th>HAI</th><th>SWaT</th></tr></thead>
 <tbody>
@@ -2927,7 +2926,7 @@ memory and tens of MB of GPU memory (Table&nbsp;B1, peak 20 to 29&nbsp;MB for La
 <table>
 <caption class="rev2-highlight"><strong>Table B1.</strong> Training and inference cost, per dataset (WADI&nbsp;/&nbsp;HAI&nbsp;/&nbsp;SWaT), measured on one Modal A10G GPU (24&nbsp;GB) plus a Modal 8-vCPU CPU edge proxy (the same hardware for every method). <em>Train s</em> is training wall-clock; <em>ms/win</em> is per-window latency at batch&nbsp;1; <em>Peak GPU MB</em> is the peak CUDA memory during inference<span class="rev2-highlight">; <em>Host RAM GB</em> is peak host memory on the CPU edge proxy</span>.
 <span class="rev-del">LatAD-global trains 47&ndash;72&#215; faster than TranAD; both LatAD configurations run within about 3.5&ndash;3.9&nbsp;GB of host
-memory and use tens of MB of GPU memory.</span> Deep-baseline CPU-edge latency and host memory were not measured (&ndash;).</caption>
+memory and use tens of MB of GPU memory.</span> CPU-edge latency and host memory were not measured for USAD, TranAD, or GDN (&ndash;).</caption>
 <thead><tr><th class="l">Method</th><th>Params (W/H/S)</th><th>Train s (W/H/S)</th><th>GPU ms/win (W/H/S)</th><th>Peak GPU MB (W/H/S)</th><th>CPU-edge ms/win (W/H/S)</th><th class="rev2-highlight">Host RAM GB (W/H/S)</th></tr></thead>
 <tbody>
 <tr><td class="l"><b>LatAD (global density)</b></td><td>209k / 112k / 100k</td><td>3.2 / 16 / 3.5</td><td>0.7 / 13.0 / 13.0</td><td>19.9 / 19.4 / 19.7</td><td>0.6 / 14.6 / 14.5</td><td class="rev2-highlight">3.5 / 3.7 / 3.9</td></tr>
@@ -2955,8 +2954,7 @@ regime pair (the positive control in Table&nbsp;C1). Table&nbsp;C1
 reports the three benchmarks, the physically labeled Cranfield rig [<a href="#r-cranfield">58</a>], SKAB, and the control; a broader screen (adding
 MetroPT [<a href="#r-metropt">53</a>], four SMD server-machine entities [<a href="#r-omni">31</a>], and the Paderborn bearing
 testbed) gives the same picture. The A8 precondition holds on every multi-loop plant (close-distinct mass 0.99 to 1.00 in Table&nbsp;C1, 0.94 to 1.00 across the broader screen);
-the overlap, the masking excess over the base rate, and the over-coverage miss of the 80-component head are all
-absent.</p>
+the overlap, the masking excess over the base rate, and the over-coverage miss of the 80-component head are all far below the positive control.</p>
 
 <div class="tblwrap rev2-highlight">
 <table>
