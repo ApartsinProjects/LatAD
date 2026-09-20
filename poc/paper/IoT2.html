@@ -458,7 +458,7 @@ full so that every choice is auditable, and &sect;8 surveys the design space the
 
 <p>VaDE [<span class="rev-highlight"><a href="#r-vade">27</a></span>] is a variational autoencoder whose latent prior is a Gaussian mixture, so the
 representation and the operating-regime clusters are learned <em>together</em> (A1, A6) rather than one after the
-other. An encoder maps a window feature vector <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>x</mi></math> to a latent Gaussian <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>q</mi><mo stretchy="false">(</mo><mi>z</mi><mo>&#8739;</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>N</mi><mo stretchy="false">(</mo><mi>&#956;</mi><mo>,</mo><mtext>diag</mtext><mspace width="0.1em"/><msup><mi>&#963;</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow></math>; a decoder reconstructs <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mover><mi>x</mi><mo>^</mo></mover></math>; and the prior is
+other. <span class="rev2-highlight">The encoder and decoder widths, mixture size, training schedule, and scoring-head settings are listed in Appendix&nbsp;D (Table&nbsp;D1).</span> An encoder maps a window feature vector <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>x</mi></math> to a latent Gaussian <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>q</mi><mo stretchy="false">(</mo><mi>z</mi><mo>&#8739;</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>N</mi><mo stretchy="false">(</mo><mi>&#956;</mi><mo>,</mo><mtext>diag</mtext><mspace width="0.1em"/><msup><mi>&#963;</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow></math>; a decoder reconstructs <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mover><mi>x</mi><mo>^</mo></mover></math>; and the prior is
 <span class="eq"><span class="eqno rev2-highlight">(2)</span><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
   <mrow><mi>p</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>=</mo>
   <munderover><mo>&#8721;</mo><mrow><mi>c</mi><mo>=</mo><mn>1</mn></mrow><mi>K</mi></munderover>
@@ -738,7 +738,7 @@ fraction of resamples in which the difference is at most zero.</p>
 <p>Classical baselines are Isolation Forest [<span class="rev-highlight"><a href="#r-if">34</a></span>] and a deep autoencoder, both on the same
 window features, together with a linear cross-channel baseline (LinRes): a leave-one-channel-out linear regression
 that predicts each channel's window summary from the others, with discrete actuator channels one-hot encoded,
-scored by its residual. For modern SOTA we re-run USAD [<span class="rev-highlight"><a href="#r-usad">36</a></span>] and TranAD
+scored by its residual. <span class="rev2-highlight">Baseline settings are listed in Appendix&nbsp;D (Table&nbsp;D2).</span> For modern SOTA we re-run USAD [<span class="rev-highlight"><a href="#r-usad">36</a></span>] and TranAD
 [<span class="rev-highlight"><a href="#r-tranad">37</a></span>] through the TranAD evaluation harness <span class="rev2-highlight">over five seeds on all three datasets</span> and score them with the
 <em>same raw point-wise metrics</em>, aggregating their per-timestep scores onto our window grid. For HAI, the SOTA
 harness produces scores at a downsampled rate, so we map them to our full-resolution window grid by an integer-ratio
@@ -2984,6 +2984,51 @@ by a wide two-component head versus the 80-component head. Synthetic positive co
 </div>
 
 <p class="rev2-highlight"><strong>SKAB.</strong> SKAB [<a href="#r-skab">59</a>], a 400-window rotor rig, has no close-distinct regime pairs (0 of 12; it is a single-loop rig), so it does not exhibit the A8 precondition. A8 is specified for completeness but not demonstrated on any dataset in this study.</p>
+
+<h2 class="rev2-highlight">Appendix D. Implementation and reproducibility</h2>
+<p class="rev2-highlight">All detectors share the same windowing and features. Raw channels are standardized per channel on train-normal statistics and, on WADI and SWaT, clipped to &plusmn;10 standard deviations (HAI is not clipped; &sect;5.1); the stream is then windowed at <em>W</em>&nbsp;=&nbsp;60 with stride 30, and each window is summarized by six per-channel statistics (mean, standard deviation, minimum, maximum, last&minus;first, and range), concatenated in stat-blocked order, giving a feature dimension of 6<em>C</em> (732 for WADI, 354 for HAI, 306 for SWaT). A window is labeled anomalous when more than 5% of its raw timesteps carry an attack label. All multi-seed detectors use seeds 0&ndash;4.</p>
+
+<h3 class="rev2-highlight">D.1&nbsp;&nbsp;VaDE and detector hyperparameters</h3>
+<p class="rev2-highlight">Table&nbsp;D1 lists the configuration of the global VaDE and its scoring heads. The mixture-component count <em>K</em> is a fixed per-dataset hyperparameter set a priori (20/40/40), not selected on any split; the BIC-optimal component count on train-normal windows (22/24/25) is reported separately as a characterization of regime multiplicity and is not used to tune the detector. The density head is a diagonal Gaussian mixture with <em>M</em>&nbsp;=&nbsp;80 components fit on the train-normal latent means; the residual head reduces the reconstruction residual to 30 principal components and whitens it with a per-regime Ledoit-Wolf covariance, and is auto-gated on by a train-normal held-out generalization check (active on HAI and SWaT, off on WADI). The basin head is auto-scaled by a train-normal ambiguity ratio and is a no-op on all three crisp-mode datasets.</p>
+<div class="tblwrap rev2-highlight">
+<table>
+<caption><strong>Table D1.</strong> VaDE and detector hyperparameters. Values shared across datasets are given once; per-dataset values are listed as WADI / HAI / SWaT.</caption>
+<thead><tr><th class="l">Hyperparameter</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td class="l">Encoder / decoder MLP</td><td>[6<em>C</em>, 128, 64] &rarr; latent; decoder mirror, ReLU between hidden layers</td></tr>
+<tr><td class="l">Mixture components <em>K</em> (fixed a priori)</td><td>20 / 40 / 40</td></tr>
+<tr><td class="l">Latent dimension</td><td>10 / 16 / 16</td></tr>
+<tr><td class="l">Pretrain (plain-VAE) epochs</td><td>30</td></tr>
+<tr><td class="l">Joint epochs / warmup</td><td>40 / 8</td></tr>
+<tr><td class="l">Batch size</td><td>256</td></tr>
+<tr><td class="l">Optimizer / learning rate</td><td>Adam / 1&times;10<sup>&minus;3</sup></td></tr>
+<tr><td class="l">Mixture-parameter lr ratio</td><td>0.1</td></tr>
+<tr><td class="l">LR schedule</td><td>StepLR (step 20, &gamma; 0.5)</td></tr>
+<tr><td class="l">Component variance floor</td><td>log(0.05)</td></tr>
+<tr><td class="l">Covariance-regularization weight</td><td>1&times;10<sup>&minus;3</sup></td></tr>
+<tr><td class="l">Density head components <em>M</em></td><td>80 (diagonal GMM)</td></tr>
+<tr><td class="l">Residual PCA dimension</td><td>30 (per-regime Ledoit-Wolf whitening)</td></tr>
+<tr><td class="l">Seeds</td><td>0, 1, 2, 3, 4</td></tr>
+</tbody></table>
+</div>
+
+<h3 class="rev2-highlight">D.2&nbsp;&nbsp;Regime communities, aggregation, and the reported detector</h3>
+<p class="rev2-highlight">Communities are built from the train-normal window-mean correlation graph: near-constant channels (train standard deviation &le;&nbsp;10<sup>&minus;6</sup>) are dropped, a Pearson correlation matrix is formed on the standardized window means, the distance is 1&minus;|&rho;|, and average-linkage hierarchical clustering is cut into every nested dendrogram subtree of size 3 to 25 channels (giving <em>S</em>&nbsp;=&nbsp;44 communities on WADI, 28 on HAI, 24 on SWaT). Each community's cohesion is its mean pairwise |&rho;| and its fusion weight is cohesion&nbsp;&times;&nbsp;&radic;size. Each community trains a smaller VaDE (<em>K</em>&nbsp;=&nbsp;min(20,&nbsp;max(6,|G|)), latent min(8,&nbsp;max(3,&lfloor;|G|/2&rfloor;)), 15 epochs, density head min(50,&nbsp;max(12,&nbsp;&lfloor;n<sub>fit</sub>/12&rfloor;))). For every model the first 80% of train-normal windows (chronological) is the fit slice and the last 20% is a held-out calibration slice used as the upper-tail reference; no test data enters fitting or calibration. Per-community upper-tail p-values are combined by cohesion-weighted Higher Criticism, and the reported detector, <strong>LatAD (regime-community)</strong>, is the z-sum of that cohesion-weighted Higher-Criticism score and the whole-plant (global VaDE) upper-tail score, each z-standardized against its train-normal reference. The double-hard subset (Table&nbsp;A4) is constructed by a linear principal-component filter (Hotelling <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msup><mi>T</mi><mn>2</mn></msup></math> and squared prediction error at their 99th train-normal percentiles, 95% retained variance), and the drift-aware typing (&sect;7) decomposes each community's surprise against a causal 24&nbsp;h rolling median. Baseline settings are in Table&nbsp;D2.</p>
+<div class="tblwrap rev2-highlight">
+<table>
+<caption><strong>Table D2.</strong> Baseline detector settings. Isolation Forest, the AutoEncoder, USAD, and TranAD use five seeds; the linear predictor, boosted linear predictor, and GDN are single-seed.</caption>
+<thead><tr><th class="l">Baseline</th><th>Settings</th></tr></thead>
+<tbody>
+<tr><td class="l">Isolation Forest</td><td>200 estimators, default max-samples and contamination; score = &minus;score_samples</td></tr>
+<tr><td class="l">AutoEncoder</td><td>6<em>C</em>-64-16-64-6<em>C</em>, ReLU; Adam, lr 1&times;10<sup>&minus;3</sup>, 40 epochs; score = summed squared residual</td></tr>
+<tr><td class="l">LinRes (linear)</td><td>ordinary least squares, leave-one-channel-out; discrete channels (&le;6 states) soft one-hot; score = mean per-channel squared residual</td></tr>
+<tr><td class="l">Boosted LinRes</td><td>histogram gradient boosting (150 iterations, learning rate 0.1), same leave-one-channel-out structure</td></tr>
+<tr><td class="l">USAD</td><td>imperial-qore/TranAD harness, 30 epochs</td></tr>
+<tr><td class="l">TranAD</td><td>same harness, 5 epochs</td></tr>
+<tr><td class="l">GDN</td><td>same harness, window length 5, 5 epochs, harness-default top-k and embedding dimension; single seed, AUROC only</td></tr>
+<tr><td class="l">trivial max|<em>u</em>|</td><td>maximum absolute standardized window mean over the level (mean) statistic block</td></tr>
+</tbody></table>
+</div>
 
 <hr>
 <h2>References</h2>
