@@ -1,0 +1,68 @@
+
+=== WADI_clean: d=732, n_train=2614, n_test=575, anomalies=56, difficult=30 ===
+   PCA k@95%=113/732  (k@90%=75, k@99%=194); thrT2=406.81 thrSPE=125.27; train flag rate 1.87% (expect ~1-2%); all-components SPE max=2.05e-12 (expect ~0), k_full=732
+   difficult 30: T2 flags 0, SPE flags 1, union 1, LinRes flags 11 (SPE&Lin 1, SPE-only 0, Lin-only 10); rho(SPE,LinRes) all=0.426 difficult=0.7735261401557285
+   sensitivity: 0.9: k=75 n=30/8ep, 0.95: k=113 n=29/8ep, 0.99: k=194 n=21/7ep
+   spearman(scores.linres, loco r_te) = 1.000
+   DOUBLE-HARD (PCA T2|SPE): 29 windows / 8 episodes   [LinRes-based: 19/7;  T2-only: 30/8]
+   method                          PCA-dhard   LinRes-dhard   T2only-dhard
+   trivial max|z|                0.591          0.493          0.601      
+   IF                            0.622±0.006    0.530±0.009    0.634±0.006
+   AE                            0.616±0.004    0.535±0.004    0.628±0.004
+   LinRes                        0.742          0.606          0.750      
+   USAD                          0.565          0.466          0.579      
+   TranAD                        0.601          0.489          0.613      
+   GDN                           0.648          0.550          0.660      
+   LatAD (global density)        0.623±0.012    0.571±0.013    0.634±0.011
+   LatAD (regime-community)      0.763±0.024    0.662±0.040    0.771±0.023
+   headline vs strongest external detector LinRes: diff +0.021 CI [-0.165, 0.201] P(<=0)=0.46 (8 episodes, 2000 boots)
+   headline vs LatAD global density: diff +0.140 CI [0.062, 0.243] P(<=0)=0.0
+   99%-variance variant (k=194): 21 windows / 7 episodes; trivial max|z|=0.516, IF=0.544, AE=0.549, LinRes=0.644, USAD=0.478, TranAD=0.511, GDN=0.571, LatAD (global density)=0.584, LatAD (regime-community)=0.683
+   99% variant: headline vs LinRes: diff +0.039 CI [-0.234, 0.272] P(<=0)=0.443
+   saved (129.0s)
+
+=== HAI: d=354, n_train=18359, n_test=14819, anomalies=652, difficult=167 ===
+   PCA k@95%=60/354  (k@90%=42, k@99%=101); thrT2=173.02 thrSPE=45.64; train flag rate 1.38% (expect ~1-2%); all-components SPE max=1.82e-11 (expect ~0), k_full=354
+   difficult 167: T2 flags 90, SPE flags 110, union 112, LinRes flags 83 (SPE&Lin 61, SPE-only 49, Lin-only 22); rho(SPE,LinRes) all=0.775 difficult=0.18203695878466822
+   sensitivity: 0.9: k=42 n=68/16ep, 0.95: k=60 n=55/13ep, 0.99: k=101 n=11/7ep
+   spearman(scores.linres, loco r_te) = 1.000
+   DOUBLE-HARD (PCA T2|SPE): 55 windows / 13 episodes   [LinRes-based: 84/19;  T2-only: 77/17]
+   method                          PCA-dhard   LinRes-dhard   T2only-dhard
+   trivial max|z|                0.336          0.349          0.326      
+   IF                            0.435±0.023    0.635±0.012    0.496±0.016
+   AE                            0.418±0.008    0.730±0.003    0.508±0.006
+   LinRes                        0.547          0.465          0.562      
+   USAD                          0.351±0.018    0.442±0.021    0.364±0.015
+   TranAD                        0.296±0.004    0.418±0.009    0.324±0.005
+   GDN                           0.354          0.469          0.361      
+   LatAD (global density)        0.559±0.040    0.806±0.019    0.625±0.032
+   LatAD (regime-community)      0.648±0.039    0.814±0.024    0.698±0.037
+   headline vs strongest external detector LinRes: diff +0.101 CI [-0.09, 0.337] P(<=0)=0.17 (13 episodes, 2000 boots)
+   headline vs LatAD global density: diff +0.089 CI [-0.049, 0.256] P(<=0)=0.1115
+   99%-variance variant (k=101): 11 windows / 7 episodes; trivial max|z|=0.384, IF=0.433, AE=0.414, LinRes=0.393, USAD=0.357, TranAD=0.358, GDN=0.368, LatAD (global density)=0.620, LatAD (regime-community)=0.583
+   99% variant: headline vs IF: diff +0.150 CI [0.004, 0.299] P(<=0)=0.021
+   saved (373.0s)
+
+=== SWaT_canon: d=306, n_train=4530, n_test=1498, anomalies=233, difficult=85 ===
+   PCA k@95%=43/306  (k@90%=30, k@99%=75); thrT2=535.03 thrSPE=85.33; train flag rate 1.37% (expect ~1-2%); all-components SPE max=2.91e-11 (expect ~0), k_full=306
+   difficult 85: T2 flags 4, SPE flags 27, union 27, LinRes flags 26 (SPE&Lin 19, SPE-only 8, Lin-only 7); rho(SPE,LinRes) all=0.556 difficult=0.7469806527262068
+   sensitivity: 0.9: k=30 n=63/18ep, 0.95: k=43 n=58/18ep, 0.99: k=75 n=52/17ep
+   spearman(scores.linres, loco r_te) = 1.000
+   DOUBLE-HARD (PCA T2|SPE): 58 windows / 18 episodes   [LinRes-based: 59/18;  T2-only: 81/21]
+   method                          PCA-dhard   LinRes-dhard   T2only-dhard
+   trivial max|z|                0.588          0.581          0.638      
+   IF                            0.535±0.008    0.578±0.009    0.609±0.008
+   AE                            0.623±0.010    0.666±0.010    0.716±0.007
+   LinRes                        0.705          0.688          0.772      
+   USAD                          0.573          0.609          0.642      
+   TranAD                        0.569          0.604          0.638      
+   GDN                           0.588          0.615          0.648      
+   LatAD (global density)        0.731±0.010    0.728±0.010    0.794±0.007
+   LatAD (regime-community)      0.767±0.006    0.773±0.006    0.829±0.005
+   headline vs strongest external detector LinRes: diff +0.061 CI [0.004, 0.137] P(<=0)=0.015 (18 episodes, 2000 boots)
+   headline vs LatAD global density: diff +0.036 CI [-0.003, 0.077] P(<=0)=0.0415
+   99%-variance variant (k=75): 52 windows / 17 episodes; trivial max|z|=0.579, IF=0.525, AE=0.592, LinRes=0.697, USAD=0.570, TranAD=0.567, GDN=0.587, LatAD (global density)=0.706, LatAD (regime-community)=0.741
+   99% variant: headline vs LinRes: diff +0.044 CI [-0.012, 0.102] P(<=0)=0.0575
+   saved (109.5s)
+
+saved -> E:\Projects\Backlog\LatAD\poc\_diagnostics/pca_filter_doublehard.json

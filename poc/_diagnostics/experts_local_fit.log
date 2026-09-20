@@ -1,0 +1,12 @@
+[SWaT_canon/cur_fit] S=25 communities, method=average maxsz=25 minsz=3, nfit=3624 ncal=906
+[SWaT_canon/cur_fit] seed 0: 25 experts (0 skipped) 70s
+[SWaT_canon/cur_fit] seed 1: 25 experts (0 skipped) 135s
+[SWaT_canon/cur_fit] seed 2: 25 experts (0 skipped) 201s
+[SWaT_canon/cur_fit] seed 3: 25 experts (0 skipped) 266s
+[SWaT_canon/cur_fit] seed 4: 25 experts (0 skipped) 332s
+saved E:\Projects\Backlog\LatAD\poc\sota_bundle\experts_variants\cur_fit\expert_SWaT_canon.npz
+[WADI_clean/cur_fit] S=44 communities, method=average maxsz=25 minsz=3, nfit=2091 ncal=523
+[WADI_clean/cur_fit] seed 0: 44 experts (0 skipped) 77s
+[WADI_clean/cur_fit] seed 1: 44 experts (0 skipped) 149s
+[WADI_clean/cur_fit] seed 2: 44 experts (0 skipped) 223s
+[WADI_clean/cur_fit] seed 3: 44 experts (0 skipped) 295s

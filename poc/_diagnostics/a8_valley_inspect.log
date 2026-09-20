@@ -1,0 +1,116 @@
+
+### SWaT_canon seed0: valley anomalies n=11
+ idx  h  j      dh      dj     t  perp     Dhj  vr  LatAD_pct  USAD_pct  TranAD_pct  AE_pct
+  23  9 15   9.077  16.730 0.143 6.084  10.590 0.0      0.992     0.998       0.998   0.998
+ 308  7 11   9.920  11.212 0.873 6.982   5.516 0.0      0.972     0.904       0.881   0.992
+ 478 15 12   9.393   9.770 0.250 5.883   9.421 0.0      0.987     0.997       0.996   0.990
+ 578 12 11   8.218   8.655 0.762 4.804   5.469 0.0      0.964     0.949       0.935   0.963
+ 775  3  9 218.748 222.188 0.106 6.259 151.461 0.0      0.998     0.999       0.999   0.998
+ 776  3  9 223.066 223.155 0.106 5.485 151.461 0.0      0.998     0.999       0.999   0.998
+ 777  9  3 223.936 231.518 0.894 5.206 151.461 0.0      0.998     0.999       0.999   0.998
+ 932 12 15   7.829  11.964 0.444 6.344   9.421 0.0      0.999     1.000       1.000   1.000
+1203 15 10  10.278  10.357 0.932 4.109  11.501 0.0      0.960     0.798       0.892   0.788
+1204 10 15   8.941  10.621 0.028 3.405  11.501 0.0      0.979     0.869       0.953   0.893
+1483 15  9   8.683  14.131 0.134 5.730  10.590 0.0      0.986     0.983       0.994   0.989
+  loose valley (out-of-envelope & 0<t<1): n=28 of 160 out-of-envelope; median pct LatAD/USAD/TranAD = 0.998/0.998/0.998; rest: 0.998/0.999/0.999
+  Spearman(betweenness, LatAD_pct-USAD_pct) over out-of-envelope anomalies n=160: rho=+0.112 p=0.158
+  Spearman(betweenness, LatAD_pct-TranAD_pct) over out-of-envelope anomalies n=160: rho=+0.078 p=0.326
+
+### SWaT_canon seed1: valley anomalies n=8
+ idx  h  j      dh      dj     t  perp     Dhj  vr  LatAD_pct  USAD_pct  TranAD_pct  AE_pct
+  23 11 14   9.144  20.576 0.172 6.854  10.150 0.0      0.992     0.998       0.998   0.998
+  24 11 14   7.350  21.144 0.374 7.101  10.150 0.0      0.992     0.998       0.998   0.998
+  40 14  6   8.116  14.415 0.115 6.389   9.884 0.0      0.987     0.998       0.998   0.997
+  41  6 14   7.322  10.004 0.247 5.445   9.884 0.0      0.976     0.960       0.949   0.990
+ 478 14  6   8.479  10.457 0.347 5.398   9.884 0.0      0.987     0.997       0.996   0.990
+ 759  9  6   7.616   9.385 0.030 6.051   7.120 0.0      0.937     0.342       0.372   0.845
+ 775  9  2 172.239 218.748 0.911 6.238 215.151 0.0      0.998     0.999       0.999   0.998
+1483 14 11   9.224  14.327 0.010 5.768  10.150 0.0      0.986     0.983       0.994   0.989
+  loose valley (out-of-envelope & 0<t<1): n=30 of 162 out-of-envelope; median pct LatAD/USAD/TranAD = 0.998/0.998/0.998; rest: 0.998/0.999/0.999
+  Spearman(betweenness, LatAD_pct-USAD_pct) over out-of-envelope anomalies n=162: rho=+0.064 p=0.419
+  Spearman(betweenness, LatAD_pct-TranAD_pct) over out-of-envelope anomalies n=162: rho=+0.066 p=0.405
+
+### SWaT_canon seed2: valley anomalies n=15
+ idx  h  j      dh      dj     t  perp     Dhj  vr  LatAD_pct  USAD_pct  TranAD_pct  AE_pct
+  23  9  8  10.143  12.206 0.590 7.300   6.139 0.0      0.992     0.998       0.998   0.998
+  24  9  8   9.302  13.087 0.694 7.260   6.139 0.0      0.992     0.998       0.998   0.998
+  40  3 12   8.116  14.026 0.066 6.324   9.587 0.0      0.987     0.998       0.998   0.997
+ 308  2 15   9.675  11.312 0.875 6.835   5.278 0.0      0.972     0.904       0.881   0.992
+ 478  3 12   8.479   9.773 0.354 5.492   9.587 0.0      0.987     0.997       0.996   0.990
+ 578 12 15   8.088   8.655 0.733 4.722   5.541 0.0      0.964     0.949       0.935   0.963
+ 773 12  1 234.990 237.797 0.932 7.275 264.786 0.0      0.998     0.999       0.999   0.998
+ 774  1 12 223.484 234.302 0.083 5.135 264.786 0.0      0.998     0.999       0.999   0.998
+ 775  1 12 218.748 233.937 0.096 3.852 264.786 0.0      0.998     0.999       0.999   0.998
+ 776  1 12 223.066 233.601 0.108 3.956 264.786 0.0      0.998     0.999       0.999   0.998
+ 777  1 12 231.518 233.414 0.118 4.880 264.786 0.0      0.998     0.999       0.999   0.998
+ 778 12  1 233.329 239.482 0.875 5.855 264.786 0.0      0.998     0.999       0.999   0.998
+ 779 12  1 233.262 246.625 0.870 6.674 264.786 0.0      0.998     0.999       0.999   0.998
+ 932 12  3   7.487  13.796 0.383 6.870   9.587 0.0      0.999     1.000       1.000   1.000
+1483  3  9   9.224  15.743 0.187 6.688  12.041 0.0      0.986     0.983       0.994   0.989
+  loose valley (out-of-envelope & 0<t<1): n=34 of 160 out-of-envelope; median pct LatAD/USAD/TranAD = 0.998/0.999/0.999; rest: 0.998/0.999/0.999
+  Spearman(betweenness, LatAD_pct-USAD_pct) over out-of-envelope anomalies n=160: rho=+0.224 p=0.004
+  Spearman(betweenness, LatAD_pct-TranAD_pct) over out-of-envelope anomalies n=160: rho=+0.184 p=0.020
+
+### WADI_clean seed0: valley anomalies n=8
+ idx  h  j    dh    dj     t  perp   Dhj    vr  LatAD_pct  USAD_pct  TranAD_pct  AE_pct
+ 196  5  1 5.530 6.550 0.866 4.706 3.420 0.970      0.788     0.347       0.499   0.908
+ 206  3  4 6.860 7.141 0.792 5.055 4.845 0.000      0.921     1.000       1.000   0.996
+ 211  5 11 7.194 8.608 0.549 5.078 4.224 0.182      0.990     1.000       0.998   1.000
+ 212  3  5 5.608 7.277 0.391 5.141 5.620 0.008      0.994     1.000       1.000   0.996
+ 498  4 11 5.694 6.414 0.056 4.177 4.205 0.084      0.934     0.990       0.988   0.996
+ 499  4 10 5.940 6.329 0.568 3.471 6.657 0.000      0.875     0.998       0.998   0.996
+ 500  4 10 6.331 6.909 0.628 3.580 6.657 0.000      0.904     0.998       0.998   0.996
+ 501  4 10 6.406 6.863 0.645 3.695 6.657 0.000      0.921     0.992       0.990   0.996
+  loose valley (out-of-envelope & 0<t<1): n=9 of 11 out-of-envelope; median pct LatAD/USAD/TranAD = 0.921/0.998/0.998; rest: 0.924/0.996/0.996
+  Spearman(betweenness, LatAD_pct-USAD_pct) over out-of-envelope anomalies n=11: rho=-0.136 p=0.689
+  Spearman(betweenness, LatAD_pct-TranAD_pct) over out-of-envelope anomalies n=11: rho=-0.136 p=0.689
+
+### WADI_clean seed1: valley anomalies n=4
+ idx  h  j    dh     dj     t  perp   Dhj    vr  LatAD_pct  USAD_pct  TranAD_pct  AE_pct
+ 212  0  8 5.671  6.613 0.449 5.074 5.379 0.014      0.994     1.000       1.000   0.996
+ 495  9  8 7.209 10.094 0.225 5.425 5.683 0.001      0.977     0.990       0.988   0.994
+ 500  9 12 5.586  6.603 0.664 4.361 4.360 0.004      0.904     0.998       0.998   0.996
+ 501  9 12 5.878  6.596 0.725 4.481 4.360 0.004      0.921     0.992       0.990   0.996
+  loose valley (out-of-envelope & 0<t<1): n=9 of 11 out-of-envelope; median pct LatAD/USAD/TranAD = 0.952/0.992/0.992; rest: 0.962/1.000/0.999
+  Spearman(betweenness, LatAD_pct-USAD_pct) over out-of-envelope anomalies n=11: rho=+0.068 p=0.842
+  Spearman(betweenness, LatAD_pct-TranAD_pct) over out-of-envelope anomalies n=11: rho=+0.082 p=0.811
+
+### WADI_clean seed2: valley anomalies n=3
+ idx  h  j    dh     dj     t  perp   Dhj  vr  LatAD_pct  USAD_pct  TranAD_pct  AE_pct
+ 203 12 13 5.682  8.576 0.468 5.058 6.014 0.0      0.973     0.954       0.960   0.967
+ 212 13  8 5.656  6.687 0.496 5.307 5.341 0.0      0.994     1.000       1.000   0.996
+ 495 12 13 6.325 10.523 0.749 4.562 6.014 0.0      0.977     0.990       0.988   0.994
+  loose valley (out-of-envelope & 0<t<1): n=5 of 8 out-of-envelope; median pct LatAD/USAD/TranAD = 0.977/1.000/1.000; rest: 0.934/1.000/0.998
+  Spearman(betweenness, LatAD_pct-USAD_pct) over out-of-envelope anomalies n=8: rho=+0.571 p=0.139
+  Spearman(betweenness, LatAD_pct-TranAD_pct) over out-of-envelope anomalies n=8: rho=+0.571 p=0.139
+
+### HAI seed0: valley anomalies n=2
+  idx  h  j    dh     dj     t  perp   Dhj    vr  LatAD_pct  USAD_pct  TranAD_pct  AE_pct
+ 2619  0  9 4.663  4.905 0.956 3.655 3.678 0.157      0.710     0.740       0.736   0.774
+14763  0  6 4.628 15.199 0.913 4.279 3.989 0.050      0.997     0.999       0.999   0.998
+  loose valley (out-of-envelope & 0<t<1): n=95 of 441 out-of-envelope; median pct LatAD/USAD/TranAD = 0.998/0.999/0.999; rest: 1.000/1.000/1.000
+  Spearman(betweenness, LatAD_pct-USAD_pct) over out-of-envelope anomalies n=441: rho=-0.085 p=0.074
+  Spearman(betweenness, LatAD_pct-TranAD_pct) over out-of-envelope anomalies n=441: rho=-0.081 p=0.088
+  HAI G-set (USAD miss, LatAD catch) n=76: part counts {'off': 60, 'in_cluster': 11, 'beyond': 5}; dh quantiles [ 4.18  7.89 17.27]; perp median 8.48; t median 1.08
+  rest of anomalies: part counts {'off': 366, 'in_cluster': 200, 'beyond': 8, 'valley': 2}; dh quantiles [ 3.01  5.99 20.75]
+  off-manifold: G dh quantiles [ 5.5   9.24 17.3 ] vs rest-off [ 5.25 15.61 21.1 ]; G perp [ 6.   10.41 15.94] vs [ 5.5  15.77 21.  ]
+  G forms 41 contiguous runs, lengths [1, 1, 1, 1, 1, 13, 1, 6, 2, 1, 1, 13, 2, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1], starts [320, 328, 665, 668, 2625, 3300, 5485, 5700, 5711, 5825, 5838, 6050, 6180, 6192, 6200, 6321, 6334, 6427, 6430, 8458, 8466, 8612, 8822, 8963, 9184, 9188, 9289, 9785, 10010, 11952, 12040, 12044, 12165, 12178, 12299, 12312, 12569, 12886, 12896, 14756, 14767]
+
+### HAI seed1: valley anomalies n=4
+  idx  h  j    dh     dj     t  perp   Dhj    vr  LatAD_pct  USAD_pct  TranAD_pct  AE_pct
+ 2721  0 11 4.538  8.906 0.448 4.180 2.248 0.741      0.940     0.635       0.651   0.940
+ 8470  0  4 4.873  6.330 0.952 3.671 4.153 0.088      0.876     0.300       0.451   0.845
+ 9275  0  5 5.082 12.165 0.837 4.402 4.101 0.042      0.984     0.685       0.578   0.949
+14763  0  5 4.610 15.334 0.811 4.427 4.101 0.042      0.997     0.999       0.999   0.998
+  loose valley (out-of-envelope & 0<t<1): n=111 of 447 out-of-envelope; median pct LatAD/USAD/TranAD = 0.998/0.999/0.999; rest: 1.000/1.000/1.000
+  Spearman(betweenness, LatAD_pct-USAD_pct) over out-of-envelope anomalies n=447: rho=-0.056 p=0.239
+  Spearman(betweenness, LatAD_pct-TranAD_pct) over out-of-envelope anomalies n=447: rho=-0.040 p=0.399
+
+### HAI seed2: valley anomalies n=3
+  idx  h  j    dh    dj     t  perp   Dhj    vr  LatAD_pct  USAD_pct  TranAD_pct  AE_pct
+ 2629 13 11 4.641 9.711 0.798 4.028 3.995 0.095      0.941     0.982       0.952   0.943
+ 8470 13 10 4.523 6.054 0.990 3.080 3.962 0.112      0.876     0.300       0.451   0.845
+10013 13 14 4.544 9.975 0.974 3.747 3.925 0.043      0.944     0.925       0.891   0.944
+  loose valley (out-of-envelope & 0<t<1): n=80 of 442 out-of-envelope; median pct LatAD/USAD/TranAD = 0.998/0.999/0.999; rest: 1.000/1.000/1.000
+  Spearman(betweenness, LatAD_pct-USAD_pct) over out-of-envelope anomalies n=442: rho=-0.150 p=0.002
+  Spearman(betweenness, LatAD_pct-TranAD_pct) over out-of-envelope anomalies n=442: rho=-0.148 p=0.002

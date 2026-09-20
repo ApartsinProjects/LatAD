@@ -1,0 +1,25 @@
+[WADI] train 2614 test 575 anom 32 knn q99 13.486 (2s)
+EMIT {"dataset": "WADI", "seed": 0, "labelled": true, "K_bic": 12, "kd_narrow": 80, "n_train": 2614, "knn_q99": 13.486274359983923, "isolated_frac_train": 0.010328997704667177, "n_anom": 32, "isolated_frac_anom": 0.15625, "isolated_frac_testnormal": 0.007751937984496124, "NC_BIC_rho_train": 0.89391492242
+EMIT {"dataset": "WADI", "seed": 1, "labelled": true, "K_bic": 16, "kd_narrow": 80, "n_train": 2614, "knn_q99": 13.486274359983923, "isolated_frac_train": 0.010328997704667177, "n_anom": 32, "isolated_frac_anom": 0.15625, "isolated_frac_testnormal": 0.007751937984496124, "NC_BIC_rho_train": 0.91185957028
+EMIT {"dataset": "WADI", "seed": 2, "labelled": true, "K_bic": 16, "kd_narrow": 80, "n_train": 2614, "knn_q99": 13.486274359983923, "isolated_frac_train": 0.010328997704667177, "n_anom": 32, "isolated_frac_anom": 0.15625, "isolated_frac_testnormal": 0.007751937984496124, "NC_BIC_rho_train": 0.91127330698
+[WADI] done (15s)
+[HAI] train 18359 test 14819 anom 580 knn q99 7.572 (19s)
+EMIT {"dataset": "HAI", "seed": 0, "labelled": true, "K_bic": 16, "kd_narrow": 80, "n_train": 18359, "knn_q99": 7.57233743549592, "isolated_frac_train": 0.010022332371044175, "n_anom": 580, "isolated_frac_anom": 0.8827586206896552, "isolated_frac_testnormal": 0.11784226505683824, "NC_BIC_rho_train": 0.78
+EMIT {"dataset": "HAI", "seed": 1, "labelled": true, "K_bic": 16, "kd_narrow": 80, "n_train": 18359, "knn_q99": 7.57233743549592, "isolated_frac_train": 0.010022332371044175, "n_anom": 580, "isolated_frac_anom": 0.8827586206896552, "isolated_frac_testnormal": 0.11784226505683824, "NC_BIC_rho_train": 0.78
+EMIT {"dataset": "HAI", "seed": 2, "labelled": true, "K_bic": 16, "kd_narrow": 80, "n_train": 18359, "knn_q99": 7.57233743549592, "isolated_frac_train": 0.010022332371044175, "n_anom": 580, "isolated_frac_anom": 0.8827586206896552, "isolated_frac_testnormal": 0.11784226505683824, "NC_BIC_rho_train": 0.77
+[HAI] done (71s)
+[SWaT] train 4530 test 1498 anom 174 knn q99 6.197 (2s)
+EMIT {"dataset": "SWaT", "seed": 0, "labelled": true, "K_bic": 16, "kd_narrow": 80, "n_train": 4530, "knn_q99": 6.19700763226101, "isolated_frac_train": 0.009933774834437087, "n_anom": 174, "isolated_frac_anom": 0.7528735632183908, "isolated_frac_testnormal": 0.000794912559618442, "NC_BIC_rho_train": 0.7
+EMIT {"dataset": "SWaT", "seed": 1, "labelled": true, "K_bic": 16, "kd_narrow": 80, "n_train": 4530, "knn_q99": 6.19700763226101, "isolated_frac_train": 0.009933774834437087, "n_anom": 174, "isolated_frac_anom": 0.7528735632183908, "isolated_frac_testnormal": 0.000794912559618442, "NC_BIC_rho_train": 0.7
+EMIT {"dataset": "SWaT", "seed": 2, "labelled": true, "K_bic": 16, "kd_narrow": 80, "n_train": 4530, "knn_q99": 6.19700763226101, "isolated_frac_train": 0.009933774834437087, "n_anom": 174, "isolated_frac_anom": 0.7528735632183908, "isolated_frac_testnormal": 0.000794912559618442, "NC_BIC_rho_train": 0.8
+[SWaT] done (9s)
+[SKAB] train 1161 test 1874 anom 666 knn q99 6.740 (0s)
+EMIT {"dataset": "SKAB", "seed": 0, "labelled": true, "K_bic": 4, "kd_narrow": 80, "n_train": 1161, "knn_q99": 6.740166905690191, "isolated_frac_train": 0.0103359173126615, "n_anom": 666, "isolated_frac_anom": 0.1816816816816817, "isolated_frac_testnormal": 0.002555366269165247, "NC_BIC_rho_train": 0.844
+EMIT {"dataset": "SKAB", "seed": 1, "labelled": true, "K_bic": 6, "kd_narrow": 80, "n_train": 1161, "knn_q99": 6.740166905690191, "isolated_frac_train": 0.0103359173126615, "n_anom": 666, "isolated_frac_anom": 0.1816816816816817, "isolated_frac_testnormal": 0.002555366269165247, "NC_BIC_rho_train": 0.844
+EMIT {"dataset": "SKAB", "seed": 2, "labelled": true, "K_bic": 6, "kd_narrow": 80, "n_train": 1161, "knn_q99": 6.740166905690191, "isolated_frac_train": 0.0103359173126615, "n_anom": 666, "isolated_frac_anom": 0.1816816816816817, "isolated_frac_testnormal": 0.002555366269165247, "NC_BIC_rho_train": 0.843
+[SKAB] done (3s)
+[MetroPT] train 1483 test 3571 anom 93 knn q99 11.883 (0s)
+EMIT {"dataset": "MetroPT", "seed": 0, "labelled": true, "K_bic": 12, "kd_narrow": 80, "n_train": 1483, "knn_q99": 11.88294176609891, "isolated_frac_train": 0.010114632501685773, "n_anom": 93, "isolated_frac_anom": 0.08602150537634409, "isolated_frac_testnormal": 0.1938364055299539, "NC_BIC_rho_train": 0
+EMIT {"dataset": "MetroPT", "seed": 1, "labelled": true, "K_bic": 16, "kd_narrow": 80, "n_train": 1483, "knn_q99": 11.88294176609891, "isolated_frac_train": 0.010114632501685773, "n_anom": 93, "isolated_frac_anom": 0.08602150537634409, "isolated_frac_testnormal": 0.1938364055299539, "NC_BIC_rho_train": 0
+EMIT {"dataset": "MetroPT", "seed": 2, "labelled": true, "K_bic": 12, "kd_narrow": 80, "n_train": 1483, "knn_q99": 11.88294176609891, "isolated_frac_train": 0.010114632501685773, "n_anom": 93, "isolated_frac_anom": 0.08602150537634409, "isolated_frac_testnormal": 0.1938364055299539, "NC_BIC_rho_train": 0
+[MetroPT] done (3s)

@@ -1,0 +1,20 @@
+
+=== WADI ===  rare_regimes=3  rare-normal-test=9/519
+  mixture   diffAUROC=0.661  FPR(all)=0.0039  FPR(rare-regime)=0.0
+  nearest   diffAUROC=0.663  FPR(all)=0.0039  FPR(rare-regime)=0.0
+  tempered  diffAUROC=0.663  FPR(all)=0.0039  FPR(rare-regime)=0.0
+  WIN (nearest FPR_rare < mixture FPR_rare): False
+
+=== HAI ===  rare_regimes=13  rare-normal-test=2770/14167
+  mixture   diffAUROC=0.807  FPR(all)=0.0815  FPR(rare-regime)=0.3552
+  nearest   diffAUROC=0.808  FPR(all)=0.0815  FPR(rare-regime)=0.3516
+  tempered  diffAUROC=0.807  FPR(all)=0.0815  FPR(rare-regime)=0.3534
+  WIN (nearest FPR_rare < mixture FPR_rare): True
+
+=== SWaT ===  rare_regimes=23  rare-normal-test=119/905
+  mixture   diffAUROC=0.909  FPR(all)=0.0  FPR(rare-regime)=0.0
+  nearest   diffAUROC=0.904  FPR(all)=0.0  FPR(rare-regime)=0.0
+  tempered  diffAUROC=0.906  FPR(all)=0.0  FPR(rare-regime)=0.0
+  WIN (nearest FPR_rare < mixture FPR_rare): False
+
+saved -> E:\Projects\Backlog\LatAD\poc\_diagnostics\e2_nearest.json

@@ -1,0 +1,17 @@
+subsets: diff 91 dhard 31  I1(linres rel-err)=5.9e-08
+{
+ "name": "SWaT_canon",
+ "n_diff": 91,
+ "n_dhard": 31,
+ "I1_linres_relerr": 5.923702273562033e-08,
+ "boosted_diff": 0.41173608999695954,
+ "boosted_dhard": 0.12354966211908709,
+ "boosted_all": 0.7329623912195288,
+ "linres_diff": 0.46403162055335967,
+ "linres_dhard": 0.15557822261889587,
+ "HCcoh+LatAD_diff": 0.5237119402336794,
+ "HCcoh+LatAD_dhard": 0.1925054188448298,
+ "LatAD_global_diff": 0.47223037831733483,
+ "elapsed_s": 25.7
+}
+OLD-leaked boosted difficult was 0.881; NEW-clean = 0.412

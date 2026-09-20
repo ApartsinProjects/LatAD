@@ -1,0 +1,23 @@
+Review Report Form
+Quality of English Language
+(x) The English could be improved to more clearly express the research.
+( ) The English is fine and does not require any improvement.
+Yes	Can be improved	Must be improved	Not applicable
+Does the introduction provide sufficient background and include all relevant references?
+( )	( )	(x)	( )
+Is the research design appropriate?
+( )	( )	(x)	( )
+Are the methods adequately described?
+( )	(x)	( )	( )
+Are the results clearly presented?
+( )	( )	(x)	( )
+Are the conclusions supported by the results?
+( )	( )	(x)	( )
+Are all figures and tables clear and well-presented?
+( )	( )	(x)	( )
+Comments and Suggestions for Authors
+1. This manuscript introduces ten structural assumptions from A1 to A10, but the current model does not fully realize them. A9 and A10 are not used in the model, while the basin-agreement head for A3 is inactive on all three datasets. More experiments are needed on data that can activate and test these assumptions, otherwise the contribution should be limited to the assumptions that are actually validated.
+2. The rare-regime-safe nearest-component likelihood in this manuscript lacks direct experimental support. Experiments under different regime imbalance ratios should compare mixture NLL, nearest-component NLL, and other imbalance-aware scoring methods, with more attention to the false-positive rate of rare normal regimes.
+3. The regime-community design in this manuscript trains separate representation and density models for many communities, which may introduce much higher cost than a single global detector. More experiments are needed to evaluate the practical cost of this design under the same hardware setting as the main baselines.
+4. The sliding windows in this manuscript are strongly correlated in time, so ordinary resampling may underestimate the confidence interval. A time-aware statistical test should be used on all three datasets, and the definition of the confidence interval and p-value on WADI should be clarified.
+5. This manuscript mainly uses six static statistics from each window, so the source of the performance gain is still unclear. Experiments with raw sequential input and temporal or spectral information are needed to verify whether the gain mainly comes from cross-channel density modeling or from the current window representation.

@@ -1,0 +1,1127 @@
+  [HAI] seed 0 staged in 87s  resid_auto=True basin_lam=0.000
+  [HAI] seed 0 repro: {"stored": true, "max_abs_diff": 3.14119858748504e+30, "stored_full": 0.9409, "new_full": 0.9381, "stored_diff": 0.9789, "new_diff": 0.9785, "PASS": false}
+    P0_vade   codes=  39 rareFP=1204 recl=0.602 anomRV(all)=0.0337 anomRV(flag)=0.0383 fpr 0.0949->0.0437 recall 0.880->0.847 witnessRV=0.845 auroc 0.9381->0.9518
+    P1_split  codes=  41 rareFP=1204 recl=0.602 anomRV(all)=0.0337 anomRV(flag)=0.0383 fpr 0.0949->0.0437 recall 0.880->0.847 witnessRV=0.845 auroc 0.9381->0.9518
+    P2_km64   codes=  64 rareFP=1204 recl=0.250 anomRV(all)=0.0077 anomRV(flag)=0.0087 fpr 0.0949->0.0726 recall 0.880->0.873 witnessRV=0.325 auroc 0.9381->0.9436
+    P2_km128  codes= 128 rareFP=1204 recl=0.032 anomRV(all)=0.0061 anomRV(flag)=0.0070 fpr 0.0949->0.0915 recall 0.880->0.874 witnessRV=0.033 auroc 0.9381->0.9384
+    P2_km256  codes= 256 rareFP=1204 recl=0.007 anomRV(all)=0.0000 anomRV(flag)=0.0000 fpr 0.0949->0.0942 recall 0.880->0.880 witnessRV=0.003 auroc 0.9381->0.9382
+    CTL_M1    codes=   1 rareFP=1204 recl=0.000 anomRV(all)=0.0000 anomRV(flag)=0.0000 fpr 0.0949->0.0949 recall 0.880->0.880 witnessRV=0.000 auroc 0.9381->0.9381
+    witness ids=[20, 28] n=1246 runs=48 rare_norm=3152
+AGG: {
+ "P0_vade": {
+  "n_flag": {
+   "mean": 1918.0,
+   "std": 0.0,
+   "per_seed": [
+    1918.0
+   ]
+  },
+  "n_flag_norm": {
+   "mean": 1344.0,
+   "std": 0.0,
+   "per_seed": [
+    1344.0
+   ]
+  },
+  "n_flag_anom": {
+   "mean": 574.0,
+   "std": 0.0,
+   "per_seed": [
+    574.0
+   ]
+  },
+  "n_rare_norm_fp": {
+   "mean": 1204.0,
+   "std": 0.0,
+   "per_seed": [
+    1204.0
+   ]
+  },
+  "rare_norm_fp_reclassified": {
+   "mean": 0.6022,
+   "std": 0.0,
+   "per_seed": [
+    0.6022
+   ]
+  },
+  "common_norm_fp_reclassified": {
+   "mean": 0.0,
+   "std": 0.0,
+   "per_seed": [
+    0.0
+   ]
+  },
+  "anom_RV_of_all_anom": {
+   "mean": 0.0337,
+   "std": 0.0,
+   "per_seed": [
+    0.0337
+   ]
+  },
+  "anom_RV_of_flagged_anom": {
+   "mean": 0.0383,
+   "std": 0.0,
+   "per_seed": [
+    0.0383
+   ]
+  },
+  "hard_anom_RV_of_flagged_hard": {
+   "mean": 0.0424,
+   "std": 0.0,
+   "per_seed": [
+    0.0424
+   ]
+  },
+  "confusion_flagged": {
+   "normal": {
+    "RARE_VALID": 725,
+    "FAULT": 619
+   },
+   "anomaly": {
+    "RARE_VALID": 22,
+    "FAULT": 552
+   }
+  },
+  "fpr_before": {
+   "mean": 0.0949,
+   "std": 0.0,
+   "per_seed": [
+    0.0949
+   ]
+  },
+  "fpr_after": {
+   "mean": 0.0437,
+   "std": 0.0,
+   "per_seed": [
+    0.0437
+   ]
+  },
+  "recall_before": {
+   "mean": 0.8804,
+   "std": 0.0,
+   "per_seed": [
+    0.8804
+   ]
+  },
+  "recall_after": {
+   "mean": 0.8466,
+   "std": 0.0,
+   "per_seed": [
+    0.8466
+   ]
+  },
+  "anoms_dropped": {
+   "mean": 22.0,
+   "std": 0.0,
+   "per_seed": [
+    22.0
+   ]
+  },
+  "auroc_full": {
+   "mean": 0.9381,
+   "std": 0.0,
+   "per_seed": [
+    0.9381
+   ]
+  },
+  "auroc_full_excl_RV": {
+   "mean": 0.9518,
+   "std": 0.0,
+   "per_seed": [
+    0.9518
+   ]
+  },
+  "auroc_diff": {
+   "mean": 0.9785,
+   "std": 0.0,
+   "per_seed": [
+    0.9785
+   ]
+  },
+  "auroc_diff_excl_RV": {
+   "mean": 0.9889,
+   "std": 0.0,
+   "per_seed": [
+    0.9889
+   ]
+  },
+  "n_RV_norm": {
+   "mean": 725.0,
+   "std": 0.0,
+   "per_seed": [
+    725.0
+   ]
+  },
+  "n_RV_anom": {
+   "mean": 22.0,
+   "std": 0.0,
+   "per_seed": [
+    22.0
+   ]
+  },
+  "witness_n": {
+   "mean": 1246.0,
+   "std": 0.0,
+   "per_seed": [
+    1246.0
+   ]
+  },
+  "witness_flagged": {
+   "mean": 0.6886,
+   "std": 0.0,
+   "per_seed": [
+    0.6886
+   ]
+  },
+  "witness_flagged_RV": {
+   "mean": 0.845,
+   "std": 0.0,
+   "per_seed": [
+    0.845
+   ]
+  },
+  "rare_fp_missed_by": {
+   "RESID": 0.303,
+   "BASIN": 0.002,
+   "RARE": 0.029,
+   "COH": 0.952
+  },
+  "n_codes": {
+   "mean": 39.0,
+   "std": 0.0,
+   "per_seed": [
+    39.0
+   ]
+  }
+ },
+ "P1_split": {
+  "n_flag": {
+   "mean": 1918.0,
+   "std": 0.0,
+   "per_seed": [
+    1918.0
+   ]
+  },
+  "n_flag_norm": {
+   "mean": 1344.0,
+   "std": 0.0,
+   "per_seed": [
+    1344.0
+   ]
+  },
+  "n_flag_anom": {
+   "mean": 574.0,
+   "std": 0.0,
+   "per_seed": [
+    574.0
+   ]
+  },
+  "n_rare_norm_fp": {
+   "mean": 1204.0,
+   "std": 0.0,
+   "per_seed": [
+    1204.0
+   ]
+  },
+  "rare_norm_fp_reclassified": {
+   "mean": 0.6022,
+   "std": 0.0,
+   "per_seed": [
+    0.6022
+   ]
+  },
+  "common_norm_fp_reclassified": {
+   "mean": 0.0,
+   "std": 0.0,
+   "per_seed": [
+    0.0
+   ]
+  },
+  "anom_RV_of_all_anom": {
+   "mean": 0.0337,
+   "std": 0.0,
+   "per_seed": [
+    0.0337
+   ]
+  },
+  "anom_RV_of_flagged_anom": {
+   "mean": 0.0383,
+   "std": 0.0,
+   "per_seed": [
+    0.0383
+   ]
+  },
+  "hard_anom_RV_of_flagged_hard": {
+   "mean": 0.0424,
+   "std": 0.0,
+   "per_seed": [
+    0.0424
+   ]
+  },
+  "confusion_flagged": {
+   "normal": {
+    "RARE_VALID": 725,
+    "FAULT": 619
+   },
+   "anomaly": {
+    "RARE_VALID": 22,
+    "FAULT": 552
+   }
+  },
+  "fpr_before": {
+   "mean": 0.0949,
+   "std": 0.0,
+   "per_seed": [
+    0.0949
+   ]
+  },
+  "fpr_after": {
+   "mean": 0.0437,
+   "std": 0.0,
+   "per_seed": [
+    0.0437
+   ]
+  },
+  "recall_before": {
+   "mean": 0.8804,
+   "std": 0.0,
+   "per_seed": [
+    0.8804
+   ]
+  },
+  "recall_after": {
+   "mean": 0.8466,
+   "std": 0.0,
+   "per_seed": [
+    0.8466
+   ]
+  },
+  "anoms_dropped": {
+   "mean": 22.0,
+   "std": 0.0,
+   "per_seed": [
+    22.0
+   ]
+  },
+  "auroc_full": {
+   "mean": 0.9381,
+   "std": 0.0,
+   "per_seed": [
+    0.9381
+   ]
+  },
+  "auroc_full_excl_RV": {
+   "mean": 0.9518,
+   "std": 0.0,
+   "per_seed": [
+    0.9518
+   ]
+  },
+  "auroc_diff": {
+   "mean": 0.9785,
+   "std": 0.0,
+   "per_seed": [
+    0.9785
+   ]
+  },
+  "auroc_diff_excl_RV": {
+   "mean": 0.9889,
+   "std": 0.0,
+   "per_seed": [
+    0.9889
+   ]
+  },
+  "n_RV_norm": {
+   "mean": 725.0,
+   "std": 0.0,
+   "per_seed": [
+    725.0
+   ]
+  },
+  "n_RV_anom": {
+   "mean": 22.0,
+   "std": 0.0,
+   "per_seed": [
+    22.0
+   ]
+  },
+  "witness_n": {
+   "mean": 1246.0,
+   "std": 0.0,
+   "per_seed": [
+    1246.0
+   ]
+  },
+  "witness_flagged": {
+   "mean": 0.6886,
+   "std": 0.0,
+   "per_seed": [
+    0.6886
+   ]
+  },
+  "witness_flagged_RV": {
+   "mean": 0.845,
+   "std": 0.0,
+   "per_seed": [
+    0.845
+   ]
+  },
+  "rare_fp_missed_by": {
+   "RESID": 0.303,
+   "BASIN": 0.002,
+   "RARE": 0.029,
+   "COH": 0.952
+  },
+  "n_codes": {
+   "mean": 41.0,
+   "std": 0.0,
+   "per_seed": [
+    41.0
+   ]
+  }
+ },
+ "P2_km64": {
+  "n_flag": {
+   "mean": 1918.0,
+   "std": 0.0,
+   "per_seed": [
+    1918.0
+   ]
+  },
+  "n_flag_norm": {
+   "mean": 1344.0,
+   "std": 0.0,
+   "per_seed": [
+    1344.0
+   ]
+  },
+  "n_flag_anom": {
+   "mean": 574.0,
+   "std": 0.0,
+   "per_seed": [
+    574.0
+   ]
+  },
+  "n_rare_norm_fp": {
+   "mean": 1204.0,
+   "std": 0.0,
+   "per_seed": [
+    1204.0
+   ]
+  },
+  "rare_norm_fp_reclassified": {
+   "mean": 0.25,
+   "std": 0.0,
+   "per_seed": [
+    0.25
+   ]
+  },
+  "common_norm_fp_reclassified": {
+   "mean": 0.1071,
+   "std": 0.0,
+   "per_seed": [
+    0.1071
+   ]
+  },
+  "anom_RV_of_all_anom": {
+   "mean": 0.0077,
+   "std": 0.0,
+   "per_seed": [
+    0.0077
+   ]
+  },
+  "anom_RV_of_flagged_anom": {
+   "mean": 0.0087,
+   "std": 0.0,
+   "per_seed": [
+    0.0087
+   ]
+  },
+  "hard_anom_RV_of_flagged_hard": {
+   "mean": 0.0106,
+   "std": 0.0,
+   "per_seed": [
+    0.0106
+   ]
+  },
+  "confusion_flagged": {
+   "normal": {
+    "RARE_VALID": 316,
+    "FAULT": 1028
+   },
+   "anomaly": {
+    "RARE_VALID": 5,
+    "FAULT": 569
+   }
+  },
+  "fpr_before": {
+   "mean": 0.0949,
+   "std": 0.0,
+   "per_seed": [
+    0.0949
+   ]
+  },
+  "fpr_after": {
+   "mean": 0.0726,
+   "std": 0.0,
+   "per_seed": [
+    0.0726
+   ]
+  },
+  "recall_before": {
+   "mean": 0.8804,
+   "std": 0.0,
+   "per_seed": [
+    0.8804
+   ]
+  },
+  "recall_after": {
+   "mean": 0.8727,
+   "std": 0.0,
+   "per_seed": [
+    0.8727
+   ]
+  },
+  "anoms_dropped": {
+   "mean": 5.0,
+   "std": 0.0,
+   "per_seed": [
+    5.0
+   ]
+  },
+  "auroc_full": {
+   "mean": 0.9381,
+   "std": 0.0,
+   "per_seed": [
+    0.9381
+   ]
+  },
+  "auroc_full_excl_RV": {
+   "mean": 0.9436,
+   "std": 0.0,
+   "per_seed": [
+    0.9436
+   ]
+  },
+  "auroc_diff": {
+   "mean": 0.9785,
+   "std": 0.0,
+   "per_seed": [
+    0.9785
+   ]
+  },
+  "auroc_diff_excl_RV": {
+   "mean": 0.9825,
+   "std": 0.0,
+   "per_seed": [
+    0.9825
+   ]
+  },
+  "n_RV_norm": {
+   "mean": 316.0,
+   "std": 0.0,
+   "per_seed": [
+    316.0
+   ]
+  },
+  "n_RV_anom": {
+   "mean": 5.0,
+   "std": 0.0,
+   "per_seed": [
+    5.0
+   ]
+  },
+  "witness_n": {
+   "mean": 1246.0,
+   "std": 0.0,
+   "per_seed": [
+    1246.0
+   ]
+  },
+  "witness_flagged": {
+   "mean": 0.6886,
+   "std": 0.0,
+   "per_seed": [
+    0.6886
+   ]
+  },
+  "witness_flagged_RV": {
+   "mean": 0.3252,
+   "std": 0.0,
+   "per_seed": [
+    0.3252
+   ]
+  },
+  "rare_fp_missed_by": {
+   "RESID": 0.161,
+   "BASIN": 0.001,
+   "RARE": 0.174,
+   "COH": 0.967
+  },
+  "n_codes": {
+   "mean": 64.0,
+   "std": 0.0,
+   "per_seed": [
+    64.0
+   ]
+  }
+ },
+ "P2_km128": {
+  "n_flag": {
+   "mean": 1918.0,
+   "std": 0.0,
+   "per_seed": [
+    1918.0
+   ]
+  },
+  "n_flag_norm": {
+   "mean": 1344.0,
+   "std": 0.0,
+   "per_seed": [
+    1344.0
+   ]
+  },
+  "n_flag_anom": {
+   "mean": 574.0,
+   "std": 0.0,
+   "per_seed": [
+    574.0
+   ]
+  },
+  "n_rare_norm_fp": {
+   "mean": 1204.0,
+   "std": 0.0,
+   "per_seed": [
+    1204.0
+   ]
+  },
+  "rare_norm_fp_reclassified": {
+   "mean": 0.0324,
+   "std": 0.0,
+   "per_seed": [
+    0.0324
+   ]
+  },
+  "common_norm_fp_reclassified": {
+   "mean": 0.0643,
+   "std": 0.0,
+   "per_seed": [
+    0.0643
+   ]
+  },
+  "anom_RV_of_all_anom": {
+   "mean": 0.0061,
+   "std": 0.0,
+   "per_seed": [
+    0.0061
+   ]
+  },
+  "anom_RV_of_flagged_anom": {
+   "mean": 0.007,
+   "std": 0.0,
+   "per_seed": [
+    0.007
+   ]
+  },
+  "hard_anom_RV_of_flagged_hard": {
+   "mean": 0.0085,
+   "std": 0.0,
+   "per_seed": [
+    0.0085
+   ]
+  },
+  "confusion_flagged": {
+   "normal": {
+    "RARE_VALID": 48,
+    "FAULT": 1296
+   },
+   "anomaly": {
+    "RARE_VALID": 4,
+    "FAULT": 570
+   }
+  },
+  "fpr_before": {
+   "mean": 0.0949,
+   "std": 0.0,
+   "per_seed": [
+    0.0949
+   ]
+  },
+  "fpr_after": {
+   "mean": 0.0915,
+   "std": 0.0,
+   "per_seed": [
+    0.0915
+   ]
+  },
+  "recall_before": {
+   "mean": 0.8804,
+   "std": 0.0,
+   "per_seed": [
+    0.8804
+   ]
+  },
+  "recall_after": {
+   "mean": 0.8742,
+   "std": 0.0,
+   "per_seed": [
+    0.8742
+   ]
+  },
+  "anoms_dropped": {
+   "mean": 4.0,
+   "std": 0.0,
+   "per_seed": [
+    4.0
+   ]
+  },
+  "auroc_full": {
+   "mean": 0.9381,
+   "std": 0.0,
+   "per_seed": [
+    0.9381
+   ]
+  },
+  "auroc_full_excl_RV": {
+   "mean": 0.9384,
+   "std": 0.0,
+   "per_seed": [
+    0.9384
+   ]
+  },
+  "auroc_diff": {
+   "mean": 0.9785,
+   "std": 0.0,
+   "per_seed": [
+    0.9785
+   ]
+  },
+  "auroc_diff_excl_RV": {
+   "mean": 0.979,
+   "std": 0.0,
+   "per_seed": [
+    0.979
+   ]
+  },
+  "n_RV_norm": {
+   "mean": 48.0,
+   "std": 0.0,
+   "per_seed": [
+    48.0
+   ]
+  },
+  "n_RV_anom": {
+   "mean": 4.0,
+   "std": 0.0,
+   "per_seed": [
+    4.0
+   ]
+  },
+  "witness_n": {
+   "mean": 1246.0,
+   "std": 0.0,
+   "per_seed": [
+    1246.0
+   ]
+  },
+  "witness_flagged": {
+   "mean": 0.6886,
+   "std": 0.0,
+   "per_seed": [
+    0.6886
+   ]
+  },
+  "witness_flagged_RV": {
+   "mean": 0.0326,
+   "std": 0.0,
+   "per_seed": [
+    0.0326
+   ]
+  },
+  "rare_fp_missed_by": {
+   "RESID": 0.124,
+   "BASIN": 0.001,
+   "RARE": 0.7,
+   "COH": 0.375
+  },
+  "n_codes": {
+   "mean": 128.0,
+   "std": 0.0,
+   "per_seed": [
+    128.0
+   ]
+  }
+ },
+ "P2_km256": {
+  "n_flag": {
+   "mean": 1918.0,
+   "std": 0.0,
+   "per_seed": [
+    1918.0
+   ]
+  },
+  "n_flag_norm": {
+   "mean": 1344.0,
+   "std": 0.0,
+   "per_seed": [
+    1344.0
+   ]
+  },
+  "n_flag_anom": {
+   "mean": 574.0,
+   "std": 0.0,
+   "per_seed": [
+    574.0
+   ]
+  },
+  "n_rare_norm_fp": {
+   "mean": 1204.0,
+   "std": 0.0,
+   "per_seed": [
+    1204.0
+   ]
+  },
+  "rare_norm_fp_reclassified": {
+   "mean": 0.0075,
+   "std": 0.0,
+   "per_seed": [
+    0.0075
+   ]
+  },
+  "common_norm_fp_reclassified": {
+   "mean": 0.0071,
+   "std": 0.0,
+   "per_seed": [
+    0.0071
+   ]
+  },
+  "anom_RV_of_all_anom": {
+   "mean": 0.0,
+   "std": 0.0,
+   "per_seed": [
+    0.0
+   ]
+  },
+  "anom_RV_of_flagged_anom": {
+   "mean": 0.0,
+   "std": 0.0,
+   "per_seed": [
+    0.0
+   ]
+  },
+  "hard_anom_RV_of_flagged_hard": {
+   "mean": 0.0,
+   "std": 0.0,
+   "per_seed": [
+    0.0
+   ]
+  },
+  "confusion_flagged": {
+   "normal": {
+    "RARE_VALID": 10,
+    "FAULT": 1334
+   },
+   "anomaly": {
+    "RARE_VALID": 0,
+    "FAULT": 574
+   }
+  },
+  "fpr_before": {
+   "mean": 0.0949,
+   "std": 0.0,
+   "per_seed": [
+    0.0949
+   ]
+  },
+  "fpr_after": {
+   "mean": 0.0942,
+   "std": 0.0,
+   "per_seed": [
+    0.0942
+   ]
+  },
+  "recall_before": {
+   "mean": 0.8804,
+   "std": 0.0,
+   "per_seed": [
+    0.8804
+   ]
+  },
+  "recall_after": {
+   "mean": 0.8804,
+   "std": 0.0,
+   "per_seed": [
+    0.8804
+   ]
+  },
+  "anoms_dropped": {
+   "mean": 0.0,
+   "std": 0.0,
+   "per_seed": [
+    0.0
+   ]
+  },
+  "auroc_full": {
+   "mean": 0.9381,
+   "std": 0.0,
+   "per_seed": [
+    0.9381
+   ]
+  },
+  "auroc_full_excl_RV": {
+   "mean": 0.9382,
+   "std": 0.0,
+   "per_seed": [
+    0.9382
+   ]
+  },
+  "auroc_diff": {
+   "mean": 0.9785,
+   "std": 0.0,
+   "per_seed": [
+    0.9785
+   ]
+  },
+  "auroc_diff_excl_RV": {
+   "mean": 0.9785,
+   "std": 0.0,
+   "per_seed": [
+    0.9785
+   ]
+  },
+  "n_RV_norm": {
+   "mean": 10.0,
+   "std": 0.0,
+   "per_seed": [
+    10.0
+   ]
+  },
+  "n_RV_anom": {
+   "mean": 0.0,
+   "std": 0.0,
+   "per_seed": [
+    0.0
+   ]
+  },
+  "witness_n": {
+   "mean": 1246.0,
+   "std": 0.0,
+   "per_seed": [
+    1246.0
+   ]
+  },
+  "witness_flagged": {
+   "mean": 0.6886,
+   "std": 0.0,
+   "per_seed": [
+    0.6886
+   ]
+  },
+  "witness_flagged_RV": {
+   "mean": 0.0035,
+   "std": 0.0,
+   "per_seed": [
+    0.0035
+   ]
+  },
+  "rare_fp_missed_by": {
+   "RESID": 0.121,
+   "BASIN": 0.001,
+   "RARE": 0.679,
+   "COH": 0.942
+  },
+  "n_codes": {
+   "mean": 256.0,
+   "std": 0.0,
+   "per_seed": [
+    256.0
+   ]
+  }
+ },
+ "CTL_M1": {
+  "n_flag": {
+   "mean": 1918.0,
+   "std": 0.0,
+   "per_seed": [
+    1918.0
+   ]
+  },
+  "n_flag_norm": {
+   "mean": 1344.0,
+   "std": 0.0,
+   "per_seed": [
+    1344.0
+   ]
+  },
+  "n_flag_anom": {
+   "mean": 574.0,
+   "std": 0.0,
+   "per_seed": [
+    574.0
+   ]
+  },
+  "n_rare_norm_fp": {
+   "mean": 1204.0,
+   "std": 0.0,
+   "per_seed": [
+    1204.0
+   ]
+  },
+  "rare_norm_fp_reclassified": {
+   "mean": 0.0,
+   "std": 0.0,
+   "per_seed": [
+    0.0
+   ]
+  },
+  "common_norm_fp_reclassified": {
+   "mean": 0.0,
+   "std": 0.0,
+   "per_seed": [
+    0.0
+   ]
+  },
+  "anom_RV_of_all_anom": {
+   "mean": 0.0,
+   "std": 0.0,
+   "per_seed": [
+    0.0
+   ]
+  },
+  "anom_RV_of_flagged_anom": {
+   "mean": 0.0,
+   "std": 0.0,
+   "per_seed": [
+    0.0
+   ]
+  },
+  "hard_anom_RV_of_flagged_hard": {
+   "mean": 0.0,
+   "std": 0.0,
+   "per_seed": [
+    0.0
+   ]
+  },
+  "confusion_flagged": {
+   "normal": {
+    "RARE_VALID": 0,
+    "FAULT": 1344
+   },
+   "anomaly": {
+    "RARE_VALID": 0,
+    "FAULT": 574
+   }
+  },
+  "fpr_before": {
+   "mean": 0.0949,
+   "std": 0.0,
+   "per_seed": [
+    0.0949
+   ]
+  },
+  "fpr_after": {
+   "mean": 0.0949,
+   "std": 0.0,
+   "per_seed": [
+    0.0949
+   ]
+  },
+  "recall_before": {
+   "mean": 0.8804,
+   "std": 0.0,
+   "per_seed": [
+    0.8804
+   ]
+  },
+  "recall_after": {
+   "mean": 0.8804,
+   "std": 0.0,
+   "per_seed": [
+    0.8804
+   ]
+  },
+  "anoms_dropped": {
+   "mean": 0.0,
+   "std": 0.0,
+   "per_seed": [
+    0.0
+   ]
+  },
+  "auroc_full": {
+   "mean": 0.9381,
+   "std": 0.0,
+   "per_seed": [
+    0.9381
+   ]
+  },
+  "auroc_full_excl_RV": {
+   "mean": 0.9381,
+   "std": 0.0,
+   "per_seed": [
+    0.9381
+   ]
+  },
+  "auroc_diff": {
+   "mean": 0.9785,
+   "std": 0.0,
+   "per_seed": [
+    0.9785
+   ]
+  },
+  "auroc_diff_excl_RV": {
+   "mean": 0.9785,
+   "std": 0.0,
+   "per_seed": [
+    0.9785
+   ]
+  },
+  "n_RV_norm": {
+   "mean": 0.0,
+   "std": 0.0,
+   "per_seed": [
+    0.0
+   ]
+  },
+  "n_RV_anom": {
+   "mean": 0.0,
+   "std": 0.0,
+   "per_seed": [
+    0.0
+   ]
+  },
+  "witness_n": {
+   "mean": 1246.0,
+   "std": 0.0,
+   "per_seed": [
+    1246.0
+   ]
+  },
+  "witness_flagged": {
+   "mean": 0.6886,
+   "std": 0.0,
+   "per_seed": [
+    0.6886
+   ]
+  },
+  "witness_flagged_RV": {
+   "mean": 0.0,
+   "std": 0.0,
+   "per_seed": [
+    0.0
+   ]
+  },
+  "rare_fp_missed_by": {
+   "RESID": 0.12,
+   "BASIN": 0.001,
+   "RARE": 1.0,
+   "COH": 0.0
+  },
+  "n_codes": {
+   "mean": 1.0,
+   "std": 0.0,
+   "per_seed": [
+    1.0
+   ]
+  }
+ }
+}

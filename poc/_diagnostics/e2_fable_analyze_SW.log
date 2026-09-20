@@ -1,0 +1,174 @@
+
+================================================================================
+SWaT: K=40 latent=16 train=3623 test=1087 test-normal=905
+
+--- 1. bug audit invariants ---
+mix >= near on all points: train True, test True
+gap <= -log pi_argmax on all test points: True
+learned pi (softmax logit) vs train occupancy (argmax-nearest): corr=0.999, max |pi-occ|=0.0038
+rare regimes (occ<2%): 23 ids=[5, 8, 9, 12, 13, 15, 16, 17, 19, 20, 23, 24, 26, 27, 28, 29, 30, 32, 33, 34, 35, 36, 37]
+  their learned pi: [0.022, 0.0014, 0.0011, 0.0011, 0.0003, 0.0017, 0.0025, 0.0028, 0.0019, 0.0124, 0.0166, 0.0137, 0.0161, 0.0003, 0.0099, 0.0208, 0.0154, 0.0155, 0.0022, 0.0105, 0.0146, 0.0141, 0.016]
+  their -log pi (max possible gap): [3.82, 6.59, 6.81, 6.81, 8.2, 6.4, 6.0, 5.89, 6.25, 4.39, 4.1, 4.29, 4.13, 8.2, 4.61, 3.87, 4.17, 4.17, 6.12, 4.56, 4.23, 4.26, 4.14]
+  their mean log-var (component width, floor -3.00): [-0.5699999928474426, 0.41999998688697815, -2.380000114440918, -1.1799999475479126, -3.0, -0.0, -2.130000114440918, -0.6100000143051147, -0.8399999737739563, -1.5499999523162842, -2.0, -1.4700000286102295, -2.799999952316284, -3.0, -1.9900000095367432, -0.7900000214576721, -1.9800000190734863, -2.490000009536743, -0.47999998927116394, -1.0700000524520874, -2.549999952316284, -2.5199999809265137, -1.940000057220459]
+  all-components mean log-var: median -2.19, rare median -1.94, common median -2.61
+assignment nearest vs responsibility disagree: train 0.001, test 0.001
+rare-regime normal test windows: nearest-assign 119, resp-assign 119
+train share in rare regimes: nearest 0.204, resp 0.203; test-normal share 0.131
+  E2 repro mixture : thr=26.98 FPR_all=0.0000 FPR_rare=0.0000 diffAUROC=0.909
+  E2 repro nearest : thr=21.91 FPR_all=0.0000 FPR_rare=0.0000 diffAUROC=0.904
+  top-1% TRAIN mixture : share in rare regimes 1.000 (base rate 0.204)
+  top-1% TRAIN nearest : share in rare regimes 0.973 (base rate 0.204)
+
+--- 2. per-point gap on rare-regime NORMAL test windows ---
+gap = mix-near (nats): n=119 mean=4.14 quantiles(0,10,25,50,75,90,99,100)=[3.34, 3.82, 3.87, 4.23, 4.26, 4.56, 4.56, 4.56]
+gap on COMMON-regime normals: n=786 mean=2.72 median=2.67 p90=2.99
+nearest NLL: rare-normals median 10.62  common-normals median -5.80  train median -2.94 train p99 21.91
+per rare regime: id occ pi  n_tr n_te_norm  mean_gap  med_nearNLL_te  med_nearNLL_tr  frac_te_above_tr_p99(near)  frac_flag_mix frac_flag_near
+   35 0.0146 0.0146    53    24    4.22    -2.76    -2.86  0.000  0.000 0.000
+   26 0.0144 0.0161    52    22    4.12    -6.38    -5.91  0.000  0.000 0.000
+   29 0.0193 0.0208    70    21    3.87    11.88    12.97  0.000  0.000 0.000
+   34 0.0105 0.0105    38    16    4.56    12.01    13.27  0.000  0.000 0.000
+    5 0.0182 0.0220    66    15    3.78    16.67    16.50  0.000  0.000 0.000
+   24 0.0110 0.0137    40    13    4.28    17.98     6.83  1.000  0.000 0.000
+   36 0.0141 0.0141    51     8    4.26    -1.54    -3.08  0.000  0.000 0.000
+rare-regime normals that are VALID (near-NLL <= own-regime train p99): 106/119
+  on VALID rare normals: gap mean 4.12 median 4.13; flagged mix 0.000 near 0.000
+  TOP-20 gap (mixture most exceeds nearest): idx  comp  occ    pi      near   mix    gap   -logpi  z-dist(sd)  flag_mix flag_near
+       529  34 0.0105 0.0105    8.78   13.34  4.56   4.56   0.57   0 0
+       486  34 0.0105 0.0105   11.77   16.33  4.56   4.56   0.84   0 0
+        31  34 0.0105 0.0105   15.18   19.73  4.56   4.56   1.06   0 0
+       572  34 0.0105 0.0105   11.02   15.58  4.56   4.56   0.78   0 0
+       880  34 0.0105 0.0105   13.48   18.04  4.56   4.56   0.96   0 0
+       643  34 0.0105 0.0105   15.05   19.61  4.56   4.56   1.05   0 0
+       672  34 0.0105 0.0105    7.63   12.19  4.56   4.56   0.43   0 0
+       115  34 0.0105 0.0105   13.69   18.25  4.56   4.56   0.97   0 0
+       704  34 0.0105 0.0105   15.79   20.35  4.56   4.56   1.10   0 0
+       736  34 0.0105 0.0105    8.78   13.33  4.56   4.56   0.57   0 0
+       387  34 0.0105 0.0105   11.10   15.66  4.56   4.56   0.78   0 0
+       158  34 0.0105 0.0105   14.41   18.97  4.56   4.56   1.01   0 0
+       341  34 0.0105 0.0105   13.54   18.10  4.56   4.56   0.96   0 0
+       327  34 0.0105 0.0105   10.84   15.40  4.56   4.56   0.76   0 0
+       765  34 0.0105 0.0105    8.76   13.32  4.56   4.56   0.57   0 0
+       437  34 0.0105 0.0105   12.26   16.81  4.56   4.56   0.87   0 0
+       492  24 0.0110 0.0137   16.84   21.13  4.29   4.29   1.32   0 0
+       578  24 0.0110 0.0137   16.94   21.22  4.29   4.29   1.32   0 0
+       150  24 0.0110 0.0137   17.90   22.19  4.28   4.29   1.37   0 0
+       443  24 0.0110 0.0137   17.61   21.90  4.28   4.29   1.35   0 0
+  BOTTOM-20 gap: idx  comp  occ    pi      near   mix    gap   -logpi  z-dist(sd)  flag_mix flag_near
+       471  29 0.0193 0.0208   11.41   15.28  3.87   3.87   0.61   0 0
+       722  29 0.0193 0.0208   13.59   17.46  3.87   3.87   0.81   0 0
+       454  29 0.0193 0.0208   11.58   15.45  3.87   3.87   0.63   0 0
+       702  29 0.0193 0.0208   13.60   17.47  3.87   3.87   0.81   0 0
+       419  29 0.0193 0.0208   11.71   15.58  3.87   3.87   0.64   0 0
+       700   5 0.0182 0.0220   16.26   20.07  3.82   3.82   0.87   0 0
+       701   5 0.0182 0.0220   17.30   21.12  3.82   3.82   0.95   0 0
+       717   5 0.0182 0.0220   16.20   20.02  3.82   3.82   0.87   0 0
+       383   5 0.0182 0.0220   16.37   20.19  3.82   3.82   0.88   0 0
+       433   5 0.0182 0.0220   16.56   20.37  3.82   3.82   0.89   0 0
+       468   5 0.0182 0.0220   16.58   20.40  3.82   3.82   0.90   0 0
+       450   5 0.0182 0.0220   16.27   20.09  3.82   3.82   0.87   0 0
+       415   5 0.0182 0.0220   16.31   20.13  3.82   3.82   0.88   0 0
+       432   5 0.0182 0.0220   17.21   21.02  3.82   3.82   0.94   0 0
+       384   5 0.0182 0.0220   17.55   21.37  3.82   3.82   0.96   0 0
+       416   5 0.0182 0.0220   17.45   21.27  3.82   3.82   0.96   0 0
+       451   5 0.0182 0.0220   17.23   21.05  3.82   3.82   0.94   0 0
+       718   5 0.0182 0.0220   16.67   20.49  3.82   3.82   0.90   0 0
+       467   5 0.0182 0.0220   17.15   20.97  3.82   3.82   0.94   0 0
+       872   5 0.0182 0.0220   21.43   24.77  3.34   3.82   1.19   0 0
+
+--- 3. fairer metrics ---
+  matched overall test-normal FPR=0.01: FPR_rare mix=0.0840 near=0.0840 | FPR_common mix=0.0000 near=0.0000
+  matched overall test-normal FPR=0.02: FPR_rare mix=0.1597 near=0.1597 | FPR_common mix=0.0000 near=0.0000
+  matched overall test-normal FPR=0.05: FPR_rare mix=0.3866 near=0.3866 | FPR_common mix=0.0000 near=0.0000
+  matched overall test-normal FPR=0.10: FPR_rare mix=0.5546 near=0.5546 | FPR_common mix=0.0318 near=0.0318
+  matched all-anom recall=0.5: FPR_rare mix=0.0000 near=0.0000 | FPR_all mix=0.0000 near=0.0000
+  matched hard recall=0.5: FPR_rare mix=0.0000 near=0.0000 | FPR_all mix=0.0000 near=0.0000
+  matched all-anom recall=0.8: FPR_rare mix=0.0000 near=0.0000 | FPR_all mix=0.0000 near=0.0000
+  matched hard recall=0.8: FPR_rare mix=0.5546 near=0.5462 | FPR_all mix=0.0928 near=0.0917
+  top-1% scoring normals, share in rare regimes: mix=1.000 near=1.000 (base 0.131)
+  top-5% scoring normals, share in rare regimes: mix=1.000 near=1.000 (base 0.131)
+  AUROC(rare-normal vs common-normal): mix=0.904 near=0.848
+  median percentile-rank of rare normals among all normals: mix=0.934 near=0.934
+  paired rank shift (mix rank - near rank) on rare normals: mean=44.2 median=4.0 frac>0=0.571 frac<0=0.210 (n=119)
+  AUROC all anomalies: mix=0.981 near=0.980; hard: mix=0.909 near=0.904
+
+--- 4. is the condition present? occupancy census ---
+occupancy sorted: [0.0806, 0.0789, 0.0693, 0.0649, 0.0621, 0.053, 0.0497, 0.0483, 0.0483, 0.0406, 0.037, 0.0356, 0.0342, 0.024, 0.0235, 0.0235, 0.0224, 0.0193, 0.0182, 0.0177, 0.0174, 0.0155, 0.0155, 0.0146, 0.0144, 0.0141, 0.0119, 0.011, 0.0105, 0.0094, 0.0028, 0.0022, 0.0022, 0.0019, 0.0017, 0.0014, 0.0011, 0.0011, 0.0003, 0.0003]
+max/min occ ratio: 292; #regimes <2%: 23, <1%: 11, <0.5%: 10, <0.1%: 2
+mass in regimes <2%: 0.204, <1%: 0.024, <0.5%: 0.015
+Zipf slope (log occ vs log rank): -1.37  (MIIM generator uses beta=2.1; flat=0)
+train-vs-testnormal occupancy: corr=0.752; regimes with test share > 3x train share: [(21, 0.0789, 0.2608)]
+
+================================================================================
+WADI: K=20 latent=10 train=2614 test=575 test-normal=519
+
+--- 1. bug audit invariants ---
+mix >= near on all points: train True, test True
+gap <= -log pi_argmax on all test points: False
+learned pi (softmax logit) vs train occupancy (argmax-nearest): corr=0.965, max |pi-occ|=0.0271
+rare regimes (occ<2%): 3 ids=[0, 10, 15]
+  their learned pi: [0.013, 0.0183, 0.0156]
+  their -log pi (max possible gap): [4.34, 4.0, 4.16]
+  their mean log-var (component width, floor -3.00): [-2.0, -1.4299999475479126, -0.2800000011920929]
+  all-components mean log-var: median -0.58, rare median -1.43, common median -0.53
+assignment nearest vs responsibility disagree: train 0.034, test 0.030
+rare-regime normal test windows: nearest-assign 9, resp-assign 8
+train share in rare regimes: nearest 0.046, resp 0.045; test-normal share 0.017
+  E2 repro mixture : thr=34.31 FPR_all=0.0039 FPR_rare=0.0000 diffAUROC=0.661
+  E2 repro nearest : thr=31.94 FPR_all=0.0039 FPR_rare=0.0000 diffAUROC=0.663
+  top-1% TRAIN mixture : share in rare regimes 0.037 (base rate 0.046)
+  top-1% TRAIN nearest : share in rare regimes 0.037 (base rate 0.046)
+
+--- 2. per-point gap on rare-regime NORMAL test windows ---
+gap = mix-near (nats): n=9 mean=3.98 quantiles(0,10,25,50,75,90,99,100)=[2.22, 3.61, 4.04, 4.16, 4.34, 4.34, 4.34, 4.34]
+gap on COMMON-regime normals: n=510 mean=2.56 median=2.58 p90=3.22
+nearest NLL: rare-normals median 14.63  common-normals median 12.93  train median 12.52 train p99 31.94
+per rare regime: id occ pi  n_tr n_te_norm  mean_gap  med_nearNLL_te  med_nearNLL_tr  frac_te_above_tr_p99(near)  frac_flag_mix frac_flag_near
+    0 0.0134 0.0130    35     5    3.90     6.82     4.66  0.400  0.000 0.000
+   15 0.0149 0.0156    39     3    4.11    23.87    18.18  0.000  0.000 0.000
+   10 0.0176 0.0183    46     1    3.96    18.40     9.34  1.000  0.000 0.000
+rare-regime normals that are VALID (near-NLL <= own-regime train p99): 6/9
+  on VALID rare normals: gap mean 4.22 median 4.25; flagged mix 0.000 near 0.000
+  TOP-20 gap (mixture most exceeds nearest): idx  comp  occ    pi      near   mix    gap   -logpi  z-dist(sd)  flag_mix flag_near
+       103   0 0.0134 0.0130    3.02    7.36  4.34   4.34   0.88   0 0
+       315   0 0.0134 0.0130    6.82   11.16  4.34   4.34   1.24   0 0
+        22   0 0.0134 0.0130    5.32    9.66  4.34   4.34   1.11   0 0
+       316   0 0.0134 0.0130   12.36   16.64  4.28   4.34   1.62   0 0
+       158  15 0.0149 0.0156   23.87   28.03  4.16   4.16   1.79   0 0
+       553  15 0.0149 0.0156   21.93   26.06  4.13   4.16   1.68   0 0
+       554  15 0.0149 0.0156   26.25   30.30  4.04   4.16   1.92   0 0
+       157  10 0.0176 0.0183   18.40   22.36  3.96   4.00   1.81   0 0
+       412   0 0.0134 0.0130   14.63   16.85  2.22   4.34   1.76   0 0
+  BOTTOM-20 gap: idx  comp  occ    pi      near   mix    gap   -logpi  z-dist(sd)  flag_mix flag_near
+       103   0 0.0134 0.0130    3.02    7.36  4.34   4.34   0.88   0 0
+       315   0 0.0134 0.0130    6.82   11.16  4.34   4.34   1.24   0 0
+        22   0 0.0134 0.0130    5.32    9.66  4.34   4.34   1.11   0 0
+       316   0 0.0134 0.0130   12.36   16.64  4.28   4.34   1.62   0 0
+       158  15 0.0149 0.0156   23.87   28.03  4.16   4.16   1.79   0 0
+       553  15 0.0149 0.0156   21.93   26.06  4.13   4.16   1.68   0 0
+       554  15 0.0149 0.0156   26.25   30.30  4.04   4.16   1.92   0 0
+       157  10 0.0176 0.0183   18.40   22.36  3.96   4.00   1.81   0 0
+       412   0 0.0134 0.0130   14.63   16.85  2.22   4.34   1.76   0 0
+
+--- 3. fairer metrics ---
+  matched overall test-normal FPR=0.01: FPR_rare mix=0.0000 near=0.0000 | FPR_common mix=0.0118 near=0.0118
+  matched overall test-normal FPR=0.02: FPR_rare mix=0.1111 near=0.0000 | FPR_common mix=0.0196 near=0.0216
+  matched overall test-normal FPR=0.05: FPR_rare mix=0.2222 near=0.1111 | FPR_common mix=0.0471 near=0.0490
+  matched overall test-normal FPR=0.10: FPR_rare mix=0.3333 near=0.3333 | FPR_common mix=0.0961 near=0.0961
+  matched all-anom recall=0.5: FPR_rare mix=0.3333 near=0.3333 | FPR_all mix=0.1118 near=0.1137
+  matched hard recall=0.5: FPR_rare mix=0.4444 near=0.4444 | FPR_all mix=0.2447 near=0.2486
+  matched all-anom recall=0.8: FPR_rare mix=0.6667 near=0.5556 | FPR_all mix=0.5299 near=0.5145
+  matched hard recall=0.8: FPR_rare mix=0.6667 near=0.6667 | FPR_all mix=0.5626 near=0.5414
+  top-1% scoring normals, share in rare regimes: mix=0.000 near=0.000 (base 0.017)
+  top-5% scoring normals, share in rare regimes: mix=0.077 near=0.038 (base 0.017)
+  AUROC(rare-normal vs common-normal): mix=0.603 near=0.569
+  median percentile-rank of rare normals among all normals: mix=0.586 near=0.599
+  paired rank shift (mix rank - near rank) on rare normals: mean=17.4 median=16.0 frac>0=0.889 frac<0=0.111 (n=9)
+  AUROC all anomalies: mix=0.772 near=0.769; hard: mix=0.661 near=0.663
+
+--- 4. is the condition present? occupancy census ---
+occupancy sorted: [0.1362, 0.0891, 0.0842, 0.0769, 0.0735, 0.0692, 0.0559, 0.0486, 0.0463, 0.0463, 0.0428, 0.0402, 0.0356, 0.0352, 0.0306, 0.0226, 0.021, 0.0176, 0.0149, 0.0134]
+max/min occ ratio: 10; #regimes <2%: 3, <1%: 0, <0.5%: 0, <0.1%: 0
+mass in regimes <2%: 0.046, <1%: 0.000, <0.5%: 0.000
+Zipf slope (log occ vs log rank): -0.72  (MIIM generator uses beta=2.1; flat=0)
+train-vs-testnormal occupancy: corr=0.922; regimes with test share > 3x train share: []

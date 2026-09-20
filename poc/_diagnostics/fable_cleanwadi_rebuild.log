@@ -1,0 +1,8 @@
+clip=10.0 n_tr=2614 n_te=575 d=732 anom=56 thr=6.000 hard=43 easy=13
+  linres/l2 done
+  seed 0 done  gates={'seed': 0, 'resid_auto': False, 'resid_gen_ratio': 4.458483395722735, 'basin_lam': 0.0, 'basin_frac_amb': 0.0072685539403213465}
+  seed 1 done  gates={'seed': 1, 'resid_auto': False, 'resid_gen_ratio': 3.1011980601956166, 'basin_lam': 0.0, 'basin_frac_amb': 0.009946442234123947}
+  seed 2 done  gates={'seed': 2, 'resid_auto': False, 'resid_gen_ratio': 5.058425948813012, 'basin_lam': 0.0, 'basin_frac_amb': 0.009181331293037491}
+  seed 3 done  gates={'seed': 3, 'resid_auto': False, 'resid_gen_ratio': 3.2884284571469706, 'basin_lam': 0.0, 'basin_frac_amb': 0.005738332058148432}
+  seed 4 done  gates={'seed': 4, 'resid_auto': False, 'resid_gen_ratio': 5.363755754583458, 'basin_lam': 0.0, 'basin_frac_amb': 0.013006885998469778}
+saved E:\Projects\Backlog\LatAD\poc\_diagnostics\fable_cleanwadi_scores_clip10_default.npz

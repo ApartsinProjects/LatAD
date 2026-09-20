@@ -1,0 +1,25 @@
+
+===== SKAB =====
+ n_train=400 n_test=631 anomalies=254 D_raw=48 D_eff=48 channels=8
+ [A1/A2] BIC sweep
+   GMM K=  1 BIC=4.27e+04 ll_fit=-65.854 ll_ho=-84.626 (1.9s)
+   GMM K=  2 BIC=2.333e+04 ll_fit=-34.709 ll_ho=-103.354 (0.0s)
+   GMM K=  4 BIC=1.998e+04 ll_fit=-27.735 ll_ho=-260.543 (0.0s)
+   GMM K=  8 BIC=-1.933e+04 ll_fit=37.196 ll_ho=-336.863 (0.0s)
+   GMM K= 16 BIC=-2.28e+04 ll_fit=49.607 ll_ho=-373.864 (0.0s)
+   GMM K= 32 BIC=-1.935e+04 ll_fit=58.203 ll_ho=-1656.483 (0.1s)
+   GMM K= 64 BIC=-1.006e+04 ll_fit=71.659 ll_ho=-1542.814 (0.1s)
+ [modes] KMeans K=16
+ [A4] within-mode non-Gaussianity
+   med_kurt=0.73 ll_gain_ho=-1168.950 AUROC 0.736->0.710
+ [A5] PCA
+   n90=12 n95=16 PR=5.2 of D_eff=48 (channels=8)
+ [A6] occupancy
+   slope=-1.56 max/min=63.5 gini=0.55 top1=0.32
+ [A7] silhouette
+   {'K_mode': 16, 'sil_feature_kmeans': 0.157858933818653, 'vade_K': 16, 'vade_latent': 6, 'vade_modes_used': 15, 'vade_frac_maxresp_lt_0.5_train': 0.525, 'sil_feature_vadeLabels': 0.12323290884207197, 'sil_latent_vade': 0.3988942518189655, 'sil_latent_kmeansLabels': 0.020323165260400317, 'test_anom_frac_between_modes': 0.5, 'test_normal_frac_between_modes': 0.5013262599469496, 'latent_source': 'fresh VaDE (K=16,latent=6,seed0,epochs40)'}
+ [A8] correlation communities
+   E3-rule comms=1 thr0.5 comps=1 greedy=2 Q=0.06 discrete=1/8 const=0
+ [A9] trivial rule
+   easy_frac=0.27 AUROC all/easy/diff = 0.554/1.000/0.388
+[SKAB] saved (9.3s)

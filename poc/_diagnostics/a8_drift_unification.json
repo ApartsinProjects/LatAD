@@ -1,0 +1,4301 @@
+{
+ "SWaT_canon": {
+  "n": 1498,
+  "n_attacks": 233,
+  "n_difficult": 91,
+  "K24": 288,
+  "thr": {
+   "head": 5.554955705726274,
+   "cp": 6.45241245086566,
+   "drift": -0.25036670936110567
+  },
+  "test_normal_drifted": 0.666403162055336,
+  "drifting_communities": [
+   8,
+   14,
+   15,
+   18,
+   19,
+   21,
+   22
+  ],
+  "drift_channels": [
+   "AIT201",
+   "AIT202",
+   "AIT203",
+   "AIT401",
+   "AIT402",
+   "FIT401",
+   "AIT501",
+   "AIT502",
+   "AIT503",
+   "AIT504",
+   "FIT501",
+   "FIT502",
+   "FIT503",
+   "FIT504",
+   "PIT501",
+   "PIT502",
+   "PIT503"
+  ],
+  "seeds": {
+   "0": {
+    "share": {
+     "normals": {
+      "in_cluster": 0.255,
+      "valley": 0.11,
+      "beyond": 0.021,
+      "off": 0.613
+     },
+     "attacks": {
+      "in_cluster": 0.073,
+      "valley": 0.069,
+      "beyond": 0.017,
+      "off": 0.841
+     },
+     "difficult": {
+      "in_cluster": 0.187,
+      "valley": 0.165,
+      "beyond": 0.044,
+      "off": 0.604
+     }
+    },
+    "share_normals_by_third": [
+     {
+      "in_cluster": 0.687,
+      "valley": 0.181,
+      "beyond": 0.014,
+      "off": 0.118
+     },
+     {
+      "in_cluster": 0.056,
+      "valley": 0.095,
+      "beyond": 0.053,
+      "off": 0.796
+     },
+     {
+      "in_cluster": 0.0,
+      "valley": 0.054,
+      "beyond": 0.004,
+      "off": 0.942
+     }
+    ],
+    "drifted_normals_by_third": [
+     0.043,
+     1.0,
+     1.0
+    ],
+    "normals_part_x_drifted": {
+     "in_cluster": {
+      "n": 323,
+      "drifted": 0.068,
+      "drift_mag_med": 1.996,
+      "DR_pct_med": 0.209
+     },
+     "valley": {
+      "n": 139,
+      "drifted": 0.446,
+      "drift_mag_med": 2.987,
+      "DR_pct_med": 0.299
+     },
+     "beyond": {
+      "n": 27,
+      "drifted": 0.778,
+      "drift_mag_med": 6.506,
+      "DR_pct_med": 0.392
+     },
+     "off": {
+      "n": 776,
+      "drifted": 0.951,
+      "drift_mag_med": 59.21,
+      "DR_pct_med": 0.503
+     }
+    },
+    "valley_vs_drifted_fisher_p": 1.8455391580391764e-08,
+    "drifted_normals_partition": {
+     "in_cluster": 0.026,
+     "valley": 0.074,
+     "beyond": 0.025,
+     "off": 0.875
+    },
+    "nondrifted_normals_partition": {
+     "in_cluster": 0.713,
+     "valley": 0.182,
+     "beyond": 0.014,
+     "off": 0.09
+    },
+    "correlations": {
+     "normals": {
+      "n_out": 942,
+      "betw_vs_DR": [
+       -0.03585536153713397,
+       0.2716085677095714
+      ],
+      "betw_vs_driftmag": [
+       -0.04060892794516898,
+       0.21304768323931125
+      ],
+      "betw_vs_CP": [
+       0.005065411736521798,
+       0.8766145506068868
+      ],
+      "perp_vs_DR": [
+       0.32695300904827845,
+       6.613670476421067e-25
+      ],
+      "dh_vs_DR": [
+       0.3074055425022104,
+       4.583790848103346e-22
+      ],
+      "dh_vs_driftmag": [
+       0.36350688286359323,
+       8.39001289645894e-31
+      ],
+      "valley_ind_vs_DR": [
+       -0.2086914067124095,
+       6.486812839581549e-14
+      ],
+      "off_ind_vs_DR": [
+       0.6991632513579646,
+       2.9217308263957992e-186
+      ],
+      "outenv_ind_vs_DR": [
+       0.6068525981271099,
+       4.009520978003755e-128
+      ],
+      "dh_vs_DR_allwin": [
+       0.6311859045334853,
+       1.532343772433298e-141
+      ],
+      "I4_null_betw_vs_shuffled_drifted": [
+       0.00034655951419579,
+       0.9915246399631286
+      ]
+     },
+     "attacks": {
+      "n_out": 216,
+      "betw_vs_DR": [
+       0.4340924159353781,
+       2.4428608092595833e-11
+      ],
+      "betw_vs_driftmag": [
+       0.15282061872337735,
+       0.024692943191625412
+      ],
+      "betw_vs_CP": [
+       0.15570261535087743,
+       0.022076334454343406
+      ],
+      "perp_vs_DR": [
+       0.3056815477149063,
+       4.727389928173261e-06
+      ],
+      "dh_vs_DR": [
+       0.18726111940574588,
+       0.0057684817022561905
+      ],
+      "dh_vs_driftmag": [
+       0.1106859383434777,
+       0.10474044185124981
+      ],
+      "valley_ind_vs_DR": [
+       -0.36219101973846923,
+       1.2456834180972477e-08
+      ],
+      "off_ind_vs_DR": [
+       0.5242402513799901,
+       7.521351294561036e-18
+      ],
+      "outenv_ind_vs_DR": [
+       0.3415804331559479,
+       8.909297033921249e-08
+      ],
+      "dh_vs_DR_allwin": [
+       0.31286399698801054,
+       1.0999378954286997e-06
+      ],
+      "I4_null_betw_vs_shuffled_drifted": [
+       0.01674301553119252,
+       0.8067193987849709
+      ]
+     },
+     "all": {
+      "n_out": 1158,
+      "betw_vs_DR": [
+       0.06384932191913094,
+       0.02980858145260452
+      ],
+      "betw_vs_driftmag": [
+       -0.08064583062687751,
+       0.006035642940748828
+      ],
+      "betw_vs_CP": [
+       0.15896844231148588,
+       5.376848463769423e-08
+      ],
+      "perp_vs_DR": [
+       0.3448469037608157,
+       1.1195621083164373e-33
+      ],
+      "dh_vs_DR": [
+       0.2992266639723345,
+       2.20980983816978e-25
+      ],
+      "dh_vs_driftmag": [
+       0.2572346982454154,
+       5.885471956216727e-19
+      ],
+      "valley_ind_vs_DR": [
+       -0.22974556585946757,
+       2.1493360235105997e-19
+      ],
+      "off_ind_vs_DR": [
+       0.668650896691462,
+       9.81762085220017e-195
+      ],
+      "outenv_ind_vs_DR": [
+       0.5690006950914517,
+       2.9734821413772877e-129
+      ],
+      "dh_vs_DR_allwin": [
+       0.5874646335248863,
+       1.0876139747188678e-139
+      ],
+      "I4_null_betw_vs_shuffled_drifted": [
+       0.04177218307157318,
+       0.1554426306474922
+      ]
+     }
+    },
+    "geometry_refit_agreement": {
+     "home": 1.0,
+     "part": 1.0,
+     "K": 16
+    },
+    "direction_drifted_out_normals": {
+     "n": 821,
+     "cos_axis_med": 0.304,
+     "frac_cos_axis_gt_0_7": 0.024,
+     "cos_drift_med": 0.485,
+     "frac_cos_drift_gt_0_7": 0.106,
+     "t_med": 0.349,
+     "perp_over_R_med": 1.338
+    },
+    "direction": {
+     "n_out_normals": 942,
+     "cos_disp_vs_axis_hj_med": 0.345,
+     "frac_cos_axis_gt_0_7": 0.059,
+     "cos_disp_vs_late_drift_dir_med": 0.469,
+     "frac_cos_drift_gt_0_7": 0.094,
+     "late_normals_nearest_dist_med": 12.947,
+     "early_normals_nearest_dist_med": 5.27,
+     "R": 6.995,
+     "late_normals_inside_any_regime": 0.0,
+     "late_normals_second_nearest_over_nearest_med": 1.331,
+     "late_normals_t_med": 0.334,
+     "late_normals_perp_over_R_med": 1.375,
+     "home_regime_of_late_normals": [
+      7,
+      11,
+      8
+     ],
+     "home_regime_of_early_normals": [
+      9,
+      7,
+      2
+     ]
+    },
+    "subspace": {
+     "drifting_comm_channels": {
+      "n_channels": 17,
+      "K": 12,
+      "R": 5.565,
+      "normals": {
+       "in_cluster": 0.158,
+       "valley": 0.067,
+       "beyond": 0.014,
+       "off": 0.76
+      },
+      "attacks": {
+       "in_cluster": 0.073,
+       "valley": 0.052,
+       "beyond": 0.004,
+       "off": 0.871
+      },
+      "normals_by_third": [
+       {
+        "in_cluster": 0.454,
+        "valley": 0.193,
+        "beyond": 0.041,
+        "off": 0.313
+       },
+       {
+        "in_cluster": 0.0,
+        "valley": 0.0,
+        "beyond": 0.0,
+        "off": 1.0
+       },
+       {
+        "in_cluster": 0.0,
+        "valley": 0.0,
+        "beyond": 0.0,
+        "off": 1.0
+       }
+      ],
+      "drifted_normals": {
+       "in_cluster": 0.0,
+       "valley": 0.0,
+       "beyond": 0.0,
+       "off": 1.0
+      },
+      "nondrifted_normals": {
+       "in_cluster": 0.474,
+       "valley": 0.201,
+       "beyond": 0.043,
+       "off": 0.282
+      },
+      "rho_betw_DR_normals": [
+       -0.36852845914024696,
+       1.338106958830798e-35
+      ],
+      "rho_dh_DR_normals": [
+       0.70938397924092,
+       4.21168374500585e-194
+      ],
+      "late_normals_inside_any_regime": 0.0,
+      "late_normals_perp_over_R_med": 2.475,
+      "n_close_pairs_D_lt_2R": 33
+     },
+     "other_channels": {
+      "n_channels": 34,
+      "K": 16,
+      "R": 7.598,
+      "normals": {
+       "in_cluster": 0.696,
+       "valley": 0.055,
+       "beyond": 0.041,
+       "off": 0.208
+      },
+      "attacks": {
+       "in_cluster": 0.245,
+       "valley": 0.039,
+       "beyond": 0.026,
+       "off": 0.691
+      },
+      "normals_by_third": [
+       {
+        "in_cluster": 0.902,
+        "valley": 0.043,
+        "beyond": 0.023,
+        "off": 0.032
+       },
+       {
+        "in_cluster": 0.623,
+        "valley": 0.05,
+        "beyond": 0.042,
+        "off": 0.285
+       },
+       {
+        "in_cluster": 0.556,
+        "valley": 0.071,
+        "beyond": 0.058,
+        "off": 0.315
+       }
+      ],
+      "drifted_normals": {
+       "in_cluster": 0.588,
+       "valley": 0.064,
+       "beyond": 0.051,
+       "off": 0.297
+      },
+      "nondrifted_normals": {
+       "in_cluster": 0.91,
+       "valley": 0.038,
+       "beyond": 0.021,
+       "off": 0.031
+      },
+      "rho_betw_DR_normals": [
+       -0.10357618013240796,
+       0.042237848260424406
+      ],
+      "rho_dh_DR_normals": [
+       0.3283742555109399,
+       3.465485095571339e-33
+      ],
+      "late_normals_inside_any_regime": 0.556,
+      "late_normals_perp_over_R_med": 0.493,
+      "n_close_pairs_D_lt_2R": 23
+     }
+    },
+    "attack_typing": {
+     "in_cluster": {
+      "n": 17,
+      "n_difficult": 17,
+      "flagged_head": 0.118,
+      "flagged_cp": 0.118,
+      "typed_of_head_flagged": {
+       "changepoint": 1.0,
+       "drift": 0.0,
+       "subthreshold": 0.0
+      },
+      "drifted_frac": 0.0,
+      "auroc_head": 0.142,
+      "auroc_cp": 0.559,
+      "auroc_dr": 0.12,
+      "global_pct_med": {
+       "head": 0.121,
+       "cp": 0.572,
+       "dr": 0.159
+      },
+      "local_pct_med": {
+       "head": 0.33,
+       "cp": 0.452
+      }
+     },
+     "valley": {
+      "n": 16,
+      "n_difficult": 15,
+      "flagged_head": 0.812,
+      "flagged_cp": 0.5,
+      "typed_of_head_flagged": {
+       "changepoint": 0.615,
+       "drift": 0.308,
+       "subthreshold": 0.077
+      },
+      "drifted_frac": 0.25,
+      "auroc_head": 0.284,
+      "auroc_cp": 0.87,
+      "auroc_dr": 0.139,
+      "global_pct_med": {
+       "head": 0.256,
+       "cp": 0.939,
+       "dr": 0.0
+      },
+      "local_pct_med": {
+       "head": 0.75,
+       "cp": 0.936
+      }
+     },
+     "beyond": {
+      "n": 4,
+      "n_difficult": 4,
+      "flagged_head": 0.75,
+      "flagged_cp": 0.0,
+      "typed_of_head_flagged": {
+       "changepoint": 0.0,
+       "drift": 1.0,
+       "subthreshold": 0.0
+      },
+      "drifted_frac": 0.75,
+      "auroc_head": 0.34,
+      "auroc_cp": 0.672,
+      "auroc_dr": 0.411,
+      "global_pct_med": {
+       "head": 0.309,
+       "cp": 0.783,
+       "dr": 0.406
+      },
+      "local_pct_med": {
+       "head": 0.35,
+       "cp": 0.531
+      }
+     },
+     "off": {
+      "n": 196,
+      "n_difficult": 55,
+      "flagged_head": 1.0,
+      "flagged_cp": 0.765,
+      "typed_of_head_flagged": {
+       "changepoint": 0.765,
+       "drift": 0.224,
+       "subthreshold": 0.01
+      },
+      "drifted_frac": 0.852,
+      "auroc_head": 0.907,
+      "auroc_cp": 0.924,
+      "auroc_dr": 0.664,
+      "global_pct_med": {
+       "head": 0.999,
+       "cp": 0.997,
+       "dr": 0.704
+      },
+      "local_pct_med": {
+       "head": 0.998,
+       "cp": 0.998
+      }
+     },
+     "all": {
+      "n": 233,
+      "n_difficult": 91,
+      "flagged_head": 0.918,
+      "flagged_cp": 0.687,
+      "typed_of_head_flagged": {
+       "changepoint": 0.748,
+       "drift": 0.238,
+       "subthreshold": 0.014
+      },
+      "drifted_frac": 0.747,
+      "auroc_head": 0.798,
+      "auroc_cp": 0.889,
+      "auroc_dr": 0.584,
+      "global_pct_med": {
+       "head": 0.997,
+       "cp": 0.997,
+       "dr": 0.704
+      },
+      "local_pct_med": {
+       "head": 0.998,
+       "cp": 0.998
+      }
+     }
+    }
+   },
+   "1": {
+    "share": {
+     "normals": {
+      "in_cluster": 0.24,
+      "valley": 0.123,
+      "beyond": 0.047,
+      "off": 0.591
+     },
+     "attacks": {
+      "in_cluster": 0.064,
+      "valley": 0.077,
+      "beyond": 0.013,
+      "off": 0.845
+     },
+     "difficult": {
+      "in_cluster": 0.165,
+      "valley": 0.165,
+      "beyond": 0.033,
+      "off": 0.637
+     }
+    },
+    "share_normals_by_third": [
+     {
+      "in_cluster": 0.649,
+      "valley": 0.19,
+      "beyond": 0.027,
+      "off": 0.134
+     },
+     {
+      "in_cluster": 0.045,
+      "valley": 0.106,
+      "beyond": 0.07,
+      "off": 0.779
+     },
+     {
+      "in_cluster": 0.002,
+      "valley": 0.071,
+      "beyond": 0.047,
+      "off": 0.88
+     }
+    ],
+    "drifted_normals_by_third": [
+     0.043,
+     1.0,
+     1.0
+    ],
+    "normals_part_x_drifted": {
+     "in_cluster": {
+      "n": 303,
+      "drifted": 0.056,
+      "drift_mag_med": 1.996,
+      "DR_pct_med": 0.209
+     },
+     "valley": {
+      "n": 155,
+      "drifted": 0.51,
+      "drift_mag_med": 3.319,
+      "DR_pct_med": 0.322
+     },
+     "beyond": {
+      "n": 59,
+      "drifted": 0.814,
+      "drift_mag_med": 32.562,
+      "DR_pct_med": 0.503
+     },
+     "off": {
+      "n": 748,
+      "drifted": 0.934,
+      "drift_mag_med": 59.21,
+      "DR_pct_med": 0.503
+     }
+    },
+    "valley_vs_drifted_fisher_p": 1.6971935006838187e-05,
+    "drifted_normals_partition": {
+     "in_cluster": 0.02,
+     "valley": 0.094,
+     "beyond": 0.057,
+     "off": 0.829
+    },
+    "nondrifted_normals_partition": {
+     "in_cluster": 0.678,
+     "valley": 0.18,
+     "beyond": 0.026,
+     "off": 0.116
+    },
+    "correlations": {
+     "normals": {
+      "n_out": 962,
+      "betw_vs_DR": [
+       -0.07801095094511798,
+       0.015514511837347061
+      ],
+      "betw_vs_driftmag": [
+       -0.014226726449843978,
+       0.659425473337738
+      ],
+      "betw_vs_CP": [
+       0.059106770257193235,
+       0.0668796844649763
+      ],
+      "perp_vs_DR": [
+       0.2845771723160229,
+       2.2209958549958003e-19
+      ],
+      "dh_vs_DR": [
+       0.3646231366790922,
+       1.2797699891724164e-31
+      ],
+      "dh_vs_driftmag": [
+       0.4112280207157816,
+       1.498627160364572e-40
+      ],
+      "valley_ind_vs_DR": [
+       -0.1742212423582364,
+       4.4280775768906917e-10
+      ],
+      "off_ind_vs_DR": [
+       0.5991435370235957,
+       4.12493978871094e-124
+      ],
+      "outenv_ind_vs_DR": [
+       0.5749731205098433,
+       3.264064387517842e-112
+      ],
+      "dh_vs_DR_allwin": [
+       0.6337208248598737,
+       5.223663030525546e-143
+      ],
+      "I4_null_betw_vs_shuffled_drifted": [
+       0.04858130485991519,
+       0.13213550651613837
+      ]
+     },
+     "attacks": {
+      "n_out": 218,
+      "betw_vs_DR": [
+       0.5069978747860825,
+       1.2230904483155394e-15
+      ],
+      "betw_vs_driftmag": [
+       0.24528309414194782,
+       0.00025542241631785936
+      ],
+      "betw_vs_CP": [
+       0.20787753325252212,
+       0.0020327520900732137
+      ],
+      "perp_vs_DR": [
+       0.25804399013025847,
+       0.0001164241882665197
+      ],
+      "dh_vs_DR": [
+       0.15237865705183803,
+       0.024444813071637088
+      ],
+      "dh_vs_driftmag": [
+       0.16877209069495042,
+       0.012578291632571204
+      ],
+      "valley_ind_vs_DR": [
+       -0.3727876044555998,
+       4.284575949389142e-09
+      ],
+      "off_ind_vs_DR": [
+       0.4781925806157581,
+       1.0241209198998897e-14
+      ],
+      "outenv_ind_vs_DR": [
+       0.28910268673502565,
+       7.27849154029052e-06
+      ],
+      "dh_vs_DR_allwin": [
+       0.25842024778772527,
+       6.568218298458091e-05
+      ],
+      "I4_null_betw_vs_shuffled_drifted": [
+       0.02372283982862671,
+       0.7276157585650704
+      ]
+     },
+     "all": {
+      "n_out": 1180,
+      "betw_vs_DR": [
+       0.049594735661010615,
+       0.0885909992596471
+      ],
+      "betw_vs_driftmag": [
+       -0.05532541170993793,
+       0.05744212678950254
+      ],
+      "betw_vs_CP": [
+       0.2273842840808468,
+       2.648992726688208e-15
+      ],
+      "perp_vs_DR": [
+       0.30154786167259584,
+       3.1392512151305366e-26
+      ],
+      "dh_vs_DR": [
+       0.3353472122522276,
+       2.0953870603945133e-32
+      ],
+      "dh_vs_driftmag": [
+       0.3210087550995353,
+       1.0916045427880424e-29
+      ],
+      "valley_ind_vs_DR": [
+       -0.2046644822046947,
+       1.2488003237998941e-15
+      ],
+      "off_ind_vs_DR": [
+       0.5762666887310681,
+       2.7892074924020025e-133
+      ],
+      "outenv_ind_vs_DR": [
+       0.5332882865630618,
+       7.616531402980549e-111
+      ],
+      "dh_vs_DR_allwin": [
+       0.5814279126508445,
+       3.330032776528176e-136
+      ],
+      "I4_null_betw_vs_shuffled_drifted": [
+       -0.052577714072261736,
+       0.07100609846623882
+      ]
+     }
+    },
+    "geometry_refit_agreement": {
+     "home": 1.0,
+     "part": 1.0,
+     "K": 16
+    },
+    "direction_drifted_out_normals": {
+     "n": 826,
+     "cos_axis_med": 0.287,
+     "frac_cos_axis_gt_0_7": 0.063,
+     "cos_drift_med": 0.518,
+     "frac_cos_drift_gt_0_7": 0.178,
+     "t_med": 0.333,
+     "perp_over_R_med": 1.262
+    },
+    "direction": {
+     "n_out_normals": 962,
+     "cos_disp_vs_axis_hj_med": 0.309,
+     "frac_cos_axis_gt_0_7": 0.09,
+     "cos_disp_vs_late_drift_dir_med": 0.488,
+     "frac_cos_drift_gt_0_7": 0.155,
+     "late_normals_nearest_dist_med": 13.706,
+     "early_normals_nearest_dist_med": 5.77,
+     "R": 6.898,
+     "late_normals_inside_any_regime": 0.002,
+     "late_normals_second_nearest_over_nearest_med": 1.234,
+     "late_normals_t_med": 0.284,
+     "late_normals_perp_over_R_med": 1.267,
+     "home_regime_of_late_normals": [
+      7,
+      2,
+      0
+     ],
+     "home_regime_of_early_normals": [
+      4,
+      7,
+      13
+     ]
+    },
+    "subspace": {
+     "drifting_comm_channels": {
+      "n_channels": 17,
+      "K": 16,
+      "R": 5.646,
+      "normals": {
+       "in_cluster": 0.123,
+       "valley": 0.07,
+       "beyond": 0.018,
+       "off": 0.789
+      },
+      "attacks": {
+       "in_cluster": 0.06,
+       "valley": 0.043,
+       "beyond": 0.021,
+       "off": 0.876
+      },
+      "normals_by_third": [
+       {
+        "in_cluster": 0.351,
+        "valley": 0.197,
+        "beyond": 0.052,
+        "off": 0.399
+       },
+       {
+        "in_cluster": 0.0,
+        "valley": 0.006,
+        "beyond": 0.0,
+        "off": 0.994
+       },
+       {
+        "in_cluster": 0.0,
+        "valley": 0.0,
+        "beyond": 0.0,
+        "off": 1.0
+       }
+      ],
+      "drifted_normals": {
+       "in_cluster": 0.0,
+       "valley": 0.002,
+       "beyond": 0.0,
+       "off": 0.998
+      },
+      "nondrifted_normals": {
+       "in_cluster": 0.367,
+       "valley": 0.206,
+       "beyond": 0.055,
+       "off": 0.372
+      },
+      "rho_betw_DR_normals": [
+       -0.10550784643571255,
+       0.0004298570346887642
+      ],
+      "rho_dh_DR_normals": [
+       0.804108466847447,
+       1.5254679537681217e-287
+      ],
+      "late_normals_inside_any_regime": 0.0,
+      "late_normals_perp_over_R_med": 3.229,
+      "n_close_pairs_D_lt_2R": 52
+     },
+     "other_channels": {
+      "n_channels": 34,
+      "K": 16,
+      "R": 7.513,
+      "normals": {
+       "in_cluster": 0.675,
+       "valley": 0.038,
+       "beyond": 0.043,
+       "off": 0.244
+      },
+      "attacks": {
+       "in_cluster": 0.18,
+       "valley": 0.073,
+       "beyond": 0.021,
+       "off": 0.725
+      },
+      "normals_by_third": [
+       {
+        "in_cluster": 0.884,
+        "valley": 0.029,
+        "beyond": 0.029,
+        "off": 0.057
+       },
+       {
+        "in_cluster": 0.592,
+        "valley": 0.05,
+        "beyond": 0.047,
+        "off": 0.31
+       },
+       {
+        "in_cluster": 0.541,
+        "valley": 0.036,
+        "beyond": 0.052,
+        "off": 0.371
+       }
+      ],
+      "drifted_normals": {
+       "in_cluster": 0.565,
+       "valley": 0.045,
+       "beyond": 0.05,
+       "off": 0.34
+      },
+      "nondrifted_normals": {
+       "in_cluster": 0.896,
+       "valley": 0.024,
+       "beyond": 0.028,
+       "off": 0.052
+      },
+      "rho_betw_DR_normals": [
+       0.016712558414760235,
+       0.7355081525969229
+      ],
+      "rho_dh_DR_normals": [
+       0.32195034431789094,
+       6.752166259793414e-32
+      ],
+      "late_normals_inside_any_regime": 0.541,
+      "late_normals_perp_over_R_med": 0.487,
+      "n_close_pairs_D_lt_2R": 21
+     }
+    },
+    "attack_typing": {
+     "in_cluster": {
+      "n": 15,
+      "n_difficult": 15,
+      "flagged_head": 0.133,
+      "flagged_cp": 0.0,
+      "typed_of_head_flagged": {
+       "changepoint": 0.0,
+       "drift": 1.0,
+       "subthreshold": 0.0
+      },
+      "drifted_frac": 0.133,
+      "auroc_head": 0.163,
+      "auroc_cp": 0.469,
+      "auroc_dr": 0.187,
+      "global_pct_med": {
+       "head": 0.121,
+       "cp": 0.47,
+       "dr": 0.163
+      },
+      "local_pct_med": {
+       "head": 0.308,
+       "cp": 0.324
+      }
+     },
+     "valley": {
+      "n": 18,
+      "n_difficult": 15,
+      "flagged_head": 0.667,
+      "flagged_cp": 0.444,
+      "typed_of_head_flagged": {
+       "changepoint": 0.667,
+       "drift": 0.25,
+       "subthreshold": 0.083
+      },
+      "drifted_frac": 0.167,
+      "auroc_head": 0.279,
+      "auroc_cp": 0.86,
+      "auroc_dr": 0.14,
+      "global_pct_med": {
+       "head": 0.252,
+       "cp": 0.913,
+       "dr": 0.035
+      },
+      "local_pct_med": {
+       "head": 0.635,
+       "cp": 0.912
+      }
+     },
+     "beyond": {
+      "n": 3,
+      "n_difficult": 3,
+      "flagged_head": 1.0,
+      "flagged_cp": 0.0,
+      "typed_of_head_flagged": {
+       "changepoint": 0.0,
+       "drift": 1.0,
+       "subthreshold": 0.0
+      },
+      "drifted_frac": 1.0,
+      "auroc_head": 0.609,
+      "auroc_cp": 0.609,
+      "auroc_dr": 0.609,
+      "global_pct_med": {
+       "head": 0.575,
+       "cp": 0.763,
+       "dr": 0.503
+      },
+      "local_pct_med": {
+       "head": 0.357,
+       "cp": 0.642
+      }
+     },
+     "off": {
+      "n": 197,
+      "n_difficult": 58,
+      "flagged_head": 1.0,
+      "flagged_cp": 0.772,
+      "typed_of_head_flagged": {
+       "changepoint": 0.772,
+       "drift": 0.218,
+       "subthreshold": 0.01
+      },
+      "drifted_frac": 0.843,
+      "auroc_head": 0.897,
+      "auroc_cp": 0.928,
+      "auroc_dr": 0.654,
+      "global_pct_med": {
+       "head": 0.999,
+       "cp": 0.997,
+       "dr": 0.704
+      },
+      "local_pct_med": {
+       "head": 0.998,
+       "cp": 0.998
+      }
+     },
+     "all": {
+      "n": 233,
+      "n_difficult": 91,
+      "flagged_head": 0.918,
+      "flagged_cp": 0.687,
+      "typed_of_head_flagged": {
+       "changepoint": 0.748,
+       "drift": 0.238,
+       "subthreshold": 0.014
+      },
+      "drifted_frac": 0.747,
+      "auroc_head": 0.798,
+      "auroc_cp": 0.889,
+      "auroc_dr": 0.584,
+      "global_pct_med": {
+       "head": 0.997,
+       "cp": 0.997,
+       "dr": 0.704
+      },
+      "local_pct_med": {
+       "head": 0.998,
+       "cp": 0.998
+      }
+     }
+    }
+   },
+   "2": {
+    "share": {
+     "normals": {
+      "in_cluster": 0.241,
+      "valley": 0.128,
+      "beyond": 0.026,
+      "off": 0.605
+     },
+     "attacks": {
+      "in_cluster": 0.073,
+      "valley": 0.09,
+      "beyond": 0.03,
+      "off": 0.807
+     },
+     "difficult": {
+      "in_cluster": 0.187,
+      "valley": 0.209,
+      "beyond": 0.066,
+      "off": 0.538
+     }
+    },
+    "share_normals_by_third": [
+     {
+      "in_cluster": 0.658,
+      "valley": 0.156,
+      "beyond": 0.025,
+      "off": 0.161
+     },
+     {
+      "in_cluster": 0.039,
+      "valley": 0.12,
+      "beyond": 0.034,
+      "off": 0.807
+     },
+     {
+      "in_cluster": 0.002,
+      "valley": 0.107,
+      "beyond": 0.021,
+      "off": 0.869
+     }
+    ],
+    "drifted_normals_by_third": [
+     0.043,
+     1.0,
+     1.0
+    ],
+    "normals_part_x_drifted": {
+     "in_cluster": {
+      "n": 305,
+      "drifted": 0.052,
+      "drift_mag_med": 1.996,
+      "DR_pct_med": 0.203
+     },
+     "valley": {
+      "n": 162,
+      "drifted": 0.611,
+      "drift_mag_med": 6.325,
+      "DR_pct_med": 0.388
+     },
+     "beyond": {
+      "n": 33,
+      "drifted": 0.667,
+      "drift_mag_med": 6.861,
+      "DR_pct_med": 0.404
+     },
+     "off": {
+      "n": 765,
+      "drifted": 0.923,
+      "drift_mag_med": 58.943,
+      "DR_pct_med": 0.503
+     }
+    },
+    "valley_vs_drifted_fisher_p": 0.1290103830150185,
+    "drifted_normals_partition": {
+     "in_cluster": 0.019,
+     "valley": 0.117,
+     "beyond": 0.026,
+     "off": 0.837
+    },
+    "nondrifted_normals_partition": {
+     "in_cluster": 0.685,
+     "valley": 0.149,
+     "beyond": 0.026,
+     "off": 0.14
+    },
+    "correlations": {
+     "normals": {
+      "n_out": 960,
+      "betw_vs_DR": [
+       0.08072335379905211,
+       0.012351242007003868
+      ],
+      "betw_vs_driftmag": [
+       0.04392166340809728,
+       0.17391026843433102
+      ],
+      "betw_vs_CP": [
+       -0.15614577810005933,
+       1.1647262514868477e-06
+      ],
+      "perp_vs_DR": [
+       0.3219654005698042,
+       1.3600935067549837e-24
+      ],
+      "dh_vs_DR": [
+       0.39611549327869316,
+       2.0191173321640254e-37
+      ],
+      "dh_vs_driftmag": [
+       0.43404940840052536,
+       2.2222783870995315e-45
+      ],
+      "valley_ind_vs_DR": [
+       -0.08800009747221796,
+       0.0017310580901954255
+      ],
+      "off_ind_vs_DR": [
+       0.5810891086220358,
+       3.953621985469634e-115
+      ],
+      "outenv_ind_vs_DR": [
+       0.5840090242741768,
+       1.5223614728889232e-116
+      ],
+      "dh_vs_DR_allwin": [
+       0.6508557200544304,
+       2.6799366258402713e-153
+      ],
+      "I4_null_betw_vs_shuffled_drifted": [
+       0.0005894836514335245,
+       0.9854468434071104
+      ]
+     },
+     "attacks": {
+      "n_out": 216,
+      "betw_vs_DR": [
+       0.2655329849517617,
+       7.781268577838096e-05
+      ],
+      "betw_vs_driftmag": [
+       0.13609697505989876,
+       0.045726609257380375
+      ],
+      "betw_vs_CP": [
+       -0.11462012997029523,
+       0.09289260274027426
+      ],
+      "perp_vs_DR": [
+       0.25149618838005144,
+       0.00018772421529016334
+      ],
+      "dh_vs_DR": [
+       0.18008537906168065,
+       0.007976285294970973
+      ],
+      "dh_vs_driftmag": [
+       0.18462084862269101,
+       0.006507541039323358
+      ],
+      "valley_ind_vs_DR": [
+       -0.3732605533394487,
+       4.081573642553933e-09
+      ],
+      "off_ind_vs_DR": [
+       0.5776134010539702,
+       3.917128279788322e-22
+      ],
+      "outenv_ind_vs_DR": [
+       0.3258635420598153,
+       3.640246101253049e-07
+      ],
+      "dh_vs_DR_allwin": [
+       0.3052526996982425,
+       2.051972653222952e-06
+      ],
+      "I4_null_betw_vs_shuffled_drifted": [
+       -0.09991791530545438,
+       0.14329459858386706
+      ]
+     },
+     "all": {
+      "n_out": 1176,
+      "betw_vs_DR": [
+       0.10528637230644401,
+       0.000298282169582723
+      ],
+      "betw_vs_driftmag": [
+       0.0669939918574231,
+       0.02158720339365594
+      ],
+      "betw_vs_CP": [
+       -0.17209114324943267,
+       2.857430353780213e-09
+      ],
+      "perp_vs_DR": [
+       0.3436899762517175,
+       6.063106934338624e-34
+      ],
+      "dh_vs_DR": [
+       0.3729045786924744,
+       4.196496230283159e-40
+      ],
+      "dh_vs_driftmag": [
+       0.342108064084497,
+       1.2534012104087117e-33
+      ],
+      "valley_ind_vs_DR": [
+       -0.13376486955173011,
+       2.0331322226422923e-07
+      ],
+      "off_ind_vs_DR": [
+       0.5788976429034957,
+       9.161780382405195e-135
+      ],
+      "outenv_ind_vs_DR": [
+       0.5454079220304797,
+       7.628097423740662e-117
+      ],
+      "dh_vs_DR_allwin": [
+       0.6061994468679828,
+       5.44480508081423e-151
+      ],
+      "I4_null_betw_vs_shuffled_drifted": [
+       0.02171102654269498,
+       0.45697992246847746
+      ]
+     }
+    },
+    "geometry_refit_agreement": {
+     "home": 1.0,
+     "part": 1.0,
+     "K": 16
+    },
+    "direction_drifted_out_normals": {
+     "n": 827,
+     "cos_axis_med": 0.343,
+     "frac_cos_axis_gt_0_7": 0.036,
+     "cos_drift_med": 0.551,
+     "frac_cos_drift_gt_0_7": 0.293,
+     "t_med": 0.396,
+     "perp_over_R_med": 1.308
+    },
+    "direction": {
+     "n_out_normals": 960,
+     "cos_disp_vs_axis_hj_med": 0.356,
+     "frac_cos_axis_gt_0_7": 0.06,
+     "cos_disp_vs_late_drift_dir_med": 0.495,
+     "frac_cos_drift_gt_0_7": 0.256,
+     "late_normals_nearest_dist_med": 13.082,
+     "early_normals_nearest_dist_med": 5.671,
+     "R": 6.699,
+     "late_normals_inside_any_regime": 0.002,
+     "late_normals_second_nearest_over_nearest_med": 1.335,
+     "late_normals_t_med": 0.372,
+     "late_normals_perp_over_R_med": 1.336,
+     "home_regime_of_late_normals": [
+      5,
+      3,
+      0
+     ],
+     "home_regime_of_early_normals": [
+      7,
+      3,
+      15
+     ]
+    },
+    "subspace": {
+     "drifting_comm_channels": {
+      "n_channels": 17,
+      "K": 12,
+      "R": 5.689,
+      "normals": {
+       "in_cluster": 0.165,
+       "valley": 0.066,
+       "beyond": 0.015,
+       "off": 0.753
+      },
+      "attacks": {
+       "in_cluster": 0.073,
+       "valley": 0.052,
+       "beyond": 0.004,
+       "off": 0.871
+      },
+      "normals_by_third": [
+       {
+        "in_cluster": 0.474,
+        "valley": 0.19,
+        "beyond": 0.043,
+        "off": 0.293
+       },
+       {
+        "in_cluster": 0.0,
+        "valley": 0.0,
+        "beyond": 0.0,
+        "off": 1.0
+       },
+       {
+        "in_cluster": 0.0,
+        "valley": 0.0,
+        "beyond": 0.0,
+        "off": 1.0
+       }
+      ],
+      "drifted_normals": {
+       "in_cluster": 0.0,
+       "valley": 0.001,
+       "beyond": 0.0,
+       "off": 0.999
+      },
+      "nondrifted_normals": {
+       "in_cluster": 0.495,
+       "valley": 0.197,
+       "beyond": 0.045,
+       "off": 0.263
+      },
+      "rho_betw_DR_normals": [
+       -0.3529846329860256,
+       2.416290301765293e-32
+      ],
+      "rho_dh_DR_normals": [
+       0.7090508990140247,
+       7.680060561936352e-194
+      ],
+      "late_normals_inside_any_regime": 0.0,
+      "late_normals_perp_over_R_med": 2.431,
+      "n_close_pairs_D_lt_2R": 33
+     },
+     "other_channels": {
+      "n_channels": 34,
+      "K": 16,
+      "R": 7.182,
+      "normals": {
+       "in_cluster": 0.702,
+       "valley": 0.024,
+       "beyond": 0.025,
+       "off": 0.249
+      },
+      "attacks": {
+       "in_cluster": 0.253,
+       "valley": 0.034,
+       "beyond": 0.03,
+       "off": 0.682
+      },
+      "normals_by_third": [
+       {
+        "in_cluster": 0.907,
+        "valley": 0.016,
+        "beyond": 0.023,
+        "off": 0.054
+       },
+       {
+        "in_cluster": 0.626,
+        "valley": 0.022,
+        "beyond": 0.025,
+        "off": 0.327
+       },
+       {
+        "in_cluster": 0.567,
+        "valley": 0.032,
+        "beyond": 0.028,
+        "off": 0.373
+       }
+      ],
+      "drifted_normals": {
+       "in_cluster": 0.595,
+       "valley": 0.028,
+       "beyond": 0.027,
+       "off": 0.349
+      },
+      "nondrifted_normals": {
+       "in_cluster": 0.915,
+       "valley": 0.014,
+       "beyond": 0.021,
+       "off": 0.05
+      },
+      "rho_betw_DR_normals": [
+       -0.057328311157970414,
+       0.26685621296264356
+      ],
+      "rho_dh_DR_normals": [
+       0.3176681998747545,
+       4.698193858932989e-31
+      ],
+      "late_normals_inside_any_regime": 0.567,
+      "late_normals_perp_over_R_med": 0.533,
+      "n_close_pairs_D_lt_2R": 20
+     }
+    },
+    "attack_typing": {
+     "in_cluster": {
+      "n": 17,
+      "n_difficult": 17,
+      "flagged_head": 0.235,
+      "flagged_cp": 0.059,
+      "typed_of_head_flagged": {
+       "changepoint": 0.25,
+       "drift": 0.5,
+       "subthreshold": 0.25
+      },
+      "drifted_frac": 0.118,
+      "auroc_head": 0.183,
+      "auroc_cp": 0.555,
+      "auroc_dr": 0.16,
+      "global_pct_med": {
+       "head": 0.132,
+       "cp": 0.572,
+       "dr": 0.161
+      },
+      "local_pct_med": {
+       "head": 0.335,
+       "cp": 0.373
+      }
+     },
+     "valley": {
+      "n": 21,
+      "n_difficult": 19,
+      "flagged_head": 0.762,
+      "flagged_cp": 0.429,
+      "typed_of_head_flagged": {
+       "changepoint": 0.562,
+       "drift": 0.375,
+       "subthreshold": 0.062
+      },
+      "drifted_frac": 0.286,
+      "auroc_head": 0.338,
+      "auroc_cp": 0.859,
+      "auroc_dr": 0.197,
+      "global_pct_med": {
+       "head": 0.277,
+       "cp": 0.913,
+       "dr": 0.088
+      },
+      "local_pct_med": {
+       "head": 0.656,
+       "cp": 0.92
+      }
+     },
+     "beyond": {
+      "n": 7,
+      "n_difficult": 6,
+      "flagged_head": 0.857,
+      "flagged_cp": 0.714,
+      "typed_of_head_flagged": {
+       "changepoint": 0.833,
+       "drift": 0.167,
+       "subthreshold": 0.0
+      },
+      "drifted_frac": 0.143,
+      "auroc_head": 0.388,
+      "auroc_cp": 0.779,
+      "auroc_dr": 0.152,
+      "global_pct_med": {
+       "head": 0.283,
+       "cp": 0.968,
+       "dr": 0.0
+      },
+      "local_pct_med": {
+       "head": 0.934,
+       "cp": 0.971
+      }
+     },
+     "off": {
+      "n": 188,
+      "n_difficult": 49,
+      "flagged_head": 1.0,
+      "flagged_cp": 0.771,
+      "typed_of_head_flagged": {
+       "changepoint": 0.771,
+       "drift": 0.223,
+       "subthreshold": 0.005
+      },
+      "drifted_frac": 0.878,
+      "auroc_head": 0.921,
+      "auroc_cp": 0.927,
+      "auroc_dr": 0.681,
+      "global_pct_med": {
+       "head": 0.999,
+       "cp": 0.997,
+       "dr": 0.704
+      },
+      "local_pct_med": {
+       "head": 0.998,
+       "cp": 0.998
+      }
+     },
+     "all": {
+      "n": 233,
+      "n_difficult": 91,
+      "flagged_head": 0.918,
+      "flagged_cp": 0.687,
+      "typed_of_head_flagged": {
+       "changepoint": 0.748,
+       "drift": 0.238,
+       "subthreshold": 0.014
+      },
+      "drifted_frac": 0.747,
+      "auroc_head": 0.798,
+      "auroc_cp": 0.889,
+      "auroc_dr": 0.584,
+      "global_pct_med": {
+       "head": 0.997,
+       "cp": 0.997,
+       "dr": 0.704
+      },
+      "local_pct_med": {
+       "head": 0.998,
+       "cp": 0.998
+      }
+     }
+    }
+   }
+  }
+ },
+ "WADI_clean": {
+  "n": 575,
+  "n_attacks": 56,
+  "n_difficult": 30,
+  "K24": 288,
+  "thr": {
+   "head": 6.152179786552279,
+   "cp": 6.054303042340389,
+   "drift": -0.18369390501428787
+  },
+  "test_normal_drifted": 0.0,
+  "drifting_communities": [],
+  "drift_channels": [],
+  "seeds": {
+   "0": {
+    "share": {
+     "normals": {
+      "in_cluster": 0.985,
+      "valley": 0.006,
+      "beyond": 0.006,
+      "off": 0.004
+     },
+     "attacks": {
+      "in_cluster": 0.804,
+      "valley": 0.143,
+      "beyond": 0.018,
+      "off": 0.036
+     },
+     "difficult": {
+      "in_cluster": 0.933,
+      "valley": 0.033,
+      "beyond": 0.0,
+      "off": 0.033
+     }
+    },
+    "share_normals_by_third": [
+     {
+      "in_cluster": 1.0,
+      "valley": 0.0,
+      "beyond": 0.0,
+      "off": 0.0
+     },
+     {
+      "in_cluster": 0.963,
+      "valley": 0.012,
+      "beyond": 0.018,
+      "off": 0.006
+     },
+     {
+      "in_cluster": 0.988,
+      "valley": 0.006,
+      "beyond": 0.0,
+      "off": 0.006
+     }
+    ],
+    "drifted_normals_by_third": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "normals_part_x_drifted": {
+     "in_cluster": {
+      "n": 511,
+      "drifted": 0.0,
+      "drift_mag_med": 1.683,
+      "DR_pct_med": 0.493
+     },
+     "valley": {
+      "n": 3,
+      "drifted": 0.0,
+      "drift_mag_med": 2.139,
+      "DR_pct_med": 0.884
+     },
+     "beyond": {
+      "n": 3,
+      "drifted": 0.0,
+      "drift_mag_med": 2.174,
+      "DR_pct_med": 0.9
+     },
+     "off": {
+      "n": 2,
+      "drifted": 0.0,
+      "drift_mag_med": 1.806,
+      "DR_pct_med": 0.529
+     }
+    },
+    "valley_vs_drifted_fisher_p": null,
+    "drifted_normals_partition": null,
+    "nondrifted_normals_partition": {
+     "in_cluster": 0.985,
+     "valley": 0.006,
+     "beyond": 0.006,
+     "off": 0.004
+    },
+    "correlations": {
+     "normals": {
+      "n_out": 8,
+      "betw_vs_DR": [
+       -0.494662632196045,
+       0.21270051737141585
+      ],
+      "betw_vs_driftmag": [
+       -0.4566116604886569,
+       0.2554109324387585
+      ],
+      "betw_vs_CP": [
+       -0.6088155473182093,
+       0.10918149231554711
+      ],
+      "perp_vs_DR": [
+       -0.261904761904762,
+       0.530922861565801
+      ],
+      "dh_vs_DR": [
+       -0.4285714285714286,
+       0.2894032248467901
+      ],
+      "dh_vs_driftmag": [
+       -0.3571428571428572,
+       0.38512064355625614
+      ],
+      "valley_ind_vs_DR": [
+       0.07429601749462576,
+       0.09086804847974561
+      ],
+      "off_ind_vs_DR": [
+       0.0064413126576509695,
+       0.8836127921708457
+      ],
+      "outenv_ind_vs_DR": [
+       0.11688357877648481,
+       0.007687092788772266
+      ],
+      "dh_vs_DR_allwin": [
+       -0.04404701346120237,
+       0.31657217998896015
+      ],
+      "I4_null_betw_vs_shuffled_drifted": [
+       NaN,
+       NaN
+      ]
+     },
+     "attacks": {
+      "n_out": 11,
+      "betw_vs_DR": [
+       0.03344729377972476,
+       0.9222292461829171
+      ],
+      "betw_vs_driftmag": [
+       0.06061940195919105,
+       0.8594687373469784
+      ],
+      "betw_vs_CP": [
+       0.26423758759535904,
+       0.43235356182976603
+      ],
+      "perp_vs_DR": [
+       0.6483545606870028,
+       0.030950313381033275
+      ],
+      "dh_vs_DR": [
+       0.04767312946227962,
+       0.8893007677832917
+      ],
+      "dh_vs_driftmag": [
+       0.1954016841836789,
+       0.5647568433804335
+      ],
+      "valley_ind_vs_DR": [
+       0.028544133445340392,
+       0.834581335076251
+      ],
+      "off_ind_vs_DR": [
+       0.017941111397594595,
+       0.8955843783543128
+      ],
+      "outenv_ind_vs_DR": [
+       0.06564554051652478,
+       0.6307400130806372
+      ],
+      "dh_vs_DR_allwin": [
+       -0.014539672678309076,
+       0.9152995139222756
+      ],
+      "I4_null_betw_vs_shuffled_drifted": [
+       NaN,
+       NaN
+      ]
+     },
+     "all": {
+      "n_out": 19,
+      "betw_vs_DR": [
+       -0.4098969552190731,
+       0.0813445210321273
+      ],
+      "betw_vs_driftmag": [
+       -0.4805669778395151,
+       0.03727894689546981
+      ],
+      "betw_vs_CP": [
+       0.15948486176441812,
+       0.5142861543708648
+      ],
+      "perp_vs_DR": [
+       0.1982378511133408,
+       0.415898472324062
+      ],
+      "dh_vs_DR": [
+       -0.24248737145114013,
+       0.31718789783474083
+      ],
+      "dh_vs_driftmag": [
+       -0.053745014897200134,
+       0.8270224013338441
+      ],
+      "valley_ind_vs_DR": [
+       0.0902292315397235,
+       0.030516041424946554
+      ],
+      "off_ind_vs_DR": [
+       0.028643848874891527,
+       0.49302759661278356
+      ],
+      "outenv_ind_vs_DR": [
+       0.13304135694249547,
+       0.0013862334304606157
+      ],
+      "dh_vs_DR_allwin": [
+       -0.008018020435747588,
+       0.8478596469688501
+      ],
+      "I4_null_betw_vs_shuffled_drifted": [
+       NaN,
+       NaN
+      ]
+     }
+    },
+    "geometry_refit_agreement": {
+     "home": 1.0,
+     "part": 1.0,
+     "K": 12
+    },
+    "direction_drifted_out_normals": {
+     "n": 0,
+     "cos_axis_med": null,
+     "frac_cos_axis_gt_0_7": null,
+     "cos_drift_med": null,
+     "frac_cos_drift_gt_0_7": null,
+     "t_med": null,
+     "perp_over_R_med": null
+    },
+    "direction": {
+     "n_out_normals": 8,
+     "cos_disp_vs_axis_hj_med": 0.458,
+     "frac_cos_axis_gt_0_7": 0.25,
+     "cos_disp_vs_late_drift_dir_med": 0.127,
+     "frac_cos_drift_gt_0_7": 0.0,
+     "late_normals_nearest_dist_med": 2.824,
+     "early_normals_nearest_dist_med": 2.913,
+     "R": 5.438,
+     "late_normals_inside_any_regime": 0.988,
+     "late_normals_second_nearest_over_nearest_med": 1.413,
+     "late_normals_t_med": 0.311,
+     "late_normals_perp_over_R_med": 0.431,
+     "home_regime_of_late_normals": [
+      11,
+      5,
+      1
+     ],
+     "home_regime_of_early_normals": [
+      11,
+      10,
+      0
+     ]
+    },
+    "subspace": {},
+    "attack_typing": {
+     "in_cluster": {
+      "n": 45,
+      "n_difficult": 28,
+      "flagged_head": 0.267,
+      "flagged_cp": 0.2,
+      "typed_of_head_flagged": {
+       "changepoint": 0.75,
+       "drift": 0.0,
+       "subthreshold": 0.25
+      },
+      "drifted_frac": 0.0,
+      "auroc_head": 0.799,
+      "auroc_cp": 0.805,
+      "auroc_dr": 0.586,
+      "global_pct_med": {
+       "head": 0.927,
+       "cp": 0.921,
+       "dr": 0.68
+      },
+      "local_pct_med": {
+       "head": 0.927,
+       "cp": 0.921
+      }
+     },
+     "valley": {
+      "n": 8,
+      "n_difficult": 1,
+      "flagged_head": 0.875,
+      "flagged_cp": 0.25,
+      "typed_of_head_flagged": {
+       "changepoint": 0.286,
+       "drift": 0.0,
+       "subthreshold": 0.714
+      },
+      "drifted_frac": 0.0,
+      "auroc_head": 0.991,
+      "auroc_cp": 0.984,
+      "auroc_dr": 0.668,
+      "global_pct_med": {
+       "head": 0.992,
+       "cp": 0.988,
+       "dr": 0.638
+      },
+      "local_pct_med": {
+       "head": 0.989,
+       "cp": 0.985
+      }
+     },
+     "beyond": {
+      "n": 1,
+      "n_difficult": 0,
+      "flagged_head": 0.0,
+      "flagged_cp": 0.0,
+      "typed_of_head_flagged": null,
+      "drifted_frac": 0.0,
+      "auroc_head": 0.977,
+      "auroc_cp": 0.981,
+      "auroc_dr": 0.746,
+      "global_pct_med": {
+       "head": 0.977,
+       "cp": 0.981,
+       "dr": 0.746
+      },
+      "local_pct_med": {
+       "head": 0.982,
+       "cp": 0.982
+      }
+     },
+     "off": {
+      "n": 2,
+      "n_difficult": 1,
+      "flagged_head": 1.0,
+      "flagged_cp": 1.0,
+      "typed_of_head_flagged": {
+       "changepoint": 1.0,
+       "drift": 0.0,
+       "subthreshold": 0.0
+      },
+      "drifted_frac": 0.0,
+      "auroc_head": 0.998,
+      "auroc_cp": 0.998,
+      "auroc_dr": 0.684,
+      "global_pct_med": {
+       "head": 0.998,
+       "cp": 0.998,
+       "dr": 0.684
+      },
+      "local_pct_med": {
+       "head": 0.997,
+       "cp": 0.997
+      }
+     },
+     "all": {
+      "n": 56,
+      "n_difficult": 30,
+      "flagged_head": 0.375,
+      "flagged_cp": 0.232,
+      "typed_of_head_flagged": {
+       "changepoint": 0.619,
+       "drift": 0.0,
+       "subthreshold": 0.381
+      },
+      "drifted_frac": 0.0,
+      "auroc_head": 0.836,
+      "auroc_cp": 0.841,
+      "auroc_dr": 0.604,
+      "global_pct_med": {
+       "head": 0.973,
+       "cp": 0.962,
+       "dr": 0.684
+      },
+      "local_pct_med": {
+       "head": 0.967,
+       "cp": 0.963
+      }
+     }
+    }
+   },
+   "1": {
+    "share": {
+     "normals": {
+      "in_cluster": 0.985,
+      "valley": 0.008,
+      "beyond": 0.004,
+      "off": 0.004
+     },
+     "attacks": {
+      "in_cluster": 0.804,
+      "valley": 0.071,
+      "beyond": 0.036,
+      "off": 0.089
+     },
+     "difficult": {
+      "in_cluster": 0.9,
+      "valley": 0.033,
+      "beyond": 0.0,
+      "off": 0.067
+     }
+    },
+    "share_normals_by_third": [
+     {
+      "in_cluster": 1.0,
+      "valley": 0.0,
+      "beyond": 0.0,
+      "off": 0.0
+     },
+     {
+      "in_cluster": 0.963,
+      "valley": 0.012,
+      "beyond": 0.012,
+      "off": 0.012
+     },
+     {
+      "in_cluster": 0.988,
+      "valley": 0.012,
+      "beyond": 0.0,
+      "off": 0.0
+     }
+    ],
+    "drifted_normals_by_third": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "normals_part_x_drifted": {
+     "in_cluster": {
+      "n": 511,
+      "drifted": 0.0,
+      "drift_mag_med": 1.683,
+      "DR_pct_med": 0.493
+     },
+     "valley": {
+      "n": 4,
+      "drifted": 0.0,
+      "drift_mag_med": 1.825,
+      "DR_pct_med": 0.727
+     },
+     "beyond": {
+      "n": 2,
+      "drifted": 0.0,
+      "drift_mag_med": 2.173,
+      "DR_pct_med": 0.896
+     },
+     "off": {
+      "n": 2,
+      "drifted": 0.0,
+      "drift_mag_med": 2.22,
+      "DR_pct_med": 0.904
+     }
+    },
+    "valley_vs_drifted_fisher_p": null,
+    "drifted_normals_partition": null,
+    "nondrifted_normals_partition": {
+     "in_cluster": 0.985,
+     "valley": 0.008,
+     "beyond": 0.004,
+     "off": 0.004
+    },
+    "correlations": {
+     "normals": {
+      "n_out": 8,
+      "betw_vs_DR": [
+       -0.01197626261913259,
+       0.977546654703887
+      ],
+      "betw_vs_driftmag": [
+       -0.22754898976351917,
+       0.5878445645010818
+      ],
+      "betw_vs_CP": [
+       -0.3233590907165799,
+       0.4346394485508573
+      ],
+      "perp_vs_DR": [
+       0.07142857142857144,
+       0.8665262706759088
+      ],
+      "dh_vs_DR": [
+       -0.34731161595484505,
+       0.39926387420328163
+      ],
+      "dh_vs_driftmag": [
+       -0.3832404038122429,
+       0.34868374112420114
+      ],
+      "valley_ind_vs_DR": [
+       0.044752049463411596,
+       0.30888061111578186
+      ],
+      "off_ind_vs_DR": [
+       0.08726939729720669,
+       0.04690767706586957
+      ],
+      "outenv_ind_vs_DR": [
+       0.11871233392050669,
+       0.0067789474284323855
+      ],
+      "dh_vs_DR_allwin": [
+       0.21205140713271037,
+       1.0894015021588956e-06
+      ],
+      "I4_null_betw_vs_shuffled_drifted": [
+       NaN,
+       NaN
+      ]
+     },
+     "attacks": {
+      "n_out": 11,
+      "betw_vs_DR": [
+       -0.0944740587425987,
+       0.7823196951980761
+      ],
+      "betw_vs_driftmag": [
+       -0.28767123287671237,
+       0.39100871519541053
+      ],
+      "betw_vs_CP": [
+       0.054669845709384636,
+       0.8731599802319701
+      ],
+      "perp_vs_DR": [
+       0.3494483723024942,
+       0.292161996196478
+      ],
+      "dh_vs_DR": [
+       0.2069102204422663,
+       0.5415699136669009
+      ],
+      "dh_vs_driftmag": [
+       0.2961283309258334,
+       0.3765918592699149
+      ],
+      "valley_ind_vs_DR": [
+       -0.03878384011166109,
+       0.7765694335085654
+      ],
+      "off_ind_vs_DR": [
+       0.18681472844427385,
+       0.16800764658175854
+      ],
+      "outenv_ind_vs_DR": [
+       0.17458920350139567,
+       0.19811212103822126
+      ],
+      "dh_vs_DR_allwin": [
+       -0.006454337079826384,
+       0.9623451172631896
+      ],
+      "I4_null_betw_vs_shuffled_drifted": [
+       NaN,
+       NaN
+      ]
+     },
+     "all": {
+      "n_out": 19,
+      "betw_vs_DR": [
+       -0.3156740583367273,
+       0.18799167092127167
+      ],
+      "betw_vs_driftmag": [
+       -0.4460149674191904,
+       0.05561593816974277
+      ],
+      "betw_vs_CP": [
+       0.02731304035759351,
+       0.9116224384573405
+      ],
+      "perp_vs_DR": [
+       0.08087931621643252,
+       0.7420418424962077
+      ],
+      "dh_vs_DR": [
+       -0.16622717009349497,
+       0.496420138530249
+      ],
+      "dh_vs_driftmag": [
+       -0.1176470588235294,
+       0.6314627882092275
+      ],
+      "valley_ind_vs_DR": [
+       0.049157454716803925,
+       0.23923507659945142
+      ],
+      "off_ind_vs_DR": [
+       0.11490902867886801,
+       0.005805515338574933
+      ],
+      "outenv_ind_vs_DR": [
+       0.14949917419602135,
+       0.00032153911285453634
+      ],
+      "dh_vs_DR_allwin": [
+       0.21149921943193506,
+       3.078915847755561e-07
+      ],
+      "I4_null_betw_vs_shuffled_drifted": [
+       NaN,
+       NaN
+      ]
+     }
+    },
+    "geometry_refit_agreement": {
+     "home": 1.0,
+     "part": 1.0,
+     "K": 16
+    },
+    "direction_drifted_out_normals": {
+     "n": 0,
+     "cos_axis_med": null,
+     "frac_cos_axis_gt_0_7": null,
+     "cos_drift_med": null,
+     "frac_cos_drift_gt_0_7": null,
+     "t_med": null,
+     "perp_over_R_med": null
+    },
+    "direction": {
+     "n_out_normals": 8,
+     "cos_disp_vs_axis_hj_med": 0.416,
+     "frac_cos_axis_gt_0_7": 0.0,
+     "cos_disp_vs_late_drift_dir_med": 0.416,
+     "frac_cos_drift_gt_0_7": 0.0,
+     "late_normals_nearest_dist_med": 2.966,
+     "early_normals_nearest_dist_med": 3.084,
+     "R": 5.47,
+     "late_normals_inside_any_regime": 0.988,
+     "late_normals_second_nearest_over_nearest_med": 1.346,
+     "late_normals_t_med": 0.252,
+     "late_normals_perp_over_R_med": 0.437,
+     "home_regime_of_late_normals": [
+      1,
+      6,
+      9
+     ],
+     "home_regime_of_early_normals": [
+      12,
+      6,
+      13
+     ]
+    },
+    "subspace": {},
+    "attack_typing": {
+     "in_cluster": {
+      "n": 45,
+      "n_difficult": 27,
+      "flagged_head": 0.289,
+      "flagged_cp": 0.178,
+      "typed_of_head_flagged": {
+       "changepoint": 0.615,
+       "drift": 0.0,
+       "subthreshold": 0.385
+      },
+      "drifted_frac": 0.0,
+      "auroc_head": 0.799,
+      "auroc_cp": 0.804,
+      "auroc_dr": 0.576,
+      "global_pct_med": {
+       "head": 0.927,
+       "cp": 0.921,
+       "dr": 0.582
+      },
+      "local_pct_med": {
+       "head": 0.927,
+       "cp": 0.921
+      }
+     },
+     "valley": {
+      "n": 4,
+      "n_difficult": 1,
+      "flagged_head": 1.0,
+      "flagged_cp": 0.5,
+      "typed_of_head_flagged": {
+       "changepoint": 0.5,
+       "drift": 0.0,
+       "subthreshold": 0.5
+      },
+      "drifted_frac": 0.0,
+      "auroc_head": 0.995,
+      "auroc_cp": 0.99,
+      "auroc_dr": 0.617,
+      "global_pct_med": {
+       "head": 0.995,
+       "cp": 0.993,
+       "dr": 0.53
+      },
+      "local_pct_med": {
+       "head": 0.992,
+       "cp": 0.991
+      }
+     },
+     "beyond": {
+      "n": 2,
+      "n_difficult": 0,
+      "flagged_head": 1.0,
+      "flagged_cp": 1.0,
+      "typed_of_head_flagged": {
+       "changepoint": 1.0,
+       "drift": 0.0,
+       "subthreshold": 0.0
+      },
+      "drifted_frac": 0.0,
+      "auroc_head": 0.997,
+      "auroc_cp": 0.998,
+      "auroc_dr": 0.803,
+      "global_pct_med": {
+       "head": 0.997,
+       "cp": 0.998,
+       "dr": 0.803
+      },
+      "local_pct_med": {
+       "head": 0.997,
+       "cp": 0.998
+      }
+     },
+     "off": {
+      "n": 5,
+      "n_difficult": 2,
+      "flagged_head": 0.4,
+      "flagged_cp": 0.2,
+      "typed_of_head_flagged": {
+       "changepoint": 0.5,
+       "drift": 0.0,
+       "subthreshold": 0.5
+      },
+      "drifted_frac": 0.0,
+      "auroc_head": 0.983,
+      "auroc_cp": 0.989,
+      "auroc_dr": 0.764,
+      "global_pct_med": {
+       "head": 0.977,
+       "cp": 0.988,
+       "dr": 0.746
+      },
+      "local_pct_med": {
+       "head": 0.982,
+       "cp": 0.991
+      }
+     },
+     "all": {
+      "n": 56,
+      "n_difficult": 30,
+      "flagged_head": 0.375,
+      "flagged_cp": 0.232,
+      "typed_of_head_flagged": {
+       "changepoint": 0.619,
+       "drift": 0.0,
+       "subthreshold": 0.381
+      },
+      "drifted_frac": 0.0,
+      "auroc_head": 0.836,
+      "auroc_cp": 0.841,
+      "auroc_dr": 0.604,
+      "global_pct_med": {
+       "head": 0.973,
+       "cp": 0.962,
+       "dr": 0.684
+      },
+      "local_pct_med": {
+       "head": 0.967,
+       "cp": 0.963
+      }
+     }
+    }
+   },
+   "2": {
+    "share": {
+     "normals": {
+      "in_cluster": 0.985,
+      "valley": 0.012,
+      "beyond": 0.0,
+      "off": 0.004
+     },
+     "attacks": {
+      "in_cluster": 0.857,
+      "valley": 0.054,
+      "beyond": 0.018,
+      "off": 0.071
+     },
+     "difficult": {
+      "in_cluster": 0.933,
+      "valley": 0.067,
+      "beyond": 0.0,
+      "off": 0.0
+     }
+    },
+    "share_normals_by_third": [
+     {
+      "in_cluster": 0.995,
+      "valley": 0.005,
+      "beyond": 0.0,
+      "off": 0.0
+     },
+     {
+      "in_cluster": 0.969,
+      "valley": 0.025,
+      "beyond": 0.0,
+      "off": 0.006
+     },
+     {
+      "in_cluster": 0.988,
+      "valley": 0.006,
+      "beyond": 0.0,
+      "off": 0.006
+     }
+    ],
+    "drifted_normals_by_third": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "normals_part_x_drifted": {
+     "in_cluster": {
+      "n": 511,
+      "drifted": 0.0,
+      "drift_mag_med": 1.683,
+      "DR_pct_med": 0.493
+     },
+     "valley": {
+      "n": 6,
+      "drifted": 0.0,
+      "drift_mag_med": 2.173,
+      "DR_pct_med": 0.896
+     },
+     "beyond": {
+      "n": 0,
+      "drifted": null,
+      "drift_mag_med": null,
+      "DR_pct_med": null
+     },
+     "off": {
+      "n": 2,
+      "drifted": 0.0,
+      "drift_mag_med": 1.806,
+      "DR_pct_med": 0.529
+     }
+    },
+    "valley_vs_drifted_fisher_p": null,
+    "drifted_normals_partition": null,
+    "nondrifted_normals_partition": {
+     "in_cluster": 0.985,
+     "valley": 0.012,
+     "beyond": 0.0,
+     "off": 0.004
+    },
+    "correlations": {
+     "normals": {
+      "n_out": 8,
+      "betw_vs_DR": [
+       -0.3571428571428572,
+       0.38512064355625614
+      ],
+      "betw_vs_driftmag": [
+       -0.5000000000000001,
+       0.20703124999999994
+      ],
+      "betw_vs_CP": [
+       0.2142857142857143,
+       0.6103444156452669
+      ],
+      "perp_vs_DR": [
+       -0.09523809523809526,
+       0.8225054302036114
+      ],
+      "dh_vs_DR": [
+       -0.4047619047619048,
+       0.3198886412288163
+      ],
+      "dh_vs_driftmag": [
+       -0.4285714285714286,
+       0.2894032248467901
+      ],
+      "valley_ind_vs_DR": [
+       0.10892992862520989,
+       0.013027963718018383
+      ],
+      "off_ind_vs_DR": [
+       0.0064413126576509695,
+       0.8836127921708457
+      ],
+      "outenv_ind_vs_DR": [
+       0.09776002498471305,
+       0.02594099718139738
+      ],
+      "dh_vs_DR_allwin": [
+       0.20705184781991254,
+       1.9625745330455847e-06
+      ],
+      "I4_null_betw_vs_shuffled_drifted": [
+       NaN,
+       NaN
+      ]
+     },
+     "attacks": {
+      "n_out": 8,
+      "betw_vs_DR": [
+       0.03681605202553619,
+       0.9310322536823128
+      ],
+      "betw_vs_driftmag": [
+       -0.12198750911856665,
+       0.7735324033272464
+      ],
+      "betw_vs_CP": [
+       0.12198750911856665,
+       0.7735324033272464
+      ],
+      "perp_vs_DR": [
+       0.5509080804800991,
+       0.15701842199789134
+      ],
+      "dh_vs_DR": [
+       0.2515015150017844,
+       0.5479426035598268
+      ],
+      "dh_vs_driftmag": [
+       0.07142857142857144,
+       0.8665262706759088
+      ],
+      "valley_ind_vs_DR": [
+       0.1084336518953532,
+       0.42632786143097134
+      ],
+      "off_ind_vs_DR": [
+       0.20900180504617363,
+       0.1221339622956964
+      ],
+      "outenv_ind_vs_DR": [
+       0.2489682750510245,
+       0.06426444149255263
+      ],
+      "dh_vs_DR_allwin": [
+       0.006351342339190856,
+       0.9629455696088435
+      ],
+      "I4_null_betw_vs_shuffled_drifted": [
+       NaN,
+       NaN
+      ]
+     },
+     "all": {
+      "n_out": 16,
+      "betw_vs_DR": [
+       -0.18007424209097503,
+       0.5045442101425285
+      ],
+      "betw_vs_driftmag": [
+       -0.2625380154131383,
+       0.3259310274455056
+      ],
+      "betw_vs_CP": [
+       -0.03539838410064786,
+       0.8964497590771082
+      ],
+      "perp_vs_DR": [
+       -0.08535690316726273,
+       0.753288841707529
+      ],
+      "dh_vs_DR": [
+       -0.18248717228863065,
+       0.4987535498948497
+      ],
+      "dh_vs_driftmag": [
+       -0.22647058823529412,
+       0.39898292664128926
+      ],
+      "valley_ind_vs_DR": [
+       0.11339048472488146,
+       0.006491271586319962
+      ],
+      "off_ind_vs_DR": [
+       0.07209218995897736,
+       0.08413245525484542
+      ],
+      "outenv_ind_vs_DR": [
+       0.1387543355489366,
+       0.0008495568278140519
+      ],
+      "dh_vs_DR_allwin": [
+       0.20073705815164763,
+       1.2190938358998134e-06
+      ],
+      "I4_null_betw_vs_shuffled_drifted": [
+       NaN,
+       NaN
+      ]
+     }
+    },
+    "geometry_refit_agreement": {
+     "home": 1.0,
+     "part": 1.0,
+     "K": 16
+    },
+    "direction_drifted_out_normals": {
+     "n": 0,
+     "cos_axis_med": null,
+     "frac_cos_axis_gt_0_7": null,
+     "cos_drift_med": null,
+     "frac_cos_drift_gt_0_7": null,
+     "t_med": null,
+     "perp_over_R_med": null
+    },
+    "direction": {
+     "n_out_normals": 8,
+     "cos_disp_vs_axis_hj_med": 0.49,
+     "frac_cos_axis_gt_0_7": 0.125,
+     "cos_disp_vs_late_drift_dir_med": 0.298,
+     "frac_cos_drift_gt_0_7": 0.0,
+     "late_normals_nearest_dist_med": 2.91,
+     "early_normals_nearest_dist_med": 2.948,
+     "R": 5.451,
+     "late_normals_inside_any_regime": 0.988,
+     "late_normals_second_nearest_over_nearest_med": 1.323,
+     "late_normals_t_med": 0.325,
+     "late_normals_perp_over_R_med": 0.43,
+     "home_regime_of_late_normals": [
+      5,
+      9,
+      12
+     ],
+     "home_regime_of_early_normals": [
+      11,
+      9,
+      12
+     ]
+    },
+    "subspace": {},
+    "attack_typing": {
+     "in_cluster": {
+      "n": 48,
+      "n_difficult": 28,
+      "flagged_head": 0.312,
+      "flagged_cp": 0.167,
+      "typed_of_head_flagged": {
+       "changepoint": 0.533,
+       "drift": 0.0,
+       "subthreshold": 0.467
+      },
+      "drifted_frac": 0.0,
+      "auroc_head": 0.811,
+      "auroc_cp": 0.815,
+      "auroc_dr": 0.578,
+      "global_pct_med": {
+       "head": 0.945,
+       "cp": 0.947,
+       "dr": 0.576
+      },
+      "local_pct_med": {
+       "head": 0.937,
+       "cp": 0.948
+      }
+     },
+     "valley": {
+      "n": 3,
+      "n_difficult": 2,
+      "flagged_head": 0.667,
+      "flagged_cp": 0.667,
+      "typed_of_head_flagged": {
+       "changepoint": 1.0,
+       "drift": 0.0,
+       "subthreshold": 0.0
+      },
+      "drifted_frac": 0.0,
+      "auroc_head": 0.991,
+      "auroc_cp": 0.995,
+      "auroc_dr": 0.717,
+      "global_pct_med": {
+       "head": 0.998,
+       "cp": 0.998,
+       "dr": 0.746
+      },
+      "local_pct_med": {
+       "head": 0.997,
+       "cp": 0.997
+      }
+     },
+     "beyond": {
+      "n": 1,
+      "n_difficult": 0,
+      "flagged_head": 1.0,
+      "flagged_cp": 1.0,
+      "typed_of_head_flagged": {
+       "changepoint": 1.0,
+       "drift": 0.0,
+       "subthreshold": 0.0
+      },
+      "drifted_frac": 0.0,
+      "auroc_head": 0.996,
+      "auroc_cp": 0.998,
+      "auroc_dr": 0.746,
+      "global_pct_med": {
+       "head": 0.996,
+       "cp": 0.998,
+       "dr": 0.746
+      },
+      "local_pct_med": {
+       "head": 0.996,
+       "cp": 0.998
+      }
+     },
+     "off": {
+      "n": 4,
+      "n_difficult": 0,
+      "flagged_head": 0.75,
+      "flagged_cp": 0.5,
+      "typed_of_head_flagged": {
+       "changepoint": 0.667,
+       "drift": 0.0,
+       "subthreshold": 0.333
+      },
+      "drifted_frac": 0.0,
+      "auroc_head": 0.99,
+      "auroc_cp": 0.991,
+      "auroc_dr": 0.797,
+      "global_pct_med": {
+       "head": 0.993,
+       "cp": 0.993,
+       "dr": 0.792
+      },
+      "local_pct_med": {
+       "head": 0.995,
+       "cp": 0.995
+      }
+     },
+     "all": {
+      "n": 56,
+      "n_difficult": 30,
+      "flagged_head": 0.375,
+      "flagged_cp": 0.232,
+      "typed_of_head_flagged": {
+       "changepoint": 0.619,
+       "drift": 0.0,
+       "subthreshold": 0.381
+      },
+      "drifted_frac": 0.0,
+      "auroc_head": 0.836,
+      "auroc_cp": 0.841,
+      "auroc_dr": 0.604,
+      "global_pct_med": {
+       "head": 0.973,
+       "cp": 0.962,
+       "dr": 0.684
+      },
+      "local_pct_med": {
+       "head": 0.967,
+       "cp": 0.963
+      }
+     }
+    }
+   }
+  }
+ },
+ "HAI": {
+  "n": 14819,
+  "n_attacks": 652,
+  "n_difficult": 167,
+  "K24": 2880,
+  "thr": {
+   "head": 6.086686156083973,
+   "cp": 6.158069835269373,
+   "drift": -0.10891425808858812
+  },
+  "test_normal_drifted": 0.2974518246629491,
+  "drifting_communities": [],
+  "drift_channels": [
+   "P1_LCV01D",
+   "P1_LCV01Z",
+   "P1_PCV02Z",
+   "P1_PIT01",
+   "P2_SD01",
+   "P2_SIT01",
+   "P4_ST_PT01"
+  ],
+  "seeds": {
+   "0": {
+    "share": {
+     "normals": {
+      "in_cluster": 0.866,
+      "valley": 0.013,
+      "beyond": 0.046,
+      "off": 0.075
+     },
+     "attacks": {
+      "in_cluster": 0.324,
+      "valley": 0.003,
+      "beyond": 0.02,
+      "off": 0.653
+     },
+     "difficult": {
+      "in_cluster": 0.707,
+      "valley": 0.0,
+      "beyond": 0.048,
+      "off": 0.246
+     }
+    },
+    "share_normals_by_third": [
+     {
+      "in_cluster": 0.814,
+      "valley": 0.023,
+      "beyond": 0.097,
+      "off": 0.067
+     },
+     {
+      "in_cluster": 0.825,
+      "valley": 0.007,
+      "beyond": 0.01,
+      "off": 0.158
+     },
+     {
+      "in_cluster": 0.959,
+      "valley": 0.008,
+      "beyond": 0.03,
+      "off": 0.002
+     }
+    ],
+    "drifted_normals_by_third": [
+     0.73,
+     0.0,
+     0.154
+    ],
+    "normals_part_x_drifted": {
+     "in_cluster": {
+      "n": 12269,
+      "drifted": 0.279,
+      "drift_mag_med": 0.604,
+      "DR_pct_med": 0.477
+     },
+     "valley": {
+      "n": 180,
+      "drifted": 0.617,
+      "drift_mag_med": 1886.707,
+      "DR_pct_med": 0.713
+     },
+     "beyond": {
+      "n": 651,
+      "drifted": 0.641,
+      "drift_mag_med": 1853.997,
+      "DR_pct_med": 0.713
+     },
+     "off": {
+      "n": 1067,
+      "drifted": 0.249,
+      "drift_mag_med": 0.689,
+      "DR_pct_med": 0.559
+     }
+    },
+    "valley_vs_drifted_fisher_p": 5.242286057799013e-19,
+    "drifted_normals_partition": {
+     "in_cluster": 0.812,
+     "valley": 0.026,
+     "beyond": 0.099,
+     "off": 0.063
+    },
+    "nondrifted_normals_partition": {
+     "in_cluster": 0.889,
+     "valley": 0.007,
+     "beyond": 0.024,
+     "off": 0.08
+    },
+    "correlations": {
+     "normals": {
+      "n_out": 1898,
+      "betw_vs_DR": [
+       0.0091044464437387,
+       0.691816158371589
+      ],
+      "betw_vs_driftmag": [
+       0.1014536422585919,
+       9.491180673500444e-06
+      ],
+      "betw_vs_CP": [
+       -0.21166667246734439,
+       1.1502008873188349e-20
+      ],
+      "perp_vs_DR": [
+       -0.23730632626611267,
+       1.0477433094047164e-25
+      ],
+      "dh_vs_DR": [
+       -0.060932816293919084,
+       0.007923314531363893
+      ],
+      "dh_vs_driftmag": [
+       -0.11615612692977488,
+       3.888974690620556e-07
+      ],
+      "valley_ind_vs_DR": [
+       0.044196872377636066,
+       1.4199436833217102e-07
+      ],
+      "off_ind_vs_DR": [
+       0.06329576963890418,
+       4.674951396300571e-14
+      ],
+      "outenv_ind_vs_DR": [
+       0.13639242799613766,
+       8.521865892838547e-60
+      ],
+      "dh_vs_DR_allwin": [
+       -0.024661387889134814,
+       0.0033299534859571713
+      ],
+      "I4_null_betw_vs_shuffled_drifted": [
+       0.012148631275282684,
+       0.5968480291647154
+      ]
+     },
+     "attacks": {
+      "n_out": 441,
+      "betw_vs_DR": [
+       -0.14238222496391106,
+       0.002728093893419859
+      ],
+      "betw_vs_driftmag": [
+       0.04908527957785223,
+       0.3037215726947997
+      ],
+      "betw_vs_CP": [
+       -0.16935276250264344,
+       0.00035406323871734055
+      ],
+      "perp_vs_DR": [
+       0.11147602762328773,
+       0.01919843978674341
+      ],
+      "dh_vs_DR": [
+       0.14409829262482313,
+       0.0024187790727344116
+      ],
+      "dh_vs_driftmag": [
+       -0.11612306956586463,
+       0.014690400083670131
+      ],
+      "valley_ind_vs_DR": [
+       0.07924265728608104,
+       0.04310367682775339
+      ],
+      "off_ind_vs_DR": [
+       -0.01580500818986868,
+       0.6870803262616332
+      ],
+      "outenv_ind_vs_DR": [
+       -0.004831706331782151,
+       0.9019976832296981
+      ],
+      "dh_vs_DR_allwin": [
+       0.024513888411910947,
+       0.5320776868034142
+      ],
+      "I4_null_betw_vs_shuffled_drifted": [
+       -0.025626647324571133,
+       0.5914607917989932
+      ]
+     },
+     "all": {
+      "n_out": 2339,
+      "betw_vs_DR": [
+       -0.05566034085752857,
+       0.00709055313635657
+      ],
+      "betw_vs_driftmag": [
+       0.041279863921159864,
+       0.04591103028384123
+      ],
+      "betw_vs_CP": [
+       -0.08502516500450336,
+       3.832552867364197e-05
+      ],
+      "perp_vs_DR": [
+       -0.3352747743648839,
+       1.5044287552682217e-62
+      ],
+      "dh_vs_DR": [
+       -0.18363293313342252,
+       3.4732642274117486e-19
+      ],
+      "dh_vs_driftmag": [
+       -0.21092974315659807,
+       6.218416915358028e-25
+      ],
+      "valley_ind_vs_DR": [
+       0.046476482536342505,
+       1.510930661771596e-08
+      ],
+      "off_ind_vs_DR": [
+       -0.002124881246305368,
+       0.7959073765859163
+      ],
+      "outenv_ind_vs_DR": [
+       0.0779712697675973,
+       1.993317992684558e-21
+      ],
+      "dh_vs_DR_allwin": [
+       -0.0575414881899265,
+       2.3843160842001167e-12
+      ],
+      "I4_null_betw_vs_shuffled_drifted": [
+       -0.006955753364540845,
+       0.7366998456933049
+      ]
+     }
+    },
+    "geometry_refit_agreement": {
+     "home": 1.0,
+     "part": 1.0,
+     "K": 16
+    },
+    "direction_drifted_out_normals": {
+     "n": 794,
+     "cos_axis_med": 0.723,
+     "frac_cos_axis_gt_0_7": 0.515,
+     "cos_drift_med": 0.557,
+     "frac_cos_drift_gt_0_7": 0.0,
+     "t_med": 0.994,
+     "perp_over_R_med": 0.809
+    },
+    "direction": {
+     "n_out_normals": 1898,
+     "cos_disp_vs_axis_hj_med": 0.177,
+     "frac_cos_axis_gt_0_7": 0.324,
+     "cos_disp_vs_late_drift_dir_med": 0.34,
+     "frac_cos_drift_gt_0_7": 0.0,
+     "late_normals_nearest_dist_med": 3.436,
+     "early_normals_nearest_dist_med": 3.376,
+     "R": 4.478,
+     "late_normals_inside_any_regime": 0.959,
+     "late_normals_second_nearest_over_nearest_med": 1.172,
+     "late_normals_t_med": 0.118,
+     "late_normals_perp_over_R_med": 0.531,
+     "home_regime_of_late_normals": [
+      0,
+      2,
+      9
+     ],
+     "home_regime_of_early_normals": [
+      0,
+      6,
+      9
+     ]
+    },
+    "subspace": {
+     "drifting_comm_channels": {
+      "n_channels": 7,
+      "K": 16,
+      "R": 4.541,
+      "normals": {
+       "in_cluster": 0.942,
+       "valley": 0.03,
+       "beyond": 0.005,
+       "off": 0.023
+      },
+      "attacks": {
+       "in_cluster": 0.331,
+       "valley": 0.008,
+       "beyond": 0.028,
+       "off": 0.633
+      },
+      "normals_by_third": [
+       {
+        "in_cluster": 0.875,
+        "valley": 0.069,
+        "beyond": 0.009,
+        "off": 0.047
+       },
+       {
+        "in_cluster": 0.984,
+        "valley": 0.004,
+        "beyond": 0.003,
+        "off": 0.009
+       },
+       {
+        "in_cluster": 0.969,
+        "valley": 0.015,
+        "beyond": 0.002,
+        "off": 0.013
+       }
+      ],
+      "drifted_normals": {
+       "in_cluster": 0.883,
+       "valley": 0.066,
+       "beyond": 0.008,
+       "off": 0.042
+      },
+      "nondrifted_normals": {
+       "in_cluster": 0.968,
+       "valley": 0.014,
+       "beyond": 0.004,
+       "off": 0.015
+      },
+      "rho_betw_DR_normals": [
+       -0.026232148718850136,
+       0.4539898612709542
+      ],
+      "rho_dh_DR_normals": [
+       0.1511744321834352,
+       3.422364063023399e-73
+      ],
+      "late_normals_inside_any_regime": 0.969,
+      "late_normals_perp_over_R_med": 0.494,
+      "n_close_pairs_D_lt_2R": 77
+     },
+     "other_channels": {
+      "n_channels": 52,
+      "K": 16,
+      "R": 4.78,
+      "normals": {
+       "in_cluster": 0.867,
+       "valley": 0.016,
+       "beyond": 0.022,
+       "off": 0.095
+      },
+      "attacks": {
+       "in_cluster": 0.334,
+       "valley": 0.011,
+       "beyond": 0.038,
+       "off": 0.617
+      },
+      "normals_by_third": [
+       {
+        "in_cluster": 0.852,
+        "valley": 0.006,
+        "beyond": 0.014,
+        "off": 0.127
+       },
+       {
+        "in_cluster": 0.813,
+        "valley": 0.021,
+        "beyond": 0.009,
+        "off": 0.156
+       },
+       {
+        "in_cluster": 0.935,
+        "valley": 0.02,
+        "beyond": 0.043,
+        "off": 0.003
+       }
+      ],
+      "drifted_normals": {
+       "in_cluster": 0.854,
+       "valley": 0.006,
+       "beyond": 0.011,
+       "off": 0.13
+      },
+      "nondrifted_normals": {
+       "in_cluster": 0.872,
+       "valley": 0.02,
+       "beyond": 0.027,
+       "off": 0.081
+      },
+      "rho_betw_DR_normals": [
+       0.20476554233309513,
+       2.7167329898867843e-19
+      ],
+      "rho_dh_DR_normals": [
+       -0.16417235727493795,
+       3.707422965859328e-86
+      ],
+      "late_normals_inside_any_regime": 0.935,
+      "late_normals_perp_over_R_med": 0.548,
+      "n_close_pairs_D_lt_2R": 72
+     }
+    },
+    "attack_typing": {
+     "in_cluster": {
+      "n": 211,
+      "n_difficult": 118,
+      "flagged_head": 0.72,
+      "flagged_cp": 0.46,
+      "typed_of_head_flagged": {
+       "changepoint": 0.638,
+       "drift": 0.151,
+       "subthreshold": 0.211
+      },
+      "drifted_frac": 0.313,
+      "auroc_head": 0.853,
+      "auroc_cp": 0.841,
+      "auroc_dr": 0.38,
+      "global_pct_med": {
+       "head": 0.929,
+       "cp": 0.926,
+       "dr": 0.181
+      },
+      "local_pct_med": {
+       "head": 0.952,
+       "cp": 0.939
+      }
+     },
+     "valley": {
+      "n": 2,
+      "n_difficult": 0,
+      "flagged_head": 0.5,
+      "flagged_cp": 0.5,
+      "typed_of_head_flagged": {
+       "changepoint": 1.0,
+       "drift": 0.0,
+       "subthreshold": 0.0
+      },
+      "drifted_frac": 1.0,
+      "auroc_head": 0.917,
+      "auroc_cp": 0.781,
+      "auroc_dr": 0.847,
+      "global_pct_med": {
+       "head": 0.917,
+       "cp": 0.781,
+       "dr": 0.713
+      },
+      "local_pct_med": {
+       "head": 0.894,
+       "cp": 0.812
+      }
+     },
+     "beyond": {
+      "n": 13,
+      "n_difficult": 8,
+      "flagged_head": 0.923,
+      "flagged_cp": 0.846,
+      "typed_of_head_flagged": {
+       "changepoint": 0.917,
+       "drift": 0.0,
+       "subthreshold": 0.083
+      },
+      "drifted_frac": 0.154,
+      "auroc_head": 0.979,
+      "auroc_cp": 0.975,
+      "auroc_dr": 0.332,
+      "global_pct_med": {
+       "head": 0.999,
+       "cp": 0.998,
+       "dr": 0.25
+      },
+      "local_pct_med": {
+       "head": 0.998,
+       "cp": 0.998
+      }
+     },
+     "off": {
+      "n": 426,
+      "n_difficult": 41,
+      "flagged_head": 1.0,
+      "flagged_cp": 0.972,
+      "typed_of_head_flagged": {
+       "changepoint": 0.972,
+       "drift": 0.007,
+       "subthreshold": 0.021
+      },
+      "drifted_frac": 0.108,
+      "auroc_head": 0.997,
+      "auroc_cp": 0.996,
+      "auroc_dr": 0.308,
+      "global_pct_med": {
+       "head": 0.999,
+       "cp": 0.999,
+       "dr": 0.232
+      },
+      "local_pct_med": {
+       "head": 0.999,
+       "cp": 0.999
+      }
+     },
+     "all": {
+      "n": 652,
+      "n_difficult": 167,
+      "flagged_head": 0.906,
+      "flagged_cp": 0.802,
+      "typed_of_head_flagged": {
+       "changepoint": 0.885,
+       "drift": 0.044,
+       "subthreshold": 0.071
+      },
+      "drifted_frac": 0.178,
+      "auroc_head": 0.95,
+      "auroc_cp": 0.944,
+      "auroc_dr": 0.333,
+      "global_pct_med": {
+       "head": 0.999,
+       "cp": 0.998,
+       "dr": 0.231
+      },
+      "local_pct_med": {
+       "head": 0.999,
+       "cp": 0.999
+      }
+     }
+    }
+   },
+   "1": {
+    "share": {
+     "normals": {
+      "in_cluster": 0.859,
+      "valley": 0.017,
+      "beyond": 0.06,
+      "off": 0.064
+     },
+     "attacks": {
+      "in_cluster": 0.314,
+      "valley": 0.006,
+      "beyond": 0.023,
+      "off": 0.656
+     },
+     "difficult": {
+      "in_cluster": 0.701,
+      "valley": 0.012,
+      "beyond": 0.048,
+      "off": 0.24
+     }
+    },
+    "share_normals_by_third": [
+     {
+      "in_cluster": 0.82,
+      "valley": 0.023,
+      "beyond": 0.125,
+      "off": 0.032
+     },
+     {
+      "in_cluster": 0.81,
+      "valley": 0.01,
+      "beyond": 0.021,
+      "off": 0.158
+     },
+     {
+      "in_cluster": 0.947,
+      "valley": 0.017,
+      "beyond": 0.034,
+      "off": 0.002
+     }
+    ],
+    "drifted_normals_by_third": [
+     0.73,
+     0.0,
+     0.154
+    ],
+    "normals_part_x_drifted": {
+     "in_cluster": {
+      "n": 12175,
+      "drifted": 0.283,
+      "drift_mag_med": 0.609,
+      "DR_pct_med": 0.483
+     },
+     "valley": {
+      "n": 237,
+      "drifted": 0.473,
+      "drift_mag_med": 0.814,
+      "DR_pct_med": 0.643
+     },
+     "beyond": {
+      "n": 854,
+      "drifted": 0.603,
+      "drift_mag_med": 1844.253,
+      "DR_pct_med": 0.713
+     },
+     "off": {
+      "n": 901,
+      "drifted": 0.152,
+      "drift_mag_med": 0.684,
+      "DR_pct_med": 0.547
+     }
+    },
+    "valley_vs_drifted_fisher_p": 1.059646276502823e-08,
+    "drifted_normals_partition": {
+     "in_cluster": 0.819,
+     "valley": 0.027,
+     "beyond": 0.122,
+     "off": 0.033
+    },
+    "nondrifted_normals_partition": {
+     "in_cluster": 0.877,
+     "valley": 0.013,
+     "beyond": 0.034,
+     "off": 0.077
+    },
+    "correlations": {
+     "normals": {
+      "n_out": 1992,
+      "betw_vs_DR": [
+       0.06213777308716493,
+       0.005532699423785092
+      ],
+      "betw_vs_driftmag": [
+       0.09080236114416186,
+       4.9385188430798595e-05
+      ],
+      "betw_vs_CP": [
+       -0.11014544229089746,
+       8.31152237142177e-07
+      ],
+      "perp_vs_DR": [
+       -0.1715008588490378,
+       1.290549164334927e-14
+      ],
+      "dh_vs_DR": [
+       0.06109829333329447,
+       0.006376494468716049
+      ],
+      "dh_vs_driftmag": [
+       0.041015607428992296,
+       0.06721665996538019
+      ],
+      "valley_ind_vs_DR": [
+       0.015873429083729428,
+       0.05885291400371009
+      ],
+      "off_ind_vs_DR": [
+       0.037641325887357586,
+       7.41343466763591e-06
+      ],
+      "outenv_ind_vs_DR": [
+       0.09825947592575038,
+       9.751572417152352e-32
+      ],
+      "dh_vs_DR_allwin": [
+       -0.04682167304338685,
+       2.4678397579178172e-08
+      ],
+      "I4_null_betw_vs_shuffled_drifted": [
+       -0.01631954014854359,
+       0.4666367387031308
+      ]
+     },
+     "attacks": {
+      "n_out": 447,
+      "betw_vs_DR": [
+       -0.1936105167897824,
+       3.772617631428774e-05
+      ],
+      "betw_vs_driftmag": [
+       0.04624112298886827,
+       0.3293462385525453
+      ],
+      "betw_vs_CP": [
+       -0.2798705822334129,
+       1.7301694253103886e-09
+      ],
+      "perp_vs_DR": [
+       0.11873353088300849,
+       0.011999054681617154
+      ],
+      "dh_vs_DR": [
+       0.15237093144155717,
+       0.0012320667358561338
+      ],
+      "dh_vs_driftmag": [
+       -0.11957934344496748,
+       0.011399852014991763
+      ],
+      "valley_ind_vs_DR": [
+       0.017903771596088577,
+       0.6481602777461938
+      ],
+      "off_ind_vs_DR": [
+       -0.014254446558651514,
+       0.7163828740217454
+      ],
+      "outenv_ind_vs_DR": [
+       -0.015707247221022586,
+       0.6889145756338138
+      ],
+      "dh_vs_DR_allwin": [
+       0.026212471136123284,
+       0.504039551077134
+      ],
+      "I4_null_betw_vs_shuffled_drifted": [
+       0.007621045742574482,
+       0.8723468783250505
+      ]
+     },
+     "all": {
+      "n_out": 2439,
+      "betw_vs_DR": [
+       0.02150463154352795,
+       0.2884122850848222
+      ],
+      "betw_vs_driftmag": [
+       0.06779880251348591,
+       0.0008067554616462407
+      ],
+      "betw_vs_CP": [
+       -0.08539385940402527,
+       2.412493072419204e-05
+      ],
+      "perp_vs_DR": [
+       -0.2657541272049374,
+       1.052557340717975e-40
+      ],
+      "dh_vs_DR": [
+       -0.08470894256477923,
+       2.8038222306991417e-05
+      ],
+      "dh_vs_driftmag": [
+       -0.0918655458883494,
+       5.514979260962377e-06
+      ],
+      "valley_ind_vs_DR": [
+       0.01801086789301894,
+       0.02834230274745234
+      ],
+      "off_ind_vs_DR": [
+       -0.02737512982763297,
+       0.0008597402321051695
+      ],
+      "outenv_ind_vs_DR": [
+       0.04449750322518224,
+       5.991465616380132e-08
+      ],
+      "dh_vs_DR_allwin": [
+       -0.07834233782483986,
+       1.287620855043849e-21
+      ],
+      "I4_null_betw_vs_shuffled_drifted": [
+       0.009116800625375406,
+       0.6526938682776389
+      ]
+     }
+    },
+    "geometry_refit_agreement": {
+     "home": 1.0,
+     "part": 1.0,
+     "K": 16
+    },
+    "direction_drifted_out_normals": {
+     "n": 764,
+     "cos_axis_med": 0.816,
+     "frac_cos_axis_gt_0_7": 0.674,
+     "cos_drift_med": 0.529,
+     "frac_cos_drift_gt_0_7": 0.0,
+     "t_med": 1.28,
+     "perp_over_R_med": 0.713
+    },
+    "direction": {
+     "n_out_normals": 1992,
+     "cos_disp_vs_axis_hj_med": 0.258,
+     "frac_cos_axis_gt_0_7": 0.413,
+     "cos_disp_vs_late_drift_dir_med": 0.296,
+     "frac_cos_drift_gt_0_7": 0.0,
+     "late_normals_nearest_dist_med": 3.542,
+     "early_normals_nearest_dist_med": 3.582,
+     "R": 4.51,
+     "late_normals_inside_any_regime": 0.947,
+     "late_normals_second_nearest_over_nearest_med": 1.162,
+     "late_normals_t_med": 0.078,
+     "late_normals_perp_over_R_med": 0.557,
+     "home_regime_of_late_normals": [
+      0,
+      4,
+      7
+     ],
+     "home_regime_of_early_normals": [
+      0,
+      5,
+      7
+     ]
+    },
+    "subspace": {
+     "drifting_comm_channels": {
+      "n_channels": 7,
+      "K": 16,
+      "R": 4.78,
+      "normals": {
+       "in_cluster": 0.945,
+       "valley": 0.036,
+       "beyond": 0.006,
+       "off": 0.013
+      },
+      "attacks": {
+       "in_cluster": 0.319,
+       "valley": 0.015,
+       "beyond": 0.011,
+       "off": 0.655
+      },
+      "normals_by_third": [
+       {
+        "in_cluster": 0.885,
+        "valley": 0.086,
+        "beyond": 0.013,
+        "off": 0.016
+       },
+       {
+        "in_cluster": 0.982,
+        "valley": 0.002,
+        "beyond": 0.003,
+        "off": 0.013
+       },
+       {
+        "in_cluster": 0.968,
+        "valley": 0.018,
+        "beyond": 0.003,
+        "off": 0.011
+       }
+      ],
+      "drifted_normals": {
+       "in_cluster": 0.888,
+       "valley": 0.081,
+       "beyond": 0.013,
+       "off": 0.018
+      },
+      "nondrifted_normals": {
+       "in_cluster": 0.969,
+       "valley": 0.016,
+       "beyond": 0.004,
+       "off": 0.011
+      },
+      "rho_betw_DR_normals": [
+       0.035867510711564854,
+       0.3152372807054114
+      ],
+      "rho_dh_DR_normals": [
+       0.15936948775028148,
+       3.0909410550718353e-81
+      ],
+      "late_normals_inside_any_regime": 0.968,
+      "late_normals_perp_over_R_med": 0.478,
+      "n_close_pairs_D_lt_2R": 63
+     },
+     "other_channels": {
+      "n_channels": 52,
+      "K": 16,
+      "R": 4.684,
+      "normals": {
+       "in_cluster": 0.839,
+       "valley": 0.017,
+       "beyond": 0.047,
+       "off": 0.097
+      },
+      "attacks": {
+       "in_cluster": 0.298,
+       "valley": 0.011,
+       "beyond": 0.052,
+       "off": 0.64
+      },
+      "normals_by_third": [
+       {
+        "in_cluster": 0.824,
+        "valley": 0.006,
+        "beyond": 0.044,
+        "off": 0.126
+       },
+       {
+        "in_cluster": 0.781,
+        "valley": 0.02,
+        "beyond": 0.038,
+        "off": 0.161
+       },
+       {
+        "in_cluster": 0.912,
+        "valley": 0.024,
+        "beyond": 0.058,
+        "off": 0.005
+       }
+      ],
+      "drifted_normals": {
+       "in_cluster": 0.835,
+       "valley": 0.006,
+       "beyond": 0.026,
+       "off": 0.132
+      },
+      "nondrifted_normals": {
+       "in_cluster": 0.841,
+       "valley": 0.021,
+       "beyond": 0.056,
+       "off": 0.082
+      },
+      "rho_betw_DR_normals": [
+       0.21383571684243605,
+       5.720849528427074e-25
+      ],
+      "rho_dh_DR_normals": [
+       -0.11572312071097042,
+       1.9522331391971806e-43
+      ],
+      "late_normals_inside_any_regime": 0.912,
+      "late_normals_perp_over_R_med": 0.565,
+      "n_close_pairs_D_lt_2R": 72
+     }
+    },
+    "attack_typing": {
+     "in_cluster": {
+      "n": 205,
+      "n_difficult": 117,
+      "flagged_head": 0.712,
+      "flagged_cp": 0.459,
+      "typed_of_head_flagged": {
+       "changepoint": 0.644,
+       "drift": 0.137,
+       "subthreshold": 0.219
+      },
+      "drifted_frac": 0.317,
+      "auroc_head": 0.85,
+      "auroc_cp": 0.837,
+      "auroc_dr": 0.385,
+      "global_pct_med": {
+       "head": 0.928,
+       "cp": 0.923,
+       "dr": 0.205
+      },
+      "local_pct_med": {
+       "head": 0.947,
+       "cp": 0.932
+      }
+     },
+     "valley": {
+      "n": 4,
+      "n_difficult": 2,
+      "flagged_head": 1.0,
+      "flagged_cp": 0.5,
+      "typed_of_head_flagged": {
+       "changepoint": 0.5,
+       "drift": 0.25,
+       "subthreshold": 0.25
+      },
+      "drifted_frac": 0.5,
+      "auroc_head": 0.959,
+      "auroc_cp": 0.952,
+      "auroc_dr": 0.478,
+      "global_pct_med": {
+       "head": 0.961,
+       "cp": 0.95,
+       "dr": 0.437
+      },
+      "local_pct_med": {
+       "head": 0.981,
+       "cp": 0.961
+      }
+     },
+     "beyond": {
+      "n": 15,
+      "n_difficult": 8,
+      "flagged_head": 0.867,
+      "flagged_cp": 0.8,
+      "typed_of_head_flagged": {
+       "changepoint": 0.923,
+       "drift": 0.0,
+       "subthreshold": 0.077
+      },
+      "drifted_frac": 0.067,
+      "auroc_head": 0.955,
+      "auroc_cp": 0.956,
+      "auroc_dr": 0.272,
+      "global_pct_med": {
+       "head": 0.996,
+       "cp": 0.996,
+       "dr": 0.247
+      },
+      "local_pct_med": {
+       "head": 0.996,
+       "cp": 0.996
+      }
+     },
+     "off": {
+      "n": 428,
+      "n_difficult": 40,
+      "flagged_head": 1.0,
+      "flagged_cp": 0.97,
+      "typed_of_head_flagged": {
+       "changepoint": 0.97,
+       "drift": 0.012,
+       "subthreshold": 0.019
+      },
+      "drifted_frac": 0.112,
+      "auroc_head": 0.997,
+      "auroc_cp": 0.995,
+      "auroc_dr": 0.309,
+      "global_pct_med": {
+       "head": 0.999,
+       "cp": 0.999,
+       "dr": 0.231
+      },
+      "local_pct_med": {
+       "head": 0.999,
+       "cp": 0.999
+      }
+     },
+     "all": {
+      "n": 652,
+      "n_difficult": 167,
+      "flagged_head": 0.906,
+      "flagged_cp": 0.802,
+      "typed_of_head_flagged": {
+       "changepoint": 0.885,
+       "drift": 0.044,
+       "subthreshold": 0.071
+      },
+      "drifted_frac": 0.178,
+      "auroc_head": 0.95,
+      "auroc_cp": 0.944,
+      "auroc_dr": 0.333,
+      "global_pct_med": {
+       "head": 0.999,
+       "cp": 0.998,
+       "dr": 0.231
+      },
+      "local_pct_med": {
+       "head": 0.999,
+       "cp": 0.999
+      }
+     }
+    }
+   },
+   "2": {
+    "share": {
+     "normals": {
+      "in_cluster": 0.889,
+      "valley": 0.013,
+      "beyond": 0.038,
+      "off": 0.06
+     },
+     "attacks": {
+      "in_cluster": 0.322,
+      "valley": 0.005,
+      "beyond": 0.011,
+      "off": 0.663
+     },
+     "difficult": {
+      "in_cluster": 0.707,
+      "valley": 0.012,
+      "beyond": 0.024,
+      "off": 0.257
+     }
+    },
+    "share_normals_by_third": [
+     {
+      "in_cluster": 0.877,
+      "valley": 0.023,
+      "beyond": 0.075,
+      "off": 0.025
+     },
+     {
+      "in_cluster": 0.829,
+      "valley": 0.007,
+      "beyond": 0.01,
+      "off": 0.155
+     },
+     {
+      "in_cluster": 0.96,
+      "valley": 0.009,
+      "beyond": 0.028,
+      "off": 0.003
+     }
+    ],
+    "drifted_normals_by_third": [
+     0.73,
+     0.0,
+     0.154
+    ],
+    "normals_part_x_drifted": {
+     "in_cluster": {
+      "n": 12595,
+      "drifted": 0.291,
+      "drift_mag_med": 0.609,
+      "DR_pct_med": 0.485
+     },
+     "valley": {
+      "n": 180,
+      "drifted": 0.567,
+      "drift_mag_med": 1853.896,
+      "DR_pct_med": 0.713
+     },
+     "beyond": {
+      "n": 535,
+      "drifted": 0.636,
+      "drift_mag_med": 1852.413,
+      "DR_pct_med": 0.713
+     },
+     "off": {
+      "n": 857,
+      "drifted": 0.127,
+      "drift_mag_med": 0.682,
+      "DR_pct_med": 0.546
+     }
+    },
+    "valley_vs_drifted_fisher_p": 5.105069360214965e-14,
+    "drifted_normals_partition": {
+     "in_cluster": 0.869,
+     "valley": 0.024,
+     "beyond": 0.081,
+     "off": 0.026
+    },
+    "nondrifted_normals_partition": {
+     "in_cluster": 0.897,
+     "valley": 0.008,
+     "beyond": 0.02,
+     "off": 0.075
+    },
+    "correlations": {
+     "normals": {
+      "n_out": 1572,
+      "betw_vs_DR": [
+       -0.011306367255106019,
+       0.6541981411209409
+      ],
+      "betw_vs_driftmag": [
+       0.043899959838519804,
+       0.0818555223933878
+      ],
+      "betw_vs_CP": [
+       -0.18046809251988236,
+       5.642395715891153e-13
+      ],
+      "perp_vs_DR": [
+       -0.16151579415661085,
+       1.1861700228988608e-10
+      ],
+      "dh_vs_DR": [
+       -0.20852186758341187,
+       6.656351904688113e-17
+      ],
+      "dh_vs_driftmag": [
+       -0.21794438669048347,
+       2.340463316830864e-18
+      ],
+      "valley_ind_vs_DR": [
+       0.03432209643876849,
+       4.388020436163954e-05
+      ],
+      "off_ind_vs_DR": [
+       0.03532990022236733,
+       2.5982604744299857e-05
+      ],
+      "outenv_ind_vs_DR": [
+       0.10413909186311955,
+       1.8444854008423236e-35
+      ],
+      "dh_vs_DR_allwin": [
+       0.019551666247455055,
+       0.01995684597627595
+      ],
+      "I4_null_betw_vs_shuffled_drifted": [
+       0.018873411786880352,
+       0.4545971019046147
+      ]
+     },
+     "attacks": {
+      "n_out": 442,
+      "betw_vs_DR": [
+       -0.12137717070694931,
+       0.010648343414107201
+      ],
+      "betw_vs_driftmag": [
+       0.021572278215083784,
+       0.6510532129797179
+      ],
+      "betw_vs_CP": [
+       -0.2822693570197458,
+       1.5331221756551213e-09
+      ],
+      "perp_vs_DR": [
+       0.09152500634092188,
+       0.054506228674292063
+      ],
+      "dh_vs_DR": [
+       0.10531986699251406,
+       0.02682091477849118
+      ],
+      "dh_vs_driftmag": [
+       -0.15020416736401568,
+       0.0015407102185216355
+      ],
+      "valley_ind_vs_DR": [
+       -0.01455693652054653,
+       0.7106319752488265
+      ],
+      "off_ind_vs_DR": [
+       0.018786351064837708,
+       0.6320681598504697
+      ],
+      "outenv_ind_vs_DR": [
+       0.03176445352966686,
+       0.41809493338377973
+      ],
+      "dh_vs_DR_allwin": [
+       0.04628018269700405,
+       0.2379618677291521
+      ],
+      "I4_null_betw_vs_shuffled_drifted": [
+       -0.055308081253439736,
+       0.24589352819129173
+      ]
+     },
+     "all": {
+      "n_out": 2014,
+      "betw_vs_DR": [
+       -0.03810221204654156,
+       0.08735921935234782
+      ],
+      "betw_vs_driftmag": [
+       0.021445373442638863,
+       0.33608464068679156
+      ],
+      "betw_vs_CP": [
+       -0.12053574133106795,
+       5.76986100778006e-08
+      ],
+      "perp_vs_DR": [
+       -0.3320757088378921,
+       4.773051528360867e-53
+      ],
+      "dh_vs_DR": [
+       -0.32844347992258716,
+       7.245219888672971e-52
+      ],
+      "dh_vs_driftmag": [
+       -0.3170725259105409,
+       2.852239520778846e-48
+      ],
+      "valley_ind_vs_DR": [
+       0.03439858232196269,
+       2.8100276023222303e-05
+      ],
+      "off_ind_vs_DR": [
+       -0.02839066297953662,
+       0.0005472500457482377
+      ],
+      "outenv_ind_vs_DR": [
+       0.04674309747202496,
+       1.2495531526572727e-08
+      ],
+      "dh_vs_DR_allwin": [
+       -0.01588496069877849,
+       0.05315152479011934
+      ],
+      "I4_null_betw_vs_shuffled_drifted": [
+       0.011559753928428184,
+       0.6041308088142954
+      ]
+     }
+    },
+    "geometry_refit_agreement": {
+     "home": 1.0,
+     "part": 1.0,
+     "K": 16
+    },
+    "direction_drifted_out_normals": {
+     "n": 551,
+     "cos_axis_med": 0.656,
+     "frac_cos_axis_gt_0_7": 0.403,
+     "cos_drift_med": 0.486,
+     "frac_cos_drift_gt_0_7": 0.0,
+     "t_med": 1.269,
+     "perp_over_R_med": 0.896
+    },
+    "direction": {
+     "n_out_normals": 1572,
+     "cos_disp_vs_axis_hj_med": 0.105,
+     "frac_cos_axis_gt_0_7": 0.248,
+     "cos_disp_vs_late_drift_dir_med": 0.271,
+     "frac_cos_drift_gt_0_7": 0.0,
+     "late_normals_nearest_dist_med": 3.363,
+     "early_normals_nearest_dist_med": 3.431,
+     "R": 4.339,
+     "late_normals_inside_any_regime": 0.96,
+     "late_normals_second_nearest_over_nearest_med": 1.162,
+     "late_normals_t_med": 0.33,
+     "late_normals_perp_over_R_med": 0.579,
+     "home_regime_of_late_normals": [
+      13,
+      3,
+      1
+     ],
+     "home_regime_of_early_normals": [
+      13,
+      14,
+      3
+     ]
+    },
+    "subspace": {
+     "drifting_comm_channels": {
+      "n_channels": 7,
+      "K": 16,
+      "R": 4.614,
+      "normals": {
+       "in_cluster": 0.936,
+       "valley": 0.046,
+       "beyond": 0.006,
+       "off": 0.011
+      },
+      "attacks": {
+       "in_cluster": 0.35,
+       "valley": 0.009,
+       "beyond": 0.017,
+       "off": 0.624
+      },
+      "normals_by_third": [
+       {
+        "in_cluster": 0.869,
+        "valley": 0.105,
+        "beyond": 0.013,
+        "off": 0.013
+       },
+       {
+        "in_cluster": 0.987,
+        "valley": 0.001,
+        "beyond": 0.002,
+        "off": 0.009
+       },
+       {
+        "in_cluster": 0.955,
+        "valley": 0.032,
+        "beyond": 0.003,
+        "off": 0.01
+       }
+      ],
+      "drifted_normals": {
+       "in_cluster": 0.872,
+       "valley": 0.101,
+       "beyond": 0.013,
+       "off": 0.014
+      },
+      "nondrifted_normals": {
+       "in_cluster": 0.964,
+       "valley": 0.024,
+       "beyond": 0.003,
+       "off": 0.009
+      },
+      "rho_betw_DR_normals": [
+       -0.0947643501414006,
+       0.004435777867912143
+      ],
+      "rho_dh_DR_normals": [
+       0.07100571556588879,
+       2.641745792631201e-17
+      ],
+      "late_normals_inside_any_regime": 0.955,
+      "late_normals_perp_over_R_med": 0.46,
+      "n_close_pairs_D_lt_2R": 63
+     },
+     "other_channels": {
+      "n_channels": 52,
+      "K": 16,
+      "R": 4.673,
+      "normals": {
+       "in_cluster": 0.843,
+       "valley": 0.023,
+       "beyond": 0.036,
+       "off": 0.098
+      },
+      "attacks": {
+       "in_cluster": 0.301,
+       "valley": 0.021,
+       "beyond": 0.038,
+       "off": 0.64
+      },
+      "normals_by_third": [
+       {
+        "in_cluster": 0.826,
+        "valley": 0.015,
+        "beyond": 0.025,
+        "off": 0.133
+       },
+       {
+        "in_cluster": 0.796,
+        "valley": 0.032,
+        "beyond": 0.014,
+        "off": 0.158
+       },
+       {
+        "in_cluster": 0.907,
+        "valley": 0.023,
+        "beyond": 0.067,
+        "off": 0.003
+       }
+      ],
+      "drifted_normals": {
+       "in_cluster": 0.833,
+       "valley": 0.013,
+       "beyond": 0.02,
+       "off": 0.134
+      },
+      "nondrifted_normals": {
+       "in_cluster": 0.847,
+       "valley": 0.028,
+       "beyond": 0.042,
+       "off": 0.083
+      },
+      "rho_betw_DR_normals": [
+       0.25842540874253905,
+       3.2297585584006154e-35
+      ],
+      "rho_dh_DR_normals": [
+       -0.15062197745556113,
+       1.1499947455882468e-72
+      ],
+      "late_normals_inside_any_regime": 0.907,
+      "late_normals_perp_over_R_med": 0.57,
+      "n_close_pairs_D_lt_2R": 73
+     }
+    },
+    "attack_typing": {
+     "in_cluster": {
+      "n": 210,
+      "n_difficult": 118,
+      "flagged_head": 0.719,
+      "flagged_cp": 0.471,
+      "typed_of_head_flagged": {
+       "changepoint": 0.656,
+       "drift": 0.132,
+       "subthreshold": 0.212
+      },
+      "drifted_frac": 0.286,
+      "auroc_head": 0.852,
+      "auroc_cp": 0.841,
+      "auroc_dr": 0.361,
+      "global_pct_med": {
+       "head": 0.928,
+       "cp": 0.925,
+       "dr": 0.17
+      },
+      "local_pct_med": {
+       "head": 0.948,
+       "cp": 0.936
+      }
+     },
+     "valley": {
+      "n": 3,
+      "n_difficult": 2,
+      "flagged_head": 1.0,
+      "flagged_cp": 0.333,
+      "typed_of_head_flagged": {
+       "changepoint": 0.333,
+       "drift": 0.333,
+       "subthreshold": 0.333
+      },
+      "drifted_frac": 0.333,
+      "auroc_head": 0.963,
+      "auroc_cp": 0.948,
+      "auroc_dr": 0.336,
+      "global_pct_med": {
+       "head": 0.974,
+       "cp": 0.927,
+       "dr": 0.105
+      },
+      "local_pct_med": {
+       "head": 0.991,
+       "cp": 0.967
+      }
+     },
+     "beyond": {
+      "n": 7,
+      "n_difficult": 4,
+      "flagged_head": 0.714,
+      "flagged_cp": 0.714,
+      "typed_of_head_flagged": {
+       "changepoint": 1.0,
+       "drift": 0.0,
+       "subthreshold": 0.0
+      },
+      "drifted_frac": 0.286,
+      "auroc_head": 0.952,
+      "auroc_cp": 0.916,
+      "auroc_dr": 0.5,
+      "global_pct_med": {
+       "head": 0.999,
+       "cp": 0.999,
+       "dr": 0.496
+      },
+      "local_pct_med": {
+       "head": 0.999,
+       "cp": 0.999
+      }
+     },
+     "off": {
+      "n": 432,
+      "n_difficult": 43,
+      "flagged_head": 1.0,
+      "flagged_cp": 0.968,
+      "typed_of_head_flagged": {
+       "changepoint": 0.968,
+       "drift": 0.012,
+       "subthreshold": 0.021
+      },
+      "drifted_frac": 0.123,
+      "auroc_head": 0.997,
+      "auroc_cp": 0.995,
+      "auroc_dr": 0.317,
+      "global_pct_med": {
+       "head": 0.999,
+       "cp": 0.999,
+       "dr": 0.232
+      },
+      "local_pct_med": {
+       "head": 0.999,
+       "cp": 0.999
+      }
+     },
+     "all": {
+      "n": 652,
+      "n_difficult": 167,
+      "flagged_head": 0.906,
+      "flagged_cp": 0.802,
+      "typed_of_head_flagged": {
+       "changepoint": 0.885,
+       "drift": 0.044,
+       "subthreshold": 0.071
+      },
+      "drifted_frac": 0.178,
+      "auroc_head": 0.95,
+      "auroc_cp": 0.944,
+      "auroc_dr": 0.333,
+      "global_pct_med": {
+       "head": 0.999,
+       "cp": 0.998,
+       "dr": 0.231
+      },
+      "local_pct_med": {
+       "head": 0.999,
+       "cp": 0.999
+      }
+     }
+    }
+   }
+  }
+ }
+}

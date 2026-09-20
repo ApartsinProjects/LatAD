@@ -1,0 +1,145 @@
+{
+ "control": {
+  "fixed_kde": {
+   "auroc": 0.999,
+   "rare_vs_anom_auroc": 0.994,
+   "rare_normal_score": 22.11,
+   "common_normal_score": 16.664
+  },
+  "lof": {
+   "auroc": 0.993,
+   "rare_vs_anom_auroc": 0.994,
+   "rare_normal_score": 1.071,
+   "common_normal_score": 1.071
+  },
+  "rare_penalty_ratio_lof": 1.0,
+  "rare_penalty_ratio_fixed_kde": 1.327,
+  "INVARIANT_lof_less_rare_penalty": true
+ },
+ "datasets": [
+  {
+   "dataset": "SKAB",
+   "n_win": 631,
+   "n_diff": 73,
+   "scores": {
+    "gmm": {
+     "diff": {
+      "mean": 0.947,
+      "std": 0.0074,
+      "per_seed": [
+       0.9405,
+       0.9603,
+       0.9433,
+       0.9409,
+       0.9498
+      ]
+     },
+     "full": {
+      "mean": 0.6032,
+      "std": 0.0175,
+      "per_seed": [
+       0.6138,
+       0.5862,
+       0.5897,
+       0.5937,
+       0.6324
+      ]
+     },
+     "sparse_fpr": {
+      "mean": 0.1053,
+      "std": 0.0,
+      "per_seed": [
+       0.1053,
+       0.1053,
+       0.1053,
+       0.1053,
+       0.1053
+      ]
+     }
+    },
+    "fixed_kde": {
+     "diff": {
+      "mean": 0.939,
+      "std": 0.016,
+      "per_seed": [
+       0.9513,
+       0.9467,
+       0.9385,
+       0.9082,
+       0.95
+      ]
+     },
+     "full": {
+      "mean": 0.57,
+      "std": 0.0101,
+      "per_seed": [
+       0.5818,
+       0.5677,
+       0.5529,
+       0.5689,
+       0.5785
+      ]
+     },
+     "sparse_fpr": {
+      "mean": 0.1053,
+      "std": 0.0,
+      "per_seed": [
+       0.1053,
+       0.1053,
+       0.1053,
+       0.1053,
+       0.1053
+      ]
+     }
+    },
+    "lof": {
+     "diff": {
+      "mean": 0.9145,
+      "std": 0.0306,
+      "per_seed": [
+       0.919,
+       0.9307,
+       0.9023,
+       0.8642,
+       0.9561
+      ]
+     },
+     "full": {
+      "mean": 0.6624,
+      "std": 0.0182,
+      "per_seed": [
+       0.6789,
+       0.6536,
+       0.6343,
+       0.6603,
+       0.6849
+      ]
+     },
+     "sparse_fpr": {
+      "mean": 0.1053,
+      "std": 0.0,
+      "per_seed": [
+       0.1053,
+       0.1053,
+       0.1053,
+       0.1053,
+       0.1053
+      ]
+     }
+    }
+   },
+   "boot_adap_minus_fixed_diff": {
+    "mean": -0.0243,
+    "lo": -0.0503,
+    "hi": -0.0013,
+    "p_le0": 0.8354
+   },
+   "boot_adap_minus_gmm_diff": {
+    "mean": -0.0324,
+    "lo": -0.053,
+    "hi": -0.0141,
+    "p_le0": 0.8273
+   }
+  }
+ ]
+}

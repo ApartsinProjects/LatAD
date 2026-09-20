@@ -1,0 +1,17 @@
+Loading Cranfield normal regimes (T1/T2/T3)...
+  T1: (10372, 24)
+  T2: (9825, 24)
+  T3: (13200, 24)
+Pooled windows: (3336, 144), per-regime counts [1036  981 1319]
+[K=  8] mean_maxresp=0.937 H_norm=0.080 rho(<0.5)=0.011 rho(<0.6)=0.038  (7s)
+[K= 16] mean_maxresp=0.952 H_norm=0.048 rho(<0.5)=0.011 rho(<0.6)=0.037  (11s)
+[K= 32] mean_maxresp=0.957 H_norm=0.033 rho(<0.5)=0.006 rho(<0.6)=0.032  (16s)
+[K= 64] mean_maxresp=0.959 H_norm=0.027 rho(<0.5)=0.007 rho(<0.6)=0.027  (22s)
+[K=128] mean_maxresp=0.967 H_norm=0.018 rho(<0.5)=0.003 rho(<0.6)=0.017  (31s)
+
+Highest-entropy K = 8 (H_norm=0.0801); running variance-floor sanity check across seeds 0-2 ...
+[floor-check K=8 seed=0] H_floor=0.080 -> H_emp=0.065 (rho 0.011 -> 0.003)  frac_at_floor=0.00 comp_sd(floored)=0.874 vs emp_sd=0.920  collapse=False
+[floor-check K=8 seed=1] H_floor=0.054 -> H_emp=0.044 (rho 0.003 -> 0.002)  frac_at_floor=0.06 comp_sd(floored)=0.752 vs emp_sd=0.780  collapse=False
+[floor-check K=8 seed=2] H_floor=0.054 -> H_emp=0.041 (rho 0.004 -> 0.002)  frac_at_floor=0.09 comp_sd(floored)=0.750 vs emp_sd=0.755  collapse=False
+
+done (42s total). See E:\Projects\Backlog\LatAD\poc\_diagnostics\cranfield_a8_screen.json

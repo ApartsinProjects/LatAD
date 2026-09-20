@@ -1,0 +1,47 @@
+n_tr=2614 fit=2091 heldout=523 difficult=43 configs=9 seeds=[0, 1]
+K=12 LD= 8 seed=0: heldout NLL 12.92 (fit 10.70) q99ratio 1.17 | test difficult 0.728 all 0.787
+K=12 LD= 8 seed=1: heldout NLL 12.91 (fit 11.19) q99ratio 1.24 | test difficult 0.751 all 0.807
+K=12 LD=10 seed=0: heldout NLL 15.39 (fit 12.68) q99ratio 1.12 | test difficult 0.734 all 0.794
+K=12 LD=10 seed=1: heldout NLL 15.19 (fit 12.72) q99ratio 1.27 | test difficult 0.762 all 0.816
+K=12 LD=16 seed=0: heldout NLL 20.66 (fit 17.07) q99ratio 1.23 | test difficult 0.736 all 0.796
+K=12 LD=16 seed=1: heldout NLL 21.41 (fit 16.54) q99ratio 1.15 | test difficult 0.722 all 0.786
+K=20 LD= 8 seed=0: heldout NLL 12.60 (fit 10.66) q99ratio 1.27 | test difficult 0.746 all 0.804
+K=20 LD= 8 seed=1: heldout NLL 12.42 (fit 10.81) q99ratio 1.05 | test difficult 0.759 all 0.812
+K=20 LD= 8 seed=2: heldout NLL 12.28 (fit 10.22) q99ratio 1.29 | test difficult 0.731 all 0.792
+K=20 LD= 8 seed=3: heldout NLL 12.96 (fit 10.55) q99ratio 1.24 | test difficult 0.758 all 0.809
+K=20 LD= 8 seed=4: heldout NLL 12.81 (fit 10.78) q99ratio 1.49 | test difficult 0.741 all 0.799
+K=20 LD=10 seed=0: heldout NLL 15.13 (fit 12.18) q99ratio 1.21 | test difficult 0.741 all 0.798
+K=20 LD=10 seed=1: heldout NLL 14.47 (fit 12.61) q99ratio 0.92 | test difficult 0.735 all 0.796
+K=20 LD=10 seed=2: heldout NLL 14.26 (fit 12.34) q99ratio 1.22 | test difficult 0.743 all 0.800
+K=20 LD=16 seed=0: heldout NLL 19.88 (fit 15.66) q99ratio 1.28 | test difficult 0.735 all 0.795
+K=20 LD=16 seed=1: heldout NLL 20.68 (fit 15.68) q99ratio 1.46 | test difficult 0.738 all 0.798
+K=20 LD=16 seed=2: heldout NLL 20.38 (fit 15.99) q99ratio 1.12 | test difficult 0.732 all 0.792
+K=20 LD=10 seed=3: heldout NLL 15.37 (fit 12.37) q99ratio 1.03 | test difficult 0.721 all 0.784
+K=20 LD=10 seed=4: heldout NLL 15.35 (fit 12.37) q99ratio 1.14 | test difficult 0.729 all 0.790
+K=20 LD=16 seed=3: heldout NLL 20.02 (fit 16.13) q99ratio 1.11 | test difficult 0.730 all 0.791
+K=20 LD=16 seed=4: heldout NLL 19.88 (fit 16.33) q99ratio 0.92 | test difficult 0.747 all 0.805
+K=30 LD= 8 seed=0: heldout NLL 12.56 (fit 10.27) q99ratio 1.31 | test difficult 0.741 all 0.799
+K=30 LD= 8 seed=1: heldout NLL 12.78 (fit 10.46) q99ratio 1.07 | test difficult 0.761 all 0.815
+K=30 LD= 8 seed=2: heldout NLL 12.16 (fit 10.31) q99ratio 1.01 | test difficult 0.752 all 0.807
+K=30 LD= 8 seed=3: heldout NLL 12.44 (fit 10.34) q99ratio 1.05 | test difficult 0.752 all 0.809
+K=30 LD= 8 seed=4: heldout NLL 12.37 (fit 10.55) q99ratio 1.37 | test difficult 0.750 all 0.806
+K=30 LD=10 seed=4: heldout NLL 14.09 (fit 11.77) q99ratio 1.20 | test difficult 0.753 all 0.808
+K=30 LD=10 seed=0: heldout NLL 14.64 (fit 12.25) q99ratio 1.06 | test difficult 0.711 all 0.775
+K=30 LD=10 seed=1: heldout NLL 14.01 (fit 11.95) q99ratio 1.48 | test difficult 0.766 all 0.819
+K=30 LD=10 seed=2: heldout NLL 14.08 (fit 11.66) q99ratio 1.06 | test difficult 0.762 all 0.814
+K=30 LD=16 seed=0: heldout NLL 20.14 (fit 15.66) q99ratio 1.13 | test difficult 0.727 all 0.789
+K=30 LD=16 seed=1: heldout NLL 19.36 (fit 14.69) q99ratio 1.11 | test difficult 0.750 all 0.806
+K=30 LD=16 seed=2: heldout NLL 19.38 (fit 15.69) q99ratio 1.04 | test difficult 0.747 all 0.805
+K=30 LD=16 seed=3: heldout NLL 19.80 (fit 15.24) q99ratio 1.11 | test difficult 0.753 all 0.808
+K=30 LD=10 seed=3: heldout NLL 15.42 (fit 12.24) q99ratio 1.10 | test difficult 0.749 all 0.804
+K=30 LD=16 seed=4: heldout NLL 19.39 (fit 14.71) q99ratio 1.00 | test difficult 0.758 all 0.812
+K=12 LD= 8 seed=2: heldout NLL 12.98 (fit 10.77) q99ratio 0.93 | test difficult 0.736 all 0.796
+K=12 LD= 8 seed=3: heldout NLL 12.79 (fit 10.81) q99ratio 1.06 | test difficult 0.753 all 0.808
+K=12 LD=10 seed=2: heldout NLL 14.97 (fit 12.79) q99ratio 1.12 | test difficult 0.723 all 0.786
+K=12 LD=10 seed=3: heldout NLL 15.26 (fit 13.01) q99ratio 1.08 | test difficult 0.745 all 0.803
+K=12 LD=16 seed=2: heldout NLL 21.01 (fit 16.54) q99ratio 1.14 | test difficult 0.729 all 0.791
+K=12 LD=16 seed=3: heldout NLL 20.06 (fit 15.70) q99ratio 0.91 | test difficult 0.739 all 0.798
+K=12 LD= 8 seed=4: heldout NLL 12.32 (fit 10.72) q99ratio 1.14 | test difficult 0.758 all 0.812
+K=12 LD=10 seed=4: heldout NLL 15.47 (fit 12.85) q99ratio 1.16 | test difficult 0.737 all 0.796
+K=12 LD=16 seed=4: heldout NLL 20.76 (fit 16.51) q99ratio 0.99 | test difficult 0.726 all 0.789
+done

@@ -1,0 +1,13 @@
+SKAB train 400 test 631 hard 185 easy 69
+floor 0.05 seed 0: rho=0.58 H=0.291 | emp rho=0.003 H=0.048 | at_floor=0.958 sd 0.229 vs emp 0.111 | lam=1.075 OFF=0.5 ON1=0.605 lift1=+0.105 ON2=0.645 lift2=+0.145 | all OFF 0.62 ON1 0.683
+floor 0.05 seed 1: rho=0.552 H=0.322 | emp rho=0.003 H=0.045 | at_floor=0.885 sd 0.241 vs emp 0.127 | lam=1.006 OFF=0.452 ON1=0.496 lift1=+0.044 ON2=0.542 lift2=+0.090 | all OFF 0.592 ON1 0.623
+floor 0.05 seed 2: rho=0.453 H=0.275 | emp rho=0.005 H=0.076 | at_floor=0.844 sd 0.244 vs emp 0.152 | lam=0.756 OFF=0.469 ON1=0.538 lift1=+0.068 ON2=0.581 lift2=+0.112 | all OFF 0.598 ON1 0.648
+floor 0.02 seed 0: rho=0.198 H=0.225 | emp rho=0.0 H=0.046 | at_floor=0.854 sd 0.155 vs emp 0.082 | lam=0.119 OFF=0.496 ON1=0.601 lift1=+0.105 ON2=0.65 lift2=+0.154 | all OFF 0.619 ON1 0.685
+floor 0.02 seed 1: rho=0.17 H=0.246 | emp rho=0.003 H=0.047 | at_floor=0.719 sd 0.173 vs emp 0.106 | lam=0.05 OFF=0.461 ON1=0.512 lift1=+0.051 ON2=0.561 lift2=+0.100 | all OFF 0.6 ON1 0.637
+floor 0.02 seed 2: rho=0.098 H=0.217 | emp rho=0.0 H=0.052 | at_floor=0.719 sd 0.181 vs emp 0.118 | lam=0.0 OFF=0.457 ON1=0.504 lift1=+0.047 ON2=0.549 lift2=+0.091 | all OFF 0.589 ON1 0.623
+floor 0.01 seed 0: rho=0.0 H=0.011 | emp rho=0.003 H=0.003 | at_floor=0.708 sd 0.122 vs emp 0.093 | lam=0.0 OFF=0.553 ON1=0.531 lift1=-0.021 ON2=0.513 lift2=-0.040 | all OFF 0.661 ON1 0.646
+floor 0.01 seed 1: rho=0.007 H=0.119 | emp rho=0.0 H=0.044 | at_floor=0.448 sd 0.15 vs emp 0.096 | lam=0.0 OFF=0.454 ON1=0.473 lift1=+0.019 ON2=0.519 lift2=+0.065 | all OFF 0.592 ON1 0.607
+floor 0.01 seed 2: rho=0.043 H=0.156 | emp rho=0.0 H=0.041 | at_floor=0.552 sd 0.154 vs emp 0.13 | lam=0.0 OFF=0.407 ON1=0.429 lift1=+0.022 ON2=0.502 lift2=+0.095 | all OFF 0.557 ON1 0.569
+WADI floor 0.05: {'rho': 0.013, 'H': 0.053, 'rho_emp': 0.015, 'H_emp': 0.057, 'frac_at_floor': 0.035, 'comp_sd': 0.781, 'emp_sd': 0.879, 'basin_lam': 0.0}
+WADI floor 0.01: {'rho': 0.012, 'H': 0.053, 'rho_emp': 0.014, 'H_emp': 0.057, 'frac_at_floor': 0.0, 'comp_sd': 0.78, 'emp_sd': 0.877, 'basin_lam': 0.0}
+done

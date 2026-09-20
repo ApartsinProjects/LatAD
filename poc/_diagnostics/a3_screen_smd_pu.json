@@ -1,0 +1,47 @@
+{
+ "SKAB": {
+  "n_train": 400,
+  "feat_dim": 48,
+  "entropy": 0.268,
+  "rho": 0.102,
+  "mean_maxresp": 0.658
+ },
+ "SMD:1-1": {
+  "n_train": 948,
+  "feat_dim": 228,
+  "entropy": 0.049,
+  "rho": 0.006,
+  "mean_maxresp": 0.946
+ },
+ "SMD:1-4": {
+  "n_train": 789,
+  "feat_dim": 228,
+  "entropy": 0.039,
+  "rho": 0.001,
+  "mean_maxresp": 0.957
+ },
+ "SMD:2-1": {
+  "n_train": 788,
+  "feat_dim": 228,
+  "entropy": 0.048,
+  "rho": 0.008,
+  "mean_maxresp": 0.949
+ },
+ "SMD:3-7": {
+  "n_train": 955,
+  "feat_dim": 228,
+  "entropy": 0.056,
+  "rho": 0.008,
+  "mean_maxresp": 0.94
+ },
+ "Paderborn": {
+  "n_train": 1200,
+  "feat_dim": 78,
+  "entropy": 0.047,
+  "rho": 0.0,
+  "mean_maxresp": 0.948,
+  "cond_nn_purity": 0.679,
+  "n_conds": 4,
+  "n_bearings": 5
+ }
+}

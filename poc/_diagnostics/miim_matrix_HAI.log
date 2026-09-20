@@ -1,0 +1,9 @@
+
+===== HAI =====
+ n_train=18359 n_test=14819 anomalies=652 D_raw=354 D_eff=306 channels=59
+ [A1/A2] BIC sweep
+   GMM K=  1 BIC=1.194e+07 ll_fit=-406.203 ll_ho=-479.649 (2.0s)
+   GMM K=  2 BIC=9.35e+06 ll_fit=-317.910 ll_ho=-501.121 (0.7s)
+   GMM K=  4 BIC=6.172e+06 ll_fit=-209.331 ll_ho=-501.121 (1.9s)
+   GMM K=  8 BIC=3.676e+06 ll_fit=-123.554 ll_ho=-293.965 (5.0s)
+   GMM K= 16 BIC=2.023e+06 ll_fit=-65.679 ll_ho=-221.145 (21.3s)

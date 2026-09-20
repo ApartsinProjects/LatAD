@@ -1,0 +1,8 @@
+[SWaT_canon/clean_reb] TRIM=0 leading train windows dropped -> 1616 train windows
+[SWaT_canon/clean_reb] S=24 communities, method=average maxsz=25 minsz=3, nfit=1292 ncal=324
+[SWaT_canon/clean_reb] seed 0: 24 experts (0 skipped) 30s
+[SWaT_canon/clean_reb] seed 1: 24 experts (0 skipped) 56s
+[SWaT_canon/clean_reb] seed 2: 24 experts (0 skipped) 83s
+[SWaT_canon/clean_reb] seed 3: 24 experts (0 skipped) 110s
+[SWaT_canon/clean_reb] seed 4: 24 experts (0 skipped) 137s
+saved E:\Projects\Backlog\LatAD\poc\sota_bundle\experts_variants\clean_reb\expert_SWaT_canon.npz

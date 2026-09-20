@@ -1,0 +1,44 @@
+== WADI
+  [baseline] K=16: train-empty modes 4, test mass 55.106% (286 win), runs>=30: 3 longest 131 frac_in_ge30 0.83  [(286, 359, 74), (363, 493, 131), (510, 543, 34)]
+  [baseline] K=32: train-empty modes 5, test mass 55.106% (286 win), runs>=30: 3 longest 131 frac_in_ge30 0.83  [(286, 359, 74), (363, 493, 131), (510, 543, 34)]
+  [baseline] K=64: train-empty modes 10, test mass 54.913% (285 win), runs>=30: 3 longest 130 frac_in_ge30 0.83  [(286, 359, 74), (363, 492, 130), (510, 543, 34)]
+    LatAD   AUROC 0.7969 -> 0.7949 | diff 0.7013 -> 0.6935 | FPR@fixed1% 0.0116 -> 0.0177 | FPR@fixed5% 0.0501 -> 0.0496 | TPR@1%own 0.411 -> 0.393 | TPR@5%own 0.518 -> 0.518 | flagged-in-block {'fpr1': 0.16666666666666666, 'fpr5': 0.46153846153846156}
+    maxz    AUROC 0.5583 -> 0.7874 | diff 0.3073 -> 0.5655 | FPR@fixed1% 0.0000 -> 0.0000 | FPR@fixed5% 0.0000 -> 0.0000 | TPR@1%own 0.000 -> 0.000 | TPR@5%own 0.000 -> 0.000 | flagged-in-block {'fpr1': None, 'fpr5': None, 'train99': 0.8229166666666666}
+    IF      AUROC 0.7261 -> 0.7044 | diff 0.6755 -> 0.6465 | FPR@fixed1% 0.0116 -> 0.0177 | FPR@fixed5% 0.0501 -> 0.0603 | TPR@1%own 0.143 -> 0.089 | TPR@5%own 0.304 -> 0.268 | flagged-in-block {'fpr1': 0.16666666666666666, 'fpr5': 0.34615384615384615}
+    AE      AUROC 0.7433 -> 0.8412 | diff 0.4261 -> 0.6323 | FPR@fixed1% 0.0116 -> 0.0142 | FPR@fixed5% 0.0501 -> 0.0496 | TPR@1%own 0.482 -> 0.446 | TPR@5%own 0.518 -> 0.518 | flagged-in-block {'fpr1': 0.3333333333333333, 'fpr5': 0.46153846153846156}
+    USAD    AUROC 0.6979 -> 0.7960 | diff 0.3028 -> 0.5075 | FPR@fixed1% 0.0116 -> 0.0071 | FPR@fixed5% 0.0501 -> 0.0603 | TPR@1%own 0.339 -> 0.339 | TPR@5%own 0.446 -> 0.446 | flagged-in-block {'fpr1': 0.6666666666666666, 'fpr5': 0.34615384615384615}
+    TranAD  AUROC 0.7211 -> 0.8210 | diff 0.3326 -> 0.5649 | FPR@fixed1% 0.0116 -> 0.0142 | FPR@fixed5% 0.0501 -> 0.0496 | TPR@1%own 0.339 -> 0.339 | TPR@5%own 0.500 -> 0.500 | flagged-in-block {'fpr1': 0.3333333333333333, 'fpr5': 0.46153846153846156}
+  [baseline] exclusion blocks [(286, 359, 74), (363, 493, 131), (510, 543, 34)] -> 237 normals (45.66%), 0 anomalies
+  [no-artifact] K=16: train-empty modes 0, test mass 0.000% (0 win), runs>=30: 0 longest 0 frac_in_ge30 0.00  []
+  [no-artifact] K=32: train-empty modes 1, test mass 0.193% (1 win), runs>=30: 0 longest 1 frac_in_ge30 0.00  []
+  [no-artifact] K=64: train-empty modes 1, test mass 0.193% (1 win), runs>=30: 0 longest 1 frac_in_ge30 0.00  []
+    LatAD   AUROC 0.7969 -> 0.7969 | diff 0.7013 -> 0.7013 | FPR@fixed1% 0.0116 -> 0.0116 | FPR@fixed5% 0.0501 -> 0.0501 | TPR@1%own 0.411 -> 0.411 | TPR@5%own 0.518 -> 0.518 | flagged-in-block {'fpr1': 0.0, 'fpr5': 0.0}
+    maxz    AUROC 0.5583 -> 0.5583 | diff 0.3073 -> 0.3073 | FPR@fixed1% 0.0000 -> 0.0000 | FPR@fixed5% 0.0000 -> 0.0000 | TPR@1%own 0.000 -> 0.000 | TPR@5%own 0.000 -> 0.000 | flagged-in-block {'fpr1': None, 'fpr5': None, 'train99': 0.0}
+    IF      AUROC 0.7261 -> 0.7261 | diff 0.6755 -> 0.6755 | FPR@fixed1% 0.0116 -> 0.0116 | FPR@fixed5% 0.0501 -> 0.0501 | TPR@1%own 0.143 -> 0.143 | TPR@5%own 0.304 -> 0.304 | flagged-in-block {'fpr1': 0.0, 'fpr5': 0.0}
+    AE      AUROC 0.7433 -> 0.7433 | diff 0.4261 -> 0.4261 | FPR@fixed1% 0.0116 -> 0.0116 | FPR@fixed5% 0.0501 -> 0.0501 | TPR@1%own 0.482 -> 0.482 | TPR@5%own 0.518 -> 0.518 | flagged-in-block {'fpr1': 0.0, 'fpr5': 0.0}
+    USAD    AUROC 0.6979 -> 0.6979 | diff 0.3028 -> 0.3028 | FPR@fixed1% 0.0116 -> 0.0116 | FPR@fixed5% 0.0501 -> 0.0501 | TPR@1%own 0.339 -> 0.339 | TPR@5%own 0.446 -> 0.446 | flagged-in-block {'fpr1': 0.0, 'fpr5': 0.0}
+    TranAD  AUROC 0.7211 -> 0.7211 | diff 0.3326 -> 0.3326 | FPR@fixed1% 0.0116 -> 0.0116 | FPR@fixed5% 0.0501 -> 0.0501 | TPR@1%own 0.339 -> 0.339 | TPR@5%own 0.500 -> 0.500 | flagged-in-block {'fpr1': 0.0, 'fpr5': 0.0}
+  [no-artifact] exclusion blocks [] -> 0 normals (0.00%), 0 anomalies
+== HAI
+  [baseline] K=16: train-empty modes 1, test mass 5.082% (720 win), runs>=30: 2 longest 645 frac_in_ge30 0.97 {'frac_in_train_empty': 0.9984520123839009, 'share_of_train_empty_mass': 0.8958333333333334} [(6361, 6416, 56), (6436, 7080, 645)]
+  [baseline] K=32: train-empty modes 7, test mass 24.402% (3457 win), runs>=30: 22 longest 645 frac_in_ge30 0.73 {'frac_in_train_empty': 0.9984520123839009, 'share_of_train_empty_mass': 0.18657795776684988} [(0, 177, 178), (282, 318, 37), (599, 658, 60), (669, 856, 188), (878, 1114, 237), (1118, 1184, 67), (1191, 1315, 125), (1319, 1378, 60)]
+  [baseline] K=64: train-empty modes 19, test mass 32.216% (4564 win), runs>=30: 35 longest 645 frac_in_ge30 0.91 {'frac_in_train_empty': 0.9984520123839009, 'share_of_train_empty_mass': 0.14132340052585451} [(140, 257, 118), (359, 428, 70), (441, 568, 128), (589, 658, 70), (669, 856, 188), (878, 976, 99), (996, 1183, 188), (1190, 1315, 126)]
+    LatAD   AUROC 0.9344 -> 0.9539 | diff 0.8136 -> 0.8528 | FPR@fixed1% 0.0100 -> 0.0033 | FPR@fixed5% 0.0500 -> 0.0038 | TPR@1%own 0.623 -> 0.787 | TPR@5%own 0.650 -> 0.900 | flagged-in-block {'fpr1': 0.7323943661971831, 'fpr5': 0.9379407616361072}
+    maxz    AUROC 0.8059 -> 0.8360 | diff 0.3401 -> 0.4114 | FPR@fixed1% 0.0080 -> 0.0098 | FPR@fixed5% 0.0414 -> 0.0415 | TPR@1%own 0.534 -> 0.534 | TPR@5%own 0.612 -> 0.678 | flagged-in-block {'fpr1': 0.0, 'fpr5': 0.17406143344709898, 'train99': 0.6065118626956083}
+    IF      AUROC 0.8485 -> 0.8835 | diff 0.6300 -> 0.6776 | FPR@fixed1% 0.0100 -> 0.0029 | FPR@fixed5% 0.0500 -> 0.0100 | TPR@1%own 0.308 -> 0.477 | TPR@5%own 0.475 -> 0.669 | flagged-in-block {'fpr1': 0.7605633802816901, 'fpr5': 0.8363892806770099}
+    AE      AUROC 0.9231 -> 0.9428 | diff 0.7575 -> 0.8004 | FPR@fixed1% 0.0100 -> 0.0045 | FPR@fixed5% 0.0500 -> 0.0047 | TPR@1%own 0.656 -> 0.791 | TPR@5%own 0.678 -> 0.868 | flagged-in-block {'fpr1': 0.6338028169014085, 'fpr5': 0.922425952045134}
+    USAD    AUROC 0.8487 -> 0.8762 | diff 0.4967 -> 0.5659 | FPR@fixed1% 0.0100 -> 0.0032 | FPR@fixed5% 0.0500 -> 0.0123 | TPR@1%own 0.583 -> 0.603 | TPR@5%own 0.607 -> 0.692 | flagged-in-block {'fpr1': 0.7394366197183099, 'fpr5': 0.7983074753173484}
+    TranAD  AUROC 0.8340 -> 0.8631 | diff 0.4450 -> 0.5141 | FPR@fixed1% 0.0100 -> 0.0019 | FPR@fixed5% 0.0500 -> 0.0073 | TPR@1%own 0.569 -> 0.597 | TPR@5%own 0.590 -> 0.696 | flagged-in-block {'fpr1': 0.8450704225352113, 'fpr5': 0.8801128349788434}
+  [baseline] exclusion blocks [(0, 177, 178), (282, 318, 37), (599, 658, 60), (669, 856, 188), (878, 1114, 237), (1118, 1184, 67), (1191, 1315, 125), (1319, 1378, 60), (1490, 1539, 50), (1575, 1698, 124), (1765, 1820, 56), (1827, 1965, 139), (2041, 2228, 188), (2316, 2347, 32), (2352, 2500, 149), (2586, 2618, 33), (2668, 2718, 51), (6359, 6416, 58), (6436, 7080, 645), (13210, 13242, 33), (13399, 13441, 43), (14264, 14314, 51)] -> 2512 normals (17.73%), 0 anomalies
+== SWaT
+  [baseline] K=16: train-empty modes 1, test mass 0.000% (0 win), runs>=30: 0 longest 0 frac_in_ge30 0.00  []
+  [baseline] K=32: train-empty modes 2, test mass 0.000% (0 win), runs>=30: 0 longest 0 frac_in_ge30 0.00  []
+  [baseline] K=64: train-empty modes 8, test mass 0.000% (0 win), runs>=30: 0 longest 0 frac_in_ge30 0.00  []
+    LatAD   AUROC 0.9917 -> 0.9917 | diff 0.9618 -> 0.9618 | FPR@fixed1% 0.0110 -> 0.0110 | FPR@fixed5% 0.0508 -> 0.0508 | TPR@1%own 0.940 -> 0.940 | TPR@5%own 0.973 -> 0.973 | flagged-in-block {'fpr1': 0.0, 'fpr5': 0.0}
+    maxz    AUROC 0.9881 -> 0.9881 | diff 0.9432 -> 0.9432 | FPR@fixed1% 0.0110 -> 0.0110 | FPR@fixed5% 0.0508 -> 0.0508 | TPR@1%own 0.945 -> 0.945 | TPR@5%own 0.962 -> 0.962 | flagged-in-block {'fpr1': 0.0, 'fpr5': 0.0, 'train99': None}
+    IF      AUROC 0.9588 -> 0.9588 | diff 0.8527 -> 0.8527 | FPR@fixed1% 0.0110 -> 0.0110 | FPR@fixed5% 0.0508 -> 0.0508 | TPR@1%own 0.879 -> 0.879 | TPR@5%own 0.901 -> 0.901 | flagged-in-block {'fpr1': 0.0, 'fpr5': 0.0}
+    AE      AUROC 0.9868 -> 0.9868 | diff 0.9383 -> 0.9383 | FPR@fixed1% 0.0110 -> 0.0110 | FPR@fixed5% 0.0508 -> 0.0508 | TPR@1%own 0.885 -> 0.885 | TPR@5%own 0.940 -> 0.940 | flagged-in-block {'fpr1': 0.0, 'fpr5': 0.0}
+    USAD    AUROC 0.9728 -> 0.9728 | diff 0.8705 -> 0.8705 | FPR@fixed1% 0.0110 -> 0.0110 | FPR@fixed5% 0.0508 -> 0.0508 | TPR@1%own 0.912 -> 0.912 | TPR@5%own 0.923 -> 0.923 | flagged-in-block {'fpr1': 0.0, 'fpr5': 0.0}
+    TranAD  AUROC 0.9723 -> 0.9723 | diff 0.8672 -> 0.8672 | FPR@fixed1% 0.0110 -> 0.0110 | FPR@fixed5% 0.0508 -> 0.0508 | TPR@1%own 0.929 -> 0.929 | TPR@5%own 0.929 -> 0.929 | flagged-in-block {'fpr1': 0.0, 'fpr5': 0.0}
+  [baseline] exclusion blocks [] -> 0 normals (0.00%), 0 anomalies
+saved E:\Projects\Backlog\LatAD\poc\_diagnostics\cov_excl2.json

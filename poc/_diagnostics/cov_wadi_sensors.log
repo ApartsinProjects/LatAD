@@ -1,0 +1,4 @@
+n sens 123
+3 1_AIT_004_PV train mean/sd 493.761 19.3288 | attack-file mean/sd 453.7843 18.8626 | attack-file normal-rows mean 454.105 | z of attack-file normal mean -2.05
+102 2B_AIT_002_PV train mean/sd 9.0943 0.1643 | attack-file mean/sd 4427.9042 4035.2517 | attack-file normal-rows mean 4503.4419 | z of attack-file normal mean 27359.5
+104 2B_AIT_004_PV train mean/sd 491.0501 6.3433 | attack-file mean/sd 478.0684 4.0552 | attack-file normal-rows mean 478.1713 | z of attack-file normal mean -2.03

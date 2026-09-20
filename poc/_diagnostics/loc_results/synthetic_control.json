@@ -1,0 +1,9 @@
+{
+  "dataset": "SWaT_canon",
+  "target_ch": 0,
+  "g_hit": 13,
+  "g_miss": 0,
+  "positive_localizes": true,
+  "negative_misses": true,
+  "pass_": true
+}

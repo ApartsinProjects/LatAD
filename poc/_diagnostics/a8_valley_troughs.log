@@ -1,0 +1,9 @@
+[SWaT_canon s0] K=16 R=7.59 pairs=120 valley-separated=120 close(D<2R)&valley=34 | floor pct over close pairs: median=0.006 min=0.0013 share<q1=0.65 share<q5=0.79 | floor nearest-Mahalanobis median=6.49 share>R=0.26
+[SWaT_canon s1] K=16 R=7.27 pairs=120 valley-separated=120 close(D<2R)&valley=30 | floor pct over close pairs: median=0.008 min=0.0018 share<q1=0.53 share<q5=0.80 | floor nearest-Mahalanobis median=6.07 share>R=0.30
+[SWaT_canon s2] K=16 R=7.44 pairs=120 valley-separated=120 close(D<2R)&valley=37 | floor pct over close pairs: median=0.008 min=0.0011 share<q1=0.59 share<q5=0.89 | floor nearest-Mahalanobis median=6.02 share>R=0.27
+[WADI_clean s0] K=12 R=5.44 pairs=66 valley-separated=63 close(D<2R)&valley=52 | floor pct over close pairs: median=0.112 min=0.0011 share<q1=0.10 share<q5=0.29 | floor nearest-Mahalanobis median=3.37 share>R=0.04
+[WADI_clean s1] K=16 R=5.47 pairs=120 valley-separated=118 close(D<2R)&valley=95 | floor pct over close pairs: median=0.111 min=0.0008 share<q1=0.15 share<q5=0.33 | floor nearest-Mahalanobis median=3.18 share>R=0.02
+[WADI_clean s2] K=16 R=5.45 pairs=120 valley-separated=119 close(D<2R)&valley=91 | floor pct over close pairs: median=0.117 min=0.0011 share<q1=0.07 share<q5=0.27 | floor nearest-Mahalanobis median=2.95 share>R=0.01
+[HAI s0] K=16 R=4.48 pairs=120 valley-separated=109 close(D<2R)&valley=42 | floor pct over close pairs: median=0.358 min=0.0114 share<q1=0.00 share<q5=0.26 | floor nearest-Mahalanobis median=1.99 share>R=0.00
+[HAI s1] K=16 R=4.51 pairs=120 valley-separated=113 close(D<2R)&valley=40 | floor pct over close pairs: median=0.085 min=0.0053 share<q1=0.05 share<q5=0.42 | floor nearest-Mahalanobis median=2.32 share>R=0.00
+[HAI s2] K=16 R=4.34 pairs=120 valley-separated=110 close(D<2R)&valley=37 | floor pct over close pairs: median=0.058 min=0.0113 share<q1=0.00 share<q5=0.49 | floor nearest-Mahalanobis median=1.77 share>R=0.00

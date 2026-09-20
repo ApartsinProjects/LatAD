@@ -1,0 +1,26 @@
+DONE
+{'ramp': 0, 'K': 6, 'seed': 0, 'transit_frac_approx': 0.0, 'n_win': 1999, 'max_resp': 1.0, 'H_norm': 0.0, 'rho': 0.0, 'refit_max_resp': 1.0, 'refit_H_norm': 0.0, 'refit_rho': 0.0}
+{'ramp': 0, 'K': 6, 'seed': 1, 'transit_frac_approx': 0.0, 'n_win': 1999, 'max_resp': 1.0, 'H_norm': 0.0, 'rho': 0.0, 'refit_max_resp': 1.0, 'refit_H_norm': 0.0, 'refit_rho': 0.0}
+{'ramp': 0, 'K': 8, 'seed': 0, 'transit_frac_approx': 0.0, 'n_win': 1999, 'max_resp': 0.998, 'H_norm': 0.002, 'rho': 0.0, 'refit_max_resp': 0.997, 'refit_H_norm': 0.003, 'refit_rho': 0.0}
+{'ramp': 0, 'K': 8, 'seed': 1, 'transit_frac_approx': 0.0, 'n_win': 1999, 'max_resp': 0.995, 'H_norm': 0.006, 'rho': 0.0, 'refit_max_resp': 0.997, 'refit_H_norm': 0.004, 'refit_rho': 0.0}
+{'ramp': 0, 'K': 20, 'seed': 0, 'transit_frac_approx': 0.0, 'n_win': 1999, 'max_resp': 0.979, 'H_norm': 0.016, 'rho': 0.0, 'refit_max_resp': 0.994, 'refit_H_norm': 0.005, 'refit_rho': 0.001}
+{'ramp': 0, 'K': 20, 'seed': 1, 'transit_frac_approx': 0.0, 'n_win': 1999, 'max_resp': 0.921, 'H_norm': 0.053, 'rho': 0.001, 'refit_max_resp': 0.98, 'refit_H_norm': 0.016, 'refit_rho': 0.0}
+{'ramp': 30, 'K': 6, 'seed': 0, 'transit_frac_approx': 0.091, 'n_win': 1999, 'max_resp': 0.999, 'H_norm': 0.002, 'rho': 0.0, 'refit_max_resp': 0.999, 'refit_H_norm': 0.002, 'refit_rho': 0.0}
+{'ramp': 30, 'K': 6, 'seed': 1, 'transit_frac_approx': 0.091, 'n_win': 1999, 'max_resp': 0.999, 'H_norm': 0.001, 'rho': 0.0, 'refit_max_resp': 0.999, 'refit_H_norm': 0.001, 'refit_rho': 0.0}
+{'ramp': 30, 'K': 8, 'seed': 0, 'transit_frac_approx': 0.091, 'n_win': 1999, 'max_resp': 0.994, 'H_norm': 0.007, 'rho': 0.0, 'refit_max_resp': 0.995, 'refit_H_norm': 0.007, 'refit_rho': 0.0}
+{'ramp': 30, 'K': 8, 'seed': 1, 'transit_frac_approx': 0.091, 'n_win': 1999, 'max_resp': 0.994, 'H_norm': 0.008, 'rho': 0.0, 'refit_max_resp': 0.991, 'refit_H_norm': 0.012, 'refit_rho': 0.001}
+{'ramp': 30, 'K': 20, 'seed': 0, 'transit_frac_approx': 0.091, 'n_win': 1999, 'max_resp': 0.968, 'H_norm': 0.027, 'rho': 0.001, 'refit_max_resp': 0.989, 'refit_H_norm': 0.009, 'refit_rho': 0.001}
+{'ramp': 30, 'K': 20, 'seed': 1, 'transit_frac_approx': 0.091, 'n_win': 1999, 'max_resp': 0.963, 'H_norm': 0.031, 'rho': 0.0, 'refit_max_resp': 0.99, 'refit_H_norm': 0.01, 'refit_rho': 0.001}
+{'ramp': 120, 'K': 6, 'seed': 0, 'transit_frac_approx': 0.286, 'n_win': 1999, 'max_resp': 0.995, 'H_norm': 0.006, 'rho': 0.0, 'refit_max_resp': 0.997, 'refit_H_norm': 0.004, 'refit_rho': 0.0}
+{'ramp': 120, 'K': 6, 'seed': 1, 'transit_frac_approx': 0.286, 'n_win': 1999, 'max_resp': 0.997, 'H_norm': 0.004, 'rho': 0.0, 'refit_max_resp': 0.996, 'refit_H_norm': 0.005, 'refit_rho': 0.0}
+{'ramp': 120, 'K': 8, 'seed': 0, 'transit_frac_approx': 0.286, 'n_win': 1999, 'max_resp': 0.996, 'H_norm': 0.005, 'rho': 0.0, 'refit_max_resp': 0.996, 'refit_H_norm': 0.004, 'refit_rho': 0.0}
+{'ramp': 120, 'K': 8, 'seed': 1, 'transit_frac_approx': 0.286, 'n_win': 1999, 'max_resp': 0.989, 'H_norm': 0.013, 'rho': 0.0, 'refit_max_resp': 0.99, 'refit_H_norm': 0.012, 'refit_rho': 0.001}
+{'ramp': 120, 'K': 20, 'seed': 0, 'transit_frac_approx': 0.286, 'n_win': 1999, 'max_resp': 0.944, 'H_norm': 0.047, 'rho': 0.006, 'refit_max_resp': 0.97, 'refit_H_norm': 0.025, 'refit_rho': 0.001}
+{'ramp': 120, 'K': 20, 'seed': 1, 'transit_frac_approx': 0.286, 'n_win': 1999, 'max_resp': 0.973, 'H_norm': 0.023, 'rho': 0.001, 'refit_max_resp': 0.986, 'refit_H_norm': 0.012, 'refit_rho': 0.001}
+{'ramp': 300, 'K': 6, 'seed': 0, 'transit_frac_approx': 0.5, 'n_win': 1999, 'max_resp': 0.995, 'H_norm': 0.007, 'rho': 0.0, 'refit_max_resp': 0.997, 'refit_H_norm': 0.004, 'refit_rho': 0.0}
+{'ramp': 300, 'K': 6, 'seed': 1, 'transit_frac_approx': 0.5, 'n_win': 1999, 'max_resp': 0.994, 'H_norm': 0.008, 'rho': 0.0, 'refit_max_resp': 0.996, 'refit_H_norm': 0.006, 'refit_rho': 0.0}
+{'ramp': 300, 'K': 8, 'seed': 0, 'transit_frac_approx': 0.5, 'n_win': 1999, 'max_resp': 0.976, 'H_norm': 0.03, 'rho': 0.001, 'refit_max_resp': 0.981, 'refit_H_norm': 0.022, 'refit_rho': 0.001}
+{'ramp': 300, 'K': 8, 'seed': 1, 'transit_frac_approx': 0.5, 'n_win': 1999, 'max_resp': 0.97, 'H_norm': 0.037, 'rho': 0.002, 'refit_max_resp': 0.978, 'refit_H_norm': 0.026, 'refit_rho': 0.003}
+{'ramp': 300, 'K': 20, 'seed': 0, 'transit_frac_approx': 0.5, 'n_win': 1999, 'max_resp': 0.932, 'H_norm': 0.058, 'rho': 0.007, 'refit_max_resp': 0.963, 'refit_H_norm': 0.031, 'refit_rho': 0.003}
+{'ramp': 300, 'K': 20, 'seed': 1, 'transit_frac_approx': 0.5, 'n_win': 1999, 'max_resp': 0.96, 'H_norm': 0.034, 'rho': 0.002, 'refit_max_resp': 0.975, 'refit_H_norm': 0.021, 'refit_rho': 0.001}
+DONE ramp

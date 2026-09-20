@@ -1,0 +1,418 @@
+{
+ "SWaT_canon": {
+  "n_windows": 1498,
+  "n_anom": 233,
+  "maxz_thr": 3.163,
+  "lin_thr": 0.1887,
+  "nseed": 5,
+  "n_subset": {
+   "All": 1498,
+   "Easy": 142,
+   "Difficult": 91,
+   "DoubleHard": 31
+  },
+  "n_episodes": {
+   "All": 25,
+   "Easy": 10,
+   "Difficult": 23,
+   "DoubleHard": 8
+  },
+  "results": {
+   "trivial max|z|": {
+    "All": {
+     "auroc": 0.853,
+     "sd": 0.0,
+     "f1": 0.68
+    },
+    "Easy": {
+     "auroc": 0.997,
+     "sd": 0.0,
+     "f1": 0.916
+    },
+    "Difficult": {
+     "auroc": 0.627,
+     "sd": 0.0,
+     "f1": 0.214
+    },
+    "DoubleHard": {
+     "auroc": 0.582,
+     "sd": 0.0,
+     "f1": 0.172
+    }
+   },
+   "IF": {
+    "All": {
+     "auroc": 0.8,
+     "sd": 0.004,
+     "f1": 0.642
+    },
+    "Easy": {
+     "auroc": 0.961,
+     "sd": 0.004,
+     "f1": 0.855
+    },
+    "Difficult": {
+     "auroc": 0.55,
+     "sd": 0.007,
+     "f1": 0.17
+    },
+    "DoubleHard": {
+     "auroc": 0.387,
+     "sd": 0.01,
+     "f1": 0.051
+    }
+   },
+   "AE": {
+    "All": {
+     "auroc": 0.786,
+     "sd": 0.001,
+     "f1": 0.68
+    },
+    "Easy": {
+     "auroc": 0.959,
+     "sd": 0.001,
+     "f1": 0.906
+    },
+    "Difficult": {
+     "auroc": 0.517,
+     "sd": 0.003,
+     "f1": 0.141
+    },
+    "DoubleHard": {
+     "auroc": 0.21,
+     "sd": 0.005,
+     "f1": 0.0
+    }
+   },
+   "linres": {
+    "All": {
+     "auroc": 0.776,
+     "sd": 0.0,
+     "f1": 0.716
+    },
+    "Easy": {
+     "auroc": 0.976,
+     "sd": 0.0,
+     "f1": 0.941
+    },
+    "Difficult": {
+     "auroc": 0.464,
+     "sd": 0.0,
+     "f1": 0.099
+    },
+    "DoubleHard": {
+     "auroc": 0.156,
+     "sd": 0.0,
+     "f1": 0.0
+    }
+   },
+   "USAD": {
+    "All": {
+     "auroc": 0.763,
+     "sd": 0.001,
+     "f1": 0.669
+    },
+    "Easy": {
+     "auroc": 0.946,
+     "sd": 0.001,
+     "f1": 0.907
+    },
+    "Difficult": {
+     "auroc": 0.477,
+     "sd": 0.001,
+     "f1": 0.129
+    },
+    "DoubleHard": {
+     "auroc": 0.153,
+     "sd": 0.003,
+     "f1": 0.0
+    }
+   },
+   "TranAD": {
+    "All": {
+     "auroc": 0.761,
+     "sd": 0.001,
+     "f1": 0.669
+    },
+    "Easy": {
+     "auroc": 0.943,
+     "sd": 0.0,
+     "f1": 0.908
+    },
+    "Difficult": {
+     "auroc": 0.477,
+     "sd": 0.002,
+     "f1": 0.129
+    },
+    "DoubleHard": {
+     "auroc": 0.15,
+     "sd": 0.001,
+     "f1": 0.0
+    }
+   },
+   "GDN": {
+    "All": {
+     "auroc": 0.761,
+     "sd": 0.0,
+     "f1": 0.672
+    },
+    "Easy": {
+     "auroc": 0.945,
+     "sd": 0.0,
+     "f1": 0.908
+    },
+    "Difficult": {
+     "auroc": 0.473,
+     "sd": 0.0,
+     "f1": 0.133
+    },
+    "DoubleHard": {
+     "auroc": 0.148,
+     "sd": 0.0,
+     "f1": 0.0
+    }
+   },
+   "LatAD": {
+    "All": {
+     "auroc": 0.752,
+     "sd": 0.016,
+     "f1": 0.626
+    },
+    "Easy": {
+     "auroc": 0.931,
+     "sd": 0.016,
+     "f1": 0.824
+    },
+    "Difficult": {
+     "auroc": 0.472,
+     "sd": 0.019,
+     "f1": 0.092
+    },
+    "DoubleHard": {
+     "auroc": 0.219,
+     "sd": 0.031,
+     "f1": 0.002
+    }
+   },
+   "HC": {
+    "All": {
+     "auroc": 0.793,
+     "sd": 0.008,
+     "f1": 0.698
+    },
+    "Easy": {
+     "auroc": 0.972,
+     "sd": 0.004,
+     "f1": 0.888
+    },
+    "Difficult": {
+     "auroc": 0.513,
+     "sd": 0.023,
+     "f1": 0.208
+    },
+    "DoubleHard": {
+     "auroc": 0.188,
+     "sd": 0.01,
+     "f1": 0.0
+    }
+   },
+   "HC_coh": {
+    "All": {
+     "auroc": 0.787,
+     "sd": 0.008,
+     "f1": 0.697
+    },
+    "Easy": {
+     "auroc": 0.956,
+     "sd": 0.005,
+     "f1": 0.891
+    },
+    "Difficult": {
+     "auroc": 0.523,
+     "sd": 0.024,
+     "f1": 0.238
+    },
+    "DoubleHard": {
+     "auroc": 0.19,
+     "sd": 0.019,
+     "f1": 0.0
+    }
+   },
+   "null+HC": {
+    "All": {
+     "auroc": 0.794,
+     "sd": 0.008,
+     "f1": 0.698
+    },
+    "Easy": {
+     "auroc": 0.973,
+     "sd": 0.004,
+     "f1": 0.888
+    },
+    "Difficult": {
+     "auroc": 0.515,
+     "sd": 0.022,
+     "f1": 0.208
+    },
+    "DoubleHard": {
+     "auroc": 0.193,
+     "sd": 0.009,
+     "f1": 0.0
+    }
+   },
+   "sum+LatAD": {
+    "All": {
+     "auroc": 0.827,
+     "sd": 0.002,
+     "f1": 0.69
+    },
+    "Easy": {
+     "auroc": 0.976,
+     "sd": 0.003,
+     "f1": 0.865
+    },
+    "Difficult": {
+     "auroc": 0.595,
+     "sd": 0.002,
+     "f1": 0.263
+    },
+    "DoubleHard": {
+     "auroc": 0.266,
+     "sd": 0.007,
+     "f1": 0.022
+    }
+   },
+   "max+LatAD": {
+    "All": {
+     "auroc": 0.588,
+     "sd": 0.013,
+     "f1": 0.0
+    },
+    "Easy": {
+     "auroc": 0.65,
+     "sd": 0.019,
+     "f1": 0.0
+    },
+    "Difficult": {
+     "auroc": 0.492,
+     "sd": 0.009,
+     "f1": 0.0
+    },
+    "DoubleHard": {
+     "auroc": 0.274,
+     "sd": 0.016,
+     "f1": 0.0
+    }
+   },
+   "cohmax+LatAD": {
+    "All": {
+     "auroc": 0.628,
+     "sd": 0.063,
+     "f1": 0.13
+    },
+    "Easy": {
+     "auroc": 0.73,
+     "sd": 0.102,
+     "f1": 0.167
+    },
+    "Difficult": {
+     "auroc": 0.468,
+     "sd": 0.006,
+     "f1": 0.022
+    },
+    "DoubleHard": {
+     "auroc": 0.182,
+     "sd": 0.007,
+     "f1": 0.0
+    }
+   },
+   "HC+LatAD": {
+    "All": {
+     "auroc": 0.793,
+     "sd": 0.008,
+     "f1": 0.698
+    },
+    "Easy": {
+     "auroc": 0.972,
+     "sd": 0.004,
+     "f1": 0.888
+    },
+    "Difficult": {
+     "auroc": 0.513,
+     "sd": 0.023,
+     "f1": 0.208
+    },
+    "DoubleHard": {
+     "auroc": 0.19,
+     "sd": 0.009,
+     "f1": 0.0
+    }
+   },
+   "HCcoh+LatAD": {
+    "All": {
+     "auroc": 0.788,
+     "sd": 0.008,
+     "f1": 0.698
+    },
+    "Easy": {
+     "auroc": 0.957,
+     "sd": 0.005,
+     "f1": 0.893
+    },
+    "Difficult": {
+     "auroc": 0.524,
+     "sd": 0.024,
+     "f1": 0.238
+    },
+    "DoubleHard": {
+     "auroc": 0.193,
+     "sd": 0.011,
+     "f1": 0.0
+    }
+   },
+   "q95+LatAD": {
+    "All": {
+     "auroc": 0.585,
+     "sd": 0.01,
+     "f1": 0.0
+    },
+    "Easy": {
+     "auroc": 0.659,
+     "sd": 0.014,
+     "f1": 0.0
+    },
+    "Difficult": {
+     "auroc": 0.469,
+     "sd": 0.006,
+     "f1": 0.0
+    },
+    "DoubleHard": {
+     "auroc": 0.208,
+     "sd": 0.008,
+     "f1": 0.0
+    }
+   }
+  },
+  "significance": {
+   "vs": "linres",
+   "Difficult": {
+    "diff": 0.051,
+    "diff_ci": [
+     -0.012,
+     0.123
+    ],
+    "p_le_0": 0.0615,
+    "n_episodes": 23
+   },
+   "DoubleHard": {
+    "diff": 0.037,
+    "diff_ci": [
+     0.005,
+     0.08
+    ],
+    "p_le_0": 0.0115,
+    "n_episodes": 8
+   }
+  }
+ }
+}

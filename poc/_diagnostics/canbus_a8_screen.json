@@ -1,0 +1,98 @@
+{
+ "_meta": {
+  "csv": "E:\\Projects\\Backlog\\LatAD\\poc\\datasets\\_new\\CANdrive\\exp2_19drivers_1car_1route.csv",
+  "channels": [
+   "SPEED",
+   "ENGINE_RPM",
+   "THROTTLE_POS",
+   "ENGINE_LOAD",
+   "ENGINE_COOLANT_TEMP",
+   "INTAKE_MANIFOLD_PRESSURE",
+   "MAF",
+   "TIMING_ADVANCE"
+  ],
+  "n_trips": 19,
+  "n_rows_total": 7822,
+  "W": 6,
+  "ST": 3,
+  "n_windows": 2581
+ },
+ "K8": {
+  "K": 8,
+  "n_windows": 2581,
+  "mean_maxresp": 0.8995,
+  "H_norm": 0.1317,
+  "rho_lt0p5": 0.0232,
+  "rho_lt0p6": 0.0728
+ },
+ "K16": {
+  "K": 16,
+  "n_windows": 2581,
+  "mean_maxresp": 0.8405,
+  "H_norm": 0.158,
+  "rho_lt0p5": 0.0717,
+  "rho_lt0p6": 0.1519
+ },
+ "K32": {
+  "K": 32,
+  "n_windows": 2581,
+  "mean_maxresp": 0.8207,
+  "H_norm": 0.142,
+  "rho_lt0p5": 0.069,
+  "rho_lt0p6": 0.1697
+ },
+ "K64": {
+  "K": 64,
+  "n_windows": 2581,
+  "mean_maxresp": 0.8064,
+  "H_norm": 0.1316,
+  "rho_lt0p5": 0.0984,
+  "rho_lt0p6": 0.1879
+ },
+ "K128": {
+  "K": 128,
+  "n_windows": 2581,
+  "mean_maxresp": 0.8703,
+  "H_norm": 0.0766,
+  "rho_lt0p5": 0.0399,
+  "rho_lt0p6": 0.105
+ },
+ "variance_floor_check": {
+  "K16_seed0": {
+   "K": 16,
+   "seed": 0,
+   "H_floor": 0.158,
+   "rho_floor": 0.0717,
+   "H_emp": 0.1074,
+   "rho_emp": 0.0294,
+   "frac_components_at_floor": 0.0625,
+   "floored_comp_sd": 0.5996,
+   "empirical_comp_sd": 0.5187,
+   "collapse": false
+  },
+  "K16_seed1": {
+   "K": 16,
+   "seed": 1,
+   "H_floor": 0.1753,
+   "rho_floor": 0.0713,
+   "H_emp": 0.1122,
+   "rho_emp": 0.0345,
+   "frac_components_at_floor": 0.0625,
+   "floored_comp_sd": 0.6136,
+   "empirical_comp_sd": 0.5186,
+   "collapse": false
+  },
+  "K16_seed2": {
+   "K": 16,
+   "seed": 2,
+   "H_floor": 0.1692,
+   "rho_floor": 0.0798,
+   "H_emp": 0.1124,
+   "rho_emp": 0.0387,
+   "frac_components_at_floor": 0.0234,
+   "floored_comp_sd": 0.6033,
+   "empirical_comp_sd": 0.5163,
+   "collapse": false
+  }
+ }
+}

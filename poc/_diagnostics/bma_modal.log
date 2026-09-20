@@ -1,0 +1,103 @@
+C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\async_utils.py:45: DeprecationWarning: 'asyncio.WindowsSelectorEventLoopPolicy' is deprecated and slated for removal in Python 3.16
+  asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\async_utils.py:45: DeprecationWarning: 'asyncio.set_event_loop_policy' is deprecated and slated for removal in Python 3.16
+  asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+✓ Initialized. View run at 
+https://modal.com/apps/llmcourse/main/ap-kVxyGD9UAgWoiTl7qQKTwF
+✓ Created objects.
+├── 🔨 Created mount E:\Projects\Backlog\LatAD\poc\sota_bundle\modal_bma.py
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\ens_bundle\bundle_SWaT.npz
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\ens_bundle\bundle_WADI.npz
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\ens_bundle\bundle_HAI.npz
+├── 🔨 Created mount E:\Projects\Backlog\LatAD\poc\models_vade.py
+└── 🔨 Created function run_ds.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+[SWaT] seed 0 mod=[0.326, 0.296, 0.194, 0.0] : null_LatAD 0.958  wmax 1.0  wmean 0.999  umax 1.0  wmax_noNull 1.0
+[WADI] seed 0 mod=[0.0, 0.002, 0.131, 0.066] : null_LatAD 0.725  wmax 0.328  wmean 0.336  umax 0.326  wmax_noNull 0.328
+[SWaT] seed 1 mod=[0.326, 0.296, 0.194, 0.0] : null_LatAD 0.958  wmax 1.0  wmean 1.0  umax 1.0  wmax_noNull 1.0
+[SWaT] DONE: {"dataset": "SWaT", "LatAD": 0.96, "compet": "linres", "compet_auroc": 0.959, "partition_modularity": [0.326, 0.296, 0.194, 0.0], "agg": {"null_LatAD": [0.958, 0.0], "wmax": [1.0, 0.0], "wmean": [1.0, 0.001], "umax": [1.0, 0.0], "wmax_noNull": [1.0, 0.0]}, "wmax_sig_vs_compet": {"diff": 0.041, "ci": [0.032, 0.049], "p_le_0": 0.0}}
+[WADI] seed 1 mod=[0.0, 0.002, 0.131, 0.066] : null_LatAD 0.645  wmax 0.326  wmean 0.327  umax 0.322  wmax_noNull 0.326
+[WADI] DONE: {"dataset": "WADI", "LatAD": 0.69, "compet": "IF", "compet_auroc": 0.677, "partition_modularity": [0.0, 0.002, 0.131, 0.066], "agg": {"null_LatAD": [0.685, 0.04], "wmax": [0.327, 0.001], "wmean": [0.332, 0.005], "umax": [0.324, 0.002], "wmax_noNull": [0.327, 0.001]}, "wmax_sig_vs_compet": {"diff": -0.349, "ci": [-0.477, -0.221], "p_le_0": 1.0}}
+[HAI] seed 0 mod=[0.316, 0.284, 0.148, 0.006] : null_LatAD 0.831  wmax 0.721  wmean 0.725  umax 0.635  wmax_noNull 0.699
+[HAI] seed 1 mod=[0.316, 0.284, 0.148, 0.006] : null_LatAD 0.792  wmax 0.707  wmean 0.711  umax 0.614  wmax_noNull 0.689
+[HAI] DONE: {"dataset": "HAI", "LatAD": 0.811, "compet": "AE", "compet_auroc": 0.757, "partition_modularity": [0.316, 0.284, 0.148, 0.006], "agg": {"null_LatAD": [0.811, 0.019], "wmax": [0.714, 0.007], "wmean": [0.718, 0.007], "umax": [0.625, 0.011], "wmax_noNull": [0.694, 0.005]}, "wmax_sig_vs_compet": {"diff": -0.043, "ci": [-0.099, 0.011], "p_le_0": 0.938}}
+StopAsyncIteration exception in shielded future
+future: <Future finished exception=StopAsyncIteration()>
+Traceback (most recent call last):
+  File "C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\synchronicity\synchronizer.py", line 485, in wrapper_coro
+    return await inner_task
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\synchronicity\synchronizer.py", line 315, in coro_wrapped
+    value = await coro
+            ^^^^^^^^^^
+  File "C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\synchronicity\exceptions.py", line 31, in coro_wrapped
+    return await coro
+           ^^^^^^^^^^
+StopAsyncIteration
+
+==================== BMA SUMMARY ====================
+WADI  LatAD 0.69 vs IF 0.677 | mod [0.0, 0.002, 0.131, 0.066] | wmax [0.327, 0.001] wmean [0.332, 0.005] wmax_noNull [0.327, 0.001] umax [0.324, 0.002] | wmax vs IF: {'diff': -0.349, 'ci': [-0.477, -0.221], 'p_le_0': 1.0}
+HAI   LatAD 0.811 vs AE 0.757 | mod [0.316, 0.284, 0.148, 0.006] | wmax [0.714, 0.007] wmean [0.718, 0.007] wmax_noNull [0.694, 0.005] umax [0.625, 0.011] | wmax vs AE: {'diff': -0.043, 'ci': [-0.099, 0.011], 'p_le_0': 0.938}
+SWaT  LatAD 0.96 vs linres 0.959 | mod [0.326, 0.296, 0.194, 0.0] | wmax [1.0, 0.0] wmean [1.0, 0.001] wmax_noNull [1.0, 0.0] umax [1.0, 0.0] | wmax vs linres: {'diff': 0.041, 'ci': [0.032, 0.049], 'p_le_0': 0.0}
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/llmcourse/main/ap-kVxyGD9UAgWoiTl7qQKTwF

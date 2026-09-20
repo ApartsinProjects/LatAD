@@ -1,0 +1,10 @@
+  [REF ] SKAB       rho(<0.5)=0.102  rho(<0.6)=0.527  mean_maxresp=0.658  n_tr=400  -> weak
+  [REF ] WADI       rho(<0.5)=0.010  rho(<0.6)=0.037  mean_maxresp=0.944  n_tr=2614  -> no-A3
+  [REF ] HAI        rho(<0.5)=0.049  rho(<0.6)=0.129  mean_maxresp=0.846  n_tr=18359  -> no-A3
+  [REF ] SWaT       rho(<0.5)=0.000  rho(<0.6)=0.004  mean_maxresp=0.989  n_tr=3623  -> no-A3
+  [CAND] MetroPT    rho(<0.5)=0.001  rho(<0.6)=0.020  mean_maxresp=0.966  n_tr=1483  -> no-A3
+  [TEP] ERR FileNotFoundError: [Errno 2] No such file or directory: 'E:\\Projects\\Backlog\\LatAD\\poc\\datasets\\_new\\TEP\\tep_data.npz'
+  [BATADAL] ERR FileNotFoundError: [Errno 2] No such file or directory: 'E:\\Projects\\Backlog\\LatAD\\poc\\datasets\\_new\\BATADAL/BATADAL_dataset03.csv'
+  [PSM] ERR FileNotFoundError: [Errno 2] No such file or directory: 'E:\\Projects\\Backlog\\LatAD\\poc\\datasets\\_new\\RANSynCoders\\data/train.csv'
+
+reference: SKAB rho~0.58 (A3 holds); WADI/HAI/SWaT ~0.01-0.02 (no A3). done (64s)

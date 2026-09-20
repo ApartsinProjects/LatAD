@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "E:\Projects\Backlog\LatAD\poc\_diagnostics\regime_imbalance_knob.py", line 98, in <module>
+    run(nm)
+    ~~~^^^^
+  File "E:\Projects\Backlog\LatAD\poc\_diagnostics\regime_imbalance_knob.py", line 55, in run
+    d = dict(np.load(os.path.join(HERE, f"scores_{name}.npz")))
+             ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\numpy\lib\npyio.py", line 427, in load
+    fid = stack.enter_context(open(os_fspath(file), "rb"))
+                              ~~~~^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'E:\\Projects\\Backlog\\LatAD\\poc\\_diagnostics\\scores_SKAB.npz'

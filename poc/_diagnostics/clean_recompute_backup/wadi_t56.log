@@ -1,0 +1,17 @@
+WADI_clean: difficult (FIX3) = 30 windows, normals = 519
+  seed 0 done
+  seed 1 done
+  seed 2 done
+  seed 3 done
+  seed 4 done
+
+Table 5 (WADI clean, n_diff=30):
+  cross-channel 0.6560+/-0.0163  marginal 0.6394+/-0.0036  gain +0.0166
+Table 6 heads (WADI clean):
+  recon        0.740+/-0.002
+  density      0.656+/-0.016
+  nearest      0.603+/-0.010
+  base         0.634+/-0.011
+  base+resid   0.634+/-0.011
+  LatAD        0.634+/-0.011
+saved -> clean_wadi_tables56.json

@@ -1,0 +1,33 @@
+{
+  "dataset": "WADI_clean",
+  "model": "TranAD",
+  "seed": 3,
+  "rc": 0,
+  "train_s": 263.6,
+  "epochs": 5,
+  "fp32": true,
+  "n": 17281,
+  "n_anom": 997,
+  "raw_ALL": {
+    "AUROC": 0.804,
+    "bestF1": 0.418,
+    "F1_at5pctFPR": 0.394,
+    "TPR_at5pctFPR": 0.445
+  },
+  "n_easy_hard": [
+    561,
+    436
+  ],
+  "raw_HARD": {
+    "AUROC": 0.741,
+    "bestF1": 0.234,
+    "F1_at5pctFPR": 0.163,
+    "TPR_at5pctFPR": 0.255
+  },
+  "raw_EASY": {
+    "AUROC": 0.853,
+    "bestF1": 0.443,
+    "F1_at5pctFPR": 0.39,
+    "TPR_at5pctFPR": 0.594
+  }
+}

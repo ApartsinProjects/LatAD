@@ -1,0 +1,25 @@
+[SMD-1-1] train 948 test 948 anom 89 knn q99 14.793 (0s)
+EMIT {"dataset": "SMD-1-1", "seed": 0, "labelled": true, "K_bic": 8, "kd_narrow": 80, "n_train": 948, "knn_q99": 14.79308677514503, "isolated_frac_train": 0.010548523206751054, "n_anom": 89, "isolated_frac_anom": 0.9662921348314607, "isolated_frac_testnormal": 0.1257413997627521, "NC_BIC_rho_train": 0.83
+EMIT {"dataset": "SMD-1-1", "seed": 1, "labelled": true, "K_bic": 6, "kd_narrow": 80, "n_train": 948, "knn_q99": 14.79308677514503, "isolated_frac_train": 0.010548523206751054, "n_anom": 89, "isolated_frac_anom": 0.9662921348314607, "isolated_frac_testnormal": 0.1257413997627521, "NC_BIC_rho_train": 0.87
+EMIT {"dataset": "SMD-1-1", "seed": 2, "labelled": true, "K_bic": 8, "kd_narrow": 80, "n_train": 948, "knn_q99": 14.79308677514503, "isolated_frac_train": 0.010548523206751054, "n_anom": 89, "isolated_frac_anom": 0.9662921348314607, "isolated_frac_testnormal": 0.1257413997627521, "NC_BIC_rho_train": 0.76
+[SMD-1-1] done (5s)
+[SMD-1-4] train 789 test 789 anom 22 knn q99 26.045 (0s)
+EMIT {"dataset": "SMD-1-4", "seed": 0, "labelled": true, "K_bic": 12, "kd_narrow": 78, "n_train": 789, "knn_q99": 26.04542749580471, "isolated_frac_train": 0.010139416983523447, "n_anom": 22, "isolated_frac_anom": 0.18181818181818182, "isolated_frac_testnormal": 0.0, "NC_BIC_rho_train": 0.809279899809164
+EMIT {"dataset": "SMD-1-4", "seed": 1, "labelled": true, "K_bic": 8, "kd_narrow": 78, "n_train": 789, "knn_q99": 26.04542749580471, "isolated_frac_train": 0.010139416983523447, "n_anom": 22, "isolated_frac_anom": 0.18181818181818182, "isolated_frac_testnormal": 0.0, "NC_BIC_rho_train": 0.8297504146643999
+EMIT {"dataset": "SMD-1-4", "seed": 2, "labelled": true, "K_bic": 8, "kd_narrow": 78, "n_train": 789, "knn_q99": 26.04542749580471, "isolated_frac_train": 0.010139416983523447, "n_anom": 22, "isolated_frac_anom": 0.18181818181818182, "isolated_frac_testnormal": 0.0, "NC_BIC_rho_train": 0.8068691976607286
+[SMD-1-4] done (5s)
+[SMD-2-1] train 788 test 788 anom 34 knn q99 13.884 (0s)
+EMIT {"dataset": "SMD-2-1", "seed": 0, "labelled": true, "K_bic": 8, "kd_narrow": 78, "n_train": 788, "knn_q99": 13.88440525898479, "isolated_frac_train": 0.01015228426395939, "n_anom": 34, "isolated_frac_anom": 0.5, "isolated_frac_testnormal": 0.034578146611341634, "NC_BIC_rho_train": 0.7711889099803835
+EMIT {"dataset": "SMD-2-1", "seed": 1, "labelled": true, "K_bic": 8, "kd_narrow": 78, "n_train": 788, "knn_q99": 13.88440525898479, "isolated_frac_train": 0.01015228426395939, "n_anom": 34, "isolated_frac_anom": 0.5, "isolated_frac_testnormal": 0.034578146611341634, "NC_BIC_rho_train": 0.7813047505745948
+EMIT {"dataset": "SMD-2-1", "seed": 2, "labelled": true, "K_bic": 8, "kd_narrow": 78, "n_train": 788, "knn_q99": 13.88440525898479, "isolated_frac_train": 0.01015228426395939, "n_anom": 34, "isolated_frac_anom": 0.5, "isolated_frac_testnormal": 0.034578146611341634, "NC_BIC_rho_train": 0.7609692243078273
+[SMD-2-1] done (5s)
+[SMD-3-7] train 955 test 955 anom 14 knn q99 20.860 (1s)
+EMIT {"dataset": "SMD-3-7", "seed": 0, "labelled": true, "K_bic": 12, "kd_narrow": 80, "n_train": 955, "knn_q99": 20.859811613365963, "isolated_frac_train": 0.010471204188481676, "n_anom": 14, "isolated_frac_anom": 0.5714285714285714, "isolated_frac_testnormal": 0.008602150537634409, "NC_BIC_rho_train": 
+EMIT {"dataset": "SMD-3-7", "seed": 1, "labelled": true, "K_bic": 8, "kd_narrow": 80, "n_train": 955, "knn_q99": 20.859811613365963, "isolated_frac_train": 0.010471204188481676, "n_anom": 14, "isolated_frac_anom": 0.5714285714285714, "isolated_frac_testnormal": 0.008602150537634409, "NC_BIC_rho_train": 0
+EMIT {"dataset": "SMD-3-7", "seed": 2, "labelled": true, "K_bic": 8, "kd_narrow": 80, "n_train": 955, "knn_q99": 20.859811613365963, "isolated_frac_train": 0.010471204188481676, "n_anom": 14, "isolated_frac_anom": 0.5714285714285714, "isolated_frac_testnormal": 0.008602150537634409, "NC_BIC_rho_train": 0
+[SMD-3-7] done (8s)
+[Paderborn] train 9603 normal-only knn q99 4.569 (12s)
+EMIT {"dataset": "Paderborn", "seed": 0, "labelled": false, "K_bic": 8, "kd_narrow": 80, "n_train": 9603, "knn_q99": 4.568802745938035, "isolated_frac_train": 0.010101010101010102, "NC_BIC_rho_train": 0.868868894038929, "WIDE_rho_train": 0.7381517218507813, "NARROW_rho_train": 0.9253601024107153, "ts": "
+EMIT {"dataset": "Paderborn", "seed": 1, "labelled": false, "K_bic": 12, "kd_narrow": 80, "n_train": 9603, "knn_q99": 4.568802745938035, "isolated_frac_train": 0.010101010101010102, "NC_BIC_rho_train": 0.8862141976087538, "WIDE_rho_train": 0.7381517218507813, "NARROW_rho_train": 0.9262046634223348, "ts":
+EMIT {"dataset": "Paderborn", "seed": 2, "labelled": false, "K_bic": 12, "kd_narrow": 80, "n_train": 9603, "knn_q99": 4.568802745938035, "isolated_frac_train": 0.010101010101010102, "NC_BIC_rho_train": 0.8742868584686413, "WIDE_rho_train": 0.7381517218507813, "NARROW_rho_train": 0.9254650829038252, "ts":
+[Paderborn] done (38s)

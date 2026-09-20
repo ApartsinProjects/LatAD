@@ -1,0 +1,21 @@
+
+=== WADI_clean: d=732, n_train=2614, n_test=575, anomalies=56, difficult=30 ===
+   PCA k@95%=113/732  (k@90%=75, k@99%=194); thrT2=406.81 thrSPE=125.27; train flag rate 1.87% (expect ~1-2%); all-components SPE max=2.05e-12 (expect ~0), k_full=732
+   difficult 30: T2 flags 0, SPE flags 1, union 1, LinRes flags 11 (SPE&Lin 1, SPE-only 0, Lin-only 10); rho(SPE,LinRes) all=0.426 difficult=0.7735261401557285
+   sensitivity: 0.9: k=75 n=30/8ep, 0.95: k=113 n=29/8ep, 0.99: k=194 n=21/7ep
+   spearman(scores.linres, loco r_te) = 1.000
+   DOUBLE-HARD (PCA T2|SPE): 29 windows / 8 episodes   [LinRes-based: 19/7;  T2-only: 30/8]
+   method                          PCA-dhard   LinRes-dhard   T2only-dhard
+   trivial max|z|                0.591          0.493          0.601      
+   IF                            0.622±0.006    0.530±0.009    0.634±0.006
+   AE                            0.616±0.004    0.535±0.004    0.628±0.004
+   LinRes                        0.742          0.606          0.750      
+   USAD                          0.565          0.466          0.579      
+   TranAD                        0.601          0.489          0.613      
+   GDN                           0.648          0.550          0.660      
+   LatAD (global density)        0.623±0.012    0.571±0.013    0.634±0.011
+   LatAD (regime-community)      0.763±0.024    0.662±0.040    0.771±0.023
+   headline vs strongest detector LinRes: diff +0.021 CI [-0.165, 0.222] P(<=0)=0.47 (8 episodes, 200 boots)
+   saved (44.8s)
+
+saved -> E:\Projects\Backlog\LatAD\poc\_diagnostics/pca_filter_doublehard.json

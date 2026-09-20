@@ -1,0 +1,46 @@
+{
+ "SKAB": {
+  "n_train": 400,
+  "n_test_anom": 254,
+  "mean_maxresp": 0.658,
+  "rho": 0.102,
+  "rho_0p6": 0.527
+ },
+ "WADI": {
+  "n_train": 2614,
+  "n_test_anom": 56,
+  "mean_maxresp": 0.944,
+  "rho": 0.01,
+  "rho_0p6": 0.037
+ },
+ "HAI": {
+  "n_train": 18359,
+  "n_test_anom": 652,
+  "mean_maxresp": 0.846,
+  "rho": 0.049,
+  "rho_0p6": 0.129
+ },
+ "SWaT": {
+  "n_train": 3623,
+  "n_test_anom": 182,
+  "mean_maxresp": 0.989,
+  "rho": 0.0,
+  "rho_0p6": 0.004
+ },
+ "MetroPT": {
+  "n_train": 1483,
+  "n_test_anom": 98,
+  "mean_maxresp": 0.966,
+  "rho": 0.001,
+  "rho_0p6": 0.02
+ },
+ "TEP": {
+  "error": "[Errno 2] No such file or directory: 'E:\\\\Projects\\\\Backlog\\\\LatAD\\\\poc\\\\datasets\\\\_new\\\\TEP\\\\tep_data.npz'"
+ },
+ "BATADAL": {
+  "error": "[Errno 2] No such file or directory: 'E:\\\\Projects\\\\Backlog\\\\LatAD\\\\poc\\\\datasets\\\\_new\\\\BATADAL/BATADAL_dataset03.csv'"
+ },
+ "PSM": {
+  "error": "[Errno 2] No such file or directory: 'E:\\\\Projects\\\\Backlog\\\\LatAD\\\\poc\\\\datasets\\\\_new\\\\RANSynCoders\\\\data/train.csv'"
+ }
+}

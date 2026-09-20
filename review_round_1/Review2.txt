@@ -1,0 +1,33 @@
+Quality of English Language
+(x) The English could be improved to more clearly express the research.
+( ) The English is fine and does not require any improvement.
+Yes	Can be improved	Must be improved	Not applicable
+Does the introduction provide sufficient background and include all relevant references?
+( )	( )	(x)	( )
+Is the research design appropriate?
+( )	(x)	( )	( )
+Are the methods adequately described?
+( )	( )	(x)	( )
+Are the results clearly presented?
+( )	(x)	( )	( )
+Are the conclusions supported by the results?
+( )	(x)	( )	( )
+Are all figures and tables clear and well-presented?
+( )	( )	(x)	( )
+Comments and Suggestions for Authors
+This paper formalizes the structure of normal CPS/IIoT telemetry as ten Massive, Implicit, Imbalanced Multimodality (MIIM) assumptions (A1–A10) and introduces LatAD, an unsupervised detector that learns a latent Gaussian-mixture regime clustering, scores anomalies by latent density and a rare-regime-safe nearest-component likelihood, and factorizes the density over correlation-community subsystems combined by cohesion-weighted Higher Criticism with an auto-gated reconstruction residual head. Under raw point-wise metrics and difficulty stratification on WADI, HAI, and SWaT, LatAD achieves the best overall AUROC and leads the difficult anomaly subsets, with a statistically significant gain on HAI over reconstruction-based deep detectors such as USAD and TranAD.
+
+The research content of the paper is very interesting, but the reviewers have raised the following issues or suggestions:
+
+When an abbreviation first appears in the abstract or main text, its full form should be provided, e.g., LatAD, IIoT, CPS, SCADA, etc.
+The abstract spends most of its length introducing the problems of existing anomaly detection methods, while providing very little introduction to the principle of the paper's core contribution, LatAD. Please highlight the technical contributions of this paper in the abstract.
+The logic of the Introduction is not clear enough and should be carefully revised. In the first paragraph, the last sentence, "This paper detects them by XXX," should be deleted. The paper's contributions should not be introduced in the first paragraph of the Introduction. It is suggested to add background on cyber-physical systems in the first paragraph.
+On Page 2, line 71, "the task is often framed as XXX"—what task does "the task" specifically refer to? Please state it clearly.
+The paper states that modeling and evaluation are "two obstacles that have obscured this failure mode." Has LatAD made contributions to both aspects? What specific problem is LatAD proposed to address, or what existing method does it improve? Please explain clearly.
+The structure of the Related Work section also has major problems and should be revised. First, the definition of anomaly detection in the first sentence should be moved to the Introduction. Second, since LatAD is the authors' novel work, it should not be described in detail in Related Work. It is suggested to delete: the last sentence of the first paragraph, "LatAD sits squarely in this line XXX"; the last sentence of Section 2.1, "LatAD addresses a complementary IIoT problem XXX"; and the last paragraph of Section 2.2, "LatAD adopts this critique as XXX." Section 2.3 is entirely an introduction to LatAD and needs to be rewritten. Section 2.5 is suggested to be deleted.
+Add a system model diagram or an application scenario diagram that shows at which stage of the Industrial IoT the proposed LatAD method collects data and performs anomaly detection.
+What is the relationship between the MIIM presented in Section 3 and the LatAD detector presented in Section 4? Are they studied independently or closely related? Please add an explanation of their relationship.
+The readability of Section 4 needs to be improved. Sections 4.1 to 4.4 barely mention LatAD in the main text, making it unclear which part of the LatAD detector pipeline each corresponds to. Which parts of the LatAD detector pipeline do the representation stage and scoring stage correspond to? Please add a figure to introduce the LatAD workflow.
+Is VaDE + density head + residual head fitted separately for each community? Or is the encoder shared? The paper does not report training time, GPU memory, or inference latency, which is critical for IIoT edge deployment.
+The symbol z denotes a latent variable in §4.3 but a standardized per-channel value in §5.3. Although the paper includes the sentence "here z is a standardized per-channel value, not the latent z of §4.3," the symbol conflict is still serious. It is suggested to replace z with another symbol in §4.2 or §5.3.
+Typesetting issues: Some paragraphs begin flush left, while others are indented. Please unify the format. None of the equations in the paper are numbered.

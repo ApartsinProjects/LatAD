@@ -1,0 +1,15 @@
+[HAI] test_normal                  HCcoh+LatAD Difficult [0.849, 0.018] null+HC [0.846, 0.016] HC_coh [0.801, 0.02]
+[HAI] test_all                     HCcoh+LatAD Difficult [0.852, 0.018] null+HC [0.853, 0.018] HC_coh [0.801, 0.02]
+[HAI] train_cal                    HCcoh+LatAD Difficult [0.845, 0.019] null+HC [0.77, 0.023] HC_coh [0.801, 0.02]
+[HAI] train_cal_retrained_test     HCcoh+LatAD Difficult [0.845, 0.02] null+HC [0.77, 0.025] HC_coh [0.801, 0.02]
+[HAI] train_cal_a0.25              HCcoh+LatAD Difficult [0.845, 0.016] null+HC [0.77, 0.023] HC_coh [0.801, 0.02]
+[HAI] train_cal_a0.5               HCcoh+LatAD Difficult [0.851, 0.017] null+HC [0.77, 0.023] HC_coh [0.801, 0.02]
+[HAI] train_cal_a2.0               HCcoh+LatAD Difficult [0.837, 0.023] null+HC [0.77, 0.023] HC_coh [0.801, 0.02]
+[HAI] train_cal_a4.0               HCcoh+LatAD Difficult [0.825, 0.025] null+HC [0.77, 0.023] HC_coh [0.801, 0.02]
+  [HAI_f80] seed 0 retrained in 70s  resid_auto=False ratio=1.50
+  [HAI_f80] seed 1 retrained in 63s  resid_auto=True ratio=1.26
+  [HAI_f80] seed 2 retrained in 66s  resid_auto=True ratio=1.35
+  [HAI_f80] seed 3 retrained in 64s  resid_auto=True ratio=1.28
+  [HAI_f80] seed 4 retrained in 59s  resid_auto=True ratio=1.23
+[HAI] train_heldout80  HCcoh+LatAD Difficult [0.83, 0.01]
+DONE

@@ -1,0 +1,169 @@
+{
+ "WADI_clean": {
+  "n_difficult": 30,
+  "n_normal": 519,
+  "auroc_recon_head": 0.7320616570327553,
+  "auroc_density_head": 0.654572896596018,
+  "gap_density_minus_recon": -0.07748876043673725,
+  "gap_per_seed": [
+   -0.07379576107899799,
+   -0.06650610147719971,
+   -0.07007064868336543,
+   -0.08233782915863852,
+   -0.0947334617854847
+  ],
+  "auroc_external": {
+   "USAD": 0.5789980732177263,
+   "TranAD": 0.6134874759152216,
+   "AE": 0.6292870905587669
+  },
+  "ext_recon_index": 0.596242774566474,
+  "ext_recon_index_incl_AE": 0.607257546563905,
+  "quadrants_external_recon": {
+   "RBI": 0.0,
+   "IBR": 0.0,
+   "both": 0.13333333333333333,
+   "neither": 0.7,
+   "recon_seen": 0.23333333333333334,
+   "density_seen": 0.2
+  },
+  "quadrants_head_recon": {
+   "RBI": 0.0,
+   "IBR": 0.03333333333333333,
+   "both": 0.16666666666666666,
+   "neither": 0.5666666666666667,
+   "recon_seen": 0.4,
+   "density_seen": 0.2
+  },
+  "median_pct_difficult": {
+   "ext_recon": 0.6526974951830442,
+   "head_recon": 0.8660886319845857,
+   "density": 0.7129094412331407
+  }
+ },
+ "HAI": {
+  "n_difficult": 167,
+  "n_normal": 14167,
+  "auroc_recon_head": 0.6951160007929366,
+  "auroc_density_head": 0.8015956792562966,
+  "gap_density_minus_recon": 0.10647967846336004,
+  "gap_per_seed": [
+   0.12128485317781179,
+   0.10706630784453541,
+   0.10745263197047716,
+   0.10483416593086159,
+   0.09176043339311357
+  ],
+  "auroc_external": {
+   "USAD": 0.4966896164612963,
+   "TranAD": 0.44503102216545243,
+   "AE": 0.7575190552050413
+  },
+  "ext_recon_index": 0.47086031931337435,
+  "ext_recon_index_incl_AE": 0.5664132312772633,
+  "quadrants_external_recon": {
+   "RBI": 0.2694610778443114,
+   "IBR": 0.0,
+   "both": 0.023952095808383235,
+   "neither": 0.38323353293413176,
+   "recon_seen": 0.023952095808383235,
+   "density_seen": 0.6167664670658682
+  },
+  "quadrants_head_recon": {
+   "RBI": 0.0,
+   "IBR": 0.0,
+   "both": 0.281437125748503,
+   "neither": 0.38323353293413176,
+   "recon_seen": 0.281437125748503,
+   "density_seen": 0.6167664670658682
+  },
+  "median_pct_difficult": {
+   "ext_recon": 0.46364791416672546,
+   "head_recon": 0.6074680595750688,
+   "density": 0.9308957436295616
+  }
+ },
+ "SWaT_canon": {
+  "n_difficult": 85,
+  "n_normal": 1265,
+  "auroc_recon_head": 0.83457986514764,
+  "auroc_density_head": 0.7940999767495931,
+  "gap_density_minus_recon": -0.04047988839804695,
+  "gap_per_seed": [
+   -0.04112531969309463,
+   -0.035870727737735586,
+   -0.03275517321553134,
+   -0.04695652173913045,
+   -0.04569169960474306
+  ],
+  "auroc_external": {
+   "USAD": 0.6582655196465937,
+   "TranAD": 0.6545454545454545,
+   "AE": 0.7295140664961636
+  },
+  "ext_recon_index": 0.6564054870960241,
+  "ext_recon_index_incl_AE": 0.6807750135627373,
+  "quadrants_external_recon": {
+   "RBI": 0.16470588235294117,
+   "IBR": 0.0,
+   "both": 0.27058823529411763,
+   "neither": 0.35294117647058826,
+   "recon_seen": 0.3176470588235294,
+   "density_seen": 0.6
+  },
+  "quadrants_head_recon": {
+   "RBI": 0.0,
+   "IBR": 0.0,
+   "both": 0.5764705882352941,
+   "neither": 0.29411764705882354,
+   "recon_seen": 0.6823529411764706,
+   "density_seen": 0.6
+  },
+  "median_pct_difficult": {
+   "ext_recon": 0.7205533596837945,
+   "head_recon": 0.9762845849802372,
+   "density": 0.9383399209486166
+  }
+ },
+ "cross_dataset": {
+  "ext_recon_index": {
+   "values": {
+    "WADI_clean": 0.596242774566474,
+    "HAI": 0.47086031931337435,
+    "SWaT_canon": 0.6564054870960241
+   },
+   "gaps": {
+    "WADI_clean": -0.07748876043673725,
+    "HAI": 0.10647967846336004,
+    "SWaT_canon": -0.04047988839804695
+   },
+   "spearman": -0.5
+  },
+  "RBI_ext_minus_IBR_ext": {
+   "values": {
+    "WADI_clean": 0.0,
+    "HAI": 0.2694610778443114,
+    "SWaT_canon": 0.16470588235294117
+   },
+   "gaps": {
+    "WADI_clean": -0.07748876043673725,
+    "HAI": 0.10647967846336004,
+    "SWaT_canon": -0.04047988839804695
+   },
+   "spearman": 1.0
+  },
+  "RBI_ext": {
+   "values": {
+    "WADI_clean": 0.0,
+    "HAI": 0.2694610778443114,
+    "SWaT_canon": 0.16470588235294117
+   },
+   "gaps": {
+    "WADI_clean": -0.07748876043673725,
+    "HAI": 0.10647967846336004,
+    "SWaT_canon": -0.04047988839804695
+   },
+   "spearman": 1.0
+  }
+ }
+}

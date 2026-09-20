@@ -1,0 +1,14 @@
+[SWaT_canon/cur_avg25] S=25 communities, method=average maxsz=25 minsz=3, nfit=3624 ncal=906
+[SWaT_canon/cur_avg25] seed 0: 25 experts (0 skipped) 69s
+[SWaT_canon/cur_avg25] seed 1: 25 experts (0 skipped) 134s
+[SWaT_canon/cur_avg25] seed 2: 25 experts (0 skipped) 199s
+[SWaT_canon/cur_avg25] seed 3: 25 experts (0 skipped) 264s
+[SWaT_canon/cur_avg25] seed 4: 25 experts (0 skipped) 329s
+saved E:\Projects\Backlog\LatAD\poc\sota_bundle\experts_variants\cur_avg25\expert_SWaT_canon.npz
+[SWaT_canon/var_avg15] S=24 communities, method=average maxsz=15 minsz=3, nfit=3624 ncal=906
+[SWaT_canon/var_avg15] seed 0: 24 experts (0 skipped) 64s
+[SWaT_canon/var_avg15] seed 1: 24 experts (0 skipped) 125s
+[SWaT_canon/var_avg15] seed 2: 24 experts (0 skipped) 185s
+[SWaT_canon/var_avg15] seed 3: 24 experts (0 skipped) 245s
+[SWaT_canon/var_avg15] seed 4: 24 experts (0 skipped) 305s
+saved E:\Projects\Backlog\LatAD\poc\sota_bundle\experts_variants\var_avg15\expert_SWaT_canon.npz

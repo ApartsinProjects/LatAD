@@ -1,0 +1,27 @@
+HAI: n=14819 anom=652 difficult=167 excluded_normals=2604 (18.4%) anoms_excluded=0
+
+  LatAD (global)
+     auroc              0.9332 -> 0.9523   (delta +0.0191)
+     auroc_difficult    0.8115 -> 0.8498   (delta +0.0383)
+     tpr_at_fpr1        0.6252 -> 0.7761   (delta +0.1509)
+     tpr_at_fpr5        0.6635 -> 0.8880   (delta +0.2245)
+
+  null+HC
+     auroc              0.9464 -> 0.9628   (delta +0.0164)
+     auroc_difficult    0.8461 -> 0.8809   (delta +0.0348)
+     tpr_at_fpr1        0.6865 -> 0.7417   (delta +0.0552)
+     tpr_at_fpr5        0.7586 -> 0.9196   (delta +0.1610)
+
+  HCcoh+LatAD
+     auroc              0.9490 -> 0.9652   (delta +0.0162)
+     auroc_difficult    0.8491 -> 0.8896   (delta +0.0405)
+     tpr_at_fpr1        0.7123 -> 0.7666   (delta +0.0543)
+     tpr_at_fpr5        0.7893 -> 0.9160   (delta +0.1267)
+
+  cohmax+LatAD
+     auroc              0.9435 -> 0.9633   (delta +0.0198)
+     auroc_difficult    0.8283 -> 0.8774   (delta +0.0491)
+     tpr_at_fpr1        0.6641 -> 0.7776   (delta +0.1135)
+     tpr_at_fpr5        0.7684 -> 0.8936   (delta +0.1252)
+
+saved hai_exclusion_community.json

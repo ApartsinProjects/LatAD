@@ -1,0 +1,38 @@
+[seed 1 T=13] occ_gt=0.130 val_t=122 val_o=406 pool_t=285 pool_o=2306 test_norm_T=217 K=90
+  r=1.0    n_t= 285 frac=0.1100 | pi(valT)=0.0237 purity=0.92 ncomp=12 nearNLL valT/valO=-3.9/-0.1 gap=3.62/3.70
+         FPR valT  mix=0.000 near=0.000 temp=0.000 bal=0.000 d80=0.008 base=0.008 | matched: mix=0.000 near=0.000 d80=0.000
+         FPR testT mix=0.018433179723502304 near=0.018433179723502304 d80=0.041474654377880185 | AUROC mix=0.772 near=0.779 d80=0.781 base=0.786 | cf pi-only mix=0.0 near=0.0 (17s)
+  r=0.3    n_t=  86 frac=0.0360 | pi(valT)=0.0116 purity=0.90 ncomp=11 nearNLL valT/valO=-3.4/-0.6 gap=4.27/4.01
+         FPR valT  mix=0.016 near=0.041 temp=0.016 bal=0.033 d80=0.033 base=0.025 | matched: mix=0.008 near=0.008 d80=0.000
+         FPR testT mix=0.041474654377880185 near=0.05069124423963134 d80=0.041474654377880185 | AUROC mix=0.752 near=0.758 d80=0.762 base=0.763 | cf pi-only mix=0.0 near=0.0 (10s)
+  r=0.1    n_t=  28 frac=0.0120 | pi(valT)=0.0133 purity=0.89 ncomp=12 nearNLL valT/valO=1.5/-1.1 gap=4.32/3.92
+         FPR valT  mix=0.025 near=0.025 temp=0.025 bal=0.025 d80=0.025 base=0.025 | matched: mix=0.000 near=0.000 d80=0.008
+         FPR testT mix=0.013824884792626729 near=0.013824884792626729 d80=0.041474654377880185 | AUROC mix=0.755 near=0.762 d80=0.779 base=0.776 | cf pi-only mix=0.0 near=0.0 (9s)
+  r=0.03   n_t=   9 frac=0.0039 | pi(valT)=0.0102 purity=0.85 ncomp=14 nearNLL valT/valO=3.6/-1.4 gap=4.59/3.65
+         FPR valT  mix=0.016 near=0.016 temp=0.016 bal=0.016 d80=0.016 base=0.025 | matched: mix=0.008 near=0.008 d80=0.000
+         FPR testT mix=0.013824884792626729 near=0.013824884792626729 d80=0.05069124423963134 | AUROC mix=0.742 near=0.746 d80=0.766 base=0.762 | cf pi-only mix=0.01639344262295082 near=0.0 (8s)
+  r=0.01   n_t=   3 frac=0.0013 | pi(valT)=0.0121 purity=0.77 ncomp=17 nearNLL valT/valO=6.0/-1.4 gap=4.09/3.93
+         FPR valT  mix=0.016 near=0.016 temp=0.016 bal=0.016 d80=0.049 base=0.025 | matched: mix=0.000 near=0.000 d80=0.008
+         FPR testT mix=0.013824884792626729 near=0.013824884792626729 d80=0.04608294930875576 | AUROC mix=0.724 near=0.725 d80=0.751 base=0.740 | cf pi-only mix=0.01639344262295082 near=0.0 (8s)
+  r=0.003  n_t=   1 frac=0.0004 | pi(valT)=0.0086 purity=0.77 ncomp=13 nearNLL valT/valO=8.8/-1.9 gap=4.37/3.86
+         FPR valT  mix=0.328 near=0.393 temp=0.352 bal=0.361 d80=0.025 base=0.262 | matched: mix=0.000 near=0.041 d80=0.000
+         FPR testT mix=0.2903225806451613 near=0.3824884792626728 d80=0.06451612903225806 | AUROC mix=0.716 near=0.720 d80=0.745 base=0.732 | cf pi-only mix=0.01639344262295082 near=0.0 (8s)
+[seed 1 T=31] occ_gt=0.119 val_t=111 val_o=412 pool_t=260 pool_o=2336 test_norm_T=219 K=90
+  r=1.0    n_t= 260 frac=0.1002 | pi(valT)=0.0253 purity=0.93 ncomp=12 nearNLL valT/valO=-3.2/-0.9 gap=3.59/4.20
+         FPR valT  mix=0.018 near=0.000 temp=0.018 bal=0.000 d80=0.027 base=0.018 | matched: mix=0.000 near=0.000 d80=0.000
+         FPR testT mix=0.0091324200913242 near=0.0091324200913242 d80=0.045662100456621 | AUROC mix=0.761 near=0.762 d80=0.759 base=0.763 | cf pi-only mix=0.018018018018018018 near=0.0 (8s)
+  r=0.3    n_t=  78 frac=0.0323 | pi(valT)=0.0094 purity=0.92 ncomp=10 nearNLL valT/valO=-3.1/-1.0 gap=4.45/3.69
+         FPR valT  mix=0.081 near=0.072 temp=0.072 bal=0.072 d80=0.108 base=0.081 | matched: mix=0.009 near=0.000 d80=0.018
+         FPR testT mix=0.0593607305936073 near=0.0593607305936073 d80=0.0821917808219178 | AUROC mix=0.770 near=0.774 d80=0.782 base=0.781 | cf pi-only mix=0.009009009009009009 near=0.0 (8s)
+  r=0.1    n_t=  26 frac=0.0110 | pi(valT)=0.0076 purity=0.91 ncomp=10 nearNLL valT/valO=-0.9/-0.8 gap=4.88/3.85
+         FPR valT  mix=0.090 near=0.072 temp=0.072 bal=0.072 d80=0.180 base=0.126 | matched: mix=0.009 near=0.027 d80=0.054
+         FPR testT mix=0.0821917808219178 near=0.0821917808219178 d80=0.1187214611872146 | AUROC mix=0.752 near=0.756 d80=0.773 base=0.769 | cf pi-only mix=0.018018018018018018 near=0.0 (8s)
+  r=0.03   n_t=   8 frac=0.0034 | pi(valT)=0.0168 purity=0.77 ncomp=12 nearNLL valT/valO=10.6/-0.9 gap=4.07/3.93
+         FPR valT  mix=0.099 near=0.117 temp=0.117 bal=0.117 d80=0.126 base=0.117 | matched: mix=0.036 near=0.036 d80=0.027
+         FPR testT mix=0.0365296803652968 near=0.0639269406392694 d80=0.0547945205479452 | AUROC mix=0.735 near=0.741 d80=0.767 base=0.762 | cf pi-only mix=0.018018018018018018 near=0.0 (8s)
+  r=0.01   n_t=   3 frac=0.0013 | pi(valT)=0.0163 purity=0.77 ncomp=16 nearNLL valT/valO=5.2/-1.5 gap=4.12/3.71
+         FPR valT  mix=0.018 near=0.018 temp=0.018 bal=0.018 d80=0.045 base=0.009 | matched: mix=0.000 near=0.000 d80=0.000
+         FPR testT mix=0.0228310502283105 near=0.0228310502283105 d80=0.0182648401826484 | AUROC mix=0.746 near=0.748 d80=0.750 base=0.754 | cf pi-only mix=0.018018018018018018 near=0.0 (8s)
+  r=0.003  n_t=   1 frac=0.0004 | pi(valT)=0.0074 purity=0.78 ncomp=15 nearNLL valT/valO=9.1/-1.3 gap=4.83/3.88
+         FPR valT  mix=0.099 near=0.090 temp=0.090 bal=0.090 d80=0.252 base=0.180 | matched: mix=0.036 near=0.036 d80=0.054
+         FPR testT mix=0.0639269406392694 near=0.0867579908675799 d80=0.1917808219178082 | AUROC mix=0.738 near=0.744 d80=0.747 base=0.749 | cf pi-only mix=0.018018018018018018 near=0.0 (7s)

@@ -1,0 +1,6 @@
+[WADI_clean] 44 communities: rho mean=0.004 median=0.001 max=0.029 | communities with A3 (rho>=0.30): 0 | top5 (size,rho)=[(4, 0.029), (6, 0.021), (6, 0.021), (4, 0.015), (8, 0.013)]
+[HAI] 28 communities: rho mean=0.035 median=0.018 max=0.155 | communities with A3 (rho>=0.30): 0 | top5 (size,rho)=[(3, 0.155), (3, 0.116), (19, 0.104), (5, 0.082), (21, 0.076)]
+[SWaT_canon] 25 communities: rho mean=0.005 median=0.0 max=0.122 | communities with A3 (rho>=0.30): 0 | top5 (size,rho)=[(11, 0.122), (4, 0.004), (4, 0.002), (14, 0.001), (12, 0.001)]
+[SKAB] expert missing (sota_bundle/experts/expert_SKAB.npz) - skip
+
+Global-rho reference: SKAB ~0.53-0.58 (A3), WADI/HAI/SWaT ~0.01-0.05 (no global A3).

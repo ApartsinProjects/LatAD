@@ -1,0 +1,169 @@
+table: E:\Projects\Backlog\LatAD\poc\_diagnostics\fable_cleanwadi_scores_clip10_default.npz
+  clip=10.0 K=20 LD=10
+  n_win=575 normals=519 anomalies=56 = easy 13 + difficult 43  thr=6.000
+
+== CANONICAL difficult (paper: difficult anomalies vs all normals): 43 anomalies vs 519 normals
+  LatAD   0.734 +- 0.008  [0.741 0.735 0.743 0.721 0.729]
+  AE      0.739 +- 0.003  [0.741 0.739 0.734 0.738 0.741]
+  IF      0.681 +- 0.006  [0.689 0.681 0.685 0.677 0.672]
+  linres  0.787 +- 0.000  [0.787]
+  l2      0.751 +- 0.000  [0.751]
+  paired bootstrap LatAD-AE: -0.005  95% CI [-0.033, +0.026]  P(<=0)=0.640
+  paired bootstrap LatAD-IF: +0.052  95% CI [-0.011, +0.125]  P(<=0)=0.052
+  paired bootstrap LatAD-linres: -0.053  95% CI [-0.142, +0.038]  P(<=0)=0.882
+  paired bootstrap LatAD-l2: -0.018  95% CI [-0.046, +0.012]  P(<=0)=0.885
+
+== CANONICAL easy: 13 anomalies vs 519 normals
+  LatAD   0.991 +- 0.003  [0.988 0.996 0.988 0.992 0.992]
+  AE      0.999 +- 0.000  [0.999 0.999 0.999 0.999 0.999]
+  IF      0.871 +- 0.007  [0.866 0.881 0.878 0.863 0.866]
+  linres  0.993 +- 0.000  [0.993]
+  l2      0.999 +- 0.000  [0.999]
+
+== ALL: 56 anomalies vs 519 normals
+  LatAD   0.793 +- 0.006  [0.798 0.796 0.8   0.784 0.79 ]
+  AE      0.799 +- 0.002  [0.801 0.799 0.796 0.798 0.801]
+  IF      0.725 +- 0.005  [0.73  0.728 0.73  0.72  0.717]
+  linres  0.834 +- 0.000  [0.834]
+  l2      0.809 +- 0.000  [0.809]
+
+== MIS-CONSTRUCTED 'maxz>thr over all windows' (= easy anomalies + few normals): 13 anomalies vs 3 normals
+  LatAD   0.897 +- 0.016  [0.897 0.923 0.897 0.872 0.897]
+  AE      0.969 +- 0.010  [0.949 0.974 0.974 0.974 0.974]
+  IF      0.441 +- 0.019  [0.462 0.436 0.41  0.436 0.462]
+  linres  0.949 +- 0.000  [0.949]
+  l2      0.949 +- 0.000  [0.949]
+
+== gates per seed: [{'seed': 0, 'resid_auto': False, 'resid_gen_ratio': 4.458483395722735, 'basin_lam': 0.0, 'basin_frac_amb': 0.0072685539403213465}, {'seed': 1, 'resid_auto': False, 'resid_gen_ratio': 3.1011980601956166, 'basin_lam': 0.0, 'basin_frac_amb': 0.009946442234123947}, {'seed': 2, 'resid_auto': False, 'resid_gen_ratio': 5.058425948813012, 'basin_lam': 0.0, 'basin_frac_amb': 0.009181331293037491}, {'seed': 3, 'resid_auto': False, 'resid_gen_ratio': 3.2884284571469706, 'basin_lam': 0.0, 'basin_frac_amb': 0.005738332058148432}, {'seed': 4, 'resid_auto': False, 'resid_gen_ratio': 5.363755754583458, 'basin_lam': 0.0, 'basin_frac_amb': 0.013006885998469778}]
+  density only             difficult 0.743 +- 0.013   all 0.800
+  dens+near (base)         difficult 0.734 +- 0.008   all 0.793
+  base+resid(forced)       difficult 0.760 +- 0.010   all 0.815
+  base+basin(forced)       difficult 0.734 +- 0.008   all 0.793
+  full(auto) = reported    difficult 0.734 +- 0.008   all 0.793
+  dens+resid(forced)       difficult 0.750 +- 0.013   all 0.807
+  [invariant] gates off -> full == base: True
+
+== coverage: 1-NN dist to train, OOS thr (train LOO p99) = 30.66
+  OOS rate: test normals 0.010 (5/519), all anomalies 0.482, difficult anomalies 0.326 (14/43), easy 1.000
+  sanity: last-20%-of-train OOS rate vs first-80% = 0.027 (temporal drift inside train)
+  false alarms @ 5% normal-FPR: LatAD 26 of which OOS 5 (0.19); AE 26 of which OOS 5 (0.19)
+  false alarms @ 1% normal-FPR: LatAD 6 of which OOS 4 (0.67); AE 6 of which OOS 5 (0.83)
+  mean percentile of OOS normals: LatAD 0.991  AE 0.994; in-support normals: LatAD 0.494 AE 0.494
+  OOS-normal runs: 4; lengths [1, 2, 1, 1]
+
+== EXCLUSION TEST: drop 5 OOS test normals (anomalies removed: 0)
+
+== difficult, OOS normals excluded: 43 anomalies vs 514 normals
+  LatAD   0.738 +- 0.008  [0.745 0.74  0.747 0.726 0.733]
+  AE      0.743 +- 0.003  [0.746 0.744 0.739 0.743 0.746]
+  IF      0.686 +- 0.006  [0.693 0.686 0.69  0.682 0.677]
+  linres  0.788 +- 0.000  [0.788]
+  l2      0.756 +- 0.000  [0.756]
+  paired bootstrap LatAD-AE: -0.005  95% CI [-0.032, +0.026]  P(<=0)=0.650
+  control (drop same # of random in-support normals): LatAD-AE = -0.005 +- 0.000
+
+== duplicates among 43 difficult anomalies: episodes=14 lens=[6, 4, 3, 4, 1, 1, 1, 1, 3, 2, 5, 4, 4, 4]; near-dup clusters eps=p10 trainLOO(4.32) -> 42, eps=p50(10.44) -> 40; min pairwise 3.96, median 1NN within-difficult 20.67 vs to-train 20.06
+  anomalies within train-LOO-median (10.44) of some normal (possible mislabel): 6/56, difficult among them 6
+
+== difficult anomalies AE ranks >10pct higher than LatAD: 7; LatAD > AE: 3; within 10pct: 33
+  -- AE catches / LatAD misses:
+    {'win': 16, 'seg': [0], 'maxz': 2.62, 'oos': False, 'd1nn': 11.4, 'LatAD_pct': 0.324, 'AE_pct': 0.437, 'linres_pct': 0.191, 'top': [('2B_AIT_004_PV', -2.68), ('2A_AIT_004_PV', -2.11), ('3_FIT_001_PV', -1.98)]}
+    {'win': 21, 'seg': [0], 'maxz': 2.96, 'oos': False, 'd1nn': 13.6, 'LatAD_pct': 0.42, 'AE_pct': 0.526, 'linres_pct': 0.052, 'top': [('1_AIT_004_PV', -3.12), ('2B_AIT_004_PV', -2.68), ('2A_AIT_004_PV', -2.16)]}
+    {'win': 196, 'seg': [1], 'maxz': 2.29, 'oos': False, 'd1nn': 18.1, 'LatAD_pct': 0.778, 'AE_pct': 0.908, 'linres_pct': 1.0, 'top': [('2_LS_401_AL', 4.33), ('2_FIC_401_SP', 2.32), ('2_LS_101_AL', 2.22)]}
+    {'win': 236, 'seg': [4], 'maxz': 2.99, 'oos': False, 'd1nn': 21.3, 'LatAD_pct': 0.59, 'AE_pct': 0.763, 'linres_pct': 0.998, 'top': [('2A_AIT_004_PV', -3.01), ('2B_AIT_004_PV', -2.66), ('3_LT_001_PV', 2.38)]}
+    {'win': 508, 'seg': [12], 'maxz': 4.01, 'oos': False, 'd1nn': 18.8, 'LatAD_pct': 0.42, 'AE_pct': 0.539, 'linres_pct': 1.0, 'top': [('1_AIT_004_PV', -4.22), ('2A_AIT_004_PV', -3.84), ('2B_AIT_004_PV', -2.9)]}
+    {'win': 546, 'seg': [13], 'maxz': 2.25, 'oos': False, 'd1nn': 20.4, 'LatAD_pct': 0.568, 'AE_pct': 0.688, 'linres_pct': 0.938, 'top': [('3_AIT_004_PV', -2.69), ('1_AIT_004_PV', -2.37), ('2B_AIT_004_PV', -2.28)]}
+    {'win': 547, 'seg': [13], 'maxz': 3.75, 'oos': False, 'd1nn': 18.3, 'LatAD_pct': 0.478, 'AE_pct': 0.611, 'linres_pct': 0.761, 'top': [('2_LT_002_PV', 5.12), ('2_PIT_001_PV', 3.4), ('1_AIT_004_PV', -3.05)]}
+  -- LatAD catches / AE misses:
+    {'win': 20, 'seg': [0], 'maxz': 2.85, 'oos': False, 'd1nn': 16.2, 'LatAD_pct': 0.622, 'AE_pct': 0.487, 'linres_pct': 0.258, 'top': [('1_AIT_004_PV', -3.0), ('2B_AIT_004_PV', -2.72), ('2A_AIT_004_PV', -2.15)]}
+    {'win': 195, 'seg': [1], 'maxz': 2.29, 'oos': False, 'd1nn': 11.1, 'LatAD_pct': 0.59, 'AE_pct': 0.195, 'linres_pct': 0.985, 'top': [('2_FIC_401_SP', 2.32), ('2B_AIT_004_PV', -1.97), ('1_AIT_003_PV', 1.86)]}
+    {'win': 496, 'seg': [9], 'maxz': 3.53, 'oos': False, 'd1nn': 18.7, 'LatAD_pct': 0.786, 'AE_pct': 0.618, 'linres_pct': 1.0, 'top': [('2_PIT_001_PV', -4.77), ('2_LT_002_PV', -4.26), ('2_FQ_301_PV', 2.92)]}
+  -- all difficult (seg, maxz, oos, LatAD_pct, AE_pct):
+    w 16 seg[0] maxz  2.62 oos=0 d1nn=  11.4 LatAD 0.324 AE 0.437 lin 0.191 top [('2B_AIT_004_PV', -2.68), ('2A_AIT_004_PV', -2.11), ('3_FIT_001_PV', -1.98)]
+    w 17 seg[0] maxz  2.63 oos=0 d1nn=  19.8 LatAD 0.946 AE 0.861 lin 0.358 top [('2B_AIT_004_PV', -2.69), ('2A_AIT_004_PV', -2.11), ('1_AIT_004_PV', -2.0)]
+    w 18 seg[0] maxz  2.64 oos=0 d1nn=  10.0 LatAD 0.349 AE 0.364 lin 0.322 top [('2B_AIT_004_PV', -2.7), ('1_AIT_004_PV', -2.45), ('2A_AIT_004_PV', -2.12)]
+    w 19 seg[0] maxz  2.65 oos=0 d1nn=  16.7 LatAD 0.696 AE 0.634 lin 0.368 top [('1_AIT_004_PV', -2.76), ('2B_AIT_004_PV', -2.71), ('2A_AIT_004_PV', -2.14)]
+    w 20 seg[0] maxz  2.85 oos=0 d1nn=  16.2 LatAD 0.622 AE 0.487 lin 0.258 top [('1_AIT_004_PV', -3.0), ('2B_AIT_004_PV', -2.72), ('2A_AIT_004_PV', -2.15)]
+    w 21 seg[0] maxz  2.96 oos=0 d1nn=  13.6 LatAD 0.420 AE 0.526 lin 0.052 top [('1_AIT_004_PV', -3.12), ('2B_AIT_004_PV', -2.68), ('2A_AIT_004_PV', -2.16)]
+    w195 seg[1] maxz  2.29 oos=0 d1nn=  11.1 LatAD 0.590 AE 0.195 lin 0.985 top [('2_FIC_401_SP', 2.32), ('2B_AIT_004_PV', -1.97), ('1_AIT_003_PV', 1.86)]
+    w196 seg[1] maxz  2.29 oos=0 d1nn=  18.1 LatAD 0.778 AE 0.908 lin 1.0 top [('2_LS_401_AL', 4.33), ('2_FIC_401_SP', 2.32), ('2_LS_101_AL', 2.22)]
+    w197 seg[1] maxz  3.06 oos=0 d1nn=  17.5 LatAD 0.929 AE 0.902 lin 1.0 top [('2_LS_101_AL', 5.43), ('2_LS_401_AL', 4.33), ('2_MCV_301_CO', 3.44)]
+    w198 seg[1] maxz  3.23 oos=0 d1nn=  18.8 LatAD 0.773 AE 0.859 lin 1.0 top [('2_MCV_301_CO', 3.63), ('2_LS_101_AL', 3.02), ('2_FIC_401_PV', 2.36)]
+    w202 seg[2] maxz  2.66 oos=0 d1nn=  22.2 LatAD 0.960 AE 0.938 lin 0.954 top [('2_FQ_401_PV', 3.52), ('2_FIC_401_PV', 3.52), ('2_FQ_501_PV', 3.04)]
+    w203 seg[2] maxz  2.78 oos=0 d1nn=  23.0 LatAD 0.979 AE 0.963 lin 0.998 top [('2_PIT_001_PV', -3.65), ('2_FIC_401_PV', 3.61), ('2_FQ_401_PV', 3.6)]
+    w204 seg[2] maxz  4.74 oos=1 d1nn=4529.1 LatAD 1.000 AE 1.000 lin 1.0 top [('1_MV_002_STATUS', 357.95), ('1_MV_003_STATUS', 357.95), ('2_PIT_001_PV', -6.4)]
+    w235 seg[4] maxz  2.84 oos=0 d1nn=  20.4 LatAD 0.690 AE 0.728 lin 0.99 top [('2A_AIT_004_PV', -2.85), ('3_LT_001_PV', 2.64), ('2B_AIT_004_PV', -2.17)]
+    w236 seg[4] maxz  2.99 oos=0 d1nn=  21.3 LatAD 0.590 AE 0.763 lin 0.998 top [('2A_AIT_004_PV', -3.01), ('2B_AIT_004_PV', -2.66), ('3_LT_001_PV', 2.38)]
+    w237 seg[4] maxz  3.02 oos=0 d1nn=  16.6 LatAD 0.566 AE 0.470 lin 0.938 top [('2A_AIT_004_PV', -3.04), ('2B_AIT_004_PV', -2.96), ('3_LT_001_PV', 2.31)]
+    w238 seg[4] maxz  2.91 oos=0 d1nn=  16.9 LatAD 0.499 AE 0.478 lin 0.68 top [('2A_AIT_004_PV', -2.93), ('2B_AIT_004_PV', -2.91), ('3_LT_001_PV', 2.08)]
+    w248 seg[5] maxz  3.00 oos=1 d1nn=6776.0 LatAD 1.000 AE 1.000 lin 0.987 top [('1_MV_003_STATUS', 238.63), ('1_MV_002_STATUS', 238.63), ('2_MCV_301_CO', 3.37)]
+    w251 seg[5] maxz  5.16 oos=1 d1nn=  37.9 LatAD 0.983 AE 0.994 lin 1.0 top [('1_AIT_002_PV', 6.54), ('2_MCV_301_CO', 3.46), ('2B_AIT_004_PV', -2.83)]
+    w283 seg[6] maxz  4.33 oos=1 d1nn=3316.3 LatAD 0.998 AE 0.998 lin 0.742 top [('2_MCV_007_CO', 775.56), ('2B_AIT_004_PV', -2.25), ('2A_AIT_004_PV', -1.75)]
+    w285 seg[6] maxz  4.67 oos=1 d1nn=3332.4 LatAD 0.998 AE 0.998 lin 0.855 top [('2_MCV_007_CO', 835.22), ('2B_AIT_004_PV', -2.32), ('2A_AIT_004_PV', -1.99)]
+    w360 seg[7] maxz  1.61 oos=0 d1nn=   8.4 LatAD 0.021 AE 0.037 lin 0.123 top [('3_AIT_004_PV', -2.28), ('3_AIT_003_PV', 2.26), ('3_LT_001_PV', 1.62)]
+    w361 seg[7] maxz  1.49 oos=0 d1nn=   9.2 LatAD 0.037 AE 0.056 lin 0.597 top [('2A_AIT_002_PV', 1.61), ('3_LT_001_PV', 1.5), ('1_LT_001_PV', -1.44)]
+    w362 seg[7] maxz  1.40 oos=0 d1nn=   9.1 LatAD 0.021 AE 0.052 lin 0.615 top [('2A_AIT_002_PV', 1.61), ('1_LT_001_PV', -1.44), ('3_LT_001_PV', 1.4)]
+    w490 seg[8] maxz  3.64 oos=1 d1nn=2614.2 LatAD 0.998 AE 0.998 lin 0.385 top [('1_P_006_STATUS', 238.63), ('2_LS_201_AL', 6.64), ('2_MCV_501_CO', 4.13)]
+    w491 seg[8] maxz  3.36 oos=1 d1nn=3168.2 LatAD 0.998 AE 0.998 lin 0.43 top [('1_P_006_STATUS', 238.63), ('2_MCV_501_CO', 3.82), ('2_MCV_601_CO', 2.58)]
+    w494 seg[9] maxz  2.74 oos=0 d1nn=  27.8 LatAD 0.987 AE 0.987 lin 0.987 top [('2_LS_301_AL', 9.07), ('2_PIT_001_PV', -3.32), ('2_MCV_201_CO', 3.16)]
+    w495 seg[9] maxz  3.54 oos=1 d1nn=  35.6 LatAD 0.971 AE 0.990 lin 1.0 top [('2_PIT_001_PV', -4.79), ('2_DPIT_001_PV', -3.86), ('2_PIT_002_PV', -3.75)]
+    w496 seg[9] maxz  3.53 oos=0 d1nn=  18.7 LatAD 0.786 AE 0.618 lin 1.0 top [('2_PIT_001_PV', -4.77), ('2_LT_002_PV', -4.26), ('2_FQ_301_PV', 2.92)]
+    w497 seg[9] maxz  3.88 oos=0 d1nn=  23.9 LatAD 0.863 AE 0.848 lin 1.0 top [('2_LT_002_PV', -5.31), ('2_PIT_001_PV', -5.25), ('2_PIC_003_CO', -2.73)]
+    w498 seg[9, 10] maxz  3.46 oos=1 d1nn=3267.8 LatAD 0.998 AE 0.998 lin 0.983 top [('2_MCV_007_CO', 596.59), ('2_PIT_001_PV', -4.68), ('2_LT_002_PV', -4.61)]
+    w501 seg[10] maxz  5.72 oos=1 d1nn=3201.7 LatAD 0.998 AE 0.998 lin 0.988 top [('2_MCV_007_CO', 357.95), ('2_MCV_401_CO', 6.42), ('2_MCV_201_CO', 5.91)]
+    w502 seg[11] maxz  4.49 oos=1 d1nn=3151.3 LatAD 0.998 AE 0.998 lin 0.94 top [('2_MCV_007_CO', 178.98), ('2_MCV_401_CO', 5.03), ('2_MCV_201_CO', 4.61)]
+    w503 seg[11] maxz  6.00 oos=1 d1nn=3396.0 LatAD 0.998 AE 0.998 lin 1.0 top [('2_MCV_007_CO', 1073.85), ('LEAK_DIFF_PRESSURE', 5.5), ('2_DPIT_001_PV', -5.34)]
+    w504 seg[11] maxz  5.17 oos=1 d1nn=4650.0 LatAD 1.000 AE 1.000 lin 1.0 top [('2_MCV_007_CO', 924.71), ('2_PIC_003_SP', -417.61), ('1_AIT_004_PV', -4.0)]
+    w506 seg[12] maxz  3.92 oos=1 d1nn=3151.3 LatAD 0.998 AE 0.998 lin 1.0 top [('2_PIC_003_SP', -178.98), ('1_AIT_004_PV', -4.12), ('2A_AIT_004_PV', -3.87)]
+    w507 seg[12] maxz  3.96 oos=0 d1nn=  20.1 LatAD 0.794 AE 0.811 lin 1.0 top [('1_AIT_004_PV', -4.17), ('2A_AIT_004_PV', -3.86), ('2B_AIT_004_PV', -3.1)]
+    w508 seg[12] maxz  4.01 oos=0 d1nn=  18.8 LatAD 0.420 AE 0.539 lin 1.0 top [('1_AIT_004_PV', -4.22), ('2A_AIT_004_PV', -3.84), ('2B_AIT_004_PV', -2.9)]
+    w509 seg[12] maxz  4.05 oos=0 d1nn=  17.8 LatAD 0.397 AE 0.486 lin 1.0 top [('1_AIT_004_PV', -4.26), ('2A_AIT_004_PV', -3.73), ('2B_AIT_004_PV', -2.72)]
+    w544 seg[13] maxz  2.15 oos=0 d1nn=  17.5 LatAD 0.909 AE 0.948 lin 0.651 top [('2B_AIT_004_PV', -2.19), ('2_FIC_101_PV', 1.73), ('2_PIT_001_PV', -1.72)]
+    w545 seg[13] maxz  2.23 oos=0 d1nn=  18.1 LatAD 0.715 AE 0.626 lin 0.746 top [('2B_AIT_004_PV', -2.28), ('2_FIT_001_PV', 2.21), ('1_P_005_STATUS', 2.14)]
+    w546 seg[13] maxz  2.25 oos=0 d1nn=  20.4 LatAD 0.568 AE 0.688 lin 0.938 top [('3_AIT_004_PV', -2.69), ('1_AIT_004_PV', -2.37), ('2B_AIT_004_PV', -2.28)]
+    w547 seg[13] maxz  3.75 oos=0 d1nn=  18.3 LatAD 0.478 AE 0.611 lin 0.761 top [('2_LT_002_PV', 5.12), ('2_PIT_001_PV', 3.4), ('1_AIT_004_PV', -3.05)]
+
+== per attack segment (difficult windows): n, mean LatAD pct, mean AE pct, frac OOS, dominant channel
+  seg  0 (rows 511..661): n=6 LatAD 0.559 AE 0.551 oos 0.00  2B_AIT_004_PV
+  seg  1 (rows 5906..5965): n=4 LatAD 0.767 AE 0.716 oos 0.00  2_FIC_401_SP
+  seg  2 (rows 6091..6265): n=3 LatAD 0.980 AE 0.967 oos 0.33  2_FQ_401_PV
+  seg  4 (rows 7078..7145): n=4 LatAD 0.586 AE 0.610 oos 0.00  2A_AIT_004_PV
+  seg  5 (rows 7490..7560): n=2 LatAD 0.992 AE 0.997 oos 1.00  1_MV_003_STATUS
+  seg  6 (rows 8521..8579): n=2 LatAD 0.998 AE 0.998 oos 1.00  2_MCV_007_CO
+  seg  7 (rows 10846..10866): n=3 LatAD 0.026 AE 0.048 oos 0.00  2A_AIT_002_PV
+  seg  8 (rows 14731..14740): n=2 LatAD 0.998 AE 0.998 oos 1.00  1_P_006_STATUS
+  seg  9 (rows 14868..14949): n=5 LatAD 0.921 AE 0.888 oos 0.40  2_PIT_001_PV
+  seg 10 (rows 14975..15043): n=2 LatAD 0.998 AE 0.998 oos 1.00  2_MCV_007_CO
+  seg 11 (rows 15115..15151): n=3 LatAD 0.999 AE 0.999 oos 1.00  2_MCV_007_CO
+  seg 12 (rows 15217..15274): n=4 LatAD 0.652 AE 0.709 oos 0.25  1_AIT_004_PV
+  seg 13 (rows 16360..16423): n=4 LatAD 0.667 AE 0.718 oos 0.00  2B_AIT_004_PV
+
+== LatAD false alarms @5% FPR (n=26): idx [154, 155, 159, 213, 214, 215, 224, 225, 270, 271, 292, 293, 340, 341, 398, 467, 488, 489, 493, 505, 517, 518, 548, 549, 554, 562]
+    w154 oos=0 d1nn=  29.3 LatAD_pct 0.987 AE_pct 0.979 near_attack=41 top [('2_LS_201_AL', 7.61), ('2_LS_601_AL', 7.08), ('1_AIT_003_PV', 2.23)]
+    w155 oos=1 d1nn=  30.7 LatAD_pct 0.996 AE_pct 0.988 near_attack=40 top [('2_LS_201_AL', 7.61), ('2_LS_601_AL', 7.08), ('LEAK_DIFF_PRESSURE', 3.47)]
+    w159 oos=0 d1nn=  20.4 LatAD_pct 0.952 AE_pct 0.909 near_attack=36 top [('LEAK_DIFF_PRESSURE', 4.11), ('2_FIT_003_PV', 3.67), ('2_PIT_002_PV', -3.59)]
+    w213 oos=1 d1nn=  41.2 LatAD_pct 0.994 AE_pct 0.994 near_attack=1 top [('2_LT_002_PV', -9.84), ('2_PIT_001_PV', -9.13), ('2_DPIT_001_PV', -6.53)]
+    w214 oos=1 d1nn=  33.1 LatAD_pct 0.973 AE_pct 0.992 near_attack=2 top [('2_LT_002_PV', -9.3), ('2_PIT_001_PV', -7.8), ('2_DPIT_001_PV', -4.22)]
+    w215 oos=0 d1nn=  29.7 LatAD_pct 0.979 AE_pct 0.981 near_attack=3 top [('2_LS_101_AH', 7.87), ('2_LT_002_PV', -7.35), ('2_PIT_001_PV', -6.19)]
+    w224 oos=0 d1nn=  22.7 LatAD_pct 0.985 AE_pct 0.934 near_attack=11 top [('2_LS_301_AH', 6.11), ('1_AIT_004_PV', -4.39), ('2A_AIT_004_PV', -3.88)]
+    w225 oos=0 d1nn=  22.9 LatAD_pct 0.977 AE_pct 0.936 near_attack=10 top [('2_LS_301_AH', 6.11), ('1_AIT_004_PV', -4.17), ('2A_AIT_004_PV', -3.71)]
+    w270 oos=1 d1nn=  33.3 LatAD_pct 0.992 AE_pct 0.996 near_attack=13 top [('2_MCV_201_CO', 5.86), ('1_AIT_004_PV', -3.39), ('2B_AIT_004_PV', -3.12)]
+    w271 oos=0 d1nn=  24.5 LatAD_pct 0.988 AE_pct 0.990 near_attack=12 top [('2_MCV_201_CO', 4.48), ('2B_AIT_004_PV', -3.12), ('1_AIT_004_PV', -3.09)]
+    w292 oos=0 d1nn=  13.8 LatAD_pct 0.967 AE_pct 0.881 near_attack=7 top [('2_LS_201_AL', 6.64), ('2_LS_501_AL', 5.6), ('2B_AIT_004_PV', -1.91)]
+    w293 oos=0 d1nn=  13.0 LatAD_pct 0.963 AE_pct 0.882 near_attack=8 top [('2_LS_201_AL', 6.64), ('2_LS_501_AL', 5.6), ('2B_AIT_004_PV', -2.18)]
+    w340 oos=0 d1nn=  21.8 LatAD_pct 0.965 AE_pct 0.929 near_attack=20 top [('2_LS_201_AH', 8.56), ('2_LS_101_AH', 7.87), ('2B_AIT_004_PV', -2.32)]
+    w341 oos=0 d1nn=  22.4 LatAD_pct 0.969 AE_pct 0.915 near_attack=19 top [('2_LS_201_AH', 8.56), ('2_LS_101_AH', 7.87), ('2B_AIT_004_PV', -2.3)]
+    w398 oos=0 d1nn=  19.6 LatAD_pct 0.981 AE_pct 0.983 near_attack=36 top [('1_AIT_004_PV', -2.85), ('3_FIT_001_PV', -1.98), ('2B_AIT_004_PV', -1.92)]
+    w467 oos=0 d1nn=  25.0 LatAD_pct 0.960 AE_pct 0.952 near_attack=23 top [('2_LS_201_AH', 3.34), ('2B_AIT_004_PV', -2.55), ('2A_AIT_004_PV', -2.21)]
+    w488 oos=0 d1nn=  23.7 LatAD_pct 0.950 AE_pct 0.933 near_attack=2 top [('2_LS_501_AL', 5.6), ('2_LS_101_AL', 5.43), ('2_MCV_601_CO', 3.9)]
+    w489 oos=0 d1nn=  19.1 LatAD_pct 0.971 AE_pct 0.898 near_attack=1 top [('2_LS_201_AL', 6.64), ('2_LS_501_AL', 5.6), ('2_MCV_601_CO', 2.55)]
+    w493 oos=0 d1nn=  25.6 LatAD_pct 0.975 AE_pct 0.987 near_attack=1 top [('2_LS_301_AL', 9.07), ('2_LS_601_AL', 7.98), ('2_MCV_201_CO', 4.36)]
+    w505 oos=1 d1nn=4139.8 LatAD_pct 0.998 AE_pct 0.998 near_attack=1 top [('2_PIC_003_SP', -596.59), ('2_MCV_007_CO', 29.83), ('1_AIT_004_PV', -4.07)]
+    w517 oos=0 d1nn=  25.7 LatAD_pct 0.954 AE_pct 0.985 near_attack=8 top [('2B_AIT_004_PV', -3.4), ('2A_AIT_004_PV', -3.27), ('1_AIT_004_PV', -2.94)]
+    w518 oos=0 d1nn=  28.8 LatAD_pct 0.990 AE_pct 0.971 near_attack=9 top [('2_LS_301_AH', 3.63), ('2B_AIT_004_PV', -3.27), ('2A_AIT_004_PV', -3.12)]
+    w548 oos=0 d1nn=  23.0 LatAD_pct 0.961 AE_pct 0.963 near_attack=1 top [('2_LS_201_AL', 6.64), ('2_LS_501_AL', 6.56), ('2_LT_002_PV', 5.17)]
+    w549 oos=0 d1nn=  22.2 LatAD_pct 0.983 AE_pct 0.961 near_attack=2 top [('2_LS_201_AL', 6.64), ('2_LS_501_AL', 6.56), ('1_AIT_004_PV', -3.54)]
+    w554 oos=0 d1nn=  20.0 LatAD_pct 0.958 AE_pct 0.921 near_attack=7 top [('2_LS_401_AH', 4.73), ('2_LS_601_AL', 3.46), ('2_FIC_501_PV', 3.2)]
+    w562 oos=0 d1nn=  23.1 LatAD_pct 0.956 AE_pct 0.942 near_attack=15 top [('2_LS_101_AH', 4.65), ('1_AIT_004_PV', -3.9), ('2_LS_501_AH', 3.12)]
+
+saved fable_cleanwadi_analysis.json

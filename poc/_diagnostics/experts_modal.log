@@ -1,0 +1,494 @@
+C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\async_utils.py:45: DeprecationWarning: 'asyncio.WindowsSelectorEventLoopPolicy' is deprecated and slated for removal in Python 3.16
+  asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\async_utils.py:45: DeprecationWarning: 'asyncio.set_event_loop_policy' is deprecated and slated for removal in Python 3.16
+  asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+✓ Initialized. View run at 
+https://modal.com/apps/llmcourse/main/ap-Xjl2aCR2cjOQH8T1ISwLFQ
+✓ Created objects.
+├── 🔨 Created mount E:\Projects\Backlog\LatAD\poc\sota_bundle\modal_experts.py
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\ens_bundle\bundle_SWaT.npz
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\ens_bundle\bundle_HAI.npz
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\ens_bundle\bundle_WADI.npz
+├── 🔨 Created mount E:\Projects\Backlog\LatAD\poc\models_vade.py
+└── 🔨 Created function experts.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+[WADI] seed 0: 45 experts trained
+[SWaT] seed 0: 26 experts trained
+[WADI] seed 1: 45 experts trained
+[SWaT] seed 1: 26 experts trained
+[WADI] seed 2: 45 experts trained
+[WADI] DONE experts=45
+[SWaT] seed 2: 26 experts trained
+[SWaT] DONE experts=26
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+[HAI] seed 0: 28 experts trained
+[HAI] seed 1: 28 experts trained
+ValueError exception in shielded future
+future: <Future finished exception=ValueError('Input X contains NaN.\nGaussianMixture does not accept missing values encoded as NaN natively. For supervised learning, you might want to consider sklearn.ensemble.HistGradientBoostingClassifier and Regressor which accept missing values encoded as NaNs natively. Alternatively, it is possible to preprocess the data, for instance by using an imputer transformer in a pipeline or drop samples with missing values. See https://scikit-learn.org/stable/modules/impute.html You can find a list of all estimators that handle NaN values at the following page: https://scikit-learn.org/stable/modules/impute.html#estimators-that-handle-nan-values')>
+Traceback (most recent call last):
+  File "C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\synchronicity\synchronizer.py", line 485, in wrapper_coro
+    return await inner_task
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\synchronicity\synchronizer.py", line 315, in coro_wrapped
+    value = await coro
+            ^^^^^^^^^^
+  File "C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\synchronicity\exceptions.py", line 31, in coro_wrapped
+    return await coro
+           ^^^^^^^^^^
+  File "C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_object.py", line 56, in wrapped
+    async for item in stream:
+        yield item
+  File "C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_functions.py", line 1590, in _map
+    async for item in stream:
+        yield item
+  File "C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\parallel_map.py", line 966, in _map_invocation_inputplane
+    async for maybe_output in merged:
+        if maybe_output is not None:  # ignore None sentinels
+            yield maybe_output.value
+  File "C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\async_utils.py", line 1113, in async_merge
+    raise item.value
+  File "C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\async_utils.py", line 1075, in producer
+    async for item in stream:
+        await queue.put(ValueWrapper(item))
+  File "C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\parallel_map.py", line 922, in poll_outputs
+    async for idx, output in streamer:
+    ...<15 lines>...
+                output_idx += 1
+  File "C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\async_utils.py", line 1225, in async_map_ordered
+    async for output_idx, output_item in stream:
+    ...<6 lines>...
+            next_idx += 1
+  File "C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\async_utils.py", line 1201, in async_map
+    async for item in stream:
+        yield item
+  File "C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\async_utils.py", line 1096, in async_merge
+    raise item.value
+  File "C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\async_utils.py", line 1075, in producer
+    async for item in stream:
+        await queue.put(ValueWrapper(item))
+  File "C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\async_utils.py", line 1190, in worker
+    res = await prevent_cancellation_abortion(async_mapper_func(item.value))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\async_utils.py", line 1155, in prevent_cancellation_abortion
+    return await asyncio.shield(t)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\async_utils.py", line 1214, in mapper_func_wrapper
+    return (tup[0], await async_mapper_func(tup[1]))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\parallel_map.py", line 911, in fetch_output
+    raise e
+  File "C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\parallel_map.py", line 906, in fetch_output
+    output = await _process_result(item.result, item.data_format, input_plane_stub, client)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\function_utils.py", line 527, in _process_result
+    raise exc_with_hints(exc)
+  File "<ta-01KZJ8XFVYR60G08CV222478WR>:/root/modal_experts.py", line 75, in experts
+  File "<ta-01KZJ8XFVYR60G08CV222478WR>:/app/models_vade.py", line 185, in fit_latent_density
+  File "<ta-01KZJ8XFVYR60G08CV222478WR>:/opt/conda/lib/python3.11/site-packages/sklearn/mixture/_base.py", line 199, in fit
+  File "<ta-01KZJ8XFVYR60G08CV222478WR>:/opt/conda/lib/python3.11/site-packages/sklearn/base.py", line 1403, in wrapper
+  File "<ta-01KZJ8XFVYR60G08CV222478WR>:/opt/conda/lib/python3.11/site-packages/sklearn/mixture/_base.py", line 231, in fit_predict
+  File "<ta-01KZJ8XFVYR60G08CV222478WR>:/opt/conda/lib/python3.11/site-packages/sklearn/utils/validation.py", line 3038, in validate_data
+  File "<ta-01KZJ8XFVYR60G08CV222478WR>:/opt/conda/lib/python3.11/site-packages/sklearn/utils/validation.py", line 1087, in check_array
+  File "<ta-01KZJ8XFVYR60G08CV222478WR>:/opt/conda/lib/python3.11/site-packages/sklearn/utils/validation.py", line 137, in _assert_all_finite
+  File "<ta-01KZJ8XFVYR60G08CV222478WR>:/opt/conda/lib/python3.11/site-packages/sklearn/utils/validation.py", line 186, in _assert_all_finite_element_wise
+ValueError: Input X contains NaN.
+GaussianMixture does not accept missing values encoded as NaN natively. For supervised learning, you might want to consider sklearn.ensemble.HistGradientBoostingClassifier and Regressor which accept missing values encoded as NaNs natively. Alternatively, it is possible to preprocess the data, for instance by using an imputer transformer in a pipeline or drop samples with missing values. See https://scikit-learn.org/stable/modules/impute.html You can find a list of all estimators that handle NaN values at the following page: https://scikit-learn.org/stable/modules/impute.html#estimators-that-handle-nan-values
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/container_io_manager.py", line 947, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 172, in run_input_sync
+    values = io_context.call_function_sync()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_runtime/container_io_manager.py", line 225, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/modal_experts.py", line 75, in experts
+    v.fit_latent_density(((Ff - m2) / s2).astype(np.float32), k_density=min(50, max(12, nfit // 12)))
+  File "/app/models_vade.py", line 185, in fit_latent_density
+    random_state=seed).fit(self._encode_mean(x))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/sklearn/mixture/_base.py", line 199, in fit
+    self.fit_predict(X, y)
+  File "/opt/conda/lib/python3.11/site-packages/sklearn/base.py", line 1403, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/sklearn/mixture/_base.py", line 231, in fit_predict
+    X = validate_data(self, X, dtype=[xp.float64, xp.float32], ensure_min_samples=2)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/sklearn/utils/validation.py", line 3038, in validate_data
+    out = check_array(X, input_name="X", **check_params)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/sklearn/utils/validation.py", line 1087, in check_array
+    _assert_all_finite(
+  File "/opt/conda/lib/python3.11/site-packages/sklearn/utils/validation.py", line 137, in _assert_all_finite
+    _assert_all_finite_element_wise(
+  File "/opt/conda/lib/python3.11/site-packages/sklearn/utils/validation.py", line 186, in _assert_all_finite_element_wise
+    raise ValueError(msg_err)
+ValueError: Input X contains NaN.
+GaussianMixture does not accept missing values encoded as NaN natively. For supervised learning, you might want to consider sklearn.ensemble.HistGradientBoostingClassifier and Regressor which accept missing values encoded as NaNs natively. Alternatively, it is possible to preprocess the data, for instance by using an imputer transformer in a pipeline or drop samples with missing values. See https://scikit-learn.org/stable/modules/impute.html You can find a list of all estimators that handle NaN values at the following page: https://scikit-learn.org/stable/modules/impute.html#estimators-that-handle-nan-values
+Stopping app - uncaught exception raised locally: ValueError('Input X contains NaN.\nGaussianMixture does not accept missing values encoded as NaN natively. For supervised learning, you might want to consider sklearn.ensemble.HistGradientBoostingClassifier and Regressor which accept missing values encoded as NaNs natively. Alternatively, it is possible to preprocess the data, for instance by using an imputer transformer in a pipeline or drop samples with missing values. See https://scikit-learn.org/stable/modules/impute.html You can find a list of all estimators that handle NaN values at the following page: https://scikit-learn.org/stable/modules/impute.html#estimators-that-handle-nan-values').
+┌───────────────────── Traceback (most recent call last) ─────────────────────┐
+│ E:\Projects\Backlog\LatAD\poc\sota_bundle\modal_experts.py:99 in main       │
+│                                                                             │
+│    98 │   outdir = HERE / "experts"; outdir.mkdir(exist_ok=True)            │
+│ >  99 │   for r in run_ds_iter(ds, seeds):                                  │
+│   100 │   │   name = r["name"]                                              │
+│                                                                             │
+│ E:\Projects\Backlog\LatAD\poc\sota_bundle\modal_experts.py:110 in           │
+│ run_ds_iter                                                                 │
+│                                                                             │
+│   109 def run_ds_iter(ds, seeds):                                           │
+│ > 110 │   return list(experts.starmap([(d, seeds) for d in ds]))            │
+│   111                                                                       │
+│                                                                             │
+│ C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\ │
+│ async_utils.py:844 in __iter__                                              │
+│                                                                             │
+│    843 │   │   │   with Runner() as runner:                                 │
+│ >  844 │   │   │   │   yield from run_async_gen(runner, self._async_iterabl │
+│    845 │   │   except NestedEventLoops:                                     │
+│                                                                             │
+│ C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\ │
+│ async_utils.py:922 in run_async_gen                                         │
+│                                                                             │
+│    921 │   │   │   else:                                                    │
+│ >  922 │   │   │   │   next_yield = runner.run(gen.asend(next_send))  # typ │
+│    923 │   │   except KeyboardInterrupt as e:                               │
+│                                                                             │
+│ C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\synchronicity │
+│ \async_utils.py:85 in run                                                   │
+│                                                                             │
+│ C:\Python314\Lib\asyncio\base_events.py:719 in run_until_complete           │
+│                                                                             │
+│    718 │   │                                                                │
+│ >  719 │   │   return future.result()                                       │
+│    720                                                                      │
+│                                                                             │
+│ C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\synchronicity │
+│ \async_utils.py:51 in wrapper_coro                                          │
+│                                                                             │
+│ C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\ │
+│ async_utils.py:754 in asend                                                 │
+│                                                                             │
+│    753 │   │   self.iterated = True                                         │
+│ >  754 │   │   return await self.gen.asend(value)                           │
+│    755                                                                      │
+│                                                                             │
+│ C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\paralle │
+│ l_map.py:1060 in _starmap_async                                             │
+│                                                                             │
+│   1059 │   _maybe_warn_about_wrap_exceptions("starmap.aio", wrap_returned_e │
+│ > 1060 │   async for output in _map_helper(                                 │
+│   1061 │   │   self,                                                        │
+│                                                                             │
+│ C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\paralle │
+│ l_map.py:1010 in _map_helper                                                │
+│                                                                             │
+│   1009 │   ) as map_output_stream:                                          │
+│ > 1010 │   │   async for output in map_output_stream:                       │
+│   1011 │   │   │   yield output                                             │
+│                                                                             │
+│ C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\ │
+│ async_utils.py:1096 in async_merge                                          │
+│                                                                             │
+│   1095 │   │   │   │   │   assert_type(item, ExceptionWrapper)              │
+│ > 1096 │   │   │   │   │   raise item.value                                 │
+│   1097                                                                      │
+│                                                                             │
+│ C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\ │
+│ async_utils.py:1075 in producer                                             │
+│                                                                             │
+│   1074 │   │   │   async with aclosing(generator) as stream:                │
+│ > 1075 │   │   │   │   async for item in stream:                            │
+│   1076 │   │   │   │   │   await queue.put(ValueWrapper(item))              │
+│                                                                             │
+│ C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_object │
+│ .py:56 in wrapped                                                           │
+│                                                                             │
+│    55 │   │   async with aclosing(method(self, *args, **kwargs)) as stream: │
+│ >  56 │   │   │   async for item in stream:                                 │
+│    57 │   │   │   │   yield item                                            │
+│                                                                             │
+│ C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_functi │
+│ ons.py:1590 in _map                                                         │
+│                                                                             │
+│   1589 │   │   │   ) as stream:                                             │
+│ > 1590 │   │   │   │   async for item in stream:                            │
+│   1591 │   │   │   │   │   yield item                                       │
+│                                                                             │
+│ C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\paralle │
+│ l_map.py:966 in _map_invocation_inputplane                                  │
+│                                                                             │
+│    965 │   ) as merged:                                                     │
+│ >  966 │   │   async for maybe_output in merged:                            │
+│    967 │   │   │   if maybe_output is not None:  # ignore None sentinels    │
+│                                                                             │
+│ C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\ │
+│ async_utils.py:1113 in async_merge                                          │
+│                                                                             │
+│   1112 │   │   │   │   assert_type(item, ExceptionWrapper)                  │
+│ > 1113 │   │   │   │   raise item.value                                     │
+│   1114                                                                      │
+│                                                                             │
+│ C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\ │
+│ async_utils.py:1075 in producer                                             │
+│                                                                             │
+│   1074 │   │   │   async with aclosing(generator) as stream:                │
+│ > 1075 │   │   │   │   async for item in stream:                            │
+│   1076 │   │   │   │   │   await queue.put(ValueWrapper(item))              │
+│                                                                             │
+│ C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\paralle │
+│ l_map.py:922 in poll_outputs                                                │
+│                                                                             │
+│    921 │   │   ) as streamer:                                               │
+│ >  922 │   │   │   async for idx, output in streamer:                       │
+│    923 │   │   │   │   if not order_outputs:                                │
+│                                                                             │
+│ C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\ │
+│ async_utils.py:1225 in async_map_ordered                                    │
+│                                                                             │
+│   1224 │   async with aclosing(async_map(async_zip(counter(), input_generat │
+│ > 1225 │   │   async for output_idx, output_item in stream:                 │
+│   1226 │   │   │   buffer[output_idx] = output_item                         │
+│                                                                             │
+│ C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\ │
+│ async_utils.py:1201 in async_map                                            │
+│                                                                             │
+│   1200 │   ) as stream:                                                     │
+│ > 1201 │   │   async for item in stream:                                    │
+│   1202 │   │   │   yield item                                               │
+│                                                                             │
+│ C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\ │
+│ async_utils.py:1096 in async_merge                                          │
+│                                                                             │
+│   1095 │   │   │   │   │   assert_type(item, ExceptionWrapper)              │
+│ > 1096 │   │   │   │   │   raise item.value                                 │
+│   1097                                                                      │
+│                                                                             │
+│ C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\ │
+│ async_utils.py:1075 in producer                                             │
+│                                                                             │
+│   1074 │   │   │   async with aclosing(generator) as stream:                │
+│ > 1075 │   │   │   │   async for item in stream:                            │
+│   1076 │   │   │   │   │   await queue.put(ValueWrapper(item))              │
+│                                                                             │
+│ C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\ │
+│ async_utils.py:1190 in worker                                               │
+│                                                                             │
+│   1189 │   │   │   if isinstance(item, ValueWrapper):                       │
+│ > 1190 │   │   │   │   res = await prevent_cancellation_abortion(async_mapp │
+│   1191 │   │   │   │   yield res                                            │
+│                                                                             │
+│ C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\ │
+│ async_utils.py:1155 in prevent_cancellation_abortion                        │
+│                                                                             │
+│   1154 │   try:                                                             │
+│ > 1155 │   │   return await asyncio.shield(t)                               │
+│   1156 │   except asyncio.CancelledError:                                   │
+│                                                                             │
+│ C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\ │
+│ async_utils.py:1214 in mapper_func_wrapper                                  │
+│                                                                             │
+│   1213 │   async def mapper_func_wrapper(tup: tuple[int, T]) -> tuple[int,  │
+│ > 1214 │   │   return (tup[0], await async_mapper_func(tup[1]))             │
+│   1215                                                                      │
+│                                                                             │
+│ C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\paralle │
+│ l_map.py:911 in fetch_output                                                │
+│                                                                             │
+│    910 │   │   │   else:                                                    │
+│ >  911 │   │   │   │   raise e                                              │
+│    912 │   │   return (item.idx, output)                                    │
+│                                                                             │
+│ C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\paralle │
+│ l_map.py:906 in fetch_output                                                │
+│                                                                             │
+│    905 │   │   try:                                                         │
+│ >  906 │   │   │   output = await _process_result(item.result, item.data_fo │
+│    907 │   │   except Exception as e:                                       │
+│                                                                             │
+│ C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\ │
+│ function_utils.py:527 in _process_result                                    │
+│                                                                             │
+│   526 │   │   │                                                             │
+│ > 527 │   │   │   raise exc_with_hints(exc)                                 │
+│   528                                                                       │
+│                                                                             │
+│     ...Remote call to Modal Function (ta-01KZJ8XFVYR60G08CV222478WR)...     │
+│                                                                             │
+│ /root/modal_experts.py:75 in experts                                        │
+│                                                                             │
+│ > 75 v.fit_latent_density(((Ff - m2) / s2).astype(np.float32), k_density=mi │
+│                                                                             │
+│                                                                             │
+│ /app/models_vade.py:185 in fit_latent_density                               │
+│                                                                             │
+│ > 185 random_state=seed).fit(self._encode_mean(x))                          │
+│                                                                             │
+│                                                                             │
+│ /opt/conda/lib/python3.11/site-packages/sklearn/mixture/_base.py:199 in fit │
+│                                                                             │
+│ > 199 self.fit_predict(X, y)                                                │
+│                                                                             │
+│                                                                             │
+│ /opt/conda/lib/python3.11/site-packages/sklearn/base.py:1403 in wrapper     │
+│                                                                             │
+│ > 1403 return fit_method(estimator, *args, **kwargs)                        │
+│                                                                             │
+│                                                                             │
+│ /opt/conda/lib/python3.11/site-packages/sklearn/mixture/_base.py:231 in     │
+│ fit_predict                                                                 │
+│                                                                             │
+│ > 231 X = validate_data(self, X, dtype=[xp.float64, xp.float32], ensure_min │
+│                                                                             │
+│                                                                             │
+│ /opt/conda/lib/python3.11/site-packages/sklearn/utils/validation.py:3038 in │
+│ validate_data                                                               │
+│                                                                             │
+│ > 3038 out = check_array(X, input_name="X", **check_params)                 │
+│                                                                             │
+│                                                                             │
+│ /opt/conda/lib/python3.11/site-packages/sklearn/utils/validation.py:1087 in │
+│ check_array                                                                 │
+│                                                                             │
+│ > 1087 _assert_all_finite(                                                  │
+│                                                                             │
+│                                                                             │
+│ /opt/conda/lib/python3.11/site-packages/sklearn/utils/validation.py:137 in  │
+│ _assert_all_finite                                                          │
+│                                                                             │
+│ > 137 _assert_all_finite_element_wise(                                      │
+│                                                                             │
+│                                                                             │
+│ /opt/conda/lib/python3.11/site-packages/sklearn/utils/validation.py:186 in  │
+│ _assert_all_finite_element_wise                                             │
+│                                                                             │
+│ > 186 raise ValueError(msg_err)                                             │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+ValueError: Input X contains NaN.
+GaussianMixture does not accept missing values encoded as NaN natively. For 
+supervised learning, you might want to consider 
+sklearn.ensemble.HistGradientBoostingClassifier and Regressor which accept 
+missing values encoded as NaNs natively. Alternatively, it is possible to 
+preprocess the data, for instance by using an imputer transformer in a pipeline
+or drop samples with missing values. See 
+https://scikit-learn.org/stable/modules/impute.html You can find a list of all 
+estimators that handle NaN values at the following page: 
+https://scikit-learn.org/stable/modules/impute.html#estimators-that-handle-nan-
+values

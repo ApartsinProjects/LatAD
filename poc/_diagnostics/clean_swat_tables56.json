@@ -1,0 +1,43 @@
+{
+ "name": "SWaT_canon",
+ "n_difficult": 91,
+ "n_normal": 1265,
+ "K": 40,
+ "latent_dim": 16,
+ "k_density": 80,
+ "clip": 10.0,
+ "nseeds": 5,
+ "table5_source_of_gain": {
+  "crosschannel_latent_mean": 0.4717,
+  "crosschannel_latent_sd": 0.0197,
+  "marginal_product_mean": 0.5218,
+  "marginal_product_sd": 0.0031,
+  "gain": -0.0502
+ },
+ "table6_heads": {
+  "recon": {
+   "auroc": 0.567,
+   "auroc_sd": 0.004
+  },
+  "density": {
+   "auroc": 0.472,
+   "auroc_sd": 0.02
+  },
+  "nearest": {
+   "auroc": 0.479,
+   "auroc_sd": 0.025
+  },
+  "base": {
+   "auroc": 0.472,
+   "auroc_sd": 0.019
+  },
+  "base+resid": {
+   "auroc": 0.472,
+   "auroc_sd": 0.019
+  },
+  "LatAD": {
+   "auroc": 0.472,
+   "auroc_sd": 0.019
+  }
+ }
+}

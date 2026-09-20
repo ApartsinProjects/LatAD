@@ -1,0 +1,99 @@
+    SWaT_canon feature 0/67 (5s)
+    SWaT_canon feature 10/67 (43s)
+    SWaT_canon feature 20/67 (84s)
+    SWaT_canon feature 30/67 (123s)
+    SWaT_canon feature 40/67 (162s)
+    SWaT_canon feature 50/67 (201s)
+    SWaT_canon feature 60/67 (241s)
+
+=== SWaT_canon (diff 85, dhard 59; gate FP 0.000, ratio 0.95; I1 5.9e-08) ===
+  boosted_LOO              diff 0.881  dhard 0.830  all 0.952
+  linres                   diff 0.782  dhard 0.688  all 0.920
+  LatAD_global             diff 0.804  dhard 0.728  all 0.927
+  HCcoh+LatAD              diff 0.837  dhard 0.773  all 0.938
+  null+HC                  diff 0.811  dhard 0.735  all 0.918
+  cohmax+LatAD             diff 0.829  dhard 0.769  all 0.932
+  AUG HCcoh+LatAD+B        diff 0.871  dhard 0.818  all 0.951
+  AUG cohmax+LatAD+B       diff 0.868  dhard 0.817  all 0.949
+  AUG null+HC+B (max)      diff 0.811  dhard 0.735  all 0.918
+  AUG LatAD+B (global)     diff 0.874  dhard 0.820  all 0.953
+  boot AUG HCcoh+LatAD+B - boosted_LOO [Difficult]: diff -0.01 CI [-0.052, 0.039] P(<=0)=0.6795 eps 23
+  boot AUG HCcoh+LatAD+B - boosted_LOO [DoubleHard]: diff -0.012 CI [-0.073, 0.061] P(<=0)=0.679 eps 18
+  boot AUG HCcoh+LatAD+B - HCcoh+LatAD [Difficult]: diff 0.034 CI [0.015, 0.051] P(<=0)=0.0 eps 23
+  boot AUG HCcoh+LatAD+B - HCcoh+LatAD [DoubleHard]: diff 0.045 CI [0.019, 0.069] P(<=0)=0.0 eps 18
+  boot AUG HCcoh+LatAD+B - linres [Difficult]: diff 0.089 CI [0.051, 0.131] P(<=0)=0.0 eps 23
+  boot AUG HCcoh+LatAD+B - linres [DoubleHard]: diff 0.131 CI [0.083, 0.18] P(<=0)=0.0 eps 18
+  boot AUG null+HC+B (max) - boosted_LOO [Difficult]: diff -0.069 CI [-0.12, -0.012] P(<=0)=0.9895 eps 23
+  boot AUG null+HC+B (max) - boosted_LOO [DoubleHard]: diff -0.095 CI [-0.163, -0.011] P(<=0)=0.9835 eps 18
+  boot AUG null+HC+B (max) - null+HC [Difficult]: diff 0.0 CI [0.0, 0.0] P(<=0)=1.0 eps 23
+  boot AUG null+HC+B (max) - null+HC [DoubleHard]: diff 0.0 CI [0.0, 0.0] P(<=0)=1.0 eps 18
+  boot HCcoh+LatAD - AUG HCcoh+LatAD+B [Difficult]: diff -0.034 CI [-0.051, -0.015] P(<=0)=1.0 eps 23
+  boot HCcoh+LatAD - AUG HCcoh+LatAD+B [DoubleHard]: diff -0.045 CI [-0.069, -0.019] P(<=0)=1.0 eps 18
+    WADI_clean feature 0/128 (5s)
+    WADI_clean feature 10/128 (55s)
+    WADI_clean feature 20/128 (105s)
+    WADI_clean feature 30/128 (157s)
+    WADI_clean feature 40/128 (206s)
+    WADI_clean feature 50/128 (255s)
+    WADI_clean feature 60/128 (306s)
+    WADI_clean feature 70/128 (350s)
+    WADI_clean feature 80/128 (386s)
+    WADI_clean feature 90/128 (420s)
+    WADI_clean feature 100/128 (455s)
+    WADI_clean feature 110/128 (490s)
+    WADI_clean feature 120/128 (526s)
+
+=== WADI_clean (diff 30, dhard 19; gate FP 0.985, ratio 305.20; I1 5.8e-08) ===
+  boosted_LOO              diff 0.660  dhard 0.553  all 0.758
+  linres                   diff 0.750  dhard 0.606  all 0.834
+  LatAD_global             diff 0.634  dhard 0.571  all 0.717
+  HCcoh+LatAD              diff 0.771  dhard 0.662  all 0.827
+  null+HC                  diff 0.749  dhard 0.633  all 0.819
+  cohmax+LatAD             diff 0.741  dhard 0.658  all 0.796
+  AUG HCcoh+LatAD+B        diff 0.773  dhard 0.660  all 0.832
+  AUG cohmax+LatAD+B       diff 0.748  dhard 0.648  all 0.812
+  AUG null+HC+B (max)      diff 0.760  dhard 0.647  all 0.822
+  AUG LatAD+B (global)     diff 0.681  dhard 0.584  all 0.767
+  boot AUG HCcoh+LatAD+B - boosted_LOO [Difficult]: diff 0.113 CI [-0.093, 0.269] P(<=0)=0.125 eps 8
+  boot AUG HCcoh+LatAD+B - boosted_LOO [DoubleHard]: diff 0.108 CI [-0.193, 0.332] P(<=0)=0.2025 eps 7
+  boot AUG HCcoh+LatAD+B - HCcoh+LatAD [Difficult]: diff 0.002 CI [-0.019, 0.028] P(<=0)=0.4255 eps 8
+  boot AUG HCcoh+LatAD+B - HCcoh+LatAD [DoubleHard]: diff -0.002 CI [-0.028, 0.033] P(<=0)=0.534 eps 7
+  boot AUG HCcoh+LatAD+B - linres [Difficult]: diff 0.022 CI [-0.144, 0.186] P(<=0)=0.4515 eps 8
+  boot AUG HCcoh+LatAD+B - linres [DoubleHard]: diff 0.054 CI [-0.22, 0.288] P(<=0)=0.415 eps 7
+  boot AUG null+HC+B (max) - boosted_LOO [Difficult]: diff 0.099 CI [0.016, 0.2] P(<=0)=0.005 eps 8
+  boot AUG null+HC+B (max) - boosted_LOO [DoubleHard]: diff 0.094 CI [0.025, 0.233] P(<=0)=0.006 eps 7
+  boot AUG null+HC+B (max) - null+HC [Difficult]: diff 0.011 CI [-0.095, 0.175] P(<=0)=0.4675 eps 8
+  boot AUG null+HC+B (max) - null+HC [DoubleHard]: diff 0.014 CI [-0.138, 0.279] P(<=0)=0.486 eps 7
+  boot HCcoh+LatAD - AUG HCcoh+LatAD+B [Difficult]: diff -0.002 CI [-0.028, 0.019] P(<=0)=0.5745 eps 8
+  boot HCcoh+LatAD - AUG HCcoh+LatAD+B [DoubleHard]: diff 0.002 CI [-0.033, 0.028] P(<=0)=0.4665 eps 7
+    HAI feature 0/52 (3s)
+    HAI feature 10/52 (30s)
+    HAI feature 20/52 (56s)
+    HAI feature 30/52 (87s)
+    HAI feature 40/52 (118s)
+    HAI feature 50/52 (150s)
+
+=== HAI (diff 167, dhard 84; gate FP 0.537, ratio 8.66; I1 5.9e-08) ===
+  boosted_LOO              diff 0.321  dhard 0.304  all 0.778
+  linres                   diff 0.586  dhard 0.465  all 0.779
+  LatAD_global             diff 0.811  dhard 0.806  all 0.933
+  HCcoh+LatAD              diff 0.845  dhard 0.814  all 0.948
+  null+HC                  diff 0.770  dhard 0.704  all 0.913
+  cohmax+LatAD             diff 0.832  dhard 0.805  all 0.945
+  AUG HCcoh+LatAD+B        diff 0.769  dhard 0.719  all 0.928
+  AUG cohmax+LatAD+B       diff 0.721  dhard 0.678  all 0.916
+  AUG null+HC+B (max)      diff 0.707  dhard 0.626  all 0.898
+  AUG LatAD+B (global)     diff 0.667  dhard 0.633  all 0.900
+  boot AUG HCcoh+LatAD+B - boosted_LOO [Difficult]: diff 0.448 CI [0.327, 0.576] P(<=0)=0.0 eps 26
+  boot AUG HCcoh+LatAD+B - boosted_LOO [DoubleHard]: diff 0.415 CI [0.279, 0.591] P(<=0)=0.0 eps 19
+  boot AUG HCcoh+LatAD+B - HCcoh+LatAD [Difficult]: diff -0.077 CI [-0.126, -0.036] P(<=0)=1.0 eps 26
+  boot AUG HCcoh+LatAD+B - HCcoh+LatAD [DoubleHard]: diff -0.095 CI [-0.164, -0.046] P(<=0)=1.0 eps 19
+  boot AUG HCcoh+LatAD+B - linres [Difficult]: diff 0.183 CI [0.047, 0.317] P(<=0)=0.0025 eps 26
+  boot AUG HCcoh+LatAD+B - linres [DoubleHard]: diff 0.255 CI [0.074, 0.417] P(<=0)=0.0045 eps 19
+  boot AUG null+HC+B (max) - boosted_LOO [Difficult]: diff 0.386 CI [0.237, 0.545] P(<=0)=0.0 eps 26
+  boot AUG null+HC+B (max) - boosted_LOO [DoubleHard]: diff 0.321 CI [0.143, 0.543] P(<=0)=0.0 eps 19
+  boot AUG null+HC+B (max) - null+HC [Difficult]: diff -0.063 CI [-0.1, -0.026] P(<=0)=1.0 eps 26
+  boot AUG null+HC+B (max) - null+HC [DoubleHard]: diff -0.078 CI [-0.135, -0.033] P(<=0)=1.0 eps 19
+  boot HCcoh+LatAD - AUG HCcoh+LatAD+B [Difficult]: diff 0.077 CI [0.036, 0.126] P(<=0)=0.0 eps 26
+  boot HCcoh+LatAD - AUG HCcoh+LatAD+B [DoubleHard]: diff 0.095 CI [0.046, 0.164] P(<=0)=0.0 eps 19
+saved

@@ -1,0 +1,6 @@
+[SWaT] train windows (3623, 306), test (1087, 306), anomalies 182, hard 38
+[SWaT] trained in 10s
+[SWaT] saved
+[WADI] train windows (2614, 738), test (575, 738), anomalies 56, hard 19
+[WADI] trained in 5s
+[WADI] saved

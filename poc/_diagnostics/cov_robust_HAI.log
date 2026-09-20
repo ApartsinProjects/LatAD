@@ -1,0 +1,8 @@
+== HAI: floored 48, shift>2SD 7, >1SD 72, top [(78, 2.551123760119604), (77, 2.1714577359414178), (314, 2.1060639797461667), (71, 2.0803764799543716)]
+  baseline_zscore_floor_clip50   d= 354 E=2.930 H=0.0522 p=0.003 withinmax=5.493 ratio=0.53 AUC=0.942 km32 mass<1%=0.238 TV=0.555 OOSratio=11.3 (0.113/0.010)
+  drop_floored_channels          d= 306 E=2.930 H=0.0522 p=0.003 withinmax=5.493 ratio=0.53 AUC=0.942 km32 mass<1%=0.238 TV=0.555 OOSratio=11.3 (0.113/0.010)
+  rank_train_cdf_all_channels    d= 306 E=0.827 H=0.0587 p=0.003 withinmax=1.563 ratio=0.53 AUC=0.958 km32 mass<1%=0.199 TV=0.584 OOSratio=12.3 (0.123/0.010)
+  drop_top2_shifted              d= 352 E=2.857 H=0.0524 p=0.003 withinmax=5.444 ratio=0.52 AUC=0.942 km32 mass<1%=0.358 TV=0.560 OOSratio=15.1 (0.113/0.007)
+  drop_top10_shifted             d= 344 E=2.715 H=0.0532 p=0.003 withinmax=5.071 ratio=0.54 AUC=0.880 km32 mass<1%=0.155 TV=0.552 OOSratio=8.2 (0.082/0.010)
+  drop_shift_gt2sd               d= 347 E=2.754 H=0.0526 p=0.003 withinmax=5.141 ratio=0.54 AUC=0.881 km32 mass<1%=0.142 TV=0.551 OOSratio=11.0 (0.082/0.007)
+  [287s]

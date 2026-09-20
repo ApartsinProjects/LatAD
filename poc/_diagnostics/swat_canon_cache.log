@@ -1,0 +1,4 @@
+C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\openpyxl\worksheet\_reader.py:329: UserWarning: Unknown extension is not supported and will be removed
+  warn(msg)
+rows (449919, 51) channels 51 attack_frac 0.1214 n_attack 54621 secs 146
+sens[:8] ['FIT101', 'LIT101', 'MV101', 'P101', 'P102', 'AIT201', 'AIT202', 'AIT203']

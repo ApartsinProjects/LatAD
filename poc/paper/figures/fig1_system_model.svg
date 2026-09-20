@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" width="640" font-family="Helvetica, Arial, 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#33404d"/>
+    </marker>
+    <marker id="arrB" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1f4e79"/>
+    </marker>
+    <filter id="sh" x="-12%" y="-12%" width="124%" height="130%">
+      <feDropShadow dx="0" dy="1.4" stdDeviation="1.6" flood-color="#000" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+
+  <rect x="0" y="0" width="720" height="400" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="22" y="30" font-size="20" font-weight="700" fill="#1a1a2e">IIoT monitoring context: where LatAD sits</text>
+  <text x="22" y="50" font-size="12" font-style="italic" fill="#5a4a3a">Multivariate telemetry is windowed at the edge, then scored online; LatAD flags anomalies and the most-surprised subsystem.</text>
+
+  <!-- ================= Pipeline boxes ================= -->
+  <!-- Box0: Physical process -->
+  <g filter="url(#sh)">
+    <rect x="22" y="100" width="110" height="94" rx="6" fill="#f4f6f8" stroke="#4a5568" stroke-width="1.2"/>
+  </g>
+  <text x="77" y="124" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1a1a2e">Physical process</text>
+  <text x="77" y="142" text-anchor="middle" font-size="9.5" fill="#33404d">sensors + actuators</text>
+  <text x="77" y="160" text-anchor="middle" font-size="9" font-style="italic" fill="#5a4a3a">water treatment,</text>
+  <text x="77" y="173" text-anchor="middle" font-size="9" font-style="italic" fill="#5a4a3a">control loop, machine</text>
+
+  <!-- Box1: PLCs -->
+  <g filter="url(#sh)">
+    <rect x="156" y="100" width="110" height="94" rx="6" fill="#f4f6f8" stroke="#4a5568" stroke-width="1.2"/>
+  </g>
+  <text x="211" y="140" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1a1a2e">PLCs /</text>
+  <text x="211" y="157" text-anchor="middle" font-size="10.5" fill="#33404d">field controllers</text>
+
+  <!-- Box2: Edge gateway / SCADA historian -->
+  <g filter="url(#sh)">
+    <rect x="320" y="100" width="110" height="94" rx="6" fill="#f4f6f8" stroke="#4a5568" stroke-width="1.2"/>
+  </g>
+  <text x="375" y="122" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1a1a2e">Edge gateway /</text>
+  <text x="375" y="136" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1a1a2e">SCADA historian</text>
+  <text x="375" y="158" text-anchor="middle" font-size="9" fill="#33404d">aggregates and</text>
+  <text x="375" y="171" text-anchor="middle" font-size="9" fill="#33404d">windows telemetry</text>
+
+  <!-- Box3: LatAD scoring (accent) -->
+  <g filter="url(#sh)">
+    <rect x="454" y="100" width="110" height="94" rx="6" fill="#eaf1fb" stroke="#1f4e79" stroke-width="1.7"/>
+  </g>
+  <text x="509" y="122" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1f4e79">LatAD scoring</text>
+  <text x="509" y="140" text-anchor="middle" font-size="9" fill="#33404d">trained on</text>
+  <text x="509" y="152" text-anchor="middle" font-size="9" fill="#33404d">normal telemetry</text>
+  <text x="509" y="164" text-anchor="middle" font-size="9" fill="#33404d">only; scores each</text>
+  <text x="509" y="176" text-anchor="middle" font-size="9" fill="#33404d">window online</text>
+
+  <!-- Box4: Output (accent) -->
+  <g filter="url(#sh)">
+    <rect x="588" y="100" width="110" height="94" rx="6" fill="#eaf1fb" stroke="#1f4e79" stroke-width="1.7"/>
+  </g>
+  <text x="643" y="126" text-anchor="middle" font-size="11" font-weight="700" fill="#1f4e79">Anomaly alarm</text>
+  <text x="643" y="144" text-anchor="middle" font-size="9.5" fill="#33404d">+ most-surprised</text>
+  <text x="643" y="158" text-anchor="middle" font-size="9.5" fill="#33404d">subsystem</text>
+
+  <!-- ================= Arrows between stages ================= -->
+  <!-- Box0 -> Box1 -->
+  <line x1="132" y1="147" x2="154" y2="147" stroke="#33404d" stroke-width="1.4" marker-end="url(#arr)"/>
+  <text x="143" y="209" text-anchor="middle" font-size="9" fill="#5a4a3a">measurements</text>
+
+  <!-- Box1 -> Box2 : multivariate stream (sparklines) -->
+  <g stroke="#2c5aa0" stroke-width="1.1" fill="none" opacity="0.9">
+    <polyline points="270,138 279,135 288,141 297,136 306,141 316,138"/>
+    <polyline points="270,148 279,151 288,145 297,150 306,146 316,148" marker-end="url(#arrB)"/>
+    <polyline points="270,158 279,161 288,156 297,160 306,155 316,159"/>
+  </g>
+  <text x="293" y="209" text-anchor="middle" font-size="9" fill="#5a4a3a">multivariate telemetry</text>
+
+  <!-- Box2 -> Box3 -->
+  <line x1="430" y1="147" x2="452" y2="147" stroke="#33404d" stroke-width="1.4" marker-end="url(#arr)"/>
+  <text x="442" y="209" text-anchor="middle" font-size="9" fill="#5a4a3a">windowed stream</text>
+
+  <!-- Box3 -> Box4 -->
+  <line x1="564" y1="147" x2="586" y2="147" stroke="#1f4e79" stroke-width="1.6" marker-end="url(#arrB)"/>
+  <text x="575" y="209" text-anchor="middle" font-size="9" fill="#5a4a3a">surprise score</text>
+
+  <!-- Box4 -> Operator node (down) -->
+  <line x1="643" y1="194" x2="643" y2="246" stroke="#1f4e79" stroke-width="1.6" marker-end="url(#arrB)"/>
+  <text x="651" y="224" font-size="9" fill="#5a4a3a">alerts +</text>
+  <text x="651" y="235" font-size="9" fill="#5a4a3a">diagnosis</text>
+
+  <!-- Operator node -->
+  <g filter="url(#sh)">
+    <rect x="450" y="248" width="248" height="40" rx="6" fill="#eef2f6" stroke="#4a5568" stroke-width="1.2"/>
+  </g>
+  <text x="574" y="266" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1a1a2e">Operator / maintenance / security</text>
+  <text x="574" y="280" text-anchor="middle" font-size="9" font-style="italic" fill="#5a4a3a">triage and response</text>
+
+  <!-- ================= Bottom callout ================= -->
+  <rect x="22" y="300" width="676" height="86" rx="7" fill="#fafbfc" stroke="#b0b8c0" stroke-width="1.1"/>
+  <text x="36" y="320" font-size="11" font-weight="700" fill="#1f4e79">Unsupervised and online</text>
+  <text x="36" y="340" font-size="10.5" fill="#1a1a2e">Model fitting and calibration use train-normal telemetry only; no labeled attacks are required.</text>
+  <text x="36" y="358" font-size="10.5" fill="#1a1a2e">Scoring is sequential and online: each completed window is scored once, in arrival order.</text>
+  <text x="36" y="377" font-size="9.5" font-style="italic" fill="#5a4a3a">Blue blocks: LatAD and its output.  Grey blocks: existing IIoT infrastructure.</text>
+</svg>

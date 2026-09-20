@@ -1,0 +1,6 @@
+RBI_ext fraction of difficult anomalies (external recon percentile <= lo AND density percentile >= hi); gap = density - recon head AUROC
+lo=0.5 hi=0.9 | HAI: RBI=0.27 IBR=0.00 mean(p_den-p_ext)=+0.34 | SWaT_canon: RBI=0.16 IBR=0.00 mean(p_den-p_ext)=+0.15 | WADI_clean: RBI=0.00 IBR=0.00 mean(p_den-p_ext)=+0.07
+lo=0.5 hi=0.95 | HAI: RBI=0.02 IBR=0.00 mean(p_den-p_ext)=+0.34 | SWaT_canon: RBI=0.09 IBR=0.00 mean(p_den-p_ext)=+0.15 | WADI_clean: RBI=0.00 IBR=0.00 mean(p_den-p_ext)=+0.07
+lo=0.75 hi=0.9 | HAI: RBI=0.46 IBR=0.00 mean(p_den-p_ext)=+0.34 | SWaT_canon: RBI=0.24 IBR=0.05 mean(p_den-p_ext)=+0.15 | WADI_clean: RBI=0.07 IBR=0.00 mean(p_den-p_ext)=+0.07
+lo=0.5 hi=0.8 | HAI: RBI=0.34 IBR=0.01 mean(p_den-p_ext)=+0.34 | SWaT_canon: RBI=0.19 IBR=0.01 mean(p_den-p_ext)=+0.15 | WADI_clean: RBI=0.00 IBR=0.03 mean(p_den-p_ext)=+0.07
+lo=0.9 hi=0.9 | HAI: RBI=0.59 IBR=0.00 mean(p_den-p_ext)=+0.34 | SWaT_canon: RBI=0.33 IBR=0.05 mean(p_den-p_ext)=+0.15 | WADI_clean: RBI=0.07 IBR=0.10 mean(p_den-p_ext)=+0.07

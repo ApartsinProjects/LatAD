@@ -1,0 +1,21 @@
+  [WADI_clean] seed 0: R1=1.135 R2=0.0191 R3=+0.225 R4=1.135 resid_auto=False
+  [WADI_clean] seed 1: R1=1.109 R2=0.0153 R3=+0.191 R4=1.165 resid_auto=False
+  [WADI_clean] seed 2: R1=1.090 R2=0.0191 R3=+0.159 R4=1.241 resid_auto=False
+  [WADI_clean] seed 3: R1=1.073 R2=0.0153 R3=+0.183 R4=1.084 resid_auto=False
+  [WADI_clean] seed 4: R1=1.112 R2=0.0229 R3=+0.219 R4=1.194 resid_auto=False
+  [HAI] seed 0: R1=2.464 R2=0.1533 R3=+0.831 R4=1.706 resid_auto=True
+  [HAI] seed 1: R1=2.772 R2=0.2072 R3=+0.988 R4=2.155 resid_auto=True
+  [HAI] seed 2: R1=2.251 R2=0.1294 R3=+0.783 R4=1.605 resid_auto=True
+  [HAI] seed 3: R1=2.625 R2=0.1857 R3=+0.930 R4=1.825 resid_auto=True
+  [HAI] seed 4: R1=3.175 R2=0.1748 R3=+0.843 R4=2.137 resid_auto=True
+  [SWaT_canon] seed 0: R1=0.627 R2=0.0000 R3=-0.486 R4=0.422 resid_auto=True
+  [SWaT_canon] seed 1: R1=0.588 R2=0.0000 R3=-0.483 R4=0.493 resid_auto=True
+  [SWaT_canon] seed 2: R1=0.652 R2=0.0000 R3=-0.472 R4=0.623 resid_auto=True
+  [SWaT_canon] seed 3: R1=0.519 R2=0.0000 R3=-0.565 R4=0.501 resid_auto=True
+  [SWaT_canon] seed 4: R1=0.571 R2=0.0000 R3=-0.527 R4=0.579 resid_auto=True
+
+=== gate decision variables (train-normal only, mean over 5 seeds) ===
+  WADI_clean   R1 q95ratio=1.104  R2 tail_exceed=0.0184  R3 zshift=+0.196  R4 q99ratio=1.164
+  HAI          R1 q95ratio=2.658  R2 tail_exceed=0.1701  R3 zshift=+0.875  R4 q99ratio=1.886
+  SWaT_canon   R1 q95ratio=0.591  R2 tail_exceed=0.0000  R3 zshift=-0.507  R4 q99ratio=0.524
+saved -> clean_gate_probe.json

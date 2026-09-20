@@ -1,0 +1,201 @@
+
+================ SWaT_canon ================
+I1 OK: recomputed head == ensemble_final HCcoh+LatAD (max abs diff 0.0e+00); windows 1498, attacks 233, difficult 91, K24=288
+I3: test-normal drifted 0.666, drifting communities 7/24 [8, 14, 15, 18, 19, 21, 22]
+  subspace test communities [8, 14, 15, 18, 19, 21, 22] -> channels (17): ['AIT201', 'AIT202', 'AIT203', 'AIT401', 'AIT402', 'FIT401', 'AIT501', 'AIT502', 'AIT503', 'AIT504', 'FIT501', 'FIT502', 'FIT503', 'FIT504', 'PIT501', 'PIT502', 'PIT503']
+
+[seed 0] Q1 partition shares: normals {'in_cluster': 0.255, 'valley': 0.11, 'beyond': 0.021, 'off': 0.613} | attacks {'in_cluster': 0.073, 'valley': 0.069, 'beyond': 0.017, 'off': 0.841} | difficult {'in_cluster': 0.187, 'valley': 0.165, 'beyond': 0.044, 'off': 0.604}
+  normals by third: T1 valley 0.181 off 0.118 in 0.687 drifted 0.043 | T2 valley 0.095 off 0.796 in 0.056 drifted 1.0 | T3 valley 0.054 off 0.942 in 0.0 drifted 1.0
+  Q2a normals: partition x DRIFTED: in_cluster n=323 drifted 0.068 slow-max 1.996 sd, DR pct 0.209 | valley n=139 drifted 0.446 slow-max 2.987 sd, DR pct 0.299 | beyond n=27 drifted 0.778 slow-max 6.506 sd, DR pct 0.392 | off n=776 drifted 0.951 slow-max 59.21 sd, DR pct 0.503  (valley vs drifted Fisher p 1.8455391580391764e-08)
+  drifted normals fall in: {'in_cluster': 0.026, 'valley': 0.074, 'beyond': 0.025, 'off': 0.875} ; non-drifted normals: {'in_cluster': 0.713, 'valley': 0.182, 'beyond': 0.014, 'off': 0.09}
+  Q2b normals  (n out-of-envelope 942): rho(betweenness, DR) -0.036 p=0.27; rho(betw, slow-max sd) -0.041; rho(perp, DR) +0.327; rho(dh, DR) +0.307; rho(dh, slow-max) +0.364; rho(valley-ind, DR) -0.209; rho(off-ind, DR) +0.699; rho(out-of-env, DR) +0.607; I4 null +0.000
+  Q2b attacks  (n out-of-envelope 216): rho(betweenness, DR) +0.434 p=2.4e-11; rho(betw, slow-max sd) +0.153; rho(perp, DR) +0.306; rho(dh, DR) +0.187; rho(dh, slow-max) +0.111; rho(valley-ind, DR) -0.362; rho(off-ind, DR) +0.524; rho(out-of-env, DR) +0.342; I4 null +0.017
+  Q2b all      (n out-of-envelope 1158): rho(betweenness, DR) +0.064 p=0.03; rho(betw, slow-max sd) -0.081; rho(perp, DR) +0.345; rho(dh, DR) +0.299; rho(dh, slow-max) +0.257; rho(valley-ind, DR) -0.230; rho(off-ind, DR) +0.669; rho(out-of-env, DR) +0.569; I4 null +0.042
+  geometry refit check (seed 0, K=16): home agreement with csv 1.000, partition agreement 1.000
+  Q2d direction (out-of-envelope normals n=942): cos(displacement, axis h->j) median 0.345 (>0.7: 0.059); cos(displacement, drift direction) median 0.469 (>0.7: 0.094)
+     DRIFTED out-of-envelope normals n=821: cos(axis h->j) median 0.304 (>0.7: 0.024); cos(drift dir) median 0.485 (>0.7: 0.106); t median 0.349, perp/R median 1.338
+     late-third normals: nearest-regime dist median 12.947 vs R 6.995 (early third 5.27); inside any regime 0.0; d2/d1 median 1.331; t median 0.334, perp/R median 1.375; home regimes late [7, 11, 8] early [9, 7, 2]
+  Q2c subspace drifting_comm_channels (17 ch, K=12, R=5.565): normals {'in_cluster': 0.158, 'valley': 0.067, 'beyond': 0.014, 'off': 0.76} attacks {'in_cluster': 0.073, 'valley': 0.052, 'beyond': 0.004, 'off': 0.871}
+       normals by third: T1 valley 0.193 off 0.313 in 0.454 | T2 valley 0.0 off 1.0 in 0.0 | T3 valley 0.0 off 1.0 in 0.0; drifted normals {'in_cluster': 0.0, 'valley': 0.0, 'beyond': 0.0, 'off': 1.0}; rho(betw, DR) normals -0.369 p=1.3e-35; late inside-regime 0.0, perp/R 2.475
+  Q2c subspace other_channels (34 ch, K=16, R=7.598): normals {'in_cluster': 0.696, 'valley': 0.055, 'beyond': 0.041, 'off': 0.208} attacks {'in_cluster': 0.245, 'valley': 0.039, 'beyond': 0.026, 'off': 0.691}
+       normals by third: T1 valley 0.043 off 0.032 in 0.902 | T2 valley 0.05 off 0.285 in 0.623 | T3 valley 0.071 off 0.315 in 0.556; drifted normals {'in_cluster': 0.588, 'valley': 0.064, 'beyond': 0.051, 'off': 0.297}; rho(betw, DR) normals -0.104 p=0.042; late inside-regime 0.556, perp/R 0.493
+  Q3 attacks in_cluster  n=  17 (diff  17): flagged head 0.118 cp 0.118; typed {'changepoint': 1.0, 'drift': 0.0, 'subthreshold': 0.0}; drifted 0.0; AUROC head/cp/dr 0.142/0.559/0.12; global pct head/cp 0.121/0.572; era-local head/cp 0.33/0.452
+  Q3 attacks valley      n=  16 (diff  15): flagged head 0.812 cp 0.5; typed {'changepoint': 0.615, 'drift': 0.308, 'subthreshold': 0.077}; drifted 0.25; AUROC head/cp/dr 0.284/0.87/0.139; global pct head/cp 0.256/0.939; era-local head/cp 0.75/0.936
+  Q3 attacks beyond      n=   4 (diff   4): flagged head 0.75 cp 0.0; typed {'changepoint': 0.0, 'drift': 1.0, 'subthreshold': 0.0}; drifted 0.75; AUROC head/cp/dr 0.34/0.672/0.411; global pct head/cp 0.309/0.783; era-local head/cp 0.35/0.531
+  Q3 attacks off         n= 196 (diff  55): flagged head 1.0 cp 0.765; typed {'changepoint': 0.765, 'drift': 0.224, 'subthreshold': 0.01}; drifted 0.852; AUROC head/cp/dr 0.907/0.924/0.664; global pct head/cp 0.999/0.997; era-local head/cp 0.998/0.998
+  Q3 attacks all         n= 233 (diff  91): flagged head 0.918 cp 0.687; typed {'changepoint': 0.748, 'drift': 0.238, 'subthreshold': 0.014}; drifted 0.747; AUROC head/cp/dr 0.798/0.889/0.584; global pct head/cp 0.997/0.997; era-local head/cp 0.998/0.998
+
+[seed 1] Q1 partition shares: normals {'in_cluster': 0.24, 'valley': 0.123, 'beyond': 0.047, 'off': 0.591} | attacks {'in_cluster': 0.064, 'valley': 0.077, 'beyond': 0.013, 'off': 0.845} | difficult {'in_cluster': 0.165, 'valley': 0.165, 'beyond': 0.033, 'off': 0.637}
+  normals by third: T1 valley 0.19 off 0.134 in 0.649 drifted 0.043 | T2 valley 0.106 off 0.779 in 0.045 drifted 1.0 | T3 valley 0.071 off 0.88 in 0.002 drifted 1.0
+  Q2a normals: partition x DRIFTED: in_cluster n=303 drifted 0.056 slow-max 1.996 sd, DR pct 0.209 | valley n=155 drifted 0.51 slow-max 3.319 sd, DR pct 0.322 | beyond n=59 drifted 0.814 slow-max 32.562 sd, DR pct 0.503 | off n=748 drifted 0.934 slow-max 59.21 sd, DR pct 0.503  (valley vs drifted Fisher p 1.6971935006838187e-05)
+  drifted normals fall in: {'in_cluster': 0.02, 'valley': 0.094, 'beyond': 0.057, 'off': 0.829} ; non-drifted normals: {'in_cluster': 0.678, 'valley': 0.18, 'beyond': 0.026, 'off': 0.116}
+  Q2b normals  (n out-of-envelope 962): rho(betweenness, DR) -0.078 p=0.016; rho(betw, slow-max sd) -0.014; rho(perp, DR) +0.285; rho(dh, DR) +0.365; rho(dh, slow-max) +0.411; rho(valley-ind, DR) -0.174; rho(off-ind, DR) +0.599; rho(out-of-env, DR) +0.575; I4 null +0.049
+  Q2b attacks  (n out-of-envelope 218): rho(betweenness, DR) +0.507 p=1.2e-15; rho(betw, slow-max sd) +0.245; rho(perp, DR) +0.258; rho(dh, DR) +0.152; rho(dh, slow-max) +0.169; rho(valley-ind, DR) -0.373; rho(off-ind, DR) +0.478; rho(out-of-env, DR) +0.289; I4 null +0.024
+  Q2b all      (n out-of-envelope 1180): rho(betweenness, DR) +0.050 p=0.089; rho(betw, slow-max sd) -0.055; rho(perp, DR) +0.302; rho(dh, DR) +0.335; rho(dh, slow-max) +0.321; rho(valley-ind, DR) -0.205; rho(off-ind, DR) +0.576; rho(out-of-env, DR) +0.533; I4 null -0.053
+  geometry refit check (seed 1, K=16): home agreement with csv 1.000, partition agreement 1.000
+  Q2d direction (out-of-envelope normals n=962): cos(displacement, axis h->j) median 0.309 (>0.7: 0.09); cos(displacement, drift direction) median 0.488 (>0.7: 0.155)
+     DRIFTED out-of-envelope normals n=826: cos(axis h->j) median 0.287 (>0.7: 0.063); cos(drift dir) median 0.518 (>0.7: 0.178); t median 0.333, perp/R median 1.262
+     late-third normals: nearest-regime dist median 13.706 vs R 6.898 (early third 5.77); inside any regime 0.002; d2/d1 median 1.234; t median 0.284, perp/R median 1.267; home regimes late [7, 2, 0] early [4, 7, 13]
+  Q2c subspace drifting_comm_channels (17 ch, K=16, R=5.646): normals {'in_cluster': 0.123, 'valley': 0.07, 'beyond': 0.018, 'off': 0.789} attacks {'in_cluster': 0.06, 'valley': 0.043, 'beyond': 0.021, 'off': 0.876}
+       normals by third: T1 valley 0.197 off 0.399 in 0.351 | T2 valley 0.006 off 0.994 in 0.0 | T3 valley 0.0 off 1.0 in 0.0; drifted normals {'in_cluster': 0.0, 'valley': 0.002, 'beyond': 0.0, 'off': 0.998}; rho(betw, DR) normals -0.106 p=0.00043; late inside-regime 0.0, perp/R 3.229
+  Q2c subspace other_channels (34 ch, K=16, R=7.513): normals {'in_cluster': 0.675, 'valley': 0.038, 'beyond': 0.043, 'off': 0.244} attacks {'in_cluster': 0.18, 'valley': 0.073, 'beyond': 0.021, 'off': 0.725}
+       normals by third: T1 valley 0.029 off 0.057 in 0.884 | T2 valley 0.05 off 0.31 in 0.592 | T3 valley 0.036 off 0.371 in 0.541; drifted normals {'in_cluster': 0.565, 'valley': 0.045, 'beyond': 0.05, 'off': 0.34}; rho(betw, DR) normals +0.017 p=0.74; late inside-regime 0.541, perp/R 0.487
+  Q3 attacks in_cluster  n=  15 (diff  15): flagged head 0.133 cp 0.0; typed {'changepoint': 0.0, 'drift': 1.0, 'subthreshold': 0.0}; drifted 0.133; AUROC head/cp/dr 0.163/0.469/0.187; global pct head/cp 0.121/0.47; era-local head/cp 0.308/0.324
+  Q3 attacks valley      n=  18 (diff  15): flagged head 0.667 cp 0.444; typed {'changepoint': 0.667, 'drift': 0.25, 'subthreshold': 0.083}; drifted 0.167; AUROC head/cp/dr 0.279/0.86/0.14; global pct head/cp 0.252/0.913; era-local head/cp 0.635/0.912
+  Q3 attacks beyond      n=   3 (diff   3): flagged head 1.0 cp 0.0; typed {'changepoint': 0.0, 'drift': 1.0, 'subthreshold': 0.0}; drifted 1.0; AUROC head/cp/dr 0.609/0.609/0.609; global pct head/cp 0.575/0.763; era-local head/cp 0.357/0.642
+  Q3 attacks off         n= 197 (diff  58): flagged head 1.0 cp 0.772; typed {'changepoint': 0.772, 'drift': 0.218, 'subthreshold': 0.01}; drifted 0.843; AUROC head/cp/dr 0.897/0.928/0.654; global pct head/cp 0.999/0.997; era-local head/cp 0.998/0.998
+  Q3 attacks all         n= 233 (diff  91): flagged head 0.918 cp 0.687; typed {'changepoint': 0.748, 'drift': 0.238, 'subthreshold': 0.014}; drifted 0.747; AUROC head/cp/dr 0.798/0.889/0.584; global pct head/cp 0.997/0.997; era-local head/cp 0.998/0.998
+
+[seed 2] Q1 partition shares: normals {'in_cluster': 0.241, 'valley': 0.128, 'beyond': 0.026, 'off': 0.605} | attacks {'in_cluster': 0.073, 'valley': 0.09, 'beyond': 0.03, 'off': 0.807} | difficult {'in_cluster': 0.187, 'valley': 0.209, 'beyond': 0.066, 'off': 0.538}
+  normals by third: T1 valley 0.156 off 0.161 in 0.658 drifted 0.043 | T2 valley 0.12 off 0.807 in 0.039 drifted 1.0 | T3 valley 0.107 off 0.869 in 0.002 drifted 1.0
+  Q2a normals: partition x DRIFTED: in_cluster n=305 drifted 0.052 slow-max 1.996 sd, DR pct 0.203 | valley n=162 drifted 0.611 slow-max 6.325 sd, DR pct 0.388 | beyond n=33 drifted 0.667 slow-max 6.861 sd, DR pct 0.404 | off n=765 drifted 0.923 slow-max 58.943 sd, DR pct 0.503  (valley vs drifted Fisher p 0.1290103830150185)
+  drifted normals fall in: {'in_cluster': 0.019, 'valley': 0.117, 'beyond': 0.026, 'off': 0.837} ; non-drifted normals: {'in_cluster': 0.685, 'valley': 0.149, 'beyond': 0.026, 'off': 0.14}
+  Q2b normals  (n out-of-envelope 960): rho(betweenness, DR) +0.081 p=0.012; rho(betw, slow-max sd) +0.044; rho(perp, DR) +0.322; rho(dh, DR) +0.396; rho(dh, slow-max) +0.434; rho(valley-ind, DR) -0.088; rho(off-ind, DR) +0.581; rho(out-of-env, DR) +0.584; I4 null +0.001
+  Q2b attacks  (n out-of-envelope 216): rho(betweenness, DR) +0.266 p=7.8e-05; rho(betw, slow-max sd) +0.136; rho(perp, DR) +0.251; rho(dh, DR) +0.180; rho(dh, slow-max) +0.185; rho(valley-ind, DR) -0.373; rho(off-ind, DR) +0.578; rho(out-of-env, DR) +0.326; I4 null -0.100
+  Q2b all      (n out-of-envelope 1176): rho(betweenness, DR) +0.105 p=0.0003; rho(betw, slow-max sd) +0.067; rho(perp, DR) +0.344; rho(dh, DR) +0.373; rho(dh, slow-max) +0.342; rho(valley-ind, DR) -0.134; rho(off-ind, DR) +0.579; rho(out-of-env, DR) +0.545; I4 null +0.022
+  geometry refit check (seed 2, K=16): home agreement with csv 1.000, partition agreement 1.000
+  Q2d direction (out-of-envelope normals n=960): cos(displacement, axis h->j) median 0.356 (>0.7: 0.06); cos(displacement, drift direction) median 0.495 (>0.7: 0.256)
+     DRIFTED out-of-envelope normals n=827: cos(axis h->j) median 0.343 (>0.7: 0.036); cos(drift dir) median 0.551 (>0.7: 0.293); t median 0.396, perp/R median 1.308
+     late-third normals: nearest-regime dist median 13.082 vs R 6.699 (early third 5.671); inside any regime 0.002; d2/d1 median 1.335; t median 0.372, perp/R median 1.336; home regimes late [5, 3, 0] early [7, 3, 15]
+  Q2c subspace drifting_comm_channels (17 ch, K=12, R=5.689): normals {'in_cluster': 0.165, 'valley': 0.066, 'beyond': 0.015, 'off': 0.753} attacks {'in_cluster': 0.073, 'valley': 0.052, 'beyond': 0.004, 'off': 0.871}
+       normals by third: T1 valley 0.19 off 0.293 in 0.474 | T2 valley 0.0 off 1.0 in 0.0 | T3 valley 0.0 off 1.0 in 0.0; drifted normals {'in_cluster': 0.0, 'valley': 0.001, 'beyond': 0.0, 'off': 0.999}; rho(betw, DR) normals -0.353 p=2.4e-32; late inside-regime 0.0, perp/R 2.431
+  Q2c subspace other_channels (34 ch, K=16, R=7.182): normals {'in_cluster': 0.702, 'valley': 0.024, 'beyond': 0.025, 'off': 0.249} attacks {'in_cluster': 0.253, 'valley': 0.034, 'beyond': 0.03, 'off': 0.682}
+       normals by third: T1 valley 0.016 off 0.054 in 0.907 | T2 valley 0.022 off 0.327 in 0.626 | T3 valley 0.032 off 0.373 in 0.567; drifted normals {'in_cluster': 0.595, 'valley': 0.028, 'beyond': 0.027, 'off': 0.349}; rho(betw, DR) normals -0.057 p=0.27; late inside-regime 0.567, perp/R 0.533
+  Q3 attacks in_cluster  n=  17 (diff  17): flagged head 0.235 cp 0.059; typed {'changepoint': 0.25, 'drift': 0.5, 'subthreshold': 0.25}; drifted 0.118; AUROC head/cp/dr 0.183/0.555/0.16; global pct head/cp 0.132/0.572; era-local head/cp 0.335/0.373
+  Q3 attacks valley      n=  21 (diff  19): flagged head 0.762 cp 0.429; typed {'changepoint': 0.562, 'drift': 0.375, 'subthreshold': 0.062}; drifted 0.286; AUROC head/cp/dr 0.338/0.859/0.197; global pct head/cp 0.277/0.913; era-local head/cp 0.656/0.92
+  Q3 attacks beyond      n=   7 (diff   6): flagged head 0.857 cp 0.714; typed {'changepoint': 0.833, 'drift': 0.167, 'subthreshold': 0.0}; drifted 0.143; AUROC head/cp/dr 0.388/0.779/0.152; global pct head/cp 0.283/0.968; era-local head/cp 0.934/0.971
+  Q3 attacks off         n= 188 (diff  49): flagged head 1.0 cp 0.771; typed {'changepoint': 0.771, 'drift': 0.223, 'subthreshold': 0.005}; drifted 0.878; AUROC head/cp/dr 0.921/0.927/0.681; global pct head/cp 0.999/0.997; era-local head/cp 0.998/0.998
+  Q3 attacks all         n= 233 (diff  91): flagged head 0.918 cp 0.687; typed {'changepoint': 0.748, 'drift': 0.238, 'subthreshold': 0.014}; drifted 0.747; AUROC head/cp/dr 0.798/0.889/0.584; global pct head/cp 0.997/0.997; era-local head/cp 0.998/0.998
+[SWaT_canon done in 10s] saved -> E:\Projects\Backlog\LatAD\poc\_diagnostics\a8_drift_unification.json
+
+ALL DONE
+
+================ WADI_clean ================
+I1 OK: recomputed head == ensemble_final HCcoh+LatAD (max abs diff 0.0e+00); windows 575, attacks 56, difficult 30, K24=288
+I3: test-normal drifted 0.000, drifting communities 0/44 []
+  subspace test communities [] -> channels (0): []
+
+[seed 0] Q1 partition shares: normals {'in_cluster': 0.985, 'valley': 0.006, 'beyond': 0.006, 'off': 0.004} | attacks {'in_cluster': 0.804, 'valley': 0.143, 'beyond': 0.018, 'off': 0.036} | difficult {'in_cluster': 0.933, 'valley': 0.033, 'beyond': 0.0, 'off': 0.033}
+  normals by third: T1 valley 0.0 off 0.0 in 1.0 drifted 0.0 | T2 valley 0.012 off 0.006 in 0.963 drifted 0.0 | T3 valley 0.006 off 0.006 in 0.988 drifted 0.0
+  Q2a normals: partition x DRIFTED: in_cluster n=511 drifted 0.0 slow-max 1.683 sd, DR pct 0.493 | valley n=3 drifted 0.0 slow-max 2.139 sd, DR pct 0.884 | beyond n=3 drifted 0.0 slow-max 2.174 sd, DR pct 0.9 | off n=2 drifted 0.0 slow-max 1.806 sd, DR pct 0.529  (valley vs drifted Fisher p None)
+  drifted normals fall in: None ; non-drifted normals: {'in_cluster': 0.985, 'valley': 0.006, 'beyond': 0.006, 'off': 0.004}
+  Q2b normals  (n out-of-envelope 8): rho(betweenness, DR) -0.495 p=0.21; rho(betw, slow-max sd) -0.457; rho(perp, DR) -0.262; rho(dh, DR) -0.429; rho(dh, slow-max) -0.357; rho(valley-ind, DR) +0.074; rho(off-ind, DR) +0.006; rho(out-of-env, DR) +0.117; I4 null +nan
+  Q2b attacks  (n out-of-envelope 11): rho(betweenness, DR) +0.033 p=0.92; rho(betw, slow-max sd) +0.061; rho(perp, DR) +0.648; rho(dh, DR) +0.048; rho(dh, slow-max) +0.195; rho(valley-ind, DR) +0.029; rho(off-ind, DR) +0.018; rho(out-of-env, DR) +0.066; I4 null +nan
+  Q2b all      (n out-of-envelope 19): rho(betweenness, DR) -0.410 p=0.081; rho(betw, slow-max sd) -0.481; rho(perp, DR) +0.198; rho(dh, DR) -0.242; rho(dh, slow-max) -0.054; rho(valley-ind, DR) +0.090; rho(off-ind, DR) +0.029; rho(out-of-env, DR) +0.133; I4 null +nan
+  geometry refit check (seed 0, K=12): home agreement with csv 1.000, partition agreement 1.000
+  Q2d direction (out-of-envelope normals n=8): cos(displacement, axis h->j) median 0.458 (>0.7: 0.25); cos(displacement, drift direction) median 0.127 (>0.7: 0.0)
+     DRIFTED out-of-envelope normals n=0: cos(axis h->j) median None (>0.7: None); cos(drift dir) median None (>0.7: None); t median None, perp/R median None
+     late-third normals: nearest-regime dist median 2.824 vs R 5.438 (early third 2.913); inside any regime 0.988; d2/d1 median 1.413; t median 0.311, perp/R median 0.431; home regimes late [11, 5, 1] early [11, 10, 0]
+  Q3 attacks in_cluster  n=  45 (diff  28): flagged head 0.267 cp 0.2; typed {'changepoint': 0.75, 'drift': 0.0, 'subthreshold': 0.25}; drifted 0.0; AUROC head/cp/dr 0.799/0.805/0.586; global pct head/cp 0.927/0.921; era-local head/cp 0.927/0.921
+  Q3 attacks valley      n=   8 (diff   1): flagged head 0.875 cp 0.25; typed {'changepoint': 0.286, 'drift': 0.0, 'subthreshold': 0.714}; drifted 0.0; AUROC head/cp/dr 0.991/0.984/0.668; global pct head/cp 0.992/0.988; era-local head/cp 0.989/0.985
+  Q3 attacks beyond      n=   1 (diff   0): flagged head 0.0 cp 0.0; typed None; drifted 0.0; AUROC head/cp/dr 0.977/0.981/0.746; global pct head/cp 0.977/0.981; era-local head/cp 0.982/0.982
+  Q3 attacks off         n=   2 (diff   1): flagged head 1.0 cp 1.0; typed {'changepoint': 1.0, 'drift': 0.0, 'subthreshold': 0.0}; drifted 0.0; AUROC head/cp/dr 0.998/0.998/0.684; global pct head/cp 0.998/0.998; era-local head/cp 0.997/0.997
+  Q3 attacks all         n=  56 (diff  30): flagged head 0.375 cp 0.232; typed {'changepoint': 0.619, 'drift': 0.0, 'subthreshold': 0.381}; drifted 0.0; AUROC head/cp/dr 0.836/0.841/0.604; global pct head/cp 0.973/0.962; era-local head/cp 0.967/0.963
+
+[seed 1] Q1 partition shares: normals {'in_cluster': 0.985, 'valley': 0.008, 'beyond': 0.004, 'off': 0.004} | attacks {'in_cluster': 0.804, 'valley': 0.071, 'beyond': 0.036, 'off': 0.089} | difficult {'in_cluster': 0.9, 'valley': 0.033, 'beyond': 0.0, 'off': 0.067}
+  normals by third: T1 valley 0.0 off 0.0 in 1.0 drifted 0.0 | T2 valley 0.012 off 0.012 in 0.963 drifted 0.0 | T3 valley 0.012 off 0.0 in 0.988 drifted 0.0
+  Q2a normals: partition x DRIFTED: in_cluster n=511 drifted 0.0 slow-max 1.683 sd, DR pct 0.493 | valley n=4 drifted 0.0 slow-max 1.825 sd, DR pct 0.727 | beyond n=2 drifted 0.0 slow-max 2.173 sd, DR pct 0.896 | off n=2 drifted 0.0 slow-max 2.22 sd, DR pct 0.904  (valley vs drifted Fisher p None)
+  drifted normals fall in: None ; non-drifted normals: {'in_cluster': 0.985, 'valley': 0.008, 'beyond': 0.004, 'off': 0.004}
+  Q2b normals  (n out-of-envelope 8): rho(betweenness, DR) -0.012 p=0.98; rho(betw, slow-max sd) -0.228; rho(perp, DR) +0.071; rho(dh, DR) -0.347; rho(dh, slow-max) -0.383; rho(valley-ind, DR) +0.045; rho(off-ind, DR) +0.087; rho(out-of-env, DR) +0.119; I4 null +nan
+  Q2b attacks  (n out-of-envelope 11): rho(betweenness, DR) -0.094 p=0.78; rho(betw, slow-max sd) -0.288; rho(perp, DR) +0.349; rho(dh, DR) +0.207; rho(dh, slow-max) +0.296; rho(valley-ind, DR) -0.039; rho(off-ind, DR) +0.187; rho(out-of-env, DR) +0.175; I4 null +nan
+  Q2b all      (n out-of-envelope 19): rho(betweenness, DR) -0.316 p=0.19; rho(betw, slow-max sd) -0.446; rho(perp, DR) +0.081; rho(dh, DR) -0.166; rho(dh, slow-max) -0.118; rho(valley-ind, DR) +0.049; rho(off-ind, DR) +0.115; rho(out-of-env, DR) +0.149; I4 null +nan
+  geometry refit check (seed 1, K=16): home agreement with csv 1.000, partition agreement 1.000
+  Q2d direction (out-of-envelope normals n=8): cos(displacement, axis h->j) median 0.416 (>0.7: 0.0); cos(displacement, drift direction) median 0.416 (>0.7: 0.0)
+     DRIFTED out-of-envelope normals n=0: cos(axis h->j) median None (>0.7: None); cos(drift dir) median None (>0.7: None); t median None, perp/R median None
+     late-third normals: nearest-regime dist median 2.966 vs R 5.47 (early third 3.084); inside any regime 0.988; d2/d1 median 1.346; t median 0.252, perp/R median 0.437; home regimes late [1, 6, 9] early [12, 6, 13]
+  Q3 attacks in_cluster  n=  45 (diff  27): flagged head 0.289 cp 0.178; typed {'changepoint': 0.615, 'drift': 0.0, 'subthreshold': 0.385}; drifted 0.0; AUROC head/cp/dr 0.799/0.804/0.576; global pct head/cp 0.927/0.921; era-local head/cp 0.927/0.921
+  Q3 attacks valley      n=   4 (diff   1): flagged head 1.0 cp 0.5; typed {'changepoint': 0.5, 'drift': 0.0, 'subthreshold': 0.5}; drifted 0.0; AUROC head/cp/dr 0.995/0.99/0.617; global pct head/cp 0.995/0.993; era-local head/cp 0.992/0.991
+  Q3 attacks beyond      n=   2 (diff   0): flagged head 1.0 cp 1.0; typed {'changepoint': 1.0, 'drift': 0.0, 'subthreshold': 0.0}; drifted 0.0; AUROC head/cp/dr 0.997/0.998/0.803; global pct head/cp 0.997/0.998; era-local head/cp 0.997/0.998
+  Q3 attacks off         n=   5 (diff   2): flagged head 0.4 cp 0.2; typed {'changepoint': 0.5, 'drift': 0.0, 'subthreshold': 0.5}; drifted 0.0; AUROC head/cp/dr 0.983/0.989/0.764; global pct head/cp 0.977/0.988; era-local head/cp 0.982/0.991
+  Q3 attacks all         n=  56 (diff  30): flagged head 0.375 cp 0.232; typed {'changepoint': 0.619, 'drift': 0.0, 'subthreshold': 0.381}; drifted 0.0; AUROC head/cp/dr 0.836/0.841/0.604; global pct head/cp 0.973/0.962; era-local head/cp 0.967/0.963
+
+[seed 2] Q1 partition shares: normals {'in_cluster': 0.985, 'valley': 0.012, 'beyond': 0.0, 'off': 0.004} | attacks {'in_cluster': 0.857, 'valley': 0.054, 'beyond': 0.018, 'off': 0.071} | difficult {'in_cluster': 0.933, 'valley': 0.067, 'beyond': 0.0, 'off': 0.0}
+  normals by third: T1 valley 0.005 off 0.0 in 0.995 drifted 0.0 | T2 valley 0.025 off 0.006 in 0.969 drifted 0.0 | T3 valley 0.006 off 0.006 in 0.988 drifted 0.0
+  Q2a normals: partition x DRIFTED: in_cluster n=511 drifted 0.0 slow-max 1.683 sd, DR pct 0.493 | valley n=6 drifted 0.0 slow-max 2.173 sd, DR pct 0.896 | beyond n=0 drifted None slow-max None sd, DR pct None | off n=2 drifted 0.0 slow-max 1.806 sd, DR pct 0.529  (valley vs drifted Fisher p None)
+  drifted normals fall in: None ; non-drifted normals: {'in_cluster': 0.985, 'valley': 0.012, 'beyond': 0.0, 'off': 0.004}
+  Q2b normals  (n out-of-envelope 8): rho(betweenness, DR) -0.357 p=0.39; rho(betw, slow-max sd) -0.500; rho(perp, DR) -0.095; rho(dh, DR) -0.405; rho(dh, slow-max) -0.429; rho(valley-ind, DR) +0.109; rho(off-ind, DR) +0.006; rho(out-of-env, DR) +0.098; I4 null +nan
+  Q2b attacks  (n out-of-envelope 8): rho(betweenness, DR) +0.037 p=0.93; rho(betw, slow-max sd) -0.122; rho(perp, DR) +0.551; rho(dh, DR) +0.252; rho(dh, slow-max) +0.071; rho(valley-ind, DR) +0.108; rho(off-ind, DR) +0.209; rho(out-of-env, DR) +0.249; I4 null +nan
+  Q2b all      (n out-of-envelope 16): rho(betweenness, DR) -0.180 p=0.5; rho(betw, slow-max sd) -0.263; rho(perp, DR) -0.085; rho(dh, DR) -0.182; rho(dh, slow-max) -0.226; rho(valley-ind, DR) +0.113; rho(off-ind, DR) +0.072; rho(out-of-env, DR) +0.139; I4 null +nan
+  geometry refit check (seed 2, K=16): home agreement with csv 1.000, partition agreement 1.000
+  Q2d direction (out-of-envelope normals n=8): cos(displacement, axis h->j) median 0.49 (>0.7: 0.125); cos(displacement, drift direction) median 0.298 (>0.7: 0.0)
+     DRIFTED out-of-envelope normals n=0: cos(axis h->j) median None (>0.7: None); cos(drift dir) median None (>0.7: None); t median None, perp/R median None
+     late-third normals: nearest-regime dist median 2.91 vs R 5.451 (early third 2.948); inside any regime 0.988; d2/d1 median 1.323; t median 0.325, perp/R median 0.43; home regimes late [5, 9, 12] early [11, 9, 12]
+  Q3 attacks in_cluster  n=  48 (diff  28): flagged head 0.312 cp 0.167; typed {'changepoint': 0.533, 'drift': 0.0, 'subthreshold': 0.467}; drifted 0.0; AUROC head/cp/dr 0.811/0.815/0.578; global pct head/cp 0.945/0.947; era-local head/cp 0.937/0.948
+  Q3 attacks valley      n=   3 (diff   2): flagged head 0.667 cp 0.667; typed {'changepoint': 1.0, 'drift': 0.0, 'subthreshold': 0.0}; drifted 0.0; AUROC head/cp/dr 0.991/0.995/0.717; global pct head/cp 0.998/0.998; era-local head/cp 0.997/0.997
+  Q3 attacks beyond      n=   1 (diff   0): flagged head 1.0 cp 1.0; typed {'changepoint': 1.0, 'drift': 0.0, 'subthreshold': 0.0}; drifted 0.0; AUROC head/cp/dr 0.996/0.998/0.746; global pct head/cp 0.996/0.998; era-local head/cp 0.996/0.998
+  Q3 attacks off         n=   4 (diff   0): flagged head 0.75 cp 0.5; typed {'changepoint': 0.667, 'drift': 0.0, 'subthreshold': 0.333}; drifted 0.0; AUROC head/cp/dr 0.99/0.991/0.797; global pct head/cp 0.993/0.993; era-local head/cp 0.995/0.995
+  Q3 attacks all         n=  56 (diff  30): flagged head 0.375 cp 0.232; typed {'changepoint': 0.619, 'drift': 0.0, 'subthreshold': 0.381}; drifted 0.0; AUROC head/cp/dr 0.836/0.841/0.604; global pct head/cp 0.973/0.962; era-local head/cp 0.967/0.963
+[WADI_clean done in 12s] saved -> E:\Projects\Backlog\LatAD\poc\_diagnostics\a8_drift_unification.json
+
+ALL DONE
+
+================ HAI ================
+I1 OK: recomputed head == ensemble_final HCcoh+LatAD (max abs diff 0.0e+00); windows 14819, attacks 652, difficult 167, K24=2880
+I3: test-normal drifted 0.297, drifting communities 0/28 []
+  subspace test communities [1, 11] -> channels (7): ['P1_LCV01D', 'P1_LCV01Z', 'P1_PCV02Z', 'P1_PIT01', 'P2_SD01', 'P2_SIT01', 'P4_ST_PT01']
+
+[seed 0] Q1 partition shares: normals {'in_cluster': 0.866, 'valley': 0.013, 'beyond': 0.046, 'off': 0.075} | attacks {'in_cluster': 0.324, 'valley': 0.003, 'beyond': 0.02, 'off': 0.653} | difficult {'in_cluster': 0.707, 'valley': 0.0, 'beyond': 0.048, 'off': 0.246}
+  normals by third: T1 valley 0.023 off 0.067 in 0.814 drifted 0.73 | T2 valley 0.007 off 0.158 in 0.825 drifted 0.0 | T3 valley 0.008 off 0.002 in 0.959 drifted 0.154
+  Q2a normals: partition x DRIFTED: in_cluster n=12269 drifted 0.279 slow-max 0.604 sd, DR pct 0.477 | valley n=180 drifted 0.617 slow-max 1886.707 sd, DR pct 0.713 | beyond n=651 drifted 0.641 slow-max 1853.997 sd, DR pct 0.713 | off n=1067 drifted 0.249 slow-max 0.689 sd, DR pct 0.559  (valley vs drifted Fisher p 5.242286057799013e-19)
+  drifted normals fall in: {'in_cluster': 0.812, 'valley': 0.026, 'beyond': 0.099, 'off': 0.063} ; non-drifted normals: {'in_cluster': 0.889, 'valley': 0.007, 'beyond': 0.024, 'off': 0.08}
+  Q2b normals  (n out-of-envelope 1898): rho(betweenness, DR) +0.009 p=0.69; rho(betw, slow-max sd) +0.101; rho(perp, DR) -0.237; rho(dh, DR) -0.061; rho(dh, slow-max) -0.116; rho(valley-ind, DR) +0.044; rho(off-ind, DR) +0.063; rho(out-of-env, DR) +0.136; I4 null +0.012
+  Q2b attacks  (n out-of-envelope 441): rho(betweenness, DR) -0.142 p=0.0027; rho(betw, slow-max sd) +0.049; rho(perp, DR) +0.111; rho(dh, DR) +0.144; rho(dh, slow-max) -0.116; rho(valley-ind, DR) +0.079; rho(off-ind, DR) -0.016; rho(out-of-env, DR) -0.005; I4 null -0.026
+  Q2b all      (n out-of-envelope 2339): rho(betweenness, DR) -0.056 p=0.0071; rho(betw, slow-max sd) +0.041; rho(perp, DR) -0.335; rho(dh, DR) -0.184; rho(dh, slow-max) -0.211; rho(valley-ind, DR) +0.046; rho(off-ind, DR) -0.002; rho(out-of-env, DR) +0.078; I4 null -0.007
+  geometry refit check (seed 0, K=16): home agreement with csv 1.000, partition agreement 1.000
+  Q2d direction (out-of-envelope normals n=1898): cos(displacement, axis h->j) median 0.177 (>0.7: 0.324); cos(displacement, drift direction) median 0.34 (>0.7: 0.0)
+     DRIFTED out-of-envelope normals n=794: cos(axis h->j) median 0.723 (>0.7: 0.515); cos(drift dir) median 0.557 (>0.7: 0.0); t median 0.994, perp/R median 0.809
+     late-third normals: nearest-regime dist median 3.436 vs R 4.478 (early third 3.376); inside any regime 0.959; d2/d1 median 1.172; t median 0.118, perp/R median 0.531; home regimes late [0, 2, 9] early [0, 6, 9]
+  Q2c subspace drifting_comm_channels (7 ch, K=16, R=4.541): normals {'in_cluster': 0.942, 'valley': 0.03, 'beyond': 0.005, 'off': 0.023} attacks {'in_cluster': 0.331, 'valley': 0.008, 'beyond': 0.028, 'off': 0.633}
+       normals by third: T1 valley 0.069 off 0.047 in 0.875 | T2 valley 0.004 off 0.009 in 0.984 | T3 valley 0.015 off 0.013 in 0.969; drifted normals {'in_cluster': 0.883, 'valley': 0.066, 'beyond': 0.008, 'off': 0.042}; rho(betw, DR) normals -0.026 p=0.45; late inside-regime 0.969, perp/R 0.494
+  Q2c subspace other_channels (52 ch, K=16, R=4.78): normals {'in_cluster': 0.867, 'valley': 0.016, 'beyond': 0.022, 'off': 0.095} attacks {'in_cluster': 0.334, 'valley': 0.011, 'beyond': 0.038, 'off': 0.617}
+       normals by third: T1 valley 0.006 off 0.127 in 0.852 | T2 valley 0.021 off 0.156 in 0.813 | T3 valley 0.02 off 0.003 in 0.935; drifted normals {'in_cluster': 0.854, 'valley': 0.006, 'beyond': 0.011, 'off': 0.13}; rho(betw, DR) normals +0.205 p=2.7e-19; late inside-regime 0.935, perp/R 0.548
+  Q3 attacks in_cluster  n= 211 (diff 118): flagged head 0.72 cp 0.46; typed {'changepoint': 0.638, 'drift': 0.151, 'subthreshold': 0.211}; drifted 0.313; AUROC head/cp/dr 0.853/0.841/0.38; global pct head/cp 0.929/0.926; era-local head/cp 0.952/0.939
+  Q3 attacks valley      n=   2 (diff   0): flagged head 0.5 cp 0.5; typed {'changepoint': 1.0, 'drift': 0.0, 'subthreshold': 0.0}; drifted 1.0; AUROC head/cp/dr 0.917/0.781/0.847; global pct head/cp 0.917/0.781; era-local head/cp 0.894/0.812
+  Q3 attacks beyond      n=  13 (diff   8): flagged head 0.923 cp 0.846; typed {'changepoint': 0.917, 'drift': 0.0, 'subthreshold': 0.083}; drifted 0.154; AUROC head/cp/dr 0.979/0.975/0.332; global pct head/cp 0.999/0.998; era-local head/cp 0.998/0.998
+  Q3 attacks off         n= 426 (diff  41): flagged head 1.0 cp 0.972; typed {'changepoint': 0.972, 'drift': 0.007, 'subthreshold': 0.021}; drifted 0.108; AUROC head/cp/dr 0.997/0.996/0.308; global pct head/cp 0.999/0.999; era-local head/cp 0.999/0.999
+  Q3 attacks all         n= 652 (diff 167): flagged head 0.906 cp 0.802; typed {'changepoint': 0.885, 'drift': 0.044, 'subthreshold': 0.071}; drifted 0.178; AUROC head/cp/dr 0.95/0.944/0.333; global pct head/cp 0.999/0.998; era-local head/cp 0.999/0.999
+
+[seed 1] Q1 partition shares: normals {'in_cluster': 0.859, 'valley': 0.017, 'beyond': 0.06, 'off': 0.064} | attacks {'in_cluster': 0.314, 'valley': 0.006, 'beyond': 0.023, 'off': 0.656} | difficult {'in_cluster': 0.701, 'valley': 0.012, 'beyond': 0.048, 'off': 0.24}
+  normals by third: T1 valley 0.023 off 0.032 in 0.82 drifted 0.73 | T2 valley 0.01 off 0.158 in 0.81 drifted 0.0 | T3 valley 0.017 off 0.002 in 0.947 drifted 0.154
+  Q2a normals: partition x DRIFTED: in_cluster n=12175 drifted 0.283 slow-max 0.609 sd, DR pct 0.483 | valley n=237 drifted 0.473 slow-max 0.814 sd, DR pct 0.643 | beyond n=854 drifted 0.603 slow-max 1844.253 sd, DR pct 0.713 | off n=901 drifted 0.152 slow-max 0.684 sd, DR pct 0.547  (valley vs drifted Fisher p 1.059646276502823e-08)
+  drifted normals fall in: {'in_cluster': 0.819, 'valley': 0.027, 'beyond': 0.122, 'off': 0.033} ; non-drifted normals: {'in_cluster': 0.877, 'valley': 0.013, 'beyond': 0.034, 'off': 0.077}
+  Q2b normals  (n out-of-envelope 1992): rho(betweenness, DR) +0.062 p=0.0055; rho(betw, slow-max sd) +0.091; rho(perp, DR) -0.172; rho(dh, DR) +0.061; rho(dh, slow-max) +0.041; rho(valley-ind, DR) +0.016; rho(off-ind, DR) +0.038; rho(out-of-env, DR) +0.098; I4 null -0.016
+  Q2b attacks  (n out-of-envelope 447): rho(betweenness, DR) -0.194 p=3.8e-05; rho(betw, slow-max sd) +0.046; rho(perp, DR) +0.119; rho(dh, DR) +0.152; rho(dh, slow-max) -0.120; rho(valley-ind, DR) +0.018; rho(off-ind, DR) -0.014; rho(out-of-env, DR) -0.016; I4 null +0.008
+  Q2b all      (n out-of-envelope 2439): rho(betweenness, DR) +0.022 p=0.29; rho(betw, slow-max sd) +0.068; rho(perp, DR) -0.266; rho(dh, DR) -0.085; rho(dh, slow-max) -0.092; rho(valley-ind, DR) +0.018; rho(off-ind, DR) -0.027; rho(out-of-env, DR) +0.044; I4 null +0.009
+  geometry refit check (seed 1, K=16): home agreement with csv 1.000, partition agreement 1.000
+  Q2d direction (out-of-envelope normals n=1992): cos(displacement, axis h->j) median 0.258 (>0.7: 0.413); cos(displacement, drift direction) median 0.296 (>0.7: 0.0)
+     DRIFTED out-of-envelope normals n=764: cos(axis h->j) median 0.816 (>0.7: 0.674); cos(drift dir) median 0.529 (>0.7: 0.0); t median 1.28, perp/R median 0.713
+     late-third normals: nearest-regime dist median 3.542 vs R 4.51 (early third 3.582); inside any regime 0.947; d2/d1 median 1.162; t median 0.078, perp/R median 0.557; home regimes late [0, 4, 7] early [0, 5, 7]
+  Q2c subspace drifting_comm_channels (7 ch, K=16, R=4.78): normals {'in_cluster': 0.945, 'valley': 0.036, 'beyond': 0.006, 'off': 0.013} attacks {'in_cluster': 0.319, 'valley': 0.015, 'beyond': 0.011, 'off': 0.655}
+       normals by third: T1 valley 0.086 off 0.016 in 0.885 | T2 valley 0.002 off 0.013 in 0.982 | T3 valley 0.018 off 0.011 in 0.968; drifted normals {'in_cluster': 0.888, 'valley': 0.081, 'beyond': 0.013, 'off': 0.018}; rho(betw, DR) normals +0.036 p=0.32; late inside-regime 0.968, perp/R 0.478
+  Q2c subspace other_channels (52 ch, K=16, R=4.684): normals {'in_cluster': 0.839, 'valley': 0.017, 'beyond': 0.047, 'off': 0.097} attacks {'in_cluster': 0.298, 'valley': 0.011, 'beyond': 0.052, 'off': 0.64}
+       normals by third: T1 valley 0.006 off 0.126 in 0.824 | T2 valley 0.02 off 0.161 in 0.781 | T3 valley 0.024 off 0.005 in 0.912; drifted normals {'in_cluster': 0.835, 'valley': 0.006, 'beyond': 0.026, 'off': 0.132}; rho(betw, DR) normals +0.214 p=5.7e-25; late inside-regime 0.912, perp/R 0.565
+  Q3 attacks in_cluster  n= 205 (diff 117): flagged head 0.712 cp 0.459; typed {'changepoint': 0.644, 'drift': 0.137, 'subthreshold': 0.219}; drifted 0.317; AUROC head/cp/dr 0.85/0.837/0.385; global pct head/cp 0.928/0.923; era-local head/cp 0.947/0.932
+  Q3 attacks valley      n=   4 (diff   2): flagged head 1.0 cp 0.5; typed {'changepoint': 0.5, 'drift': 0.25, 'subthreshold': 0.25}; drifted 0.5; AUROC head/cp/dr 0.959/0.952/0.478; global pct head/cp 0.961/0.95; era-local head/cp 0.981/0.961
+  Q3 attacks beyond      n=  15 (diff   8): flagged head 0.867 cp 0.8; typed {'changepoint': 0.923, 'drift': 0.0, 'subthreshold': 0.077}; drifted 0.067; AUROC head/cp/dr 0.955/0.956/0.272; global pct head/cp 0.996/0.996; era-local head/cp 0.996/0.996
+  Q3 attacks off         n= 428 (diff  40): flagged head 1.0 cp 0.97; typed {'changepoint': 0.97, 'drift': 0.012, 'subthreshold': 0.019}; drifted 0.112; AUROC head/cp/dr 0.997/0.995/0.309; global pct head/cp 0.999/0.999; era-local head/cp 0.999/0.999
+  Q3 attacks all         n= 652 (diff 167): flagged head 0.906 cp 0.802; typed {'changepoint': 0.885, 'drift': 0.044, 'subthreshold': 0.071}; drifted 0.178; AUROC head/cp/dr 0.95/0.944/0.333; global pct head/cp 0.999/0.998; era-local head/cp 0.999/0.999
+
+[seed 2] Q1 partition shares: normals {'in_cluster': 0.889, 'valley': 0.013, 'beyond': 0.038, 'off': 0.06} | attacks {'in_cluster': 0.322, 'valley': 0.005, 'beyond': 0.011, 'off': 0.663} | difficult {'in_cluster': 0.707, 'valley': 0.012, 'beyond': 0.024, 'off': 0.257}
+  normals by third: T1 valley 0.023 off 0.025 in 0.877 drifted 0.73 | T2 valley 0.007 off 0.155 in 0.829 drifted 0.0 | T3 valley 0.009 off 0.003 in 0.96 drifted 0.154
+  Q2a normals: partition x DRIFTED: in_cluster n=12595 drifted 0.291 slow-max 0.609 sd, DR pct 0.485 | valley n=180 drifted 0.567 slow-max 1853.896 sd, DR pct 0.713 | beyond n=535 drifted 0.636 slow-max 1852.413 sd, DR pct 0.713 | off n=857 drifted 0.127 slow-max 0.682 sd, DR pct 0.546  (valley vs drifted Fisher p 5.105069360214965e-14)
+  drifted normals fall in: {'in_cluster': 0.869, 'valley': 0.024, 'beyond': 0.081, 'off': 0.026} ; non-drifted normals: {'in_cluster': 0.897, 'valley': 0.008, 'beyond': 0.02, 'off': 0.075}
+  Q2b normals  (n out-of-envelope 1572): rho(betweenness, DR) -0.011 p=0.65; rho(betw, slow-max sd) +0.044; rho(perp, DR) -0.162; rho(dh, DR) -0.209; rho(dh, slow-max) -0.218; rho(valley-ind, DR) +0.034; rho(off-ind, DR) +0.035; rho(out-of-env, DR) +0.104; I4 null +0.019
+  Q2b attacks  (n out-of-envelope 442): rho(betweenness, DR) -0.121 p=0.011; rho(betw, slow-max sd) +0.022; rho(perp, DR) +0.092; rho(dh, DR) +0.105; rho(dh, slow-max) -0.150; rho(valley-ind, DR) -0.015; rho(off-ind, DR) +0.019; rho(out-of-env, DR) +0.032; I4 null -0.055
+  Q2b all      (n out-of-envelope 2014): rho(betweenness, DR) -0.038 p=0.087; rho(betw, slow-max sd) +0.021; rho(perp, DR) -0.332; rho(dh, DR) -0.328; rho(dh, slow-max) -0.317; rho(valley-ind, DR) +0.034; rho(off-ind, DR) -0.028; rho(out-of-env, DR) +0.047; I4 null +0.012
+  geometry refit check (seed 2, K=16): home agreement with csv 1.000, partition agreement 1.000
+  Q2d direction (out-of-envelope normals n=1572): cos(displacement, axis h->j) median 0.105 (>0.7: 0.248); cos(displacement, drift direction) median 0.271 (>0.7: 0.0)
+     DRIFTED out-of-envelope normals n=551: cos(axis h->j) median 0.656 (>0.7: 0.403); cos(drift dir) median 0.486 (>0.7: 0.0); t median 1.269, perp/R median 0.896
+     late-third normals: nearest-regime dist median 3.363 vs R 4.339 (early third 3.431); inside any regime 0.96; d2/d1 median 1.162; t median 0.33, perp/R median 0.579; home regimes late [13, 3, 1] early [13, 14, 3]
+  Q2c subspace drifting_comm_channels (7 ch, K=16, R=4.614): normals {'in_cluster': 0.936, 'valley': 0.046, 'beyond': 0.006, 'off': 0.011} attacks {'in_cluster': 0.35, 'valley': 0.009, 'beyond': 0.017, 'off': 0.624}
+       normals by third: T1 valley 0.105 off 0.013 in 0.869 | T2 valley 0.001 off 0.009 in 0.987 | T3 valley 0.032 off 0.01 in 0.955; drifted normals {'in_cluster': 0.872, 'valley': 0.101, 'beyond': 0.013, 'off': 0.014}; rho(betw, DR) normals -0.095 p=0.0044; late inside-regime 0.955, perp/R 0.46
+  Q2c subspace other_channels (52 ch, K=16, R=4.673): normals {'in_cluster': 0.843, 'valley': 0.023, 'beyond': 0.036, 'off': 0.098} attacks {'in_cluster': 0.301, 'valley': 0.021, 'beyond': 0.038, 'off': 0.64}
+       normals by third: T1 valley 0.015 off 0.133 in 0.826 | T2 valley 0.032 off 0.158 in 0.796 | T3 valley 0.023 off 0.003 in 0.907; drifted normals {'in_cluster': 0.833, 'valley': 0.013, 'beyond': 0.02, 'off': 0.134}; rho(betw, DR) normals +0.258 p=3.2e-35; late inside-regime 0.907, perp/R 0.57
+  Q3 attacks in_cluster  n= 210 (diff 118): flagged head 0.719 cp 0.471; typed {'changepoint': 0.656, 'drift': 0.132, 'subthreshold': 0.212}; drifted 0.286; AUROC head/cp/dr 0.852/0.841/0.361; global pct head/cp 0.928/0.925; era-local head/cp 0.948/0.936
+  Q3 attacks valley      n=   3 (diff   2): flagged head 1.0 cp 0.333; typed {'changepoint': 0.333, 'drift': 0.333, 'subthreshold': 0.333}; drifted 0.333; AUROC head/cp/dr 0.963/0.948/0.336; global pct head/cp 0.974/0.927; era-local head/cp 0.991/0.967
+  Q3 attacks beyond      n=   7 (diff   4): flagged head 0.714 cp 0.714; typed {'changepoint': 1.0, 'drift': 0.0, 'subthreshold': 0.0}; drifted 0.286; AUROC head/cp/dr 0.952/0.916/0.5; global pct head/cp 0.999/0.999; era-local head/cp 0.999/0.999
+  Q3 attacks off         n= 432 (diff  43): flagged head 1.0 cp 0.968; typed {'changepoint': 0.968, 'drift': 0.012, 'subthreshold': 0.021}; drifted 0.123; AUROC head/cp/dr 0.997/0.995/0.317; global pct head/cp 0.999/0.999; era-local head/cp 0.999/0.999
+  Q3 attacks all         n= 652 (diff 167): flagged head 0.906 cp 0.802; typed {'changepoint': 0.885, 'drift': 0.044, 'subthreshold': 0.071}; drifted 0.178; AUROC head/cp/dr 0.95/0.944/0.333; global pct head/cp 0.999/0.998; era-local head/cp 0.999/0.999
+[HAI done in 137s] saved -> E:\Projects\Backlog\LatAD\poc\_diagnostics\a8_drift_unification.json
+
+ALL DONE

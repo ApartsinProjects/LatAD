@@ -1,0 +1,41 @@
+WADI_clean: train 2614 windows, test 575 (normal 519, anomalies 56, difficult 30), clip=10.0, K=20, LD=10, kd=80
+  seed 0 (38s) T6: recon=0.742 density=0.673 nearest=0.618 base=0.654 base+resid=0.654 LatAD=0.654 | R1 comps 2 (train frac 0.033) sizes {'all_normal': 519, 'R1_rare_vade': 11, 'R1_rare_vade_insupport': 11, 'R2_lowpi_q25': 41, 'R3_rare_density80': 34}
+     mixture   FPR@p99 all=0.0058 R1=0.0 R1ins=0.0 R2=0.0 R3=0.0 | matched R1=0.0 R3=0.0 | diffAUROC=0.616
+     nearest   FPR@p99 all=0.0058 R1=0.0 R1ins=0.0 R2=0.0 R3=0.0 | matched R1=0.0 R3=0.029411764705882353 | diffAUROC=0.618
+     tempered  FPR@p99 all=0.0058 R1=0.0 R1ins=0.0 R2=0.0 R3=0.0 | matched R1=0.0 R3=0.0 | diffAUROC=0.617
+     balanced  FPR@p99 all=0.0058 R1=0.0 R1ins=0.0 R2=0.0 R3=0.0 | matched R1=0.0 R3=0.0 | diffAUROC=0.617
+     density80 FPR@p99 all=0.0289 R1=0.0 R1ins=0.0 R2=0.024390243902439025 R3=0.08823529411764706 | matched R1=0.0 R3=0.029411764705882353 | diffAUROC=0.673
+     base      FPR@p99 all=0.0077 R1=0.0 R1ins=0.0 R2=0.0 R3=0.0 | matched R1=0.0 R3=0.0 | diffAUROC=0.654
+     flags disagree mix-vs-near 0, d80-vs-near 16
+  seed 1 (31s) T6: recon=0.745 density=0.650 nearest=0.614 base=0.633 base+resid=0.633 LatAD=0.633 | R1 comps 4 (train frac 0.060) sizes {'all_normal': 519, 'R1_rare_vade': 15, 'R1_rare_vade_insupport': 15, 'R2_lowpi_q25': 30, 'R3_rare_density80': 37}
+     mixture   FPR@p99 all=0.0058 R1=0.0 R1ins=0.0 R2=0.0 R3=0.05405405405405406 | matched R1=0.0 R3=0.08108108108108109 | diffAUROC=0.606
+     nearest   FPR@p99 all=0.0077 R1=0.0 R1ins=0.0 R2=0.0 R3=0.05405405405405406 | matched R1=0.0 R3=0.08108108108108109 | diffAUROC=0.614
+     tempered  FPR@p99 all=0.0077 R1=0.0 R1ins=0.0 R2=0.0 R3=0.05405405405405406 | matched R1=0.0 R3=0.08108108108108109 | diffAUROC=0.609
+     balanced  FPR@p99 all=0.0077 R1=0.0 R1ins=0.0 R2=0.0 R3=0.05405405405405406 | matched R1=0.0 R3=0.08108108108108109 | diffAUROC=0.610
+     density80 FPR@p99 all=0.0193 R1=0.06666666666666667 R1ins=0.06666666666666667 R2=0.06666666666666667 R3=0.10810810810810811 | matched R1=0.06666666666666667 R3=0.05405405405405406 | diffAUROC=0.650
+     base      FPR@p99 all=0.0077 R1=0.0 R1ins=0.0 R2=0.0 R3=0.05405405405405406 | matched R1=0.0 R3=0.08108108108108109 | diffAUROC=0.633
+     flags disagree mix-vs-near 1, d80-vs-near 23
+  seed 2 (31s) T6: recon=0.738 density=0.637 nearest=0.625 base=0.634 base+resid=0.634 LatAD=0.634 | R1 comps 3 (train frac 0.044) sizes {'all_normal': 519, 'R1_rare_vade': 16, 'R1_rare_vade_insupport': 16, 'R2_lowpi_q25': 38, 'R3_rare_density80': 37}
+     mixture   FPR@p99 all=0.0058 R1=0.0 R1ins=0.0 R2=0.0 R3=0.0 | matched R1=0.0 R3=0.0 | diffAUROC=0.624
+     nearest   FPR@p99 all=0.0058 R1=0.0 R1ins=0.0 R2=0.0 R3=0.0 | matched R1=0.0 R3=0.02702702702702703 | diffAUROC=0.625
+     tempered  FPR@p99 all=0.0058 R1=0.0 R1ins=0.0 R2=0.0 R3=0.0 | matched R1=0.0 R3=0.0 | diffAUROC=0.623
+     balanced  FPR@p99 all=0.0058 R1=0.0 R1ins=0.0 R2=0.0 R3=0.0 | matched R1=0.0 R3=0.02702702702702703 | diffAUROC=0.623
+     density80 FPR@p99 all=0.0385 R1=0.0 R1ins=0.0 R2=0.0 R3=0.16216216216216217 | matched R1=0.0 R3=0.05405405405405406 | diffAUROC=0.637
+     base      FPR@p99 all=0.0154 R1=0.0 R1ins=0.0 R2=0.0 R3=0.08108108108108109 | matched R1=0.0 R3=0.05405405405405406 | diffAUROC=0.634
+     flags disagree mix-vs-near 0, d80-vs-near 23
+  seed 3 (29s) T6: recon=0.738 density=0.612 nearest=0.596 base=0.605 base+resid=0.605 LatAD=0.605 | R1 comps 4 (train frac 0.068) sizes {'all_normal': 519, 'R1_rare_vade': 19, 'R1_rare_vade_insupport': 19, 'R2_lowpi_q25': 28, 'R3_rare_density80': 26}
+     mixture   FPR@p99 all=0.0058 R1=0.0 R1ins=0.0 R2=0.0 R3=0.038461538461538464 | matched R1=0.0 R3=0.07692307692307693 | diffAUROC=0.599
+     nearest   FPR@p99 all=0.0077 R1=0.0 R1ins=0.0 R2=0.0 R3=0.07692307692307693 | matched R1=0.0 R3=0.11538461538461539 | diffAUROC=0.596
+     tempered  FPR@p99 all=0.0077 R1=0.0 R1ins=0.0 R2=0.0 R3=0.07692307692307693 | matched R1=0.0 R3=0.11538461538461539 | diffAUROC=0.598
+     balanced  FPR@p99 all=0.0077 R1=0.0 R1ins=0.0 R2=0.0 R3=0.07692307692307693 | matched R1=0.0 R3=0.11538461538461539 | diffAUROC=0.596
+     density80 FPR@p99 all=0.0328 R1=0.0 R1ins=0.0 R2=0.0 R3=0.15384615384615385 | matched R1=0.0 R3=0.11538461538461539 | diffAUROC=0.612
+     base      FPR@p99 all=0.0096 R1=0.0 R1ins=0.0 R2=0.0 R3=0.11538461538461539 | matched R1=0.0 R3=0.11538461538461539 | diffAUROC=0.605
+     flags disagree mix-vs-near 1, d80-vs-near 26
+  seed 4 (30s) T6: recon=0.740 density=0.623 nearest=0.590 base=0.610 base+resid=0.610 LatAD=0.610 | R1 comps 1 (train frac 0.012) sizes {'all_normal': 519, 'R1_rare_vade': 5, 'R1_rare_vade_insupport': 5, 'R2_lowpi_q25': 64, 'R3_rare_density80': 25}
+     mixture   FPR@p99 all=0.0039 R1=0.0 R1ins=0.0 R2=0.015625 R3=0.04 | matched R1=0.0 R3=0.12 | diffAUROC=0.586
+     nearest   FPR@p99 all=0.0039 R1=0.0 R1ins=0.0 R2=0.015625 R3=0.04 | matched R1=0.0 R3=0.12 | diffAUROC=0.590
+     tempered  FPR@p99 all=0.0039 R1=0.0 R1ins=0.0 R2=0.015625 R3=0.04 | matched R1=0.0 R3=0.12 | diffAUROC=0.588
+     balanced  FPR@p99 all=0.0039 R1=0.0 R1ins=0.0 R2=0.015625 R3=0.04 | matched R1=0.0 R3=0.12 | diffAUROC=0.590
+     density80 FPR@p99 all=0.0289 R1=0.0 R1ins=0.0 R2=0.03125 R3=0.16 | matched R1=0.0 R3=0.12 | diffAUROC=0.623
+     base      FPR@p99 all=0.0058 R1=0.0 R1ins=0.0 R2=0.015625 R3=0.08 | matched R1=0.0 R3=0.16 | diffAUROC=0.610
+     flags disagree mix-vs-near 0, d80-vs-near 18

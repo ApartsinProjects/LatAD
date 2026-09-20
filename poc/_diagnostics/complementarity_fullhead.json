@@ -1,0 +1,18 @@
+{
+ "n_difficult": 167,
+ "budget": 875,
+ "caught": {
+  "HCcoh+LatAD(full)": 67,
+  "linres": 11,
+  "IF": 17,
+  "AE": 50,
+  "TranAD": 1
+ },
+ "only_LatAD": 8,
+ "LatAD_not_TranAD": 66,
+ "TranAD_not_LatAD": 0,
+ "LatAD_not_linres": 61,
+ "linres_not_LatAD": 5,
+ "jaccard_LatAD_TranAD": 0.015,
+ "jaccard_LatAD_linres": 0.083
+}

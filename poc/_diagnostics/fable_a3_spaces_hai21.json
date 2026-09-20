@@ -1,0 +1,96 @@
+{
+ "paper_K40": {
+  "block_n": 646,
+  "block_top_components": [
+   {
+    "c": 21,
+    "block_share": 0.9984520123839009,
+    "train_mass": 0.003976251429816439
+   },
+   {
+    "c": 15,
+    "block_share": 0.0015479876160990713,
+    "train_mass": 0.047497140367122395
+   },
+   {
+    "c": 0,
+    "block_share": 0.0,
+    "train_mass": 0.0490222779018465
+   }
+  ],
+  "H_block": 0.00029539877771512195,
+  "H_test_normal_outside": 0.07117900279347127,
+  "H_train": 0.0657948011974361,
+  "rho_block": 0.0,
+  "H_train_in_block_components": 0.01080700302530139,
+  "n_train_in_top_component": 73
+ },
+ "nn_dist_latent": {
+  "train_loo_med": 1.3522334098815918,
+  "train_loo_q99": 2.8203455877304076,
+  "block_med": 12.931262969970703,
+  "block_frac_gt_q99": 1.0,
+  "test_normal_outside_med": 1.7175792455673218,
+  "tn_frac_gt_q99": 0.05280674506323497
+ },
+ "nn_dist_full_feat": {
+  "train_loo_med": 8.27357698426558,
+  "train_loo_q99": 13.63722243390445,
+  "block_med": 59.583579958246666,
+  "block_frac_gt_q99": 1.0,
+  "test_normal_outside_med": 10.768839557054704,
+  "tn_frac_gt_q99": 0.1652244656460321
+ },
+ "gmm_latent": {
+  "K8": {
+   "block_top_component": 5,
+   "block_share": 0.9984520123839009,
+   "train_mass_of_that_component": 0.0031592134647856636,
+   "H_train": 0.06569629162549973,
+   "H_block": 0.0004588958399835974,
+   "H_train_in_that_component": 4.507162158856181e-21
+  },
+  "K16": {
+   "block_top_component": 7,
+   "block_share": 0.9953560371517027,
+   "train_mass_of_that_component": 0.005610327359877989,
+   "H_train": 0.05136999115347862,
+   "H_block": 0.008821092545986176,
+   "H_train_in_that_component": 0.00785868614912033
+  },
+  "K40": {
+   "block_top_component": 27,
+   "block_share": 0.9195046439628483,
+   "train_mass_of_that_component": 0.0004902227790184651,
+   "H_train": 0.04440402239561081,
+   "H_block": 0.04131021350622177,
+   "H_train_in_that_component": 3.2777864352861313e-14
+  }
+ },
+ "forced_component": {
+  "K41_w0.004": {
+   "H_train_before": 0.0657948011974361,
+   "H_train_after": 0.06535731257267091,
+   "rho_before": 0.022550247834849393,
+   "rho_after": 0.022550247834849393,
+   "train_frac_ambiguous_toward_new": 0.0,
+   "train_frac_assigned_new": 0.0,
+   "block_frac_assigned_new": 0.9953560371517027
+  },
+  "K41_w0.063": {
+   "H_train_before": 0.0657948011974361,
+   "H_train_after": 0.06535731257267091,
+   "rho_before": 0.022550247834849393,
+   "rho_after": 0.022550247834849393,
+   "train_frac_ambiguous_toward_new": 0.0,
+   "train_frac_assigned_new": 0.0,
+   "block_frac_assigned_new": 0.9953560371517027
+  },
+  "K8plus1": {
+   "H_train_before": 0.06569629162549973,
+   "H_train_after": 0.06217459961771965,
+   "train_frac_ambiguous_toward_new": 0.0,
+   "train_frac_assigned_new": 0.0
+  }
+ }
+}

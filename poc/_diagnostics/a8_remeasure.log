@@ -1,0 +1,23 @@
+[synthetic_two_gauss] {"kind": "synthetic_two_gauss", "delta": 1.0, "bayes": {"mean_maxresp": 0.6917, "H_norm": 0.8395, "rho_lt0p5": 0.0}, "obs_gmm_K2": {"mean_maxresp": 0.7842, "H_norm": 0.6542, "rho_lt0p5": 0.0}, "bayes_error": 0.3128, "vade_K2": {"mean_maxresp": 0.5844, "H_norm": 0.9682, "rho_lt0p5": 0.0}, "vade_K2_frac_comp_at_floor": 0.0, "vade_K2_sil_true_obs": 0.0206, "vade_K2_sil_true_latent": 0.0249, "vade_K8": {"mean_maxresp": 0.3588, "H_norm": 0.8235, "rho_lt0p5": 0.8956}, "vade_K8_frac_comp_at_floor": 0.0, "vade_K8_sil_true_obs": 0.018, "vade_K8_sil_true_latent": 0.0203}
+[synthetic_two_gauss] {"kind": "synthetic_two_gauss", "delta": 2.0, "bayes": {"mean_maxresp": 0.8418, "H_norm": 0.5121, "rho_lt0p5": 0.0}, "obs_gmm_K2": {"mean_maxresp": 0.7956, "H_norm": 0.6272, "rho_lt0p5": 0.0}, "bayes_error": 0.1718, "vade_K2": {"mean_maxresp": 0.6219, "H_norm": 0.9352, "rho_lt0p5": 0.0}, "vade_K2_frac_comp_at_floor": 0.0, "vade_K2_sil_true_obs": 0.0476, "vade_K2_sil_true_latent": 0.0481, "vade_K8": {"mean_maxresp": 0.3504, "H_norm": 0.8426, "rho_lt0p5": 0.8896}, "vade_K8_frac_comp_at_floor": 0.0, "vade_K8_sil_true_obs": 0.0491, "vade_K8_sil_true_latent": 0.0465}
+[synthetic_two_gauss] {"kind": "synthetic_two_gauss", "delta": 3.0, "bayes": {"mean_maxresp": 0.9317, "H_norm": 0.2429, "rho_lt0p5": 0.0}, "obs_gmm_K2": {"mean_maxresp": 0.8126, "H_norm": 0.5867, "rho_lt0p5": 0.0}, "bayes_error": 0.0736, "vade_K2": {"mean_maxresp": 0.6078, "H_norm": 0.9506, "rho_lt0p5": 0.0}, "vade_K2_frac_comp_at_floor": 0.0, "vade_K2_sil_true_obs": 0.0697, "vade_K2_sil_true_latent": 0.0769, "vade_K8": {"mean_maxresp": 0.3668, "H_norm": 0.8213, "rho_lt0p5": 0.875}, "vade_K8_frac_comp_at_floor": 0.0, "vade_K8_sil_true_obs": 0.0699, "vade_K8_sil_true_latent": 0.079}
+[synthetic_two_gauss] {"kind": "synthetic_two_gauss", "delta": 4.0, "bayes": {"mean_maxresp": 0.9768, "H_norm": 0.0882, "rho_lt0p5": 0.0}, "obs_gmm_K2": {"mean_maxresp": 0.8055, "H_norm": 0.6055, "rho_lt0p5": 0.0}, "bayes_error": 0.0248, "vade_K2": {"mean_maxresp": 0.6446, "H_norm": 0.9185, "rho_lt0p5": 0.0}, "vade_K2_frac_comp_at_floor": 0.0, "vade_K2_sil_true_obs": 0.0826, "vade_K2_sil_true_latent": 0.1119, "vade_K8": {"mean_maxresp": 0.3825, "H_norm": 0.8057, "rho_lt0p5": 0.8316}, "vade_K8_frac_comp_at_floor": 0.0, "vade_K8_sil_true_obs": 0.0833, "vade_K8_sil_true_latent": 0.1221}
+Traceback (most recent call last):
+  File "E:\Projects\Backlog\LatAD\poc\_diagnostics\a8_remeasure.py", line 479, in <module>
+    main()
+    ~~~~^^
+  File "E:\Projects\Backlog\LatAD\poc\_diagnostics\a8_remeasure.py", line 421, in main
+    synthetic_tests()
+    ~~~~~~~~~~~~~~~^^
+  File "E:\Projects\Backlog\LatAD\poc\_diagnostics\a8_remeasure.py", line 283, in synthetic_tests
+    summ, _ = pairwise_overlap(Z10, lab)
+              ~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "E:\Projects\Backlog\LatAD\poc\_diagnostics\a8_remeasure.py", line 126, in pairwise_overlap
+    r = fisher_1d(Z[lab == a], Z[lab == b]); r.update(a=int(a), b=int(b), bc=near[a]["bc"] if near[a]["partner"] == b else near[b]["bc"])
+  File "E:\Projects\Backlog\LatAD\poc\_diagnostics\a8_remeasure.py", line 86, in fisher_1d
+    ovl = float(np.trapezoid(np.minimum(fa, fb), g))
+                ^^^^^^^^^^^^
+  File "C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\numpy\__init__.py", line 333, in __getattr__
+    raise AttributeError("module {!r} has no attribute "
+                         "{!r}".format(__name__, attr))
+AttributeError: module 'numpy' has no attribute 'trapezoid'

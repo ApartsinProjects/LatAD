@@ -1,0 +1,17 @@
+SWaT_canon: difficult (v2 axis) = 91 windows, normals = 1265, clip=10.0, K=40, LD=16, kd=80
+  seed 0 done  (cc=0.461 mp=0.524)
+  seed 1 done  (cc=0.511 mp=0.523)
+  seed 2 done  (cc=0.466 mp=0.518)
+  seed 3 done  (cc=0.461 mp=0.526)
+  seed 4 done  (cc=0.459 mp=0.518)
+
+Table 5 (SWaT clean, n_diff=91):
+  cross-channel 0.4717+/-0.0197  marginal 0.5218+/-0.0031  gain -0.0502
+Table 6 heads (SWaT clean):
+  recon        0.567+/-0.004
+  density      0.472+/-0.020
+  nearest      0.479+/-0.025
+  base         0.472+/-0.019
+  base+resid   0.472+/-0.019
+  LatAD        0.472+/-0.019
+saved -> clean_swat_tables56.json

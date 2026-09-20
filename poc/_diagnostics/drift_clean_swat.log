@@ -1,0 +1,88 @@
+[I3] normal.csv = [216071, 179227, 496800, 495000] rows; first 395298 rows == canonical test-normal rows (row-wise match 1.000); 367557 of them sit inside the SWaT_canon TRAIN set
+[I1] uncleaned Difficult AUROCs reproduce loo_fusion_boosted.json: {'trivial max|z| (floor)': 0.646, 'linres': 0.782, 'IF': 0.627, 'AE': 0.729, 'USAD': 0.658, 'TranAD': 0.655, 'LatAD (global)': 0.804, 'null+HC': 0.811, 'HCcoh+LatAD (community headline)': 0.837, 'boosted_LOO': 0.881}
+[I3] Normal_v0 rows 395298-892098; channels NaN for all of Normal_v0 in the mirror (ffilled from the attack file's last row in the pipeline): ['MV101', 'AIT201', 'MV201', 'P201', 'P202', 'P204', 'MV303']
+[S1] P102 states: {'leaked_train': [1.0, 2.0], 'proper_train': [1.0], 'test_normal': [1.0, 2.0], 'test_attack': [1.0, 2.0]}; new-in-test state [2.0, 2.0]; AIT201 ranges {'leaked_train': [168.03379821777344, 263.0094909667969], 'proper_train': [168.097900390625, 168.097900390625], 'proper_train_p1_p99': [168.097900390625, 168.097900390625], 'test_normal': [168.03379821777344, 266.0535888671875], 'literature': [251.0, 272.0]}
+[S1] windows: P102-new-state 18 (normal 1, attack 17); AIT201 outside lit range 1100 (normal 919); AIT201 outside PROPER-train range 1498 (normal 1265); LIT drift-normals removed 919 of 1265
+[S2] top-10 shifted channels, PROPER train (Normal_v0 only):
+      AIT402   KS 0.956 outOfSupport 0.839 train [153.88, 207.97] testN [141.12, 327.84]
+      AIT502   KS 0.794 outOfSupport 0.487 train [142.35, 196.72] testN [129.84, 272.85]
+      AIT501   KS 0.691 outOfSupport 0.379 train [7.79, 7.93] testN [7.43, 8.3]
+      AIT202   KS 0.672 outOfSupport 0.000 train [8.31, 8.99] testN [6.0, 8.73]
+      AIT504   KS 0.667 outOfSupport 0.594 train [10.15, 13.88] testN [9.54, 427.28]
+      PIT503   KS 0.554 outOfSupport 0.036 train [184.95, 198.23] testN [3.3, 191.99]
+      FIT301   KS 0.521 outOfSupport 0.000 train [0.0, 2.36] testN [0.0, 2.36]
+      FIT503   KS 0.508 outOfSupport 0.001 train [0.73, 0.75] testN [0.0, 0.74]
+      PIT502   KS 0.505 outOfSupport 0.022 train [0.77, 1.84] testN [0.0, 1.97]
+      PIT501   KS 0.487 outOfSupport 0.021 train [245.19, 260.09] testN [9.56, 254.34]
+      rank P102 33, AIT201 n/a (channel unrecorded in mirror Normal_v0)
+[S2] top-10 shifted channels, LEAKED train (as used):
+      AIT201   KS 0.729 outOfSupport 0.026 train [168.03, 263.01] testN [168.03, 266.05]
+      AIT402   KS 0.695 outOfSupport 0.000 train [141.12, 327.84] testN [141.12, 327.84]
+      P201     KS 0.633 outOfSupport 0.000 train [1.0, 2.0] testN [1.0, 2.0]
+      AIT502   KS 0.577 outOfSupport 0.000 train [129.84, 260.0] testN [129.84, 272.85]
+      AIT501   KS 0.484 outOfSupport 0.000 train [7.3, 8.31] testN [7.43, 8.3]
+      AIT504   KS 0.482 outOfSupport 0.000 train [7.42, 421.66] testN [9.54, 427.28]
+      AIT202   KS 0.476 outOfSupport 0.000 train [8.19, 8.99] testN [6.0, 8.73]
+      PIT503   KS 0.406 outOfSupport 0.000 train [3.11, 200.64] testN [3.3, 191.99]
+      FIT503   KS 0.375 outOfSupport 0.000 train [0.0, 0.76] testN [0.0, 0.74]
+      FIT301   KS 0.368 outOfSupport 0.000 train [0.0, 2.36] testN [0.0, 2.36]
+      rank P102 42, AIT201 1
+[S2] EDA-flagged channels (KS>0.5): ['AIT402', 'AIT502', 'AIT501', 'AIT202', 'AIT504', 'PIT503', 'FIT301', 'FIT503', 'PIT502']; per-channel {'AIT402': {'windows': 1266, 'normal': 1075}, 'AIT502': {'windows': 755, 'normal': 617}, 'AIT501': {'windows': 635, 'normal': 485}, 'AIT202': {'windows': 2, 'normal': 0}, 'AIT504': {'windows': 947, 'normal': 767}, 'PIT503': {'windows': 172, 'normal': 46}, 'FIT301': {'windows': 0, 'normal': 0}, 'FIT503': {'windows': 122, 'normal': 2}, 'PIT502': {'windows': 145, 'normal': 27}, 'P102': {'windows': 18, 'normal': 1}}; EDA(+lit) normals removed 1136
+[unc] boot HCcoh+LatAD - boosted [Difficult]: {'diff': -0.044, 'diff_ci': [-0.096, 0.017], 'p_le_0': 0.926, 'n_episodes': 23}
+
+=== LITERATURE (P102 new state | AIT201 outside [251,272]): removed 919 normal windows, kept 346; attacks intact (233), diff 85 ===
+  trivial max|z| (floor)             unclean 0.646  clean 0.475  delta -0.171  removed-normals pct 0.445
+  linres                             unclean 0.782  clean 0.799  delta +0.017  removed-normals pct 0.496
+  IF                                 unclean 0.627  clean 0.659  delta +0.032  removed-normals pct 0.516
+  AE                                 unclean 0.729  clean 0.749  delta +0.020  removed-normals pct 0.507
+  USAD                               unclean 0.658  clean 0.644  delta -0.014  removed-normals pct 0.489
+  TranAD                             unclean 0.655  clean 0.660  delta +0.005  removed-normals pct 0.499
+  LatAD (global)                     unclean 0.804  clean 0.820  delta +0.016  removed-normals pct 0.517
+  null+HC                            unclean 0.811  clean 0.838  delta +0.027  removed-normals pct 0.739
+  HCcoh+LatAD (community headline)   unclean 0.837  clean 0.865  delta +0.028  removed-normals pct 0.526
+  boosted_LOO                        unclean 0.881  clean 0.874  delta -0.007  removed-normals pct 0.521
+  boot HCcoh+LatAD - boosted [Difficult, cleaned]: diff -0.009 CI [-0.065, 0.048] P(<=0)=0.6615 eps 23
+  boot null+HC     - boosted [Difficult, cleaned]: diff -0.036 CI [-0.085, 0.018] P(<=0)=0.92
+
+=== EDA broad (lit + channels KS>0.5 out of proper-train support): removed 1136 normal windows, kept 129; attacks intact (233), diff 85 ===
+  trivial max|z| (floor)             unclean 0.646  clean 0.506  delta -0.140  removed-normals pct 0.500
+  linres                             unclean 0.782  clean 0.782  delta +0.000  removed-normals pct 0.500
+  IF                                 unclean 0.627  clean 0.690  delta +0.063  removed-normals pct 0.510
+  AE                                 unclean 0.729  clean 0.780  delta +0.051  removed-normals pct 0.509
+  USAD                               unclean 0.658  clean 0.712  delta +0.054  removed-normals pct 0.505
+  TranAD                             unclean 0.655  clean 0.724  delta +0.069  removed-normals pct 0.508
+  LatAD (global)                     unclean 0.804  clean 0.829  delta +0.025  removed-normals pct 0.508
+  null+HC                            unclean 0.811  clean 0.843  delta +0.032  removed-normals pct 0.729
+  HCcoh+LatAD (community headline)   unclean 0.837  clean 0.862  delta +0.025  removed-normals pct 0.509
+  boosted_LOO                        unclean 0.881  clean 0.792  delta -0.089  removed-normals pct 0.487
+  boot HCcoh+LatAD - boosted [Difficult, cleaned]: diff 0.07 CI [0.007, 0.141] P(<=0)=0.0155 eps 23
+  boot null+HC     - boosted [Difficult, cleaned]: diff 0.051 CI [-0.005, 0.116] P(<=0)=0.0405
+
+=== P102-only: removed 1 normal windows, kept 1264; attacks intact (233), diff 85 ===
+  trivial max|z| (floor)             unclean 0.646  clean 0.646  delta +0.000  removed-normals pct 0.987
+  linres                             unclean 0.782  clean 0.782  delta +0.000  removed-normals pct 0.634
+  IF                                 unclean 0.627  clean 0.627  delta +0.000  removed-normals pct 0.903
+  AE                                 unclean 0.729  clean 0.730  delta +0.001  removed-normals pct 0.998
+  USAD                               unclean 0.658  clean 0.659  delta +0.001  removed-normals pct 0.999
+  TranAD                             unclean 0.655  clean 0.655  delta +0.000  removed-normals pct 0.999
+  LatAD (global)                     unclean 0.804  clean 0.804  delta +0.000  removed-normals pct 0.999
+  null+HC                            unclean 0.811  clean 0.812  delta +0.001  removed-normals pct 0.943
+  HCcoh+LatAD (community headline)   unclean 0.837  clean 0.837  delta +0.000  removed-normals pct 0.979
+  boosted_LOO                        unclean 0.881  clean 0.881  delta +0.000  removed-normals pct 0.919
+  boot HCcoh+LatAD - boosted [Difficult, cleaned]: diff -0.043 CI [-0.097, 0.017] P(<=0)=0.927 eps 23
+  boot null+HC     - boosted [Difficult, cleaned]: diff -0.069 CI [-0.12, -0.012] P(<=0)=0.9895
+
+=== AIT201-only: removed 919 normal windows, kept 346; attacks intact (233), diff 85 ===
+  trivial max|z| (floor)             unclean 0.646  clean 0.475  delta -0.171  removed-normals pct 0.445
+  linres                             unclean 0.782  clean 0.799  delta +0.017  removed-normals pct 0.496
+  IF                                 unclean 0.627  clean 0.659  delta +0.032  removed-normals pct 0.516
+  AE                                 unclean 0.729  clean 0.749  delta +0.020  removed-normals pct 0.507
+  USAD                               unclean 0.658  clean 0.644  delta -0.014  removed-normals pct 0.489
+  TranAD                             unclean 0.655  clean 0.660  delta +0.005  removed-normals pct 0.499
+  LatAD (global)                     unclean 0.804  clean 0.820  delta +0.016  removed-normals pct 0.517
+  null+HC                            unclean 0.811  clean 0.838  delta +0.027  removed-normals pct 0.739
+  HCcoh+LatAD (community headline)   unclean 0.837  clean 0.865  delta +0.028  removed-normals pct 0.526
+  boosted_LOO                        unclean 0.881  clean 0.874  delta -0.007  removed-normals pct 0.521
+  boot HCcoh+LatAD - boosted [Difficult, cleaned]: diff -0.009 CI [-0.065, 0.048] P(<=0)=0.6615 eps 23
+  boot null+HC     - boosted [Difficult, cleaned]: diff -0.036 CI [-0.085, 0.018] P(<=0)=0.92
+saved drift_clean_swat.json

@@ -1,0 +1,1510 @@
+{
+ "SKAB": {
+  "dataset": "SKAB",
+  "n_train": 400,
+  "n_test": 631,
+  "n_anom": 254,
+  "D_raw": 48,
+  "D_eff": 48,
+  "n_channels": 8,
+  "n_const_features": 0,
+  "A1": {
+   "K_bic": 8,
+   "K_heldout_ll_median": 64,
+   "K_max": 64,
+   "bic_still_improving_at_Kmax": false,
+   "cov_participation_ratio": 5.195728997332942,
+   "cov_PR_frac_of_Deff": 0.10824435411110296,
+   "bic_curve": [
+    {
+     "K": 1,
+     "bic": 47605.7207546709,
+     "ll_fit": -67.20479881691499,
+     "ll_ho_mean": -92.78449667008006,
+     "ll_ho": -56.122331807630275,
+     "sec": 1.6
+    },
+    {
+     "K": 2,
+     "bic": 22146.30752361294,
+     "ll_fit": -30.02246632113948,
+     "ll_ho_mean": -68.94049529713824,
+     "ll_ho": -12.52781828117257,
+     "sec": 0.0
+    },
+    {
+     "K": 4,
+     "bic": 15826.627527898618,
+     "ll_fit": -19.37086771016217,
+     "ll_ho_mean": -64.58215780263073,
+     "ll_ho": -12.52781828117257,
+     "sec": 0.0
+    },
+    {
+     "K": 8,
+     "bic": -1365.3852091615763,
+     "ll_fit": 8.436119148408938,
+     "ll_ho_mean": -41.028821978649155,
+     "ll_ho": 12.290603136161746,
+     "sec": 0.0
+    },
+    {
+     "K": 16,
+     "bic": -185.8133364074056,
+     "ll_fit": 13.2449537985875,
+     "ll_ho_mean": -37.87047210766667,
+     "ll_ho": 14.689971834472303,
+     "sec": 0.0
+    },
+    {
+     "K": 32,
+     "bic": 4966.919171230671,
+     "ll_fit": 18.871782010187857,
+     "ll_ho_mean": -248.6716568417462,
+     "ll_ho": 17.04958622568875,
+     "sec": 0.0
+    },
+    {
+     "K": 64,
+     "bic": 19061.675009557854,
+     "ll_fit": 24.71216582902996,
+     "ll_ho_mean": -241.589764246538,
+     "ll_ho": 18.414553024563368,
+     "sec": 0.1
+    }
+   ]
+  },
+  "A2": {
+   "K_sat_1pct": 16,
+   "rel_gain_per_step": [
+    0.5347973484585878,
+    0.2853604371282266,
+    1.086271393368848,
+    -0.863911418432967,
+    -27.73069257171314,
+    -2.8377260334669137
+   ],
+   "rel_gain_last_step": -2.8377260334669137,
+   "bic_still_improving_at_Kmax": false,
+   "ll_ho_gain_K1_to_Kmax": 74.53688483219364,
+   "ll_ho_curve_median": [
+    [
+     1,
+     -56.122331807630275
+    ],
+    [
+     2,
+     -12.52781828117257
+    ],
+    [
+     4,
+     -12.52781828117257
+    ],
+    [
+     8,
+     12.290603136161746
+    ],
+    [
+     16,
+     14.689971834472303
+    ],
+    [
+     32,
+     17.04958622568875
+    ],
+    [
+     64,
+     18.414553024563368
+    ]
+   ],
+   "ll_ho_curve_mean": [
+    [
+     1,
+     -92.78449667008006
+    ],
+    [
+     2,
+     -68.94049529713824
+    ],
+    [
+     4,
+     -64.58215780263073
+    ],
+    [
+     8,
+     -41.028821978649155
+    ],
+    [
+     16,
+     -37.87047210766667
+    ],
+    [
+     32,
+     -248.6716568417462
+    ],
+    [
+     64,
+     -241.589764246538
+    ]
+   ],
+   "step_gain_frac_of_total_drop": [
+    0.52,
+    0.129,
+    0.351,
+    -0.024,
+    -0.105,
+    -0.288
+   ],
+   "K_sat_1pct_of_total": 16
+  },
+  "A3": {
+   "rho": 0.58,
+   "mean_maxresp": 0.6208120584487915,
+   "basin_lam": 1.0749999999999997,
+   "source": "a3_skab_witness.json OFF row"
+  },
+  "A4": {
+   "K_mode": 8,
+   "n_modes_ge30": 4,
+   "median_within_mode_excess_kurtosis": 0.6835400896709398,
+   "K_high": 70,
+   "heldout_ll_gain_highK_minus_perModeGauss_median": 7.50156729902553,
+   "heldout_ll_gain_mean": -262.5909541130116,
+   "frac_heldout_windows_improved": 0.66,
+   "auroc_perModeGauss": 0.6196766849767121,
+   "auroc_highK": 0.6151548695670335,
+   "auroc_gain": -0.0045218154096786645,
+   "K_paper": 16,
+   "heldout_ll_gain_highK_minus_paperK_median": 5.326908318728756,
+   "frac_heldout_windows_improved_vs_paperK": 0.64,
+   "auroc_paperK": 0.6176403015936005
+  },
+  "A5": {
+   "n90": 12,
+   "n95": 16,
+   "PR": 5.195728997332956,
+   "D_eff": 48,
+   "n_channels": 8,
+   "n90_frac_Deff": 0.25,
+   "n95_frac_Deff": 0.3333333333333333,
+   "PR_frac_Deff": 0.10824435411110324,
+   "n90_frac_channels": 1.5,
+   "PR_frac_channels": 0.6494661246666195
+  },
+  "A6": {
+   "K": 8,
+   "occupancy_sorted": [
+    0.45,
+    0.21,
+    0.165,
+    0.135,
+    0.0225,
+    0.0075,
+    0.005,
+    0.005
+   ],
+   "zipf_slope": -2.398293896345071,
+   "max_min_ratio": 90.0,
+   "gini": 0.590625,
+   "top1": 0.45,
+   "n_modes_below_1pct": 3
+  },
+  "A7": {
+   "K_mode": 8,
+   "sil_feature_kmeans": 0.2652717418084008,
+   "vade_K": 16,
+   "vade_latent": 6,
+   "vade_modes_used": 15,
+   "vade_frac_maxresp_lt_0.5_train": 0.525,
+   "sil_feature_vadeLabels": 0.12323290884207197,
+   "sil_latent_vade": 0.3988942518189655,
+   "sil_latent_kmeansLabels": 0.36058404583978,
+   "test_anom_frac_between_modes": 0.5,
+   "test_normal_frac_between_modes": 0.5013262599469496,
+   "latent_source": "fresh VaDE (K=16,latent=6,seed0,epochs40)"
+  },
+  "A8": {
+   "n_channels": 8,
+   "n_live": 8,
+   "n_const": 0,
+   "E3_hac_nested_communities_3to25": 6,
+   "E3_hac_maximal_communities": 1,
+   "E3_hac_maximal_sizes": [
+    8
+   ],
+   "mine_head_rule_thr0.7_minsz3_firsthalf": 1,
+   "mine_head_rule_sizes": [
+    3
+   ],
+   "thr0.5_components_ge2": 1,
+   "thr0.5_isolated": 0,
+   "thr0.5_greedy_modularity_communities": 2,
+   "thr0.5_modularity": 0.05540166204986145,
+   "thr0.5_edge_density": 0.6785714285714286,
+   "mean_abs_corr_offdiag": 0.6311548896029423,
+   "n_discrete_le10vals": 1,
+   "n_continuous": 7,
+   "frac_discrete_of_live": 0.125,
+   "unique_value_source": "raw samples"
+  },
+  "A9": {
+   "thr_train_q99": 2.154999105930328,
+   "frac_anom_easy": 0.27165354330708663,
+   "n_easy": 69,
+   "n_hard": 185,
+   "frac_test_normal_over_thr": 0.010610079575596816,
+   "frac_train_over_thr": 0.01,
+   "triv_auroc_all": 0.5539276091814782,
+   "triv_auroc_easy": 0.9998846730480914,
+   "triv_auroc_difficult": 0.38759767725284966,
+   "latad_witness_diff_auroc": 0.49993547924582404,
+   "latad_witness_easy_auroc": 0.9430669280744244
+  },
+  "A10": {
+   "frac_anom_snapshot_separable": 0.27165354330708663,
+   "triv_auroc_difficult": 0.38759767725284966,
+   "between_mode_train_frac_rho": 0.58,
+   "test_anom_between_mode_frac": 0.5,
+   "note": "no public benchmark labels a history-conditioned fault; single-window rule already separates the 'easy' share and the LatAD OFF difficult AUROC bounds the rest"
+  },
+  "sec": 7.7
+ },
+ "SWaT": {
+  "dataset": "SWaT",
+  "n_train": 3623,
+  "n_test": 1087,
+  "n_anom": 182,
+  "D_raw": 306,
+  "D_eff": 255,
+  "n_channels": 51,
+  "n_const_features": 51,
+  "A1": {
+   "K_bic": 64,
+   "K_heldout_ll_median": 128,
+   "K_max": 128,
+   "bic_still_improving_at_Kmax": false,
+   "cov_participation_ratio": 13.9684297304404,
+   "cov_PR_frac_of_Deff": 0.054778155805648626,
+   "bic_curve": [
+    {
+     "K": 1,
+     "bic": 1905556.7645388357,
+     "ll_fit": -325.26287683862967,
+     "ll_ho_mean": -557.7896056370972,
+     "ll_ho": -266.78172734854127,
+     "sec": 0.0
+    },
+    {
+     "K": 2,
+     "bic": 1410287.9071762706,
+     "ll_fit": -239.84604066542798,
+     "ll_ho_mean": -505.3708758252266,
+     "ll_ho": -230.91521589954638,
+     "sec": 0.1
+    },
+    {
+     "K": 4,
+     "bic": 335010.0254549943,
+     "ll_fit": -54.51695829573589,
+     "ll_ho_mean": -231.3089527697168,
+     "ll_ho": -74.57672420387846,
+     "sec": 0.5
+    },
+    {
+     "K": 8,
+     "bic": 18404.576133448565,
+     "ll_fit": 2.4309234944510947,
+     "ll_ho_mean": -260.542599991969,
+     "ll_ho": 39.38329745471244,
+     "sec": 0.8
+    },
+    {
+     "K": 16,
+     "bic": -333314.0250578002,
+     "ll_fit": 68.17542168792073,
+     "ll_ho_mean": -411.071232396471,
+     "ll_ho": 95.8642735604445,
+     "sec": 0.6
+    },
+    {
+     "K": 32,
+     "bic": -660967.6444014783,
+     "ll_fit": 135.38395570078896,
+     "ll_ho_mean": -420.9755656438923,
+     "ll_ho": 148.78134410870706,
+     "sec": 1.9
+    },
+    {
+     "K": 64,
+     "bic": -811463.7120652561,
+     "ll_fit": 183.44947206323798,
+     "ll_ho_mean": -679.3092227423134,
+     "ll_ho": 195.27947260401544,
+     "sec": 9.7
+    },
+    {
+     "K": 128,
+     "bic": -775204.1506921569,
+     "ll_fit": 221.89119642333017,
+     "ll_ho_mean": -907.5191828674044,
+     "ll_ho": 228.2040001855809,
+     "sec": 15.0
+    }
+   ]
+  },
+  "A2": {
+   "K_sat_1pct": 128,
+   "rel_gain_per_step": [
+    0.25990769027677074,
+    0.7624527419186601,
+    0.9450626108623097,
+    19.11038855994264,
+    0.9830177991665955,
+    0.22769052152326677,
+    -0.044684144015281986
+   ],
+   "rel_gain_last_step": -0.044684144015281986,
+   "bic_still_improving_at_Kmax": false,
+   "ll_ho_gain_K1_to_Kmax": 494.98572753412213,
+   "ll_ho_curve_median": [
+    [
+     1,
+     -266.78172734854127
+    ],
+    [
+     2,
+     -230.91521589954638
+    ],
+    [
+     4,
+     -74.57672420387846
+    ],
+    [
+     8,
+     39.38329745471244
+    ],
+    [
+     16,
+     95.8642735604445
+    ],
+    [
+     32,
+     148.78134410870706
+    ],
+    [
+     64,
+     195.27947260401544
+    ],
+    [
+     128,
+     228.2040001855809
+    ]
+   ],
+   "ll_ho_curve_mean": [
+    [
+     1,
+     -557.7896056370972
+    ],
+    [
+     2,
+     -505.3708758252266
+    ],
+    [
+     4,
+     -231.3089527697168
+    ],
+    [
+     8,
+     -260.542599991969
+    ],
+    [
+     16,
+     -411.071232396471
+    ],
+    [
+     32,
+     -420.9755656438923
+    ],
+    [
+     64,
+     -679.3092227423134
+    ],
+    [
+     128,
+     -907.5191828674044
+    ]
+   ],
+   "step_gain_frac_of_total_drop": [
+    0.182,
+    0.396,
+    0.117,
+    0.129,
+    0.121,
+    0.055,
+    -0.013
+   ],
+   "K_sat_1pct_of_total": 128
+  },
+  "A3": {
+   "rho": 0.0,
+   "mean_maxresp": 0.9973887801170349,
+   "basin_lam": 0.0,
+   "source": "a3_skab_witness.json OFF row"
+  },
+  "A4": {
+   "K_mode": 64,
+   "n_modes_ge30": 39,
+   "median_within_mode_excess_kurtosis": 0.37606629080740417,
+   "K_high": 80,
+   "heldout_ll_gain_highK_minus_perModeGauss_median": 3.7921261275725016,
+   "heldout_ll_gain_mean": -131.51362334589496,
+   "frac_heldout_windows_improved": 0.6957142857142857,
+   "auroc_perModeGauss": 0.9921741242183231,
+   "auroc_highK": 0.9932912391475928,
+   "auroc_gain": 0.0011171149292696914,
+   "K_paper": 40,
+   "heldout_ll_gain_highK_minus_paperK_median": 35.548720777422204,
+   "frac_heldout_windows_improved_vs_paperK": 0.8657142857142858,
+   "auroc_paperK": 0.9930241029688543
+  },
+  "A5": {
+   "n90": 29,
+   "n95": 42,
+   "PR": 13.968429730440349,
+   "D_eff": 255,
+   "n_channels": 51,
+   "n90_frac_Deff": 0.11372549019607843,
+   "n95_frac_Deff": 0.16470588235294117,
+   "PR_frac_Deff": 0.054778155805648425,
+   "n90_frac_channels": 0.5686274509803921,
+   "PR_frac_channels": 0.2738907790282421
+  },
+  "A6": {
+   "K": 64,
+   "occupancy_sorted": [
+    0.0786640905327077,
+    0.054650841843775874,
+    0.05023461219983439,
+    0.04913055478884902,
+    0.03781396632624896,
+    0.03643389456251725,
+    0.036157880209770905,
+    0.035053822798785536,
+    0.033121722329561135,
+    0.0328457079768148,
+    0.03256969362406845,
+    0.032017664918575765,
+    0.031189621860336737,
+    0.024841291747170854,
+    0.024289263041678166,
+    0.02263317692520011,
+    0.022081148219707424,
+    0.019873033397736682,
+    0.017940932928512284,
+    0.01683687551752691,
+    0.015456803753795198,
+    0.015180789401048854,
+    0.014904775048302512,
+    0.01462876069555617,
+    0.01462876069555617,
+    0.01462876069555617,
+    0.01462876069555617,
+    0.014352746342809827,
+    0.013248688931824454,
+    0.01269666022633177,
+    0.01269666022633177,
+    0.012144631520839083,
+    0.012144631520839083,
+    0.011316588462600054,
+    0.011040574109853712,
+    0.009936516698868341,
+    0.009384487993375655,
+    0.008556444935136628,
+    0.008280430582390284,
+    0.008004416229643941,
+    0.007728401876897599,
+    0.0071763731714049135,
+    0.00690035881865857,
+    0.006624344465912227,
+    0.006624344465912227,
+    0.005796301407673199,
+    0.005796301407673199,
+    0.0035881865857024567,
+    0.0019321004692243997,
+    0.0019321004692243997,
+    0.001380071763731714,
+    0.0011040574109853713,
+    0.0011040574109853713,
+    0.0011040574109853713,
+    0.0011040574109853713,
+    0.0008280430582390284,
+    0.0005520287054926856,
+    0.0005520287054926856,
+    0.0005520287054926856,
+    0.0002760143527463428,
+    0.0002760143527463428,
+    0.0002760143527463428,
+    0.0002760143527463428,
+    0.0002760143527463428
+   ],
+   "zipf_slope": -1.3573018230341913,
+   "max_min_ratio": 285.0,
+   "gini": 0.5167031810654154,
+   "top1": 0.0786640905327077,
+   "n_modes_below_1pct": 29
+  },
+  "A7": {
+   "K_mode": 64,
+   "sil_feature_kmeans": 0.27413044832195566,
+   "vade_K": 40,
+   "vade_latent": 16,
+   "vade_modes_used": 40,
+   "sil_latent_vade": 0.5301264524459839,
+   "sil_latent_kmeansLabels": 0.41949692368507385,
+   "sil_feature_vadeLabels": 0.2594942396052124,
+   "vade_frac_maxresp_lt_0.5_train": 0.0,
+   "latent_source": "e2_fable_SWaT.npz"
+  },
+  "A8": {
+   "n_channels": 51,
+   "n_live": 43,
+   "n_const": 8,
+   "E3_hac_nested_communities_3to25": 26,
+   "E3_hac_maximal_communities": 2,
+   "E3_hac_maximal_sizes": [
+    25,
+    16
+   ],
+   "mine_head_rule_thr0.7_minsz3_firsthalf": 5,
+   "mine_head_rule_sizes": [
+    11,
+    5,
+    5,
+    4,
+    3
+   ],
+   "thr0.5_components_ge2": 4,
+   "thr0.5_isolated": 6,
+   "thr0.5_greedy_modularity_communities": 10,
+   "thr0.5_modularity": 0.5856,
+   "thr0.5_edge_density": 0.13842746400885936,
+   "mean_abs_corr_offdiag": 0.20741237109357258,
+   "n_discrete_le10vals": 7,
+   "n_continuous": 36,
+   "frac_discrete_of_live": 0.16279069767441862,
+   "unique_value_source": "window means (raw samples not in bundle)"
+  },
+  "A9": {
+   "thr_train_q99": 5.18672971725462,
+   "frac_anom_easy": 0.7912087912087912,
+   "n_easy": 144,
+   "n_hard": 38,
+   "frac_test_normal_over_thr": 0.0,
+   "frac_train_over_thr": 0.010212531051614683,
+   "triv_auroc_all": 0.9881367251532996,
+   "triv_auroc_easy": 1.0,
+   "triv_auroc_difficult": 0.9431811573131723,
+   "bundle_maxz_thr": 5.186731815338135,
+   "bundle_maxz_max_abs_diff": 0.0,
+   "latad_witness_diff_auroc": 0.9586798487932539,
+   "latad_witness_easy_auroc": 0.9995702885205647
+  },
+  "A10": {
+   "frac_anom_snapshot_separable": 0.7912087912087912,
+   "triv_auroc_difficult": 0.9431811573131723,
+   "between_mode_train_frac_rho": 0.0,
+   "test_anom_between_mode_frac": null,
+   "note": "no public benchmark labels a history-conditioned fault; single-window rule already separates the 'easy' share and the LatAD OFF difficult AUROC bounds the rest"
+  },
+  "sec": 59.1
+ },
+ "WADI": {
+  "dataset": "WADI",
+  "n_train": 2614,
+  "n_test": 575,
+  "n_anom": 56,
+  "D_raw": 738,
+  "D_eff": 547,
+  "n_channels": 123,
+  "n_const_features": 191,
+  "A1": {
+   "K_bic": 64,
+   "K_heldout_ll_median": 128,
+   "K_max": 128,
+   "bic_still_improving_at_Kmax": false,
+   "cov_participation_ratio": 25.98953461410275,
+   "cov_PR_frac_of_Deff": 0.04751286035484964,
+   "bic_curve": [
+    {
+     "K": 1,
+     "bic": 3255635.3178144605,
+     "ll_fit": -768.0367277564773,
+     "ll_ho_mean": -796.2243781179154,
+     "ll_ho": -747.8174181769501,
+     "sec": 0.1
+    },
+    {
+     "K": 2,
+     "bic": 2668892.550122027,
+     "ll_fit": -627.2783415479449,
+     "ll_ho_mean": -662.3492922877255,
+     "ll_ho": -705.653324338573,
+     "sec": 0.7
+    },
+    {
+     "K": 4,
+     "bic": 2119102.8462054264,
+     "ll_fit": -493.2771394876132,
+     "ll_ho_mean": -568.8304490588703,
+     "ll_ho": -589.6516187655704,
+     "sec": 0.9
+    },
+    {
+     "K": 8,
+     "bic": 1771915.6127392729,
+     "ll_fit": -403.22936506587297,
+     "ll_ho_mean": -520.2757145650081,
+     "ll_ho": -491.7862536215333,
+     "sec": 2.6
+    },
+    {
+     "K": 16,
+     "bic": 1319594.8372248597,
+     "ll_fit": -280.38397975547997,
+     "ll_ho_mean": -414.97706642620125,
+     "ll_ho": -359.5747264273484,
+     "sec": 2.6
+    },
+    {
+     "K": 32,
+     "bic": 1033835.6512826637,
+     "ll_fit": -181.07030589122905,
+     "ll_ho_mean": -549.8306718249511,
+     "ll_ho": -292.0717578973258,
+     "sec": 7.4
+    },
+    {
+     "K": 64,
+     "bic": 917112.6413317025,
+     "ll_fit": -90.01045152446588,
+     "ll_ho_mean": -773.8474874943662,
+     "ll_ho": -278.52862743823664,
+     "sec": 15.6
+    },
+    {
+     "K": 128,
+     "bic": 1009302.3869205241,
+     "ll_fit": 15.090391198950782,
+     "ll_ho_mean": -981.271533426053,
+     "ll_ho": -249.89835623609213,
+     "sec": 35.4
+    }
+   ]
+  },
+  "A2": {
+   "K_sat_1pct": 128,
+   "rel_gain_per_step": [
+    0.18022373835356958,
+    0.20599919014778734,
+    0.16383689639596524,
+    0.2552721880559272,
+    0.21655070017033,
+    0.11290286788441162,
+    -0.10052172594083597
+   ],
+   "rel_gain_last_step": -0.10052172594083597,
+   "bic_still_improving_at_Kmax": false,
+   "ll_ho_gain_K1_to_Kmax": 497.919061940858,
+   "ll_ho_curve_median": [
+    [
+     1,
+     -747.8174181769501
+    ],
+    [
+     2,
+     -705.653324338573
+    ],
+    [
+     4,
+     -589.6516187655704
+    ],
+    [
+     8,
+     -491.7862536215333
+    ],
+    [
+     16,
+     -359.5747264273484
+    ],
+    [
+     32,
+     -292.0717578973258
+    ],
+    [
+     64,
+     -278.52862743823664
+    ],
+    [
+     128,
+     -249.89835623609213
+    ]
+   ],
+   "ll_ho_curve_mean": [
+    [
+     1,
+     -796.2243781179154
+    ],
+    [
+     2,
+     -662.3492922877255
+    ],
+    [
+     4,
+     -568.8304490588703
+    ],
+    [
+     8,
+     -520.2757145650081
+    ],
+    [
+     16,
+     -414.97706642620125
+    ],
+    [
+     32,
+     -549.8306718249511
+    ],
+    [
+     64,
+     -773.8474874943662
+    ],
+    [
+     128,
+     -981.271533426053
+    ]
+   ],
+   "step_gain_frac_of_total_drop": [
+    0.251,
+    0.235,
+    0.148,
+    0.193,
+    0.122,
+    0.05,
+    -0.039
+   ],
+   "K_sat_1pct_of_total": 128
+  },
+  "A3": {
+   "rho": 0.013006885998469778,
+   "mean_maxresp": 0.9376233816146851,
+   "basin_lam": 0.0,
+   "source": "a3_skab_witness.json OFF row"
+  },
+  "A4": {
+   "K_mode": 64,
+   "n_modes_ge30": 38,
+   "median_within_mode_excess_kurtosis": 2.2050212632298076,
+   "K_high": 80,
+   "heldout_ll_gain_highK_minus_perModeGauss_median": 0.0,
+   "heldout_ll_gain_mean": -32.20407494710239,
+   "frac_heldout_windows_improved": 0.476,
+   "auroc_perModeGauss": 0.7182424993118635,
+   "auroc_highK": 0.7263969171483623,
+   "auroc_gain": 0.00815441783649884,
+   "K_paper": 20,
+   "heldout_ll_gain_highK_minus_paperK_median": 78.38350565300158,
+   "frac_heldout_windows_improved_vs_paperK": 0.644,
+   "auroc_paperK": 0.6979080649600881
+  },
+  "A5": {
+   "n90": 82,
+   "n95": 119,
+   "PR": 25.98953461410269,
+   "D_eff": 547,
+   "n_channels": 123,
+   "n90_frac_Deff": 0.14990859232175502,
+   "n95_frac_Deff": 0.21755027422303475,
+   "PR_frac_Deff": 0.04751286035484953,
+   "n90_frac_channels": 0.6666666666666666,
+   "PR_frac_channels": 0.2112970293829487
+  },
+  "A6": {
+   "K": 64,
+   "occupancy_sorted": [
+    0.046671767406273906,
+    0.04055087987758225,
+    0.04055087987758225,
+    0.03481254781943382,
+    0.03481254781943382,
+    0.030221882172915073,
+    0.028309104820198928,
+    0.028309104820198928,
+    0.02754399387911247,
+    0.02754399387911247,
+    0.026778882938026015,
+    0.026396327467482786,
+    0.0252486610558531,
+    0.023335883703136953,
+    0.023335883703136953,
+    0.022953328232593728,
+    0.02180566182096404,
+    0.019510328997704666,
+    0.018362662586074982,
+    0.018362662586074982,
+    0.016832440703902066,
+    0.016832440703902066,
+    0.016449885233358837,
+    0.014919663351185922,
+    0.014919663351185922,
+    0.014919663351185922,
+    0.014919663351185922,
+    0.014154552410099464,
+    0.014154552410099464,
+    0.014154552410099464,
+    0.014154552410099464,
+    0.014154552410099464,
+    0.013771996939556235,
+    0.013771996939556235,
+    0.01262433052792655,
+    0.01224177505738332,
+    0.01224177505738332,
+    0.011859219586840091,
+    0.011094108645753635,
+    0.010711553175210406,
+    0.010711553175210406,
+    0.010328997704667177,
+    0.009946442234123947,
+    0.009946442234123947,
+    0.009181331293037491,
+    0.009181331293037491,
+    0.008798775822494262,
+    0.008798775822494262,
+    0.0076511094108645756,
+    0.0072685539403213465,
+    0.006885998469778117,
+    0.006503442999234889,
+    0.00612088752869166,
+    0.00612088752869166,
+    0.00612088752869166,
+    0.005738332058148432,
+    0.005738332058148432,
+    0.004208110175975516,
+    0.004208110175975516,
+    0.0038255547054322878,
+    0.0038255547054322878,
+    0.0034429992348890587,
+    0.0007651109410864575,
+    0.00038255547054322876
+   ],
+   "zipf_slope": -0.7371848318471884,
+   "max_min_ratio": 122.0,
+   "gini": 0.3547006503442998,
+   "top1": 0.046671767406273906,
+   "n_modes_below_1pct": 22
+  },
+  "A7": {
+   "K_mode": 64,
+   "sil_feature_kmeans": 0.062088809570203865,
+   "vade_K": 20,
+   "vade_latent": 10,
+   "vade_modes_used": 20,
+   "sil_latent_vade": 0.08875469863414764,
+   "sil_latent_kmeansLabels": 0.12736009061336517,
+   "sil_feature_vadeLabels": -0.0061236132882948584,
+   "vade_frac_maxresp_lt_0.5_train": 0.013006885998469778,
+   "latent_source": "e2_fable_WADI.npz"
+  },
+  "A8": {
+   "n_channels": 123,
+   "n_live": 93,
+   "n_const": 30,
+   "E3_hac_nested_communities_3to25": 45,
+   "E3_hac_maximal_communities": 6,
+   "E3_hac_maximal_sizes": [
+    21,
+    20,
+    11,
+    10,
+    9,
+    6
+   ],
+   "mine_head_rule_thr0.7_minsz3_firsthalf": 7,
+   "mine_head_rule_sizes": [
+    21,
+    10,
+    9,
+    8,
+    6,
+    5,
+    3
+   ],
+   "thr0.5_components_ge2": 2,
+   "thr0.5_isolated": 15,
+   "thr0.5_greedy_modularity_communities": 21,
+   "thr0.5_modularity": 0.4192669047957485,
+   "thr0.5_edge_density": 0.10916316035530622,
+   "mean_abs_corr_offdiag": 0.21387464316265223,
+   "n_discrete_le10vals": 8,
+   "n_continuous": 85,
+   "frac_discrete_of_live": 0.08602150537634409,
+   "unique_value_source": "window means (raw samples not in bundle)"
+  },
+  "A9": {
+   "thr_train_q99": 6.000012521743774,
+   "frac_anom_easy": 0.6607142857142857,
+   "n_easy": 37,
+   "n_hard": 19,
+   "frac_test_normal_over_thr": 0.5549132947976878,
+   "frac_train_over_thr": 0.010328997704667177,
+   "triv_auroc_all": 0.5582851637764933,
+   "triv_auroc_easy": 0.6871842941207102,
+   "triv_auroc_difficult": 0.30727106784301794,
+   "bundle_maxz_thr": 6.0000128746032715,
+   "bundle_maxz_max_abs_diff": 0.0,
+   "latad_witness_diff_auroc": 0.7260926883683196,
+   "latad_witness_easy_auroc": 0.8420038535645472
+  },
+  "A10": {
+   "frac_anom_snapshot_separable": 0.6607142857142857,
+   "triv_auroc_difficult": 0.30727106784301794,
+   "between_mode_train_frac_rho": 0.013006885998469778,
+   "test_anom_between_mode_frac": null,
+   "note": "no public benchmark labels a history-conditioned fault; single-window rule already separates the 'easy' share and the LatAD OFF difficult AUROC bounds the rest"
+  },
+  "sec": 114.4
+ },
+ "HAI": {
+  "dataset": "HAI",
+  "n_train": 18359,
+  "n_test": 14819,
+  "n_anom": 652,
+  "D_raw": 354,
+  "D_eff": 306,
+  "n_channels": 59,
+  "n_const_features": 48,
+  "A1": {
+   "K_bic": 128,
+   "K_heldout_ll_median": 128,
+   "K_max": 128,
+   "bic_still_improving_at_Kmax": true,
+   "cov_participation_ratio": 14.675413782642275,
+   "cov_PR_frac_of_Deff": 0.04795886857072639,
+   "bic_curve": [
+    {
+     "K": 1,
+     "bic": 12257084.427454272,
+     "ll_fit": -416.45290447950634,
+     "ll_ho_mean": -414.9808643689436,
+     "ll_ho": -391.17030095779535,
+     "sec": 2.0
+    },
+    {
+     "K": 2,
+     "bic": 9912250.222984396,
+     "ll_fit": -336.54547759253705,
+     "ll_ho_mean": -336.4857101385813,
+     "ll_ho": -307.727185219284,
+     "sec": 0.7
+    },
+    {
+     "K": 4,
+     "bic": 8317914.037666425,
+     "ll_fit": -281.94961299603347,
+     "ll_ho_mean": -286.4325761733551,
+     "ll_ho": -263.7020306725097,
+     "sec": 3.2
+    },
+    {
+     "K": 8,
+     "bic": 6245118.113580956,
+     "ll_fit": -210.68964145312054,
+     "ll_ho_mean": -225.3062550877286,
+     "ll_ho": -195.11586485695855,
+     "sec": 12.2
+    },
+    {
+     "K": 16,
+     "bic": 5230770.857519639,
+     "ll_fit": -174.60944927183004,
+     "ll_ho_mean": -187.5032136906688,
+     "ll_ho": -171.31618624814968,
+     "sec": 12.6
+    },
+    {
+     "K": 32,
+     "bic": 4183362.0674992804,
+     "ll_fit": -135.80570785242256,
+     "ll_ho_mean": -154.2598068097319,
+     "ll_ho": -140.2691702101527,
+     "sec": 29.7
+    },
+    {
+     "K": 64,
+     "bic": 3597242.022232295,
+     "ll_fit": -109.48306880902973,
+     "ll_ho_mean": -140.71445300357868,
+     "ll_ho": -127.7651168036385,
+     "sec": 149.7
+    },
+    {
+     "K": 128,
+     "bic": 3022164.9787757862,
+     "ll_fit": -77.13703088396355,
+     "ll_ho_mean": -121.25291053464674,
+     "ll_ho": -92.6745745956647,
+     "sec": 799.4
+    }
+   ]
+  },
+  "A2": {
+   "K_sat_1pct": null,
+   "rel_gain_per_step": [
+    0.1913044018215093,
+    0.16084503008419268,
+    0.24919660322277,
+    0.162422429426189,
+    0.20023985346531228,
+    0.14010741499536394,
+    0.15986609738858784
+   ],
+   "rel_gain_last_step": 0.15986609738858784,
+   "bic_still_improving_at_Kmax": true,
+   "ll_ho_gain_K1_to_Kmax": 298.49572636213065,
+   "ll_ho_curve_median": [
+    [
+     1,
+     -391.17030095779535
+    ],
+    [
+     2,
+     -307.727185219284
+    ],
+    [
+     4,
+     -263.7020306725097
+    ],
+    [
+     8,
+     -195.11586485695855
+    ],
+    [
+     16,
+     -171.31618624814968
+    ],
+    [
+     32,
+     -140.2691702101527
+    ],
+    [
+     64,
+     -127.7651168036385
+    ],
+    [
+     128,
+     -92.6745745956647
+    ]
+   ],
+   "ll_ho_curve_mean": [
+    [
+     1,
+     -414.9808643689436
+    ],
+    [
+     2,
+     -336.4857101385813
+    ],
+    [
+     4,
+     -286.4325761733551
+    ],
+    [
+     8,
+     -225.3062550877286
+    ],
+    [
+     16,
+     -187.5032136906688
+    ],
+    [
+     32,
+     -154.2598068097319
+    ],
+    [
+     64,
+     -140.71445300357868
+    ],
+    [
+     128,
+     -121.25291053464674
+    ]
+   ],
+   "step_gain_frac_of_total_drop": [
+    0.254,
+    0.173,
+    0.224,
+    0.11,
+    0.113,
+    0.063,
+    0.062
+   ],
+   "K_sat_1pct_of_total": null
+  },
+  "A3": {
+   "rho": 0.022550247834849393,
+   "mean_maxresp": 0.9115414619445801,
+   "basin_lam": 0.0,
+   "source": "a3_skab_witness.json OFF row"
+  },
+  "A4": {
+   "K_mode": 64,
+   "n_modes_ge30": 56,
+   "median_within_mode_excess_kurtosis": 0.4355161040028468,
+   "K_high": 80,
+   "heldout_ll_gain_highK_minus_perModeGauss_median": 11.46469495248158,
+   "heldout_ll_gain_mean": 12.930590303564834,
+   "frac_heldout_windows_improved": 0.7021917808219178,
+   "auroc_perModeGauss": 0.8807694239745785,
+   "auroc_highK": 0.8739817453591492,
+   "auroc_gain": -0.006787678615429282,
+   "K_paper": 40,
+   "heldout_ll_gain_highK_minus_paperK_median": 24.31699195403612,
+   "frac_heldout_windows_improved_vs_paperK": 0.8183561643835616,
+   "auroc_paperK": 0.8745677654932119
+  },
+  "A5": {
+   "n90": 39,
+   "n95": 57,
+   "PR": 14.67541378264235,
+   "D_eff": 306,
+   "n_channels": 59,
+   "n90_frac_Deff": 0.12745098039215685,
+   "n95_frac_Deff": 0.18627450980392157,
+   "PR_frac_Deff": 0.047958868570726634,
+   "n90_frac_channels": 0.6610169491525424,
+   "PR_frac_channels": 0.24873582682444662
+  },
+  "A6": {
+   "K": 64,
+   "occupancy_sorted": [
+    0.04564518764638597,
+    0.0368211776240536,
+    0.030666158287488424,
+    0.029141020752764313,
+    0.028705267171414566,
+    0.028432921183070975,
+    0.027016722043684296,
+    0.025382646113622745,
+    0.025164769322947873,
+    0.024456669753254535,
+    0.024347731357917096,
+    0.02423879296257966,
+    0.024075385369573505,
+    0.02402091617190479,
+    0.023094939811536576,
+    0.023094939811536576,
+    0.02271365542785555,
+    0.021842148265156056,
+    0.021134048695462714,
+    0.02031701073043194,
+    0.01999019554441963,
+    0.019826787951413474,
+    0.019554441963069883,
+    0.018247181219020643,
+    0.01802930442834577,
+    0.017974835230677052,
+    0.01770248924233346,
+    0.017593550846996025,
+    0.01710332806797756,
+    0.016830982079633967,
+    0.0163407593006155,
+    0.0163407593006155,
+    0.015632659730922163,
+    0.013018138242823683,
+    0.012909199847486246,
+    0.012854730649817528,
+    0.012255569475461626,
+    0.012037692684786752,
+    0.011983223487118035,
+    0.011983223487118035,
+    0.011928754289449317,
+    0.011874285091780599,
+    0.011710877498774443,
+    0.011710877498774443,
+    0.011329593115093415,
+    0.011220654719755979,
+    0.010730431940737513,
+    0.010294678359387766,
+    0.00947764039435699,
+    0.009368701999019555,
+    0.00855166403398878,
+    0.007734626068958004,
+    0.007353341685276976,
+    0.007189934092270821,
+    0.006372896127240046,
+    0.0019608911160738604,
+    0.0007625687673620567,
+    0.0004357535813497467,
+    0.0004357535813497467,
+    0.00032681518601231004,
+    0.00032681518601231004,
+    0.00021787679067487335,
+    0.00010893839533743668,
+    5.446919766871834e-05
+   ],
+   "zipf_slope": -0.9913190662051594,
+   "max_min_ratio": 838.0,
+   "gini": 0.34037205866332587,
+   "top1": 0.04564518764638597,
+   "n_modes_below_1pct": 16
+  },
+  "A7": {
+   "K_mode": 64,
+   "sil_feature_kmeans": 0.07733878024870558,
+   "vade_K": 40,
+   "vade_latent": 16,
+   "vade_modes_used": 39,
+   "sil_latent_vade": 0.06902589648962021,
+   "sil_latent_kmeansLabels": 0.08294068276882172,
+   "sil_feature_vadeLabels": 0.0323479451508099,
+   "vade_frac_maxresp_lt_0.5_train": 0.022550247834849393,
+   "latent_source": "e2_fable_HAI.npz"
+  },
+  "A8": {
+   "n_channels": 59,
+   "n_live": 51,
+   "n_const": 8,
+   "E3_hac_nested_communities_3to25": 28,
+   "E3_hac_maximal_communities": 4,
+   "E3_hac_maximal_sizes": [
+    21,
+    12,
+    11,
+    5
+   ],
+   "mine_head_rule_thr0.7_minsz3_firsthalf": 6,
+   "mine_head_rule_sizes": [
+    9,
+    8,
+    8,
+    8,
+    4,
+    3
+   ],
+   "thr0.5_components_ge2": 3,
+   "thr0.5_isolated": 3,
+   "thr0.5_greedy_modularity_communities": 8,
+   "thr0.5_modularity": 0.44387356919875126,
+   "thr0.5_edge_density": 0.19450980392156864,
+   "mean_abs_corr_offdiag": 0.23122574504647436,
+   "n_discrete_le10vals": 1,
+   "n_continuous": 50,
+   "frac_discrete_of_live": 0.0196078431372549,
+   "unique_value_source": "window means (raw samples not in bundle)"
+  },
+  "A9": {
+   "thr_train_q99": 3.8424480819702036,
+   "frac_anom_easy": 0.7438650306748467,
+   "n_easy": 485,
+   "n_hard": 167,
+   "frac_test_normal_over_thr": 0.27966400790569634,
+   "frac_train_over_thr": 0.010022332371044175,
+   "triv_auroc_all": 0.8059271394985581,
+   "triv_auroc_easy": 0.9663147768263549,
+   "triv_auroc_difficult": 0.34013070773819065,
+   "bundle_maxz_thr": 3.842447519302368,
+   "bundle_maxz_max_abs_diff": 0.0,
+   "latad_witness_diff_auroc": 0.8306125097162207,
+   "latad_witness_easy_auroc": 0.9789323089305115
+  },
+  "A10": {
+   "frac_anom_snapshot_separable": 0.7438650306748467,
+   "triv_auroc_difficult": 0.34013070773819065,
+   "between_mode_train_frac_rho": 0.022550247834849393,
+   "test_anom_between_mode_frac": null,
+   "note": "no public benchmark labels a history-conditioned fault; single-window rule already separates the 'easy' share and the LatAD OFF difficult AUROC bounds the rest"
+  },
+  "sec": 1448.8
+ },
+ "verdicts": {
+  "A1": {
+   "WADI": {
+    "verdict": "HOLDS",
+    "evidence": "BIC K*=64, held-out K*=128 (Kmax 128); cov PR=26.0"
+   },
+   "HAI": {
+    "verdict": "HOLDS",
+    "evidence": "BIC K*=128, held-out K*=128 (Kmax 128); cov PR=14.7"
+   },
+   "SWaT": {
+    "verdict": "HOLDS",
+    "evidence": "BIC K*=64, held-out K*=128 (Kmax 128); cov PR=14.0"
+   },
+   "SKAB": {
+    "verdict": "HOLDS",
+    "evidence": "BIC K*=8, held-out K*=64 (Kmax 64); cov PR=5.2"
+   }
+  },
+  "A2": {
+   "WADI": {
+    "verdict": "PARTIAL",
+    "evidence": "BIC argmin 64, BIC improving at Kmax=128: False; held-out median still rising at Kmax: True; K_sat(step<1% of total BIC drop)=128; step gains [0.251, 0.235, 0.148, 0.193, 0.122, 0.05, -0.039]"
+   },
+   "HAI": {
+    "verdict": "HOLDS",
+    "evidence": "BIC argmin 128, BIC improving at Kmax=128: True; held-out median still rising at Kmax: True; K_sat(step<1% of total BIC drop)=None; step gains [0.254, 0.173, 0.224, 0.11, 0.113, 0.063, 0.062]"
+   },
+   "SWaT": {
+    "verdict": "PARTIAL",
+    "evidence": "BIC argmin 64, BIC improving at Kmax=128: False; held-out median still rising at Kmax: True; K_sat(step<1% of total BIC drop)=128; step gains [0.182, 0.396, 0.117, 0.129, 0.121, 0.055, -0.013]"
+   },
+   "SKAB": {
+    "verdict": "PARTIAL",
+    "evidence": "BIC argmin 8, BIC improving at Kmax=64: False; held-out median still rising at Kmax: True; K_sat(step<1% of total BIC drop)=16; step gains [0.52, 0.129, 0.351, -0.024, -0.105, -0.288]"
+   }
+  },
+  "A3": {
+   "WADI": {
+    "verdict": "ABSENT",
+    "evidence": "rho=0.013 (train max-resp<0.5), basin gate off"
+   },
+   "HAI": {
+    "verdict": "ABSENT",
+    "evidence": "rho=0.023 (train max-resp<0.5), basin gate off"
+   },
+   "SWaT": {
+    "verdict": "ABSENT",
+    "evidence": "rho=0.000 (train max-resp<0.5), basin gate off"
+   },
+   "SKAB": {
+    "verdict": "HOLDS",
+    "evidence": "rho=0.580 (train max-resp<0.5), basin gate fires"
+   }
+  },
+  "A4": {
+   "WADI": {
+    "verdict": "HOLDS",
+    "evidence": "K=80 vs K_paper=20: held-out median ll gain +78.4 nats/window, 64% windows improved; within-mode excess kurtosis 2.21"
+   },
+   "HAI": {
+    "verdict": "HOLDS",
+    "evidence": "K=80 vs K_paper=40: held-out median ll gain +24.3 nats/window, 82% windows improved; within-mode excess kurtosis 0.44"
+   },
+   "SWaT": {
+    "verdict": "HOLDS",
+    "evidence": "K=80 vs K_paper=40: held-out median ll gain +35.5 nats/window, 87% windows improved; within-mode excess kurtosis 0.38"
+   },
+   "SKAB": {
+    "verdict": "HOLDS",
+    "evidence": "K=80 vs K_paper=16: held-out median ll gain +5.3 nats/window, 64% windows improved; within-mode excess kurtosis 0.68"
+   }
+  },
+  "A5": {
+   "WADI": {
+    "verdict": "HOLDS",
+    "evidence": "PCA PR=26.0 of D_eff=547 (4.8%); n90=82 (15.0%), n95=119"
+   },
+   "HAI": {
+    "verdict": "HOLDS",
+    "evidence": "PCA PR=14.7 of D_eff=306 (4.8%); n90=39 (12.7%), n95=57"
+   },
+   "SWaT": {
+    "verdict": "HOLDS",
+    "evidence": "PCA PR=14.0 of D_eff=255 (5.5%); n90=29 (11.4%), n95=42"
+   },
+   "SKAB": {
+    "verdict": "PARTIAL",
+    "evidence": "PCA PR=5.2 of D_eff=48 (10.8%); n90=12 (25.0%), n95=16"
+   }
+  },
+  "A6": {
+   "WADI": {
+    "verdict": "PARTIAL",
+    "evidence": "K=64: Zipf slope -0.74, max/min occupancy 122x, Gini 0.35, top mode 5%"
+   },
+   "HAI": {
+    "verdict": "PARTIAL",
+    "evidence": "K=64: Zipf slope -0.99, max/min occupancy 838x, Gini 0.34, top mode 5%"
+   },
+   "SWaT": {
+    "verdict": "HOLDS",
+    "evidence": "K=64: Zipf slope -1.36, max/min occupancy 285x, Gini 0.52, top mode 8%"
+   },
+   "SKAB": {
+    "verdict": "HOLDS",
+    "evidence": "K=8: Zipf slope -2.40, max/min occupancy 90x, Gini 0.59, top mode 45%"
+   }
+  },
+  "A7": {
+   "WADI": {
+    "verdict": "HOLDS",
+    "evidence": "silhouette feature-space 0.06 (KMeans K=64); VaDE latent 0.09 (K=20); train between-mode 0.01"
+   },
+   "HAI": {
+    "verdict": "HOLDS",
+    "evidence": "silhouette feature-space 0.08 (KMeans K=64); VaDE latent 0.07 (K=40); train between-mode 0.02"
+   },
+   "SWaT": {
+    "verdict": "PARTIAL",
+    "evidence": "silhouette feature-space 0.27 (KMeans K=64); VaDE latent 0.53 (K=40); train between-mode 0.00"
+   },
+   "SKAB": {
+    "verdict": "PARTIAL",
+    "evidence": "silhouette feature-space 0.27 (KMeans K=8); VaDE latent 0.40 (K=16); train between-mode 0.53"
+   }
+  },
+  "A8": {
+   "WADI": {
+    "verdict": "HOLDS",
+    "evidence": "45 HAC communities (E3 rule), 21 greedy communities Q=0.42 at |r|>0.5; discrete channels 8/93 (9%), const 30"
+   },
+   "HAI": {
+    "verdict": "HOLDS",
+    "evidence": "28 HAC communities (E3 rule), 8 greedy communities Q=0.44 at |r|>0.5; discrete channels 1/51 (2%), const 8"
+   },
+   "SWaT": {
+    "verdict": "HOLDS",
+    "evidence": "26 HAC communities (E3 rule), 10 greedy communities Q=0.59 at |r|>0.5; discrete channels 7/43 (16%), const 8"
+   },
+   "SKAB": {
+    "verdict": "PARTIAL",
+    "evidence": "6 HAC communities (E3 rule), 2 greedy communities Q=0.06 at |r|>0.5; discrete channels 1/8 (12%), const 0"
+   }
+  },
+  "A9": {
+   "WADI": {
+    "verdict": "NOT-EXERCISED",
+    "evidence": "66% of anomaly windows exceed the train-q99 single-window max|z| rule; trivial-rule AUROC easy 0.69 / difficult 0.31 / all 0.56; CAVEAT 55% of test-NORMAL windows also exceed it (test-side shift)"
+   },
+   "HAI": {
+    "verdict": "NOT-EXERCISED",
+    "evidence": "74% of anomaly windows exceed the train-q99 single-window max|z| rule; trivial-rule AUROC easy 0.97 / difficult 0.34 / all 0.81; CAVEAT 28% of test-NORMAL windows also exceed it (test-side shift)"
+   },
+   "SWaT": {
+    "verdict": "NOT-EXERCISED",
+    "evidence": "79% of anomaly windows exceed the train-q99 single-window max|z| rule; trivial-rule AUROC easy 1.00 / difficult 0.94 / all 0.99"
+   },
+   "SKAB": {
+    "verdict": "HOLDS",
+    "evidence": "27% of anomaly windows exceed the train-q99 single-window max|z| rule; trivial-rule AUROC easy 1.00 / difficult 0.39 / all 0.55"
+   }
+  },
+  "A10": {
+   "WADI": {
+    "verdict": "NOT-EXERCISED",
+    "evidence": "no labelled history-conditioned fault; 66% snapshot-separable, remainder bounded by difficult AUROC 0.31"
+   },
+   "HAI": {
+    "verdict": "NOT-EXERCISED",
+    "evidence": "no labelled history-conditioned fault; 74% snapshot-separable, remainder bounded by difficult AUROC 0.34"
+   },
+   "SWaT": {
+    "verdict": "NOT-EXERCISED",
+    "evidence": "no labelled history-conditioned fault; 79% snapshot-separable, remainder bounded by difficult AUROC 0.94"
+   },
+   "SKAB": {
+    "verdict": "PARTIAL",
+    "evidence": "no labelled history-conditioned fault; 27% snapshot-separable, remainder bounded by difficult AUROC 0.39; test anomalies between modes 50%, train rho 0.58"
+   }
+  }
+ }
+}

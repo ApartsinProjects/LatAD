@@ -1,0 +1,2609 @@
+C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\async_utils.py:45: DeprecationWarning: 'asyncio.WindowsSelectorEventLoopPolicy' is deprecated and slated for removal in Python 3.16
+  asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\async_utils.py:45: DeprecationWarning: 'asyncio.set_event_loop_policy' is deprecated and slated for removal in Python 3.16
+  asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+✓ Initialized. View run at 
+https://modal.com/apps/apersteiny/main/ap-WLLMyitPFoQ3AJi8UKFK7q
+✓ Created objects.
+├── 🔨 Created mount E:\Projects\Backlog\LatAD\poc\sota_bundle\modal_sota.py
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\SWaT_triv_thr.npy
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\SWaT_triv_test.npy
+├── 🔨 Created mount E:\Projects\Backlog\LatAD\poc\sota_bundle\SWaT_labels.npy
+├── 🔨 Created mount E:\Projects\Backlog\LatAD\poc\sota_bundle\SWaT_train.npy
+├── 🔨 Created mount E:\Projects\Backlog\LatAD\poc\sota_bundle\SWaT_test.npy
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\HAI_triv_test.npy
+├── 🔨 Created mount E:\Projects\Backlog\LatAD\poc\sota_bundle\HAI_triv_thr.npy
+├── 🔨 Created mount E:\Projects\Backlog\LatAD\poc\sota_bundle\HAI_labels.npy
+├── 🔨 Created mount E:\Projects\Backlog\LatAD\poc\sota_bundle\HAI_test.npy
+├── 🔨 Created mount E:\Projects\Backlog\LatAD\poc\sota_bundle\HAI_train.npy
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\wadi_clean_triv_thr.npy
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\wadi_clean_triv_test.npy
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\wadi_clean_labels.npy
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\wadi_clean_test.npy
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\wadi_clean_train.npy
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\wadi_triv_thr.npy
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\wadi_triv_test.npy
+├── 🔨 Created mount E:\Projects\Backlog\LatAD\poc\sota_bundle\wadi_train.npy
+├── 🔨 Created mount E:\Projects\Backlog\LatAD\poc\sota_bundle\wadi_labels.npy
+├── 🔨 Created mount E:\Projects\Backlog\LatAD\poc\sota_bundle\wadi_test.npy
+└── 🔨 Created function run_one.
+[sota] launching 10 parallel jobs: [('WADI_clean', 'USAD', 0), ('WADI_clean', 'USAD', 1), ('WADI_clean', 'USAD', 2), ('WADI_clean', 'USAD', 3), ('WADI_clean', 'USAD', 4), ('WADI_clean', 'TranAD', 0), ('WADI_clean', 'TranAD', 1), ('WADI_clean', 'TranAD', 2), ('WADI_clean', 'TranAD', 3), ('WADI_clean', 'TranAD', 4)]
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+
+===========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+=========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+[sota] $ git clone --depth 1 https://github.com/imperial-qore/TranAD.git
+[sota] $ git clone --depth 1 https://github.com/imperial-qore/TranAD.git[sota] $ git clone --depth 1 https://github.com/imperial-qore/TranAD.git
+
+[sota] $ git clone --depth 1 https://github.com/imperial-qore/TranAD.git
+[sota] $ git clone --depth 1 https://github.com/imperial-qore/TranAD.git
+[sota] $ git clone --depth 1 https://github.com/imperial-qore/TranAD.git
+[sota] $ git clone --depth 1 https://github.com/imperial-qore/TranAD.git
+[sota] $ git clone --depth 1 https://github.com/imperial-qore/TranAD.git
+[sota] $ git clone --depth 1 https://github.com/imperial-qore/TranAD.git
+[sota] $ git clone --depth 1 https://github.com/imperial-qore/TranAD.git
+[sota] patched ds=WADI_clean model=USAD fp32=True dump=ok
+[sota] WADI_clean train(78458, 122) test(17281, 122) anom=0.058
+[sota] === training WADI_clean:USAD (NEPOCHS=30, fp32=True) ===
+[sota] patched ds=WADI_clean model=USAD fp32=True dump=ok[sota] patched ds=WADI_clean model=TranAD fp32=True dump=ok
+[sota] WADI_clean train(78458, 122) test(17281, 122) anom=0.058
+[sota] === training WADI_clean:TranAD (NEPOCHS=30, fp32=True) ===
+[sota] patched ds=WADI_clean model=USAD fp32=True dump=ok
+
+[sota] WADI_clean train(78458, 122) test(17281, 122) anom=0.058
+[sota] === training WADI_clean:USAD (NEPOCHS=30, fp32=True) ===
+[sota] patched ds=WADI_clean model=USAD fp32=True dump=ok[sota] WADI_clean train(78458, 122) test(17281, 122) anom=0.058
+
+[sota] === training WADI_clean:USAD (NEPOCHS=30, fp32=True) ===
+[sota] WADI_clean train(78458, 122) test(17281, 122) anom=0.058
+[sota] === training WADI_clean:USAD (NEPOCHS=30, fp32=True) ===
+[sota] patched ds=WADI_clean model=TranAD fp32=True dump=ok
+[sota] WADI_clean train(78458, 122) test(17281, 122) anom=0.058
+[sota] === training WADI_clean:TranAD (NEPOCHS=30, fp32=True) ===
+[sota] patched ds=WADI_clean model=TranAD fp32=True dump=ok
+[sota] WADI_clean train(78458, 122) test(17281, 122) anom=0.058
+[sota] === training WADI_clean:TranAD (NEPOCHS=30, fp32=True) ===
+[sota] patched ds=WADI_clean model=TranAD fp32=True dump=ok
+[sota] WADI_clean train(78458, 122) test(17281, 122) anom=0.058
+[sota] === training WADI_clean:TranAD (NEPOCHS=30, fp32=True) ===
+[WADI_clean:USAD] [92mCreating new model: USAD[0m
+[WADI_clean:USAD] [92mCreating new model: USAD[0m
+[WADI_clean:TranAD] /opt/conda/lib/python3.11/site-packages/torch/nn/modules/transformer.py:307: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer was not TransformerEncoderLayer
+[WADI_clean:TranAD]   warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+[WADI_clean:USAD] [92mCreating new model: USAD[0m
+[WADI_clean:USAD] [95mTraining USAD on WADI[0m
+[WADI_clean:USAD] 
+[WADI_clean:TranAD] /opt/conda/lib/python3.11/site-packages/torch/nn/modules/transformer.py:307: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer was not TransformerEncoderLayer
+[sota] patched ds=WADI_clean model=TranAD fp32=True dump=ok
+[WADI_clean:TranAD]   warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+[WADI_clean:USAD] [92mCreating new model: USAD[0m[sota] WADI_clean train(78458, 122) test(17281, 122) anom=0.058
+[sota] === training WADI_clean:TranAD (NEPOCHS=30, fp32=True) ===
+
+[WADI_clean:TranAD] [92mCreating new model: TranAD[0m
+[WADI_clean:USAD] [95mTraining USAD on WADI[0m
+[WADI_clean:USAD] 
+[sota] patched ds=WADI_clean model=USAD fp32=True dump=ok
+[sota] WADI_clean train(78458, 122) test(17281, 122) anom=0.058
+[sota] === training WADI_clean:USAD (NEPOCHS=30, fp32=True) ===
+[WADI_clean:USAD] [95mTraining USAD on WADI[0m
+[WADI_clean:USAD] 
+[WADI_clean:TranAD] [92mCreating new model: TranAD[0m[WADI_clean:USAD] [95mTraining USAD on WADI[0m
+[WADI_clean:USAD] 
+[WADI_clean:TranAD] [95mTraining TranAD on WADI[0m
+
+[WADI_clean:TranAD] 
+[WADI_clean:USAD]   0%|          | 0/30 [00:00<?, ?it/s]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 0,      L1 = 0.8620344774758057,        L2 = 0.8750043570703628
+[WADI_clean:USAD] 
+[WADI_clean:USAD]   0%|          | 0/30 [00:03<?, ?it/s]
+[WADI_clean:TranAD] [95mTraining TranAD on WADI[0m
+[WADI_clean:TranAD] 
+[WADI_clean:USAD]   0%|          | 0/30 [00:00<?, ?it/s]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 0,      L1 = 0.8765075322465445,        L2 = 0.8883935496527063
+[WADI_clean:USAD] 
+[WADI_clean:USAD]   0%|          | 0/30 [00:03<?, ?it/s]
+[WADI_clean:USAD]   0%|          | 0/30 [00:00<?, ?it/s]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 0,      L1 = 0.879855196442923, L2 = 0.8779813538853923
+[WADI_clean:USAD] 
+[WADI_clean:USAD]   0%|          | 0/30 [00:03<?, ?it/s]
+[WADI_clean:TranAD] /opt/conda/lib/python3.11/site-packages/torch/nn/modules/transformer.py:307: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer was not TransformerEncoderLayer
+[WADI_clean:TranAD]   warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+[WADI_clean:USAD]   0%|          | 0/30 [00:00<?, ?it/s]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 0,      L1 = 0.8802044772790657,        L2 = 0.8736172732676807
+[WADI_clean:USAD] 
+[WADI_clean:USAD]   0%|          | 0/30 [00:03<?, ?it/s]
+[WADI_clean:TranAD] /opt/conda/lib/python3.11/site-packages/torch/nn/modules/transformer.py:307: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer was not TransformerEncoderLayer
+[WADI_clean:TranAD]   warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+[WADI_clean:USAD]   3%|▎         | 1/30 [00:03<01:27,  3.01s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 1,      L1 = 0.7809681652226222,        L2 = -0.08188083745833978
+[WADI_clean:USAD] 
+[WADI_clean:USAD]   3%|▎         | 1/30 [00:06<01:27,  3.01s/it]
+[WADI_clean:TranAD] [92mCreating new model: TranAD[0m
+[WADI_clean:USAD]   3%|▎         | 1/30 [00:03<01:27,  3.00s/it][WADI_clean:USAD] [92mCreating new model: USAD[0m
+[WADI_clean:TranAD] /opt/conda/lib/python3.11/site-packages/torch/nn/modules/transformer.py:307: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer was not TransformerEncoderLayer
+[WADI_clean:TranAD]   warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 1,      L1 = 0.7729192784034797,        L2 = -0.05183517167665259
+[WADI_clean:USAD] 
+[WADI_clean:USAD]   3%|▎         | 1/30 [00:06<01:27,  3.00s/it]
+[WADI_clean:TranAD] [92mCreating new model: TranAD[0m
+[WADI_clean:TranAD] [95mTraining TranAD on WADI[0m
+[WADI_clean:TranAD] 
+[WADI_clean:USAD]   3%|▎         | 1/30 [00:03<01:37,  3.36s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 1,      L1 = 0.7745389981137598,        L2 = -0.057214984383041324
+[WADI_clean:USAD] 
+[WADI_clean:USAD]   3%|▎         | 1/30 [00:06<01:37,  3.36s/it]
+[WADI_clean:USAD]   3%|▎         | 1/30 [00:03<01:31,  3.14s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 1,      L1 = 0.7779571091662029,        L2 = -0.060363825398070364
+[WADI_clean:USAD] 
+[WADI_clean:USAD]   3%|▎         | 1/30 [00:06<01:31,  3.14s/it]
+[WADI_clean:USAD] [95mTraining USAD on WADI[0m
+[WADI_clean:USAD] 
+[WADI_clean:TranAD] [92mCreating new model: TranAD[0m
+[WADI_clean:TranAD] [95mTraining TranAD on WADI[0m
+[WADI_clean:TranAD] 
+[WADI_clean:USAD]   7%|▋         | 2/30 [00:06<01:24,  3.01s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 2,      L1 = 0.77605162402934,  L2 = -0.3347758844762214
+[WADI_clean:USAD] 
+[WADI_clean:USAD]   7%|▋         | 2/30 [00:09<01:24,  3.01s/it]
+[WADI_clean:TranAD] [95mTraining TranAD on WADI[0m
+[WADI_clean:TranAD] 
+[WADI_clean:USAD]   7%|▋         | 2/30 [00:06<01:28,  3.18s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 2,      L1 = 0.7552779603743437,        L2 = -0.3165618476577918
+[WADI_clean:USAD] 
+[WADI_clean:USAD]   7%|▋         | 2/30 [00:09<01:28,  3.18s/it]
+[WADI_clean:USAD]   7%|▋         | 2/30 [00:06<01:31,  3.28s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 2,      L1 = 0.7658856337066575,        L2 = -0.32460174961152316
+[WADI_clean:USAD] 
+[WADI_clean:USAD]   7%|▋         | 2/30 [00:09<01:31,  3.28s/it]
+[WADI_clean:USAD]   0%|          | 0/30 [00:00<?, ?it/s]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 0,      L1 = 0.8875203677141646,        L2 = 0.887834477726048
+[WADI_clean:USAD] [WADI_clean:USAD]   7%|▋         | 2/30 [00:06<01:26,  3.10s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 2,      L1 = 0.7489297386094758,        L2 = -0.31453184992512523
+
+[WADI_clean:USAD]   0%|          | 0/30 [00:02<?, ?it/s]
+[WADI_clean:USAD] 
+[WADI_clean:USAD]   7%|▋         | 2/30 [00:09<01:26,  3.10s/it]
+[WADI_clean:USAD]  10%|█         | 3/30 [00:09<01:22,  3.04s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 3,      L1 = 0.7779229518639905,        L2 = -0.45160822849872645
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  10%|█         | 3/30 [00:12<01:22,  3.04s/it]
+[WADI_clean:USAD]  10%|█         | 3/30 [00:09<01:28,  3.27s/it][WADI_clean:USAD]   3%|▎         | 1/30 [00:02<01:17,  2.67s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 1,      L1 = 0.7808908803622446,        L2 = -0.057959095635686866
+[WADI_clean:USAD] 
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 3,      L1 = 0.7581326999438723,        L2 = -0.43831263232192247
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  10%|█         | 3/30 [00:13<01:28,  3.27s/it]
+
+[WADI_clean:USAD]   3%|▎         | 1/30 [00:05<01:17,  2.67s/it]
+[WADI_clean:USAD]  10%|█         | 3/30 [00:09<01:28,  3.27s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 3,      L1 = 0.7788270947692056,        L2 = -0.4564951720478873
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  10%|█         | 3/30 [00:13<01:28,  3.27s/it]
+[WADI_clean:USAD]  10%|█         | 3/30 [00:09<01:22,  3.07s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 3,      L1 = 0.7310262183866921,        L2 = -0.41957748541532486
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  10%|█         | 3/30 [00:12<01:22,  3.07s/it]
+[WADI_clean:USAD]  13%|█▎        | 4/30 [00:12<01:19,  3.07s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 4,      L1 = 0.7806686027306717,        L2 = -0.5225914443978283
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  13%|█▎        | 4/30 [00:15<01:19,  3.07s/it]
+[WADI_clean:USAD]   7%|▋         | 2/30 [00:05<01:13,  2.62s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 2,      L1 = 0.7571501994891423,        L2 = -0.3195914831529045
+[WADI_clean:USAD] 
+[WADI_clean:USAD]   7%|▋         | 2/30 [00:07<01:13,  2.62s/it]
+[WADI_clean:USAD]  13%|█▎        | 4/30 [00:13<01:25,  3.30s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 4,      L1 = 0.7498273680785741,        L2 = -0.49924074140108426
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  13%|█▎        | 4/30 [00:16<01:25,  3.30s/it]
+[WADI_clean:USAD]  13%|█▎        | 4/30 [00:12<01:22,  3.17s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 4,      L1 = 0.7122425784586305,        L2 = -0.4695411600160365
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  13%|█▎        | 4/30 [00:16<01:22,  3.17s/it]
+[WADI_clean:USAD]  13%|█▎        | 4/30 [00:13<01:25,  3.28s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 4,      L1 = 0.7758524499554035,        L2 = -0.5236981274836604
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  13%|█▎        | 4/30 [00:16<01:25,  3.28s/it]
+[WADI_clean:USAD]  17%|█▋        | 5/30 [00:15<01:16,  3.06s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 5,      L1 = 0.7775214816676073,        L2 = -0.5654664734837281
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  17%|█▋        | 5/30 [00:18<01:16,  3.06s/it]
+[WADI_clean:USAD]  10%|█         | 3/30 [00:07<01:10,  2.61s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 3,      L1 = 0.7434618644185401,        L2 = -0.42692837153134494
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  10%|█         | 3/30 [00:10<01:10,  2.61s/it]
+[WADI_clean:USAD]  17%|█▋        | 5/30 [00:16<01:28,  3.52s/it][WADI_clean:USAD]  17%|█▋        | 5/30 [00:16<01:21,  3.27s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 5,      L1 = 0.7340152614657292,        L2 = -0.5289471640477951
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  17%|█▋        | 5/30 [00:20<01:28,  3.52s/it]
+
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 5,      L1 = 0.6969367282717301,        L2 = -0.4981398561066943
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  17%|█▋        | 5/30 [00:19<01:21,  3.27s/it]
+[WADI_clean:USAD]  17%|█▋        | 5/30 [00:16<01:25,  3.41s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 5,      L1 = 0.7503488668123621,        L2 = -0.5452579325991781
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  20%|██        | 6/30 [00:18<01:13,  3.05s/it][WADI_clean:USAD]  17%|█▋        | 5/30 [00:19<01:25,  3.41s/it]
+
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 6,      L1 = 0.7627668945182595,        L2 = -0.5840207317427749
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  20%|██        | 6/30 [00:21<01:13,  3.05s/it]
+[WADI_clean:USAD]  13%|█▎        | 4/30 [00:10<01:08,  2.64s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 4,      L1 = 0.721580701784442, L2 = -0.4744983610087857
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  13%|█▎        | 4/30 [00:13<01:08,  2.64s/it]
+[WADI_clean:USAD]  20%|██        | 6/30 [00:20<01:22,  3.43s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 6,      L1 = 0.7139959308101536,        L2 = -0.5410742845756973
+[WADI_clean:USAD]  20%|██        | 6/30 [00:19<01:16,  3.20s/it]
+[WADI_clean:USAD] [WADI_clean:USAD] 
+[WADI_clean:USAD]  20%|██        | 6/30 [00:23<01:22,  3.43s/it]
+
+[WADI_clean:USAD] Epoch 6,      L1 = 0.6842180707812504,        L2 = -0.5157107909196352
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  20%|██        | 6/30 [00:22<01:16,  3.20s/it]
+[WADI_clean:USAD]  20%|██        | 6/30 [00:19<01:19,  3.32s/it]
+[WADI_clean:USAD] [WADI_clean:USAD]  23%|██▎       | 7/30 [00:21<01:09,  3.04s/it]
+
+[WADI_clean:USAD] Epoch 6,      L1 = 0.7212486382798697,        L2 = -0.5487589191456992
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  20%|██        | 6/30 [00:22<01:19,  3.32s/it]
+[WADI_clean:USAD]  17%|█▋        | 5/30 [00:13<01:05,  2.62s/it]
+[WADI_clean:USAD] [WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 7,      L1 = 0.7393155674561007,        L2 = -0.5857952673225185
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  23%|██▎       | 7/30 [00:24<01:09,  3.04s/it]
+
+[WADI_clean:USAD] Epoch 5,      L1 = 0.7017630708645451,        L2 = -0.49943536485972256
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  17%|█▋        | 5/30 [00:15<01:05,  2.62s/it]
+[WADI_clean:USAD]  23%|██▎       | 7/30 [00:23<01:15,  3.29s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 7,      L1 = 0.6965654908054999,        L2 = -0.5473318876877888
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  23%|██▎       | 7/30 [00:26<01:15,  3.29s/it]
+[WADI_clean:USAD]  23%|██▎       | 7/30 [00:22<01:12,  3.14s/it][WADI_clean:USAD]  20%|██        | 6/30 [00:15<01:03,  2.63s/it]
+
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 7,      L1 = 0.6736044538059981,        L2 = -0.5275667842119008
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  23%|██▎       | 7/30 [00:25<01:12,  3.14s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 6,      L1 = 0.6866079253337511,        L2 = -0.5151893242002505
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  20%|██        | 6/30 [00:18<01:03,  2.63s/it]
+[WADI_clean:USAD]  23%|██▎       | 7/30 [00:22<01:13,  3.21s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 7,      L1 = 0.7004786291771962,        L2 = -0.5515739797670729
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  23%|██▎       | 7/30 [00:25<01:13,  3.21s/it]
+[WADI_clean:USAD]  27%|██▋       | 8/30 [00:24<01:06,  3.03s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 8,      L1 = 0.7170303956427737,        L2 = -0.5829371332538847
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  27%|██▋       | 8/30 [00:27<01:06,  3.03s/it]
+[WADI_clean:USAD]  23%|██▎       | 7/30 [00:18<01:01,  2.66s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 7,      L1 = 0.6753558626377174,        L2 = -0.5266751142106282
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  23%|██▎       | 7/30 [00:21<01:01,  2.66s/it]
+[WADI_clean:USAD]  27%|██▋       | 8/30 [00:26<01:09,  3.18s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 8,      L1 = 0.6828567329763783,        L2 = -0.5514582608010602
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  27%|██▋       | 8/30 [00:29<01:09,  3.18s/it]
+[WADI_clean:USAD]  27%|██▋       | 8/30 [00:25<01:07,  3.09s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 8,      L1 = 0.6653867474776886,        L2 = -0.5364862227566285
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  27%|██▋       | 8/30 [00:28<01:07,  3.09s/it]
+[WADI_clean:USAD]  30%|███       | 9/30 [00:27<01:04,  3.05s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 9,      L1 = 0.7006084913627942,        L2 = -0.5814067366461575[WADI_clean:USAD]  27%|██▋       | 8/30 [00:25<01:09,  3.15s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 8,      L1 = 0.6869671772101964,        L2 = -0.5558801926611687
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  27%|██▋       | 8/30 [00:29<01:09,  3.15s/it]
+
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  30%|███       | 9/30 [00:30<01:04,  3.05s/it]
+[WADI_clean:USAD]  27%|██▋       | 8/30 [00:21<00:58,  2.64s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 8,      L1 = 0.6666415607948677,        L2 = -0.5353432088652793
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  27%|██▋       | 8/30 [00:23<00:58,  2.64s/it]
+[WADI_clean:USAD]  30%|███       | 9/30 [00:29<01:04,  3.09s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 9,      L1 = 0.6725501714678418,        L2 = -0.5550279046544049
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  30%|███       | 9/30 [00:31<01:04,  3.09s/it]
+[WADI_clean:USAD]  30%|███       | 9/30 [00:28<01:04,  3.09s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 9,      L1 = 0.6597733563252802,        L2 = -0.5443381408493826
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  30%|███       | 9/30 [00:31<01:04,  3.09s/it]
+[WADI_clean:USAD]  30%|███       | 9/30 [00:29<01:06,  3.19s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 9,      L1 = 0.677845827469429, L2 = -0.5606206656717748
+[WADI_clean:USAD]  33%|███▎      | 10/30 [00:30<01:01,  3.08s/it][WADI_clean:USAD]
+[WADI_clean:USAD]  30%|███       | 9/30 [00:32<01:06,  3.19s/it]
+
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 10,     L1 = 0.6898034505217927,        L2 = -0.582351428698171
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  33%|███▎      | 10/30 [00:33<01:01,  3.08s/it]
+[WADI_clean:USAD]  30%|███       | 9/30 [00:23<00:54,  2.62s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 9,      L1 = 0.6601529093687142,        L2 = -0.5427329925543721
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  30%|███       | 9/30 [00:26<00:54,  2.62s/it]
+[WADI_clean:USAD]  33%|███▎      | 10/30 [00:31<01:00,  3.03s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 10,     L1 = 0.6643923281845416,        L2 = -0.5580706709166335
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  33%|███▎      | 10/30 [00:34<01:00,  3.03s/it]
+[WADI_clean:USAD]  33%|███▎      | 10/30 [00:31<01:04,  3.22s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 10,     L1 = 0.6558273821145442,        L2 = -0.5512981310511103
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  33%|███▎      | 10/30 [00:34<01:04,  3.22s/it]
+[WADI_clean:USAD]  37%|███▋      | 11/30 [00:33<00:59,  3.13s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 11,     L1 = 0.6809103331402503,        L2 = -0.5830413083656771
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  37%|███▋      | 11/30 [00:36<00:59,  3.13s/it]
+[WADI_clean:USAD]  33%|███▎      | 10/30 [00:32<01:03,  3.20s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 10,     L1 = 0.672701677723771, L2 = -0.5666192988781517
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  33%|███▎      | 10/30 [00:35<01:03,  3.20s/it]
+[WADI_clean:USAD]  33%|███▎      | 10/30 [00:26<00:52,  2.64s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 10,     L1 = 0.6554777526447084,        L2 = -0.5492157181314699
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  33%|███▎      | 10/30 [00:29<00:52,  2.64s/it]
+[WADI_clean:USAD]  37%|███▋      | 11/30 [00:34<00:56,  2.98s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 11,     L1 = 0.658842541751426, L2 = -0.5616776525585336
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  37%|███▋      | 11/30 [00:37<00:56,  2.98s/it]
+[WADI_clean:USAD]  40%|████      | 12/30 [00:36<00:56,  3.12s/it]
+[WADI_clean:USAD]  37%|███▋      | 11/30 [00:34<01:00,  3.18s/it]
+[WADI_clean:USAD] [WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 12,     L1 = 0.6736078046468887,        L2 = -0.5837152650850244
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  40%|████      | 12/30 [00:39<00:56,  3.12s/it]
+
+[WADI_clean:USAD] Epoch 11,     L1 = 0.6527589641718063,        L2 = -0.5572784983752019
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  37%|███▋      | 11/30 [00:37<01:00,  3.18s/it]
+[WADI_clean:USAD]  37%|███▋      | 11/30 [00:35<01:01,  3.24s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  37%|███▋      | 11/30 [00:29<00:50,  2.65s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 11,     L1 = 0.6517560899646597,        L2 = -0.5546947988464237
+[WADI_clean:USAD] Epoch 11,     L1 = 0.6686031310340514,        L2 = -0.5717808481482075
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  37%|███▋      | 11/30 [00:39<01:01,  3.24s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  37%|███▋      | 11/30 [00:32<00:50,  2.65s/it]
+[WADI_clean:USAD]  40%|████      | 12/30 [00:37<00:53,  2.96s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 12,     L1 = 0.6543134121288094,        L2 = -0.5648983999430452
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  40%|████      | 12/30 [00:40<00:53,  2.96s/it]
+[WADI_clean:USAD]  43%|████▎     | 13/30 [00:39<00:52,  3.10s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 13,     L1 = 0.6673443239139694,        L2 = -0.5842258717749286
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  43%|████▎     | 13/30 [00:43<00:52,  3.10s/it]
+[WADI_clean:USAD]  40%|████      | 12/30 [00:32<00:49,  2.77s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 12,     L1 = 0.6487169883185071,        L2 = -0.5594697019744659
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  40%|████      | 12/30 [00:34<00:49,  2.77s/it]
+[WADI_clean:USAD]  40%|████      | 12/30 [00:37<00:57,  3.18s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 12,     L1 = 0.6494895024848023,        L2 = -0.5616888943543052
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  40%|████      | 12/30 [00:41<00:57,  3.18s/it]
+[WADI_clean:USAD]  40%|████      | 12/30 [00:39<00:59,  3.32s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 12,     L1 = 0.6643310708478458,        L2 = -0.5754064613220937
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  40%|████      | 12/30 [00:42<00:59,  3.32s/it]
+[WADI_clean:USAD]  43%|████▎     | 13/30 [00:40<00:50,  2.98s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 13,     L1 = 0.6501604285559102,        L2 = -0.5674689040438775
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  43%|████▎     | 13/30 [00:43<00:50,  2.98s/it]
+[WADI_clean:USAD]  43%|████▎     | 13/30 [00:34<00:46,  2.74s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 13,     L1 = 0.645249778012856, L2 = -0.5626935380074951
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  43%|████▎     | 13/30 [00:37<00:46,  2.74s/it]
+[WADI_clean:USAD]  47%|████▋     | 14/30 [00:43<00:49,  3.12s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 14,     L1 = 0.6615414978726653,        L2 = -0.5842865693335821
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  47%|████▋     | 14/30 [00:46<00:49,  3.12s/it]
+[WADI_clean:TranAD]   0%|          | 0/30 [00:00<?, ?it/s][WADI_clean:USAD]  43%|████▎     | 13/30 [00:41<00:55,  3.28s/it]
+
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 0,    L1 = 0.5110968702866242
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]   0%|          | 0/30 [00:44<?, ?it/s]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 13,     L1 = 0.6464148477862359,        L2 = -0.5651264903887645
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  43%|████▎     | 13/30 [00:44<00:55,  3.28s/it]
+[WADI_clean:USAD]  43%|████▎     | 13/30 [00:42<00:56,  3.33s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 13,     L1 = 0.6607038702505836,        L2 = -0.5785020373482105
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  43%|████▎     | 13/30 [00:46<00:56,  3.33s/it]
+[WADI_clean:USAD]  47%|████▋     | 14/30 [00:43<00:48,  3.03s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 14,     L1 = 0.6460050257442437,        L2 = -0.5691070108147275
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  47%|████▋     | 14/30 [00:46<00:48,  3.03s/it]
+[WADI_clean:USAD]  47%|████▋     | 14/30 [00:37<00:42,  2.68s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 14,     L1 = 0.6419831246234853,        L2 = -0.5651788043061827
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  47%|████▋     | 14/30 [00:40<00:42,  2.68s/it]
+[WADI_clean:USAD]  50%|█████     | 15/30 [00:46<00:46,  3.13s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 15,     L1 = 0.6569819987598096,        L2 = -0.5847861761710383
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  50%|█████     | 15/30 [00:49<00:46,  3.13s/it]
+[WADI_clean:USAD]  47%|████▋     | 14/30 [00:44<00:52,  3.30s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 14,     L1 = 0.643980258100379, L2 = -0.568314420360142
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  47%|████▋     | 14/30 [00:48<00:52,  3.30s/it]
+[WADI_clean:USAD]  50%|█████     | 15/30 [00:46<00:45,  3.02s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 15,     L1 = 0.6425473026894823,        L2 = -0.5706547591075617
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  50%|█████     | 15/30 [00:49<00:45,  3.02s/it]
+[WADI_clean:USAD]  47%|████▋     | 14/30 [00:46<00:53,  3.37s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 14,     L1 = 0.6571683799559296,        L2 = -0.5807784281391498
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  47%|████▋     | 14/30 [00:49<00:53,  3.37s/it]
+[WADI_clean:USAD]  50%|█████     | 15/30 [00:40<00:40,  2.71s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 15,     L1 = 0.6391940515786166,        L2 = -0.5674109680374528
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  50%|█████     | 15/30 [00:42<00:40,  2.71s/it]
+[WADI_clean:USAD]  53%|█████▎    | 16/30 [00:49<00:43,  3.13s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 16,     L1 = 0.6536537408342564,        L2 = -0.5858715832184812
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  53%|█████▎    | 16/30 [00:52<00:43,  3.13s/it]
+[WADI_clean:USAD]  50%|█████     | 15/30 [00:48<00:49,  3.31s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 15,     L1 = 0.641765483392199, L2 = -0.5710090509392504
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  50%|█████     | 15/30 [00:51<00:49,  3.31s/it]
+[WADI_clean:USAD]  53%|█████▎    | 16/30 [00:49<00:42,  3.01s/it]
+[WADI_clean:USAD]  53%|█████▎    | 16/30 [00:42<00:38,  2.72s/it]
+[WADI_clean:USAD] 
+[gpu] WADI_clean:USAD heartbeat t+60s alloc=0.00G
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 16,     L1 = 0.6406079265752391,        L2 = -0.5731012008318505
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  53%|█████▎    | 16/30 [00:52<00:42,  3.01s/it]
+[WADI_clean:USAD] Epoch 16,     L1 = 0.636926036358463, L2 = -0.5695554614067078
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  53%|█████▎    | 16/30 [00:45<00:38,  2.72s/it]
+[WADI_clean:USAD]  50%|█████     | 15/30 [00:49<00:51,  3.41s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 15,     L1 = 0.6541497606729411,        L2 = -0.5828131330100786
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  50%|█████     | 15/30 [00:52<00:51,  3.41s/it]
+[gpu] WADI_clean:USAD heartbeat t+60s alloc=0.00G
+[gpu] WADI_clean:USAD heartbeat t+60s alloc=0.00G
+[WADI_clean:USAD]  57%|█████▋    | 17/30 [00:52<00:40,  3.14s/it]
+[gpu] WADI_clean:USAD heartbeat t+60s alloc=0.00G
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 17,     L1 = 0.6509359470685583,        L2 = -0.5870709283851683
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  57%|█████▋    | 17/30 [00:55<00:40,  3.14s/it]
+[gpu] WADI_clean:TranAD heartbeat t+60s alloc=0.00G
+[WADI_clean:USAD]  57%|█████▋    | 17/30 [00:52<00:39,  3.03s/it][WADI_clean:USAD]  53%|█████▎    | 16/30 [00:51<00:45,  3.27s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 16,     L1 = 0.6394981540630148,        L2 = -0.5730779636256264
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  53%|█████▎    | 16/30 [00:54<00:45,  3.27s/it]
+
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 17,     L1 = 0.6387889800413982,        L2 = -0.5751769402676655
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  57%|█████▋    | 17/30 [00:56<00:39,  3.03s/it]
+[WADI_clean:USAD]  57%|█████▋    | 17/30 [00:45<00:35,  2.74s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 17,     L1 = 0.6348441083221218,        L2 = -0.5713707509816762
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  57%|█████▋    | 17/30 [00:48<00:35,  2.74s/it]
+[WADI_clean:USAD]  53%|█████▎    | 16/30 [00:52<00:47,  3.40s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 16,     L1 = 0.6517776841537793,        L2 = -0.5848093728791637
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  53%|█████▎    | 16/30 [00:56<00:47,  3.40s/it]
+[gpu] WADI_clean:TranAD heartbeat t+60s alloc=0.00G
+[WADI_clean:TranAD]   0%|          | 0/30 [00:00<?, ?it/s]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 0,    L1 = 0.5108718376661397
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]   0%|          | 0/30 [00:55<?, ?it/s]
+[WADI_clean:USAD]  60%|██████    | 18/30 [00:55<00:37,  3.15s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 18,     L1 = 0.6483434059977726,        L2 = -0.5879874528669805
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  60%|██████    | 18/30 [00:58<00:37,  3.15s/it]
+[WADI_clean:USAD]  60%|██████    | 18/30 [00:48<00:33,  2.75s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 18,     L1 = 0.6329842908687732,        L2 = -0.5729746959775346
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  60%|██████    | 18/30 [00:51<00:33,  2.75s/it]
+[WADI_clean:USAD]  60%|██████    | 18/30 [00:56<00:36,  3.04s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 18,     L1 = 0.6365996069756457,        L2 = -0.5764619293113712
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  60%|██████    | 18/30 [00:59<00:36,  3.04s/it]
+[WADI_clean:USAD]  57%|█████▋    | 17/30 [00:54<00:43,  3.33s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 17,     L1 = 0.6372876854744082,        L2 = -0.5746926794627751
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  57%|█████▋    | 17/30 [00:58<00:43,  3.33s/it]
+[WADI_clean:USAD]  57%|█████▋    | 17/30 [00:56<00:44,  3.44s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 17,     L1 = 0.6499558493227593,        L2 = -0.5868556303310939
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  57%|█████▋    | 17/30 [00:59<00:44,  3.44s/it]
+[WADI_clean:USAD]  63%|██████▎   | 19/30 [00:58<00:34,  3.15s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 19,     L1 = 0.6461802880487862,        L2 = -0.5889407191638262
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  63%|██████▎   | 19/30 [01:02<00:34,  3.15s/it]
+[WADI_clean:USAD]  63%|██████▎   | 19/30 [00:51<00:30,  2.77s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 19,     L1 = 0.6312832741422326,        L2 = -0.5744031444556561
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  63%|██████▎   | 19/30 [00:53<00:30,  2.77s/it]
+[WADI_clean:USAD]  63%|██████▎   | 19/30 [00:59<00:33,  3.07s/it]
+[WADI_clean:USAD] 
+[gpu] WADI_clean:USAD heartbeat t+60s alloc=0.00G
+[WADI_clean:USAD] Epoch 19,     L1 = 0.6346904380189264,        L2 = -0.5776565871755995
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  63%|██████▎   | 19/30 [01:02<00:33,  3.07s/it]
+[WADI_clean:USAD]  60%|██████    | 18/30 [00:58<00:39,  3.33s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 18,     L1 = 0.6351609190175428,        L2 = -0.575983599047093
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  60%|██████    | 18/30 [01:01<00:39,  3.33s/it]
+[gpu] WADI_clean:TranAD heartbeat t+60s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+60s alloc=0.00G
+[WADI_clean:USAD]  60%|██████    | 18/30 [00:59<00:41,  3.45s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 18,     L1 = 0.6482761208861337,        L2 = -0.5886278711806309
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  60%|██████    | 18/30 [01:03<00:41,  3.45s/it]
+[WADI_clean:USAD]  67%|██████▋   | 20/30 [00:53<00:27,  2.78s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  67%|██████▋   | 20/30 [01:02<00:31,  3.18s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 20,     L1 = 0.6443762057757105,        L2 = -0.5899487198322866
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  67%|██████▋   | 20/30 [01:05<00:31,  3.18s/it]
+[WADI_clean:USAD] Epoch 20,     L1 = 0.6296480839880606,        L2 = -0.5755931912734497
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  67%|██████▋   | 20/30 [00:56<00:27,  2.78s/it]
+[gpu] WADI_clean:TranAD heartbeat t+60s alloc=0.00G
+[WADI_clean:USAD]  67%|██████▋   | 20/30 [01:02<00:30,  3.09s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 20,     L1 = 0.63337495893872,  L2 = -0.5791460736783838
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  67%|██████▋   | 20/30 [01:05<00:30,  3.09s/it]
+[WADI_clean:USAD]  63%|██████▎   | 19/30 [01:01<00:36,  3.36s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 19,     L1 = 0.6331014386203511,        L2 = -0.5770027357446816
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  63%|██████▎   | 19/30 [01:04<00:36,  3.36s/it]
+[WADI_clean:USAD]  70%|███████   | 21/30 [00:56<00:25,  2.79s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 21,     L1 = 0.628155964403907, L2 = -0.5766424145823007
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  70%|███████   | 21/30 [00:59<00:25,  2.79s/it]
+[WADI_clean:USAD]  63%|██████▎   | 19/30 [01:03<00:38,  3.46s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 19,     L1 = 0.6468178834067277,        L2 = -0.5902557707532973
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  63%|██████▎   | 19/30 [01:07<00:38,  3.46s/it]
+[WADI_clean:TranAD]   0%|          | 0/30 [00:00<?, ?it/s]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 0,    L1 = 0.5108918528912701
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]   0%|          | 0/30 [00:58<?, ?it/s]
+[WADI_clean:USAD]  70%|███████   | 21/30 [01:05<00:29,  3.23s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 21,     L1 = 0.6428352271557632,        L2 = -0.5909541687802039
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  70%|███████   | 21/30 [01:09<00:29,  3.23s/it]
+[WADI_clean:USAD]  70%|███████   | 21/30 [01:05<00:28,  3.12s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 21,     L1 = 0.6319541448870063,        L2 = -0.580299292871847
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  70%|███████   | 21/30 [01:08<00:28,  3.12s/it]
+[WADI_clean:USAD]  67%|██████▋   | 20/30 [01:04<00:33,  3.38s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 20,     L1 = 0.6314389572690011,        L2 = -0.5780964908212861
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  67%|██████▋   | 20/30 [01:08<00:33,  3.38s/it]
+[WADI_clean:USAD]  73%|███████▎  | 22/30 [00:59<00:22,  2.80s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 22,     L1 = 0.6264829459869065,        L2 = -0.5773009176063694
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  73%|███████▎  | 22/30 [01:02<00:22,  2.80s/it]
+[WADI_clean:USAD]  67%|██████▋   | 20/30 [01:07<00:35,  3.54s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 20,     L1 = 0.6454661033476352,        L2 = -0.5916782374240057
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  67%|██████▋   | 20/30 [01:10<00:35,  3.54s/it]
+[WADI_clean:USAD]  73%|███████▎  | 22/30 [01:09<00:27,  3.38s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 22,     L1 = 0.6414687890213038,        L2 = -0.5919177696035892
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  73%|███████▎  | 22/30 [01:12<00:27,  3.38s/it]
+[WADI_clean:USAD]  73%|███████▎  | 22/30 [01:08<00:25,  3.20s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 22,     L1 = 0.6300721512727597,        L2 = -0.5807714112236683
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  73%|███████▎  | 22/30 [01:12<00:25,  3.20s/it]
+[WADI_clean:USAD]  77%|███████▋  | 23/30 [01:02<00:19,  2.79s/it][WADI_clean:USAD]  70%|███████   | 21/30 [01:08<00:30,  3.44s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 21,     L1 = 0.63002734382137,  L2 = -0.5791901443123234
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  70%|███████   | 21/30 [01:11<00:30,  3.44s/it]
+
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 23,     L1 = 0.6250418981759038,        L2 = -0.5779913701542438
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  77%|███████▋  | 23/30 [01:05<00:19,  2.79s/it]
+[WADI_clean:USAD]  70%|███████   | 21/30 [01:10<00:32,  3.56s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 21,     L1 = 0.6442225021454483,        L2 = -0.5929523643233843
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  70%|███████   | 21/30 [01:14<00:32,  3.56s/it]
+[WADI_clean:USAD]  77%|███████▋  | 23/30 [01:12<00:23,  3.38s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 23,     L1 = 0.6400291722079474,        L2 = -0.5926119263662211
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  77%|███████▋  | 23/30 [01:15<00:23,  3.38s/it]
+[WADI_clean:USAD]  77%|███████▋  | 23/30 [01:12<00:22,  3.25s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 23,     L1 = 0.6286365102253381,        L2 = -0.5814818083802406
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  77%|███████▋  | 23/30 [01:15<00:22,  3.25s/it]
+[WADI_clean:USAD]  80%|████████  | 24/30 [01:05<00:16,  2.81s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 24,     L1 = 0.6239935646097967,        L2 = -0.5788946545289352
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  80%|████████  | 24/30 [01:08<00:16,  2.81s/it]
+[WADI_clean:USAD]  73%|███████▎  | 22/30 [01:11<00:27,  3.38s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 22,     L1 = 0.6285482182442461,        L2 = -0.5799999063983438
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  73%|███████▎  | 22/30 [01:15<00:27,  3.38s/it]
+[WADI_clean:USAD]  73%|███████▎  | 22/30 [01:14<00:28,  3.53s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 22,     L1 = 0.6428900005426531,        L2 = -0.5939222293469879
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  73%|███████▎  | 22/30 [01:17<00:28,  3.53s/it]
+[WADI_clean:USAD]  80%|████████  | 24/30 [01:15<00:20,  3.39s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 24,     L1 = 0.6386248394239201,        L2 = -0.5931573576532414
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  80%|████████  | 24/30 [01:19<00:20,  3.39s/it]
+[WADI_clean:USAD]  83%|████████▎ | 25/30 [01:08<00:14,  2.83s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 25,     L1 = 0.6231842122935549,        L2 = -0.5798771224830901
+[WADI_clean:USAD] [WADI_clean:USAD]  80%|████████  | 24/30 [01:15<00:19,  3.27s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  83%|████████▎ | 25/30 [01:10<00:14,  2.83s/it]
+
+[WADI_clean:USAD] Epoch 24,     L1 = 0.6271885896487492,        L2 = -0.5820166249356884
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  80%|████████  | 24/30 [01:18<00:19,  3.27s/it]
+[WADI_clean:USAD]  77%|███████▋  | 23/30 [01:15<00:23,  3.33s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 23,     L1 = 0.6271927267264387,        L2 = -0.580733212522348
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  77%|███████▋  | 23/30 [01:18<00:23,  3.33s/it]
+[WADI_clean:TranAD]   0%|          | 0/30 [00:00<?, ?it/s]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 0,    L1 = 0.510996324008674
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]   0%|          | 0/30 [01:14<?, ?it/s]
+[WADI_clean:USAD]  77%|███████▋  | 23/30 [01:17<00:24,  3.48s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 23,     L1 = 0.6407303788241905,        L2 = -0.593884002253243
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  77%|███████▋  | 23/30 [01:20<00:24,  3.48s/it]
+[WADI_clean:USAD]  87%|████████▋ | 26/30 [01:10<00:11,  2.84s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 26,     L1 = 0.6223805251168193,        L2 = -0.5807367931522709
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  87%|████████▋ | 26/30 [01:13<00:11,  2.84s/it]
+[WADI_clean:USAD]  83%|████████▎ | 25/30 [01:19<00:17,  3.41s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 25,     L1 = 0.6375985494883181,        L2 = -0.5939290814988959
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  83%|████████▎ | 25/30 [01:22<00:17,  3.41s/it]
+[WADI_clean:USAD]  83%|████████▎ | 25/30 [01:18<00:16,  3.26s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 25,     L1 = 0.6260147336596961,        L2 = -0.582649547333235
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  83%|████████▎ | 25/30 [01:22<00:16,  3.26s/it]
+[WADI_clean:USAD]  80%|████████  | 24/30 [01:18<00:19,  3.29s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 24,     L1 = 0.6259816455461851,        L2 = -0.5814353250222338
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  80%|████████  | 24/30 [01:21<00:19,  3.29s/it]
+[WADI_clean:USAD]  90%|█████████ | 27/30 [01:13<00:08,  2.85s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 27,     L1 = 0.6208744225066405,        L2 = -0.5807765142271997
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  90%|█████████ | 27/30 [01:16<00:08,  2.85s/it]
+[WADI_clean:USAD]  80%|████████  | 24/30 [01:20<00:20,  3.41s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 24,     L1 = 0.6390407820996413,        L2 = -0.5941327147392426
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  80%|████████  | 24/30 [01:24<00:20,  3.41s/it]
+[WADI_clean:USAD]  87%|████████▋ | 26/30 [01:22<00:13,  3.41s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 26,     L1 = 0.6367040701198344,        L2 = -0.5946935323138416
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  87%|████████▋ | 26/30 [01:26<00:13,  3.41s/it]
+[WADI_clean:USAD]  87%|████████▋ | 26/30 [01:22<00:13,  3.30s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 26,     L1 = 0.6251872423519707,        L2 = -0.5834730943546405
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  87%|████████▋ | 26/30 [01:25<00:13,  3.30s/it]
+[WADI_clean:USAD]  83%|████████▎ | 25/30 [01:21<00:16,  3.27s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 25,     L1 = 0.6245772533762902,        L2 = -0.581794440065667
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  83%|████████▎ | 25/30 [01:24<00:16,  3.27s/it]
+[WADI_clean:USAD]  93%|█████████▎| 28/30 [01:16<00:05,  2.86s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 28,     L1 = 0.6199495864585407,        L2 = -0.5812843767455118
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  93%|█████████▎| 28/30 [01:19<00:05,  2.86s/it]
+[WADI_clean:USAD]  83%|████████▎ | 25/30 [01:24<00:17,  3.43s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 25,     L1 = 0.6379037914375302,        L2 = -0.5947747049187758
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  83%|████████▎ | 25/30 [01:27<00:17,  3.43s/it]
+[WADI_clean:USAD]  90%|█████████ | 27/30 [01:26<00:10,  3.40s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 27,     L1 = 0.6359304621888607,        L2 = -0.5954560373725938
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  90%|█████████ | 27/30 [01:29<00:10,  3.40s/it]
+[WADI_clean:USAD]  87%|████████▋ | 26/30 [01:24<00:12,  3.25s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 26,     L1 = 0.6228010739286417,        L2 = -0.5816483910136278
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  87%|████████▋ | 26/30 [01:27<00:12,  3.25s/it]
+[WADI_clean:USAD]  90%|█████████ | 27/30 [01:25<00:10,  3.38s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 27,     L1 = 0.6244590862442969,        L2 = -0.5842735085751843
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  90%|█████████ | 27/30 [01:29<00:10,  3.38s/it]
+[WADI_clean:USAD]  97%|█████████▋| 29/30 [01:19<00:02,  2.86s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 29,     L1 = 0.6193821382075305,        L2 = -0.5820475829367148
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  97%|█████████▋| 29/30 [01:22<00:02,  2.86s/it]
+[WADI_clean:USAD] 100%|██████████| 30/30 [01:22<00:00,  2.86s/it]
+[WADI_clean:USAD] 100%|██████████| 30/30 [01:22<00:00,  2.75s/it]
+[WADI_clean:USAD] [1mTraining time:    82.4602 s[0m
+[WADI_clean:USAD] [95mTesting USAD on WADI[0m
+[WADI_clean:USAD]  87%|████████▋ | 26/30 [01:27<00:13,  3.43s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 26,     L1 = 0.636963134756096, L2 = -0.5954821171029356
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  87%|████████▋ | 26/30 [01:31<00:13,  3.43s/it]
+[WADI_clean:USAD]  93%|█████████▎| 28/30 [01:29<00:06,  3.39s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 28,     L1 = 0.6352498206092716,        L2 = -0.5962103731918101
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  93%|█████████▎| 28/30 [01:32<00:06,  3.39s/it]
+[WADI_clean:USAD]  90%|█████████ | 27/30 [01:27<00:09,  3.24s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 27,     L1 = 0.6215825775124704,        L2 = -0.5819323084531367
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  90%|█████████ | 27/30 [01:31<00:09,  3.24s/it]
+[WADI_clean:USAD]  93%|█████████▎| 28/30 [01:29<00:06,  3.38s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 28,     L1 = 0.6237615126429724,        L2 = -0.584998876293954
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  93%|█████████▎| 28/30 [01:32<00:06,  3.38s/it]
+[WADI_clean:USAD]  90%|█████████ | 27/30 [01:31<00:10,  3.39s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 27,     L1 = 0.6360899853910552,        L2 = -0.5961422178329107
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  90%|█████████ | 27/30 [01:34<00:10,  3.39s/it]
+[WADI_clean:USAD]  93%|█████████▎| 28/30 [01:31<00:06,  3.21s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 28,     L1 = 0.6207125237238932,        L2 = -0.5824592813095884
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  93%|█████████▎| 28/30 [01:34<00:06,  3.21s/it]
+[WADI_clean:USAD]  97%|█████████▋| 29/30 [01:32<00:03,  3.36s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 29,     L1 = 0.6230546557397671,        L2 = -0.5856221579076026
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  97%|█████████▋| 29/30 [01:35<00:03,  3.36s/it]
+[WADI_clean:USAD] 100%|██████████| 30/30 [01:35<00:00,  3.28s/it]
+[WADI_clean:USAD] 100%|██████████| 30/30 [01:35<00:00,  3.18s/it]
+[WADI_clean:USAD] [1mTraining time:    95.5357 s[0m
+[WADI_clean:USAD] [95mTesting USAD on WADI[0m
+[WADI_clean:USAD]  97%|█████████▋| 29/30 [01:32<00:03,  3.36s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 29,     L1 = 0.6345940052393405,        L2 = -0.5969031186953648
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  97%|█████████▋| 29/30 [01:36<00:03,  3.36s/it]
+[WADI_clean:USAD] 100%|██████████| 30/30 [01:36<00:00,  3.45s/it]
+[WADI_clean:USAD] 100%|██████████| 30/30 [01:36<00:00,  3.22s/it]
+[WADI_clean:USAD] [1mTraining time:    96.5660 s[0m
+[WADI_clean:USAD] [95mTesting USAD on WADI[0m
+[WADI_clean:TranAD]   3%|▎         | 1/30 [00:44<21:34, 44.63s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 1,    L1 = 0.49386534870254273
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]   3%|▎         | 1/30 [01:35<21:34, 44.63s/it]
+[WADI_clean:TranAD]   0%|          | 0/30 [00:00<?, ?it/s]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 0,    L1 = 0.5089910464759363
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]   0%|          | 0/30 [01:29<?, ?it/s]
+[WADI_clean:USAD]  93%|█████████▎| 28/30 [01:34<00:06,  3.34s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 28,     L1 = 0.6353321670756643,        L2 = -0.5967998875587643
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  93%|█████████▎| 28/30 [01:37<00:06,  3.34s/it]
+[WADI_clean:USAD]  97%|█████████▋| 29/30 [01:34<00:03,  3.17s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 29,     L1 = 0.6200452948666708,        L2 = -0.5830959114709453
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  97%|█████████▋| 29/30 [01:37<00:03,  3.17s/it]
+[WADI_clean:USAD] 100%|██████████| 30/30 [01:37<00:00,  3.13s/it]
+[WADI_clean:USAD] 100%|██████████| 30/30 [01:37<00:00,  3.24s/it]
+[WADI_clean:USAD] [1mTraining time:    97.1229 s[0m
+[WADI_clean:USAD] [95mTesting USAD on WADI[0m
+[WADI_clean:USAD]  97%|█████████▋| 29/30 [01:37<00:03,  3.33s/it]
+[WADI_clean:USAD] 
+[WADI_clean:USAD] Epoch 29,     L1 = 0.6346787325126312,        L2 = -0.5974646953540759
+[WADI_clean:USAD] 
+[WADI_clean:USAD]  97%|█████████▋| 29/30 [01:41<00:03,  3.33s/it]
+[WADI_clean:USAD] 100%|██████████| 30/30 [01:41<00:00,  3.38s/it]
+[WADI_clean:USAD] 100%|██████████| 30/30 [01:41<00:00,  3.37s/it]
+[WADI_clean:USAD] [1mTraining time:   101.0371 s[0m
+[WADI_clean:USAD] [95mTesting USAD on WADI[0m
+[WADI_clean:TranAD]   3%|▎         | 1/30 [00:55<26:44, 55.33s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 1,    L1 = 0.5014962134411829
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]   3%|▎         | 1/30 [01:48<26:44, 55.33s/it]
+[gpu] WADI_clean:USAD heartbeat t+120s alloc=0.00G
+[gpu] WADI_clean:USAD heartbeat t+120s alloc=0.00G
+[gpu] WADI_clean:USAD heartbeat t+120s alloc=0.00G
+[gpu] WADI_clean:USAD heartbeat t+120s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+120s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+120s alloc=0.00G
+[gpu] WADI_clean:USAD heartbeat t+120s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+120s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+120s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+120s alloc=0.00G
+[WADI_clean:TranAD]   3%|▎         | 1/30 [00:58<28:24, 58.78s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 1,    L1 = 0.4913846820009474
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]   3%|▎         | 1/30 [01:58<28:24, 58.78s/it]
+[WADI_clean:USAD] /root/TranAD/src/spot.py:313: RuntimeWarning: divide by zero encountered in log
+[WADI_clean:USAD]   return 1 + np.log(s).mean()
+[WADI_clean:USAD] /root/TranAD/src/spot.py:316: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:USAD]   return np.mean(1 / s)
+[WADI_clean:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: invalid value encountered in scalar add
+[WADI_clean:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: overflow encountered in square
+[WADI_clean:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:USAD] /root/TranAD/src/spot.py:313: RuntimeWarning: divide by zero encountered in log
+[WADI_clean:USAD]   return 1 + np.log(s).mean()
+[WADI_clean:USAD] /root/TranAD/src/spot.py:316: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:USAD]   return np.mean(1 / s)
+[WADI_clean:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: invalid value encountered in scalar add
+[WADI_clean:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:USAD]            f1  precision    recall     TP  ...      FP     FN   ROC/AUC  threshold
+[WADI_clean:USAD] 0    0.296926   0.994286  0.174524  174.0  ...     1.0  823.0  0.587231  10.655254
+[WADI_clean:USAD] 1    0.125110   0.573770  0.070211   70.0  ...    52.0  927.0  0.533509   8.706647
+[WADI_clean:USAD] 2    0.000000   0.000000  0.000000    0.0  ...    10.0  997.0  0.499693   2.906411
+[WADI_clean:USAD] 3    0.243899   0.155018  0.571715  570.0  ...  3107.0  427.0  0.690457   8.723920
+[WADI_clean:USAD] 4    0.000000   0.000000  0.000000    0.0  ...   139.0  997.0  0.495732   5.147967
+[WADI_clean:USAD] ..        ...        ...       ...    ...  ...     ...    ...       ...        ...
+[WADI_clean:USAD] 117  0.137989   0.533784  0.079238   79.0  ...    69.0  918.0  0.537500   0.006131
+[WADI_clean:USAD] 118  0.138594   0.552448  0.079238   79.0  ...    64.0  918.0  0.537654   0.003314
+[WADI_clean:USAD] 119  0.472747   0.684411  0.361083  360.0  ...   166.0  637.0  0.675445   7.635005
+[WADI_clean:USAD] 120  0.230516   0.604255  0.142427  142.0  ...    93.0  855.0  0.568358   0.004343
+[WADI_clean:USAD] 121  0.149121   0.594406  0.085256   85.0  ...    58.0  912.0  0.540847   6.650518
+[WADI_clean:USAD] 
+[WADI_clean:USAD] [122 rows x 9 columns]
+[WADI_clean:USAD] {'FN': 518,
+[WADI_clean:USAD]  'FP': 195,
+[WADI_clean:USAD]  'Hit@100%': 1.0,
+[WADI_clean:USAD]  'Hit@150%': 1.0,
+[WADI_clean:USAD]  'NDCG@100%': 1.0000000000000002,
+[WADI_clean:USAD]  'NDCG@150%': 1.0000000000000002,
+[WADI_clean:USAD]  'ROC/AUC': 0.7342331896204457,
+[WADI_clean:USAD]  'TN': 16089,
+[WADI_clean:USAD]  'TP': 479,
+[WADI_clean:USAD]  'f1': 0.573304575569522,
+[WADI_clean:USAD]  'precision': 0.710682482037352,
+[WADI_clean:USAD]  'recall': 0.48044131915304594,
+[WADI_clean:USAD]  'threshold': 2.758523101745069}
+[sota] DONE USAD_WADI_clean_s0 rc=0 141.4s raw_ALL={'AUROC': 0.783, 'bestF1': 0.388, 'F1_at5pctFPR': 0.347, 'TPR_at5pctFPR': 0.382} raw_HARD={'AUROC': 0.697, 'bestF1': 0.23, 'F1_at5pctFPR': 0.156, 'TPR_at5pctFPR': 0.243}
+[WADI_clean:USAD] /root/TranAD/src/spot.py:313: RuntimeWarning: divide by zero encountered in log
+[WADI_clean:USAD]   return 1 + np.log(s).mean()
+[WADI_clean:USAD] /root/TranAD/src/spot.py:316: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:USAD]   return np.mean(1 / s)
+[WADI_clean:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: invalid value encountered in scalar add
+[WADI_clean:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:USAD] /root/TranAD/src/spot.py:313: RuntimeWarning: divide by zero encountered in log
+[WADI_clean:USAD]   return 1 + np.log(s).mean()
+[WADI_clean:USAD] /root/TranAD/src/spot.py:316: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:USAD]   return np.mean(1 / s)
+[WADI_clean:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: invalid value encountered in scalar add
+[WADI_clean:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:TranAD]   7%|▋         | 2/30 [01:35<22:33, 48.32s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 2,    L1 = 0.44574993785598344
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]   7%|▋         | 2/30 [02:25<22:33, 48.32s/it]
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+[WADI_clean:USAD]            f1  precision    recall     TP  ...      FP     FN   ROC/AUC  threshold
+[WADI_clean:USAD] 0    0.296926   0.994286  0.174524  174.0  ...     1.0  823.0  0.587231  10.446101
+[WADI_clean:USAD] 1    0.125110   0.573770  0.070211   70.0  ...    52.0  927.0  0.533509   8.718396
+[WADI_clean:USAD] 2    0.464093   0.941718  0.307924  307.0  ...    19.0  690.0  0.653378   2.770350
+[WADI_clean:USAD] 3    0.238640   0.150794  0.571715  570.0  ...  3210.0  427.0  0.687295   8.427443
+[WADI_clean:USAD] 4    0.000000   0.000000  0.000000    0.0  ...   178.0  997.0  0.494535   4.898603
+[WADI_clean:USAD] ..        ...        ...       ...    ...  ...     ...    ...       ...        ...
+[WADI_clean:USAD] 117  0.000000   0.000000  0.000000    0.0  ...     3.0  997.0  0.499908   0.001672
+[WADI_clean:USAD] 118  0.124332   0.542636  0.070211   70.0  ...    59.0  927.0  0.533294   0.001438
+[WADI_clean:USAD] 119  0.472436   0.683112  0.361083  360.0  ...   167.0  637.0  0.675414   7.608424
+[WADI_clean:USAD] 120  0.000000   0.000000  0.000000    0.0  ...    55.0  997.0  0.498311   0.002340
+[WADI_clean:USAD] 121  0.150440   0.639098  0.085256   85.0  ...    48.0  912.0  0.541154   6.645347
+[WADI_clean:USAD] 
+[WADI_clean:USAD] [122 rows x 9 columns]
+[WADI_clean:USAD] {'FN': 450,
+[WADI_clean:USAD]  'FP': 199,
+[WADI_clean:USAD]  'Hit@100%': 1.0,
+[WADI_clean:USAD]  'Hit@150%': 1.0,
+[WADI_clean:USAD]  'NDCG@100%': 1.0000000000000002,
+[WADI_clean:USAD]  'NDCG@150%': 1.0000000000000002,
+[WADI_clean:USAD]  'ROC/AUC': 0.7682126765952487,
+[WADI_clean:USAD]  'TN': 16085,
+[WADI_clean:USAD]  'TP': 547,
+[WADI_clean:USAD]  'f1': 0.6276485675497775,
+[WADI_clean:USAD]  'precision': 0.7332439579994108,
+[WADI_clean:USAD]  'recall': 0.5486459323104721,
+[WADI_clean:USAD]  'threshold': 2.7457136434843488}
+[WADI_clean:USAD] /root/TranAD/src/spot.py:313: RuntimeWarning: divide by zero encountered in log
+[WADI_clean:USAD]   return 1 + np.log(s).mean()
+[WADI_clean:USAD] /root/TranAD/src/spot.py:316: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:USAD]   return np.mean(1 / s)
+[WADI_clean:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: invalid value encountered in scalar add
+[WADI_clean:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:USAD] /root/TranAD/src/spot.py:313: RuntimeWarning: divide by zero encountered in log
+[WADI_clean:USAD]   return 1 + np.log(s).mean()
+[WADI_clean:USAD] /root/TranAD/src/spot.py:316: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:USAD]   return np.mean(1 / s)
+[WADI_clean:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: invalid value encountered in scalar add
+[WADI_clean:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+[sota] DONE USAD_WADI_clean_s3 rc=0 159.4s raw_ALL={'AUROC': 0.779, 'bestF1': 0.388, 'F1_at5pctFPR': 0.349, 'TPR_at5pctFPR': 0.384} raw_HARD={'AUROC': 0.694, 'bestF1': 0.23, 'F1_at5pctFPR': 0.159, 'TPR_at5pctFPR': 0.248}
+[WADI_clean:USAD] /root/TranAD/src/spot.py:313: RuntimeWarning: divide by zero encountered in log
+[WADI_clean:USAD]   return 1 + np.log(s).mean()
+[WADI_clean:USAD] /root/TranAD/src/spot.py:316: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:USAD]   return np.mean(1 / s)
+[WADI_clean:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: invalid value encountered in scalar add
+[WADI_clean:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:USAD] /root/TranAD/src/spot.py:313: RuntimeWarning: divide by zero encountered in log
+[WADI_clean:USAD]   return 1 + np.log(s).mean()
+[WADI_clean:USAD] /root/TranAD/src/spot.py:316: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:USAD]   return np.mean(1 / s)
+[WADI_clean:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: invalid value encountered in scalar add
+[WADI_clean:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:USAD] /root/TranAD/src/spot.py:313: RuntimeWarning: divide by zero encountered in log
+[WADI_clean:USAD]   return 1 + np.log(s).mean()
+[WADI_clean:USAD] /root/TranAD/src/spot.py:316: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:USAD]   return np.mean(1 / s)
+[WADI_clean:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: invalid value encountered in scalar add
+[WADI_clean:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:USAD]            f1  precision    recall     TP  ...      FP     FN   ROC/AUC  threshold
+[WADI_clean:USAD] 0    0.296926   0.994286  0.174524  174.0  ...     1.0  823.0  0.587231  10.470955
+[WADI_clean:USAD] 1    0.125110   0.573770  0.070211   70.0  ...    52.0  927.0  0.533509   8.692393
+[WADI_clean:USAD] 2    0.447192   0.816489  0.307924  307.0  ...    69.0  690.0  0.651843   2.538546
+[WADI_clean:USAD] 3    0.242035   0.153515  0.571715  570.0  ...  3143.0  427.0  0.689352   8.676217
+[WADI_clean:USAD] 4    0.000000   0.000000  0.000000    0.0  ...    24.0  997.0  0.499263   5.397966
+[WADI_clean:USAD] ..        ...        ...       ...    ...  ...     ...    ...       ...        ...
+[WADI_clean:USAD] 117  0.322576   0.510870  0.235707  235.0  ...   225.0  762.0  0.610945   0.001991
+[WADI_clean:USAD] 118  0.323687   0.516484  0.235707  235.0  ...   220.0  762.0  0.611098   0.004162
+[WADI_clean:USAD] 119  0.472436   0.683112  0.361083  360.0  ...   167.0  637.0  0.675414   7.808637
+[WADI_clean:USAD] 120  0.322798   0.511983  0.235707  235.0  ...   224.0  762.0  0.610976   0.005195
+[WADI_clean:USAD] 121  0.150440   0.639098  0.085256   85.0  ...    48.0  912.0  0.541154   6.603994
+[WADI_clean:USAD] 
+[WADI_clean:USAD] [122 rows x 9 columns]
+[WADI_clean:USAD] {'FN': 518,
+[WADI_clean:USAD]  'FP': 195,
+[WADI_clean:USAD]  'Hit@100%': 1.0,
+[WADI_clean:USAD]  'Hit@150%': 1.0,
+[WADI_clean:USAD]  'NDCG@100%': 1.0000000000000002,
+[WADI_clean:USAD]  'NDCG@150%': 1.0000000000000002,
+[WADI_clean:USAD]  'ROC/AUC': 0.7342331896204457,
+[WADI_clean:USAD]  'TN': 16089,
+[WADI_clean:USAD]  'TP': 479,
+[WADI_clean:USAD]  'f1': 0.573304575569522,
+[WADI_clean:USAD]  'precision': 0.710682482037352,
+[WADI_clean:USAD]  'recall': 0.48044131915304594,
+[WADI_clean:USAD]  'threshold': 2.76320414574875}
+[WADI_clean:USAD]            f1  precision    recall     TP  ...      FP     FN   ROC/AUC  threshold
+[WADI_clean:USAD] 0    0.296926   0.994286  0.174524  174.0  ...     1.0  823.0  0.587231  10.417757
+[WADI_clean:USAD] 1    0.125110   0.573770  0.070211   70.0  ...    52.0  927.0  0.533509   8.713323
+[WADI_clean:USAD] 2    0.000000   0.000000  0.000000    0.0  ...     9.0  997.0  0.499724   2.985353
+[WADI_clean:USAD] 3    0.233221   0.146492  0.571715  570.0  ...  3321.0  427.0  0.683886   8.382858
+[WADI_clean:USAD] 4    0.000000   0.000000  0.000000    0.0  ...   339.0  997.0  0.489591   4.239678
+[WADI_clean:USAD] ..        ...        ...       ...    ...  ...     ...    ...       ...        ...
+[WADI_clean:USAD] 117  0.000000   0.000000  0.000000    0.0  ...    12.0  997.0  0.499632   0.009977
+[WADI_clean:USAD] 118  0.000000   0.000000  0.000000    0.0  ...    11.0  997.0  0.499662   0.007023
+[WADI_clean:USAD] 119  0.473057   0.685714  0.361083  360.0  ...   165.0  637.0  0.675475   7.622449
+[WADI_clean:USAD] 120  0.000000   0.000000  0.000000    0.0  ...    13.0  997.0  0.499601   0.012752
+[WADI_clean:USAD] 121  0.150440   0.639098  0.085256   85.0  ...    48.0  912.0  0.541154   6.637024
+[WADI_clean:USAD] 
+[WADI_clean:USAD] [122 rows x 9 columns]
+[WADI_clean:USAD] {'FN': 518,
+[WADI_clean:USAD]  'FP': 196,
+[WADI_clean:USAD]  'Hit@100%': 1.0,
+[WADI_clean:USAD]  'Hit@150%': 1.0,
+[WADI_clean:USAD]  'NDCG@100%': 1.0000000000000002,
+[WADI_clean:USAD]  'NDCG@150%': 1.0000000000000002,
+[WADI_clean:USAD]  'ROC/AUC': 0.734202484633956,
+[WADI_clean:USAD]  'TN': 16088,
+[WADI_clean:USAD]  'TP': 479,
+[WADI_clean:USAD]  'f1': 0.5729616858062878,
+[WADI_clean:USAD]  'precision': 0.7096296191165983,
+[WADI_clean:USAD]  'recall': 0.48044131915304594,
+[WADI_clean:USAD]  'threshold': 2.7297710352522433}
+[sota] DONE USAD_WADI_clean_s1 rc=0 167.5s raw_ALL={'AUROC': 0.793, 'bestF1': 0.394, 'F1_at5pctFPR': 0.35, 'TPR_at5pctFPR': 0.385} raw_HARD={'AUROC': 0.729, 'bestF1': 0.232, 'F1_at5pctFPR': 0.159, 'TPR_at5pctFPR': 0.248}
+[WADI_clean:USAD] /root/TranAD/src/spot.py:313: RuntimeWarning: divide by zero encountered in log
+[WADI_clean:USAD]   return 1 + np.log(s).mean()
+[WADI_clean:USAD] /root/TranAD/src/spot.py:316: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:USAD]   return np.mean(1 / s)
+[WADI_clean:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: invalid value encountered in scalar add
+[WADI_clean:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[sota] DONE USAD_WADI_clean_s2 rc=0 168.6s raw_ALL={'AUROC': 0.786, 'bestF1': 0.388, 'F1_at5pctFPR': 0.349, 'TPR_at5pctFPR': 0.384} raw_HARD={'AUROC': 0.699, 'bestF1': 0.232, 'F1_at5pctFPR': 0.159, 'TPR_at5pctFPR': 0.248}
+[WADI_clean:TranAD]   7%|▋         | 2/30 [01:48<25:08, 53.86s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 2,    L1 = 0.44355426429729866
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]   7%|▋         | 2/30 [02:42<25:08, 53.86s/it]
+[WADI_clean:USAD]            f1  precision    recall     TP  ...      FP     FN   ROC/AUC  threshold
+[WADI_clean:USAD] 0    0.296926   0.994286  0.174524  174.0  ...     1.0  823.0  0.587231  10.274067
+[WADI_clean:USAD] 1    0.380355   0.853147  0.244734  244.0  ...    42.0  753.0  0.621077   8.601009
+[WADI_clean:USAD] 2    0.293668   0.925532  0.174524  174.0  ...    14.0  823.0  0.586832   2.849718
+[WADI_clean:USAD] 3    0.235534   0.148322  0.571715  570.0  ...  3273.0  427.0  0.685360   8.188552
+[WADI_clean:USAD] 4    0.000000   0.000000  0.000000    0.0  ...   195.0  997.0  0.494013   5.359508
+[WADI_clean:USAD] ..        ...        ...       ...    ...  ...     ...    ...       ...        ...
+[WADI_clean:USAD] 117  0.013864   0.029900  0.009027    9.0  ...   292.0  988.0  0.495548   0.003576
+[WADI_clean:USAD] 118  0.107861   0.213018  0.072217   72.0  ...   266.0  925.0  0.527941   0.006269
+[WADI_clean:USAD] 119  0.472436   0.683112  0.361083  360.0  ...   167.0  637.0  0.675414   7.620614
+[WADI_clean:USAD] 120  0.017441   0.257143  0.009027    9.0  ...    26.0  988.0  0.503715   0.019834
+[WADI_clean:USAD] 121  0.150440   0.639098  0.085256   85.0  ...    48.0  912.0  0.541154   6.653996
+[WADI_clean:USAD] 
+[WADI_clean:USAD] [122 rows x 9 columns]
+[WADI_clean:USAD] {'FN': 518,
+[WADI_clean:USAD]  'FP': 198,
+[WADI_clean:USAD]  'Hit@100%': 1.0,
+[WADI_clean:USAD]  'Hit@150%': 1.0,
+[WADI_clean:USAD]  'NDCG@100%': 1.0000000000000002,
+[WADI_clean:USAD]  'NDCG@150%': 1.0000000000000002,
+[WADI_clean:USAD]  'ROC/AUC': 0.7341410746609762,
+[WADI_clean:USAD]  'TN': 16086,
+[WADI_clean:USAD]  'TP': 479,
+[WADI_clean:USAD]  'f1': 0.5722771352906069,
+[WADI_clean:USAD]  'precision': 0.7075332244086673,
+[WADI_clean:USAD]  'recall': 0.48044131915304594,
+[WADI_clean:USAD]  'threshold': 2.742893054486569}
+[sota] DONE USAD_WADI_clean_s4 rc=0 175.6s raw_ALL={'AUROC': 0.777, 'bestF1': 0.388, 'F1_at5pctFPR': 0.35, 'TPR_at5pctFPR': 0.385} raw_HARD={'AUROC': 0.69, 'bestF1': 0.23, 'F1_at5pctFPR': 0.16, 'TPR_at5pctFPR': 0.25}
+[gpu] WADI_clean:USAD heartbeat t+180s alloc=0.00G
+[gpu] WADI_clean:USAD heartbeat t+180s alloc=0.00G
+[gpu] WADI_clean:USAD heartbeat t+180s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+180s alloc=0.00G
+[WADI_clean:TranAD]   3%|▎         | 1/30 [01:14<35:53, 74.27s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 1,    L1 = 0.4968671241796425
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]   3%|▎         | 1/30 [02:48<35:53, 74.27s/it]
+[gpu] WADI_clean:TranAD heartbeat t+180s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+180s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+180s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+180s alloc=0.00G
+[WADI_clean:TranAD]   7%|▋         | 2/30 [01:58<27:34, 59.07s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 2,    L1 = 0.4437107890844345
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]   7%|▋         | 2/30 [02:56<27:34, 59.07s/it]
+[WADI_clean:TranAD]  10%|█         | 3/30 [02:25<22:09, 49.24s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 3,    L1 = 0.43132413994235275
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  10%|█         | 3/30 [03:13<22:09, 49.24s/it]
+[WADI_clean:TranAD]   3%|▎         | 1/30 [01:29<43:24, 89.80s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 1,    L1 = 0.49937353131238243
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]   3%|▎         | 1/30 [03:07<43:24, 89.80s/it]
+[WADI_clean:TranAD]  10%|█         | 3/30 [02:42<24:24, 54.25s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 3,    L1 = 0.4291304053334583
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  10%|█         | 3/30 [03:32<24:24, 54.25s/it]
+[gpu] WADI_clean:TranAD heartbeat t+240s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+240s alloc=0.00G
+[WADI_clean:TranAD]  13%|█▎        | 4/30 [03:13<21:02, 48.55s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 4,    L1 = 0.4237147284759783
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  13%|█▎        | 4/30 [04:00<21:02, 48.55s/it]
+[gpu] WADI_clean:TranAD heartbeat t+240s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+240s alloc=0.00G
+[WADI_clean:TranAD]  10%|█         | 3/30 [02:56<26:27, 58.80s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 3,    L1 = 0.430053252380396
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  10%|█         | 3/30 [03:55<26:27, 58.80s/it]
+[gpu] WADI_clean:TranAD heartbeat t+240s alloc=0.00G
+[WADI_clean:TranAD]  13%|█▎        | 4/30 [03:32<22:46, 52.57s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 4,    L1 = 0.42156995217912935
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  13%|█▎        | 4/30 [04:26<22:46, 52.57s/it]
+[WADI_clean:TranAD]   7%|▋         | 2/30 [03:07<43:57, 94.21s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 2,    L1 = 0.4470421808724691
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]   7%|▋         | 2/30 [04:28<43:57, 94.21s/it]
+[WADI_clean:TranAD]   7%|▋         | 2/30 [02:48<40:12, 86.17s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 2,    L1 = 0.4478817393252745
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]   7%|▋         | 2/30 [04:32<40:12, 86.17s/it]
+[WADI_clean:TranAD]  17%|█▋        | 5/30 [04:00<19:56, 47.88s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 5,    L1 = 0.41771491593871185
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  17%|█▋        | 5/30 [04:46<19:56, 47.88s/it]
+[gpu] WADI_clean:TranAD heartbeat t+300s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+300s alloc=0.00G
+[WADI_clean:TranAD]  13%|█▎        | 4/30 [03:55<25:29, 58.84s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 4,    L1 = 0.42225426683418127
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  13%|█▎        | 4/30 [04:52<25:29, 58.84s/it]
+[gpu] WADI_clean:TranAD heartbeat t+300s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+300s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+300s alloc=0.00G
+[WADI_clean:TranAD]  17%|█▋        | 5/30 [04:26<22:06, 53.08s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 5,    L1 = 0.41613069621520954
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  17%|█▋        | 5/30 [05:19<22:06, 53.08s/it]
+[WADI_clean:TranAD]  20%|██        | 6/30 [04:46<18:58, 47.45s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 6,    L1 = 0.41213819953395725
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  20%|██        | 6/30 [05:32<18:58, 47.45s/it]
+[WADI_clean:TranAD]  10%|█         | 3/30 [04:28<39:48, 88.46s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 3,    L1 = 0.4314479932407765
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  10%|█         | 3/30 [05:31<39:48, 88.46s/it]
+[WADI_clean:TranAD]  10%|█         | 3/30 [04:32<42:27, 94.37s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 3,    L1 = 0.43273911480510796
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  10%|█         | 3/30 [05:47<42:27, 94.37s/it]
+[gpu] WADI_clean:TranAD heartbeat t+360s alloc=0.00G
+[WADI_clean:TranAD]  17%|█▋        | 5/30 [04:52<24:19, 58.37s/it]
+[WADI_clean:TranAD] 
+[gpu] WADI_clean:TranAD heartbeat t+360s alloc=0.00G[WADI_clean:TranAD] Epoch 5,        L1 = 0.41695990630989166
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  17%|█▋        | 5/30 [05:47<24:19, 58.37s/it]
+
+[gpu] WADI_clean:TranAD heartbeat t+360s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+360s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+360s alloc=0.00G
+[WADI_clean:TranAD]  20%|██        | 6/30 [05:19<21:13, 53.08s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 6,    L1 = 0.4127449694941911
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  20%|██        | 6/30 [06:14<21:13, 53.08s/it]
+[WADI_clean:TranAD]  23%|██▎       | 7/30 [05:32<18:00, 46.98s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 7,    L1 = 0.408989802513387
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  23%|██▎       | 7/30 [06:18<18:00, 46.98s/it]
+[WADI_clean:TranAD]  13%|█▎        | 4/30 [05:31<33:57, 78.35s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 4,    L1 = 0.42325413003442336
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  13%|█▎        | 4/30 [06:25<33:57, 78.35s/it]
+[WADI_clean:TranAD]  20%|██        | 6/30 [05:47<22:49, 57.08s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 6,    L1 = 0.4123715545380485
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  20%|██        | 6/30 [06:41<22:49, 57.08s/it]
+[gpu] WADI_clean:TranAD heartbeat t+420s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+420s alloc=0.00G
+[WADI_clean:TranAD]  13%|█▎        | 4/30 [05:47<37:27, 86.43s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 4,    L1 = 0.4244925132534827
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  13%|█▎        | 4/30 [06:55<37:27, 86.43s/it]
+[gpu] WADI_clean:TranAD heartbeat t+420s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+420s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+420s alloc=0.00G
+[WADI_clean:TranAD]  27%|██▋       | 8/30 [06:18<17:04, 46.58s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 8,    L1 = 0.40821218617005217
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  27%|██▋       | 8/30 [07:04<17:04, 46.58s/it]
+[WADI_clean:TranAD]  23%|██▎       | 7/30 [06:14<20:30, 53.50s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 7,    L1 = 0.41051807442944355
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  23%|██▎       | 7/30 [07:05<20:30, 53.50s/it]
+[WADI_clean:TranAD]  17%|█▋        | 5/30 [06:25<28:59, 69.58s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 5,    L1 = 0.4179595746282263
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  17%|█▋        | 5/30 [07:20<28:59, 69.58s/it]
+[WADI_clean:TranAD]  23%|██▎       | 7/30 [06:41<21:30, 56.12s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 7,    L1 = 0.4097175340230469
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  23%|██▎       | 7/30 [07:38<21:30, 56.12s/it]
+[WADI_clean:TranAD]  30%|███       | 9/30 [07:04<16:14, 46.42s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 9,    L1 = 0.40632777861630937
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  30%|███       | 9/30 [07:50<16:14, 46.42s/it]
+[gpu] WADI_clean:TranAD heartbeat t+480s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+480s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+480s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+480s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+480s alloc=0.00G
+[WADI_clean:TranAD]  27%|██▋       | 8/30 [07:05<19:23, 52.88s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 8,    L1 = 0.4078585044594807
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  27%|██▋       | 8/30 [08:03<19:23, 52.88s/it]
+[WADI_clean:TranAD]  17%|█▋        | 5/30 [06:55<33:18, 79.93s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 5,    L1 = 0.41907854302866815
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  17%|█▋        | 5/30 [08:00<33:18, 79.93s/it]
+[WADI_clean:TranAD]  20%|██        | 6/30 [07:20<25:47, 64.46s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 6,    L1 = 0.4146887543102267
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  20%|██        | 6/30 [08:13<25:47, 64.46s/it]
+[WADI_clean:TranAD]  33%|███▎      | 10/30 [07:50<15:23, 46.19s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 10,   L1 = 0.4038817429912032
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  33%|███▎      | 10/30 [08:35<15:23, 46.19s/it]
+[WADI_clean:TranAD]  27%|██▋       | 8/30 [07:38<20:40, 56.41s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 8,    L1 = 0.40712460809878
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  27%|██▋       | 8/30 [08:34<20:40, 56.41s/it]
+[gpu] WADI_clean:TranAD heartbeat t+540s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+540s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+540s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+540s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+540s alloc=0.00G
+[WADI_clean:TranAD]  20%|██        | 6/30 [08:00<29:57, 74.91s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 6,    L1 = 0.41415194202013933
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  20%|██        | 6/30 [09:00<29:57, 74.91s/it]
+[WADI_clean:TranAD]  30%|███       | 9/30 [08:03<18:59, 54.27s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 9,    L1 = 0.4056158645069424
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  30%|███       | 9/30 [09:09<18:59, 54.27s/it]
+[WADI_clean:TranAD]  23%|██▎       | 7/30 [08:13<23:15, 60.69s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 7,    L1 = 0.41035241413660967
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  23%|██▎       | 7/30 [09:10<23:15, 60.69s/it]
+[WADI_clean:TranAD]  37%|███▋      | 11/30 [08:35<14:32, 45.94s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 11,   L1 = 0.40219617714014566
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  37%|███▋      | 11/30 [09:21<14:32, 45.94s/it]
+[WADI_clean:TranAD]  30%|███       | 9/30 [08:34<19:41, 56.28s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 9,    L1 = 0.40482400328552937
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  30%|███       | 9/30 [09:30<19:41, 56.28s/it]
+[gpu] WADI_clean:TranAD heartbeat t+600s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+600s alloc=0.00G
+[WADI_clean:TranAD]  23%|██▎       | 7/30 [09:00<26:46, 69.84s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 7,    L1 = 0.41114462039404553
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  23%|██▎       | 7/30 [09:55<26:46, 69.84s/it]
+[gpu] WADI_clean:TranAD heartbeat t+600s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+600s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+600s alloc=0.00G
+[WADI_clean:TranAD]  40%|████      | 12/30 [09:21<13:46, 45.90s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 12,   L1 = 0.4006889478271587
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  40%|████      | 12/30 [10:06<13:46, 45.90s/it]
+[WADI_clean:TranAD]  27%|██▋       | 8/30 [09:10<21:50, 59.55s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 8,    L1 = 0.40787960661857786
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  27%|██▋       | 8/30 [10:06<21:50, 59.55s/it]
+[WADI_clean:TranAD]  33%|███▎      | 10/30 [09:09<19:21, 58.08s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 10,   L1 = 0.4029955350312284
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  33%|███▎      | 10/30 [10:16<19:21, 58.08s/it]
+[WADI_clean:TranAD]  33%|███▎      | 10/30 [09:30<18:44, 56.20s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 10,   L1 = 0.4032400232932696
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  33%|███▎      | 10/30 [10:26<18:44, 56.20s/it]
+[WADI_clean:TranAD]  43%|████▎     | 13/30 [10:06<12:57, 45.75s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 13,   L1 = 0.3993298679006819
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  43%|████▎     | 13/30 [10:52<12:57, 45.75s/it]
+[gpu] WADI_clean:TranAD heartbeat t+660s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+660s alloc=0.00G
+[WADI_clean:TranAD]  27%|██▋       | 8/30 [09:55<23:54, 65.19s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 8,    L1 = 0.4087099023345633
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  27%|██▋       | 8/30 [10:51<23:54, 65.19s/it]
+[gpu] WADI_clean:TranAD heartbeat t+660s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+660s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+660s alloc=0.00G
+[WADI_clean:TranAD]  30%|███       | 9/30 [10:06<20:31, 58.64s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 9,    L1 = 0.4058347838348899
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  30%|███       | 9/30 [11:04<20:31, 58.64s/it]
+[WADI_clean:TranAD]  37%|███▋      | 11/30 [10:16<19:11, 60.60s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 11,   L1 = 0.4026739408199783
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  37%|███▋      | 11/30 [11:22<19:11, 60.60s/it]
+[WADI_clean:TranAD]  37%|███▋      | 11/30 [10:26<17:46, 56.16s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 11,   L1 = 0.40155031224545606
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  37%|███▋      | 11/30 [11:21<17:46, 56.16s/it]
+[WADI_clean:TranAD]  47%|████▋     | 14/30 [10:52<12:12, 45.75s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 14,   L1 = 0.3988164356054334
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  47%|████▋     | 14/30 [11:37<12:12, 45.75s/it]
+[gpu] WADI_clean:TranAD heartbeat t+720s alloc=0.00G
+[WADI_clean:TranAD]  30%|███       | 9/30 [10:51<21:48, 62.33s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 9,    L1 = 0.40565298978986786
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  30%|███       | 9/30 [11:49<21:48, 62.33s/it]
+[gpu] WADI_clean:TranAD heartbeat t+720s alloc=0.00G
+Container terminated due to preemption. Your Function will be restarted with the same input. For more details, see https://modal.com/docs/guide/preemption
+[gpu] WADI_clean:TranAD heartbeat t+720s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+720s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+720s alloc=0.00G
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+[sota] $ git clone --depth 1 https://github.com/imperial-qore/TranAD.git
+[WADI_clean:TranAD]  50%|█████     | 15/30 [11:37<11:25, 45.67s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 15,   L1 = 0.39782654300793935
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  50%|█████     | 15/30 [12:23<11:25, 45.67s/it]
+[WADI_clean:TranAD]  33%|███▎      | 10/30 [11:04<19:28, 58.41s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 10,   L1 = 0.40376415778237107
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  33%|███▎      | 10/30 [12:18<19:28, 58.41s/it]
+[WADI_clean:TranAD]  40%|████      | 12/30 [11:21<16:40, 55.57s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 12,   L1 = 0.40004877432524477
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  40%|████      | 12/30 [12:19<16:40, 55.57s/it]
+[sota] patched ds=WADI_clean model=TranAD fp32=True dump=ok
+[sota] WADI_clean train(78458, 122) test(17281, 122) anom=0.058
+[sota] === training WADI_clean:TranAD (NEPOCHS=30, fp32=True) ===
+[gpu] WADI_clean:TranAD heartbeat t+780s alloc=0.00G
+[WADI_clean:TranAD]  33%|███▎      | 10/30 [11:49<20:21, 61.08s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 10,   L1 = 0.40332616114499714
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  33%|███▎      | 10/30 [12:48<20:21, 61.08s/it]
+[WADI_clean:TranAD] /opt/conda/lib/python3.11/site-packages/torch/nn/modules/transformer.py:307: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer was not TransformerEncoderLayer
+[WADI_clean:TranAD]   warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+[WADI_clean:TranAD] [92mCreating new model: TranAD[0m
+[WADI_clean:TranAD] [95mTraining TranAD on WADI[0m
+[WADI_clean:TranAD] 
+[gpu] WADI_clean:TranAD heartbeat t+780s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+780s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+780s alloc=0.00G
+[WADI_clean:TranAD]  53%|█████▎    | 16/30 [12:23<10:39, 45.67s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 16,   L1 = 0.3968627661904153
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  53%|█████▎    | 16/30 [13:09<10:39, 45.67s/it]
+[WADI_clean:TranAD]  43%|████▎     | 13/30 [12:19<16:00, 56.50s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 13,   L1 = 0.398857902911709
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  43%|████▎     | 13/30 [13:12<16:00, 56.50s/it]
+[WADI_clean:TranAD]  37%|███▋      | 11/30 [12:18<20:01, 63.22s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 11,   L1 = 0.4035846254565004
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  37%|███▋      | 11/30 [13:17<20:01, 63.22s/it]
+[WADI_clean:TranAD]  37%|███▋      | 11/30 [12:48<19:09, 60.52s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 11,   L1 = 0.4017848532896057
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  37%|███▋      | 11/30 [13:48<19:09, 60.52s/it]
+[gpu] WADI_clean:TranAD heartbeat t+840s alloc=0.00G
+[WADI_clean:TranAD]  57%|█████▋    | 17/30 [13:09<09:53, 45.63s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 17,   L1 = 0.3961852380784067
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  57%|█████▋    | 17/30 [13:54<09:53, 45.63s/it]
+[gpu] WADI_clean:TranAD heartbeat t+60s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+840s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+840s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+840s alloc=0.00G
+[WADI_clean:TranAD]   0%|          | 0/30 [00:00<?, ?it/s]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 0,    L1 = 0.5108718376661397
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]   0%|          | 0/30 [01:03<?, ?it/s]
+[WADI_clean:TranAD]  47%|████▋     | 14/30 [13:12<14:48, 55.53s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 14,   L1 = 0.3980037534266078
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  47%|████▋     | 14/30 [14:05<14:48, 55.53s/it]
+[WADI_clean:TranAD]  40%|████      | 12/30 [13:17<18:30, 61.71s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 12,   L1 = 0.4021298055693531
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  40%|████      | 12/30 [14:21<18:30, 61.71s/it]
+[WADI_clean:TranAD]  60%|██████    | 18/30 [13:54<09:06, 45.57s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 18,   L1 = 0.39554189558810937
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  60%|██████    | 18/30 [14:40<09:06, 45.57s/it]
+[WADI_clean:TranAD]  40%|████      | 12/30 [13:48<18:01, 60.08s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 12,   L1 = 0.4005931666634406
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  40%|████      | 12/30 [14:46<18:01, 60.08s/it]
+[gpu] WADI_clean:TranAD heartbeat t+900s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+120s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+900s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+900s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+900s alloc=0.00G
+[WADI_clean:TranAD]  50%|█████     | 15/30 [14:05<13:40, 54.73s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 15,   L1 = 0.3972349175378121
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  50%|█████     | 15/30 [14:59<13:40, 54.73s/it]
+[WADI_clean:TranAD]   3%|▎         | 1/30 [01:03<30:51, 63.84s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 1,    L1 = 0.5014962134411829
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]   3%|▎         | 1/30 [02:07<30:51, 63.84s/it]
+[WADI_clean:TranAD]  63%|██████▎   | 19/30 [14:40<08:20, 45.52s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 19,   L1 = 0.3952451282671575
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  63%|██████▎   | 19/30 [15:25<08:20, 45.52s/it]
+[WADI_clean:TranAD]  43%|████▎     | 13/30 [14:21<17:42, 62.49s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 13,   L1 = 0.4007611566908402
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  43%|████▎     | 13/30 [15:22<17:42, 62.49s/it]
+[gpu] WADI_clean:TranAD heartbeat t+960s alloc=0.00G
+[WADI_clean:TranAD]  43%|████▎     | 13/30 [14:46<16:55, 59.74s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 13,   L1 = 0.4000386791410104
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  43%|████▎     | 13/30 [15:48<16:55, 59.74s/it]
+[gpu] WADI_clean:TranAD heartbeat t+180s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+960s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+960s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+960s alloc=0.00G
+[WADI_clean:TranAD]  53%|█████▎    | 16/30 [14:59<12:42, 54.45s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 16,   L1 = 0.39668560750041076
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  53%|█████▎    | 16/30 [15:58<12:42, 54.45s/it]
+[WADI_clean:TranAD]  67%|██████▋   | 20/30 [15:25<07:35, 45.52s/it]
+[WADI_clean:TranAD]   7%|▋         | 2/30 [02:07<29:49, 63.92s/it][WADI_clean:TranAD]
+[WADI_clean:TranAD] Epoch 20,   L1 = 0.39420735337703106
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  67%|██████▋   | 20/30 [16:11<07:35, 45.52s/it]
+
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 2,    L1 = 0.44355426429729866
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]   7%|▋         | 2/30 [03:09<29:49, 63.92s/it]
+[WADI_clean:TranAD]  47%|████▋     | 14/30 [15:22<16:33, 62.10s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 14,   L1 = 0.3993006388232914
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  47%|████▋     | 14/30 [16:22<16:33, 62.10s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1020s alloc=0.00G
+[WADI_clean:TranAD]  47%|████▋     | 14/30 [15:48<16:05, 60.33s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 14,   L1 = 0.39897557490218133
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  47%|████▋     | 14/30 [16:48<16:05, 60.33s/it]
+[WADI_clean:TranAD]  70%|███████   | 21/30 [16:11<06:49, 45.53s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 21,   L1 = 0.3936225689011725
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  70%|███████   | 21/30 [16:56<06:49, 45.53s/it]
+[gpu] WADI_clean:TranAD heartbeat t+240s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+1020s alloc=0.00G
+[WADI_clean:TranAD]  57%|█████▋    | 17/30 [15:58<12:03, 55.65s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 17,   L1 = 0.39587672611434155
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  57%|█████▋    | 17/30 [16:53<12:03, 55.65s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1020s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+1020s alloc=0.00G
+[WADI_clean:TranAD]  10%|█         | 3/30 [03:09<28:20, 63.00s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 3,    L1 = 0.4291304053334583
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  10%|█         | 3/30 [04:04<28:20, 63.00s/it]
+[WADI_clean:TranAD]  50%|█████     | 15/30 [16:22<15:20, 61.36s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 15,   L1 = 0.39815095215306584
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  50%|█████     | 15/30 [17:24<15:20, 61.36s/it]
+[WADI_clean:TranAD]  73%|███████▎  | 22/30 [16:56<06:04, 45.50s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 22,   L1 = 0.3932419956022141
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  73%|███████▎  | 22/30 [17:42<06:04, 45.50s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1080s alloc=0.00G
+[WADI_clean:TranAD]  50%|█████     | 15/30 [16:48<15:04, 60.31s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 15,   L1 = 0.39788687720189864
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  50%|█████     | 15/30 [17:48<15:04, 60.31s/it]
+[gpu] WADI_clean:TranAD heartbeat t+300s alloc=0.00G
+[WADI_clean:TranAD]  60%|██████    | 18/30 [16:53<11:08, 55.71s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 18,   L1 = 0.39516359937132667
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  60%|██████    | 18/30 [17:49<11:08, 55.71s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1080s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+1080s alloc=0.00G
+[WADI_clean:TranAD]  13%|█▎        | 4/30 [04:04<25:55, 59.81s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 4,    L1 = 0.42156995217912935
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  13%|█▎        | 4/30 [05:02<25:55, 59.81s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1080s alloc=0.00G
+[WADI_clean:TranAD]  77%|███████▋  | 23/30 [17:42<05:19, 45.62s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 23,   L1 = 0.3927556425819195
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  77%|███████▋  | 23/30 [18:27<05:19, 45.62s/it]
+[WADI_clean:TranAD]  53%|█████▎    | 16/30 [17:24<14:22, 61.61s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 16,   L1 = 0.39756469875817196
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  53%|█████▎    | 16/30 [18:25<14:22, 61.61s/it]
+[WADI_clean:TranAD]  63%|██████▎   | 19/30 [17:49<10:12, 55.66s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 19,   L1 = 0.3945160297400411
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  63%|██████▎   | 19/30 [18:45<10:12, 55.66s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1140s alloc=0.00G
+[WADI_clean:TranAD]  53%|█████▎    | 16/30 [17:48<14:02, 60.15s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 16,   L1 = 0.3970965517481233
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  53%|█████▎    | 16/30 [18:48<14:02, 60.15s/it]
+[gpu] WADI_clean:TranAD heartbeat t+360s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+1140s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+1140s alloc=0.00G
+[WADI_clean:TranAD]  17%|█▋        | 5/30 [05:02<24:34, 58.99s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 5,    L1 = 0.41613069621520954
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  17%|█▋        | 5/30 [06:01<24:34, 58.99s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1140s alloc=0.00G
+[WADI_clean:TranAD]  80%|████████  | 24/30 [18:27<04:33, 45.58s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 24,   L1 = 0.39229204159284686
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  80%|████████  | 24/30 [19:13<04:33, 45.58s/it]
+[WADI_clean:TranAD]  57%|█████▋    | 17/30 [18:25<13:18, 61.41s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 17,   L1 = 0.3966168741563405
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  57%|█████▋    | 17/30 [19:19<13:18, 61.41s/it]
+[WADI_clean:TranAD]  67%|██████▋   | 20/30 [18:45<09:17, 55.73s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 20,   L1 = 0.3937875367640282
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  67%|██████▋   | 20/30 [19:39<09:17, 55.73s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1200s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+420s alloc=0.00G
+[WADI_clean:TranAD]  57%|█████▋    | 17/30 [18:48<12:59, 59.95s/it][WADI_clean:TranAD]  83%|████████▎ | 25/30 [19:13<03:47, 45.55s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 25,   L1 = 0.39202603189727414
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 17,   L1 = 0.3960838884747242
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  57%|█████▋    | 17/30 [19:53<12:59, 59.95s/it]
+
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  83%|████████▎ | 25/30 [19:58<03:47, 45.55s/it]
+[WADI_clean:TranAD]  20%|██        | 6/30 [06:01<23:38, 59.10s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 6,    L1 = 0.4127449694941911
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  20%|██        | 6/30 [06:59<23:38, 59.10s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1200s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+1200s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+1200s alloc=0.00G
+[WADI_clean:TranAD]  60%|██████    | 18/30 [19:19<11:52, 59.38s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 18,   L1 = 0.39552107961395633
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  60%|██████    | 18/30 [20:18<11:52, 59.38s/it]
+[WADI_clean:TranAD]  70%|███████   | 21/30 [19:39<08:16, 55.21s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 21,   L1 = 0.39315524434771076
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  70%|███████   | 21/30 [20:33<08:16, 55.21s/it]
+[WADI_clean:TranAD]  87%|████████▋ | 26/30 [19:58<03:02, 45.57s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 26,   L1 = 0.39160621450639665
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  87%|████████▋ | 26/30 [20:44<03:02, 45.57s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1260s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+480s alloc=0.00G
+[WADI_clean:TranAD]  60%|██████    | 18/30 [19:53<12:18, 61.52s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 18,   L1 = 0.39540798561024626
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  60%|██████    | 18/30 [20:55<12:18, 61.52s/it]
+[WADI_clean:TranAD]  23%|██▎       | 7/30 [06:59<22:34, 58.87s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 7,    L1 = 0.41051807442944355
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  23%|██▎       | 7/30 [07:59<22:34, 58.87s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1260s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+1260s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+1260s alloc=0.00G
+[WADI_clean:TranAD]  63%|██████▎   | 19/30 [20:18<10:49, 59.08s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 19,   L1 = 0.39474480777833043
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  63%|██████▎   | 19/30 [21:13<10:49, 59.08s/it]
+[WADI_clean:TranAD]  90%|█████████ | 27/30 [20:44<02:16, 45.60s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 27,   L1 = 0.3908628167958283
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  90%|█████████ | 27/30 [21:30<02:16, 45.60s/it]
+[WADI_clean:TranAD]  73%|███████▎  | 22/30 [20:33<07:18, 54.83s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 22,   L1 = 0.39268968338192384
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  73%|███████▎  | 22/30 [21:30<07:18, 54.83s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1320s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+540s alloc=0.00G
+[WADI_clean:TranAD]  27%|██▋       | 8/30 [07:59<21:40, 59.13s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 8,    L1 = 0.4078585044594807
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  27%|██▋       | 8/30 [08:57<21:40, 59.13s/it]
+[WADI_clean:TranAD]  63%|██████▎   | 19/30 [20:55<11:17, 61.58s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 19,   L1 = 0.3949926908554883
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  63%|██████▎   | 19/30 [21:55<11:17, 61.58s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1320s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+1320s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+1320s alloc=0.00G
+[WADI_clean:TranAD]  93%|█████████▎| 28/30 [21:30<01:31, 45.64s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 28,   L1 = 0.390724297716217
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  93%|█████████▎| 28/30 [22:16<01:31, 45.64s/it]
+[WADI_clean:TranAD]  67%|██████▋   | 20/30 [21:13<09:38, 57.89s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 20,   L1 = 0.3942229925711042
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  67%|██████▋   | 20/30 [22:15<09:38, 57.89s/it]
+[WADI_clean:TranAD]  77%|███████▋  | 23/30 [21:30<06:29, 55.59s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 23,   L1 = 0.39226398375158794
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  77%|███████▋  | 23/30 [22:25<06:29, 55.59s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1380s alloc=0.00G
+[WADI_clean:TranAD]  30%|███       | 9/30 [08:57<20:35, 58.81s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 9,    L1 = 0.4056158645069424
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  30%|███       | 9/30 [09:54<20:35, 58.81s/it]
+[gpu] WADI_clean:TranAD heartbeat t+600s alloc=0.00G
+[WADI_clean:TranAD]  97%|█████████▋| 29/30 [22:16<00:45, 45.69s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 29,   L1 = 0.3904985327996788
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  97%|█████████▋| 29/30 [23:01<00:45, 45.69s/it]
+[WADI_clean:TranAD] 100%|██████████| 30/30 [23:01<00:00, 45.63s/it]
+[WADI_clean:TranAD] 100%|██████████| 30/30 [23:01<00:00, 46.06s/it]
+[WADI_clean:TranAD] [1mTraining time:  1381.6987 s[0m
+[gpu] WADI_clean:TranAD heartbeat t+1380s alloc=0.00G[WADI_clean:TranAD] [95mTesting TranAD on WADI[0m
+
+[gpu] WADI_clean:TranAD heartbeat t+1380s alloc=0.00G
+[WADI_clean:TranAD]  67%|██████▋   | 20/30 [21:55<10:11, 61.18s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 20,   L1 = 0.3944514665576412
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  67%|██████▋   | 20/30 [22:57<10:11, 61.18s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1380s alloc=0.00G
+[WADI_clean:TranAD]  70%|███████   | 21/30 [22:15<08:52, 59.14s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 21,   L1 = 0.3934357497130094
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  70%|███████   | 21/30 [23:16<08:52, 59.14s/it]
+[WADI_clean:TranAD]  80%|████████  | 24/30 [22:25<05:32, 55.37s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 24,   L1 = 0.3916861984945627
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  80%|████████  | 24/30 [23:22<05:32, 55.37s/it]
+[WADI_clean:TranAD] /root/TranAD/src/spot.py:313: RuntimeWarning: divide by zero encountered in log
+[WADI_clean:TranAD]   return 1 + np.log(s).mean()
+[WADI_clean:TranAD] /root/TranAD/src/spot.py:316: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:TranAD]   return np.mean(1 / s)
+[WADI_clean:TranAD] /root/TranAD/src/spot.py:329: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:TranAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:TranAD] /root/TranAD/src/spot.py:329: RuntimeWarning: invalid value encountered in scalar add
+[WADI_clean:TranAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:TranAD] /root/TranAD/src/spot.py:313: RuntimeWarning: divide by zero encountered in log
+[WADI_clean:TranAD]   return 1 + np.log(s).mean()
+[WADI_clean:TranAD] /root/TranAD/src/spot.py:316: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:TranAD]   return np.mean(1 / s)
+[WADI_clean:TranAD] /root/TranAD/src/spot.py:329: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:TranAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:TranAD] /root/TranAD/src/spot.py:329: RuntimeWarning: invalid value encountered in scalar add
+[WADI_clean:TranAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:TranAD] /root/TranAD/src/spot.py:313: RuntimeWarning: divide by zero encountered in log
+[WADI_clean:TranAD]   return 1 + np.log(s).mean()
+[WADI_clean:TranAD] /root/TranAD/src/spot.py:316: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:TranAD]   return np.mean(1 / s)
+[WADI_clean:TranAD] /root/TranAD/src/spot.py:329: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:TranAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:TranAD] /root/TranAD/src/spot.py:329: RuntimeWarning: invalid value encountered in scalar add
+[WADI_clean:TranAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:TranAD]            f1  precision    recall     TP  ...    FP     FN   ROC/AUC  threshold
+[WADI_clean:TranAD] 0    0.296926   0.994286  0.174524  174.0  ...   1.0  823.0  0.587231  24.805020
+[WADI_clean:TranAD] 1    0.130962   0.972222  0.070211   70.0  ...   2.0  927.0  0.535044  92.848550
+[WADI_clean:TranAD] 2    0.000000   0.000000  0.000000    0.0  ...   1.0  997.0  0.499969  18.693916
+[WADI_clean:TranAD] 3    0.000000   0.000000  0.000000    0.0  ...   1.0  997.0  0.499969  26.777884
+[WADI_clean:TranAD] 4    0.000000   0.000000  0.000000    0.0  ...  33.0  997.0  0.498987   4.094480
+[WADI_clean:TranAD] ..        ...        ...       ...    ...  ...   ...    ...       ...        ...
+[WADI_clean:TranAD] 117  0.000000   0.000000  0.000000    0.0  ...   0.0  997.0  0.500000   0.000190
+[WADI_clean:TranAD] 118  0.157115   1.000000  0.085256   85.0  ...   0.0  912.0  0.542628   0.000017
+[WADI_clean:TranAD] 119  0.000000   0.000000  0.000000    0.0  ...   0.0  997.0  0.500000  81.001020
+[WADI_clean:TranAD] 120  0.000000   0.000000  0.000000    0.0  ...   0.0  997.0  0.500000   0.000164
+[WADI_clean:TranAD] 121  0.396627   0.838188  0.259779  259.0  ...  50.0  738.0  0.628354   6.926117
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] [122 rows x 9 columns]
+[WADI_clean:TranAD] {'FN': 997,
+[WADI_clean:TranAD]  'FP': 18,
+[WADI_clean:TranAD]  'Hit@100%': 1.0,
+[WADI_clean:TranAD]  'Hit@150%': 1.0,
+[WADI_clean:TranAD]  'NDCG@100%': 1.0000000000000002,
+[WADI_clean:TranAD]  'NDCG@150%': 1.0000000000000002,
+[WADI_clean:TranAD]  'ROC/AUC': 0.4994473102431835,
+[WADI_clean:TranAD]  'TN': 16266,
+[WADI_clean:TranAD]  'TP': 0,
+[WADI_clean:TranAD]  'f1': 0.0,
+[WADI_clean:TranAD]  'precision': 0.0,
+[WADI_clean:TranAD]  'recall': 0.0,
+[WADI_clean:TranAD]  'threshold': 7.545824579369698}
+[sota] DONE TranAD_WADI_clean_s0 rc=0 1430.0s raw_ALL={'AUROC': 0.805, 'bestF1': 0.418, 'F1_at5pctFPR': 0.401, 'TPR_at5pctFPR': 0.455} raw_HARD={'AUROC': 0.746, 'bestF1': 0.23, 'F1_at5pctFPR': 0.167, 'TPR_at5pctFPR': 0.261}
+[WADI_clean:TranAD]  33%|███▎      | 10/30 [09:54<19:24, 58.24s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 10,   L1 = 0.4029955350312284
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  33%|███▎      | 10/30 [10:53<19:24, 58.24s/it]
+[gpu] WADI_clean:TranAD heartbeat t+660s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+1440s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+1440s alloc=0.00G
+[WADI_clean:TranAD]  70%|███████   | 21/30 [22:57<09:12, 61.38s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 21,   L1 = 0.39391978875069983
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  70%|███████   | 21/30 [23:57<09:12, 61.38s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1440s alloc=0.00G
+[WADI_clean:TranAD]  73%|███████▎  | 22/30 [23:16<07:57, 59.72s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 22,   L1 = 0.3929187190182641
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  73%|███████▎  | 22/30 [24:12<07:57, 59.72s/it]
+[WADI_clean:TranAD]  83%|████████▎ | 25/30 [23:22<04:38, 55.73s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 25,   L1 = 0.3911889635427547
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  83%|████████▎ | 25/30 [24:17<04:38, 55.73s/it]
+[WADI_clean:TranAD]  37%|███▋      | 11/30 [10:53<18:29, 58.38s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 11,   L1 = 0.4026739408199783
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  37%|███▋      | 11/30 [11:52<18:29, 58.38s/it]
+[gpu] WADI_clean:TranAD heartbeat t+720s alloc=0.00G
+[WADI_clean:TranAD]  73%|███████▎  | 22/30 [23:57<08:07, 60.93s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 22,   L1 = 0.39331804184306896
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  73%|███████▎  | 22/30 [24:54<08:07, 60.93s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1500s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+1500s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+1500s alloc=0.00G
+[WADI_clean:TranAD]  77%|███████▋  | 23/30 [24:12<06:49, 58.51s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 23,   L1 = 0.39237526117491295
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  77%|███████▋  | 23/30 [25:07<06:49, 58.51s/it]
+[WADI_clean:TranAD]  87%|████████▋ | 26/30 [24:17<03:42, 55.64s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 26,   L1 = 0.3907537455708518
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  87%|████████▋ | 26/30 [25:12<03:42, 55.64s/it]
+[WADI_clean:TranAD]  40%|████      | 12/30 [11:52<17:32, 58.48s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 12,   L1 = 0.40057632886177175
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  40%|████      | 12/30 [12:49<17:32, 58.48s/it]
+[gpu] WADI_clean:TranAD heartbeat t+780s alloc=0.00G
+[WADI_clean:TranAD]  77%|███████▋  | 23/30 [24:54<06:59, 59.86s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 23,   L1 = 0.3925970737589903
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  77%|███████▋  | 23/30 [25:53<06:59, 59.86s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1560s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+1560s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+1560s alloc=0.00G
+[WADI_clean:TranAD]  80%|████████  | 24/30 [25:07<05:44, 57.47s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 24,   L1 = 0.39201615862609124
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  80%|████████  | 24/30 [26:01<05:44, 57.47s/it]
+[WADI_clean:TranAD]  90%|█████████ | 27/30 [25:12<02:46, 55.53s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 27,   L1 = 0.390448048540663
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  90%|█████████ | 27/30 [26:09<02:46, 55.53s/it]
+[WADI_clean:TranAD]  43%|████▎     | 13/30 [12:49<16:27, 58.09s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 13,   L1 = 0.39910794675447425
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  43%|████▎     | 13/30 [13:48<16:27, 58.09s/it]
+[gpu] WADI_clean:TranAD heartbeat t+840s alloc=0.00G
+[WADI_clean:TranAD]  80%|████████  | 24/30 [25:53<05:57, 59.54s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 24,   L1 = 0.3921863521535867
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  80%|████████  | 24/30 [26:54<05:57, 59.54s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1620s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+1620s alloc=0.00G
+[WADI_clean:TranAD]  83%|████████▎ | 25/30 [26:01<04:42, 56.51s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 25,   L1 = 0.3915945242172742
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  83%|████████▎ | 25/30 [26:55<04:42, 56.51s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1620s alloc=0.00G
+[WADI_clean:TranAD]  93%|█████████▎| 28/30 [26:09<01:51, 55.97s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 28,   L1 = 0.3899627034757499
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  93%|█████████▎| 28/30 [27:04<01:51, 55.97s/it]
+[WADI_clean:TranAD]  47%|████▋     | 14/30 [13:48<15:35, 58.47s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 14,   L1 = 0.39826193271997895
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  47%|████▋     | 14/30 [14:50<15:35, 58.47s/it]
+[WADI_clean:TranAD]  87%|████████▋ | 26/30 [26:55<03:43, 55.82s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 26,   L1 = 0.39127058169970114
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  87%|████████▋ | 26/30 [27:47<03:43, 55.82s/it]
+[WADI_clean:TranAD]  83%|████████▎ | 25/30 [26:54<05:00, 60.06s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 25,   L1 = 0.3916855813239566
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  83%|████████▎ | 25/30 [27:49<05:00, 60.06s/it]
+[gpu] WADI_clean:TranAD heartbeat t+900s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+1680s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+1680s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+1680s alloc=0.00G
+[WADI_clean:TranAD]  97%|█████████▋| 29/30 [27:04<00:55, 55.57s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 29,   L1 = 0.389536406121674
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  97%|█████████▋| 29/30 [27:57<00:55, 55.57s/it]
+[WADI_clean:TranAD] 100%|██████████| 30/30 [27:57<00:00, 54.88s/it]
+[WADI_clean:TranAD] 100%|██████████| 30/30 [27:57<00:00, 55.92s/it]
+[WADI_clean:TranAD] [1mTraining time:  1677.7125 s[0m
+[WADI_clean:TranAD] [95mTesting TranAD on WADI[0m
+[WADI_clean:TranAD]            f1  precision    recall     TP  ...    FP     FN   ROC/AUC     threshold
+[WADI_clean:TranAD] 0    0.296926   0.994286  0.174524  174.0  ...   1.0  823.0  0.587231  2.463066e+01
+[WADI_clean:TranAD] 1    0.000000   0.000000  0.000000    0.0  ...   2.0  997.0  0.499939  9.284855e+01
+[WADI_clean:TranAD] 2    0.000000   0.000000  0.000000    0.0  ...   1.0  997.0  0.499969  3.001184e+01
+[WADI_clean:TranAD] 3    0.000000   0.000000  0.000000    0.0  ...   1.0  997.0  0.499969  2.677788e+01
+[WADI_clean:TranAD] 4    0.000000   0.000000  0.000000    0.0  ...  22.0  997.0  0.499324  4.131158e+00
+[WADI_clean:TranAD] ..        ...        ...       ...    ...  ...   ...    ...       ...           ...
+[WADI_clean:TranAD] 117  0.000000   0.000000  0.000000    0.0  ...   1.0  997.0  0.499969  1.971985e-05
+[WADI_clean:TranAD] 118  0.000000   0.000000  0.000000    0.0  ...   0.0  997.0  0.500000  8.088366e-05
+[WADI_clean:TranAD] 119  0.000000   0.000000  0.000000    0.0  ...   0.0  997.0  0.500000  8.819576e+01
+[WADI_clean:TranAD] 120  0.000000   0.000000  0.000000    0.0  ...   0.0  997.0  0.500000  3.908111e+12
+[WADI_clean:TranAD] 121  0.396627   0.838188  0.259779  259.0  ...  50.0  738.0  0.628354  6.926117e+00
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] [122 rows x 9 columns]
+[WADI_clean:TranAD] {'FN': 997,
+[WADI_clean:TranAD]  'FP': 18,
+[WADI_clean:TranAD]  'Hit@100%': 1.0,
+[WADI_clean:TranAD]  'Hit@150%': 1.0,
+[WADI_clean:TranAD]  'NDCG@100%': 1.0000000000000004,
+[WADI_clean:TranAD]  'NDCG@150%': 1.0000000000000004,
+[WADI_clean:TranAD]  'ROC/AUC': 0.4994473102431835,
+[WADI_clean:TranAD]  'TN': 16266,
+[WADI_clean:TranAD]  'TP': 0,
+[WADI_clean:TranAD]  'f1': 0.0,
+[WADI_clean:TranAD]  'precision': 0.0,
+[WADI_clean:TranAD]  'recall': 0.0,
+[WADI_clean:TranAD]  'threshold': 7.550028766862151}
+[sota] DONE TranAD_WADI_clean_s4 rc=0 1725.3s raw_ALL={'AUROC': 0.805, 'bestF1': 0.427, 'F1_at5pctFPR': 0.401, 'TPR_at5pctFPR': 0.455} raw_HARD={'AUROC': 0.746, 'bestF1': 0.23, 'F1_at5pctFPR': 0.167, 'TPR_at5pctFPR': 0.261}
+[WADI_clean:TranAD]  90%|█████████ | 27/30 [27:47<02:43, 54.45s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 27,   L1 = 0.3908833640142911
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  90%|█████████ | 27/30 [28:39<02:43, 54.45s/it]
+[WADI_clean:TranAD]  87%|████████▋ | 26/30 [27:49<03:53, 58.42s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 26,   L1 = 0.3912815408109646
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  87%|████████▋ | 26/30 [28:44<03:53, 58.42s/it]
+[WADI_clean:TranAD]  50%|█████     | 15/30 [14:50<14:52, 59.47s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 15,   L1 = 0.3970971786421625
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  50%|█████     | 15/30 [15:51<14:52, 59.47s/it]
+[gpu] WADI_clean:TranAD heartbeat t+960s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+1740s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+1740s alloc=0.00G
+[WADI_clean:TranAD]  93%|█████████▎| 28/30 [28:39<01:47, 53.90s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 28,   L1 = 0.3903788941233232
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  93%|█████████▎| 28/30 [29:36<01:47, 53.90s/it]
+[WADI_clean:TranAD]  90%|█████████ | 27/30 [28:44<02:52, 57.51s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 27,   L1 = 0.39084982130597506
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  90%|█████████ | 27/30 [29:41<02:52, 57.51s/it]
+[WADI_clean:TranAD]  53%|█████▎    | 16/30 [15:51<13:59, 59.97s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 16,   L1 = 0.39608441293239594
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  53%|█████▎    | 16/30 [16:53<13:59, 59.97s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1020s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+1800s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+1800s alloc=0.00G
+[WADI_clean:TranAD]  97%|█████████▋| 29/30 [29:36<00:54, 54.68s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 29,   L1 = 0.3900380031271043
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  97%|█████████▋| 29/30 [30:34<00:54, 54.68s/it]
+[WADI_clean:TranAD] 100%|██████████| 30/30 [30:34<00:00, 55.86s/it]
+[WADI_clean:TranAD] 100%|██████████| 30/30 [30:34<00:00, 61.16s/it]
+[WADI_clean:TranAD] [1mTraining time:  1834.8369 s[0m
+[WADI_clean:TranAD] [95mTesting TranAD on WADI[0m
+[WADI_clean:TranAD]  93%|█████████▎| 28/30 [29:41<01:55, 57.51s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 28,   L1 = 0.3904282317708017
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  93%|█████████▎| 28/30 [30:40<01:55, 57.51s/it]
+[WADI_clean:TranAD]  57%|█████▋    | 17/30 [16:53<13:07, 60.57s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 17,   L1 = 0.3952862325247505
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  57%|█████▋    | 17/30 [17:54<13:07, 60.57s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1080s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+1860s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+1860s alloc=0.00G
+[WADI_clean:TranAD]            f1  precision    recall     TP  ...    FP     FN   ROC/AUC  threshold
+[WADI_clean:TranAD] 0    0.296926   0.994286  0.174524  174.0  ...   1.0  823.0  0.587231  24.583608
+[WADI_clean:TranAD] 1    0.130962   0.972222  0.070211   70.0  ...   2.0  927.0  0.535044  92.848550
+[WADI_clean:TranAD] 2    0.000000   0.000000  0.000000    0.0  ...   1.0  997.0  0.499969  32.730196
+[WADI_clean:TranAD] 3    0.000000   0.000000  0.000000    0.0  ...   1.0  997.0  0.499969  26.777887
+[WADI_clean:TranAD] 4    0.000000   0.000000  0.000000    0.0  ...  22.0  997.0  0.499324   4.138782
+[WADI_clean:TranAD] ..        ...        ...       ...    ...  ...   ...    ...       ...        ...
+[WADI_clean:TranAD] 117  0.000000   0.000000  0.000000    0.0  ...   0.0  997.0  0.500000   0.000008
+[WADI_clean:TranAD] 118  0.000000   0.000000  0.000000    0.0  ...   4.0  997.0  0.499877   0.000027
+[WADI_clean:TranAD] 119  0.245496   0.666667  0.150451  150.0  ...  75.0  847.0  0.572923  56.333364
+[WADI_clean:TranAD] 120  0.109952   1.000000  0.058175   58.0  ...   0.0  939.0  0.529087   0.000045
+[WADI_clean:TranAD] 121  0.396627   0.838188  0.259779  259.0  ...  50.0  738.0  0.628354   6.926117
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] [122 rows x 9 columns]
+[WADI_clean:TranAD] {'FN': 997,
+[WADI_clean:TranAD]  'FP': 18,
+[WADI_clean:TranAD]  'Hit@100%': 1.0,
+[WADI_clean:TranAD]  'Hit@150%': 1.0,
+[WADI_clean:TranAD]  'NDCG@100%': 1.0000000000000004,
+[WADI_clean:TranAD]  'NDCG@150%': 1.0000000000000004,
+[WADI_clean:TranAD]  'ROC/AUC': 0.4994473102431835,
+[WADI_clean:TranAD]  'TN': 16266,
+[WADI_clean:TranAD]  'TP': 0,
+[WADI_clean:TranAD]  'f1': 0.0,
+[WADI_clean:TranAD]  'precision': 0.0,
+[WADI_clean:TranAD]  'recall': 0.0,
+[WADI_clean:TranAD]  'threshold': 7.542480894725334}
+[sota] DONE TranAD_WADI_clean_s1 rc=0 1886.1s raw_ALL={'AUROC': 0.805, 'bestF1': 0.415, 'F1_at5pctFPR': 0.394, 'TPR_at5pctFPR': 0.446} raw_HARD={'AUROC': 0.746, 'bestF1': 0.23, 'F1_at5pctFPR': 0.164, 'TPR_at5pctFPR': 0.257}
+[WADI_clean:TranAD]  97%|█████████▋| 29/30 [30:40<00:57, 57.71s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 29,   L1 = 0.3900122976030844
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  97%|█████████▋| 29/30 [31:41<00:57, 57.71s/it]
+[WADI_clean:TranAD] 100%|██████████| 30/30 [31:41<00:00, 58.81s/it]
+[WADI_clean:TranAD] 100%|██████████| 30/30 [31:41<00:00, 63.38s/it]
+[WADI_clean:TranAD] [1mTraining time:  1901.5316 s[0m
+[WADI_clean:TranAD] [95mTesting TranAD on WADI[0m
+[WADI_clean:TranAD]  60%|██████    | 18/30 [17:54<12:08, 60.70s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 18,   L1 = 0.39472594035585784
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  60%|██████    | 18/30 [18:53<12:08, 60.70s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1140s alloc=0.00G
+[gpu] WADI_clean:TranAD heartbeat t+1920s alloc=0.00G
+[WADI_clean:TranAD] /root/TranAD/src/spot.py:313: RuntimeWarning: divide by zero encountered in log
+[WADI_clean:TranAD]   return 1 + np.log(s).mean()
+[WADI_clean:TranAD] /root/TranAD/src/spot.py:316: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:TranAD]   return np.mean(1 / s)
+[WADI_clean:TranAD] /root/TranAD/src/spot.py:329: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:TranAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:TranAD] /root/TranAD/src/spot.py:329: RuntimeWarning: invalid value encountered in scalar add
+[WADI_clean:TranAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:TranAD]            f1  precision    recall     TP  ...    FP     FN   ROC/AUC     threshold
+[WADI_clean:TranAD] 0    0.296926   0.994286  0.174524  174.0  ...   1.0  823.0  0.587231  2.434455e+01
+[WADI_clean:TranAD] 1    0.130962   0.972222  0.070211   70.0  ...   2.0  927.0  0.535044  9.284855e+01
+[WADI_clean:TranAD] 2    0.000000   0.000000  0.000000    0.0  ...   1.0  997.0  0.499969  2.329940e+01
+[WADI_clean:TranAD] 3    0.000000   0.000000  0.000000    0.0  ...   1.0  997.0  0.499969  2.677788e+01
+[WADI_clean:TranAD] 4    0.258007   0.809524  0.153460  153.0  ...  36.0  844.0  0.575625  4.093664e+00
+[WADI_clean:TranAD] ..        ...        ...       ...    ...  ...   ...    ...       ...           ...
+[WADI_clean:TranAD] 117  0.000000   0.000000  0.000000    0.0  ...   0.0  997.0  0.500000  4.712538e+17
+[WADI_clean:TranAD] 118  0.000000   0.000000  0.000000    0.0  ...   0.0  997.0  0.500000  5.267151e-04
+[WADI_clean:TranAD] 119  0.000000   0.000000  0.000000    0.0  ...   2.0  997.0  0.499939  8.100014e+01
+[WADI_clean:TranAD] 120  0.000000   0.000000  0.000000    0.0  ...   1.0  997.0  0.499969  2.859937e-04
+[WADI_clean:TranAD] 121  0.152328   0.714286  0.085256   85.0  ...  34.0  912.0  0.541584  6.926117e+00
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] [122 rows x 9 columns]
+[WADI_clean:TranAD] {'FN': 997,
+[WADI_clean:TranAD]  'FP': 16,
+[WADI_clean:TranAD]  'Hit@100%': 1.0,
+[WADI_clean:TranAD]  'Hit@150%': 1.0,
+[WADI_clean:TranAD]  'NDCG@100%': 1.0000000000000004,
+[WADI_clean:TranAD]  'NDCG@150%': 1.0000000000000004,
+[WADI_clean:TranAD]  'ROC/AUC': 0.4995087202161631,
+[WADI_clean:TranAD]  'TN': 16268,
+[WADI_clean:TranAD]  'TP': 0,
+[WADI_clean:TranAD]  'f1': 0.0,
+[WADI_clean:TranAD]  'precision': 0.0,
+[WADI_clean:TranAD]  'recall': 0.0,
+[WADI_clean:TranAD]  'threshold': 7.580046684210829}
+[sota] DONE TranAD_WADI_clean_s3 rc=0 1951.7s raw_ALL={'AUROC': 0.806, 'bestF1': 0.43, 'F1_at5pctFPR': 0.398, 'TPR_at5pctFPR': 0.451} raw_HARD={'AUROC': 0.748, 'bestF1': 0.231, 'F1_at5pctFPR': 0.168, 'TPR_at5pctFPR': 0.264}
+[WADI_clean:TranAD]  63%|██████▎   | 19/30 [18:53<11:02, 60.25s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 19,   L1 = 0.3939284815484898
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  63%|██████▎   | 19/30 [19:50<11:02, 60.25s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1200s alloc=0.00G
+[WADI_clean:TranAD]  67%|██████▋   | 20/30 [19:50<09:51, 59.19s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 20,   L1 = 0.3930757830183813
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  67%|██████▋   | 20/30 [20:48<09:51, 59.19s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1260s alloc=0.00G
+[WADI_clean:TranAD]  70%|███████   | 21/30 [20:48<08:48, 58.71s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 21,   L1 = 0.39263790634386303
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  70%|███████   | 21/30 [21:48<08:48, 58.71s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1320s alloc=0.00G
+[WADI_clean:TranAD]  73%|███████▎  | 22/30 [21:48<07:53, 59.20s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 22,   L1 = 0.3920934603809338
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  73%|███████▎  | 22/30 [22:47<07:53, 59.20s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1380s alloc=0.00G
+[WADI_clean:TranAD]  77%|███████▋  | 23/30 [22:47<06:53, 59.14s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 23,   L1 = 0.3917601294511683
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  77%|███████▋  | 23/30 [23:49<06:53, 59.14s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1440s alloc=0.00G
+[WADI_clean:TranAD]  80%|████████  | 24/30 [23:49<06:00, 60.10s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 24,   L1 = 0.391553994979205
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  80%|████████  | 24/30 [24:51<06:00, 60.10s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1500s alloc=0.00G
+[WADI_clean:TranAD]  83%|████████▎ | 25/30 [24:51<05:02, 60.47s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 25,   L1 = 0.3911309910248388
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  83%|████████▎ | 25/30 [25:50<05:02, 60.47s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1560s alloc=0.00G
+[WADI_clean:TranAD]  87%|████████▋ | 26/30 [25:50<04:01, 60.28s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 26,   L1 = 0.3905178793443163
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  87%|████████▋ | 26/30 [26:50<04:01, 60.28s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1620s alloc=0.00G
+[WADI_clean:TranAD]  90%|█████████ | 27/30 [26:50<03:00, 60.19s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 27,   L1 = 0.3901262725012143
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  90%|█████████ | 27/30 [27:49<03:00, 60.19s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1680s alloc=0.00G
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+[WADI_clean:TranAD]  93%|█████████▎| 28/30 [27:49<01:59, 59.84s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 28,   L1 = 0.389678413337051
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  93%|█████████▎| 28/30 [28:50<01:59, 59.84s/it]
+[gpu] WADI_clean:TranAD heartbeat t+1740s alloc=0.00G
+[WADI_clean:TranAD]  97%|█████████▋| 29/30 [28:50<00:59, 59.94s/it]
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] Epoch 29,   L1 = 0.3893935740188518
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD]  97%|█████████▋| 29/30 [29:49<00:59, 59.94s/it]
+[WADI_clean:TranAD] 100%|██████████| 30/30 [29:49<00:00, 59.84s/it]
+[WADI_clean:TranAD] 100%|██████████| 30/30 [29:49<00:00, 59.65s/it]
+[WADI_clean:TranAD] [1mTraining time:  1789.6220 s[0m
+[WADI_clean:TranAD] [95mTesting TranAD on WADI[0m
+[gpu] WADI_clean:TranAD heartbeat t+1800s alloc=0.00G
+[WADI_clean:TranAD] /root/TranAD/src/spot.py:313: RuntimeWarning: divide by zero encountered in log
+[WADI_clean:TranAD]   return 1 + np.log(s).mean()
+[WADI_clean:TranAD] /root/TranAD/src/spot.py:316: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:TranAD]   return np.mean(1 / s)
+[WADI_clean:TranAD] /root/TranAD/src/spot.py:329: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:TranAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:TranAD] /root/TranAD/src/spot.py:329: RuntimeWarning: invalid value encountered in scalar add
+[WADI_clean:TranAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:TranAD] /root/TranAD/src/spot.py:313: RuntimeWarning: divide by zero encountered in log
+[WADI_clean:TranAD]   return 1 + np.log(s).mean()
+[WADI_clean:TranAD] /root/TranAD/src/spot.py:316: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:TranAD]   return np.mean(1 / s)
+[WADI_clean:TranAD] /root/TranAD/src/spot.py:329: RuntimeWarning: divide by zero encountered in divide
+[WADI_clean:TranAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:TranAD] /root/TranAD/src/spot.py:329: RuntimeWarning: invalid value encountered in scalar add
+[WADI_clean:TranAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[WADI_clean:TranAD]            f1  precision    recall     TP  ...    FP     FN   ROC/AUC  threshold
+[WADI_clean:TranAD] 0    0.296926   0.994286  0.174524  174.0  ...   1.0  823.0  0.587231  25.253372
+[WADI_clean:TranAD] 1    0.000000   0.000000  0.000000    0.0  ...   2.0  997.0  0.499939  92.848550
+[WADI_clean:TranAD] 2    0.000000   0.000000  0.000000    0.0  ...   1.0  997.0  0.499969  23.972737
+[WADI_clean:TranAD] 3    0.000000   0.000000  0.000000    0.0  ...   1.0  997.0  0.499969  26.777885
+[WADI_clean:TranAD] 4    0.000000   0.000000  0.000000    0.0  ...  22.0  997.0  0.499324   4.128562
+[WADI_clean:TranAD] ..        ...        ...       ...    ...  ...   ...    ...       ...        ...
+[WADI_clean:TranAD] 117  0.000000   0.000000  0.000000    0.0  ...   0.0  997.0  0.500000   0.000038
+[WADI_clean:TranAD] 118  0.000000   0.000000  0.000000    0.0  ...   1.0  997.0  0.499969   0.000008
+[WADI_clean:TranAD] 119  0.000000   0.000000  0.000000    0.0  ...   1.0  997.0  0.499969  81.000543
+[WADI_clean:TranAD] 120  0.297179   1.000000  0.174524  174.0  ...   0.0  823.0  0.587262   0.000107
+[WADI_clean:TranAD] 121  0.152328   0.714286  0.085256   85.0  ...  34.0  912.0  0.541584   6.926117
+[WADI_clean:TranAD] 
+[WADI_clean:TranAD] [122 rows x 9 columns]
+[WADI_clean:TranAD] {'FN': 997,
+[WADI_clean:TranAD]  'FP': 18,
+[WADI_clean:TranAD]  'Hit@100%': 1.0,
+[WADI_clean:TranAD]  'Hit@150%': 1.0,
+[WADI_clean:TranAD]  'NDCG@100%': 1.0000000000000004,
+[WADI_clean:TranAD]  'NDCG@150%': 1.0000000000000004,
+[WADI_clean:TranAD]  'ROC/AUC': 0.4994473102431835,
+[WADI_clean:TranAD]  'TN': 16266,
+[WADI_clean:TranAD]  'TP': 0,
+[WADI_clean:TranAD]  'f1': 0.0,
+[WADI_clean:TranAD]  'precision': 0.0,
+[WADI_clean:TranAD]  'recall': 0.0,
+[WADI_clean:TranAD]  'threshold': 7.5582723090554005}
+
+==================== SUMMARY ====================
+WADI_clean TranAD  s0 rc=0 1430.0s | ALL auroc=0.805 f1=0.418 | HARD auroc=0.746 f1=0.23 | n_eh=[561, 436]
+WADI_clean TranAD  s1 rc=0 1886.1s | ALL auroc=0.805 f1=0.415 | HARD auroc=0.746 f1=0.23 | n_eh=[561, 436]
+WADI_clean TranAD  s2 rc=0 1839.9s | ALL auroc=0.808 f1=0.424 | HARD auroc=0.751 f1=0.227 | n_eh=[561, 436]
+WADI_clean TranAD  s3 rc=0 1951.7s | ALL auroc=0.806 f1=0.43 | HARD auroc=0.748 f1=0.231 | n_eh=[561, 436]
+WADI_clean TranAD  s4 rc=0 1725.3s | ALL auroc=0.805 f1=0.427 | HARD auroc=0.746 f1=0.23 | n_eh=[561, 436]
+WADI_clean USAD    s0 rc=0 141.4s | ALL auroc=0.783 f1=0.388 | HARD auroc=0.697 f1=0.23 | n_eh=[561, 436]
+WADI_clean USAD    s1 rc=0 167.5s | ALL auroc=0.793 f1=0.394 | HARD auroc=0.729 f1=0.232 | n_eh=[561, 436]
+WADI_clean USAD    s2 rc=0 168.6s | ALL auroc=0.786 f1=0.388 | HARD auroc=0.699 f1=0.232 | n_eh=[561, 436]
+WADI_clean USAD    s3 rc=0 159.4s | ALL auroc=0.779 f1=0.388 | HARD auroc=0.694 f1=0.23 | n_eh=[561, 436]
+WADI_clean USAD    s4 rc=0 175.6s | ALL auroc=0.777 f1=0.388 | HARD auroc=0.69 f1=0.23 | n_eh=[561, 436]
+[sota] DONE TranAD_WADI_clean_s2 rc=0 1839.9s raw_ALL={'AUROC': 0.808, 'bestF1': 0.424, 'F1_at5pctFPR': 0.402, 'TPR_at5pctFPR': 0.457} raw_HARD={'AUROC': 0.751, 'bestF1': 0.227, 'F1_at5pctFPR': 0.167, 'TPR_at5pctFPR': 0.261}
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/apersteiny/main/ap-WLLMyitPFoQ3AJi8UKFK7q

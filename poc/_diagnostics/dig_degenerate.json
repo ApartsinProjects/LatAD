@@ -1,0 +1,143 @@
+{
+ "SWaT_canon": {
+  "n_degenerate": 3,
+  "floor_testnormal_top": [
+   [
+    1,
+    1.0
+   ],
+   [
+    16,
+    1.0
+   ],
+   [
+    17,
+    1.0
+   ],
+   [
+    18,
+    0.635
+   ],
+   [
+    7,
+    0.058
+   ]
+  ],
+  "all communities": {
+   "HCcoh_LatAD": [
+    0.837,
+    0.773
+   ],
+   "cohmax_LatAD": [
+    0.829,
+    0.769
+   ],
+   "S": 25
+  },
+  "exclude degenerate": {
+   "HCcoh_LatAD": [
+    0.837,
+    0.772
+   ],
+   "cohmax_LatAD": [
+    0.834,
+    0.769
+   ],
+   "S": 22
+  }
+ },
+ "WADI_clean": {
+  "n_degenerate": 0,
+  "floor_testnormal_top": [
+   [
+    11,
+    0.002
+   ],
+   [
+    27,
+    0.002
+   ],
+   [
+    20,
+    0.002
+   ],
+   [
+    39,
+    0.002
+   ],
+   [
+    6,
+    0.002
+   ]
+  ],
+  "all communities": {
+   "HCcoh_LatAD": [
+    0.771,
+    0.662
+   ],
+   "cohmax_LatAD": [
+    0.741,
+    0.658
+   ],
+   "S": 44
+  },
+  "exclude degenerate": {
+   "HCcoh_LatAD": [
+    0.771,
+    0.662
+   ],
+   "cohmax_LatAD": [
+    0.741,
+    0.658
+   ],
+   "S": 44
+  }
+ },
+ "HAI": {
+  "n_degenerate": 0,
+  "floor_testnormal_top": [
+   [
+    1,
+    0.336
+   ],
+   [
+    17,
+    0.019
+   ],
+   [
+    6,
+    0.001
+   ],
+   [
+    20,
+    0.001
+   ],
+   [
+    4,
+    0.001
+   ]
+  ],
+  "all communities": {
+   "HCcoh_LatAD": [
+    0.845,
+    0.814
+   ],
+   "cohmax_LatAD": [
+    0.832,
+    0.805
+   ],
+   "S": 28
+  },
+  "exclude degenerate": {
+   "HCcoh_LatAD": [
+    0.845,
+    0.814
+   ],
+   "cohmax_LatAD": [
+    0.832,
+    0.805
+   ],
+   "S": 28
+  }
+ }
+}

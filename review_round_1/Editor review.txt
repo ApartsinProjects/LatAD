@@ -1,0 +1,4 @@
+Editor review
+
+Please validate the assumptions that are currently unused (A3, A9, A10), provide direct experimental support for the rare-regime-safe nearest-component likelihood, report training and inference cost for edge deployment, use a time-aware statistical test, and add ablations isolating the source of the gain. Reviewer 2 additionally asks for a clearer abstract and introduction, a restructured related-work section, system-model and LatAD workflow figures, resolution of the notation conflict for z, and consistent typesetting with numbered equations. Please submit a point-by-point response with the revised manuscript.
+

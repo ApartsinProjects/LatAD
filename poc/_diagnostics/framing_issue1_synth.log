@@ -1,0 +1,87 @@
+delta=4.0 seed=0 p=0.0 sil=0.51  recon=0.923 density=0.484 gap=-0.439  [6s]
+delta=4.0 seed=0 p=0.2 sil=0.51  recon=0.854 density=0.518 gap=-0.335  [6s]
+delta=4.0 seed=0 p=0.4 sil=0.51  recon=0.734 density=0.615 gap=-0.119  [6s]
+delta=4.0 seed=0 p=0.5 sil=0.51  recon=0.673 density=0.666 gap=-0.007  [6s]
+delta=4.0 seed=0 p=0.6 sil=0.51  recon=0.620 density=0.688 gap=+0.068  [6s]
+delta=4.0 seed=0 p=0.8 sil=0.51  recon=0.547 density=0.800 gap=+0.252  [6s]
+delta=4.0 seed=0 p=1.0 sil=0.51  recon=0.532 density=0.793 gap=+0.261  [6s]
+delta=4.0 seed=1 p=0.0 sil=0.56  recon=0.926 density=0.513 gap=-0.413  [9s]
+delta=4.0 seed=1 p=0.2 sil=0.56  recon=0.854 density=0.525 gap=-0.329  [9s]
+delta=4.0 seed=1 p=0.4 sil=0.56  recon=0.763 density=0.653 gap=-0.110  [9s]
+delta=4.0 seed=1 p=0.5 sil=0.56  recon=0.680 density=0.681 gap=+0.000  [9s]
+delta=4.0 seed=1 p=0.6 sil=0.56  recon=0.630 density=0.778 gap=+0.148  [9s]
+delta=4.0 seed=1 p=0.8 sil=0.56  recon=0.578 density=0.838 gap=+0.260  [9s]
+delta=4.0 seed=1 p=1.0 sil=0.56  recon=0.524 density=0.907 gap=+0.383  [9s]
+delta=4.0 seed=2 p=0.0 sil=0.46  recon=0.935 density=0.518 gap=-0.418  [12s]
+delta=4.0 seed=2 p=0.2 sil=0.46  recon=0.870 density=0.499 gap=-0.371  [12s]
+delta=4.0 seed=2 p=0.4 sil=0.46  recon=0.747 density=0.604 gap=-0.143  [12s]
+delta=4.0 seed=2 p=0.5 sil=0.46  recon=0.679 density=0.612 gap=-0.068  [12s]
+delta=4.0 seed=2 p=0.6 sil=0.46  recon=0.597 density=0.683 gap=+0.086  [12s]
+delta=4.0 seed=2 p=0.8 sil=0.46  recon=0.539 density=0.753 gap=+0.214  [12s]
+delta=4.0 seed=2 p=1.0 sil=0.46  recon=0.487 density=0.724 gap=+0.237  [12s]
+delta=6.0 seed=0 p=0.0 sil=0.65  recon=0.918 density=0.483 gap=-0.434  [15s]
+delta=6.0 seed=0 p=0.2 sil=0.65  recon=0.834 density=0.561 gap=-0.273  [15s]
+delta=6.0 seed=0 p=0.4 sil=0.65  recon=0.729 density=0.724 gap=-0.005  [15s]
+delta=6.0 seed=0 p=0.5 sil=0.65  recon=0.672 density=0.815 gap=+0.142  [15s]
+delta=6.0 seed=0 p=0.6 sil=0.65  recon=0.658 density=0.855 gap=+0.197  [15s]
+delta=6.0 seed=0 p=0.8 sil=0.65  recon=0.669 density=0.952 gap=+0.283  [15s]
+delta=6.0 seed=0 p=1.0 sil=0.65  recon=0.661 density=0.967 gap=+0.305  [15s]
+delta=6.0 seed=1 p=0.0 sil=0.70  recon=0.915 density=0.511 gap=-0.404  [18s]
+delta=6.0 seed=1 p=0.2 sil=0.70  recon=0.841 density=0.566 gap=-0.275  [18s]
+delta=6.0 seed=1 p=0.4 sil=0.70  recon=0.777 density=0.775 gap=-0.001  [18s]
+delta=6.0 seed=1 p=0.5 sil=0.70  recon=0.722 density=0.835 gap=+0.113  [18s]
+delta=6.0 seed=1 p=0.6 sil=0.70  recon=0.720 density=0.924 gap=+0.205  [18s]
+delta=6.0 seed=1 p=0.8 sil=0.70  recon=0.757 density=0.975 gap=+0.218  [18s]
+delta=6.0 seed=1 p=1.0 sil=0.70  recon=0.812 density=0.997 gap=+0.185  [18s]
+delta=6.0 seed=2 p=0.0 sil=0.61  recon=0.927 density=0.515 gap=-0.412  [21s]
+delta=6.0 seed=2 p=0.2 sil=0.61  recon=0.867 density=0.549 gap=-0.318  [21s]
+delta=6.0 seed=2 p=0.4 sil=0.61  recon=0.757 density=0.716 gap=-0.041  [21s]
+delta=6.0 seed=2 p=0.5 sil=0.61  recon=0.698 density=0.765 gap=+0.067  [21s]
+delta=6.0 seed=2 p=0.6 sil=0.61  recon=0.657 density=0.827 gap=+0.170  [21s]
+delta=6.0 seed=2 p=0.8 sil=0.61  recon=0.646 density=0.909 gap=+0.263  [21s]
+delta=6.0 seed=2 p=1.0 sil=0.61  recon=0.658 density=0.905 gap=+0.247  [21s]
+delta=10.0 seed=0 p=0.0 sil=0.78  recon=0.910 density=0.480 gap=-0.430  [24s]
+delta=10.0 seed=0 p=0.2 sil=0.78  recon=0.827 density=0.663 gap=-0.164  [24s]
+delta=10.0 seed=0 p=0.4 sil=0.78  recon=0.746 density=0.897 gap=+0.151  [24s]
+delta=10.0 seed=0 p=0.5 sil=0.78  recon=0.727 density=0.962 gap=+0.235  [24s]
+delta=10.0 seed=0 p=0.6 sil=0.78  recon=0.761 density=0.981 gap=+0.220  [24s]
+delta=10.0 seed=0 p=0.8 sil=0.78  recon=0.882 density=0.997 gap=+0.115  [24s]
+delta=10.0 seed=0 p=1.0 sil=0.78  recon=0.931 density=1.000 gap=+0.069  [24s]
+delta=10.0 seed=1 p=0.0 sil=0.82  recon=0.906 density=0.502 gap=-0.404  [27s]
+delta=10.0 seed=1 p=0.2 sil=0.82  recon=0.834 density=0.682 gap=-0.153  [27s]
+delta=10.0 seed=1 p=0.4 sil=0.82  recon=0.789 density=0.948 gap=+0.159  [27s]
+delta=10.0 seed=1 p=0.5 sil=0.82  recon=0.769 density=0.988 gap=+0.219  [27s]
+delta=10.0 seed=1 p=0.6 sil=0.82  recon=0.800 density=0.998 gap=+0.198  [27s]
+delta=10.0 seed=1 p=0.8 sil=0.82  recon=0.885 density=1.000 gap=+0.115  [27s]
+delta=10.0 seed=1 p=1.0 sil=0.82  recon=0.940 density=1.000 gap=+0.060  [27s]
+delta=10.0 seed=2 p=0.0 sil=0.75  recon=0.916 density=0.515 gap=-0.402  [30s]
+delta=10.0 seed=2 p=0.2 sil=0.75  recon=0.866 density=0.634 gap=-0.232  [30s]
+delta=10.0 seed=2 p=0.4 sil=0.75  recon=0.810 density=0.873 gap=+0.063  [30s]
+delta=10.0 seed=2 p=0.5 sil=0.75  recon=0.772 density=0.919 gap=+0.147  [30s]
+delta=10.0 seed=2 p=0.6 sil=0.75  recon=0.786 density=0.950 gap=+0.165  [30s]
+delta=10.0 seed=2 p=0.8 sil=0.75  recon=0.833 density=0.990 gap=+0.157  [30s]
+delta=10.0 seed=2 p=1.0 sil=0.75  recon=0.824 density=0.996 gap=+0.172  [30s]
+
+SUMMARY (seed-mean)
+  delta=4.0,p=0.0    sil=0.51 recon=0.928 density=0.505 gap=-0.423
+  delta=4.0,p=0.2    sil=0.51 recon=0.859 density=0.514 gap=-0.345
+  delta=4.0,p=0.4    sil=0.51 recon=0.748 density=0.624 gap=-0.124
+  delta=4.0,p=0.5    sil=0.51 recon=0.677 density=0.653 gap=-0.025
+  delta=4.0,p=0.6    sil=0.51 recon=0.616 density=0.717 gap=+0.101
+  delta=4.0,p=0.8    sil=0.51 recon=0.555 density=0.797 gap=+0.242
+  delta=4.0,p=1.0    sil=0.51 recon=0.514 density=0.808 gap=+0.294
+  delta=6.0,p=0.0    sil=0.65 recon=0.920 density=0.503 gap=-0.417
+  delta=6.0,p=0.2    sil=0.65 recon=0.848 density=0.559 gap=-0.289
+  delta=6.0,p=0.4    sil=0.65 recon=0.754 density=0.738 gap=-0.016
+  delta=6.0,p=0.5    sil=0.65 recon=0.697 density=0.805 gap=+0.108
+  delta=6.0,p=0.6    sil=0.65 recon=0.678 density=0.869 gap=+0.190
+  delta=6.0,p=0.8    sil=0.65 recon=0.691 density=0.945 gap=+0.255
+  delta=6.0,p=1.0    sil=0.65 recon=0.710 density=0.956 gap=+0.246
+  delta=10.0,p=0.0   sil=0.78 recon=0.911 density=0.499 gap=-0.412
+  delta=10.0,p=0.2   sil=0.78 recon=0.842 density=0.660 gap=-0.183
+  delta=10.0,p=0.4   sil=0.78 recon=0.781 density=0.906 gap=+0.124
+  delta=10.0,p=0.5   sil=0.78 recon=0.756 density=0.956 gap=+0.200
+  delta=10.0,p=0.6   sil=0.78 recon=0.782 density=0.976 gap=+0.194
+  delta=10.0,p=0.8   sil=0.78 recon=0.866 density=0.996 gap=+0.129
+  delta=10.0,p=1.0   sil=0.78 recon=0.898 density=0.999 gap=+0.100
+figure saved

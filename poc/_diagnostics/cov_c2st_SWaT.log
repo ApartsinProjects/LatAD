@@ -1,0 +1,19 @@
+== SWaT: train 3623 test-normal 905
+  even_seed0: n=905 energy=0.9903 H=0.0308 null_block(mean 0.0645, max 0.3795) z=17.2 p_block=0.0010 p_point=0.0010 | mmd2=0.0317 p=0.0010
+  random_seed0: n=905 energy=0.9169 H=0.0275 null_block(mean 0.0731, max 0.3871) z=15.2 p_block=0.0010 p_point=0.0010 | mmd2=0.0295 p=0.0010
+  random_seed1: n=905 energy=0.9985 H=0.0315 null_block(mean 0.0721, max 0.4034) z=16.8 p_block=0.0010 p_point=0.0010 | mmd2=0.0323 p=0.0010
+  random_seed2: n=905 energy=1.0299 H=0.0323 null_block(mean 0.0688, max 0.3317) z=18.6 p_block=0.0010 p_point=0.0010 | mmd2=0.0327 p=0.0010
+  null_ref_train_first_vs_second_half: n=1811 energy=1.9135 H=0.0506 null_block(mean 0.0651, max 0.2421) z=43.5 p_block=0.0033 p_point=0.0033 | mmd2=0.0581 p=0.0033
+  occ vade_regimes: TV=0.750 KL=0.052 mass_in_train<1%=1.000 topmode share of TV=0.00 null halves TV=1.000
+  occ kmeans8: TV=0.015 KL=0.007 mass_in_train<1%=0.000 topmode share of TV=0.27 null halves TV=0.055
+  occ kmeans16: TV=0.253 KL=0.302 mass_in_train<1%=0.000 topmode share of TV=0.14 null halves TV=0.286
+  occ kmeans32: TV=0.484 KL=0.690 mass_in_train<1%=0.030 topmode share of TV=0.19 null halves TV=0.674
+  occ kmeans64: TV=0.593 KL=0.906 mass_in_train<1%=0.072 topmode share of TV=0.16 null halves TV=0.657
+  C2ST: {'auc': 0.7947083422361955, 'n_per_class': 905, 'null_auc_mean': 0.40050047973349334, 'null_auc_p95': 0.5745744377740253, 'null_auc_max': 0.5779574224931138, 'p_vs_block_null': 0.047619047619047616, 'n_null': 20, 'null_ref_train_halves_auc': 0.8621707456213501}
+  structure: {'p_gt_0.9': {'n': 24, 'n_runs': 18, 'longest_run': 3, 'n_runs_ge30': 0, 'frac_in_runs_ge30': 0.0, 'frac_singletons': 0.5416666666666666, 'runs_ge30': [], 'frac_of_test_normal': 0.026519337016574586}, 'p_gt_0.95': {'n': 7, 'n_runs': 7, 'longest_run': 1, 'n_runs_ge30': 0, 'frac_in_runs_ge30': 0.0, 'frac_singletons': 1.0, 'runs_ge30': [], 'frac_of_test_normal': 0.0077348066298342545}, 'oof_quantiles_test_normal': {'0.1': 0.612397386672802, '0.5': 0.7705203528042686, '0.9': 0.8595408946112232, '0.99': 0.9358750861207957}}
+  relative OOS: {'random10': {'q0.9': {'heldout_train_rate': 0.09116022099447514, 'test_normal_rate': 0.02541436464088398, 'ratio': 0.2787878787878788}, 'q0.95': {'heldout_train_rate': 0.03591160220994475, 'test_normal_rate': 0.015469613259668509, 'ratio': 0.4307692307692308}, 'q0.99': {'heldout_train_rate': 0.016574585635359115, 'test_normal_rate': 0.0, 'ratio': 0.0}, 'median_d1_ratio_test_over_heldout': 0.8836431000105274}, 'last10_temporal': {'q0.9': {'heldout_train_rate': 0.0, 'test_normal_rate': 0.020994475138121547, 'ratio': 20994475.138121545}, 'q0.95': {'heldout_train_rate': 0.0, 'test_normal_rate': 0.015469613259668509, 'ratio': 15469613.259668509}, 'q0.99': {'heldout_train_rate': 0.0, 'test_normal_rate': 0.0, 'ratio': 0.0}, 'median_d1_ratio_test_over_heldout': 6923272.016986043}}
+  size curve energy: {'0.1': (0.9431, 4.8495), '0.25': (0.994, 3.9532), '0.5': (0.9632, 2.5427), '0.75': (0.9964, 1.1111), '1.0': (0.9903, 0.9903)}
+  size curve H: {'0.1': (0.0298, 0.14), '0.25': (0.0305, 0.1107), '0.5': (0.0298, 0.0701), '0.75': (0.0308, 0.0344), '1.0': (0.0308, 0.0308)}
+  size curve c2st_auc: {'0.1': (0.8096, 1.0), '0.25': (0.8026, 1.0), '0.5': (0.8014, 1.0), '0.75': (0.8053, 0.7872), '1.0': (0.7947, 0.7947)}
+  [147s]
+saved E:\Projects\Backlog\LatAD\poc\_diagnostics\cov_coverage.json

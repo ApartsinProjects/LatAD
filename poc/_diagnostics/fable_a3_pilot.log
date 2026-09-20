@@ -1,0 +1,28 @@
+== I0 synthetic control
+  [ctrl:separated] K= 2 beta_knn=0.000 between=0.004 gap=0.000 interior=0.009
+  [ctrl:bridged] K= 2 beta_knn=0.006 between=0.147 gap=0.000 interior=0.147
+  [ctrl:separated_K8] K= 8 beta_knn=0.355 between=0.327 gap=0.000 interior=0.592
+  [ctrl:bridged_K8] K= 8 beta_knn=0.219 between=0.311 gap=0.000 interior=0.567
+== real datasets (VaDE-free)
+  [SKAB] K= 8 beta_knn=0.043 between=0.045 gap=0.007 interior=0.107
+  [SKAB] K=16 beta_knn=0.182 between=0.245 gap=0.005 interior=0.448
+  [WADI] K= 8 beta_knn=0.084 between=0.201 gap=0.010 interior=0.401
+  [WADI] K=20 beta_knn=0.092 between=0.267 gap=0.016 interior=0.511
+  [HAI] K= 8 beta_knn=0.024 between=0.187 gap=0.004 interior=0.329
+  [HAI] K=40 beta_knn=0.064 between=0.340 gap=0.021 interior=0.563
+  [SWaT] K= 8 beta_knn=0.013 between=0.052 gap=0.006 interior=0.171
+  [SWaT] K=40 beta_knn=0.025 between=0.154 gap=0.017 interior=0.298
+== VaDE graded
+  [WADI] vade graded: {'cached_witness_cfg': {'K': 20, 'rho_0p5': 0.013006885998469778, 'rho_0p6': 0.046671767406273906, 'rho_0p7': 0.0811017597551645, 'mean_maxresp': 0.9376233571382958, 'H_norm_mean': 0.053179838087360064, 'H_norm_q90': 0.2040933560567457, 'frac_H_gt_0p3': 0.023718439173680182}}
+  [HAI] vade graded: {'cached_witness_cfg': {'K': 40, 'rho_0p5': 0.022550247834849393, 'rho_0p6': 0.06432812244675636, 'rho_0p7': 0.11542022986001416, 'mean_maxresp': 0.9115415092170864, 'H_norm_mean': 0.06579480158414668, 'H_norm_q90': 0.1988351826974465, 'frac_H_gt_0p3': 0.0184105888120268}}
+  [SWaT] vade graded: {'cached_witness_cfg': {'K': 40, 'rho_0p5': 0.0, 'rho_0p6': 0.001380071763731714, 'rho_0p7': 0.0024841291747170853, 'mean_maxresp': 0.9973887082761682, 'H_norm_mean': 0.0017735968086357026, 'H_norm_q90': 4.641093591957802e-05, 'frac_H_gt_0p3': 0.0}}
+  [SKAB] LD6_ep40_s0: {'K': 16, 'rho_0p5': 0.58, 'rho_0p6': 0.6125, 'rho_0p7': 0.63, 'mean_maxresp': 0.6208112835884094, 'H_norm_mean': 0.2909933924674988, 'H_norm_q90': 0.45653594732284547, 'frac_H_gt_0p3': 0.6075}
+  [SKAB] LD6_ep40_s1: {'K': 16, 'rho_0p5': 0.5525, 'rho_0p6': 0.6275, 'rho_0p7': 0.69, 'mean_maxresp': 0.5913127660751343, 'H_norm_mean': 0.321982204914093, 'H_norm_q90': 0.46816480457782744, 'frac_H_gt_0p3': 0.6075}
+  [SKAB] LD8_ep30_s0: {'K': 16, 'rho_0p5': 0.1025, 'rho_0p6': 0.5275, 'rho_0p7': 0.7675, 'mean_maxresp': 0.6581804156303406, 'H_norm_mean': 0.26793038845062256, 'H_norm_q90': 0.3550865799188614, 'frac_H_gt_0p3': 0.7175}
+  [SKAB] LD8_ep30_s1: {'K': 16, 'rho_0p5': 0.0, 'rho_0p6': 0.31, 'rho_0p7': 0.54, 'mean_maxresp': 0.760709822177887, 'H_norm_mean': 0.1611352562904358, 'H_norm_q90': 0.2717178910970688, 'frac_H_gt_0p3': 0.0075}
+== detector pilot
+  [SKAB detector] {'knn': {'diff_auroc': 0.46561043802423124, 'all_auroc': 0.5864993003195555}, 'chord': {'diff_auroc': 0.4825435515090688, 'all_auroc': 0.4725767037740972}, 'gap': {'diff_auroc': 0.45697182593734315, 'all_auroc': 0.5621566866475908}, 'reference': 'witness: base OFF diff=0.500, basin forced lam1 0.605, lam2 0.645'}
+  [miim] K= 8 beta_knn=0.034 between=0.129 gap=0.047 interior=0.312
+  [miim] K=16 beta_knn=0.046 between=0.122 gap=0.064 interior=0.259
+  [miim detector] {'knn': {'pocket': 0.8307519104803494, 'near_boundary': 0.5230220909324428, 'wrong_for_regime': 0.8729041643935261, 'ood': 0.9516806722689075, 'drift': 0.7750358469660431}, 'chord': {'pocket': 0.6993040393013101, 'near_boundary': 0.5535095042383765, 'wrong_for_regime': 0.72713220585561, 'ood': 0.6163961767913272, 'drift': 0.5776412696343609}, 'gap': {'pocket': 0.8115021151746725, 'near_boundary': 0.5383621243257127, 'wrong_for_regime': 0.8542735042735043, 'ood': 0.8409776124190135, 'drift': 0.7270620152512546}}
+done in 21s -> E:\Projects\Backlog\LatAD\poc\_diagnostics\fable_a3_pilot.json

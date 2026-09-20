@@ -1,0 +1,11 @@
+[SWaT_canon/trim6h] TRIM=72 leading train windows dropped -> 4458 train windows
+[SWaT_canon/trim6h] S=25 communities, method=average maxsz=25 minsz=3, nfit=3566 ncal=892
+[SWaT_canon/trim6h] seed 0: 25 experts (0 skipped) 68s
+[SWaT_canon/trim6h] seed 1: 25 experts (0 skipped) 131s
+[SWaT_canon/trim6h] seed 2: 25 experts (0 skipped) 194s
+[SWaT_canon/trim6h] seed 3: 25 experts (0 skipped) 257s
+[SWaT_canon/trim6h] seed 4: 25 experts (0 skipped) 319s
+saved E:\Projects\Backlog\LatAD\poc\sota_bundle\experts_variants\trim6h\expert_SWaT_canon.npz
+[WADI_clean/trim36m] TRIM=7 leading train windows dropped -> 2607 train windows
+[WADI_clean/trim36m] S=44 communities, method=average maxsz=25 minsz=3, nfit=2085 ncal=522
+[WADI_clean/trim36m] seed 0: 44 experts (0 skipped) 85s

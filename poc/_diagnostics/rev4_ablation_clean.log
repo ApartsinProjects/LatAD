@@ -1,0 +1,28 @@
+  WADI_clean seed 0 done
+  WADI_clean seed 1 done
+  WADI_clean seed 2 done
+  WADI_clean seed 3 done
+  WADI_clean seed 4 done
+
+=== WADI_clean (difficult n=43) ===
+    recon        difficult-AUROC 0.813±0.002
+    density      difficult-AUROC 0.758±0.009
+    nearest      difficult-AUROC 0.719±0.019
+    base         difficult-AUROC 0.743±0.014
+    base+resid   difficult-AUROC 0.743±0.014
+    LatAD        difficult-AUROC 0.743±0.014
+  SWaT_canon seed 0 done
+  SWaT_canon seed 1 done
+  SWaT_canon seed 2 done
+  SWaT_canon seed 3 done
+  SWaT_canon seed 4 done
+
+=== SWaT_canon (difficult n=85) ===
+    recon        difficult-AUROC 0.835±0.0
+    density      difficult-AUROC 0.794±0.006
+    nearest      difficult-AUROC 0.723±0.015
+    base         difficult-AUROC 0.775±0.009
+    base+resid   difficult-AUROC 0.807±0.008
+    LatAD        difficult-AUROC 0.807±0.008
+
+saved -> E:\Projects\Backlog\LatAD\poc\_diagnostics/rev4_ablation_clean.json

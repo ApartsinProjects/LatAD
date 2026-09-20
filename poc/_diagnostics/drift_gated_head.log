@@ -1,0 +1,86 @@
+
+================ SWaT_canon ================
+gate stat FA99 (calib 2nd half above 1st-half q99; nominal 0.01): global LatAD 0.020; communities median 0.009, top: g18=0.107, g21=0.059, g22=0.052, g15=0.027, g2=0.023, g1=0.014, g20=0.012, g17=0.012
+I1 all-off == headline OK (max abs diff 0.00e+00); all-on == CP v2 OK (0.880 0.723 0.719 0.671 vs typing 0.880 0.723 0.719 0.671)
+  subsets: All=233, Difficult=91, DoubleHard_lin=31, DoubleHard_pca=28; 25 episodes; K24=288
+  headline (all off)                 0.788 0.524 0.193 0.178
+  gated budget 0.02 (5/24 comm, glob 0) 0.802 0.546 0.209 0.192
+  gated budget 0.03 (3/24 comm, glob 0) 0.805 0.549 0.208 0.191
+  gated budget 0.05 (3/24 comm, glob 0) 0.805 0.549 0.208 0.191   <- PRIMARY
+  gated budget 0.10 (1/24 comm, glob 0) 0.788 0.524 0.193 0.178
+  gated budget 0.20 (0/24 comm, glob 0) 0.788 0.524 0.193 0.178
+  all-on (CP v2)                     0.880 0.723 0.719 0.671
+  primary comm gate + global ON      0.819 0.579 0.273 0.240   (diagnostic)
+  boot [All           ] gated-headline +0.017 CI [0.004, 0.051] P(<=0)=0.0 | vs trivial max|z| 0.853: -0.048 CI [-0.203, 0.013] P=0.937
+  boot [Difficult     ] gated-headline +0.026 CI [0.007, 0.045] P(<=0)=0.004 | vs trivial max|z| 0.627: -0.078 CI [-0.257, 0.095] P=0.7875
+  boot [DoubleHard_lin] gated-headline +0.016 CI [0.009, 0.023] P(<=0)=0.0 | vs trivial max|z| 0.582: -0.373 CI [-0.593, -0.108] P=0.999
+  boot [DoubleHard_pca] gated-headline +0.013 CI [0.006, 0.021] P(<=0)=0.0 | vs trivial max|z| 0.514: -0.323 CI [-0.557, -0.093] P=0.9985
+I5 era-local VIOLATED (1/25 masked >0.10, 3 gained >0.1); global-rank 0 masked. Train-calibrated q99 threshold: normal FA 0.792 -> 0.775; attack windows flagged 0.918 -> 0.918; episodes detected 21 -> 21 / 25 (lost [], gained [])
+    ep@    4 n=  8 diff   8  global 0.252->0.270  local 0.948->0.965  det 1->1
+    ep@   15 n=  3 diff   3  global 0.225->0.236  local 0.868->0.901  det 1->1
+    ep@   20 n=  8 diff   8  global 0.236->0.249  local 0.902->0.928  det 1->1
+    ep@   37 n=  5 diff   1  global 0.946->0.995  local 0.997->0.997  det 1->1
+    ep@   50 n=  4 diff   0  global 0.997->0.999  local 1.000->1.000  det 1->1
+    ep@  245 n=  4 diff   4  global 0.055->0.063  local 0.145->0.167  det 0->0
+    ep@  301 n=  2 diff   2  global 0.119->0.121  local 0.280->0.285  det 0->0
+    ep@  306 n=  3 diff   3  global 0.132->0.134  local 0.307->0.312  det 0->0
+    ep@  310 n=  3 diff   3  global 0.195->0.213  local 0.455->0.501  det 0->0
+    ep@  342 n=  4 diff   2  global 0.260->0.281  local 0.565->0.614  det 1->1
+    ep@  385 n=  8 diff   8  global 0.417->0.644  local 0.802->0.864  det 1->1
+    ep@  442 n=  3 diff   0  global 0.997->0.999  local 1.000->1.000  det 1->1
+    ep@  475 n=  4 diff   1  global 0.436->0.848  local 0.695->0.930  det 1->1
+    ep@  573 n=  6 diff   5  global 0.327->0.364  local 0.376->0.479  det 1->1
+    ep@  660 n=  6 diff   6  global 0.968->0.957  local 0.967->0.953  det 1->1
+    ep@  758 n=121 diff   8  global 0.999->0.997  local 0.998->0.996  det 1->1
+    ep@  929 n=  2 diff   2  global 0.559->0.468  local 0.291->0.143  det 1->1  MASKED(local)
+    ep@  932 n=  6 diff   6  global 0.974->0.983  local 0.967->0.982  det 1->1
+    ep@ 1007 n=  3 diff   3  global 0.575->0.799  local 0.356->0.686  det 1->1
+    ep@ 1158 n=  3 diff   2  global 0.972->0.968  local 0.949->0.943  det 1->1
+    ep@ 1203 n=  3 diff   3  global 0.986->0.987  local 0.974->0.978  det 1->1
+    ep@ 1237 n=  5 diff   5  global 0.991->0.987  local 0.986->0.981  det 1->1
+    ep@ 1298 n=  3 diff   3  global 0.963->0.949  local 0.934->0.915  det 1->1
+    ep@ 1454 n=  9 diff   2  global 0.997->0.999  local 0.993->0.997  det 1->1
+    ep@ 1477 n=  7 diff   3  global 0.930->0.930  local 0.851->0.848  det 1->1
+[SWaT_canon done in 179s] saved -> E:\Projects\Backlog\LatAD\poc\_diagnostics\drift_gated_head.json
+
+================ WADI_clean ================
+gate stat FA99 (calib 2nd half above 1st-half q99; nominal 0.01): global LatAD 0.021; communities median 0.018, top: g36=0.195, g19=0.098, g11=0.053, g18=0.051, g42=0.049, g4=0.037, g38=0.032, g37=0.032
+I1 all-off == headline OK (max abs diff 0.00e+00); all-on == CP v2 OK (0.830 0.779 0.676 0.771 vs typing 0.830 0.779 0.676 0.771)
+  subsets: All=56, Difficult=30, DoubleHard_lin=19, DoubleHard_pca=29; 11 episodes; K24=288
+  headline (all off)                 0.827 0.771 0.662 0.763
+  gated budget 0.02 (16/44 comm, glob 1) 0.824 0.769 0.660 0.761
+  gated budget 0.03 (9/44 comm, glob 0) 0.825 0.766 0.655 0.758
+  gated budget 0.05 (4/44 comm, glob 0) 0.828 0.772 0.664 0.764   <- PRIMARY
+  gated budget 0.10 (1/44 comm, glob 0) 0.829 0.773 0.665 0.765
+  gated budget 0.20 (0/44 comm, glob 0) 0.827 0.771 0.662 0.763
+  all-on (CP v2)                     0.830 0.779 0.676 0.771
+  primary comm gate + global ON      0.828 0.775 0.670 0.768   (diagnostic)
+I3 OK: Difficult headline 0.771 -> gated 0.772
+  boot [All           ] gated-headline +0.001 CI [-0.003, 0.005] P(<=0)=0.3245 | vs linres 0.834: -0.006 CI [-0.132, 0.13] P=0.5675
+  boot [Difficult     ] gated-headline +0.001 CI [-0.007, 0.008] P(<=0)=0.377 | vs linres 0.750: +0.021 CI [-0.165, 0.203] P=0.4605
+  boot [DoubleHard_lin] gated-headline +0.001 CI [-0.012, 0.01] P(<=0)=0.4215 | vs linres 0.606: +0.058 CI [-0.244, 0.312] P=0.4215
+  boot [DoubleHard_pca] gated-headline +0.001 CI [-0.007, 0.008] P(<=0)=0.377 | vs linres 0.742: +0.022 CI [-0.168, 0.208] P=0.4605
+I5 era-local OK (0/11 masked >0.10, 0 gained >0.1); global-rank 0 masked. Train-calibrated q99 threshold: normal FA 0.015 -> 0.015; attack windows flagged 0.375 -> 0.339; episodes detected 5 -> 5 / 11 (lost [], gained [])
+[WADI_clean done in 189s] saved -> E:\Projects\Backlog\LatAD\poc\_diagnostics\drift_gated_head.json
+
+================ HAI ================
+gate stat FA99 (calib 2nd half above 1st-half q99; nominal 0.01): global LatAD 0.006; communities median 0.009, top: g9=0.152, g5=0.093, g10=0.091, g25=0.079, g27=0.078, g3=0.012, g23=0.011, g26=0.011
+I1 all-off == headline OK (max abs diff 0.00e+00); all-on == CP v2 OK (0.943 0.835 0.800 0.636 vs typing 0.943 0.835 0.800 0.636)
+  subsets: All=652, Difficult=167, DoubleHard_lin=84, DoubleHard_pca=55; 38 episodes; K24=2880
+  headline (all off)                 0.948 0.845 0.814 0.648
+  gated budget 0.02 (5/28 comm, glob 0) 0.947 0.840 0.811 0.633
+  gated budget 0.03 (5/28 comm, glob 0) 0.947 0.840 0.811 0.633
+  gated budget 0.05 (5/28 comm, glob 0) 0.947 0.840 0.811 0.633   <- PRIMARY
+  gated budget 0.10 (1/28 comm, glob 0) 0.947 0.843 0.813 0.640
+  gated budget 0.20 (0/28 comm, glob 0) 0.948 0.845 0.814 0.648
+  all-on (CP v2)                     0.943 0.835 0.800 0.636
+  primary comm gate + global ON      0.942 0.817 0.772 0.584   (diagnostic)
+I3 OK: Difficult headline 0.845 -> gated 0.840
+  boot [All           ] gated-headline -0.001 CI [-0.004, -0.0] P(<=0)=0.977 | vs LatAD (global) 0.933: +0.014 CI [-0.001, 0.033] P=0.043
+  boot [Difficult     ] gated-headline -0.005 CI [-0.013, 0.0] P(<=0)=0.948 | vs LatAD (global) 0.811: +0.029 CI [-0.028, 0.105] P=0.177
+  boot [DoubleHard_lin] gated-headline -0.003 CI [-0.008, 0.0] P(<=0)=0.957 | vs LatAD (global) 0.806: +0.005 CI [-0.067, 0.107] P=0.4925
+  boot [DoubleHard_pca] gated-headline -0.015 CI [-0.031, 0.001] P(<=0)=0.956 | vs LatAD (global) 0.559: +0.074 CI [-0.074, 0.26] P=0.1585
+I5 era-local OK (0/38 masked >0.10, 0 gained >0.1); global-rank 0 masked. Train-calibrated q99 threshold: normal FA 0.105 -> 0.104; attack windows flagged 0.906 -> 0.906; episodes detected 38 -> 38 / 38 (lost [], gained [])
+[HAI done in 605s] saved -> E:\Projects\Backlog\LatAD\poc\_diagnostics\drift_gated_head.json
+
+ALL DONE

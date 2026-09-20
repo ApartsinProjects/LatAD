@@ -1,0 +1,16 @@
+[setup] n_win=575 n_anom=56 difficult=30 thr=6.0076
+[A2] stats     dim=732 difficult=0.6344+-0.0105
+[A2] temporal  dim=1220 difficult=0.6258+-0.0172
+[A2] temporal - stats = -0.0086
+[SD] IsolationForest                        All=0.725+-0.005  Easy=0.829+-0.007  Difficult=0.634+-0.006  DoubleHard=0.530+-0.009
+[SD] AutoEncoder                            All=0.792+-0.002  Easy=0.981+-0.001  Difficult=0.628+-0.004  DoubleHard=0.535+-0.004
+[SD] LatAD-global                           All=0.717+-0.006  Easy=0.813+-0.016  Difficult=0.634+-0.011  DoubleHard=0.571+-0.013
+[SD] LatAD regime-community (HCcoh+LatAD)   All=0.827+-0.009  Easy=0.892+-0.009  Difficult=0.771+-0.023  DoubleHard=0.662+-0.040
+[SIG] HCcoh+LatAD (0.771) vs AutoEncoder      (0.628): diff +0.142 CI[0.059, 0.223] P(<=0)=0.001 eps=8
+[SIG] HCcoh+LatAD (0.771) vs USAD             (0.579): diff +0.192 CI[0.066, 0.338] P(<=0)=0.0 eps=8
+[SIG] HCcoh+LatAD (0.771) vs TranAD           (0.613): diff +0.157 CI[0.054, 0.276] P(<=0)=0.0005 eps=8
+[SIG] HCcoh+LatAD (0.771) vs IsolationForest  (0.634): diff +0.136 CI[0.049, 0.237] P(<=0)=0.0 eps=8
+[SIG] HCcoh+LatAD (0.771) vs GDN              (0.66): diff +0.111 CI[0.045, 0.19] P(<=0)=0.0 eps=8
+[SIG] VERDICT significantly ahead of every learned detector (p<0.05): True
+
+saved -> E:\Projects\Backlog\LatAD\poc\_diagnostics/review2_recompute.json

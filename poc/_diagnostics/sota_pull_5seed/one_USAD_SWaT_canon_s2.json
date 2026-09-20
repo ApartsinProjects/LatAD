@@ -1,0 +1,33 @@
+{
+  "dataset": "SWaT_canon",
+  "model": "USAD",
+  "seed": 2,
+  "rc": 0,
+  "train_s": 295.6,
+  "epochs": 30,
+  "fp32": true,
+  "n": 44992,
+  "n_anom": 5468,
+  "raw_ALL": {
+    "AUROC": 0.898,
+    "bestF1": 0.803,
+    "F1_at5pctFPR": 0.715,
+    "TPR_at5pctFPR": 0.757
+  },
+  "n_easy_hard": [
+    3775,
+    1693
+  ],
+  "raw_HARD": {
+    "AUROC": 0.674,
+    "bestF1": 0.196,
+    "F1_at5pctFPR": 0.183,
+    "TPR_at5pctFPR": 0.218
+  },
+  "raw_EASY": {
+    "AUROC": 0.999,
+    "bestF1": 0.982,
+    "F1_at5pctFPR": 0.792,
+    "TPR_at5pctFPR": 0.999
+  }
+}

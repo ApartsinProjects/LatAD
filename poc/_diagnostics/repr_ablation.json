@@ -1,0 +1,17 @@
+[
+ {
+  "dataset": "SWaT_canon",
+  "n_diff": 36,
+  "stats": {
+   "dim": 306,
+   "diff": 0.2469,
+   "sd": 0.0261
+  },
+  "temporal": {
+   "dim": 510,
+   "diff": 0.4883,
+   "sd": 0.0258
+  },
+  "temporal_minus_stats": 0.2414
+ }
+]

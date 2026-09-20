@@ -1,0 +1,8 @@
+  seed 0 member 40/120
+  seed 0 member 80/120
+  seed 0 member 120/120
+seed 0 K=120 m=16 max  : 0.383
+seed 0 K=120 m=16 top3 : 0.39
+seed 0 K=120 m=16 top10: 0.413
+  seed 1 member 40/120
+  seed 1 member 80/120

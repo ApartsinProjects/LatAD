@@ -1,0 +1,83 @@
+  WADI member 1/24 done
+  WADI member 2/24 done
+  WADI member 3/24 done
+  WADI member 4/24 done
+  WADI member 5/24 done
+  WADI member 6/24 done
+  WADI member 7/24 done
+  WADI member 8/24 done
+  WADI member 9/24 done
+  WADI member 10/24 done
+  WADI member 11/24 done
+  WADI member 12/24 done
+  WADI member 13/24 done
+  WADI member 14/24 done
+  WADI member 15/24 done
+  WADI member 16/24 done
+  WADI member 17/24 done
+  WADI member 18/24 done
+  WADI member 19/24 done
+  WADI member 20/24 done
+  WADI member 21/24 done
+  WADI member 22/24 done
+  WADI member 23/24 done
+  WADI member 24/24 done
+
+=== WADI (difficult n=19) ===
+   LatAD 0.701  IF 0.675  ens_max 0.814  ens_top3 0.823  rescued 0.7 (fires 1, 1 normal)
+  HAI member 1/24 done
+  HAI member 2/24 done
+  HAI member 3/24 done
+  HAI member 4/24 done
+  HAI member 5/24 done
+  HAI member 6/24 done
+  HAI member 7/24 done
+  HAI member 8/24 done
+  HAI member 9/24 done
+  HAI member 10/24 done
+  HAI member 11/24 done
+  HAI member 12/24 done
+  HAI member 13/24 done
+  HAI member 14/24 done
+  HAI member 15/24 done
+  HAI member 16/24 done
+  HAI member 17/24 done
+  HAI member 18/24 done
+  HAI member 19/24 done
+  HAI member 20/24 done
+  HAI member 21/24 done
+  HAI member 22/24 done
+  HAI member 23/24 done
+  HAI member 24/24 done
+
+=== HAI (difficult n=167) ===
+   LatAD 0.814  IF 0.63  ens_max 0.774  ens_top3 0.774  rescued 0.82 (fires 90, 25 normal)
+  SWaT member 1/24 done
+  SWaT member 2/24 done
+  SWaT member 3/24 done
+  SWaT member 4/24 done
+  SWaT member 5/24 done
+  SWaT member 6/24 done
+  SWaT member 7/24 done
+  SWaT member 8/24 done
+  SWaT member 9/24 done
+  SWaT member 10/24 done
+  SWaT member 11/24 done
+  SWaT member 12/24 done
+  SWaT member 13/24 done
+  SWaT member 14/24 done
+  SWaT member 15/24 done
+  SWaT member 16/24 done
+  SWaT member 17/24 done
+  SWaT member 18/24 done
+  SWaT member 19/24 done
+  SWaT member 20/24 done
+  SWaT member 21/24 done
+  SWaT member 22/24 done
+  SWaT member 23/24 done
+  SWaT member 24/24 done
+
+=== SWaT (difficult n=38) ===
+   LatAD 0.962  IF 0.853  ens_max 0.967  ens_top3 0.971  rescued 0.959 (fires 7, 5 normal)
+
+saved -> E:\Projects\Backlog\LatAD\poc\_diagnostics/ensemble_vade.json

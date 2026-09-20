@@ -1,0 +1,179 @@
+{
+ "dataset": "WADI_clean",
+ "n_windows": 575,
+ "n_anom": 56,
+ "n_difficult": 30,
+ "maxz_thr": 6.0076,
+ "task1_tableA2_WADI": {
+  "stats": {
+   "dim": 732,
+   "diff": 0.6344,
+   "sd": 0.0105,
+   "per_seed": [
+    0.6473,
+    0.6234,
+    0.6309,
+    0.6464,
+    0.6238
+   ]
+  },
+  "temporal": {
+   "dim": 1220,
+   "diff": 0.6258,
+   "sd": 0.0172,
+   "per_seed": [
+    0.6325,
+    0.6039,
+    0.6301,
+    0.6522,
+    0.6105
+   ]
+  },
+  "temporal_minus_stats": -0.0086
+ },
+ "task2_seed_sds": {
+  "n_subset": {
+   "All": 575,
+   "Easy": 26,
+   "Difficult": 30,
+   "DoubleHard": 19
+  },
+  "table": {
+   "IsolationForest": {
+    "All": {
+     "auroc": 0.725,
+     "sd": 0.005
+    },
+    "Easy": {
+     "auroc": 0.829,
+     "sd": 0.007
+    },
+    "Difficult": {
+     "auroc": 0.634,
+     "sd": 0.006
+    },
+    "DoubleHard": {
+     "auroc": 0.53,
+     "sd": 0.009
+    }
+   },
+   "AutoEncoder": {
+    "All": {
+     "auroc": 0.792,
+     "sd": 0.002
+    },
+    "Easy": {
+     "auroc": 0.981,
+     "sd": 0.001
+    },
+    "Difficult": {
+     "auroc": 0.628,
+     "sd": 0.004
+    },
+    "DoubleHard": {
+     "auroc": 0.535,
+     "sd": 0.004
+    }
+   },
+   "LatAD-global": {
+    "All": {
+     "auroc": 0.717,
+     "sd": 0.006
+    },
+    "Easy": {
+     "auroc": 0.813,
+     "sd": 0.016
+    },
+    "Difficult": {
+     "auroc": 0.634,
+     "sd": 0.011
+    },
+    "DoubleHard": {
+     "auroc": 0.571,
+     "sd": 0.013
+    }
+   },
+   "LatAD regime-community (HCcoh+LatAD)": {
+    "All": {
+     "auroc": 0.827,
+     "sd": 0.009
+    },
+    "Easy": {
+     "auroc": 0.892,
+     "sd": 0.009
+    },
+    "Difficult": {
+     "auroc": 0.771,
+     "sd": 0.023
+    },
+    "DoubleHard": {
+     "auroc": 0.662,
+     "sd": 0.04
+    }
+   }
+  }
+ },
+ "task3_significance_vs_learned": {
+  "AutoEncoder": {
+   "method_auroc": 0.771,
+   "compet_auroc": 0.628,
+   "diff": 0.142,
+   "diff_ci": [
+    0.059,
+    0.223
+   ],
+   "p_le_0": 0.001,
+   "n_episodes": 8,
+   "n_boot": 2000
+  },
+  "USAD": {
+   "method_auroc": 0.771,
+   "compet_auroc": 0.579,
+   "diff": 0.192,
+   "diff_ci": [
+    0.066,
+    0.338
+   ],
+   "p_le_0": 0.0,
+   "n_episodes": 8,
+   "n_boot": 2000
+  },
+  "TranAD": {
+   "method_auroc": 0.771,
+   "compet_auroc": 0.613,
+   "diff": 0.157,
+   "diff_ci": [
+    0.054,
+    0.276
+   ],
+   "p_le_0": 0.0005,
+   "n_episodes": 8,
+   "n_boot": 2000
+  },
+  "IsolationForest": {
+   "method_auroc": 0.771,
+   "compet_auroc": 0.634,
+   "diff": 0.136,
+   "diff_ci": [
+    0.049,
+    0.237
+   ],
+   "p_le_0": 0.0,
+   "n_episodes": 8,
+   "n_boot": 2000
+  },
+  "GDN": {
+   "method_auroc": 0.771,
+   "compet_auroc": 0.66,
+   "diff": 0.111,
+   "diff_ci": [
+    0.045,
+    0.19
+   ],
+   "p_le_0": 0.0,
+   "n_episodes": 8,
+   "n_boot": 2000
+  },
+  "_verdict_ahead_of_every_learned_at_0.05": true
+ }
+}

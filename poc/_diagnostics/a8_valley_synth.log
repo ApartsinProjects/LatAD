@@ -1,0 +1,33 @@
+C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\torch\cuda\__init__.py:65: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+gap=None seed=0 K=2 | recon valley/beyond/off = 0.523/0.485/1.000 | density = 0.821/0.841/0.629 | linrec = 0.490/0.473/1.000  [12s]
+gap=None seed=1 K=2 | recon valley/beyond/off = 0.547/0.534/1.000 | density = 0.861/0.815/0.592 | linrec = 0.530/0.510/1.000  [21s]
+gap=None seed=2 K=3 | recon valley/beyond/off = 0.537/0.534/1.000 | density = 0.862/0.857/0.618 | linrec = 0.516/0.513/1.000  [29s]
+gap=3.0 seed=0 K=2 | recon valley/beyond/off = 0.478/0.488/1.000 | density = 0.460/0.668/0.493 | linrec = 0.474/0.485/1.000  [38s]
+gap=3.0 seed=1 K=2 | recon valley/beyond/off = 0.531/0.532/1.000 | density = 0.485/0.642/0.456 | linrec = 0.528/0.526/1.000  [47s]
+gap=3.0 seed=2 K=2 | recon valley/beyond/off = 0.515/0.482/1.000 | density = 0.462/0.730/0.537 | linrec = 0.512/0.479/1.000  [55s]
+gap=4.0 seed=0 K=2 | recon valley/beyond/off = 0.480/0.485/1.000 | density = 0.554/0.737/0.509 | linrec = 0.471/0.482/1.000  [64s]
+gap=4.0 seed=1 K=2 | recon valley/beyond/off = 0.537/0.532/1.000 | density = 0.591/0.717/0.481 | linrec = 0.529/0.523/1.000  [73s]
+gap=4.0 seed=2 K=2 | recon valley/beyond/off = 0.515/0.482/1.000 | density = 0.573/0.800/0.561 | linrec = 0.512/0.481/1.000  [81s]
+gap=5.0 seed=0 K=2 | recon valley/beyond/off = 0.485/0.486/1.000 | density = 0.686/0.833/0.573 | linrec = 0.469/0.480/1.000  [90s]
+gap=5.0 seed=1 K=2 | recon valley/beyond/off = 0.550/0.526/1.000 | density = 0.716/0.802/0.530 | linrec = 0.530/0.521/1.000  [99s]
+gap=5.0 seed=2 K=2 | recon valley/beyond/off = 0.528/0.486/1.000 | density = 0.713/0.867/0.586 | linrec = 0.511/0.483/1.000  [107s]
+gap=6.0 seed=0 K=2 | recon valley/beyond/off = 0.494/0.488/1.000 | density = 0.806/0.896/0.622 | linrec = 0.467/0.478/1.000  [116s]
+gap=6.0 seed=1 K=2 | recon valley/beyond/off = 0.567/0.528/1.000 | density = 0.836/0.870/0.596 | linrec = 0.530/0.518/1.000  [124s]
+gap=6.0 seed=2 K=2 | recon valley/beyond/off = 0.537/0.488/1.000 | density = 0.832/0.933/0.654 | linrec = 0.509/0.484/1.000  [133s]
+gap=8.0 seed=0 K=2 | recon valley/beyond/off = 0.572/0.483/1.000 | density = 0.951/0.980/0.778 | linrec = 0.465/0.476/1.000  [142s]
+gap=8.0 seed=1 K=2 | recon valley/beyond/off = 0.638/0.529/1.000 | density = 0.963/0.969/0.756 | linrec = 0.530/0.514/1.000  [151s]
+gap=8.0 seed=2 K=2 | recon valley/beyond/off = 0.587/0.500/1.000 | density = 0.967/0.987/0.748 | linrec = 0.507/0.486/1.000  [159s]
+gap=12.0 seed=0 K=2 | recon valley/beyond/off = 0.852/0.488/1.000 | density = 0.999/1.000/0.930 | linrec = 0.464/0.474/1.000  [168s]
+gap=12.0 seed=1 K=2 | recon valley/beyond/off = 0.828/0.575/1.000 | density = 1.000/1.000/0.936 | linrec = 0.529/0.508/1.000  [177s]
+gap=12.0 seed=2 K=2 | recon valley/beyond/off = 0.740/0.522/1.000 | density = 1.000/1.000/0.916 | linrec = 0.505/0.490/1.000  [186s]
+
+SUMMARY seed-mean AUROC (recon valley / beyond / off | density valley / beyond / off | linrec valley / beyond)
+  gap=None  n=3 | 0.536 / 0.518 / 1.000 | 0.848 / 0.838 / 0.613 | 0.512 / 0.499   recall@1%: recon v/b 0.01/0.01 density v/b 0.21/0.24
+  gap=3.0   n=3 | 0.508 / 0.501 / 1.000 | 0.469 / 0.680 / 0.495 | 0.505 / 0.496   recall@1%: recon v/b 0.01/0.01 density v/b 0.01/0.07
+  gap=4.0   n=3 | 0.511 / 0.500 / 1.000 | 0.572 / 0.751 / 0.517 | 0.504 / 0.495   recall@1%: recon v/b 0.01/0.01 density v/b 0.01/0.14
+  gap=5.0   n=3 | 0.521 / 0.499 / 1.000 | 0.705 / 0.834 / 0.563 | 0.503 / 0.494   recall@1%: recon v/b 0.01/0.01 density v/b 0.02/0.25
+  gap=6.0   n=3 | 0.533 / 0.501 / 1.000 | 0.825 / 0.900 / 0.624 | 0.502 / 0.494   recall@1%: recon v/b 0.01/0.01 density v/b 0.05/0.39
+  gap=8.0   n=3 | 0.599 / 0.504 / 1.000 | 0.960 / 0.979 / 0.761 | 0.501 / 0.492   recall@1%: recon v/b 0.01/0.01 density v/b 0.43/0.74
+  gap=12.0  n=3 | 0.807 / 0.528 / 1.000 | 1.000 / 1.000 / 0.927 | 0.499 / 0.491   recall@1%: recon v/b 0.17/0.01 density v/b 0.99/1.00
+figure saved

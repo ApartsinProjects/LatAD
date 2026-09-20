@@ -1,0 +1,4 @@
+WADI_clean difficult n= 43
+(a) whitened recon residual = 0.816
+(b) latent nearest-NLL      = 0.718
+(c) joint (a)+(b)           = 0.803

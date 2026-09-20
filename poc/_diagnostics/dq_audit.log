@@ -1,0 +1,56 @@
+
+==========================================================================================
+WADI
+==========================================================================================
+  channels at sd floor: 191 / 738
+  e2_fable mixture score vs shipped LatAD seed-mean: Spearman rho=0.952  (test-normal rho=0.944)
+  [OK]   OOS rate of test normals is not ~100% (feature scaling sane)
+  OOS (1-NN dist > train-LOO p99=30.87): all test normals 0.191, all anomalies 0.607
+  [train99_vade_mixture] thr=34.307 flagged=2/519 (FPR 0.0039) adj k1/2/3=1.00/1.00/1.00 (base k1 all-normals 0.040) OOS=1.00 runs=2 largest=1@493 plausible(k1|oos)=2 corrFPR=0.0000
+  [latad_fpr1] thr=4.403 flagged=6/519 (FPR 0.0116) adj k1/2/3=0.33/0.33/0.33 (base k1 all-normals 0.040) OOS=0.83 runs=5 largest=2@270 plausible(k1|oos)=5 corrFPR=0.0019
+  [latad_fpr5] thr=2.836 flagged=26/519 (FPR 0.0501) adj k1/2/3=0.19/0.31/0.38 (base k1 all-normals 0.040) OOS=0.69 runs=16 largest=3@213 plausible(k1|oos)=18 corrFPR=0.0160
+  largest contiguous OOS-normal block: start=261 len=17; flagged@fpr1=0.12 flagged@train99=0.00
+  largest OOS-normal block (gaps<=5 bridged): start=450 len=28 (23 OOS inside)
+  difficult = 19 / 56 anomalies
+  consecutive-overlap: 17/19 (0.89); episodes=6 lens=[6, 4, 3, 4, 1, 1]; attack-runs containing difficult=5/11
+  near-dup: euclid eps p10=4.57 -> 19 clusters; p50=10.66 -> 19; cosine<0.01 -> 19; close pairs=0 of which consecutive None
+  median 1NN within-difficult=18.75 vs to-train=18.23; min pairwise euclid=11.847 cos=0.0606
+  reverse: anomalies within train-LOO-median dist (10.66) of some normal: 8/56 (difficult among them 4); at attack boundary 22 (inlier&boundary 6)
+
+==========================================================================================
+HAI
+==========================================================================================
+  channels at sd floor: 48 / 354
+  e2_fable mixture score vs shipped LatAD seed-mean: Spearman rho=0.917  (test-normal rho=0.908)
+  [OK]   OOS rate of test normals is not ~100% (feature scaling sane)
+  OOS (1-NN dist > train-LOO p99=13.64): all test normals 0.203, all anomalies 0.906
+  [train99_vade_mixture] thr=31.951 flagged=1155/14167 (FPR 0.0815) adj k1/2/3=0.02/0.04/0.06 (base k1 all-normals 0.005) OOS=0.98 runs=183 largest=645@6436 plausible(k1|oos)=1136 corrFPR=0.0015
+  [latad_fpr1] thr=21.351 flagged=142/14167 (FPR 0.0100) adj k1/2/3=0.08/0.11/0.11 (base k1 all-normals 0.005) OOS=1.00 runs=86 largest=5@2848 plausible(k1|oos)=142 corrFPR=0.0000
+  [latad_fpr5] thr=19.186 flagged=709/14167 (FPR 0.0500) adj k1/2/3=0.02/0.03/0.03 (base k1 all-normals 0.005) OOS=1.00 runs=56 largest=117@6447 plausible(k1|oos)=709 corrFPR=0.0000
+  largest contiguous OOS-normal block: start=6436 len=646; flagged@fpr1=0.14 flagged@train99=1.00
+  largest OOS-normal block (gaps<=5 bridged): start=669 len=733 (703 OOS inside)
+  difficult = 167 / 652 anomalies
+  consecutive-overlap: 148/167 (0.89); episodes=38 lens=[11, 19, 14, 7, 6, 1, 7, 3, 1, 1, 14, 1, 1, 8, 3, 1, 7, 1, 3, 12, 4, 1, 19, 4, 1, 2, 3, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; attack-runs containing difficult=26/38
+  near-dup: euclid eps p10=6.49 -> 162 clusters; p50=8.27 -> 159; cosine<0.01 -> 143; close pairs=5 of which consecutive 1.0
+  median 1NN within-difficult=14.54 vs to-train=21.21; min pairwise euclid=4.828 cos=0.0009
+  reverse: anomalies within train-LOO-median dist (8.27) of some normal: 18/652 (difficult among them 13); at attack boundary 76 (inlier&boundary 10)
+
+==========================================================================================
+SWaT
+==========================================================================================
+  channels at sd floor: 52 / 306
+  e2_fable mixture score vs shipped LatAD seed-mean: Spearman rho=0.927  (test-normal rho=0.886)
+  [OK]   OOS rate of test normals is not ~100% (feature scaling sane)
+  OOS (1-NN dist > train-LOO p99=10.48): all test normals 0.001, all anomalies 0.918
+  [train99_vade_mixture] no flagged normals
+  [latad_fpr1] thr=5.259 flagged=10/905 (FPR 0.0110) adj k1/2/3=0.00/0.00/0.00 (base k1 all-normals 0.001) OOS=0.00 runs=10 largest=1@265 plausible(k1|oos)=0 corrFPR=0.0110
+  [latad_fpr5] thr=3.300 flagged=46/905 (FPR 0.0508) adj k1/2/3=0.00/0.00/0.00 (base k1 all-normals 0.001) OOS=0.02 runs=43 largest=4@435 plausible(k1|oos)=1 corrFPR=0.0498
+  largest contiguous OOS-normal block: start=251 len=1; flagged@fpr1=0.00 flagged@train99=0.00
+  largest OOS-normal block (gaps<=5 bridged): start=251 len=1 (1 OOS inside)
+  difficult = 38 / 182 anomalies
+  consecutive-overlap: 34/38 (0.89); episodes=12 lens=[3, 1, 4, 6, 2, 1, 1, 11, 3, 2, 1, 3]; attack-runs containing difficult=1/1
+  near-dup: euclid eps p10=0.00 -> 38 clusters; p50=0.95 -> 38; cosine<0.01 -> 36; close pairs=0 of which consecutive None
+  median 1NN within-difficult=12.17 vs to-train=16.72; min pairwise euclid=1.610 cos=0.0017
+  reverse: anomalies within train-LOO-median dist (0.95) of some normal: 0/182 (difficult among them 0); at attack boundary 1 (inlier&boundary 0)
+
+saved dq_audit.json

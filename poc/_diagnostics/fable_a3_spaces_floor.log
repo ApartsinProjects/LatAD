@@ -1,0 +1,5 @@
+SKAB seed0: VaDE own H=0.291 | frac comp-dims at variance floor=0.96 | mean VaDE comp sd=0.229 vs empirical within-comp sd=0.111
+   refit GMM on same latent H=0.051 | refit GMM with var floor 0.05 H=0.316 | VaDE means+pi with empirical vars H=0.048
+SKAB seed1: VaDE own H=0.322 | frac comp-dims at variance floor=0.89 | mean VaDE comp sd=0.241 vs empirical within-comp sd=0.127
+   refit GMM on same latent H=0.045 | refit GMM with var floor 0.05 H=0.189 | VaDE means+pi with empirical vars H=0.045
+WADI: VaDE own H=0.053 | frac at floor=0.04 | comp sd=0.781 vs empirical 0.879 | empirical-var H=0.057

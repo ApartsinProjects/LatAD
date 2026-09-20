@@ -1,0 +1,8 @@
+CONTROL: {"fixed_kde": {"auroc": 0.999, "rare_vs_anom_auroc": 0.994, "rare_normal_score": 22.11, "common_normal_score": 16.664}, "lof": {"auroc": 0.993, "rare_vs_anom_auroc": 0.994, "rare_normal_score": 1.071, "common_normal_score": 1.071}, "rare_penalty_ratio_lof": 1.0, "rare_penalty_ratio_fixed_kde": 1.327, "INVARIANT_lof_less_rare_penalty": true}
+  [SKAB] seed 0: diff gmm=0.941 fix=0.951 lof=0.919
+  [SKAB] seed 1: diff gmm=0.960 fix=0.947 lof=0.931
+  [SKAB] seed 2: diff gmm=0.943 fix=0.939 lof=0.902
+  [SKAB] seed 3: diff gmm=0.941 fix=0.908 lof=0.864
+  [SKAB] seed 4: diff gmm=0.950 fix=0.950 lof=0.956
+== SKAB: diff gmm=0.947 fixed=0.939 lof=0.9145  adap-fixed CI={'mean': -0.0243, 'lo': -0.0503, 'hi': -0.0013, 'p_le0': 0.8354}
+saved adaptive_density.json  (62s)

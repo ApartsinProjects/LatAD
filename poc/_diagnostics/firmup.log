@@ -1,0 +1,16 @@
+  WADI LatAD seed 0 done
+  WADI LatAD seed 1 done
+  WADI LatAD seed 2 done
+  WADI LatAD seed 3 done
+  WADI LatAD seed 4 done
+  WADI ensemble replica 1/3 done
+  WADI ensemble replica 2/3 done
+  WADI ensemble replica 3/3 done
+=== WADI: LatAD [np.float64(0.7), np.float64(0.034)]  ens [np.float64(0.5), np.float64(0.08)]  FUSED [np.float64(0.524), np.float64(0.055)]  vs IF 0.677: {'diff': -0.152, 'ci': [-0.269, -0.012], 'p_le_0': 0.9847}
+  HAI LatAD seed 0 done
+  HAI LatAD seed 1 done
+  HAI LatAD seed 2 done
+  HAI LatAD seed 3 done
+  HAI LatAD seed 4 done
+  HAI ensemble replica 1/3 done
+  HAI ensemble replica 2/3 done

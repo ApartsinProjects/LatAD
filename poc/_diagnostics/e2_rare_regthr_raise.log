@@ -1,0 +1,52 @@
+[HAI s0] invariant cap=0 == base: True
+[HAI s1] invariant cap=0 == base: True
+[HAI s2] invariant cap=0 == base: True
+
+=== HAI: seed-mean over 3 seeds (mix | near) ===
+variant                               FPR tiny          FPR rare           FPR all        AUROC diff       AUROC all  gap tiny  gap rare
+base()                          1.000|   1.000    0.441|   0.437   0.0804|  0.0807    0.791|   0.792   0.923|  0.922     0.000     0.004
+regthr_raise(kappa=0.0,cap=5.0)    1.000|   0.988    0.409|   0.400   0.0741|  0.0734    0.789|   0.790   0.922|  0.922     0.012     0.009
+regthr_raise(kappa=20.0,cap=5.0)    1.000|   0.988    0.410|   0.401   0.0742|  0.0735    0.789|   0.790   0.922|  0.922     0.012     0.009
+regthr_raise(kappa=0.0,cap=10.0)    0.988|   0.830    0.368|   0.354   0.0673|  0.0655    0.783|   0.782   0.920|  0.918     0.158     0.014
+regthr_raise(kappa=20.0,cap=10.0)    1.000|   0.877    0.368|   0.354   0.0674|  0.0656    0.783|   0.782   0.920|  0.918     0.123     0.014
+regthr_raise(kappa=0.0,cap=20.0)    0.687|   0.608    0.274|   0.210   0.0530|  0.0443    0.739|   0.724   0.888|  0.870     0.079     0.064
+regthr_raise(kappa=20.0,cap=20.0)    0.925|   0.769    0.275|   0.211   0.0533|  0.0446    0.745|   0.730   0.890|  0.872     0.155     0.064
+regthr_raise(kappa=0.0,cap=40.0)    0.482|   0.314    0.024|   0.022   0.0105|  0.0108    0.604|   0.598   0.695|  0.680     0.168     0.002
+regthr_raise(kappa=20.0,cap=40.0)    0.866|   0.711    0.026|   0.023   0.0113|  0.0116    0.622|   0.619   0.725|  0.712     0.155     0.002
+regthr_raise(kappa=0.0,cap=1000000000.0)    0.141|   0.128    0.016|   0.014   0.0085|  0.0090    0.423|   0.424   0.360|  0.359     0.012     0.001
+regthr_raise(kappa=20.0,cap=1000000000.0)    0.709|   0.573    0.019|   0.017   0.0098|  0.0102    0.486|   0.484   0.447|  0.441     0.136     0.002
+[WADI s0] invariant cap=0 == base: True
+[WADI s1] invariant cap=0 == base: True
+[WADI s2] invariant cap=0 == base: True
+
+=== WADI: seed-mean over 3 seeds (mix | near) ===
+variant                               FPR tiny          FPR rare           FPR all        AUROC diff       AUROC all  gap tiny  gap rare
+base()                            nan|     nan    0.000|   0.000   0.0051|  0.0058    0.653|   0.653   0.775|  0.774       nan     0.000
+regthr_raise(kappa=0.0,cap=5.0)      nan|     nan    0.000|   0.000   0.0051|  0.0051    0.645|   0.646   0.766|  0.766       nan     0.000
+regthr_raise(kappa=20.0,cap=5.0)      nan|     nan    0.000|   0.000   0.0051|  0.0051    0.645|   0.646   0.766|  0.766       nan     0.000
+regthr_raise(kappa=0.0,cap=10.0)      nan|     nan    0.000|   0.000   0.0045|  0.0045    0.617|   0.617   0.738|  0.738       nan     0.000
+regthr_raise(kappa=20.0,cap=10.0)      nan|     nan    0.000|   0.000   0.0045|  0.0045    0.617|   0.617   0.739|  0.739       nan     0.000
+regthr_raise(kappa=0.0,cap=20.0)      nan|     nan    0.000|   0.000   0.0032|  0.0032    0.590|   0.588   0.717|  0.717       nan     0.000
+regthr_raise(kappa=20.0,cap=20.0)      nan|     nan    0.000|   0.000   0.0032|  0.0032    0.590|   0.588   0.720|  0.719       nan     0.000
+regthr_raise(kappa=0.0,cap=40.0)      nan|     nan    0.000|   0.000   0.0032|  0.0032    0.589|   0.586   0.717|  0.716       nan     0.000
+regthr_raise(kappa=20.0,cap=40.0)      nan|     nan    0.000|   0.000   0.0032|  0.0032    0.590|   0.588   0.720|  0.718       nan     0.000
+regthr_raise(kappa=0.0,cap=1000000000.0)      nan|     nan    0.000|   0.000   0.0032|  0.0032    0.589|   0.586   0.717|  0.716       nan     0.000
+regthr_raise(kappa=20.0,cap=1000000000.0)      nan|     nan    0.000|   0.000   0.0032|  0.0032    0.590|   0.588   0.720|  0.718       nan     0.000
+[SWaT s0] invariant cap=0 == base: True
+[SWaT s1] invariant cap=0 == base: True
+[SWaT s2] invariant cap=0 == base: True
+
+=== SWaT: seed-mean over 3 seeds (mix | near) ===
+variant                               FPR tiny          FPR rare           FPR all        AUROC diff       AUROC all  gap tiny  gap rare
+base()                            nan|     nan    0.000|   0.000   0.0000|  0.0000    0.918|   0.912   0.982|  0.981       nan     0.000
+regthr_raise(kappa=0.0,cap=5.0)      nan|     nan    0.000|   0.000   0.0000|  0.0000    0.919|   0.913   0.983|  0.981       nan     0.000
+regthr_raise(kappa=20.0,cap=5.0)      nan|     nan    0.000|   0.000   0.0000|  0.0000    0.919|   0.913   0.983|  0.981       nan     0.000
+regthr_raise(kappa=0.0,cap=10.0)      nan|     nan    0.000|   0.000   0.0000|  0.0000    0.919|   0.913   0.983|  0.981       nan     0.000
+regthr_raise(kappa=20.0,cap=10.0)      nan|     nan    0.000|   0.000   0.0000|  0.0000    0.919|   0.913   0.983|  0.981       nan     0.000
+regthr_raise(kappa=0.0,cap=20.0)      nan|     nan    0.000|   0.000   0.0000|  0.0000    0.914|   0.908   0.973|  0.969       nan     0.000
+regthr_raise(kappa=20.0,cap=20.0)      nan|     nan    0.000|   0.000   0.0000|  0.0000    0.913|   0.908   0.975|  0.970       nan     0.000
+regthr_raise(kappa=0.0,cap=40.0)      nan|     nan    0.000|   0.000   0.0000|  0.0000    0.884|   0.870   0.821|  0.754       nan     0.000
+regthr_raise(kappa=20.0,cap=40.0)      nan|     nan    0.000|   0.000   0.0000|  0.0000    0.889|   0.881   0.966|  0.960       nan     0.000
+regthr_raise(kappa=0.0,cap=1000000000.0)      nan|     nan    0.000|   0.000   0.0000|  0.0000    0.845|   0.831   0.569|  0.564       nan     0.000
+regthr_raise(kappa=20.0,cap=1000000000.0)      nan|     nan    0.000|   0.000   0.0000|  0.0000    0.867|   0.861   0.958|  0.952       nan     0.000
+saved 423 rows

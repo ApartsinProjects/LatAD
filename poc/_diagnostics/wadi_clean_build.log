@@ -1,0 +1,6 @@
+    WADI_clean seed 0 done
+    WADI_clean seed 1 done
+    WADI_clean seed 2 done
+    WADI_clean seed 3 done
+    WADI_clean seed 4 done
+  WADI_clean: saved multiseed['LatAD', 'IF', 'AE'] single[]  n_win=575 anom=56 maxz_thr=6.01

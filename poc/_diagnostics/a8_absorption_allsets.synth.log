@@ -1,0 +1,5 @@
+[SYNTH_ring] train 9999 test 9999 anom 1599 knn q99 5.120 (3s)
+EMIT {"dataset": "SYNTH_ring", "seed": 0, "labelled": true, "K_bic": 12, "kd_narrow": 80, "n_train": 9999, "knn_q99": 5.120153226671639, "isolated_frac_train": 0.010001000100010001, "n_anom": 1599, "isolated_frac_anom": 0.9962476547842402, "isolated_frac_testnormal": 0.0045579944824277316, "NC_BIC_rho_tr
+EMIT {"dataset": "SYNTH_ring", "seed": 1, "labelled": true, "K_bic": 8, "kd_narrow": 80, "n_train": 9999, "knn_q99": 5.120153226671639, "isolated_frac_train": 0.010001000100010001, "n_anom": 1599, "isolated_frac_anom": 0.9962476547842402, "isolated_frac_testnormal": 0.0045579944824277316, "NC_BIC_rho_tra
+EMIT {"dataset": "SYNTH_ring", "seed": 2, "labelled": true, "K_bic": 8, "kd_narrow": 80, "n_train": 9999, "knn_q99": 5.120153226671639, "isolated_frac_train": 0.010001000100010001, "n_anom": 1599, "isolated_frac_anom": 0.9962476547842402, "isolated_frac_testnormal": 0.0045579944824277316, "NC_BIC_rho_tra
+[SYNTH_ring] done (19s)

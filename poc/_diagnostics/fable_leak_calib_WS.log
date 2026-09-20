@@ -1,0 +1,39 @@
+  [WADI_clean] seed 0 retrained in 31s  resid_auto=False ratio=4.46
+  [WADI_clean] seed 1 retrained in 29s  resid_auto=False ratio=3.10
+  [WADI_clean] seed 2 retrained in 29s  resid_auto=False ratio=5.06
+  [WADI_clean] seed 3 retrained in 30s  resid_auto=False ratio=3.29
+  [WADI_clean] seed 4 retrained in 31s  resid_auto=False ratio=5.36
+[WADI_clean] test_normal                  HCcoh+LatAD Difficult [0.824, 0.012] null+HC [0.806, 0.005] HC_coh [0.805, 0.012]
+[WADI_clean] test_all                     HCcoh+LatAD Difficult [0.819, 0.011] null+HC [0.803, 0.004] HC_coh [0.805, 0.012]
+[WADI_clean] train_cal                    HCcoh+LatAD Difficult [0.833, 0.015] null+HC [0.821, 0.01] HC_coh [0.805, 0.012]
+[WADI_clean] train_cal_retrained_test     HCcoh+LatAD Difficult [0.833, 0.015] null+HC [0.821, 0.01] HC_coh [0.805, 0.012]
+[WADI_clean] train_cal_a0.25              HCcoh+LatAD Difficult [0.799, 0.008] null+HC [0.821, 0.01] HC_coh [0.805, 0.012]
+[WADI_clean] train_cal_a0.5               HCcoh+LatAD Difficult [0.818, 0.011] null+HC [0.821, 0.01] HC_coh [0.805, 0.012]
+[WADI_clean] train_cal_a2.0               HCcoh+LatAD Difficult [0.84, 0.015] null+HC [0.821, 0.01] HC_coh [0.805, 0.012]
+[WADI_clean] train_cal_a4.0               HCcoh+LatAD Difficult [0.84, 0.014] null+HC [0.821, 0.01] HC_coh [0.805, 0.012]
+  [WADI_clean_f80] seed 0 retrained in 18s  resid_auto=False ratio=2.31
+  [WADI_clean_f80] seed 1 retrained in 17s  resid_auto=False ratio=2.17
+  [WADI_clean_f80] seed 2 retrained in 17s  resid_auto=False ratio=2.91
+  [WADI_clean_f80] seed 3 retrained in 31s  resid_auto=False ratio=1.71
+  [WADI_clean_f80] seed 4 retrained in 20s  resid_auto=False ratio=2.55
+[WADI_clean] train_heldout80  HCcoh+LatAD Difficult [0.846, 0.012]
+  [SWaT_canon] seed 0 retrained in 18s  resid_auto=True ratio=0.80
+  [SWaT_canon] seed 1 retrained in 18s  resid_auto=True ratio=0.79
+  [SWaT_canon] seed 2 retrained in 17s  resid_auto=True ratio=0.78
+  [SWaT_canon] seed 3 retrained in 35s  resid_auto=True ratio=0.84
+  [SWaT_canon] seed 4 retrained in 19s  resid_auto=True ratio=0.80
+[SWaT_canon] test_normal                  HCcoh+LatAD Difficult [0.84, 0.004] null+HC [0.823, 0.011] HC_coh [0.822, 0.014]
+[SWaT_canon] test_all                     HCcoh+LatAD Difficult [0.838, 0.004] null+HC [0.811, 0.007] HC_coh [0.822, 0.014]
+[SWaT_canon] train_cal                    HCcoh+LatAD Difficult [0.837, 0.004] null+HC [0.811, 0.011] HC_coh [0.822, 0.014]
+[SWaT_canon] train_cal_retrained_test     HCcoh+LatAD Difficult [0.837, 0.004] null+HC [0.811, 0.011] HC_coh [0.822, 0.014]
+[SWaT_canon] train_cal_a0.25              HCcoh+LatAD Difficult [0.838, 0.004] null+HC [0.811, 0.011] HC_coh [0.822, 0.014]
+[SWaT_canon] train_cal_a0.5               HCcoh+LatAD Difficult [0.84, 0.004] null+HC [0.811, 0.011] HC_coh [0.822, 0.014]
+[SWaT_canon] train_cal_a2.0               HCcoh+LatAD Difficult [0.836, 0.005] null+HC [0.811, 0.011] HC_coh [0.822, 0.014]
+[SWaT_canon] train_cal_a4.0               HCcoh+LatAD Difficult [0.836, 0.005] null+HC [0.811, 0.011] HC_coh [0.822, 0.014]
+  [SWaT_canon_f80] seed 0 retrained in 12s  resid_auto=True ratio=1.01
+  [SWaT_canon_f80] seed 1 retrained in 14s  resid_auto=True ratio=0.80
+  [SWaT_canon_f80] seed 2 retrained in 15s  resid_auto=True ratio=0.91
+  [SWaT_canon_f80] seed 3 retrained in 14s  resid_auto=True ratio=0.98
+  [SWaT_canon_f80] seed 4 retrained in 13s  resid_auto=True ratio=1.00
+[SWaT_canon] train_heldout80  HCcoh+LatAD Difficult [0.841, 0.007]
+DONE

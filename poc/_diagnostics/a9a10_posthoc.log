@@ -1,0 +1,41 @@
+### A9 fixed-subset comparison across W (subset = difficult windows whose extra history at W* is attack-free [strict] / has no easy slot [loose])
+  WADI_clean  subset@W180 strict n_hard= 14: gmm: W20=0.584 W60=0.590 W180=0.435 W600=0.620 | IF: W20=0.554 W60=0.571 W180=0.483 W600=0.697 | gmm>p95: W60=2 W180=0 onlyW*=0 onlyW60=2
+  WADI_clean  subset@W180 loose  n_hard= 37: gmm: W20=0.655 W60=0.665 W180=0.522 W600=0.649 | IF: W20=0.648 W60=0.669 W180=0.578 W600=0.690 | gmm>p95: W60=5 W180=1 onlyW*=0 onlyW60=4
+  WADI_clean  subset@W600 strict n_hard= 10: gmm: W20=0.550 W60=0.536 W180=0.411 W600=0.602 | IF: W20=0.517 W60=0.500 W180=0.448 W600=0.652 | gmm>p95: W60=0 W600=2 onlyW*=2 onlyW60=0
+  WADI_clean  subset@W600 loose  n_hard= 31: gmm: W20=0.665 W60=0.673 W180=0.488 W600=0.596 | IF: W20=0.628 W60=0.645 W180=0.550 W600=0.639 | gmm>p95: W60=4 W600=2 onlyW*=2 onlyW60=4
+  HAI         subset@W180 strict n_hard= 42: gmm: W20=0.779 W60=0.772 W180=0.671 W600=0.705 | IF: W20=0.626 W60=0.562 W180=0.497 W600=0.510 | gmm>p95: W60=25 W180=19 onlyW*=0 onlyW60=6
+  HAI         subset@W180 loose  n_hard=149: gmm: W20=0.738 W60=0.782 W180=0.810 W600=0.844 | IF: W20=0.584 W60=0.586 W180=0.593 W600=0.589 | gmm>p95: W60=98 W180=102 onlyW*=14 onlyW60=10
+  HAI         subset@W600 strict n_hard= 42: gmm: W20=0.779 W60=0.772 W180=0.671 W600=0.705 | IF: W20=0.626 W60=0.562 W180=0.497 W600=0.510 | gmm>p95: W60=25 W600=20 onlyW*=2 onlyW60=7
+  HAI         subset@W600 loose  n_hard=145: gmm: W20=0.735 W60=0.782 W180=0.809 W600=0.841 | IF: W20=0.580 W60=0.582 W180=0.586 W600=0.579 | gmm>p95: W60=95 W600=114 onlyW*=29 onlyW60=10
+  SWaT_canon  subset@W180 strict n_hard= 26: gmm: W20=0.704 W60=0.764 W180=0.620 W600=0.601 | IF: W20=0.593 W60=0.614 W180=0.602 W600=0.603 | gmm>p95: W60=11 W180=5 onlyW*=1 onlyW60=7
+  SWaT_canon  subset@W180 loose  n_hard= 62: gmm: W20=0.654 W60=0.715 W180=0.677 W600=0.643 | IF: W20=0.561 W60=0.563 W180=0.618 W600=0.669 | gmm>p95: W60=21 W180=18 onlyW*=8 onlyW60=11
+  SWaT_canon  subset@W600 strict n_hard= 19: gmm: W20=0.660 W60=0.755 W180=0.623 W600=0.490 | IF: W20=0.553 W60=0.564 W180=0.574 W600=0.469 | gmm>p95: W60=8 W600=2 onlyW*=1 onlyW60=7
+  SWaT_canon  subset@W600 loose  n_hard= 46: gmm: W20=0.632 W60=0.723 W180=0.710 W600=0.547 | IF: W20=0.568 W60=0.577 W180=0.635 W600=0.566 | gmm>p95: W60=18 W600=10 onlyW*=3 onlyW60=11
+
+### HAI A10 residual: kNN-cell (test-normal thresholds) windows with attack-free history, pca20
+  cell anomaly windows: [320, 429, 2620, 2954, 3060, 3300, 5700, 5825, 6050, 6180, 8458, 8821, 8822, 8962, 9275, 12039, 12165, 12760]
+  episodes: [0, 1, 4, 7, 8, 9, 13, 14, 15, 16, 19, 22, 23, 26, 31, 32, 35] of 38 ; position in episode: [(320, 1), (429, 0), (2620, 1), (2954, 1), (3060, 1), (3300, 1), (5700, 1), (5825, 0), (6050, 1), (6180, 1), (8458, 1), (8821, 0), (8822, 1), (8962, 1), (9275, 0), (12039, 0), (12165, 0), (12760, 1)]
+  same windows at W=600 gmm pct>p95: 18 / 18 ; at W=60: 18
+  hard among them: 11 ; marg_gmm pct (train-cal): [0.99, 0.58, 0.74, 0.89, 0.99, 0.98, 0.99, 0.8, 1.0, 0.99, 0.99, 0.69, 0.99, 0.99, 0.99, 0.89, 0.9, 0.86]
+  cond_knn pct (train-cal): [1.0, 0.999, 0.999, 0.998, 0.998, 0.999, 0.999, 0.998, 1.0, 1.0, 1.0, 0.998, 1.0, 0.998, 0.999, 0.998, 0.997, 0.999]
+    win 320 ep0 : P1_FT01=+6.0, P1_PCV02Z=-4.3, P1_FT01Z=+3.2
+    win 429 ep1 : P1_B4002=-6.9, P1_B4022=-5.1, P1_PCV02Z=-4.2
+    win 2620 ep4 : P1_PCV02Z=-4.3, P1_FT01=+4.2, P1_FCV03Z=+2.6
+    win 2954 ep7 : P1_B3004=+1.5, P1_LIT01=+1.5, P1_PCV01Z=+1.4
+    win 3060 ep8 : P1_FT01=+1.7, P1_B3004=+1.5, P1_LIT01=+1.5
+    win 3300 ep9 : P2_SIT01=-2.1, P1_PCV01D=+1.8, P1_PCV01Z=+1.8
+    win 5700 ep13 : P1_B3004=+2.9, P1_LIT01=+2.8, P2_SIT01=-1.9
+    win 5825 ep14 : P1_B3004=+2.9, P1_LIT01=+2.9, P1_PCV01Z=+1.8
+
+### WADI frontier: two-sided / low-tail read
+  marg_gmm: test-normal frac with pct<0.03 = 0.049 (25/515); frontier windows with pct<0.03: [360, 361, 362]; all anomalies with pct<0.03: 3/56
+  cond_knn: test-normal frac with pct<0.03 = 0.064 (33/515); frontier windows with pct<0.03: [360, 361, 362]; all anomalies with pct<0.03: 4/56
+  cond_ar: test-normal frac with pct<0.03 = 0.000 (0/515); frontier windows with pct<0.03: []; all anomalies with pct<0.03: 0/56
+    {'win': 237, 'start': 7110, 'seg': [4], 'maxz': 3.02, 'hard': True, 'top': [['2A_AIT_004_PV', -3.02], ['2B_AIT_004_PV', -2.89], ['3_LT_001_PV', 2.29], ['2B_AIT_003_PV', 1.87]]}
+    {'win': 238, 'start': 7140, 'seg': [4], 'maxz': 2.91, 'hard': True, 'top': [['2A_AIT_004_PV', -2.91], ['2B_AIT_004_PV', -2.85], ['3_LT_001_PV', 2.07], ['2B_AIT_003_PV', 1.84]]}
+    {'win': 360, 'start': 10800, 'seg': [7], 'maxz': 1.61, 'hard': True, 'top': [['3_LT_001_PV', 1.61], ['1_LT_001_PV', -1.39], ['TOTAL_CONS_REQUIRED_FLOW', -1.18], ['2_MV_401_STATUS', 1.13]]}
+    {'win': 361, 'start': 10830, 'seg': [7], 'maxz': 1.49, 'hard': True, 'top': [['3_LT_001_PV', 1.49], ['1_LT_001_PV', -1.39], ['TOTAL_CONS_REQUIRED_FLOW', -1.18], ['2_MV_401_STATUS', 1.13]]}
+    {'win': 362, 'start': 10860, 'seg': [7], 'maxz': 1.4, 'hard': True, 'top': [['3_LT_001_PV', 1.4], ['1_LT_001_PV', -1.39], ['TOTAL_CONS_REQUIRED_FLOW', -1.18], ['2_MV_401_STATUS', 1.13]]}
+    win 360: n channels with within-window std < 1e-6: 97/122; train-normal median count: 73 p05 58
+    win 361: n channels with within-window std < 1e-6: 96/122; train-normal median count: 73 p05 58
+    win 362: n channels with within-window std < 1e-6: 96/122; train-normal median count: 73 p05 58

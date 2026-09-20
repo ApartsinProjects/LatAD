@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LatAD Editor Requests Plan</title>
+<style>
+  :root{--ink:#1a1f27;--muted:#5b6674;--line:#e2e6eb;--soft:#f6f8fa;--accent:#1f4e79;
+    --A:#0b6b3a;--Abg:#e5f4ec;--B:#8a4b0b;--Bbg:#fbeede;--req:#9a2b2b;--reqbg:#fbe9e9;--opt:#556;--optbg:#eef0f3}
+  *{box-sizing:border-box}
+  body{font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;color:var(--ink);background:#fff;
+    line-height:1.5;max-width:900px;margin:0 auto;padding:32px 26px 80px;font-size:15px}
+  h1{font-size:1.5rem;margin:0 0 .1em}
+  .sub{color:var(--muted);margin:0 0 1.2em;font-size:.95rem}
+  h2{font-size:1.05rem;margin:1.6em 0 .5em;color:var(--accent);border-bottom:2px solid var(--line);padding-bottom:.2em}
+  .pill{display:inline-block;font-size:.7rem;font-weight:600;padding:2px 8px;border-radius:11px;white-space:nowrap}
+  .p-A{color:var(--A);background:var(--Abg)}.p-B{color:var(--B);background:var(--Bbg)}
+  .r-req{color:var(--req);background:var(--reqbg)}.r-opt{color:var(--opt);background:var(--optbg)}
+  .item{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:9px;padding:12px 15px;margin:10px 0}
+  .item .hd{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;margin-bottom:5px}
+  .item .id{font-weight:700;font-family:"SFMono-Regular",Consolas,monospace;font-size:.8rem;color:var(--accent)}
+  .item .ti{font-weight:600}
+  .item .badges{margin-left:auto;display:flex;gap:5px;flex-wrap:wrap}
+  .ask{color:var(--muted);font-style:italic;margin:.2em 0 .5em;font-size:.92rem}
+  .ask::before{content:"Editor: “"}.ask::after{content:"”"}
+  .item p{margin:.25em 0;font-size:.9rem}
+  .k{font-weight:600}
+  .items-tag{font-family:"SFMono-Regular",Consolas,monospace;font-size:.72rem;color:#33406b;background:#eaeefb;border:1px solid #d3dbf5;padding:1px 6px;border-radius:9px}
+  .summary{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:1em 0;font-size:.92rem}
+  .note{background:#fff8e8;border-left:3px solid #d8a72a;padding:8px 14px;margin:1.2em 0;font-size:.88rem}
+  code{font-family:"SFMono-Regular",Consolas,monospace;font-size:.85em;background:var(--soft);padding:1px 4px;border-radius:3px}
+  @media print{.item{break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<h1>LatAD &mdash; Editor Requests Checklist</h1>
+<p class="sub">MDPI <em>IoT</em> (Manuscript IoT-4522779) &middot; the Academic Editor's requests only (5 direct + 5 forwarded from Reviewer&nbsp;2 + the response letter) &middot; item tags link to the full plan &middot; 2026-09-17</p>
+
+<div class="summary">
+The editor asks for five experimental/analysis items and, via Reviewer&nbsp;2, five writing/structure items, plus a point-by-point response. <b>Three still need new runs</b> (cost, nearest-component, gain-ablation); <b>A3 validation is now done</b> (SKAB witness, Table&nbsp;6). The rest are edits or re-analysis of data we already have. Tags such as <span class="items-tag">B-03</span> point to the detailed action items in <code>IoT2_review_response_plan.html</code>.
+</div>
+
+<h2 style="color:#0b6b3a;border-bottom-color:#bfe3cf">&#10003;&nbsp;Completed this revision (in IoT2.html)</h2>
+<div class="summary" style="background:#e5f4ec;border-color:#bfe3cf">
+All edits below are green-highlighted in <code>IoT2.html</code> and render-verified. The point-by-point response (E11) will cross-reference them.
+</div>
+
+<div class="item" style="border-left-color:#0b6b3a"><div class="hd"><span class="id">E6</span><span class="ti">Clearer abstract and introduction</span><span class="badges"><span class="pill" style="color:#0b6b3a;background:#e5f4ec">&#10003; done</span></span></div>
+<p>Abstract rebalanced toward LatAD's mechanism (199 words); intro opens with the CPS/IIoT background, the "task" is defined, "This paper detects them by&hellip;" struck, and the modeling-obstacle choice is stated. Items <span class="items-tag">A-02</span>&ndash;<span class="items-tag">A-06</span>.</p></div>
+
+<div class="item" style="border-left-color:#0b6b3a"><div class="hd"><span class="id">E7</span><span class="ti">Restructured related-work section</span><span class="badges"><span class="pill" style="color:#0b6b3a;background:#e5f4ec">&#10003; done</span></span></div>
+<p>Anomaly-detection definition moved to the intro; the three LatAD self-descriptions struck; &sect;2.3 rewritten as a neutral survey with Deep&nbsp;SVDD, OmniAnomaly and THOC added (refs 43&ndash;45); &sect;2.5 datasets removed. Items <span class="items-tag">A-08</span>&ndash;<span class="items-tag">A-11</span>.</p></div>
+
+<div class="item" style="border-left-color:#0b6b3a"><div class="hd"><span class="id">E9</span><span class="ti">Resolve the notation conflict for z</span><span class="badges"><span class="pill" style="color:#0b6b3a;background:#e5f4ec">&#10003; done</span></span></div>
+<p>Latent <em>z</em> kept; the standardization operator renamed <code>std(&middot;)</code>; the trivial-rule per-channel value renamed <em>u</em> (Tables&nbsp;3&ndash;4 and prose); the disambiguation clause dropped. Item <span class="items-tag">A-18</span>.</p></div>
+
+<div class="item" style="border-left-color:#0b6b3a"><div class="hd"><span class="id">E10</span><span class="ti">Numbered equations</span><span class="badges"><span class="pill" style="color:#0b6b3a;background:#e5f4ec">&#10003; done</span></span></div>
+<p>All nine display equations numbered (1)&ndash;(9), right-aligned. Items <span class="items-tag">A-19</span> <span class="items-tag">A-20</span>. (DOCX indentation unification deferred to the next build.)</p></div>
+
+<div class="item" style="border-left-color:#0b6b3a"><div class="hd"><span class="id">E1</span><span class="ti">Validate A3 (partial: A3 done; A9/A10 future work)</span><span class="badges"><span class="pill" style="color:#0b6b3a;background:#e5f4ec">&#10003; A3 done</span></span></div>
+<p>A3 validated on <b>SKAB</b>, a real rotor-malfunction testbed with between-regime faults: the train-only gate fires (&rho;&nbsp;=&nbsp;0.58, &lambda;&nbsp;=&nbsp;1.07) and lifts difficult-subset AUROC 0.500&rarr;0.605; on WADI/HAI/SWaT the gate is a provable no-op. New &sect;7 witness paragraph + Table&nbsp;6 + ref [47]. A9/A10 remain scoped as future work (snapshot-detectable benchmarks). Items <span class="items-tag">A-12</span> <span class="items-tag">A-13</span> <span class="items-tag">B-01</span> <span class="items-tag">B-02</span>.</p></div>
+
+<div class="item" style="border-left-color:#0b6b3a"><div class="hd"><span class="id">+</span><span class="ti">Scope framing (reviewer-motivated, beyond the checklist)</span><span class="badges"><span class="pill" style="color:#0b6b3a;background:#e5f4ec">&#10003; done</span></span></div>
+<p>Added the faults-and-attacks framing with slowly-progressing malfunctions as the hard case, and an open-CPS-data scarcity / attack-centric note, with an incipient-fault citation [46] (Wang et al., <em>Sensors</em> 2023) and a matching A3-sense simplicity claim in &sect;4.3.</p></div>
+
+<div class="item" style="border-left-color:#0b6b3a"><div class="hd"><span class="id">E8</span><span class="ti">System-model and LatAD workflow figures</span><span class="badges"><span class="pill" style="color:#0b6b3a;background:#e5f4ec">&#10003; done</span></span></div>
+<p>Figure&nbsp;1 (IIoT system-model, &sect;1) and Figure&nbsp;2 (LatAD workflow, &sect;4) added as inline SVG, in-text-referenced and render-verified. Items <span class="items-tag">A-16</span> <span class="items-tag">A-17</span>.</p></div>
+
+<h2>Editor's direct requests (experimental / analysis)</h2>
+
+<div class="item"><div class="hd"><span class="id">E2</span><span class="ti">Direct experimental support for the nearest-component likelihood</span><span class="badges"><span class="pill p-B">new exp</span><span class="pill r-req">required</span></span></div>
+<p class="ask">provide direct experimental support for the rare-regime-safe nearest-component likelihood</p>
+<p><span class="k">Do:</span> extend the existing Table&nbsp;5 comparison (mixture-NLL vs nearest-component) with an imbalance sweep and the rare-regime false-positive rate; part is scoring-only from existing checkpoints, part is a small controlled-imbalance retrain.</p>
+<p><span class="k">Items:</span> <span class="items-tag">B-05</span> (extends Table&nbsp;5)</p></div>
+
+<div class="item"><div class="hd"><span class="id">E3</span><span class="ti">Report training and inference cost for edge deployment</span><span class="badges"><span class="pill p-B">new exp</span><span class="pill r-req">required</span></span></div>
+<p class="ask">report training and inference cost for edge deployment</p>
+<p><span class="k">Do:</span> a cost table &mdash; training wall-clock, peak memory, parameter count, per-window inference latency, throughput &mdash; for LatAD (global vs regime-community) and the deep baselines on one shared machine + a CPU edge proxy. Inference/memory/params come from existing checkpoints; only training time needs a re-run. Then replace the "no measurements" sentence in the deployment section with the numbers.</p>
+<p><span class="k">Items:</span> <span class="items-tag">B-03</span> <span class="items-tag">A-21</span> <span class="items-tag">A-30</span></p></div>
+
+<div class="item"><div class="hd"><span class="id">E4</span><span class="ti">Use a time-aware statistical test</span><span class="badges"><span class="pill p-A">edit / re-analysis</span><span class="pill r-req">required &middot; no compute</span></span></div>
+<p class="ask">use a time-aware statistical test</p>
+<p><span class="k">Do:</span> we already use an episode-block bootstrap (resamples whole episodes + contiguous normal blocks) &mdash; state that as the rebuttal, then strengthen it (block length from the score autocorrelation, applied uniformly to all three datasets and every CI/P), and define the WADI CI vs p-value precisely. Recomputed from persisted scores, no retraining.</p>
+<p><span class="k">Items:</span> <span class="items-tag">A-22</span> <span class="items-tag">A-23</span> <span class="items-tag">A-24</span></p></div>
+
+<div class="item"><div class="hd"><span class="id">E5</span><span class="ti">Add ablations isolating the source of the gain</span><span class="badges"><span class="pill p-A">edit</span><span class="pill p-B">+ new exp</span><span class="pill r-req">required</span></span></div>
+<p class="ask">add ablations isolating the source of the gain</p>
+<p><span class="k">Do:</span> consolidate the existing head/factorization ablations (Table&nbsp;5 + Appendix&nbsp;A + the negative temporal-feature log run) into one main-text "where the gain comes from" table, and add the decisive new arm: channel-independent density vs cross-channel latent density.</p>
+<p><span class="k">Items:</span> <span class="items-tag">A-25</span> <span class="items-tag">B-04</span></p></div>
+
+<h2>Response</h2>
+
+<div class="item"><div class="hd"><span class="id">E11</span><span class="ti">Submit a point-by-point response with the revised manuscript</span><span class="badges"><span class="pill p-A">edit</span><span class="pill r-req">required</span></span></div>
+<p class="ask">Please submit a point-by-point response with the revised manuscript</p>
+<p><span class="k">Do:</span> one letter answering every Editor / R1 / R2 point with "change made + location + new text" or "rebuttal + evidence", cross-referencing these item tags.</p>
+<p><span class="k">Items:</span> <span class="items-tag">A-28</span></p></div>
+
+<div class="note"><b>Compute:</b> the four required experiments (E1 A3, E2 nearest-component, E3 cost, E5 gain arm) total roughly ~$20&ndash;30 of cloud time; E4 needs none. <b>Full detail</b> (all 36 items, Reviewer 1 and Reviewer 2 breakdown, sequencing) is in <code>IoT2_review_response_plan.html</code>.</div>
+
+</body>
+</html>

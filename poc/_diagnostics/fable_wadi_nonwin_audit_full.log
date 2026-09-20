@@ -1,0 +1,17 @@
+block 1 done
+block 2 done
+  delta 0.0: AUROC 0.824 diff 0.037 P 0.3165
+  delta 0.25: AUROC 0.854 diff 0.068 P 0.213
+  delta 0.5: AUROC 0.884 diff 0.097 P 0.098
+  delta 0.75: AUROC 0.913 diff 0.126 P 0.0175
+  delta 1.0: AUROC 0.935 diff 0.148 P 0.0005
+  delta 1.5: AUROC 0.963 diff 0.176 P 0.0
+  delta 2.0: AUROC 0.979 diff 0.192 P 0.0
+  delta 3.0: AUROC 0.991 diff 0.205 P 0.0
+  n_ep 11: {'n_episodes': 11, 'diff_mean': 0.036, 'ci': [-0.087, 0.18], 'p_le_0': 0.324}
+  n_ep 22: {'n_episodes': 22, 'diff_mean': 0.037, 'ci': [-0.057, 0.145], 'p_le_0': 0.2367}
+  n_ep 44: {'n_episodes': 44, 'diff_mean': 0.036, 'ci': [-0.032, 0.11], 'p_le_0': 0.1573}
+  n_ep 88: {'n_episodes': 88, 'diff_mean': 0.037, 'ci': [-0.017, 0.092], 'p_le_0': 0.08}
+  n_ep 176: {'n_episodes': 176, 'diff_mean': 0.037, 'ci': [-0.002, 0.077], 'p_le_0': 0.0353}
+block 3 done
+block 4 done; saved E:\Projects\Backlog\LatAD\poc\_diagnostics\fable_wadi_nonwin_audit.json

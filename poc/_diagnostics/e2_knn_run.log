@@ -1,0 +1,28 @@
+[WADI s0] dens=0.763 full=0.726 knn10=0.679 fuse=0.722
+[WADI s1] dens=0.633 full=0.631 knn10=0.642 fuse=0.638
+[WADI s2] dens=0.725 full=0.706 knn10=0.691 fuse=0.705
+[WADI s3] dens=0.728 full=0.700 knn10=0.645 fuse=0.682
+[WADI s4] dens=0.672 full=0.679 knn10=0.661 fuse=0.673
+[HAI s0] dens=0.812 full=0.831 knn10=0.804 fuse=0.810
+[HAI s1] dens=0.762 full=0.784 knn10=0.767 fuse=0.764
+[HAI s2] dens=0.793 full=0.811 knn10=0.801 fuse=0.796
+[HAI s3] dens=0.802 full=0.833 knn10=0.784 fuse=0.798
+[HAI s4] dens=0.777 full=0.792 knn10=0.783 fuse=0.780
+[SWaT s0] dens=0.957 full=0.959 knn10=0.969 fuse=0.962
+[SWaT s1] dens=0.963 full=0.967 knn10=0.967 fuse=0.965
+[SWaT s2] dens=0.945 full=0.950 knn10=0.968 fuse=0.950
+[SWaT s3] dens=0.956 full=0.962 knn10=0.969 fuse=0.958
+[SWaT s4] dens=0.955 full=0.961 knn10=0.972 fuse=0.956
+
+==== difficult-subset AUROC, 5-seed mean +/- sd ====
+dataset         dens         full         knn5        knn10        knn20         fuse
+WADI    0.704±0.046  0.688±0.033  0.683±0.020  0.664±0.019  0.647±0.018  0.684±0.029
+HAI     0.789±0.018  0.810±0.020  0.787±0.013  0.788±0.013  0.786±0.013  0.790±0.016
+SWaT    0.955±0.006  0.960±0.006  0.976±0.002  0.969±0.001  0.959±0.001  0.958±0.005
+
+---- kNN10 vs full-head, kNN10 vs dens (mean delta) ----
+WADI   knn10-full=-0.025  knn10-dens=-0.041  fuse-full=-0.004  WIN(knn>full)=False  WIN(fuse>full)=False
+HAI    knn10-full=-0.022  knn10-dens=-0.001  fuse-full=-0.020  WIN(knn>full)=False  WIN(fuse>full)=False
+SWaT   knn10-full=+0.009  knn10-dens=+0.013  fuse-full=-0.002  WIN(knn>full)=True  WIN(fuse>full)=False
+
+saved -> E:\Projects\Backlog\LatAD\poc\_diagnostics\e2_knn_latent.json

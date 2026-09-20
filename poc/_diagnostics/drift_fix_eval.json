@@ -1,0 +1,274 @@
+{
+ "SWaT_canon@sota_bundle/experts_full": {
+  "artifact": "sota_bundle/experts_full",
+  "base": {
+   "Difficult": 0.837,
+   "DoubleHard": 0.773
+  },
+  "fixB": {
+   "Difficult": 0.836,
+   "DoubleHard": 0.77
+  },
+  "median_shift_abs_med": 0.475,
+  "median_shift_abs_max": 6.365128193396932e+21,
+  "masking": {
+   "det95_all_before": 0.854,
+   "det95_all_after": 0.867,
+   "det95_diff_before": 0.635,
+   "det95_diff_after": 0.635,
+   "n_anom_pct_drop_gt_0_1": 5,
+   "n_anom_pct_gain_gt_0_1": 0,
+   "episodes_masked(median pct drop>0.1)": [],
+   "n_episodes": 25
+  },
+  "boot_fixB_minus_base_Difficult": {
+   "diff": -0.001,
+   "diff_ci": [
+    -0.008,
+    0.007
+   ],
+   "p_le_0": 0.5855,
+   "n_episodes": 23
+  },
+  "boot_fixB_minus_base_DoubleHard": {
+   "diff": -0.003,
+   "diff_ci": [
+    -0.011,
+    0.007
+   ],
+   "p_le_0": 0.7255,
+   "n_episodes": 18
+  },
+  "boot_fixB_minus_boosted_Difficult": {
+   "diff": -0.044,
+   "diff_ci": [
+    -0.1,
+    0.017
+   ],
+   "p_le_0": 0.923,
+   "n_episodes": 23
+  },
+  "boot_fixB_minus_boosted_DoubleHard": {
+   "diff": -0.06,
+   "diff_ci": [
+    -0.137,
+    0.035
+   ],
+   "p_le_0": 0.9165,
+   "n_episodes": 18
+  },
+  "boot_base_minus_boosted_Difficult": {
+   "diff": -0.044,
+   "diff_ci": [
+    -0.096,
+    0.017
+   ],
+   "p_le_0": 0.926,
+   "n_episodes": 23
+  }
+ },
+ "WADI_clean@sota_bundle/experts_full": {
+  "artifact": "sota_bundle/experts_full",
+  "base": {
+   "Difficult": 0.771,
+   "DoubleHard": 0.662
+  },
+  "fixB": {
+   "Difficult": 0.767,
+   "DoubleHard": 0.657
+  },
+  "median_shift_abs_med": 0.097,
+  "median_shift_abs_max": 1.371,
+  "masking": {
+   "det95_all_before": 0.554,
+   "det95_all_after": 0.571,
+   "det95_diff_before": 0.467,
+   "det95_diff_after": 0.5,
+   "n_anom_pct_drop_gt_0_1": 1,
+   "n_anom_pct_gain_gt_0_1": 0,
+   "episodes_masked(median pct drop>0.1)": [],
+   "n_episodes": 11
+  },
+  "boot_fixB_minus_base_Difficult": {
+   "diff": -0.004,
+   "diff_ci": [
+    -0.019,
+    0.014
+   ],
+   "p_le_0": 0.6375,
+   "n_episodes": 8
+  },
+  "boot_fixB_minus_base_DoubleHard": {
+   "diff": -0.005,
+   "diff_ci": [
+    -0.027,
+    0.025
+   ],
+   "p_le_0": 0.5855,
+   "n_episodes": 7
+  },
+  "boot_fixB_minus_boosted_Difficult": {
+   "diff": 0.107,
+   "diff_ci": [
+    -0.104,
+    0.274
+   ],
+   "p_le_0": 0.149,
+   "n_episodes": 8
+  },
+  "boot_fixB_minus_boosted_DoubleHard": {
+   "diff": 0.105,
+   "diff_ci": [
+    -0.207,
+    0.348
+   ],
+   "p_le_0": 0.22,
+   "n_episodes": 7
+  },
+  "boot_base_minus_boosted_Difficult": {
+   "diff": 0.111,
+   "diff_ci": [
+    -0.112,
+    0.281
+   ],
+   "p_le_0": 0.149,
+   "n_episodes": 8
+  }
+ },
+ "HAI@sota_bundle/experts_full": {
+  "artifact": "sota_bundle/experts_full",
+  "base": {
+   "Difficult": 0.845,
+   "DoubleHard": 0.814
+  },
+  "fixB": {
+   "Difficult": 0.845,
+   "DoubleHard": 0.812
+  },
+  "median_shift_abs_med": 0.127,
+  "median_shift_abs_max": 0.999,
+  "masking": {
+   "det95_all_before": 0.771,
+   "det95_all_after": 0.785,
+   "det95_diff_before": 0.401,
+   "det95_diff_after": 0.443,
+   "n_anom_pct_drop_gt_0_1": 0,
+   "n_anom_pct_gain_gt_0_1": 0,
+   "episodes_masked(median pct drop>0.1)": [],
+   "n_episodes": 38
+  },
+  "boot_fixB_minus_base_Difficult": {
+   "diff": -0.001,
+   "diff_ci": [
+    -0.003,
+    0.002
+   ],
+   "p_le_0": 0.672,
+   "n_episodes": 26
+  },
+  "boot_fixB_minus_base_DoubleHard": {
+   "diff": -0.002,
+   "diff_ci": [
+    -0.005,
+    0.001
+   ],
+   "p_le_0": 0.901,
+   "n_episodes": 19
+  },
+  "boot_fixB_minus_boosted_Difficult": {
+   "diff": 0.524,
+   "diff_ci": [
+    0.406,
+    0.641
+   ],
+   "p_le_0": 0.0,
+   "n_episodes": 26
+  },
+  "boot_fixB_minus_boosted_DoubleHard": {
+   "diff": 0.507,
+   "diff_ci": [
+    0.375,
+    0.674
+   ],
+   "p_le_0": 0.0,
+   "n_episodes": 19
+  },
+  "boot_base_minus_boosted_Difficult": {
+   "diff": 0.525,
+   "diff_ci": [
+    0.407,
+    0.641
+   ],
+   "p_le_0": 0.0,
+   "n_episodes": 26
+  }
+ },
+ "SWaT_canon@sota_bundle/experts_variants/cur_fit": {
+  "artifact": "sota_bundle/experts_variants/cur_fit",
+  "base": {
+   "Difficult": 0.846,
+   "DoubleHard": 0.784
+  },
+  "fixB": {
+   "Difficult": 0.833,
+   "DoubleHard": 0.765
+  },
+  "median_shift_abs_med": 0.414,
+  "median_shift_abs_max": 4331240960.0,
+  "masking": {
+   "det95_all_before": 0.841,
+   "det95_all_after": 0.863,
+   "det95_diff_before": 0.612,
+   "det95_diff_after": 0.624,
+   "n_anom_pct_drop_gt_0_1": 7,
+   "n_anom_pct_gain_gt_0_1": 0,
+   "episodes_masked(median pct drop>0.1)": [],
+   "n_episodes": 25
+  },
+  "boot_fixB_minus_base_Difficult": {
+   "diff": -0.012,
+   "diff_ci": [
+    -0.023,
+    -0.002
+   ],
+   "p_le_0": 0.987,
+   "n_episodes": 23
+  },
+  "boot_fixB_minus_base_DoubleHard": {
+   "diff": -0.02,
+   "diff_ci": [
+    -0.032,
+    -0.004
+   ],
+   "p_le_0": 0.9965,
+   "n_episodes": 18
+  },
+  "boot_fixB_minus_boosted_Difficult": {
+   "diff": -0.048,
+   "diff_ci": [
+    -0.107,
+    0.016
+   ],
+   "p_le_0": 0.931,
+   "n_episodes": 23
+  },
+  "boot_fixB_minus_boosted_DoubleHard": {
+   "diff": -0.065,
+   "diff_ci": [
+    -0.147,
+    0.027
+   ],
+   "p_le_0": 0.9265,
+   "n_episodes": 18
+  },
+  "boot_base_minus_boosted_Difficult": {
+   "diff": -0.035,
+   "diff_ci": [
+    -0.089,
+    0.022
+   ],
+   "p_le_0": 0.8935,
+   "n_episodes": 23
+  }
+ }
+}

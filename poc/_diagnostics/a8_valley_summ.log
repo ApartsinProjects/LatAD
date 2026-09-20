@@ -1,0 +1,144 @@
+
+===== SWaT_canon: seeds [0, 1, 2]  K=[16, 16, 16]  R=[7.59, 7.27, 7.44]  n_norm=1265 n_anom=233
+  share of normals by part (seed mean): {'in_cluster': 0.9895, 'valley': 0.005, 'beyond': 0.0003, 'off': 0.0053}
+  share of anomalies by part (seed mean): {'in_cluster': 0.3104, 'valley': 0.0486, 'valley_distinct': 0.0486, 'beyond': 0.0186, 'off': 0.6223}
+  part                   n(seeds)  dh_med |        LatAD         USAD       TranAD           AE           IF       linres         maxz   [AUROC vs all normals / recall@1%FPR]
+  in_cluster         [73, 71, 73]    4.25 |   0.78/ 0.06  0.60/ 0.07  0.60/ 0.09  0.68/ 0.08  0.55/ 0.02  0.76/ 0.22  0.62/ 0.10
+  valley              [11, 8, 15]    9.28 |   0.99/ 0.50  0.95/ 0.66  0.96/ 0.75  0.98/ 0.71  0.93/ 0.49  0.94/ 0.74  0.86/ 0.50
+  valley_distinct     [11, 8, 15]    9.28 |   0.99/ 0.50  0.95/ 0.66  0.96/ 0.75  0.98/ 0.71  0.93/ 0.49  0.94/ 0.74  0.86/ 0.50
+  beyond                [5, 4, 4]    9.76 |   0.99/ 0.33  1.00/ 1.00  1.00/ 1.00  1.00/ 0.93  0.95/ 0.53  0.99/ 0.83  0.98/ 0.87
+  off              [144, 150, 141]  209.34 |   1.00/ 0.97  1.00/ 0.97  1.00/ 0.97  1.00/ 1.00  0.95/ 0.80  1.00/ 0.97  0.99/ 0.94
+  all              [233, 233, 233]  144.11 |   0.93/ 0.66  0.87/ 0.68  0.87/ 0.69  0.90/ 0.70  0.82/ 0.54  0.92/ 0.73  0.87/ 0.66
+  interaction (LatAD-deep)[valley] - (LatAD-deep)[off], per seed:
+    USAD    s0 n_v= 11 n_o=144 obs=+0.031 ci=[+0.002,+0.065] perm-null sd=0.006 p=0.000
+    USAD    s1 n_v=  8 n_o=150 obs=+0.072 ci=[-0.006,+0.225] perm-null sd=0.018 p=0.056
+    USAD    s2 n_v= 15 n_o=141 obs=+0.003 ci=[-0.004,+0.014] perm-null sd=0.003 p=0.190
+    TranAD  s0 n_v= 11 n_o=144 obs=+0.016 ci=[-0.002,+0.036] perm-null sd=0.005 p=0.006
+    TranAD  s1 n_v=  8 n_o=150 obs=+0.068 ci=[-0.008,+0.212] perm-null sd=0.016 p=0.042
+    TranAD  s2 n_v= 15 n_o=141 obs=+0.004 ci=[-0.005,+0.019] perm-null sd=0.004 p=0.156
+    AE      s0 n_v= 11 n_o=144 obs=+0.021 ci=[-0.004,+0.059] perm-null sd=0.005 p=0.008
+    AE      s1 n_v=  8 n_o=150 obs=+0.007 ci=[-0.008,+0.032] perm-null sd=0.003 p=0.060
+    AE      s2 n_v= 15 n_o=141 obs=-0.003 ci=[-0.006,-0.000] perm-null sd=0.001 p=0.000
+  miss enrichment: G = deep misses (<= q99 normal) AND LatAD catches (> q99 normal), among anomalies
+    USAD    s0 |G|=  2 |notG|=231 |reverse|=  7  valley share G/out/all=0.000/0.048/0.047 enr=0.00 p=1.000 | off share G/out=0.500/0.619 p=1.000 | in_cluster G/out=0.500/0.312 p=0.529
+    USAD    s1 |G|=  2 |notG|=231 |reverse|=  7  valley share G/out/all=0.000/0.035/0.034 enr=0.00 p=1.000 | off share G/out=0.500/0.645 p=1.000 | in_cluster G/out=0.500/0.303 p=0.518
+    USAD    s2 |G|=  2 |notG|=231 |reverse|=  7  valley share G/out/all=0.000/0.065/0.064 enr=0.00 p=1.000 | off share G/out=0.500/0.606 p=1.000 | in_cluster G/out=0.500/0.312 p=0.529
+    TranAD  s0 |G|=  2 |notG|=231 |reverse|=  9  valley share G/out/all=0.000/0.048/0.047 enr=0.00 p=1.000 | off share G/out=0.500/0.619 p=1.000 | in_cluster G/out=0.500/0.312 p=0.529
+    TranAD  s1 |G|=  2 |notG|=231 |reverse|=  9  valley share G/out/all=0.000/0.035/0.034 enr=0.00 p=1.000 | off share G/out=0.500/0.645 p=1.000 | in_cluster G/out=0.500/0.303 p=0.518
+    TranAD  s2 |G|=  2 |notG|=231 |reverse|=  9  valley share G/out/all=0.000/0.065/0.064 enr=0.00 p=1.000 | off share G/out=0.500/0.606 p=1.000 | in_cluster G/out=0.500/0.312 p=0.529
+    AE      s0 |G|=  1 |notG|=232 |reverse|= 11  valley share G/out/all=0.000/0.047/0.047 enr=0.00 p=1.000 | off share G/out=0.000/0.621 p=0.382 | in_cluster G/out=1.000/0.310 p=0.313
+    AE      s1 |G|=  1 |notG|=232 |reverse|= 11  valley share G/out/all=0.000/0.034/0.034 enr=0.00 p=1.000 | off share G/out=0.000/0.647 p=0.356 | in_cluster G/out=1.000/0.302 p=0.305
+    AE      s2 |G|=  1 |notG|=232 |reverse|= 11  valley share G/out/all=0.000/0.065/0.064 enr=0.00 p=1.000 | off share G/out=0.000/0.608 p=0.395 | in_cluster G/out=1.000/0.310 p=0.313
+  magnitude-matched (terciles of dh among out-of-envelope anomalies): AUROC LatAD/USAD/TranAD
+    s0 tercile0 dh in [-inf,224.7]:  valley n= 11  0.98/ 0.95/ 0.97 | off n= 38  1.00/ 0.99/ 0.99 | beyond n=  5  0.98/ 1.00/ 1.00 |
+    s0 tercile1 dh in [224.7,226.3]:  valley n=  0   nan/  nan/  nan | off n= 53  1.00/ 1.00/ 1.00 | beyond n=  0   nan/  nan/  nan |
+    s0 tercile2 dh in [226.3,inf]:  valley n=  0   nan/  nan/  nan | off n= 53  1.00/ 1.00/ 1.00 | beyond n=  0   nan/  nan/  nan |
+    s1 tercile0 dh in [-inf,167.7]:  valley n=  7  0.98/ 0.90/ 0.90 | off n= 43  1.00/ 0.99/ 0.99 | beyond n=  4  0.99/ 1.00/ 1.00 |
+    s1 tercile1 dh in [167.7,168.0]:  valley n=  0   nan/  nan/  nan | off n= 54  1.00/ 1.00/ 1.00 | beyond n=  0   nan/  nan/  nan |
+    s1 tercile2 dh in [168.0,inf]:  valley n=  1  1.00/ 1.00/ 1.00 | off n= 53  1.00/ 1.00/ 1.00 | beyond n=  0   nan/  nan/  nan |
+    s2 tercile0 dh in [-inf,233.2]:  valley n= 12  0.99/ 0.99/ 0.98 | off n= 38  1.00/ 0.99/ 0.99 | beyond n=  4  0.99/ 1.00/ 1.00 |
+    s2 tercile1 dh in [233.2,234.1]:  valley n=  2  1.00/ 1.00/ 1.00 | off n= 51  1.00/ 1.00/ 1.00 | beyond n=  0   nan/  nan/  nan |
+    s2 tercile2 dh in [234.1,inf]:  valley n=  1  1.00/ 1.00/ 1.00 | off n= 52  1.00/ 1.00/ 1.00 | beyond n=  0   nan/  nan/  nan |
+  FPR at global q99 on NORMAL windows by part (seed mean): 
+    LatAD   in_cluster=0.006 valley=0.403 beyond=0.000 off=0.500   n_norm_valley=[9, 2, 8]
+    USAD    in_cluster=0.007 valley=0.116 beyond=0.000 off=0.500   n_norm_valley=[9, 2, 8]
+    TranAD  in_cluster=0.007 valley=0.116 beyond=0.000 off=0.500   n_norm_valley=[9, 2, 8]
+    AE      in_cluster=0.005 valley=0.560 beyond=0.000 off=0.500   n_norm_valley=[9, 2, 8]
+    IF      in_cluster=0.009 valley=0.000 beyond=0.000 off=0.306   n_norm_valley=[9, 2, 8]
+    linres  in_cluster=0.006 valley=0.157 beyond=0.000 off=0.653   n_norm_valley=[9, 2, 8]
+    maxz    in_cluster=0.006 valley=0.194 beyond=0.000 off=0.653   n_norm_valley=[9, 2, 8]
+
+===== WADI_clean: seeds [0, 1, 2]  K=[12, 16, 16]  R=[5.44, 5.47, 5.45]  n_norm=519 n_anom=56
+  share of normals by part (seed mean): {'in_cluster': 0.9846, 'valley': 0.0083, 'beyond': 0.0032, 'off': 0.0039}
+  share of anomalies by part (seed mean): {'in_cluster': 0.8214, 'valley': 0.0893, 'valley_distinct': 0.0833, 'beyond': 0.0238, 'off': 0.0655}
+  part                   n(seeds)  dh_med |        LatAD         USAD       TranAD           AE           IF       linres         maxz   [AUROC vs all normals / recall@1%FPR]
+  in_cluster         [45, 45, 48]    3.55 |   0.67/ 0.00  0.71/ 0.25  0.75/ 0.25  0.75/ 0.29  0.68/ 0.09  0.80/ 0.44  0.75/ 0.40
+  valley                [8, 4, 3]    5.86 |   0.95/ 0.28  0.96/ 0.85  0.97/ 0.85  0.99/ 0.85  0.96/ 0.43  1.00/ 0.83  0.91/ 0.65
+  valley_distinct       [7, 4, 3]    5.93 |   0.95/ 0.29  0.99/ 0.89  0.99/ 0.89  0.99/ 0.89  0.96/ 0.44  1.00/ 0.82  0.94/ 0.69
+  beyond                [1, 2, 1]    5.84 |   0.92/ 0.17  1.00/ 1.00  1.00/ 1.00  1.00/ 1.00  0.96/ 0.50  1.00/ 1.00  1.00/ 1.00
+  off                   [2, 5, 4]    6.96 |   0.96/ 0.40  0.99/ 0.87  0.99/ 0.87  0.99/ 0.87  0.96/ 0.48  1.00/ 0.93  0.93/ 0.70
+  all                [56, 56, 56]    3.79 |   0.72/ 0.05  0.76/ 0.36  0.79/ 0.36  0.79/ 0.39  0.73/ 0.14  0.83/ 0.52  0.79/ 0.46
+  interaction (LatAD-deep)[valley] - (LatAD-deep)[off], per seed:
+    USAD    s0 n_v=8 n_o=2 (too few)
+    USAD    s1 n_v=  4 n_o=  5 obs=-0.009 ci=[-0.074,+0.059] perm-null sd=0.039 p=0.836
+    USAD    s2 n_v=  3 n_o=  4 obs=+0.058 ci=[+0.004,+0.120] perm-null sd=0.043 p=0.266
+    TranAD  s0 n_v=8 n_o=2 (too few)
+    TranAD  s1 n_v=  4 n_o=  5 obs=-0.008 ci=[-0.072,+0.059] perm-null sd=0.038 p=0.864
+    TranAD  s2 n_v=  3 n_o=  4 obs=+0.057 ci=[+0.002,+0.116] perm-null sd=0.042 p=0.276
+    AE      s0 n_v=8 n_o=2 (too few)
+    AE      s1 n_v=  4 n_o=  5 obs=-0.003 ci=[-0.065,+0.064] perm-null sd=0.037 p=0.964
+    AE      s2 n_v=  3 n_o=  4 obs=+0.055 ci=[+0.001,+0.113] perm-null sd=0.044 p=0.284
+  miss enrichment: G = deep misses (<= q99 normal) AND LatAD catches (> q99 normal), among anomalies
+    USAD    s0 |G|=  0 |notG|= 56 |reverse|= 17  valley share G/out/all=0.000/0.143/0.143 enr=0.00 p=1.000 | off share G/out=0.000/0.036 p=1.000 | in_cluster G/out=0.000/0.804 p=1.000
+    USAD    s1 |G|=  0 |notG|= 56 |reverse|= 17  valley share G/out/all=0.000/0.071/0.071 enr=0.00 p=1.000 | off share G/out=0.000/0.089 p=1.000 | in_cluster G/out=0.000/0.804 p=1.000
+    USAD    s2 |G|=  0 |notG|= 56 |reverse|= 17  valley share G/out/all=0.000/0.054/0.054 enr=0.00 p=1.000 | off share G/out=0.000/0.071 p=1.000 | in_cluster G/out=0.000/0.857 p=1.000
+    TranAD  s0 |G|=  0 |notG|= 56 |reverse|= 17  valley share G/out/all=0.000/0.143/0.143 enr=0.00 p=1.000 | off share G/out=0.000/0.036 p=1.000 | in_cluster G/out=0.000/0.804 p=1.000
+    TranAD  s1 |G|=  0 |notG|= 56 |reverse|= 17  valley share G/out/all=0.000/0.071/0.071 enr=0.00 p=1.000 | off share G/out=0.000/0.089 p=1.000 | in_cluster G/out=0.000/0.804 p=1.000
+    TranAD  s2 |G|=  0 |notG|= 56 |reverse|= 17  valley share G/out/all=0.000/0.054/0.054 enr=0.00 p=1.000 | off share G/out=0.000/0.071 p=1.000 | in_cluster G/out=0.000/0.857 p=1.000
+    AE      s0 |G|=  0 |notG|= 56 |reverse|= 19  valley share G/out/all=0.000/0.143/0.143 enr=0.00 p=1.000 | off share G/out=0.000/0.036 p=1.000 | in_cluster G/out=0.000/0.804 p=1.000
+    AE      s1 |G|=  0 |notG|= 56 |reverse|= 19  valley share G/out/all=0.000/0.071/0.071 enr=0.00 p=1.000 | off share G/out=0.000/0.089 p=1.000 | in_cluster G/out=0.000/0.804 p=1.000
+    AE      s2 |G|=  0 |notG|= 56 |reverse|= 19  valley share G/out/all=0.000/0.054/0.054 enr=0.00 p=1.000 | off share G/out=0.000/0.071 p=1.000 | in_cluster G/out=0.000/0.857 p=1.000
+  magnitude-matched (terciles of dh among out-of-envelope anomalies): AUROC LatAD/USAD/TranAD
+    s0 tercile0 dh in [-inf,5.8]:  valley n=  3  0.91/ 0.78/ 0.83 | off n=  0   nan/  nan/  nan | beyond n=  1  0.85/ 0.99/ 0.99 |
+    s0 tercile1 dh in [5.8,6.7]:  valley n=  3  0.90/ 1.00/ 1.00 | off n=  0   nan/  nan/  nan | beyond n=  0   nan/  nan/  nan |
+    s0 tercile2 dh in [6.7,inf]:  valley n=  2  0.96/ 1.00/ 1.00 | off n=  2  0.99/ 1.00/ 0.99 | beyond n=  0   nan/  nan/  nan |
+    s1 tercile0 dh in [-inf,5.8]:  valley n=  2  0.95/ 1.00/ 1.00 | off n=  1  0.85/ 0.99/ 0.99 | beyond n=  1  0.93/ 1.00/ 1.00 |
+    s1 tercile1 dh in [5.8,6.5]:  valley n=  1  0.92/ 0.99/ 0.99 | off n=  2  0.96/ 0.94/ 0.94 | beyond n=  0   nan/  nan/  nan |
+    s1 tercile2 dh in [6.5,inf]:  valley n=  1  0.98/ 0.99/ 0.99 | off n=  2  0.96/ 1.00/ 1.00 | beyond n=  1  0.99/ 1.00/ 1.00 |
+  FPR at global q99 on NORMAL windows by part (seed mean): 
+    LatAD   in_cluster=0.009 valley=0.056 beyond=0.000 off=0.500   n_norm_valley=[3, 4, 6]
+    USAD    in_cluster=0.006 valley=0.111 beyond=0.833 off=0.500   n_norm_valley=[3, 4, 6]
+    TranAD  in_cluster=0.006 valley=0.111 beyond=0.833 off=0.500   n_norm_valley=[3, 4, 6]
+    AE      in_cluster=0.008 valley=0.056 beyond=0.417 off=0.500   n_norm_valley=[3, 4, 6]
+    IF      in_cluster=0.010 valley=0.000 beyond=0.000 off=0.500   n_norm_valley=[3, 4, 6]
+    linres  in_cluster=0.010 valley=0.250 beyond=0.000 off=0.000   n_norm_valley=[3, 4, 6]
+    maxz    in_cluster=0.006 valley=0.111 beyond=0.833 off=0.500   n_norm_valley=[3, 4, 6]
+
+===== HAI: seeds [0, 1, 2]  K=[16, 16, 16]  R=[4.48, 4.51, 4.34]  n_norm=14167 n_anom=652
+  share of normals by part (seed mean): {'in_cluster': 0.8715, 'valley': 0.014, 'beyond': 0.048, 'off': 0.0665}
+  share of anomalies by part (seed mean): {'in_cluster': 0.32, 'valley': 0.0046, 'valley_distinct': 0.0041, 'beyond': 0.0179, 'off': 0.6575}
+  part                   n(seeds)  dh_med |        LatAD         USAD       TranAD           AE           IF       linres         maxz   [AUROC vs all normals / recall@1%FPR]
+  in_cluster       [211, 205, 210]    3.42 |   0.81/ 0.09  0.61/ 0.13  0.57/ 0.13  0.77/ 0.13  0.66/ 0.03  0.68/ 0.11  0.58/ 0.14
+  valley                [2, 4, 3]    4.64 |   0.91/ 0.25  0.75/ 0.25  0.77/ 0.25  0.91/ 0.25  0.89/ 0.36  0.74/ 0.11  0.72/ 0.36
+  valley_distinct       [2, 3, 3]    4.69 |   0.91/ 0.28  0.76/ 0.28  0.77/ 0.28  0.91/ 0.28  0.89/ 0.39  0.71/ 0.11  0.70/ 0.39
+  beyond              [13, 15, 7]    4.94 |   0.93/ 0.53  0.66/ 0.14  0.68/ 0.14  0.95/ 0.53  0.88/ 0.26  0.69/ 0.07  0.59/ 0.16
+  off              [426, 428, 432]   15.36 |   0.99/ 0.89  0.97/ 0.81  0.96/ 0.79  1.00/ 0.92  0.94/ 0.44  0.83/ 0.48  0.92/ 0.74
+  all              [652, 652, 652]    6.26 |   0.93/ 0.62  0.85/ 0.58  0.83/ 0.57  0.92/ 0.66  0.85/ 0.31  0.78/ 0.35  0.81/ 0.53
+  interaction (LatAD-deep)[valley] - (LatAD-deep)[off], per seed:
+    USAD    s0 n_v=2 n_o=426 (too few)
+    USAD    s1 n_v=  4 n_o=428 obs=+0.270 ci=[+0.051,+0.483] perm-null sd=0.048 p=0.002
+    USAD    s2 n_v=  3 n_o=432 obs=+0.157 ci=[-0.068,+0.372] perm-null sd=0.049 p=0.018
+    TranAD  s0 n_v=2 n_o=426 (too few)
+    TranAD  s1 n_v=  4 n_o=428 obs=+0.251 ci=[+0.073,+0.388] perm-null sd=0.048 p=0.000
+    TranAD  s2 n_v=  3 n_o=432 obs=+0.125 ci=[-0.041,+0.395] perm-null sd=0.056 p=0.052
+    AE      s0 n_v=2 n_o=426 (too few)
+    AE      s1 n_v=  4 n_o=428 obs=+0.018 ci=[+0.001,+0.036] perm-null sd=0.004 p=0.006
+    AE      s2 n_v=  3 n_o=432 obs=+0.011 ci=[-0.001,+0.032] perm-null sd=0.004 p=0.072
+  miss enrichment: G = deep misses (<= q99 normal) AND LatAD catches (> q99 normal), among anomalies
+    USAD    s0 |G|= 76 |notG|=576 |reverse|= 50  valley share G/out/all=0.000/0.003/0.003 enr=0.00 p=1.000 | off share G/out=0.789/0.635 p=0.007 | in_cluster G/out=0.145/0.347 p=0.000
+    USAD    s1 |G|= 76 |notG|=576 |reverse|= 50  valley share G/out/all=0.000/0.007/0.006 enr=0.00 p=1.000 | off share G/out=0.816/0.635 p=0.002 | in_cluster G/out=0.105/0.342 p=0.000
+    USAD    s2 |G|= 76 |notG|=576 |reverse|= 50  valley share G/out/all=0.000/0.005/0.005 enr=0.00 p=1.000 | off share G/out=0.842/0.639 p=0.000 | in_cluster G/out=0.092/0.352 p=0.000
+    TranAD  s0 |G|= 83 |notG|=569 |reverse|= 48  valley share G/out/all=0.000/0.004/0.003 enr=0.00 p=1.000 | off share G/out=0.807/0.631 p=0.001 | in_cluster G/out=0.133/0.351 p=0.000
+    TranAD  s1 |G|= 83 |notG|=569 |reverse|= 48  valley share G/out/all=0.000/0.007/0.006 enr=0.00 p=1.000 | off share G/out=0.831/0.631 p=0.000 | in_cluster G/out=0.096/0.346 p=0.000
+    TranAD  s2 |G|= 83 |notG|=569 |reverse|= 48  valley share G/out/all=0.000/0.005/0.005 enr=0.00 p=1.000 | off share G/out=0.855/0.634 p=0.000 | in_cluster G/out=0.084/0.357 p=0.000
+    AE      s0 |G|=  2 |notG|=650 |reverse|= 24  valley share G/out/all=0.000/0.003/0.003 enr=0.00 p=1.000 | off share G/out=0.000/0.655 p=0.120 | in_cluster G/out=1.000/0.322 p=0.104
+    AE      s1 |G|=  2 |notG|=650 |reverse|= 24  valley share G/out/all=0.000/0.006/0.006 enr=0.00 p=1.000 | off share G/out=0.000/0.658 p=0.118 | in_cluster G/out=1.000/0.312 p=0.099
+    AE      s2 |G|=  2 |notG|=650 |reverse|= 24  valley share G/out/all=0.000/0.005/0.005 enr=0.00 p=1.000 | off share G/out=0.000/0.665 p=0.114 | in_cluster G/out=1.000/0.320 p=0.103
+  magnitude-matched (terciles of dh among out-of-envelope anomalies): AUROC LatAD/USAD/TranAD
+    s0 tercile0 dh in [-inf,7.2]:  valley n=  2  0.85/ 0.87/ 0.87 | off n=132  0.98/ 0.97/ 0.97 | beyond n= 13  0.95/ 0.68/ 0.71 |
+    s0 tercile1 dh in [7.2,19.6]:  valley n=  0   nan/  nan/  nan | off n=147  1.00/ 0.93/ 0.93 | beyond n=  0   nan/  nan/  nan |
+    s0 tercile2 dh in [19.6,inf]:  valley n=  0   nan/  nan/  nan | off n=147  1.00/ 1.00/ 1.00 | beyond n=  0   nan/  nan/  nan |
+    s1 tercile0 dh in [-inf,7.3]:  valley n=  4  0.95/ 0.65/ 0.67 | off n=130  0.98/ 0.97/ 0.97 | beyond n= 15  0.93/ 0.72/ 0.73 |
+    s1 tercile1 dh in [7.3,21.8]:  valley n=  0   nan/  nan/  nan | off n=149  1.00/ 0.93/ 0.93 | beyond n=  0   nan/  nan/  nan |
+    s1 tercile2 dh in [21.8,inf]:  valley n=  0   nan/  nan/  nan | off n=149  1.00/ 1.00/ 1.00 | beyond n=  0   nan/  nan/  nan |
+    s2 tercile0 dh in [-inf,7.1]:  valley n=  3  0.92/ 0.74/ 0.76 | off n=138  0.98/ 0.96/ 0.96 | beyond n=  7  0.92/ 0.59/ 0.61 |
+    s2 tercile1 dh in [7.1,20.2]:  valley n=  0   nan/  nan/  nan | off n=147  1.00/ 0.94/ 0.93 | beyond n=  0   nan/  nan/  nan |
+    s2 tercile2 dh in [20.2,inf]:  valley n=  0   nan/  nan/  nan | off n=147  1.00/ 1.00/ 1.00 | beyond n=  0   nan/  nan/  nan |
+  FPR at global q99 on NORMAL windows by part (seed mean): 
+    LatAD   in_cluster=0.001 valley=0.003 beyond=0.000 off=0.143   n_norm_valley=[180, 237, 180]
+    USAD    in_cluster=0.002 valley=0.006 beyond=0.097 off=0.054   n_norm_valley=[180, 237, 180]
+    TranAD  in_cluster=0.001 valley=0.002 beyond=0.137 off=0.038   n_norm_valley=[180, 237, 180]
+    AE      in_cluster=0.002 valley=0.005 beyond=0.000 off=0.129   n_norm_valley=[180, 237, 180]
+    IF      in_cluster=0.001 valley=0.007 beyond=0.018 off=0.125   n_norm_valley=[180, 237, 180]
+    linres  in_cluster=0.003 valley=0.002 beyond=0.119 off=0.022   n_norm_valley=[180, 237, 180]
+    maxz    in_cluster=0.005 valley=0.019 beyond=0.044 off=0.019   n_norm_valley=[180, 237, 180]

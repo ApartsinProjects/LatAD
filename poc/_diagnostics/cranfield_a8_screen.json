@@ -1,0 +1,80 @@
+{
+ "K8": {
+  "K": 8,
+  "n_windows": 3336,
+  "mean_maxresp": 0.9373,
+  "H_norm": 0.0801,
+  "rho_lt0p5": 0.0111,
+  "rho_lt0p6": 0.0381
+ },
+ "K16": {
+  "K": 16,
+  "n_windows": 3336,
+  "mean_maxresp": 0.9515,
+  "H_norm": 0.0483,
+  "rho_lt0p5": 0.0111,
+  "rho_lt0p6": 0.0375
+ },
+ "K32": {
+  "K": 32,
+  "n_windows": 3336,
+  "mean_maxresp": 0.9574,
+  "H_norm": 0.0329,
+  "rho_lt0p5": 0.006,
+  "rho_lt0p6": 0.0324
+ },
+ "K64": {
+  "K": 64,
+  "n_windows": 3336,
+  "mean_maxresp": 0.9587,
+  "H_norm": 0.0268,
+  "rho_lt0p5": 0.0072,
+  "rho_lt0p6": 0.0273
+ },
+ "K128": {
+  "K": 128,
+  "n_windows": 3336,
+  "mean_maxresp": 0.9673,
+  "H_norm": 0.0182,
+  "rho_lt0p5": 0.0033,
+  "rho_lt0p6": 0.0168
+ },
+ "variance_floor_check": {
+  "K8_seed0": {
+   "K": 8,
+   "seed": 0,
+   "H_floor": 0.0801,
+   "rho_floor": 0.0111,
+   "H_emp": 0.0646,
+   "rho_emp": 0.0033,
+   "frac_components_at_floor": 0.0,
+   "floored_comp_sd": 0.8736,
+   "empirical_comp_sd": 0.9203,
+   "collapse": false
+  },
+  "K8_seed1": {
+   "K": 8,
+   "seed": 1,
+   "H_floor": 0.0542,
+   "rho_floor": 0.003,
+   "H_emp": 0.0438,
+   "rho_emp": 0.0015,
+   "frac_components_at_floor": 0.0625,
+   "floored_comp_sd": 0.7516,
+   "empirical_comp_sd": 0.7803,
+   "collapse": false
+  },
+  "K8_seed2": {
+   "K": 8,
+   "seed": 2,
+   "H_floor": 0.0538,
+   "rho_floor": 0.0039,
+   "H_emp": 0.0411,
+   "rho_emp": 0.0015,
+   "frac_components_at_floor": 0.0938,
+   "floored_comp_sd": 0.7495,
+   "empirical_comp_sd": 0.7553,
+   "collapse": false
+  }
+ }
+}

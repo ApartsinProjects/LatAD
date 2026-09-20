@@ -1,0 +1,8 @@
+===== FIX=0 (reproduce: TranAD cell then USAD cell, same process, patch re-applied) =====
+  self.transformer_encoder = TransformerEncoder(encoder_layers, 1)
+{"method": "TranAD", "FIX": 0, "train_s": 25.1, "rc": 0, "train_only_s": 3.0669, "score_shape": [2000], "score_finite": true, "score_std": 0.29089978337287903, "params": 1270023, "infer_error": "TypeError: TransformerEncoderLayer.forward() got an unexpected keyword argument 'is_causal'"}
+{"method": "USAD", "FIX": 0, "train_s": 0.1, "rc": 1, "train_only_s": null, "train_err": "  File \"E:\\tmp\\claude\\usad\\TranAD_sim\\main.py\", line 398\n    \tnp.save('/results/labels_'+args.model+'_'+os.environ.get('REAL_DS','WADI')+'_s'+os.environ.get('SOTA_SEED','0')+'.npy', labelsFinal)\n    \t^^\nSyntaxError: expected 'except' or 'finally' block\n", "params": 31859, "in_dim": 615, "n_window": 5, "lat_b1_ms": 0.332, "lat_b256_ms": 0.603}
+===== FIX=1 (quick fix: fresh clone per cell + purge cached src.* + transformer shim) =====
+  self.transformer_encoder = TransformerEncoder(encoder_layers, 1)
+{"method": "TranAD", "FIX": 1, "train_s": 25.1, "rc": 0, "train_only_s": 2.9403, "score_shape": [2000], "score_finite": true, "score_std": 0.29089978337287903, "params": 1270023, "lat_b1_ms": 2.775, "lat_b256_ms": 88.169}
+{"method": "USAD", "FIX": 1, "train_s": 22.7, "rc": 0, "train_only_s": 0.2151, "score_shape": [2000], "score_finite": true, "score_std": 0.2582978308200836, "params": 31859, "in_dim": 615, "n_window": 5, "lat_b1_ms": 0.33, "lat_b256_ms": 0.599}

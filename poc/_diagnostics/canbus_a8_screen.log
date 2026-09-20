@@ -1,0 +1,34 @@
+Loading CAN-bus/OBD-II normal driving trips ...
+  s1: (301, 8)
+  s10: (453, 8)
+  s11: (514, 8)
+  s12: (640, 8)
+  s13: (454, 8)
+  s14: (438, 8)
+  s15: (598, 8)
+  s16: (466, 8)
+  s17: (169, 8)
+  s18: (344, 8)
+  s19: (415, 8)
+  s2: (476, 8)
+  s3: (125, 8)
+  s4: (433, 8)
+  s5: (440, 8)
+  s6: (451, 8)
+  s7: (426, 8)
+  s8: (533, 8)
+  s9: (146, 8)
+19 trips, 7822 total rows
+Pooled windows: (2581, 48), per-trip counts {'s1': 99, 's10': 150, 's11': 170, 's12': 212, 's13': 150, 's14': 145, 's15': 198, 's16': 154, 's17': 55, 's18': 113, 's19': 137, 's2': 157, 's3': 40, 's4': 143, 's5': 145, 's6': 149, 's7': 141, 's8': 176, 's9': 47}
+[K=  8] mean_maxresp=0.899 H_norm=0.132 rho(<0.5)=0.023 rho(<0.6)=0.073  (7s)
+[K= 16] mean_maxresp=0.841 H_norm=0.158 rho(<0.5)=0.072 rho(<0.6)=0.152  (10s)
+[K= 32] mean_maxresp=0.821 H_norm=0.142 rho(<0.5)=0.069 rho(<0.6)=0.170  (14s)
+[K= 64] mean_maxresp=0.806 H_norm=0.132 rho(<0.5)=0.098 rho(<0.6)=0.188  (19s)
+[K=128] mean_maxresp=0.870 H_norm=0.077 rho(<0.5)=0.040 rho(<0.6)=0.105  (27s)
+
+Highest-entropy K = 16 (H_norm=0.158); running variance-floor sanity check across seeds 0-2 ...
+[floor-check K=16 seed=0] H_floor=0.158 -> H_emp=0.107 (rho 0.072 -> 0.029)  frac_at_floor=0.06 comp_sd(floored)=0.600 vs emp_sd=0.519  collapse=False
+[floor-check K=16 seed=1] H_floor=0.175 -> H_emp=0.112 (rho 0.071 -> 0.035)  frac_at_floor=0.06 comp_sd(floored)=0.614 vs emp_sd=0.519  collapse=False
+[floor-check K=16 seed=2] H_floor=0.169 -> H_emp=0.112 (rho 0.080 -> 0.039)  frac_at_floor=0.02 comp_sd(floored)=0.603 vs emp_sd=0.516  collapse=False
+
+done (37s total). See E:\Projects\Backlog\LatAD\poc\_diagnostics\canbus_a8_screen.json

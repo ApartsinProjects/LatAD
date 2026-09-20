@@ -1,0 +1,4 @@
+subset-seed 0: WADI ens difficult-AUROC = 0.823
+subset-seed 1: WADI ens difficult-AUROC = 0.445
+subset-seed 2: WADI ens difficult-AUROC = 0.469
+DONE

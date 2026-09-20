@@ -1,0 +1,145 @@
+{
+ "control": {
+  "fixed_kde": {
+   "auroc": 0.999,
+   "rare_vs_anom_auroc": 0.994,
+   "rare_normal_score": 22.11,
+   "common_normal_score": 16.664
+  },
+  "lof": {
+   "auroc": 0.993,
+   "rare_vs_anom_auroc": 0.994,
+   "rare_normal_score": 1.071,
+   "common_normal_score": 1.071
+  },
+  "rare_penalty_ratio_lof": 1.0,
+  "rare_penalty_ratio_fixed_kde": 1.327,
+  "INVARIANT_lof_less_rare_penalty": true
+ },
+ "datasets": [
+  {
+   "dataset": "WADI_clean",
+   "n_win": 575,
+   "n_diff": 43,
+   "scores": {
+    "gmm": {
+     "diff": {
+      "mean": 0.743,
+      "std": 0.0126,
+      "per_seed": [
+       0.7562,
+       0.7442,
+       0.7498,
+       0.7193,
+       0.7456
+      ]
+     },
+     "full": {
+      "mean": 0.8003,
+      "std": 0.0095,
+      "per_seed": [
+       0.8095,
+       0.8028,
+       0.8048,
+       0.7819,
+       0.8026
+      ]
+     },
+     "sparse_fpr": {
+      "mean": 0.1038,
+      "std": 0.0094,
+      "per_seed": [
+       0.0962,
+       0.1154,
+       0.1154,
+       0.0962,
+       0.0962
+      ]
+     }
+    },
+    "fixed_kde": {
+     "diff": {
+      "mean": 0.7105,
+      "std": 0.0056,
+      "per_seed": [
+       0.7101,
+       0.721,
+       0.7064,
+       0.7095,
+       0.7053
+      ]
+     },
+     "full": {
+      "mean": 0.7765,
+      "std": 0.0043,
+      "per_seed": [
+       0.7755,
+       0.7849,
+       0.7738,
+       0.7756,
+       0.7728
+      ]
+     },
+     "sparse_fpr": {
+      "mean": 0.1154,
+      "std": 0.0,
+      "per_seed": [
+       0.1154,
+       0.1154,
+       0.1154,
+       0.1154,
+       0.1154
+      ]
+     }
+    },
+    "lof": {
+     "diff": {
+      "mean": 0.7531,
+      "std": 0.0189,
+      "per_seed": [
+       0.7334,
+       0.7399,
+       0.7719,
+       0.7798,
+       0.7403
+      ]
+     },
+     "full": {
+      "mean": 0.8011,
+      "std": 0.0156,
+      "per_seed": [
+       0.7849,
+       0.7912,
+       0.8136,
+       0.8254,
+       0.7907
+      ]
+     },
+     "sparse_fpr": {
+      "mean": 0.0192,
+      "std": 0.0,
+      "per_seed": [
+       0.0192,
+       0.0192,
+       0.0192,
+       0.0192,
+       0.0192
+      ]
+     }
+    }
+   },
+   "boot_adap_minus_fixed_diff": {
+    "mean": 0.0424,
+    "lo": -0.0596,
+    "hi": 0.1488,
+    "p_le0": 0.2404
+   },
+   "boot_adap_minus_gmm_diff": {
+    "mean": 0.0098,
+    "lo": -0.0772,
+    "hi": 0.0994,
+    "p_le0": 0.4437
+   }
+  }
+ ]
+}

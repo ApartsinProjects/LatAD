@@ -1,0 +1,14 @@
+regimes K=3 (silhouette 0.605) train shares [0.238 0.75  0.012]  test-normal counts [129 243   5]
+INVARIANT beta=0 == identity multiset: OK
+rarest regime = 2 (share 0.013, 5 windows; test-normal in it: 5)
+  beta=0.0  n_c=[95, 300, 5] rare share=0.0125 dup-frac(common)=0.000
+  beta=0.5  n_c=[60, 340, 0] rare share=0.0000 dup-frac(common)=0.100
+  beta=1.0  n_c=[36, 364, 0] rare share=0.0000 dup-frac(common)=0.160
+  beta=2.0  n_c=[12, 388, 0] rare share=0.0000 dup-frac(common)=0.220
+  beta=4.0  n_c=[1, 399, 0] rare share=0.0000 dup-frac(common)=0.247
+INVARIANT rare share monotone non-increasing: OK
+beta=0.0  rare_train=  5 | IF rareFPR=0.600 matched=1.000 otherFPR=0.000 diffAU=0.539 | AE rareFPR=0.600 matched=1.000 otherFPR=0.000 diffAU=0.504 | LatAD rareFPR=1.000 matched=0.800 otherFPR=0.035 diffAU=0.533 (3.2s)
+beta=0.5  rare_train=  0 | IF rareFPR=0.800 matched=1.000 otherFPR=0.000 diffAU=0.506 | AE rareFPR=1.000 matched=1.000 otherFPR=0.000 diffAU=0.438 | LatAD rareFPR=1.000 matched=1.000 otherFPR=0.065 diffAU=0.462 (1.1s)
+beta=1.0  rare_train=  0 | IF rareFPR=1.000 matched=1.000 otherFPR=0.035 diffAU=0.517 | AE rareFPR=1.000 matched=1.000 otherFPR=0.022 diffAU=0.397 | LatAD rareFPR=1.000 matched=1.000 otherFPR=0.070 diffAU=0.554 (1.2s)
+beta=2.0  rare_train=  0 | IF rareFPR=1.000 matched=1.000 otherFPR=0.065 diffAU=0.523 | AE rareFPR=1.000 matched=1.000 otherFPR=0.027 diffAU=0.392 | LatAD rareFPR=1.000 matched=1.000 otherFPR=0.070 diffAU=0.493 (1.1s)
+beta=4.0  rare_train=  0 | IF rareFPR=1.000 matched=0.000 otherFPR=0.347 diffAU=0.519 | AE rareFPR=1.000 matched=1.000 otherFPR=0.347 diffAU=0.393 | LatAD rareFPR=1.000 matched=0.600 otherFPR=0.140 diffAU=0.492 (1.1s)

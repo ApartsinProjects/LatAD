@@ -1,0 +1,26 @@
+
+===== HAI =====
+ n_train=18359 n_test=14819 anomalies=652 D_raw=354 D_eff=306 channels=59
+ [A1/A2] BIC sweep
+   GMM K=  1 BIC=1.226e+07 ll_fit=-416.453 ll_ho_med=-391.170 ll_ho_mean=-414.981 (2.0s)
+   GMM K=  2 BIC=9.912e+06 ll_fit=-336.545 ll_ho_med=-307.727 ll_ho_mean=-336.486 (0.7s)
+   GMM K=  4 BIC=8.318e+06 ll_fit=-281.950 ll_ho_med=-263.702 ll_ho_mean=-286.433 (3.2s)
+   GMM K=  8 BIC=6.245e+06 ll_fit=-210.690 ll_ho_med=-195.116 ll_ho_mean=-225.306 (12.2s)
+   GMM K= 16 BIC=5.231e+06 ll_fit=-174.609 ll_ho_med=-171.316 ll_ho_mean=-187.503 (12.6s)
+   GMM K= 32 BIC=4.183e+06 ll_fit=-135.806 ll_ho_med=-140.269 ll_ho_mean=-154.260 (29.7s)
+   GMM K= 64 BIC=3.597e+06 ll_fit=-109.483 ll_ho_med=-127.765 ll_ho_mean=-140.714 (149.7s)
+   GMM K=128 BIC=3.022e+06 ll_fit=-77.137 ll_ho_med=-92.675 ll_ho_mean=-121.253 (799.4s)
+ [modes] KMeans K=64
+ [A4] within-mode non-Gaussianity
+   med_kurt=0.44 ll_gain_ho=+11.465 AUROC 0.881->0.874
+ [A5] PCA
+   n90=39 n95=57 PR=14.7 of D_eff=306 (channels=59)
+ [A6] occupancy
+   slope=-0.99 max/min=838.0 gini=0.34 top1=0.05
+ [A7] silhouette
+   {'K_mode': 64, 'sil_feature_kmeans': 0.07733878024870558, 'vade_K': 40, 'vade_latent': 16, 'vade_modes_used': 39, 'sil_latent_vade': 0.06902589648962021, 'sil_latent_kmeansLabels': 0.08294068276882172, 'sil_feature_vadeLabels': 0.0323479451508099, 'vade_frac_maxresp_lt_0.5_train': 0.022550247834849393, 'latent_source': 'e2_fable_HAI.npz'}
+ [A8] correlation communities
+   E3-HAC nested=28 maximal=4 | thr0.7cc=6 thr0.5 comps=3 greedy=8 Q=0.44 discrete=1/51 const=8
+ [A9] trivial rule
+   easy_frac=0.74 AUROC all/easy/diff = 0.806/0.966/0.340
+[HAI] saved (1448.8s)

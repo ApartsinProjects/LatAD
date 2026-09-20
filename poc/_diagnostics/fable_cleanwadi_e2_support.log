@@ -1,0 +1,6 @@
+seed 0: pi min/med/max 0.0053/0.0367/0.2477; low-pi comps (<0.025) 4 holding 148 train windows; test normals: OOS 3, in-support-low-pi 29, high-pi 487; FPR low-pi group nearest/mixture {'nearest': 0.0, 'mixture': 0.0}; q25 def: n=39 0.0/0.0
+seed 1: pi min/med/max 0.0110/0.0448/0.0840; low-pi comps (<0.025) 3 holding 138 train windows; test normals: OOS 4, in-support-low-pi 28, high-pi 487; FPR low-pi group nearest/mixture {'nearest': 0.0, 'mixture': 0.0}; q25 def: n=50 0.0/0.0
+seed 2: pi min/med/max 0.0223/0.0388/0.1601; low-pi comps (<0.025) 2 holding 116 train windows; test normals: OOS 4, in-support-low-pi 28, high-pi 487; FPR low-pi group nearest/mixture {'nearest': 0.0, 'mixture': 0.0}; q25 def: n=78 0.0/0.0
+seed 3: pi min/med/max 0.0076/0.0409/0.1147; low-pi comps (<0.025) 4 holding 175 train windows; test normals: OOS 4, in-support-low-pi 21, high-pi 494; FPR low-pi group nearest/mixture {'nearest': 0.0, 'mixture': 0.0}; q25 def: n=37 0.0/0.0
+seed 4: pi min/med/max 0.0157/0.0398/0.1318; low-pi comps (<0.025) 4 holding 217 train windows; test normals: OOS 1, in-support-low-pi 52, high-pi 466; FPR low-pi group nearest/mixture {'nearest': 0.0, 'mixture': 0.0}; q25 def: n=69 0.0/0.0
+saved

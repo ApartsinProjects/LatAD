@@ -1,0 +1,2961 @@
+C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\async_utils.py:45: DeprecationWarning: 'asyncio.WindowsSelectorEventLoopPolicy' is deprecated and slated for removal in Python 3.16
+  asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\async_utils.py:45: DeprecationWarning: 'asyncio.set_event_loop_policy' is deprecated and slated for removal in Python 3.16
+  asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+✓ Initialized. View run at 
+https://modal.com/apps/apersteiny/main/ap-tZwChCYqb8D9XGpRO0qfu7
+✓ Created objects.
+├── 🔨 Created mount E:\Projects\Backlog\LatAD\poc\sota_bundle\modal_sota.py
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\SWaT_canon_train.npy
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\SWaT_canon_triv_test.npy
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\SWaT_canon_triv_thr.npy
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\SWaT_canon_labels.npy
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\SWaT_canon_test.npy
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\SWaT_triv_test.npy
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\SWaT_triv_thr.npy
+├── 🔨 Created mount E:\Projects\Backlog\LatAD\poc\sota_bundle\SWaT_labels.npy
+├── 🔨 Created mount E:\Projects\Backlog\LatAD\poc\sota_bundle\SWaT_test.npy
+├── 🔨 Created mount E:\Projects\Backlog\LatAD\poc\sota_bundle\SWaT_train.npy
+├── 🔨 Created mount E:\Projects\Backlog\LatAD\poc\sota_bundle\HAI_triv_thr.npy
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\HAI_triv_test.npy
+├── 🔨 Created mount E:\Projects\Backlog\LatAD\poc\sota_bundle\HAI_labels.npy
+├── 🔨 Created mount E:\Projects\Backlog\LatAD\poc\sota_bundle\HAI_test.npy
+├── 🔨 Created mount E:\Projects\Backlog\LatAD\poc\sota_bundle\HAI_train.npy
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\wadi_clean_triv_thr.npy
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\wadi_clean_triv_test.npy
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\wadi_clean_labels.npy
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\wadi_clean_train.npy
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\wadi_clean_test.npy
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\wadi_triv_thr.npy
+├── 🔨 Created mount E:\Projects\Backlog\LatAD\poc\sota_bundle\wadi_labels.npy
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\wadi_triv_test.npy
+├── 🔨 Created mount E:\Projects\Backlog\LatAD\poc\sota_bundle\wadi_test.npy
+├── 🔨 Created mount E:\Projects\Backlog\LatAD\poc\sota_bundle\wadi_train.npy
+└── 🔨 Created function run_one.
+[sota] launching 10 parallel jobs: [('SWaT_canon', 'USAD', 0), ('SWaT_canon', 'USAD', 1), ('SWaT_canon', 'USAD', 2), ('SWaT_canon', 'USAD', 3), ('SWaT_canon', 'USAD', 4), ('SWaT_canon', 'TranAD', 0), ('SWaT_canon', 'TranAD', 1), ('SWaT_canon', 'TranAD', 2), ('SWaT_canon', 'TranAD', 3), ('SWaT_canon', 'TranAD', 4)]
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+[sota] $ git clone --depth 1 https://github.com/imperial-qore/TranAD.git
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+[sota] $ git clone --depth 1 https://github.com/imperial-qore/TranAD.git
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+[sota] $ git clone --depth 1 https://github.com/imperial-qore/TranAD.git
+[sota] $ git clone --depth 1 https://github.com/imperial-qore/TranAD.git
+[sota] $ git clone --depth 1 https://github.com/imperial-qore/TranAD.git
+[sota] $ git clone --depth 1 https://github.com/imperial-qore/TranAD.git
+[sota] $ git clone --depth 1 https://github.com/imperial-qore/TranAD.git
+[sota] $ git clone --depth 1 https://github.com/imperial-qore/TranAD.git
+[sota] $ git clone --depth 1 https://github.com/imperial-qore/TranAD.git
+[sota] $ git clone --depth 1 https://github.com/imperial-qore/TranAD.git
+[sota] patched ds=SWaT_canon model=USAD fp32=True dump=ok
+[sota] SWaT_canon train(135936, 51) test(44992, 51) anom=0.122
+[sota] === training SWaT_canon:USAD (NEPOCHS=30, fp32=True) ===
+[sota] patched ds=SWaT_canon model=USAD fp32=True dump=ok
+[sota] SWaT_canon train(135936, 51) test(44992, 51) anom=0.122
+[sota] === training SWaT_canon:USAD (NEPOCHS=30, fp32=True) ===
+[sota] patched ds=SWaT_canon model=USAD fp32=True dump=ok
+[sota] patched ds=SWaT_canon model=USAD fp32=True dump=ok
+[sota] SWaT_canon train(135936, 51) test(44992, 51) anom=0.122
+[sota] === training SWaT_canon:USAD (NEPOCHS=30, fp32=True) ===
+[sota] SWaT_canon train(135936, 51) test(44992, 51) anom=0.122
+[sota] === training SWaT_canon:USAD (NEPOCHS=30, fp32=True) ===
+[sota] patched ds=SWaT_canon model=USAD fp32=True dump=ok
+[sota] SWaT_canon train(135936, 51) test(44992, 51) anom=0.122
+[sota] === training SWaT_canon:USAD (NEPOCHS=30, fp32=True) ===
+[sota] patched ds=SWaT_canon model=TranAD fp32=True dump=ok
+[sota] SWaT_canon train(135936, 51) test(44992, 51) anom=0.122
+[sota] === training SWaT_canon:TranAD (NEPOCHS=30, fp32=True) ===
+[sota] patched ds=SWaT_canon model=TranAD fp32=True dump=ok
+[sota] SWaT_canon train(135936, 51) test(44992, 51) anom=0.122
+[sota] === training SWaT_canon:TranAD (NEPOCHS=30, fp32=True) ===
+[sota] patched ds=SWaT_canon model=TranAD fp32=True dump=ok
+[sota] SWaT_canon train(135936, 51) test(44992, 51) anom=0.122
+[sota] === training SWaT_canon:TranAD (NEPOCHS=30, fp32=True) ===
+[sota] patched ds=SWaT_canon model=TranAD fp32=True dump=ok
+[sota] SWaT_canon train(135936, 51) test(44992, 51) anom=0.122
+[sota] === training SWaT_canon:TranAD (NEPOCHS=30, fp32=True) ===
+[SWaT_canon:USAD] [92mCreating new model: USAD[0m
+[SWaT_canon:USAD] [95mTraining USAD on WADI[0m
+[SWaT_canon:USAD] 
+[sota] patched ds=SWaT_canon model=TranAD fp32=True dump=ok
+[sota] SWaT_canon train(135936, 51) test(44992, 51) anom=0.122
+[sota] === training SWaT_canon:TranAD (NEPOCHS=30, fp32=True) ===
+[SWaT_canon:TranAD] /opt/conda/lib/python3.11/site-packages/torch/nn/modules/transformer.py:307: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer was not TransformerEncoderLayer
+[SWaT_canon:TranAD]   warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+[SWaT_canon:USAD] [92mCreating new model: USAD[0m
+[SWaT_canon:USAD] [92mCreating new model: USAD[0m
+[SWaT_canon:USAD] [92mCreating new model: USAD[0m
+[SWaT_canon:TranAD] [92mCreating new model: TranAD[0m
+[SWaT_canon:USAD] [92mCreating new model: USAD[0m[SWaT_canon:TranAD] /opt/conda/lib/python3.11/site-packages/torch/nn/modules/transformer.py:307: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer was not TransformerEncoderLayer
+
+[SWaT_canon:TranAD]   warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+[SWaT_canon:USAD] [95mTraining USAD on WADI[0m[SWaT_canon:TranAD] /opt/conda/lib/python3.11/site-packages/torch/nn/modules/transformer.py:307: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer was not TransformerEncoderLayer
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]   0%|          | 0/30 [00:00<?, ?it/s][SWaT_canon:USAD] [95mTraining USAD on WADI[0m
+[SWaT_canon:TranAD]   warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+[SWaT_canon:USAD] [95mTraining USAD on WADI[0m
+[SWaT_canon:USAD] 
+
+[SWaT_canon:USAD] 
+
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 0,      L1 = 1.0261635262512105,        L2 = 1.0179844774137445
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]   0%|          | 0/30 [00:04<?, ?it/s]
+[SWaT_canon:TranAD] [92mCreating new model: TranAD[0m
+[SWaT_canon:TranAD] [95mTraining TranAD on WADI[0m
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] /opt/conda/lib/python3.11/site-packages/torch/nn/modules/transformer.py:307: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer was not TransformerEncoderLayer
+[SWaT_canon:TranAD]   warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+[SWaT_canon:TranAD] [92mCreating new model: TranAD[0m
+[SWaT_canon:USAD] [95mTraining USAD on WADI[0m
+[SWaT_canon:USAD] 
+[SWaT_canon:TranAD] [95mTraining TranAD on WADI[0m
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] [92mCreating new model: TranAD[0m
+[SWaT_canon:TranAD] /opt/conda/lib/python3.11/site-packages/torch/nn/modules/transformer.py:307: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer was not TransformerEncoderLayer
+[SWaT_canon:TranAD]   warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+[SWaT_canon:TranAD] [95mTraining TranAD on WADI[0m
+[SWaT_canon:TranAD] 
+[SWaT_canon:USAD]   3%|▎         | 1/30 [00:04<02:08,  4.44s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 1,      L1 = 0.886931909427131, L2 = -0.024460567060190622
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]   3%|▎         | 1/30 [00:08<02:08,  4.44s/it]
+[SWaT_canon:TranAD] [92mCreating new model: TranAD[0m
+[SWaT_canon:TranAD] [95mTraining TranAD on WADI[0m
+[SWaT_canon:TranAD] 
+[SWaT_canon:USAD]   0%|          | 0/30 [00:00<?, ?it/s]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 0,      L1 = 1.0038064638128164,        L2 = 0.9993817879065956
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]   0%|          | 0/30 [00:05<?, ?it/s]
+[SWaT_canon:USAD]   0%|          | 0/30 [00:00<?, ?it/s]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 0,      L1 = 1.0057212757665783,        L2 = 1.012705621844519
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]   0%|          | 0/30 [00:06<?, ?it/s]
+[SWaT_canon:USAD]   0%|          | 0/30 [00:00<?, ?it/s]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 0,      L1 = 1.023102286922449, L2 = 1.0201924421005442
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]   0%|          | 0/30 [00:07<?, ?it/s]
+[SWaT_canon:TranAD] [95mTraining TranAD on WADI[0m
+[SWaT_canon:TranAD] 
+[SWaT_canon:USAD]   0%|          | 0/30 [00:00<?, ?it/s]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 0,      L1 = 0.9998427891924893,        L2 = 1.0087966360432392
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]   0%|          | 0/30 [00:06<?, ?it/s]
+[SWaT_canon:USAD]   7%|▋         | 2/30 [00:08<02:04,  4.43s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 2,      L1 = 0.8879160643283369,        L2 = -0.3325061834717201
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]   7%|▋         | 2/30 [00:13<02:04,  4.43s/it]
+[SWaT_canon:USAD]   3%|▎         | 1/30 [00:05<02:50,  5.88s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 1,      L1 = 0.8939680195362667,        L2 = -0.045530519903994045
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]   3%|▎         | 1/30 [00:12<02:50,  5.88s/it]
+[SWaT_canon:USAD]   3%|▎         | 1/30 [00:06<02:54,  6.03s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 1,      L1 = 0.8913302132175804,        L2 = -0.049007187255798744
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]   3%|▎         | 1/30 [00:12<02:54,  6.03s/it]
+[SWaT_canon:USAD]   3%|▎         | 1/30 [00:06<02:57,  6.12s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 1,      L1 = 0.888162601598856, L2 = -0.04369945832707853
+[SWaT_canon:USAD]  10%|█         | 3/30 [00:13<02:05,  4.65s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 3,      L1 = 0.8877227451448836,        L2 = -0.4783493680932091
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  10%|█         | 3/30 [00:18<02:05,  4.65s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]   3%|▎         | 1/30 [00:12<02:57,  6.12s/it]
+[SWaT_canon:USAD]   3%|▎         | 1/30 [00:07<03:37,  7.50s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 1,      L1 = 0.8842218164179172,        L2 = -0.037411168314284676
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]   3%|▎         | 1/30 [00:16<03:37,  7.50s/it]
+[SWaT_canon:USAD]   7%|▋         | 2/30 [00:12<02:49,  6.04s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 2,      L1 = 0.9019775063627296,        L2 = -0.34896850531566503
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]   7%|▋         | 2/30 [00:18<02:49,  6.04s/it]
+[SWaT_canon:USAD]   7%|▋         | 2/30 [00:12<02:53,  6.20s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 2,      L1 = 0.8734645937094132,        L2 = -0.32789290847568975
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]   7%|▋         | 2/30 [00:18<02:53,  6.20s/it]
+[SWaT_canon:USAD]  13%|█▎        | 4/30 [00:18<02:04,  4.79s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 4,      L1 = 0.8823237612759326,        L2 = -0.5586735190308026
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  13%|█▎        | 4/30 [00:23<02:04,  4.79s/it]
+[SWaT_canon:USAD]   7%|▋         | 2/30 [00:12<02:53,  6.20s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 2,      L1 = 0.885966701878554, L2 = -0.3362242904300547
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]   7%|▋         | 2/30 [00:18<02:53,  6.20s/it]
+[SWaT_canon:USAD]  17%|█▋        | 5/30 [00:23<02:01,  4.88s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 5,      L1 = 0.8771871026963164,        L2 = -0.6096899137076293
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  17%|█▋        | 5/30 [00:28<02:01,  4.88s/it]
+[SWaT_canon:USAD]  10%|█         | 3/30 [00:18<02:50,  6.33s/it][SWaT_canon:USAD]   7%|▋         | 2/30 [00:16<03:51,  8.26s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 3,      L1 = 0.9015773817503968,        L2 = -0.49114343911942565
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  10%|█         | 3/30 [00:25<02:50,  6.33s/it]
+
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 2,      L1 = 0.8893499330752538,        L2 = -0.33742065611251554
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]   7%|▋         | 2/30 [00:25<03:51,  8.26s/it]
+[SWaT_canon:USAD]  10%|█         | 3/30 [00:18<02:52,  6.40s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 3,      L1 = 0.85717072946821,  L2 = -0.45268229386732406
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  10%|█         | 3/30 [00:25<02:52,  6.40s/it]
+[SWaT_canon:USAD]  10%|█         | 3/30 [00:18<02:50,  6.33s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 3,      L1 = 0.8872943785525648,        L2 = -0.4789798797727361
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  10%|█         | 3/30 [00:26<02:50,  6.33s/it]
+[SWaT_canon:USAD]  20%|██        | 6/30 [00:28<01:56,  4.86s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 6,      L1 = 0.8735846187252895,        L2 = -0.6456924199587938
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  20%|██        | 6/30 [00:33<01:56,  4.86s/it]
+[SWaT_canon:USAD]  13%|█▎        | 4/30 [00:25<02:44,  6.33s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 4,      L1 = 0.8983532849439682,        L2 = -0.5719582513535988
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  13%|█▎        | 4/30 [00:31<02:44,  6.33s/it]
+[SWaT_canon:USAD]  13%|█▎        | 4/30 [00:25<02:51,  6.59s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 4,      L1 = 0.849212722982615, L2 = -0.5281337285291565
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  13%|█▎        | 4/30 [00:32<02:51,  6.59s/it]
+[SWaT_canon:USAD]  23%|██▎       | 7/30 [00:33<01:53,  4.92s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 7,      L1 = 0.870930951232487, L2 = -0.6724733147707026
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  23%|██▎       | 7/30 [00:38<01:53,  4.92s/it]
+[SWaT_canon:USAD]  13%|█▎        | 4/30 [00:26<02:53,  6.66s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 4,      L1 = 0.8869322925146578,        L2 = -0.5623244707614689
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  13%|█▎        | 4/30 [00:33<02:53,  6.66s/it]
+[SWaT_canon:USAD]  10%|█         | 3/30 [00:25<03:52,  8.60s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 3,      L1 = 0.8902988907040962,        L2 = -0.48009651424731575
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  10%|█         | 3/30 [00:36<03:52,  8.60s/it]
+[SWaT_canon:USAD]  17%|█▋        | 5/30 [00:31<02:42,  6.49s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 5,      L1 = 0.8938276544353607,        L2 = -0.6230435083793887
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  17%|█▋        | 5/30 [00:38<02:42,  6.49s/it]
+[SWaT_canon:USAD]  17%|█▋        | 5/30 [00:32<02:44,  6.58s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 5,      L1 = 0.8404533381936914,        L2 = -0.5750826698484113
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  17%|█▋        | 5/30 [00:38<02:44,  6.58s/it]
+[SWaT_canon:USAD]  27%|██▋       | 8/30 [00:38<01:49,  4.97s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 8,      L1 = 0.8692592517832354,        L2 = -0.6936957746982687
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  27%|██▋       | 8/30 [00:44<01:49,  4.97s/it]
+[SWaT_canon:USAD]  17%|█▋        | 5/30 [00:33<02:53,  6.93s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 5,      L1 = 0.8846170989947355,        L2 = -0.6152845722449533
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  17%|█▋        | 5/30 [00:40<02:53,  6.93s/it]
+[SWaT_canon:TranAD]   0%|          | 0/30 [00:00<?, ?it/s]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 0,    L1 = 0.7834549982963646
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]   0%|          | 0/30 [00:43<?, ?it/s]
+[SWaT_canon:USAD]  30%|███       | 9/30 [00:44<01:46,  5.07s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 9,      L1 = 0.867146279943472, L2 = -0.7099174923858064
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  30%|███       | 9/30 [00:49<01:46,  5.07s/it]
+[SWaT_canon:USAD]  20%|██        | 6/30 [00:38<02:36,  6.52s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 6,      L1 = 0.8880963884855282,        L2 = -0.656961113337266
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  20%|██        | 6/30 [00:45<02:36,  6.52s/it]
+[SWaT_canon:USAD]  20%|██        | 6/30 [00:38<02:36,  6.52s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 6,      L1 = 0.830837560189702, L2 = -0.6050886215884134
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  20%|██        | 6/30 [00:45<02:36,  6.52s/it]
+[SWaT_canon:TranAD]   0%|          | 0/30 [00:00<?, ?it/s]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 0,    L1 = 0.7866975798248795
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]   0%|          | 0/30 [00:44<?, ?it/s]
+[SWaT_canon:USAD]  20%|██        | 6/30 [00:40<02:44,  6.84s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 6,      L1 = 0.8817985295589922,        L2 = -0.6518730134045505
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  20%|██        | 6/30 [00:46<02:44,  6.84s/it]
+[SWaT_canon:USAD]  33%|███▎      | 10/30 [00:49<01:42,  5.11s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 10,     L1 = 0.8655678608617877,        L2 = -0.7233674431784454
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  33%|███▎      | 10/30 [00:54<01:42,  5.11s/it]
+[gpu] SWaT_canon:USAD heartbeat t+60s alloc=0.00G
+[SWaT_canon:USAD]  13%|█▎        | 4/30 [00:36<04:13,  9.76s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 4,      L1 = 0.8877624814414372,        L2 = -0.5616011326034639
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  13%|█▎        | 4/30 [00:48<04:13,  9.76s/it]
+[SWaT_canon:USAD]  23%|██▎       | 7/30 [00:45<02:32,  6.63s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 7,      L1 = 0.8825926127336681,        L2 = -0.681137911372041
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  23%|██▎       | 7/30 [00:52<02:32,  6.63s/it]
+[SWaT_canon:USAD]  23%|██▎       | 7/30 [00:45<02:30,  6.54s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 7,      L1 = 0.8264423597414615,        L2 = -0.630030730791853
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  23%|██▎       | 7/30 [00:52<02:30,  6.54s/it]
+[gpu] SWaT_canon:USAD heartbeat t+60s alloc=0.00G
+[gpu] SWaT_canon:USAD heartbeat t+60s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+60s alloc=0.00G
+[gpu] SWaT_canon:USAD heartbeat t+60s alloc=0.00G
+[SWaT_canon:USAD]  37%|███▋      | 11/30 [00:54<01:40,  5.26s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 11,     L1 = 0.8639019055856767,        L2 = -0.7341879632450261
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  37%|███▋      | 11/30 [01:00<01:40,  5.26s/it]
+[gpu] SWaT_canon:USAD heartbeat t+60s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+60s alloc=0.00G
+[SWaT_canon:USAD]  23%|██▎       | 7/30 [00:46<02:36,  6.81s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+60s alloc=0.00G
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 7,      L1 = 0.8775098733709189,        L2 = -0.6774458085763814
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  23%|██▎       | 7/30 [00:56<02:36,  6.81s/it]
+[SWaT_canon:USAD]  17%|█▋        | 5/30 [00:48<04:18, 10.34s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 5,      L1 = 0.8848899707001706,        L2 = -0.61426085845099
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  17%|█▋        | 5/30 [00:58<04:18, 10.34s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+60s alloc=0.00G
+[SWaT_canon:USAD]  27%|██▋       | 8/30 [00:52<02:28,  6.74s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 8,      L1 = 0.8781261228642333,        L2 = -0.6996358421660974
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  27%|██▋       | 8/30 [00:59<02:28,  6.74s/it]
+[SWaT_canon:USAD]  27%|██▋       | 8/30 [00:52<02:27,  6.72s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:TranAD]   0%|          | 0/30 [00:00<?, ?it/s]
+[SWaT_canon:TranAD] [SWaT_canon:USAD] Epoch 8,  L1 = 0.8255205359380068,        L2 = -0.6516828491210432
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  27%|██▋       | 8/30 [00:59<02:27,  6.72s/it]
+
+[SWaT_canon:TranAD] Epoch 0,    L1 = 0.7795505568721873
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]   0%|          | 0/30 [00:55<?, ?it/s]
+[SWaT_canon:USAD]  40%|████      | 12/30 [01:00<01:35,  5.31s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 12,     L1 = 0.8621908822631825,        L2 = -0.7429433473422702
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  40%|████      | 12/30 [01:05<01:35,  5.31s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+60s alloc=0.00G
+[SWaT_canon:USAD]  30%|███       | 9/30 [00:59<02:21,  6.76s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 9,      L1 = 0.8762370221730735,        L2 = -0.7160579498204808
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  30%|███       | 9/30 [01:05<02:21,  6.76s/it]
+[SWaT_canon:USAD]  30%|███       | 9/30 [00:59<02:22,  6.80s/it]
+[SWaT_canon:USAD] [SWaT_canon:TranAD]   0%|          | 0/30 [00:00<?, ?it/s]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 0,    L1 = 0.781636383244154
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]   0%|          | 0/30 [01:00<?, ?it/s]
+
+[SWaT_canon:USAD] Epoch 9,      L1 = 0.8257176010341518,        L2 = -0.6697587414334217
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  30%|███       | 9/30 [01:06<02:22,  6.80s/it]
+[SWaT_canon:USAD]  27%|██▋       | 8/30 [00:56<02:47,  7.60s/it]
+[SWaT_canon:USAD]  43%|████▎     | 13/30 [01:05<01:31,  5.36s/it]
+[SWaT_canon:USAD] [SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 8,      L1 = 0.8716976897029834,        L2 = -0.694740884665491
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  27%|██▋       | 8/30 [01:04<02:47,  7.60s/it]
+
+[SWaT_canon:USAD] Epoch 13,     L1 = 0.8611418438791218,        L2 = -0.7507497813559634
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  43%|████▎     | 13/30 [01:11<01:31,  5.36s/it]
+[SWaT_canon:USAD]  20%|██        | 6/30 [00:58<04:09, 10.40s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 6,      L1 = 0.8827691022341759,        L2 = -0.6515866784543753
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  20%|██        | 6/30 [01:08<04:09, 10.40s/it]
+[SWaT_canon:TranAD]   0%|          | 0/30 [00:00<?, ?it/s]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 0,    L1 = 0.7748188779929657
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]   0%|          | 0/30 [01:02<?, ?it/s]
+[SWaT_canon:USAD]  47%|████▋     | 14/30 [01:11<01:25,  5.35s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 14,     L1 = 0.8609005251404761,        L2 = -0.7581161755801875
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  47%|████▋     | 14/30 [01:16<01:25,  5.35s/it]
+[SWaT_canon:USAD]  33%|███▎      | 10/30 [01:05<02:13,  6.70s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 10,     L1 = 0.87553597149034,  L2 = -0.7303482571585198
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  33%|███▎      | 10/30 [01:11<02:13,  6.70s/it]
+[SWaT_canon:USAD]  33%|███▎      | 10/30 [01:06<02:14,  6.73s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 10,     L1 = 0.8260942697454868,        L2 = -0.6846048582254044
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  33%|███▎      | 10/30 [01:12<02:14,  6.73s/it]
+[SWaT_canon:USAD]  30%|███       | 9/30 [01:04<02:45,  7.89s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 9,      L1 = 0.8705153769187335,        L2 = -0.7116891519568173
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  30%|███       | 9/30 [01:12<02:45,  7.89s/it]
+[SWaT_canon:USAD]  50%|█████     | 15/30 [01:16<01:19,  5.30s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 15,     L1 = 0.8609823557511393,        L2 = -0.7647965559718355
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  50%|█████     | 15/30 [01:21<01:19,  5.30s/it]
+[SWaT_canon:USAD]  23%|██▎       | 7/30 [01:08<03:52, 10.09s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 7,      L1 = 0.8808796501625504,        L2 = -0.6792175952492461
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  23%|██▎       | 7/30 [01:17<03:52, 10.09s/it]
+[SWaT_canon:USAD]  37%|███▋      | 11/30 [01:11<02:05,  6.61s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 11,     L1 = 0.874910724582589, L2 = -0.7423442796946077
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  37%|███▋      | 11/30 [01:18<02:05,  6.61s/it]
+[SWaT_canon:USAD]  37%|███▋      | 11/30 [01:12<02:06,  6.65s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 11,     L1 = 0.8270198747045633,        L2 = -0.6975859694828309
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  37%|███▋      | 11/30 [01:19<02:06,  6.65s/it]
+[SWaT_canon:USAD]  33%|███▎      | 10/30 [01:12<02:36,  7.84s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 10,     L1 = 0.8711853471467107,        L2 = -0.7271432043272448
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  33%|███▎      | 10/30 [01:19<02:36,  7.84s/it]
+[SWaT_canon:USAD]  53%|█████▎    | 16/30 [01:21<01:12,  5.17s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 16,     L1 = 0.8605395004209376,        L2 = -0.7701649494125401
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  53%|█████▎    | 16/30 [01:26<01:12,  5.17s/it]
+[SWaT_canon:USAD]  40%|████      | 12/30 [01:18<01:58,  6.56s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 12,     L1 = 0.8729816663820865,        L2 = -0.7513363241426745
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  40%|████      | 12/30 [01:24<01:58,  6.56s/it]
+[SWaT_canon:USAD]  40%|████      | 12/30 [01:19<02:00,  6.67s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 12,     L1 = 0.8278266214774378,        L2 = -0.7085611595230251
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  40%|████      | 12/30 [01:25<02:00,  6.67s/it]
+[SWaT_canon:USAD]  27%|██▋       | 8/30 [01:17<03:36,  9.85s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 8,      L1 = 0.8797365955573466,        L2 = -0.7010082543710082
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  27%|██▋       | 8/30 [01:26<03:36,  9.85s/it]
+[SWaT_canon:USAD]  57%|█████▋    | 17/30 [01:26<01:06,  5.13s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 17,     L1 = 0.8602360761750721,        L2 = -0.7750108450679232
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  57%|█████▋    | 17/30 [01:31<01:06,  5.13s/it]
+[SWaT_canon:TranAD]   3%|▎         | 1/30 [00:43<21:12, 43.88s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 1,    L1 = 0.7354674739815757
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]   3%|▎         | 1/30 [01:26<21:12, 43.88s/it]
+[SWaT_canon:USAD]  37%|███▋      | 11/30 [01:19<02:24,  7.59s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 11,     L1 = 0.8712712041928438,        L2 = -0.7396048778727679
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  37%|███▋      | 11/30 [01:26<02:24,  7.59s/it]
+[SWaT_canon:USAD]  43%|████▎     | 13/30 [01:24<01:51,  6.53s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 13,     L1 = 0.8704025579928623,        L2 = -0.7582371198167067
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  43%|████▎     | 13/30 [01:30<01:51,  6.53s/it]
+[SWaT_canon:USAD]  60%|██████    | 18/30 [01:31<01:00,  5.04s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 18,     L1 = 0.8598194173668737,        L2 = -0.779186829787779
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  60%|██████    | 18/30 [01:35<01:00,  5.04s/it]
+[SWaT_canon:USAD]  43%|████▎     | 13/30 [01:25<01:52,  6.60s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 13,     L1 = 0.8285649480673497,        L2 = -0.7180041647647734
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  43%|████▎     | 13/30 [01:32<01:52,  6.60s/it]
+[SWaT_canon:USAD]  30%|███       | 9/30 [01:26<03:19,  9.50s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 9,      L1 = 0.8800199891663316,        L2 = -0.7196183876921958
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  30%|███       | 9/30 [01:32<03:19,  9.50s/it]
+[SWaT_canon:USAD]  40%|████      | 12/30 [01:26<02:11,  7.32s/it]
+[SWaT_canon:TranAD]   3%|▎         | 1/30 [00:44<21:40, 44.84s/it][SWaT_canon:USAD]
+[SWaT_canon:USAD] Epoch 12,     L1 = 0.87071816320838,  L2 = -0.7494908854989738
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  40%|████      | 12/30 [01:32<02:11,  7.32s/it]
+
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 1,    L1 = 0.7397947551054694
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]   3%|▎         | 1/30 [01:31<21:40, 44.84s/it]
+[SWaT_canon:USAD]  63%|██████▎   | 19/30 [01:35<00:54,  5.00s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 19,     L1 = 0.8601617142628254,        L2 = -0.7836610196393313
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  63%|██████▎   | 19/30 [01:40<00:54,  5.00s/it]
+[SWaT_canon:USAD]  33%|███▎      | 10/30 [01:32<02:50,  8.50s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 10,     L1 = 0.8823800721432025,        L2 = -0.7369984286800448
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  33%|███▎      | 10/30 [01:37<02:50,  8.50s/it]
+[SWaT_canon:USAD]  47%|████▋     | 14/30 [01:30<01:42,  6.40s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 14,     L1 = 0.8661085479487639,        L2 = -0.7620978033250784
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  47%|████▋     | 14/30 [01:37<01:42,  6.40s/it]
+[SWaT_canon:USAD]  47%|████▋     | 14/30 [01:32<01:45,  6.58s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 14,     L1 = 0.8294218693265302,        L2 = -0.7263882325088742
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  47%|████▋     | 14/30 [01:39<01:45,  6.58s/it]
+[SWaT_canon:USAD]  67%|██████▋   | 20/30 [01:40<00:49,  4.95s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 20,     L1 = 0.8606365466150131,        L2 = -0.7878362290217434
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  67%|██████▋   | 20/30 [01:45<00:49,  4.95s/it]
+[SWaT_canon:USAD]  43%|████▎     | 13/30 [01:32<02:00,  7.07s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 13,     L1 = 0.8689213324611806,        L2 = -0.7566719856569211
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  43%|████▎     | 13/30 [01:39<02:00,  7.07s/it]
+[SWaT_canon:USAD]  37%|███▋      | 11/30 [01:37<02:21,  7.46s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 11,     L1 = 0.8852681795524507,        L2 = -0.7525133890697905
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  37%|███▋      | 11/30 [01:42<02:21,  7.46s/it]
+[SWaT_canon:USAD]  50%|█████     | 15/30 [01:37<01:36,  6.46s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 15,     L1 = 0.8620828583822524,        L2 = -0.7650683754546438
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  50%|█████     | 15/30 [01:44<01:36,  6.46s/it]
+[SWaT_canon:USAD]  70%|███████   | 21/30 [01:45<00:43,  4.87s/it]
+[SWaT_canon:USAD]  50%|█████     | 15/30 [01:39<01:39,  6.66s/it][SWaT_canon:USAD]
+[SWaT_canon:USAD] Epoch 21,     L1 = 0.859786749419295, L2 = -0.7904475386870109
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  70%|███████   | 21/30 [01:50<00:43,  4.87s/it]
+
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 15,     L1 = 0.8304312372450382,        L2 = -0.7339529218730954
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  50%|█████     | 15/30 [01:45<01:39,  6.66s/it]
+[SWaT_canon:USAD]  47%|████▋     | 14/30 [01:39<01:52,  7.02s/it]
+[SWaT_canon:USAD]  40%|████      | 12/30 [01:42<02:00,  6.71s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 12,     L1 = 0.8850025537471145,        L2 = -0.7629514427859119
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  40%|████      | 12/30 [01:48<02:00,  6.71s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 14,     L1 = 0.865889185278373, L2 = -0.7614385591900562
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  47%|████▋     | 14/30 [01:46<01:52,  7.02s/it]
+[SWaT_canon:USAD]  73%|███████▎  | 22/30 [01:50<00:38,  4.86s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 22,     L1 = 0.8592345700888647,        L2 = -0.7929942650359173
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  73%|███████▎  | 22/30 [01:54<00:38,  4.86s/it]
+[SWaT_canon:USAD]  53%|█████▎    | 16/30 [01:44<01:30,  6.50s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 16,     L1 = 0.8591513193007243,        L2 = -0.768167924342884
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  53%|█████▎    | 16/30 [01:50<01:30,  6.50s/it]
+[gpu] SWaT_canon:USAD heartbeat t+120s alloc=0.00G
+[SWaT_canon:USAD]  53%|█████▎    | 16/30 [01:45<01:33,  6.71s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 16,     L1 = 0.8315006766727864,        L2 = -0.7408142790317591
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  53%|█████▎    | 16/30 [01:52<01:33,  6.71s/it]
+[SWaT_canon:USAD]  43%|████▎     | 13/30 [01:48<01:48,  6.38s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 13,     L1 = 0.8830732030692298,        L2 = -0.7702729611319057
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  43%|████▎     | 13/30 [01:53<01:48,  6.38s/it]
+[SWaT_canon:USAD]  50%|█████     | 15/30 [01:46<01:43,  6.91s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 15,     L1 = 0.8626964152869532,        L2 = -0.7650365091425326
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  50%|█████     | 15/30 [01:52<01:43,  6.91s/it]
+[gpu] SWaT_canon:USAD heartbeat t+120s alloc=0.00G
+[SWaT_canon:TranAD]   3%|▎         | 1/30 [00:55<26:51, 55.57s/it][gpu] SWaT_canon:USAD heartbeat t+120s alloc=0.00G
+
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 1,    L1 = 0.7330667312325394
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]   3%|▎         | 1/30 [01:50<26:51, 55.57s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+120s alloc=0.00G[SWaT_canon:USAD]  77%|███████▋  | 23/30 [01:54<00:33,  4.78s/it][gpu] SWaT_canon:USAD heartbeat t+120s alloc=0.00G
+
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 23,     L1 = 0.8584822550654524,        L2 = -0.795060056519542
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  77%|███████▋  | 23/30 [01:59<00:33,  4.78s/it]
+
+[gpu] SWaT_canon:USAD heartbeat t+120s alloc=0.00G
+[SWaT_canon:USAD]  57%|█████▋    | 17/30 [01:50<01:24,  6.50s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 17,     L1 = 0.8572863049685899,        L2 = -0.7715769212784179
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  57%|█████▋    | 17/30 [01:56<01:24,  6.50s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+120s alloc=0.00G
+[SWaT_canon:USAD]  47%|████▋     | 14/30 [01:53<01:35,  5.99s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 14,     L1 = 0.879604064840157, L2 = -0.7749407188809019
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  47%|████▋     | 14/30 [01:58<01:35,  5.99s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+120s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+120s alloc=0.00G
+[SWaT_canon:USAD]  57%|█████▋    | 17/30 [01:52<01:27,  6.71s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 17,     L1 = 0.8318013859081403,        L2 = -0.7462601860259044
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  57%|█████▋    | 17/30 [01:59<01:27,  6.71s/it]
+[SWaT_canon:USAD]  80%|████████  | 24/30 [01:59<00:28,  4.71s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 24,     L1 = 0.8580590339549405,        L2 = -0.7972256941457758
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  80%|████████  | 24/30 [02:03<00:28,  4.71s/it]
+[SWaT_canon:USAD]  53%|█████▎    | 16/30 [01:52<01:33,  6.67s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 16,     L1 = 0.8597096443604222,        L2 = -0.7680539777204254
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  53%|█████▎    | 16/30 [01:58<01:33,  6.67s/it]
+[SWaT_canon:TranAD]   3%|▎         | 1/30 [01:00<29:19, 60.66s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 1,    L1 = 0.7366241866410508
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]   3%|▎         | 1/30 [01:55<29:19, 60.66s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+120s alloc=0.00G[SWaT_canon:USAD]  60%|██████    | 18/30 [01:56<01:16,  6.34s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 18,     L1 = 0.8562652650736483,        L2 = -0.7752426902951213
+
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  60%|██████    | 18/30 [02:02<01:16,  6.34s/it]
+[SWaT_canon:USAD]  50%|█████     | 15/30 [01:58<01:24,  5.66s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 15,     L1 = 0.8767725719584472,        L2 = -0.7791912897705695
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  50%|█████     | 15/30 [02:03<01:24,  5.66s/it]
+[SWaT_canon:USAD]  83%|████████▎ | 25/30 [02:03<00:23,  4.66s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 25,     L1 = 0.8579469327122086,        L2 = -0.7994850473285507
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  83%|████████▎ | 25/30 [02:08<00:23,  4.66s/it]
+[SWaT_canon:USAD]  60%|██████    | 18/30 [01:59<01:19,  6.63s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 18,     L1 = 0.832114468849564, L2 = -0.7511775195738915
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  60%|██████    | 18/30 [02:05<01:19,  6.63s/it]
+[SWaT_canon:TranAD]   3%|▎         | 1/30 [01:02<30:08, 62.37s/it][SWaT_canon:USAD]  57%|█████▋    | 17/30 [01:58<01:24,  6.52s/it]
+
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 1,    L1 = 0.7282897468003849
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]   3%|▎         | 1/30 [01:58<30:08, 62.37s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 17,     L1 = 0.8572859428647603,        L2 = -0.7709596681140237
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  57%|█████▋    | 17/30 [02:04<01:24,  6.52s/it]
+[SWaT_canon:USAD]  53%|█████▎    | 16/30 [02:03<01:16,  5.45s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 16,     L1 = 0.8740529297849272,        L2 = -0.7826394280646761
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  53%|█████▎    | 16/30 [02:08<01:16,  5.45s/it]
+[SWaT_canon:USAD]  63%|██████▎   | 19/30 [02:02<01:09,  6.30s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 19,     L1 = 0.8555560214953627,        L2 = -0.7787370436181176
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  63%|██████▎   | 19/30 [02:09<01:09,  6.30s/it]
+[SWaT_canon:TranAD]   7%|▋         | 2/30 [01:26<20:10, 43.23s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 2,    L1 = 0.7140269351723252
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]   7%|▋         | 2/30 [02:10<20:10, 43.23s/it]
+[SWaT_canon:USAD]  87%|████████▋ | 26/30 [02:08<00:18,  4.65s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 26,     L1 = 0.8576972958633567,        L2 = -0.8014352590287641
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  87%|████████▋ | 26/30 [02:13<00:18,  4.65s/it]
+[SWaT_canon:USAD]  63%|██████▎   | 19/30 [02:05<01:12,  6.59s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 19,     L1 = 0.8329154270369623,        L2 = -0.7561133071646908
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  63%|██████▎   | 19/30 [02:11<01:12,  6.59s/it]
+[SWaT_canon:USAD]  57%|█████▋    | 17/30 [02:08<01:08,  5.29s/it]
+[SWaT_canon:USAD]  60%|██████    | 18/30 [02:04<01:16,  6.40s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 18,     L1 = 0.856700214025917, L2 = -0.775101892530862[SWaT_canon:USAD]
+[SWaT_canon:USAD] Epoch 17,     L1 = 0.8729850364649027,        L2 = -0.7869378239225084
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  57%|█████▋    | 17/30 [02:12<01:08,  5.29s/it]
+
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  60%|██████    | 18/30 [02:11<01:16,  6.40s/it]
+[SWaT_canon:USAD]  90%|█████████ | 27/30 [02:13<00:13,  4.64s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 27,     L1 = 0.8577434601939219,        L2 = -0.8035205513196814
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  90%|█████████ | 27/30 [02:17<00:13,  4.64s/it]
+[SWaT_canon:USAD]  67%|██████▋   | 20/30 [02:09<01:02,  6.27s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 20,     L1 = 0.8565571713006991,        L2 = -0.7835151575568874
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  67%|██████▋   | 20/30 [02:15<01:02,  6.27s/it]
+[SWaT_canon:USAD]  93%|█████████▎| 28/30 [02:17<00:09,  4.60s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 28,     L1 = 0.8577489683899165,        L2 = -0.8054279329995371
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  93%|█████████▎| 28/30 [02:22<00:09,  4.60s/it]
+[SWaT_canon:USAD]  67%|██████▋   | 20/30 [02:11<01:05,  6.54s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 20,     L1 = 0.8340117631167903,        L2 = -0.7609299714738422
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  67%|██████▋   | 20/30 [02:18<01:05,  6.54s/it]
+[SWaT_canon:USAD]  63%|██████▎   | 19/30 [02:11<01:10,  6.42s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 19,     L1 = 0.8556660312191073,        L2 = -0.7782779425003771
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  63%|██████▎   | 19/30 [02:17<01:10,  6.42s/it]
+[SWaT_canon:TranAD]   7%|▋         | 2/30 [01:31<21:29, 46.07s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 2,    L1 = 0.718589707770562
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]   7%|▋         | 2/30 [02:17<21:29, 46.07s/it]
+[SWaT_canon:USAD]  60%|██████    | 18/30 [02:12<01:02,  5.17s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 18,     L1 = 0.8705771252856697,        L2 = -0.7893004321165229
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  60%|██████    | 18/30 [02:20<01:02,  5.17s/it]
+[SWaT_canon:USAD]  70%|███████   | 21/30 [02:15<00:55,  6.20s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 21,     L1 = 0.8561780030704095,        L2 = -0.7865700804840654
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  70%|███████   | 21/30 [02:21<00:55,  6.20s/it]
+[SWaT_canon:USAD]  97%|█████████▋| 29/30 [02:22<00:04,  4.55s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 29,     L1 = 0.8577320496578001,        L2 = -0.8072010549223805
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  97%|█████████▋| 29/30 [02:26<00:04,  4.55s/it]
+[SWaT_canon:USAD] 100%|██████████| 30/30 [02:26<00:00,  4.57s/it]
+[SWaT_canon:USAD] 100%|██████████| 30/30 [02:26<00:00,  4.89s/it]
+[SWaT_canon:USAD] [1mTraining time:   146.7360 s[0m
+[SWaT_canon:USAD] [95mTesting USAD on WADI[0m
+[SWaT_canon:USAD]  70%|███████   | 21/30 [02:18<00:58,  6.52s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 21,     L1 = 0.8347804318208479,        L2 = -0.7650940798033598
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  70%|███████   | 21/30 [02:24<00:58,  6.52s/it]
+[SWaT_canon:USAD]  63%|██████▎   | 19/30 [02:20<01:04,  5.91s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 19,     L1 = 0.8690286722076309,        L2 = -0.7919464027982647
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  63%|██████▎   | 19/30 [02:25<01:04,  5.91s/it]
+[SWaT_canon:USAD]  67%|██████▋   | 20/30 [02:17<01:05,  6.51s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 20,     L1 = 0.8552015330537227,        L2 = -0.7816008149651484
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  67%|██████▋   | 20/30 [02:24<01:05,  6.51s/it]
+[SWaT_canon:USAD]  73%|███████▎  | 22/30 [02:21<00:49,  6.20s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 22,     L1 = 0.8561972986254315,        L2 = -0.7897155474618835
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  73%|███████▎  | 22/30 [02:27<00:49,  6.20s/it]
+[SWaT_canon:USAD]  67%|██████▋   | 20/30 [02:25<00:56,  5.61s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 20,     L1 = 0.8685655908697686,        L2 = -0.79525590365272
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  67%|██████▋   | 20/30 [02:30<00:56,  5.61s/it]
+[SWaT_canon:USAD]  73%|███████▎  | 22/30 [02:24<00:51,  6.50s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 22,     L1 = 0.835406080137398, L2 = -0.768813890445339
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  73%|███████▎  | 22/30 [02:31<00:51,  6.50s/it]
+[SWaT_canon:USAD]  70%|███████   | 21/30 [02:24<00:59,  6.61s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 21,     L1 = 0.8548386519960708,        L2 = -0.7846710332502697
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  70%|███████   | 21/30 [02:31<00:59,  6.61s/it]
+[SWaT_canon:USAD]  77%|███████▋  | 23/30 [02:27<00:43,  6.21s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 23,     L1 = 0.8556925410092606,        L2 = -0.7920701071206067
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  77%|███████▋  | 23/30 [02:33<00:43,  6.21s/it]
+[SWaT_canon:USAD]  70%|███████   | 21/30 [02:30<00:49,  5.47s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 21,     L1 = 0.8678899915352211,        L2 = -0.7979956917717295
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  70%|███████   | 21/30 [02:36<00:49,  5.47s/it]
+[SWaT_canon:USAD]  77%|███████▋  | 23/30 [02:31<00:45,  6.44s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 23,     L1 = 0.8359335868666737,        L2 = -0.7721747299217796
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  77%|███████▋  | 23/30 [02:37<00:45,  6.44s/it]
+[SWaT_canon:USAD]  73%|███████▎  | 22/30 [02:31<00:52,  6.60s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 22,     L1 = 0.854895126285021, L2 = -0.7878458353247065
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  73%|███████▎  | 22/30 [02:37<00:52,  6.60s/it]
+[SWaT_canon:USAD]  80%|████████  | 24/30 [02:33<00:37,  6.18s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 24,     L1 = 0.8550022284091642,        L2 = -0.7940005971445033
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  80%|████████  | 24/30 [02:39<00:37,  6.18s/it]
+[SWaT_canon:USAD]  73%|███████▎  | 22/30 [02:36<00:43,  5.44s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 22,     L1 = 0.8675232052683775,        L2 = -0.8007239793653542
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  73%|███████▎  | 22/30 [02:41<00:43,  5.44s/it]
+[SWaT_canon:USAD]  80%|████████  | 24/30 [02:37<00:38,  6.46s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 24,     L1 = 0.8364740275162257,        L2 = -0.7753209354541845
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  80%|████████  | 24/30 [02:44<00:38,  6.46s/it]
+[SWaT_canon:USAD]  83%|████████▎ | 25/30 [02:39<00:30,  6.14s/it]
+[SWaT_canon:USAD]  77%|███████▋  | 23/30 [02:37<00:45,  6.55s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 23,     L1 = 0.8551441557081013,        L2 = -0.790946796494352[SWaT_canon:USAD]
+[SWaT_canon:USAD] Epoch 25,     L1 = 0.8547007345301564,        L2 = -0.7960903291571219
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  83%|████████▎ | 25/30 [02:45<00:30,  6.14s/it]
+
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  77%|███████▋  | 23/30 [02:43<00:45,  6.55s/it]
+[SWaT_canon:USAD]  77%|███████▋  | 23/30 [02:41<00:37,  5.35s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 23,     L1 = 0.8673525099553125,        L2 = -0.8033838836781386
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  77%|███████▋  | 23/30 [02:46<00:37,  5.35s/it]
+[SWaT_canon:TranAD]   7%|▋         | 2/30 [01:50<25:47, 55.27s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 2,    L1 = 0.7133822241717364
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]   7%|▋         | 2/30 [02:45<25:47, 55.27s/it]
+[SWaT_canon:USAD]  83%|████████▎ | 25/30 [02:44<00:32,  6.45s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 25,     L1 = 0.8370084788425775,        L2 = -0.7782471356194347
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  83%|████████▎ | 25/30 [02:50<00:32,  6.45s/it]
+[SWaT_canon:USAD]  80%|████████  | 24/30 [02:46<00:31,  5.26s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 24,     L1 = 0.8673651690880738,        L2 = -0.8059977632184319
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  80%|████████  | 24/30 [02:51<00:31,  5.26s/it]
+[gpu] SWaT_canon:USAD heartbeat t+180s alloc=0.00G
+[SWaT_canon:USAD]  87%|████████▋ | 26/30 [02:45<00:24,  6.09s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 26,     L1 = 0.854009051584479, L2 = -0.7976182487928317
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  87%|████████▋ | 26/30 [02:51<00:24,  6.09s/it]
+[SWaT_canon:USAD]  80%|████████  | 24/30 [02:43<00:38,  6.47s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 24,     L1 = 0.8554397709492292,        L2 = -0.7938626250269667
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  80%|████████  | 24/30 [02:50<00:38,  6.47s/it]
+[SWaT_canon:TranAD]  10%|█         | 3/30 [02:10<19:30, 43.37s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 3,    L1 = 0.7019701073412729
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  10%|█         | 3/30 [02:52<19:30, 43.37s/it]
+[gpu] SWaT_canon:USAD heartbeat t+180s alloc=0.00G
+[gpu] SWaT_canon:USAD heartbeat t+180s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+180s alloc=0.00G[gpu] SWaT_canon:USAD heartbeat t+180s alloc=0.00G
+
+[SWaT_canon:USAD]  83%|████████▎ | 25/30 [02:51<00:25,  5.19s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 25,     L1 = 0.8672907367566155,        L2 = -0.8083142431035442
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  83%|████████▎ | 25/30 [02:56<00:25,  5.19s/it]
+[gpu] SWaT_canon:USAD heartbeat t+180s alloc=0.00G
+[SWaT_canon:USAD]  87%|████████▋ | 26/30 [02:50<00:25,  6.38s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 26,     L1 = 0.8374752751297253,        L2 = -0.7809379470487268
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  87%|████████▋ | 26/30 [02:56<00:25,  6.38s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+180s alloc=0.00G
+[SWaT_canon:USAD]  90%|█████████ | 27/30 [02:51<00:18,  6.05s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 27,     L1 = 0.8531094353063744,        L2 = -0.7987765094051366
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  90%|█████████ | 27/30 [02:57<00:18,  6.05s/it]
+[SWaT_canon:USAD]  83%|████████▎ | 25/30 [02:50<00:31,  6.36s/it][gpu] SWaT_canon:TranAD heartbeat t+180s alloc=0.00G
+
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 25,     L1 = 0.8555574848434121,        L2 = -0.7963859426724091
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  83%|████████▎ | 25/30 [02:56<00:31,  6.36s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+180s alloc=0.00G
+[SWaT_canon:TranAD]   7%|▋         | 2/30 [01:55<26:37, 57.06s/it]
+[SWaT_canon:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: overflow encountered in square[SWaT_canon:TranAD]
+[SWaT_canon:TranAD] Epoch 2,    L1 = 0.7170367121920972
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]   7%|▋         | 2/30 [02:53<26:37, 57.06s/it]
+[SWaT_canon:TranAD]   7%|▋         | 2/30 [01:58<27:28, 58.88s/it]
+[SWaT_canon:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 2,    L1 = 0.7120701493572605
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]   7%|▋         | 2/30 [02:51<27:28, 58.88s/it]
+[SWaT_canon:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: overflow encountered in square
+[SWaT_canon:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[SWaT_canon:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: overflow encountered in square
+[SWaT_canon:USAD]  87%|████████▋ | 26/30 [02:56<00:20,  5.18s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[SWaT_canon:USAD] Epoch 26,     L1 = 0.8672370609920297,        L2 = -0.8104806554708945
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  87%|████████▋ | 26/30 [03:01<00:20,  5.18s/it]
+[SWaT_canon:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: overflow encountered in square
+[SWaT_canon:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[SWaT_canon:USAD]  90%|█████████ | 27/30 [02:56<00:18,  6.31s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 27,     L1 = 0.8379036044410786,        L2 = -0.7834281365960668
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  90%|█████████ | 27/30 [03:02<00:18,  6.31s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+180s alloc=0.00G
+[SWaT_canon:USAD]  93%|█████████▎| 28/30 [02:57<00:11,  5.97s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 28,     L1 = 0.852278194995334, L2 = -0.7998553120939801
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  93%|█████████▎| 28/30 [03:03<00:11,  5.97s/it]
+[SWaT_canon:USAD]  87%|████████▋ | 26/30 [02:56<00:25,  6.31s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 26,     L1 = 0.8558142286692018,        L2 = -0.79888006805209
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  87%|████████▋ | 26/30 [03:02<00:25,  6.31s/it]
+[SWaT_canon:USAD]           f1  precision    recall  ...      FN   ROC/AUC     threshold
+[SWaT_canon:USAD] 0   0.030609   0.256484  0.016277  ...  5379.0  0.504874  3.277398e+00
+[SWaT_canon:USAD] 1   0.071877   0.523573  0.038588  ...  5257.0  0.516865  5.856328e+00
+[SWaT_canon:USAD] 2   0.848333   0.943971  0.770300  ...  1256.0  0.881987  1.441462e+01
+[SWaT_canon:USAD] 3   0.225211   0.689139  0.134601  ...  4732.0  0.563101  5.262415e+00
+[SWaT_canon:USAD] 4   0.000000   0.000000  0.000000  ...  5468.0  0.500000  8.889918e+58
+[SWaT_canon:USAD] 5   0.124704   0.139651  0.112655  ...  4852.0  0.508319  1.053219e+01
+[SWaT_canon:USAD] 6   0.007287   0.952380  0.003658  ...  5448.0  0.501816  1.897077e+01
+[SWaT_canon:USAD] 7   0.000000   0.000000  0.000000  ...  5468.0  0.500000  2.186006e+01
+[SWaT_canon:USAD] 8   0.000000   0.000000  0.000000  ...  5468.0  0.500000  1.335896e+30
+[SWaT_canon:USAD] 9   0.859305   0.945542  0.787491  ...  1162.0  0.890608  1.540486e+01
+[SWaT_canon:USAD] 10  0.743010   0.773447  0.714887  ...  1559.0  0.842958  6.462865e+00
+[SWaT_canon:USAD] 11  0.000000   0.000000  0.000000  ...  5468.0  0.500000  6.112037e-05
+[SWaT_canon:USAD] 12  0.237265   0.713761  0.142282  ...  4690.0  0.567194  5.153983e+00
+[SWaT_canon:USAD] 13  0.011636   1.000000  0.005852  ...  5436.0  0.502926  3.251923e-05
+[SWaT_canon:USAD] 14  0.158652   0.641192  0.090527  ...  4973.0  0.541759  3.859592e+00
+[SWaT_canon:USAD] 15  0.011636   1.000000  0.005852  ...  5436.0  0.502926  3.893739e-05
+[SWaT_canon:USAD] 16  0.793179   0.812584  0.774689  ...  1232.0  0.874985  6.497067e+00
+[SWaT_canon:USAD] 17  0.025280   1.000000  0.012802  ...  5398.0  0.506401  7.356001e+00
+[SWaT_canon:USAD] 18  0.059950   0.994118  0.030907  ...  5299.0  0.515441  1.348584e+01
+[SWaT_canon:USAD] 19  0.193435   0.664163  0.113204  ...  4849.0  0.552642  6.075281e+01
+[SWaT_canon:USAD] 20  0.874211   0.941350  0.816020  ...  1006.0  0.904493  5.628035e+00
+[SWaT_canon:USAD] 21  0.229810   0.392920  0.162399  ...  4580.0  0.563843  5.213333e+00
+[SWaT_canon:USAD] 22  0.856601   0.933362  0.791514  ...  1140.0  0.891848  2.431686e+01
+[SWaT_canon:USAD] 23  0.000000   0.000000  0.000000  ...  5468.0  0.500000  6.890229e+02
+[SWaT_canon:USAD] 24  0.819303   0.997115  0.695318  ...  1666.0  0.847520  6.474478e+00
+[SWaT_canon:USAD] 25  0.000000   0.000000  0.000000  ...  5468.0  0.500000  8.545418e+00
+[SWaT_canon:USAD] 26  0.812111   0.988973  0.688917  ...  1701.0  0.843927  6.174059e+00
+[SWaT_canon:USAD] 27  0.815665   0.994997  0.691112  ...  1689.0  0.845316  2.330480e+01
+[SWaT_canon:USAD] 28  0.000000   0.000000  0.000000  ...  5468.0  0.500000  9.289522e+01
+[SWaT_canon:USAD] 29  0.000000   0.000000  0.000000  ...  5468.0  0.500000  6.737807e-05
+[SWaT_canon:USAD] 30  0.801615   0.997821  0.669898  ...  1805.0  0.834848  2.436439e+01
+[SWaT_canon:USAD] 31  0.000000   0.000000  0.000000  ...  5468.0  0.500000  4.351486e+60
+[SWaT_canon:USAD] 32  0.000000   0.000000  0.000000  ...  5468.0  0.500000  8.716197e-05
+[SWaT_canon:USAD] 33  0.810970   0.996270  0.683797  ...  1729.0  0.841721  2.382043e+01
+[SWaT_canon:USAD] 34  0.789063   0.932652  0.683797  ...  1729.0  0.838483  1.833422e+01
+[SWaT_canon:USAD] 35  0.807862   0.987322  0.683614  ...  1730.0  0.841200  5.617430e+00
+[SWaT_canon:USAD] 36  0.035788   0.109346  0.021397  ...  5351.0  0.498643  6.111013e+00
+[SWaT_canon:USAD] 37  0.014143   0.829787  0.007132  ...  5429.0  0.503465  2.313807e+01
+[SWaT_canon:USAD] 38  0.801920   0.997551  0.670446  ...  1802.0  0.835109  2.352477e+01
+[SWaT_canon:USAD] 39  0.816872   0.996315  0.692209  ...  1683.0  0.845928  1.372819e+01
+[SWaT_canon:USAD] 40  0.816256   0.994482  0.692209  ...  1683.0  0.845839  2.442583e+01
+[SWaT_canon:USAD] 41  0.816256   0.994482  0.692209  ...  1683.0  0.845839  2.434123e+01
+[SWaT_canon:USAD] 42  0.000000   0.000000  0.000000  ...  5468.0  0.500000  1.269817e+84
+[SWaT_canon:USAD] 43  0.000000   0.000000  0.000000  ...  5468.0  0.500000  8.300213e-05
+[SWaT_canon:USAD] 44  0.816344   0.994744  0.692209  ...  1683.0  0.845852  1.953969e+01
+[SWaT_canon:USAD] 45  0.805693   0.780425  0.832663  ...   915.0  0.900126  4.428536e+00
+[SWaT_canon:USAD] 46  0.810970   0.996270  0.683797  ...  1729.0  0.841721  2.387773e+01
+[SWaT_canon:USAD] 47  0.170025   0.560327  0.100219  ...  4920.0  0.544670  6.146104e+00
+[SWaT_canon:USAD] 48  0.000000   0.000000  0.000000  ...  5468.0  0.500000  3.229400e-05
+[SWaT_canon:USAD] 49  0.171542   0.595005  0.100219  ...  4920.0  0.545391  5.172844e+00
+[SWaT_canon:USAD] 50  0.000000   0.000000  0.000000  ...  5468.0  0.500000  7.362739e-05
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] [51 rows x 9 columns]
+[SWaT_canon:USAD] {'FN': 989,
+[SWaT_canon:USAD]  'FP': 331,
+[SWaT_canon:USAD]  'Hit@100%': 1.0,
+[SWaT_canon:USAD]  'Hit@150%': 1.0,
+[SWaT_canon:USAD]  'NDCG@100%': 1.0,
+[SWaT_canon:USAD]  'NDCG@150%': 1.0,
+[SWaT_canon:USAD]  'ROC/AUC': 0.9053774110895517,
+[SWaT_canon:USAD]  'TN': 39193,
+[SWaT_canon:USAD]  'TP': 4479,
+[SWaT_canon:USAD]  'f1': 0.8715653632503962,
+[SWaT_canon:USAD]  'precision': 0.9311850292490956,
+[SWaT_canon:USAD]  90%|█████████ | 27/30 [03:01<00:15,  5.16s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 27,     L1 = 0.8673300603948351,        L2 = -0.8126210658661951
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  90%|█████████ | 27/30 [03:06<00:15,  5.16s/it]
+[SWaT_canon:USAD]  'recall': 0.8191294791164421,
+[SWaT_canon:USAD]  'threshold': 7.0450876127047435}
+[SWaT_canon:TranAD]  10%|█         | 3/30 [02:17<20:38, 45.86s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 3,    L1 = 0.7068062021858331
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  10%|█         | 3/30 [03:05<20:38, 45.86s/it]
+[SWaT_canon:USAD]  93%|█████████▎| 28/30 [03:02<00:12,  6.20s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 28,     L1 = 0.8383438354165148,        L2 = -0.7857876664445
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  93%|█████████▎| 28/30 [03:08<00:12,  6.20s/it]
+[SWaT_canon:USAD]  97%|█████████▋| 29/30 [03:03<00:05,  5.92s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 29,     L1 = 0.8517212073709781,        L2 = -0.8010784625838705
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  97%|█████████▋| 29/30 [03:09<00:05,  5.92s/it]
+[SWaT_canon:USAD] 100%|██████████| 30/30 [03:09<00:00,  5.98s/it]
+[SWaT_canon:USAD] 100%|██████████| 30/30 [03:09<00:00,  6.31s/it]
+[SWaT_canon:USAD] [1mTraining time:   189.3269 s[0m
+[SWaT_canon:USAD] [95mTesting USAD on WADI[0m
+[SWaT_canon:USAD]  93%|█████████▎| 28/30 [03:06<00:10,  5.12s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 28,     L1 = 0.8671206965860113,        L2 = -0.8143238183391577
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  93%|█████████▎| 28/30 [03:11<00:10,  5.12s/it]
+[SWaT_canon:USAD]  90%|█████████ | 27/30 [03:02<00:19,  6.38s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 27,     L1 = 0.8557938675408422,        L2 = -0.8009335509029598
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  90%|█████████ | 27/30 [03:09<00:19,  6.38s/it]
+[sota] DONE USAD_SWaT_canon_s0 rc=0 199.4s raw_ALL={'AUROC': 0.899, 'bestF1': 0.803, 'F1_at5pctFPR': 0.711, 'TPR_at5pctFPR': 0.752} raw_HARD={'AUROC': 0.676, 'bestF1': 0.196, 'F1_at5pctFPR': 0.17, 'TPR_at5pctFPR': 0.201}
+[SWaT_canon:USAD]  97%|█████████▋| 29/30 [03:08<00:06,  6.21s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 29,     L1 = 0.8388047844711726,        L2 = -0.7880401647212983
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  97%|█████████▋| 29/30 [03:14<00:06,  6.21s/it]
+[SWaT_canon:USAD] 100%|██████████| 30/30 [03:14<00:00,  6.16s/it]
+[SWaT_canon:USAD] 100%|██████████| 30/30 [03:14<00:00,  6.49s/it]
+[SWaT_canon:USAD] [1mTraining time:   194.7581 s[0m
+[SWaT_canon:USAD] [95mTesting USAD on WADI[0m
+[SWaT_canon:USAD]  97%|█████████▋| 29/30 [03:11<00:05,  5.06s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 29,     L1 = 0.8671081117626188,        L2 = -0.8160918943492762
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  97%|█████████▋| 29/30 [03:16<00:05,  5.06s/it]
+[SWaT_canon:USAD] 100%|██████████| 30/30 [03:16<00:00,  5.03s/it]
+[SWaT_canon:USAD] 100%|██████████| 30/30 [03:16<00:00,  6.55s/it]
+[SWaT_canon:USAD] [1mTraining time:   196.4352 s[0m
+[SWaT_canon:USAD] [95mTesting USAD on WADI[0m
+[SWaT_canon:USAD]  93%|█████████▎| 28/30 [03:09<00:13,  6.61s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 28,     L1 = 0.8561379657269029,        L2 = -0.8032076764543121
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  93%|█████████▎| 28/30 [03:16<00:13,  6.61s/it]
+[SWaT_canon:USAD]  97%|█████████▋| 29/30 [03:16<00:06,  6.59s/it]
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] Epoch 29,     L1 = 0.8562517867698957,        L2 = -0.8051269419470244
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD]  97%|█████████▋| 29/30 [03:22<00:06,  6.59s/it]
+[SWaT_canon:USAD] 100%|██████████| 30/30 [03:22<00:00,  6.58s/it]
+[SWaT_canon:USAD] 100%|██████████| 30/30 [03:22<00:00,  6.77s/it]
+[SWaT_canon:USAD] [1mTraining time:   202.9904 s[0m
+[SWaT_canon:USAD] [95mTesting USAD on WADI[0m
+[SWaT_canon:TranAD]  13%|█▎        | 4/30 [02:52<18:39, 43.06s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 4,    L1 = 0.6967084904634543
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  13%|█▎        | 4/30 [03:35<18:39, 43.06s/it]
+[SWaT_canon:TranAD]  10%|█         | 3/30 [02:45<24:51, 55.22s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 3,    L1 = 0.702858427827108
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  10%|█         | 3/30 [03:42<24:51, 55.22s/it]
+[SWaT_canon:TranAD]  10%|█         | 3/30 [02:51<25:16, 56.16s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 3,    L1 = 0.7023410371429306
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  10%|█         | 3/30 [03:43<25:16, 56.16s/it]
+[SWaT_canon:TranAD]  13%|█▎        | 4/30 [03:05<20:10, 46.56s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 4,    L1 = 0.7020719089666329
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  13%|█▎        | 4/30 [03:50<20:10, 46.56s/it]
+[SWaT_canon:TranAD]  10%|█         | 3/30 [02:53<25:58, 57.74s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 3,    L1 = 0.7058671392402182
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  10%|█         | 3/30 [03:48<25:58, 57.74s/it]
+[gpu] SWaT_canon:USAD heartbeat t+240s alloc=0.00G
+[gpu] SWaT_canon:USAD heartbeat t+240s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+240s alloc=0.00G
+[gpu] SWaT_canon:USAD heartbeat t+240s alloc=0.00G
+[gpu] SWaT_canon:USAD heartbeat t+240s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+240s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+240s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+240s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+240s alloc=0.00G
+[SWaT_canon:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: overflow encountered in square
+[SWaT_canon:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[SWaT_canon:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: overflow encountered in square
+[SWaT_canon:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[SWaT_canon:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: overflow encountered in square
+[SWaT_canon:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[SWaT_canon:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: overflow encountered in square
+[SWaT_canon:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[SWaT_canon:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: overflow encountered in square
+[SWaT_canon:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[SWaT_canon:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: overflow encountered in square
+[SWaT_canon:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[SWaT_canon:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: overflow encountered in square
+[SWaT_canon:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[SWaT_canon:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: overflow encountered in square
+[SWaT_canon:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[SWaT_canon:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: overflow encountered in square
+[SWaT_canon:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[SWaT_canon:USAD] /root/TranAD/src/spot.py:313: RuntimeWarning: divide by zero encountered in log
+[SWaT_canon:USAD]   return 1 + np.log(s).mean()
+[SWaT_canon:USAD] /root/TranAD/src/spot.py:316: RuntimeWarning: divide by zero encountered in divide
+[SWaT_canon:USAD]   return np.mean(1 / s)
+[SWaT_canon:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: divide by zero encountered in divide
+[SWaT_canon:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[SWaT_canon:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: invalid value encountered in scalar add
+[SWaT_canon:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[SWaT_canon:USAD]           f1  precision    recall  ...      FN   ROC/AUC     threshold
+[SWaT_canon:USAD] 0   0.033679   0.074468  0.021763  ...  5349.0  0.492171  4.409027e+00
+[SWaT_canon:USAD] 1   0.071877   0.523573  0.038588  ...  5257.0  0.516865  5.856328e+00
+[SWaT_canon:USAD] 2   0.852106   0.940787  0.778713  ...  1210.0  0.885966  1.419965e+01
+[SWaT_canon:USAD] 3   0.861582   0.926183  0.805413  ...  1064.0  0.898266  4.632179e+00
+[SWaT_canon:USAD] 4   0.109787   0.978462  0.058157  ...  5150.0  0.528990  4.697959e+00
+[SWaT_canon:USAD] 5   0.124704   0.139651  0.112655  ...  4852.0  0.508319  1.053219e+01
+[SWaT_canon:USAD] 6   0.007287   0.952380  0.003658  ...  5448.0  0.501816  1.897076e+01
+[SWaT_canon:USAD] 7   0.000000   0.000000  0.000000  ...  5468.0  0.500000  2.183338e+01
+[SWaT_canon:USAD] 8   0.868377   0.933909  0.811448  ...  1031.0  0.901752  4.956290e+00
+[SWaT_canon:USAD] 9   0.874700   0.946170  0.813277  ...  1021.0  0.903438  1.581217e+01
+[SWaT_canon:USAD] 10  0.824260   0.784310  0.868508  ...   719.0  0.917732  5.534469e+00
+[SWaT_canon:USAD] 11  0.132598   0.572626  0.074982  ...  5058.0  0.533620  5.650890e-07
+[SWaT_canon:USAD] 12  0.865432   0.922392  0.815106  ...  1011.0  0.902809  4.630007e+00
+[SWaT_canon:USAD] 13  0.134299   0.867102  0.072787  ...  5070.0  0.535622  1.089874e-06
+[SWaT_canon:USAD] 14  0.172053   0.285775  0.123080  ...  4795.0  0.540262  3.637144e+00
+[SWaT_canon:USAD] 15  0.141596   0.570323  0.080834  ...  5026.0  0.536204  1.224587e-06
+[SWaT_canon:USAD] 16  0.776853   0.799884  0.755121  ...  1339.0  0.864492  6.305887e+00
+[SWaT_canon:USAD] 17  0.756005   0.783444  0.730432  ...  1474.0  0.851250  6.605099e+00
+[SWaT_canon:USAD] 18  0.059950   0.994118  0.030907  ...  5299.0  0.515441  1.356447e+01
+[SWaT_canon:USAD] 19  0.179738   0.624592  0.104974  ...  4894.0  0.548123  6.229613e+01
+[SWaT_canon:USAD] 20  0.872565   0.920967  0.829005  ...   935.0  0.909581  5.619743e+00
+[SWaT_canon:USAD] 21  0.229810   0.392920  0.162399  ...  4580.0  0.563843  5.191225e+00
+[SWaT_canon:USAD] 22  0.856601   0.933362  0.791514  ...  1140.0  0.891848  2.431687e+01
+[SWaT_canon:USAD] 23  0.000000   0.000000  0.000000  ...  5468.0  0.500000  1.152537e+00
+[SWaT_canon:USAD] 24  0.778235   0.826650  0.735187  ...  1448.0  0.856929  6.516180e+00
+[SWaT_canon:USAD] 25  0.000000   0.000000  0.000000  ...  5468.0  0.500000  7.527585e+00
+[SWaT_canon:USAD] 26  0.815724   0.962917  0.707571  ...  1599.0  0.851901  5.700943e+00
+[SWaT_canon:USAD] 27  0.815665   0.994997  0.691112  ...  1689.0  0.845316  2.330476e+01
+[SWaT_canon:USAD] 28  0.000000   0.000000  0.000000  ...  5468.0  0.500000  9.365639e+01
+[SWaT_canon:USAD] 29  0.829858   0.881869  0.783650  ...  1183.0  0.884564  2.935472e-06
+[SWaT_canon:USAD] 30  0.801615   0.997821  0.669898  ...  1805.0  0.834848  1.171334e+00
+[SWaT_canon:USAD] 31  0.000000   0.000000  0.000000  ...  5468.0  0.500000  7.266091e+59
+[SWaT_canon:USAD] 32  0.832115   0.886980  0.783650  ...  1183.0  0.884918  6.146545e-07
+[SWaT_canon:USAD] 33  0.810970   0.996270  0.683797  ...  1729.0  0.841721  4.717028e+00
+[SWaT_canon:USAD] 34  0.787153   0.927331  0.683797  ...  1729.0  0.838192  1.893884e+01
+[SWaT_canon:USAD] 35  0.814898   0.990835  0.692026  ...  1684.0  0.845570  5.543116e+00
+[SWaT_canon:USAD] 36  0.021043   0.063361  0.012619  ...  5399.0  0.493406  6.100252e+00
+[SWaT_canon:USAD] 37  0.014143   0.829787  0.007132  ...  5429.0  0.503465  2.306606e+01
+[SWaT_canon:USAD] 38  0.801920   0.997551  0.670446  ...  1802.0  0.835109  2.358474e+01
+[SWaT_canon:USAD] 39  0.816872   0.996315  0.692209  ...  1683.0  0.845928  1.356183e+01
+[SWaT_canon:USAD] 40  0.816256   0.994482  0.692209  ...  1683.0  0.845839  5.374833e+00
+[SWaT_canon:USAD] 41  0.816256   0.994482  0.692209  ...  1683.0  0.845839  2.434705e+01
+[SWaT_canon:USAD] 42  0.810970   0.996270  0.683797  ...  1729.0  0.841721  7.243513e+00
+[SWaT_canon:USAD] 43  0.137976   0.863158  0.074982  ...  5058.0  0.536669  1.816752e-06
+[SWaT_canon:USAD] 44  0.816344   0.994744  0.692209  ...  1683.0  0.845852  1.787904e+01
+[SWaT_canon:USAD] 45  0.784976   0.773147  0.797184  ...  1109.0  0.882412  4.405167e+00
+[SWaT_canon:USAD] 46  0.816432   0.995005  0.692209  ...  1683.0  0.845864  1.895470e+01
+[SWaT_canon:USAD] 47  0.170052   0.560901  0.100219  ...  4920.0  0.544683  6.831755e+00
+[SWaT_canon:USAD] 48  0.179783   0.595067  0.105889  ...  4889.0  0.547960  7.249558e-07
+[SWaT_canon:USAD] 49  0.171542   0.595005  0.100219  ...  4920.0  0.545391  5.226213e+00
+[SWaT_canon:USAD] 50  0.000000   0.000000  0.000000  ...  5468.0  0.500000  5.394983e+32
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] [51 rows x 9 columns]
+[SWaT_canon:USAD] {'FN': 989,
+[SWaT_canon:USAD]  'FP': 360,
+[SWaT_canon:USAD]  'Hit@100%': 1.0,
+[SWaT_canon:USAD]  'Hit@150%': 1.0,
+[SWaT_canon:USAD]  'NDCG@100%': 1.0,
+[SWaT_canon:USAD]  'NDCG@150%': 1.0,
+[SWaT_canon:USAD]  'ROC/AUC': 0.9050105453876996,
+[SWaT_canon:USAD]  'TN': 39164,
+[SWaT_canon:USAD]  'TP': 4479,
+[SWaT_canon:USAD]  'f1': 0.8691130920578454,
+[SWaT_canon:USAD]  'precision': 0.925604461819375,
+[SWaT_canon:USAD]  'recall': 0.8191294791164421,
+[SWaT_canon:USAD]  'threshold': 7.141188609849791}
+[SWaT_canon:USAD]           f1  precision    recall  ...      FN   ROC/AUC     threshold
+[SWaT_canon:USAD] 0   0.753076   0.751777  0.754389  ...  1343.0  0.859965  4.525353e+00
+[SWaT_canon:USAD] 1   0.071877   0.523573  0.038588  ...  5257.0  0.516865  5.856345e+00
+[SWaT_canon:USAD] 2   0.847817   0.950477  0.765179  ...  1284.0  0.879832  1.429359e+01
+[SWaT_canon:USAD] 3   0.825310   0.863219  0.790600  ...  1145.0  0.886634  5.386411e+00
+[SWaT_canon:USAD] 4   0.109787   0.978462  0.058157  ...  5150.0  0.528990  4.696334e+00
+[SWaT_canon:USAD] 5   0.124704   0.139651  0.112655  ...  4852.0  0.508319  1.053219e+01
+[SWaT_canon:USAD] 6   0.007287   0.952380  0.003658  ...  5448.0  0.501816  1.897114e+01
+[SWaT_canon:USAD] 7   0.000000   0.000000  0.000000  ...  5468.0  0.500000  3.030426e+01
+[SWaT_canon:USAD] 8   0.811589   0.785226  0.839795  ...   876.0  0.904009  5.305464e+00
+[SWaT_canon:USAD] 9   0.850959   0.915176  0.795172  ...  1120.0  0.892488  1.575314e+01
+[SWaT_canon:USAD] 10  0.779760   0.745373  0.817484  ...   998.0  0.889424  5.824072e+00
+[SWaT_canon:USAD] 11  0.000000   0.000000  0.000000  ...  5468.0  0.500000  4.972990e+29
+[SWaT_canon:USAD] 12  0.000000   0.000000  0.000000  ...  5468.0  0.500000  7.249183e+34
+[SWaT_canon:USAD] 13  0.000000   0.000000  0.000000  ...  5468.0  0.500000  9.718343e+30
+[SWaT_canon:USAD] 14  0.805943   0.824689  0.788040  ...  1159.0  0.882432  3.883512e+00
+[SWaT_canon:USAD] 15  0.000000   0.000000  0.000000  ...  5468.0  0.500000  4.479730e+24
+[SWaT_canon:USAD] 16  0.786890   0.818451  0.757681  ...  1325.0  0.867215  6.811257e+00
+[SWaT_canon:USAD] 17  0.734253   0.752882  0.716533  ...  1550.0  0.841998  7.255095e+00
+[SWaT_canon:USAD] 18  0.000000   0.000000  0.000000  ...  5468.0  0.500000  5.245894e+01
+[SWaT_canon:USAD] 19  0.188890   0.569982  0.113204  ...  4849.0  0.550694  6.242284e+01
+[SWaT_canon:USAD] 20  0.874211   0.941350  0.816020  ...  1006.0  0.904493  5.819248e+00
+[SWaT_canon:USAD] 21  0.229810   0.392920  0.162399  ...  4580.0  0.563843  5.455664e+00
+[SWaT_canon:USAD] 22  0.856601   0.933362  0.791514  ...  1140.0  0.891848  2.431698e+01
+[SWaT_canon:USAD] 23  0.000000   0.000000  0.000000  ...  5468.0  0.500000  2.024596e+00
+[SWaT_canon:USAD] 24  0.776602   0.841118  0.721287  ...  1524.0  0.851219  6.815479e+00
+[SWaT_canon:USAD] 25  0.000000   0.000000  0.000000  ...  5468.0  0.500000  1.077830e+01
+[SWaT_canon:USAD] 26  0.810975   0.985610  0.688917  ...  1701.0  0.843763  5.398261e+00
+[SWaT_canon:USAD] 27  0.815665   0.994997  0.691112  ...  1689.0  0.845316  2.330578e+01
+[SWaT_canon:USAD] 28  0.000000   0.000000  0.000000  ...  5468.0  0.500000  1.005424e+02
+[SWaT_canon:USAD] 29  0.000000   0.000000  0.000000  ...  5468.0  0.500000  2.238765e+35
+[SWaT_canon:USAD] 30  0.801615   0.997821  0.669898  ...  1805.0  0.834848  2.231952e+00
+[SWaT_canon:USAD] 31  0.000000   0.000000  0.000000  ...  5468.0  0.500000  1.468449e+65
+[SWaT_canon:USAD] 32  0.000000   0.000000  0.000000  ...  5468.0  0.500000  8.328305e+34
+[SWaT_canon:USAD] 33  0.810970   0.996270  0.683797  ...  1729.0  0.841721  2.752538e+00
+[SWaT_canon:USAD] 34  0.788315   0.930562  0.683797  ...  1729.0  0.838369  1.908542e+01
+[SWaT_canon:USAD] 35  0.812111   0.988973  0.688917  ...  1701.0  0.843927  5.292424e+00
+[SWaT_canon:USAD] 36  0.021173   0.065777  0.012619  ...  5399.0  0.493912  6.425884e+00
+[SWaT_canon:USAD] 37  0.014143   0.829787  0.007132  ...  5429.0  0.503465  2.306530e+01
+[SWaT_canon:USAD] 38  0.801920   0.997551  0.670446  ...  1802.0  0.835109  2.352818e+01
+[SWaT_canon:USAD] 39  0.816872   0.996315  0.692209  ...  1683.0  0.845928  1.357030e+01
+[SWaT_canon:USAD] 40  0.816256   0.994482  0.692209  ...  1683.0  0.845839  2.419690e+01
+[SWaT_canon:USAD] 41  0.816256   0.994482  0.692209  ...  1683.0  0.845839  1.561346e+01
+[SWaT_canon:USAD] 42  0.810970   0.996270  0.683797  ...  1729.0  0.841721  2.329624e+00
+[SWaT_canon:USAD] 43  0.000000   0.000000  0.000000  ...  5468.0  0.500000  1.283376e+20
+[SWaT_canon:USAD] 44  0.816432   0.995005  0.692209  ...  1683.0  0.845864  2.388897e+01
+[SWaT_canon:USAD] 45  0.789884   0.782726  0.797184  ...  1109.0  0.883285  4.474800e+00
+[SWaT_canon:USAD] 46  0.810970   0.996270  0.683797  ...  1729.0  0.841721  2.153172e+01
+[SWaT_canon:USAD] 47  0.169999   0.559755  0.100219  ...  4920.0  0.544657  7.169762e+00
+[SWaT_canon:USAD] 48  0.000000   0.000000  0.000000  ...  5468.0  0.500000  2.919047e+32
+[SWaT_canon:USAD] 49  0.171542   0.595005  0.100219  ...  4920.0  0.545391  5.258083e+00
+[SWaT_canon:USAD] 50  0.000000   0.000000  0.000000  ...  5468.0  0.500000  5.782740e+25
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] [51 rows x 9 columns]
+[SWaT_canon:USAD] {'FN': 989,
+[SWaT_canon:USAD]  'FP': 358,
+[SWaT_canon:USAD]  'Hit@100%': 1.0,
+[SWaT_canon:USAD]  'Hit@150%': 1.0,
+[SWaT_canon:USAD]  'NDCG@100%': 1.0,
+[SWaT_canon:USAD]  'NDCG@150%': 1.0,
+[SWaT_canon:USAD]  'ROC/AUC': 0.905035846470586,
+[SWaT_canon:USAD]  'TN': 39166,
+[SWaT_canon:USAD]  'TP': 4479,
+[SWaT_canon:USAD]  'f1': 0.8692817710913795,
+[SWaT_canon:USAD]  'precision': 0.9259871802233054,
+[SWaT_canon:USAD]  'recall': 0.8191294791164421,
+[SWaT_canon:USAD]  'threshold': 7.366590484943159}
+[sota] DONE USAD_SWaT_canon_s4 rc=0 264.8s raw_ALL={'AUROC': 0.898, 'bestF1': 0.803, 'F1_at5pctFPR': 0.715, 'TPR_at5pctFPR': 0.757} raw_HARD={'AUROC': 0.673, 'bestF1': 0.196, 'F1_at5pctFPR': 0.183, 'TPR_at5pctFPR': 0.218}
+[sota] DONE USAD_SWaT_canon_s3 rc=0 268.1s raw_ALL={'AUROC': 0.898, 'bestF1': 0.804, 'F1_at5pctFPR': 0.713, 'TPR_at5pctFPR': 0.755} raw_HARD={'AUROC': 0.673, 'bestF1': 0.196, 'F1_at5pctFPR': 0.178, 'TPR_at5pctFPR': 0.211}
+[SWaT_canon:USAD]           f1  precision    recall      TP  ...      FP      FN   ROC/AUC  threshold
+[SWaT_canon:USAD] 0   0.062151   0.294118  0.034748   190.0  ...   456.0  5278.0  0.511605   4.114012
+[SWaT_canon:USAD] 1   0.000000   0.000000  0.000000     0.0  ...     0.0  5468.0  0.500000  19.163063
+[SWaT_canon:USAD] 2   0.830015   0.888564  0.778713  4258.0  ...   534.0  1210.0  0.882601  14.785174
+[SWaT_canon:USAD] 3   0.135757   0.859275  0.073702   403.0  ...    66.0  5065.0  0.536016   4.756977
+[SWaT_canon:USAD] 4   0.109787   0.978462  0.058157   318.0  ...     7.0  5150.0  0.528990   4.734400
+[SWaT_canon:USAD] 5   0.124704   0.139651  0.112655   616.0  ...  3795.0  4852.0  0.508319  10.532192
+[SWaT_canon:USAD] 6   0.007287   0.952380  0.003658    20.0  ...     1.0  5448.0  0.501816  15.610872
+[SWaT_canon:USAD] 7   0.000000   0.000000  0.000000     0.0  ...     0.0  5468.0  0.500000  22.735002
+[SWaT_canon:USAD] 8   0.127846   0.908213  0.068764   376.0  ...    38.0  5092.0  0.533901   4.135662
+[SWaT_canon:USAD] 9   0.851014   0.892434  0.813277  4447.0  ...   536.0  1021.0  0.899858  15.095319
+[SWaT_canon:USAD] 10  0.792853   0.763769  0.824250  4507.0  ...  1394.0   961.0  0.894490   5.697812
+[SWaT_canon:USAD] 11  0.070558   0.995025  0.036576   200.0  ...     1.0  5268.0  0.518276   0.000045
+[SWaT_canon:USAD] 12  0.174396   0.840442  0.097293   532.0  ...   101.0  4936.0  0.547369   4.370024
+[SWaT_canon:USAD] 13  0.081388   0.995708  0.042429   232.0  ...     1.0  5236.0  0.521202   0.000060
+[SWaT_canon:USAD] 14  0.133242   0.911833  0.071873   393.0  ...    38.0  5075.0  0.535456   3.223625
+[SWaT_canon:USAD] 15  0.081388   0.995708  0.042429   232.0  ...     1.0  5236.0  0.521202   0.000114
+[SWaT_canon:USAD] 16  0.787563   0.819909  0.757681  4143.0  ...   910.0  1325.0  0.867329   6.260352
+[SWaT_canon:USAD] 17  0.839529   0.951576  0.751097  4107.0  ...   209.0  1361.0  0.872905   6.608866
+[SWaT_canon:USAD] 18  0.059950   0.994118  0.030907   169.0  ...     1.0  5299.0  0.515441  13.845957
+[SWaT_canon:USAD] 19  0.193495   0.665591  0.113204   619.0  ...   311.0  4849.0  0.552668  61.275339
+[SWaT_canon:USAD] 20  0.872733   0.921341  0.829005  4533.0  ...   387.0   935.0  0.909607   5.530047
+[SWaT_canon:USAD] 21  0.229810   0.392920  0.162399   888.0  ...  1372.0  4580.0  0.563843   5.287401
+[SWaT_canon:USAD] 22  0.851513   0.906463  0.802853  4390.0  ...   453.0  1078.0  0.895696  18.203449
+[SWaT_canon:USAD] 23  0.000000   0.000000  0.000000     0.0  ...     0.0  5468.0  0.500000   4.749511
+[SWaT_canon:USAD] 24  0.834900   0.913138  0.769020  4205.0  ...   400.0  1263.0  0.879450   6.058617
+[SWaT_canon:USAD] 25  0.000000   0.000000  0.000000     0.0  ...     0.0  5468.0  0.500000   7.401690
+[SWaT_canon:USAD] 26  0.811936   0.988454  0.688917  3767.0  ...    44.0  1701.0  0.843902   6.099230
+[SWaT_canon:USAD] 27  0.809627   0.994935  0.682516  3732.0  ...    19.0  1736.0  0.841018  24.218774
+[SWaT_canon:USAD] 28  0.000000   0.000000  0.000000     0.0  ...     0.0  5468.0  0.500000  96.135043
+[SWaT_canon:USAD] 29  0.070558   0.995025  0.036576   200.0  ...     1.0  5268.0  0.518276   0.000076
+[SWaT_canon:USAD] 30  0.801615   0.997821  0.669898  3663.0  ...     8.0  1805.0  0.834848   4.786082
+[SWaT_canon:USAD] 31  0.000000   0.000000  0.000000     0.0  ...     6.0  5468.0  0.499924   4.863852
+[SWaT_canon:USAD] 32  0.070558   0.995025  0.036576   200.0  ...     1.0  5268.0  0.518276   0.000085
+[SWaT_canon:USAD] 33  0.810970   0.996270  0.683797  3739.0  ...    14.0  1729.0  0.841721   4.774772
+[SWaT_canon:USAD] 34  0.791150   0.938504  0.683797  3739.0  ...   245.0  1729.0  0.838799  19.514627
+[SWaT_canon:USAD] 35  0.808037   0.987844  0.683614  3738.0  ...    46.0  1730.0  0.841225   5.683427
+[SWaT_canon:USAD] 36  0.035772   0.109040  0.021397   117.0  ...   956.0  5351.0  0.498605   5.981813
+[SWaT_canon:USAD] 37  0.014143   0.829787  0.007132    39.0  ...     8.0  5429.0  0.503465  23.064952
+[SWaT_canon:USAD] 38  0.801920   0.997551  0.670446  3666.0  ...     9.0  1802.0  0.835109  23.734573
+[SWaT_canon:USAD] 39  0.816872   0.996315  0.692209  3785.0  ...    14.0  1683.0  0.845928  13.562030
+[SWaT_canon:USAD] 40  0.816256   0.994482  0.692209  3785.0  ...    21.0  1683.0  0.845839   5.281233
+[SWaT_canon:USAD] 41  0.816256   0.994482  0.692209  3785.0  ...    21.0  1683.0  0.845839  24.236609
+[SWaT_canon:USAD] 42  0.810970   0.996270  0.683797  3739.0  ...    14.0  1729.0  0.841721   4.775670
+[SWaT_canon:USAD] 43  0.070558   0.995025  0.036576   200.0  ...     1.0  5268.0  0.518276   0.000076
+[SWaT_canon:USAD] 44  0.816432   0.995005  0.692209  3785.0  ...    19.0  1683.0  0.845864  21.882098
+[SWaT_canon:USAD] 45  0.788455   0.779925  0.797184  4359.0  ...  1230.0  1109.0  0.883032   4.631234
+[SWaT_canon:USAD] 46  0.810970   0.996270  0.683797  3739.0  ...    14.0  1729.0  0.841721  24.219860
+[SWaT_canon:USAD] 47  0.170052   0.560901  0.100219   548.0  ...   429.0  4920.0  0.544683   6.946160
+[SWaT_canon:USAD] 48  0.070558   0.995025  0.036576   200.0  ...     1.0  5268.0  0.518276   0.000061
+[SWaT_canon:USAD] 49  0.171542   0.595005  0.100219   548.0  ...   373.0  4920.0  0.545391   5.310128
+[SWaT_canon:USAD] 50  0.070558   0.995025  0.036576   200.0  ...     1.0  5268.0  0.518276   0.000059
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] [51 rows x 9 columns]
+[SWaT_canon:USAD] {'FN': 989,
+[SWaT_canon:USAD]  'FP': 356,
+[SWaT_canon:USAD]  'Hit@100%': 1.0,
+[SWaT_canon:USAD]  'Hit@150%': 1.0,
+[SWaT_canon:USAD]  'NDCG@100%': 1.0,
+[SWaT_canon:USAD]  'NDCG@150%': 1.0,
+[SWaT_canon:USAD]  'ROC/AUC': 0.9050611475534723,
+[SWaT_canon:USAD]  'TN': 39168,
+[SWaT_canon:USAD]  'TP': 4479,
+[SWaT_canon:USAD]  'f1': 0.8694505156126847,
+[SWaT_canon:USAD]  'precision': 0.926370215250527,
+[SWaT_canon:USAD]  'recall': 0.8191294791164421,
+[SWaT_canon:USAD]  'threshold': 7.127597954935541}
+[SWaT_canon:TranAD]  17%|█▋        | 5/30 [03:35<17:55, 43.03s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 5,    L1 = 0.6939935129128831
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  17%|█▋        | 5/30 [04:20<17:55, 43.03s/it]
+[sota] DONE USAD_SWaT_canon_s1 rc=0 271.4s raw_ALL={'AUROC': 0.897, 'bestF1': 0.803, 'F1_at5pctFPR': 0.713, 'TPR_at5pctFPR': 0.754} raw_HARD={'AUROC': 0.671, 'bestF1': 0.198, 'F1_at5pctFPR': 0.176, 'TPR_at5pctFPR': 0.21}
+[SWaT_canon:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: overflow encountered in square
+[SWaT_canon:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[SWaT_canon:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: overflow encountered in square
+[SWaT_canon:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[SWaT_canon:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: overflow encountered in square
+[SWaT_canon:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[SWaT_canon:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: overflow encountered in square
+[SWaT_canon:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[SWaT_canon:USAD] /root/TranAD/src/spot.py:329: RuntimeWarning: overflow encountered in square
+[SWaT_canon:USAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[SWaT_canon:USAD]           f1  precision    recall  ...      FN   ROC/AUC     threshold
+[SWaT_canon:USAD] 0   0.059351   0.137359  0.037857  ...  5261.0  0.502483  4.101029e+00
+[SWaT_canon:USAD] 1   0.071877   0.523573  0.038588  ...  5257.0  0.516865  5.856332e+00
+[SWaT_canon:USAD] 2   0.848333   0.943971  0.770300  ...  1256.0  0.881987  1.453293e+01
+[SWaT_canon:USAD] 3   0.840909   0.939901  0.760790  ...  1308.0  0.877030  5.135927e+00
+[SWaT_canon:USAD] 4   0.109787   0.978462  0.058157  ...  5150.0  0.528990  4.693872e+00
+[SWaT_canon:USAD] 5   0.124704   0.139651  0.112655  ...  4852.0  0.508319  1.053219e+01
+[SWaT_canon:USAD] 6   0.007287   0.952380  0.003658  ...  5448.0  0.501816  1.504732e+01
+[SWaT_canon:USAD] 7   0.000000   0.000000  0.000000  ...  5468.0  0.500000  2.044391e+01
+[SWaT_canon:USAD] 8   0.827153   0.974454  0.718544  ...  1539.0  0.857969  4.990530e+00
+[SWaT_canon:USAD] 9   0.864065   0.946040  0.795172  ...  1120.0  0.894449  1.555121e+01
+[SWaT_canon:USAD] 10  0.823995   0.819234  0.828822  ...   936.0  0.901761  5.901999e+00
+[SWaT_canon:USAD] 11  0.000000   0.000000  0.000000  ...  5468.0  0.500000  2.123510e+30
+[SWaT_canon:USAD] 12  0.844125   0.945150  0.762619  ...  1298.0  0.878248  5.112035e+00
+[SWaT_canon:USAD] 13  0.120150   0.977654  0.064009  ...  5118.0  0.531903  2.365420e-06
+[SWaT_canon:USAD] 14  0.847149   0.943235  0.768837  ...  1264.0  0.881218  3.670794e+00
+[SWaT_canon:USAD] 15  0.000000   0.000000  0.000000  ...  5468.0  0.500000  1.172708e+31
+[SWaT_canon:USAD] 16  0.764175   0.770791  0.757681  ...  1325.0  0.863255  6.515695e+00
+[SWaT_canon:USAD] 17  0.726425   0.736605  0.716533  ...  1550.0  0.840543  7.033859e+00
+[SWaT_canon:USAD] 18  0.000000   0.000000  0.000000  ...  5468.0  0.500000  5.069615e+01
+[SWaT_canon:USAD] 19  0.192802   0.649528  0.113204  ...  4849.0  0.552377  7.499232e+01
+[SWaT_canon:USAD] 20  0.877973   0.933100  0.829005  ...   935.0  0.910391  5.440499e+00
+[SWaT_canon:USAD] 21  0.229810   0.392920  0.162399  ...  4580.0  0.563843  5.243200e+00
+[SWaT_canon:USAD] 22  0.856601   0.933362  0.791514  ...  1140.0  0.891848  2.431686e+01
+[SWaT_canon:USAD] 23  0.000000   0.000000  0.000000  ...  5468.0  0.500000  4.720241e+00
+[SWaT_canon:USAD] 24  0.788520   0.814584  0.764082  ...  1290.0  0.870010  6.825920e+00
+[SWaT_canon:USAD] 25  0.000000   0.000000  0.000000  ...  5468.0  0.500000  7.415540e+00
+[SWaT_canon:USAD] 26  0.815938   0.966926  0.705743  ...  1609.0  0.851201  5.788702e+00
+[SWaT_canon:USAD] 27  0.815665   0.994997  0.691112  ...  1689.0  0.845316  2.330483e+01
+[SWaT_canon:USAD] 28  0.000000   0.000000  0.000000  ...  5468.0  0.500000  9.372680e+01
+[SWaT_canon:USAD] 29  0.000000   0.000000  0.000000  ...  5468.0  0.500000  3.071158e+20
+[SWaT_canon:USAD] 30  0.801615   0.997821  0.669898  ...  1805.0  0.834848  4.729367e+00
+[SWaT_canon:USAD] 31  0.000000   0.000000  0.000000  ...  5468.0  0.500000  5.395851e+64
+[SWaT_canon:USAD] 32  0.000000   0.000000  0.000000  ...  5468.0  0.500000  6.545678e+30
+[SWaT_canon:USAD] 33  0.810970   0.996270  0.683797  ...  1729.0  0.841721  4.746384e+00
+[SWaT_canon:USAD] 34  0.790481   0.936623  0.683797  ...  1729.0  0.838698  1.899494e+01
+[SWaT_canon:USAD] 35  0.809086   0.990986  0.683614  ...  1730.0  0.841377  5.651725e+00
+[SWaT_canon:USAD] 36  0.036831   0.132203  0.021397  ...  5351.0  0.500983  6.495554e+00
+[SWaT_canon:USAD] 37  0.014143   0.829787  0.007132  ...  5429.0  0.503465  2.306607e+01
+[SWaT_canon:USAD] 38  0.801920   0.997551  0.670446  ...  1802.0  0.835109  2.376410e+01
+[SWaT_canon:USAD] 39  0.816872   0.996315  0.692209  ...  1683.0  0.845928  1.357009e+01
+[SWaT_canon:USAD] 40  0.816256   0.994482  0.692209  ...  1683.0  0.845839  5.010525e+00
+[SWaT_canon:USAD] 41  0.816168   0.994221  0.692209  ...  1683.0  0.845826  5.535550e+00
+[SWaT_canon:USAD] 42  0.810970   0.996270  0.683797  ...  1729.0  0.841721  4.727103e+00
+[SWaT_canon:USAD] 43  0.000000   0.000000  0.000000  ...  5468.0  0.500000  3.485769e+27
+[SWaT_canon:USAD] 44  0.816432   0.995005  0.692209  ...  1683.0  0.845864  2.424209e+01
+[SWaT_canon:USAD] 45  0.783072   0.769462  0.797184  ...  1109.0  0.882070  4.175190e+00
+[SWaT_canon:USAD] 46  0.810970   0.996270  0.683797  ...  1729.0  0.841721  2.372783e+01
+[SWaT_canon:USAD] 47  0.169999   0.559755  0.100219  ...  4920.0  0.544657  7.761033e+00
+[SWaT_canon:USAD] 48  0.000000   0.000000  0.000000  ...  5468.0  0.500000  9.553768e+35
+[SWaT_canon:USAD] 49  0.171542   0.595005  0.100219  ...  4920.0  0.545391  4.969360e+00
+[SWaT_canon:USAD] 50  0.109768   0.975460  0.058157  ...  5150.0  0.528977  2.311988e-06
+[SWaT_canon:USAD] 
+[SWaT_canon:USAD] [51 rows x 9 columns]
+[SWaT_canon:USAD] {'FN': 989,
+[SWaT_canon:USAD]  'FP': 337,
+[SWaT_canon:USAD]  'Hit@100%': 1.0,
+[SWaT_canon:USAD]  'Hit@150%': 1.0,
+[SWaT_canon:USAD]  'NDCG@100%': 1.0,
+[SWaT_canon:USAD]  'NDCG@150%': 1.0,
+[SWaT_canon:USAD]  'ROC/AUC': 0.9053015078408927,
+[SWaT_canon:USAD]  'TN': 39187,
+[SWaT_canon:USAD]  'TP': 4479,
+[SWaT_canon:USAD]  'f1': 0.871056862072518,
+[SWaT_canon:USAD]  'precision': 0.9300249150124068,
+[SWaT_canon:USAD]  'recall': 0.8191294791164421,
+[SWaT_canon:USAD]  'threshold': 7.59536426743407}
+[sota] DONE USAD_SWaT_canon_s2 rc=0 282.7s raw_ALL={'AUROC': 0.898, 'bestF1': 0.803, 'F1_at5pctFPR': 0.715, 'TPR_at5pctFPR': 0.757} raw_HARD={'AUROC': 0.674, 'bestF1': 0.196, 'F1_at5pctFPR': 0.183, 'TPR_at5pctFPR': 0.218}
+[SWaT_canon:TranAD]  17%|█▋        | 5/30 [03:50<19:09, 46.00s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 5,    L1 = 0.6987799204633398
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  17%|█▋        | 5/30 [04:35<19:09, 46.00s/it]
+[SWaT_canon:TranAD]  13%|█▎        | 4/30 [03:42<24:09, 55.76s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 4,    L1 = 0.6976360103076854
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  13%|█▎        | 4/30 [04:37<24:09, 55.76s/it]
+[SWaT_canon:TranAD]  13%|█▎        | 4/30 [03:43<23:36, 54.47s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 4,    L1 = 0.6984770342640986
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  13%|█▎        | 4/30 [04:35<23:36, 54.47s/it]
+[SWaT_canon:TranAD]  13%|█▎        | 4/30 [03:48<24:26, 56.39s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 4,    L1 = 0.6999284864338413
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  13%|█▎        | 4/30 [04:41<24:26, 56.39s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+300s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+300s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+300s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+300s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+300s alloc=0.00G
+[SWaT_canon:TranAD]  20%|██        | 6/30 [04:20<17:25, 43.56s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 6,    L1 = 0.6919361822229938
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  20%|██        | 6/30 [05:04<17:25, 43.56s/it]
+[SWaT_canon:TranAD]  20%|██        | 6/30 [04:35<18:19, 45.80s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 6,    L1 = 0.6961732151551547
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  20%|██        | 6/30 [05:21<18:19, 45.80s/it]
+[SWaT_canon:TranAD]  17%|█▋        | 5/30 [04:35<22:15, 53.41s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 5,    L1 = 0.695641331849953
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  17%|█▋        | 5/30 [05:26<22:15, 53.41s/it]
+[SWaT_canon:TranAD]  17%|█▋        | 5/30 [04:37<23:04, 55.37s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 5,    L1 = 0.6947678458875154
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  17%|█▋        | 5/30 [05:34<23:04, 55.37s/it]
+[SWaT_canon:TranAD]  17%|█▋        | 5/30 [04:41<23:04, 55.38s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 5,    L1 = 0.6965077014801333
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  17%|█▋        | 5/30 [05:38<23:04, 55.38s/it]
+[SWaT_canon:TranAD]  23%|██▎       | 7/30 [05:04<16:49, 43.88s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 7,    L1 = 0.6905361928059781
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  23%|██▎       | 7/30 [05:48<16:49, 43.88s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+360s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+360s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+360s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+360s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+360s alloc=0.00G
+[SWaT_canon:TranAD]  23%|██▎       | 7/30 [05:21<17:33, 45.78s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 7,    L1 = 0.6937105177258003
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  23%|██▎       | 7/30 [06:06<17:33, 45.78s/it]
+[SWaT_canon:TranAD]  20%|██        | 6/30 [05:26<21:05, 52.73s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 6,    L1 = 0.693525908483287
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  20%|██        | 6/30 [06:18<21:05, 52.73s/it]
+[SWaT_canon:TranAD]  20%|██        | 6/30 [05:34<22:27, 56.16s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 6,    L1 = 0.6925957214259131
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  20%|██        | 6/30 [06:28<22:27, 56.16s/it]
+[SWaT_canon:TranAD]  27%|██▋       | 8/30 [05:48<16:01, 43.72s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 8,    L1 = 0.6888844817490957
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  27%|██▋       | 8/30 [06:34<16:01, 43.72s/it]
+[SWaT_canon:TranAD]  20%|██        | 6/30 [05:38<22:23, 55.98s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 6,    L1 = 0.692446716145565
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  20%|██        | 6/30 [06:34<22:23, 55.98s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+420s alloc=0.00G[SWaT_canon:TranAD]  27%|██▋       | 8/30 [06:06<16:45, 45.71s/it]
+
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 8,    L1 = 0.692401262058082
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  27%|██▋       | 8/30 [06:52<16:45, 45.71s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+420s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+420s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+420s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+420s alloc=0.00G
+[SWaT_canon:TranAD]  23%|██▎       | 7/30 [06:18<20:06, 52.47s/it]
+[SWaT_canon:TranAD] [SWaT_canon:TranAD]  30%|███       | 9/30 [06:34<15:31, 44.35s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 9,    L1 = 0.6880794884654537
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  30%|███       | 9/30 [07:18<15:31, 44.35s/it]
+
+[SWaT_canon:TranAD] Epoch 7,    L1 = 0.6916511562300351
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  23%|██▎       | 7/30 [07:11<20:06, 52.47s/it]
+[SWaT_canon:TranAD]  23%|██▎       | 7/30 [06:28<21:12, 55.34s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 7,    L1 = 0.6904550986276788
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  23%|██▎       | 7/30 [07:23<21:12, 55.34s/it]
+[SWaT_canon:TranAD]  23%|██▎       | 7/30 [06:34<21:24, 55.85s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 7,    L1 = 0.6904040409757172
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  23%|██▎       | 7/30 [07:29<21:24, 55.85s/it]
+[SWaT_canon:TranAD]  30%|███       | 9/30 [06:52<15:58, 45.64s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 9,    L1 = 0.6908390951165736
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  30%|███       | 9/30 [07:38<15:58, 45.64s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+480s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+480s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+480s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+480s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+480s alloc=0.00G
+[SWaT_canon:TranAD]  33%|███▎      | 10/30 [07:18<14:46, 44.32s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 10,   L1 = 0.6868192919419479
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  33%|███▎      | 10/30 [08:03<14:46, 44.32s/it]
+[SWaT_canon:TranAD]  27%|██▋       | 8/30 [07:11<19:14, 52.49s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 8,    L1 = 0.6904436960525235
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  27%|██▋       | 8/30 [08:00<19:14, 52.49s/it]
+[SWaT_canon:TranAD]  27%|██▋       | 8/30 [07:23<20:17, 55.36s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 8,    L1 = 0.689297750804454
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  27%|██▋       | 8/30 [08:20<20:17, 55.36s/it]
+[SWaT_canon:TranAD]  33%|███▎      | 10/30 [07:38<15:15, 45.76s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 10,   L1 = 0.6899279683000512
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  33%|███▎      | 10/30 [08:23<15:15, 45.76s/it]
+[SWaT_canon:TranAD]  27%|██▋       | 8/30 [07:29<20:23, 55.59s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 8,    L1 = 0.6888568459987191
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  27%|██▋       | 8/30 [08:27<20:23, 55.59s/it]
+[SWaT_canon:TranAD]  37%|███▋      | 11/30 [08:03<14:07, 44.62s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 11,   L1 = 0.6860757295301854
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  37%|███▋      | 11/30 [08:50<14:07, 44.62s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+540s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+540s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+540s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+540s alloc=0.00G
+[SWaT_canon:TranAD]  30%|███       | 9/30 [08:00<18:04, 51.66s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 9,    L1 = 0.6894816218115909
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  30%|███       | 9/30 [08:51<18:04, 51.66s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+540s alloc=0.00G
+[SWaT_canon:TranAD]  37%|███▋      | 11/30 [08:23<14:25, 45.54s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 11,   L1 = 0.6885041277259307
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  37%|███▋      | 11/30 [09:08<14:25, 45.54s/it]
+[SWaT_canon:TranAD]  30%|███       | 9/30 [08:20<19:32, 55.85s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 9,    L1 = 0.6882137401843279
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  30%|███       | 9/30 [09:16<19:32, 55.85s/it]
+[SWaT_canon:TranAD]  30%|███       | 9/30 [08:27<19:40, 56.22s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 9,    L1 = 0.6880213717163564
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  30%|███       | 9/30 [09:24<19:40, 56.22s/it]
+[SWaT_canon:TranAD]  40%|████      | 12/30 [08:50<13:37, 45.39s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 12,   L1 = 0.685388046706169
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  40%|████      | 12/30 [09:35<13:37, 45.39s/it]
+[SWaT_canon:TranAD]  33%|███▎      | 10/30 [08:51<17:08, 51.44s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 10,   L1 = 0.6883541320568115
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  33%|███▎      | 10/30 [09:43<17:08, 51.44s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+600s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+600s alloc=0.00G
+[SWaT_canon:TranAD]  40%|████      | 12/30 [09:08<13:35, 45.29s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 12,   L1 = 0.6861685846621791
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  40%|████      | 12/30 [09:54<13:35, 45.29s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+600s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+600s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+600s alloc=0.00G
+[SWaT_canon:TranAD]  33%|███▎      | 10/30 [09:16<18:36, 55.81s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 10,   L1 = 0.687373043543075
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  33%|███▎      | 10/30 [10:14<18:36, 55.81s/it]
+[SWaT_canon:TranAD]  43%|████▎     | 13/30 [09:35<12:50, 45.30s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 13,   L1 = 0.6848678074798173
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  43%|████▎     | 13/30 [10:19<12:50, 45.30s/it]
+[SWaT_canon:TranAD]  33%|███▎      | 10/30 [09:24<18:53, 56.66s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 10,   L1 = 0.6870423538326207
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  33%|███▎      | 10/30 [10:20<18:53, 56.66s/it]
+[SWaT_canon:TranAD]  37%|███▋      | 11/30 [09:43<16:20, 51.60s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 11,   L1 = 0.6876891705482889
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  37%|███▋      | 11/30 [10:36<16:20, 51.60s/it]
+[SWaT_canon:TranAD]  43%|████▎     | 13/30 [09:54<12:57, 45.72s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 13,   L1 = 0.6853906301564051
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  43%|████▎     | 13/30 [10:42<12:57, 45.72s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+660s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+660s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+660s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+660s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+660s alloc=0.00G
+[SWaT_canon:TranAD]  47%|████▋     | 14/30 [10:19<11:58, 44.88s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 14,   L1 = 0.6843250605493447
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  47%|████▋     | 14/30 [11:02<11:58, 44.88s/it]
+[SWaT_canon:TranAD]  37%|███▋      | 11/30 [10:14<17:50, 56.35s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 11,   L1 = 0.6862343169973283
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  37%|███▋      | 11/30 [11:11<17:50, 56.35s/it]
+[SWaT_canon:TranAD]  37%|███▋      | 11/30 [10:20<17:49, 56.28s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 11,   L1 = 0.6862801554632109
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  37%|███▋      | 11/30 [11:16<17:49, 56.28s/it]
+[SWaT_canon:TranAD]  47%|████▋     | 14/30 [10:42<12:19, 46.24s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 14,   L1 = 0.6847332115925273
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  47%|████▋     | 14/30 [11:27<12:19, 46.24s/it]
+[SWaT_canon:TranAD]  40%|████      | 12/30 [10:36<15:34, 51.90s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 12,   L1 = 0.6876874821604336
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  40%|████      | 12/30 [11:25<15:34, 51.90s/it]
+[SWaT_canon:TranAD]  50%|█████     | 15/30 [11:02<11:05, 44.39s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 15,   L1 = 0.6839953715914752
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  50%|█████     | 15/30 [11:47<11:05, 44.39s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+720s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+720s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+720s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+720s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+720s alloc=0.00G
+[SWaT_canon:TranAD]  40%|████      | 12/30 [11:11<16:59, 56.63s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 12,   L1 = 0.6854438332528605
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  40%|████      | 12/30 [12:11<16:59, 56.63s/it]
+[SWaT_canon:TranAD]  40%|████      | 12/30 [11:16<16:53, 56.30s/it][SWaT_canon:TranAD]  50%|█████     | 15/30 [11:27<11:31, 46.11s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 12,   L1 = 0.6855775671300747
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  40%|████      | 12/30 [12:11<16:53, 56.30s/it]
+
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 15,   L1 = 0.6844268260460536
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  50%|█████     | 15/30 [12:13<11:31, 46.11s/it]
+[SWaT_canon:TranAD]  43%|████▎     | 13/30 [11:25<14:28, 51.07s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 13,   L1 = 0.6864116354345602
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  43%|████▎     | 13/30 [12:18<14:28, 51.07s/it]
+[SWaT_canon:TranAD]  53%|█████▎    | 16/30 [11:47<10:22, 44.47s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 16,   L1 = 0.6836894215531858
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  53%|█████▎    | 16/30 [12:32<10:22, 44.47s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+780s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+780s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+780s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+780s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+780s alloc=0.00G
+[SWaT_canon:TranAD]  53%|█████▎    | 16/30 [12:13<10:44, 46.06s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 16,   L1 = 0.6838350629893513
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  53%|█████▎    | 16/30 [13:00<10:44, 46.06s/it]
+[SWaT_canon:TranAD]  43%|████▎     | 13/30 [12:11<15:49, 55.84s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 13,   L1 = 0.6848779164531782
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  43%|████▎     | 13/30 [13:04<15:49, 55.84s/it]
+[SWaT_canon:TranAD]  43%|████▎     | 13/30 [12:11<16:22, 57.79s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 13,   L1 = 0.6848577319867137
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  43%|████▎     | 13/30 [13:06<16:22, 57.79s/it]
+[SWaT_canon:TranAD]  57%|█████▋    | 17/30 [12:32<09:39, 44.58s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 17,   L1 = 0.6831085239124893
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  57%|█████▋    | 17/30 [13:17<09:39, 44.58s/it]
+[SWaT_canon:TranAD]  47%|████▋     | 14/30 [12:18<13:44, 51.54s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 14,   L1 = 0.6860040663995844
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  47%|████▋     | 14/30 [13:12<13:44, 51.54s/it]
+[SWaT_canon:TranAD]  57%|█████▋    | 17/30 [13:00<10:02, 46.34s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 17,   L1 = 0.6834537535344589
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  57%|█████▋    | 17/30 [13:48<10:02, 46.34s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+840s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+840s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+840s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+840s alloc=0.00G
+[SWaT_canon:TranAD]  47%|████▋     | 14/30 [13:04<14:39, 54.96s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 14,   L1 = 0.6843595196266716
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  47%|████▋     | 14/30 [13:56<14:39, 54.96s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+840s alloc=0.00G
+[SWaT_canon:TranAD]  60%|██████    | 18/30 [13:17<08:58, 44.84s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 18,   L1 = 0.6829346169940356
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  60%|██████    | 18/30 [14:04<08:58, 44.84s/it]
+[SWaT_canon:TranAD]  47%|████▋     | 14/30 [13:06<15:11, 56.99s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 14,   L1 = 0.6847331206228324
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  47%|████▋     | 14/30 [14:01<15:11, 56.99s/it]
+[SWaT_canon:TranAD]  50%|█████     | 15/30 [13:12<13:07, 52.48s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 15,   L1 = 0.6858356740630869
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  50%|█████     | 15/30 [14:05<13:07, 52.48s/it]
+[SWaT_canon:TranAD]  60%|██████    | 18/30 [13:48<09:21, 46.78s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 18,   L1 = 0.6835475075383111
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  60%|██████    | 18/30 [14:34<09:21, 46.78s/it]
+[SWaT_canon:TranAD]  63%|██████▎   | 19/30 [14:04<08:19, 45.38s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 19,   L1 = 0.6827570014070236
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  63%|██████▎   | 19/30 [14:48<08:19, 45.38s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+900s alloc=0.00G
+[SWaT_canon:TranAD]  50%|█████     | 15/30 [13:56<13:33, 54.25s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 15,   L1 = 0.683980917303758
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  50%|█████     | 15/30 [14:51<13:33, 54.25s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+900s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+900s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+900s alloc=0.00G
+[SWaT_canon:TranAD]  50%|█████     | 15/30 [14:01<14:04, 56.28s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 15,   L1 = 0.6839991031326844
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  50%|█████     | 15/30 [14:57<14:04, 56.28s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+900s alloc=0.00G
+[SWaT_canon:TranAD]  53%|█████▎    | 16/30 [14:05<12:15, 52.55s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 16,   L1 = 0.6853343044704076
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  53%|█████▎    | 16/30 [14:59<12:15, 52.55s/it]
+[SWaT_canon:TranAD]  63%|██████▎   | 19/30 [14:34<08:31, 46.53s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 19,   L1 = 0.6831290950812751
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  63%|██████▎   | 19/30 [15:19<08:31, 46.53s/it]
+[SWaT_canon:TranAD]  67%|██████▋   | 20/30 [14:48<07:30, 45.06s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 20,   L1 = 0.6822173477513558
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  67%|██████▋   | 20/30 [15:34<07:30, 45.06s/it]
+[SWaT_canon:TranAD]  53%|█████▎    | 16/30 [14:51<12:40, 54.35s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 16,   L1 = 0.6837737679309623
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  53%|█████▎    | 16/30 [15:43<12:40, 54.35s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+960s alloc=0.00G
+[SWaT_canon:TranAD]  53%|█████▎    | 16/30 [14:57<13:06, 56.16s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 16,   L1 = 0.6836124521289055
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  53%|█████▎    | 16/30 [15:51<13:06, 56.16s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+960s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+960s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+960s alloc=0.00G
+[SWaT_canon:TranAD]  57%|█████▋    | 17/30 [14:59<11:29, 53.04s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 17,   L1 = 0.6848838831440119
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  57%|█████▋    | 17/30 [15:51<11:29, 53.04s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+960s alloc=0.00G
+[SWaT_canon:TranAD]  67%|██████▋   | 20/30 [15:19<07:40, 46.10s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 20,   L1 = 0.682636871048216
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  67%|██████▋   | 20/30 [16:05<07:40, 46.10s/it]
+[SWaT_canon:TranAD]  70%|███████   | 21/30 [15:34<06:48, 45.35s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 21,   L1 = 0.6821107528788053
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  70%|███████   | 21/30 [16:20<06:48, 45.35s/it]
+[SWaT_canon:TranAD]  57%|█████▋    | 17/30 [15:43<11:38, 53.74s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 17,   L1 = 0.683325123482098
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  57%|█████▋    | 17/30 [16:37<11:38, 53.74s/it]
+[SWaT_canon:TranAD]  60%|██████    | 18/30 [15:51<10:32, 52.70s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 18,   L1 = 0.6846816329103097
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  60%|██████    | 18/30 [16:41<10:32, 52.70s/it]
+[SWaT_canon:TranAD]  57%|█████▋    | 17/30 [15:51<12:02, 55.57s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 17,   L1 = 0.6835273298541902
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  57%|█████▋    | 17/30 [16:45<12:02, 55.57s/it]
+[SWaT_canon:TranAD]  70%|███████   | 21/30 [16:05<06:53, 45.90s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 21,   L1 = 0.6824334014133461
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  70%|███████   | 21/30 [16:49<06:53, 45.90s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+1020s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+1020s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+1020s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+1020s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+1020s alloc=0.00G
+[SWaT_canon:TranAD]  73%|███████▎  | 22/30 [16:20<06:02, 45.33s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 22,   L1 = 0.6819599800464292
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  73%|███████▎  | 22/30 [17:06<06:02, 45.33s/it]
+[SWaT_canon:TranAD]  63%|██████▎   | 19/30 [16:41<09:29, 51.80s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 19,   L1 = 0.6845066605816313
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  63%|██████▎   | 19/30 [17:30<09:29, 51.80s/it]
+[SWaT_canon:TranAD]  73%|███████▎  | 22/30 [16:49<06:03, 45.49s/it]
+[SWaT_canon:TranAD]  60%|██████    | 18/30 [16:37<10:46, 53.86s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 22,   L1 = 0.682121433921004
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  73%|███████▎  | 22/30 [17:36<06:03, 45.49s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 18,   L1 = 0.6829804281376148
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  60%|██████    | 18/30 [17:33<10:46, 53.86s/it]
+[SWaT_canon:TranAD]  60%|██████    | 18/30 [16:45<11:00, 55.03s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 18,   L1 = 0.6831384618010674
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  60%|██████    | 18/30 [17:37<11:00, 55.03s/it]
+[SWaT_canon:TranAD]  77%|███████▋  | 23/30 [17:06<05:19, 45.61s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 23,   L1 = 0.6820864341346277
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  77%|███████▋  | 23/30 [17:52<05:19, 45.61s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+1080s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+1080s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+1080s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+1080s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+1080s alloc=0.00G
+[SWaT_canon:TranAD]  77%|███████▋  | 23/30 [17:36<05:20, 45.77s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 23,   L1 = 0.6820824662233982
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  77%|███████▋  | 23/30 [18:23<05:20, 45.77s/it]
+[SWaT_canon:TranAD]  67%|██████▋   | 20/30 [17:30<08:29, 50.98s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 20,   L1 = 0.6842450982770004
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  67%|██████▋   | 20/30 [18:21<08:29, 50.98s/it]
+[SWaT_canon:TranAD]  63%|██████▎   | 19/30 [17:37<09:55, 54.10s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 19,   L1 = 0.6827593781264488
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  63%|██████▎   | 19/30 [18:28<09:55, 54.10s/it]
+[SWaT_canon:TranAD]  63%|██████▎   | 19/30 [17:33<09:58, 54.44s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 19,   L1 = 0.6827334736854456
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  63%|██████▎   | 19/30 [18:28<09:58, 54.44s/it]
+[SWaT_canon:TranAD]  80%|████████  | 24/30 [17:52<04:35, 45.89s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 24,   L1 = 0.6816496456483916
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  80%|████████  | 24/30 [18:37<04:35, 45.89s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+1140s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+1140s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+1140s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+1140s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+1140s alloc=0.00G
+[SWaT_canon:TranAD]  80%|████████  | 24/30 [18:23<04:38, 46.37s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 24,   L1 = 0.6817776303889191
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  80%|████████  | 24/30 [19:09<04:38, 46.37s/it]
+[SWaT_canon:TranAD]  70%|███████   | 21/30 [18:21<07:39, 51.01s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 21,   L1 = 0.6840821161108502
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  70%|███████   | 21/30 [19:11<07:39, 51.01s/it]
+[SWaT_canon:TranAD]  83%|████████▎ | 25/30 [18:37<03:47, 45.51s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 25,   L1 = 0.6812401707450774
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  83%|████████▎ | 25/30 [19:22<03:47, 45.51s/it]
+[SWaT_canon:TranAD]  67%|██████▋   | 20/30 [18:28<08:52, 53.25s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 20,   L1 = 0.6825595241225905
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  67%|██████▋   | 20/30 [19:22<08:52, 53.25s/it]
+[SWaT_canon:TranAD]  67%|██████▋   | 20/30 [18:28<09:06, 54.66s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 20,   L1 = 0.682624732398493
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  67%|██████▋   | 20/30 [19:22<09:06, 54.66s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+1200s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+1200s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+1200s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+1200s alloc=0.00G
+[SWaT_canon:TranAD]  83%|████████▎ | 25/30 [19:09<03:51, 46.23s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 25,   L1 = 0.6816425490335135
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  83%|████████▎ | 25/30 [19:56<03:51, 46.23s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+1200s alloc=0.00G
+[SWaT_canon:TranAD]  87%|████████▋ | 26/30 [19:22<03:01, 45.37s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 26,   L1 = 0.6812972192215802
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  87%|████████▋ | 26/30 [20:05<03:01, 45.37s/it]
+[SWaT_canon:TranAD]  73%|███████▎  | 22/30 [19:11<06:46, 50.85s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 22,   L1 = 0.683859023060334
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  73%|███████▎  | 22/30 [20:03<06:46, 50.85s/it]
+[SWaT_canon:TranAD]  70%|███████   | 21/30 [19:22<08:00, 53.43s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 21,   L1 = 0.6824716596132786
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  70%|███████   | 21/30 [20:16<08:00, 53.43s/it]
+[SWaT_canon:TranAD]  70%|███████   | 21/30 [19:22<08:08, 54.23s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 21,   L1 = 0.6823968212918261
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  70%|███████   | 21/30 [20:15<08:08, 54.23s/it]
+[SWaT_canon:TranAD]  87%|████████▋ | 26/30 [19:56<03:05, 46.46s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 26,   L1 = 0.6815457278950291
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  87%|████████▋ | 26/30 [20:42<03:05, 46.46s/it]
+[SWaT_canon:TranAD]  90%|█████████ | 27/30 [20:05<02:14, 44.73s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 27,   L1 = 0.6813473480993886
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  90%|█████████ | 27/30 [20:53<02:14, 44.73s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+1260s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+1260s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+1260s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+1260s alloc=0.00G
+[SWaT_canon:TranAD]  77%|███████▋  | 23/30 [20:03<05:58, 51.20s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 23,   L1 = 0.6837007402198603
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  77%|███████▋  | 23/30 [20:54<05:58, 51.20s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+1260s alloc=0.00G
+[SWaT_canon:TranAD]  73%|███████▎  | 22/30 [20:15<07:13, 54.14s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 22,   L1 = 0.6822796652458342
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  73%|███████▎  | 22/30 [21:07<07:13, 54.14s/it]
+[SWaT_canon:TranAD]  73%|███████▎  | 22/30 [20:16<07:09, 53.64s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 22,   L1 = 0.6823212976888412
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  73%|███████▎  | 22/30 [21:09<07:09, 53.64s/it]
+[SWaT_canon:TranAD]  90%|█████████ | 27/30 [20:42<02:18, 46.25s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 27,   L1 = 0.6814778601249115
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  90%|█████████ | 27/30 [21:28<02:18, 46.25s/it]
+[SWaT_canon:TranAD]  93%|█████████▎| 28/30 [20:53<01:31, 45.73s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 28,   L1 = 0.6811016025056751
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  93%|█████████▎| 28/30 [21:36<01:31, 45.73s/it]
+[SWaT_canon:TranAD]  80%|████████  | 24/30 [20:54<05:05, 50.99s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 24,   L1 = 0.6834264415616201
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  80%|████████  | 24/30 [21:43<05:05, 50.99s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+1320s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+1320s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+1320s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+1320s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+1320s alloc=0.00G
+[SWaT_canon:TranAD]  77%|███████▋  | 23/30 [21:09<06:13, 53.41s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 23,   L1 = 0.6821647728802093
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  77%|███████▋  | 23/30 [22:04<06:13, 53.41s/it]
+[SWaT_canon:TranAD]  77%|███████▋  | 23/30 [21:07<06:12, 53.27s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 23,   L1 = 0.6820663090623396
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  77%|███████▋  | 23/30 [22:04<06:12, 53.27s/it]
+[SWaT_canon:TranAD]  93%|█████████▎| 28/30 [21:28<01:32, 46.06s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 28,   L1 = 0.6812620884835328
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  93%|█████████▎| 28/30 [22:14<01:32, 46.06s/it]
+[SWaT_canon:TranAD]  97%|█████████▋| 29/30 [21:36<00:44, 44.74s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 29,   L1 = 0.6809226287346467
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  97%|█████████▋| 29/30 [22:19<00:44, 44.74s/it]
+[SWaT_canon:TranAD] 100%|██████████| 30/30 [22:19<00:00, 44.30s/it]
+[SWaT_canon:TranAD] 100%|██████████| 30/30 [22:19<00:00, 44.65s/it]
+[SWaT_canon:TranAD] [1mTraining time:  1339.6395 s[0m
+[SWaT_canon:TranAD] [95mTesting TranAD on WADI[0m
+[SWaT_canon:TranAD]  83%|████████▎ | 25/30 [21:43<04:12, 50.48s/it]
+[SWaT_canon:TranAD] /root/TranAD/src/spot.py:329: RuntimeWarning: overflow encountered in square[SWaT_canon:TranAD]
+[SWaT_canon:TranAD] Epoch 25,   L1 = 0.6833507037614586
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  83%|████████▎ | 25/30 [22:33<04:12, 50.48s/it]
+
+[SWaT_canon:TranAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[SWaT_canon:TranAD] /root/TranAD/src/spot.py:329: RuntimeWarning: overflow encountered in square
+[SWaT_canon:TranAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[SWaT_canon:TranAD]           f1  precision    recall  ...      FN   ROC/AUC     threshold
+[SWaT_canon:TranAD] 0   0.120733   0.969697  0.064375  ...  5116.0  0.532048  2.764596e+00
+[SWaT_canon:TranAD] 1   0.000000   0.000000  0.000000  ...  5468.0  0.500000  1.538286e+01
+[SWaT_canon:TranAD] 2   0.810623   0.962302  0.700256  ...  1639.0  0.848230  5.042375e+01
+[SWaT_canon:TranAD] 3   0.029068   0.771428  0.014813  ...  5387.0  0.507103  3.261752e+00
+[SWaT_canon:TranAD] 4   0.109787   0.978462  0.058157  ...  5150.0  0.528990  3.148852e+01
+[SWaT_canon:TranAD] 5   0.153656   0.227029  0.116130  ...  4833.0  0.530715  5.285382e+00
+[SWaT_canon:TranAD] 6   0.007287   0.952380  0.003658  ...  5448.0  0.501816  1.391640e+01
+[SWaT_canon:TranAD] 7   0.000000   0.000000  0.000000  ...  5468.0  0.500000  2.090944e+01
+[SWaT_canon:TranAD] 8   0.000000   0.000000  0.000000  ...  5468.0  0.500000  1.687898e+13
+[SWaT_canon:TranAD] 9   0.803791   0.963939  0.689283  ...  1699.0  0.842858  5.668312e+01
+[SWaT_canon:TranAD] 10  0.849887   0.969754  0.756401  ...  1332.0  0.876569  3.585945e+00
+[SWaT_canon:TranAD] 11  0.000000   0.000000  0.000000  ...  5468.0  0.500000  1.092092e+14
+[SWaT_canon:TranAD] 12  0.000000   0.000000  0.000000  ...  5468.0  0.500000  4.594656e+05
+[SWaT_canon:TranAD] 13  0.011636   1.000000  0.005852  ...  5436.0  0.502926  2.050561e-04
+[SWaT_canon:TranAD] 14  0.117868   0.974432  0.062729  ...  5125.0  0.531250  3.331996e+00
+[SWaT_canon:TranAD] 15  0.000000   0.000000  0.000000  ...  5468.0  0.500000  2.162795e+18
+[SWaT_canon:TranAD] 16  0.000000   0.000000  0.000000  ...  5468.0  0.500000  1.467907e+23
+[SWaT_canon:TranAD] 17  0.808159   0.994390  0.680688  ...  1746.0  0.840078  5.121321e+00
+[SWaT_canon:TranAD] 18  0.000000   0.000000  0.000000  ...  5468.0  0.500000  7.051553e+01
+[SWaT_canon:TranAD] 19  0.148316   0.720893  0.082663  ...  5016.0  0.539118  6.079985e+01
+[SWaT_canon:TranAD] 20  0.029808   0.821782  0.015179  ...  5385.0  0.507362  1.912159e+01
+[SWaT_canon:TranAD] 21  0.251419   0.787295  0.149598  ...  4650.0  0.572003  8.647539e+01
+[SWaT_canon:TranAD] 22  0.000000   0.000000  0.000000  ...  5468.0  0.500000  2.678913e+01
+[SWaT_canon:TranAD] 23  0.000000   0.000000  0.000000  ...  5468.0  0.500000  1.818373e+03
+[SWaT_canon:TranAD] 24  0.025420   0.601695  0.012985  ...  5397.0  0.505898  5.005177e+00
+[SWaT_canon:TranAD] 25  0.000000   0.000000  0.000000  ...  5468.0  0.500000  7.453208e+00
+[SWaT_canon:TranAD] 26  0.809524   0.992302  0.683614  ...  1730.0  0.841440  1.405214e+01
+[SWaT_canon:TranAD] 27  0.809627   0.994935  0.682516  ...  1736.0  0.841018  2.405132e+01
+[SWaT_canon:TranAD] 28  0.000000   0.000000  0.000000  ...  5468.0  0.500000  6.657427e+01
+[SWaT_canon:TranAD] 29  0.000000   0.000000  0.000000  ...  5468.0  0.500000  1.759195e+11
+[SWaT_canon:TranAD] 30  0.801615   0.997821  0.669898  ...  1805.0  0.834848  2.710535e+01
+[SWaT_canon:TranAD] 31  0.000000   0.000000  0.000000  ...  5468.0  0.499924  1.305380e+03
+[SWaT_canon:TranAD] 32  0.000000   0.000000  0.000000  ...  5468.0  0.500000  3.703187e+16
+[SWaT_canon:TranAD] 33  0.810970   0.996270  0.683797  ...  1729.0  0.841721  2.668193e+01
+[SWaT_canon:TranAD] 34  0.000000   0.000000  0.000000  ...  5468.0  0.500000  9.995683e+01
+[SWaT_canon:TranAD] 35  0.810138   0.994149  0.683614  ...  1730.0  0.841529  1.259529e+01
+[SWaT_canon:TranAD] 36  0.024359   0.350254  0.012619  ...  5399.0  0.504690  9.477791e+00
+[SWaT_canon:TranAD] 37  0.014151   0.886363  0.007132  ...  5429.0  0.503503  3.712461e+02
+[SWaT_canon:TranAD] 38  0.791965   0.997777  0.656547  ...  1878.0  0.828172  2.794782e+02
+[SWaT_canon:TranAD] 39  0.792665   1.000000  0.656547  ...  1878.0  0.828274  2.642149e+02
+[SWaT_canon:TranAD] 40  0.791965   0.997777  0.656547  ...  1878.0  0.828172  2.765882e+02
+[SWaT_canon:TranAD] 41  0.816520   0.995267  0.692209  ...  1683.0  0.845877  2.522017e+02
+[SWaT_canon:TranAD] 42  0.810970   0.996270  0.683797  ...  1729.0  0.841721  5.499937e+01
+[SWaT_canon:TranAD] 43  0.000000   0.000000  0.000000  ...  5468.0  0.500000  8.214754e-05
+[SWaT_canon:TranAD] 44  0.000000   0.000000  0.000000  ...  5468.0  0.500000  2.739641e+02
+[SWaT_canon:TranAD] 45  0.000000   0.000000  0.000000  ...  5468.0  0.500000  1.163903e+02
+[SWaT_canon:TranAD] 46  0.000000   0.000000  0.000000  ...  5468.0  0.500000  2.672957e+02
+[SWaT_canon:TranAD] 47  0.129327   0.898585  0.069678  ...  5087.0  0.534295  1.057097e+02
+[SWaT_canon:TranAD] 48  0.000000   0.000000  0.000000  ...  5468.0  0.500000  2.437417e-05
+[SWaT_canon:TranAD] 49  0.171542   0.595005  0.100219  ...  4920.0  0.545391  5.711515e+00
+[SWaT_canon:TranAD] 50  0.000000   0.000000  0.000000  ...  5468.0  0.500000  2.188006e+07
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] [51 rows x 9 columns]
+[SWaT_canon:TranAD] {'FN': 5118,
+[SWaT_canon:TranAD]  'FP': 13,
+[SWaT_canon:TranAD]  'Hit@100%': 1.0,
+[SWaT_canon:TranAD]  'Hit@150%': 1.0,
+[SWaT_canon:TranAD]  'NDCG@100%': 1.0,
+[SWaT_canon:TranAD]  'NDCG@150%': 1.0,
+[SWaT_canon:TranAD]  'ROC/AUC': 0.531839932134611,
+[SWaT_canon:TranAD]  'TN': 39511,
+[SWaT_canon:TranAD]  'TP': 350,
+[SWaT_canon:TranAD]  'f1': 0.12004685124769537,
+[SWaT_canon:TranAD]  'precision': 0.9641873012620579,
+[SWaT_canon:TranAD]  'recall': 0.06400877822968402,
+[SWaT_canon:TranAD]  'threshold': 64.29049257244523}
+[sota] DONE TranAD_SWaT_canon_s1 rc=0 1381.4s raw_ALL={'AUROC': 0.899, 'bestF1': 0.803, 'F1_at5pctFPR': 0.714, 'TPR_at5pctFPR': 0.757} raw_HARD={'AUROC': 0.678, 'bestF1': 0.21, 'F1_at5pctFPR': 0.182, 'TPR_at5pctFPR': 0.217}
+[gpu] SWaT_canon:TranAD heartbeat t+1380s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+1380s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+1380s alloc=0.00G
+[SWaT_canon:TranAD]  80%|████████  | 24/30 [22:04<05:23, 53.96s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 24,   L1 = 0.681977350277065
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  80%|████████  | 24/30 [22:57<05:23, 53.96s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+1380s alloc=0.00G
+[SWaT_canon:TranAD]  80%|████████  | 24/30 [22:04<05:27, 54.55s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 24,   L1 = 0.6819048873806572
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  80%|████████  | 24/30 [22:58<05:27, 54.55s/it]
+[SWaT_canon:TranAD]  97%|█████████▋| 29/30 [22:14<00:46, 46.25s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 29,   L1 = 0.6811602202291458
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  97%|█████████▋| 29/30 [23:03<00:46, 46.25s/it]
+[SWaT_canon:TranAD] 100%|██████████| 30/30 [23:03<00:00, 47.00s/it]
+[SWaT_canon:TranAD] 100%|██████████| 30/30 [23:03<00:00, 46.12s/it]
+[SWaT_canon:TranAD] [1mTraining time:  1383.6381 s[0m
+[SWaT_canon:TranAD] [95mTesting TranAD on WADI[0m
+Container terminated due to preemption. Your Function will be restarted with the same input. For more details, see https://modal.com/docs/guide/preemption
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+[sota] $ git clone --depth 1 https://github.com/imperial-qore/TranAD.git
+[SWaT_canon:TranAD] /root/TranAD/src/spot.py:329: RuntimeWarning: overflow encountered in square
+[SWaT_canon:TranAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[SWaT_canon:TranAD] /root/TranAD/src/spot.py:329: RuntimeWarning: overflow encountered in square
+[SWaT_canon:TranAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[SWaT_canon:TranAD]  87%|████████▋ | 26/30 [22:33<03:21, 50.27s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 26,   L1 = 0.6831285758224612
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  87%|████████▋ | 26/30 [23:24<03:21, 50.27s/it]
+[SWaT_canon:TranAD]           f1  precision    recall  ...      FN   ROC/AUC     threshold
+[SWaT_canon:TranAD] 0   0.015933   0.800000  0.008047  ...  5424.0  0.503884  3.337631e+00
+[SWaT_canon:TranAD] 1   0.042248   1.000000  0.021580  ...  5350.0  0.510790  1.512039e+01
+[SWaT_canon:TranAD] 2   0.803622   0.964167  0.688917  ...  1701.0  0.842688  5.042312e+01
+[SWaT_canon:TranAD] 3   0.000000   0.000000  0.000000  ...  5468.0  0.499747  3.105761e+00
+[SWaT_canon:TranAD] 4   0.109787   0.978462  0.058157  ...  5150.0  0.528990  3.148871e+01
+[SWaT_canon:TranAD] 5   0.144691   0.215162  0.108998  ...  4872.0  0.526997  5.273654e+00
+[SWaT_canon:TranAD] 6   0.007287   0.952380  0.003658  ...  5448.0  0.501816  1.377153e+01
+[SWaT_canon:TranAD] 7   0.000000   0.000000  0.000000  ...  5468.0  0.500000  2.143508e+01
+[SWaT_canon:TranAD] 8   0.000000   0.000000  0.000000  ...  5468.0  0.499861  3.015230e+00
+[SWaT_canon:TranAD] 9   0.800466   0.965883  0.683431  ...  1731.0  0.840046  5.668395e+01
+[SWaT_canon:TranAD] 10  0.042984   0.482353  0.022495  ...  5345.0  0.509577  3.468221e+00
+[SWaT_canon:TranAD] 11  0.007131   0.141844  0.003658  ...  5448.0  0.500298  3.676835e-05
+[SWaT_canon:TranAD] 12  0.007251   0.416667  0.003658  ...  5448.0  0.501475  2.982227e+00
+[SWaT_canon:TranAD] 13  0.011465   0.280702  0.005852  ...  5436.0  0.501889  5.850298e-05
+[SWaT_canon:TranAD] 14  0.053399   1.000000  0.027432  ...  5318.0  0.513716  2.761540e+00
+[SWaT_canon:TranAD] 15  0.018834   0.962963  0.009510  ...  5416.0  0.504730  7.946749e-06
+[SWaT_canon:TranAD] 16  0.000000   0.000000  0.000000  ...  5468.0  0.500000  5.356112e+25
+[SWaT_canon:TranAD] 17  0.808159   0.994390  0.680688  ...  1746.0  0.840078  5.119585e+00
+[SWaT_canon:TranAD] 18  0.000000   0.000000  0.000000  ...  5468.0  0.500000  7.051553e+01
+[SWaT_canon:TranAD] 19  0.000000   0.000000  0.000000  ...  5468.0  0.500000  7.833805e+01
+[SWaT_canon:TranAD] 20  0.804812   0.989330  0.678310  ...  1759.0  0.838649  1.914755e+01
+[SWaT_canon:TranAD] 21  0.251303   0.785029  0.149598  ...  4650.0  0.571965  8.646910e+01
+[SWaT_canon:TranAD] 22  0.000000   0.000000  0.000000  ...  5468.0  0.500000  4.731718e+13
+[SWaT_canon:TranAD] 23  0.000000   0.000000  0.000000  ...  5468.0  0.500000  1.818373e+03
+[SWaT_canon:TranAD] 24  0.049831   0.738220  0.025786  ...  5327.0  0.512261  5.060983e+00
+[SWaT_canon:TranAD] 25  0.000000   0.000000  0.000000  ...  5468.0  0.500000  7.460471e+00
+[SWaT_canon:TranAD] 26  0.808911   0.990461  0.683614  ...  1730.0  0.841351  1.448390e+01
+[SWaT_canon:TranAD] 27  0.809627   0.994935  0.682516  ...  1736.0  0.841018  2.400724e+01
+[SWaT_canon:TranAD] 28  0.000000   0.000000  0.000000  ...  5468.0  0.500000  6.657427e+01
+[SWaT_canon:TranAD] 29  0.007262   0.500000  0.003658  ...  5448.0  0.501576  7.052991e-06
+[SWaT_canon:TranAD] 30  0.801615   0.997821  0.669898  ...  1805.0  0.834848  2.710535e+01
+[SWaT_canon:TranAD] 31  0.000000   0.000000  0.000000  ...  5468.0  0.499924  7.460674e+01
+[SWaT_canon:TranAD] 32  0.066199   0.780992  0.034565  ...  5279.0  0.516612  3.434569e-05
+[SWaT_canon:TranAD] 33  0.810970   0.996270  0.683797  ...  1729.0  0.841721  2.746536e+01
+[SWaT_canon:TranAD] 34  0.000000   0.000000  0.000000  ...  5468.0  0.500000  9.995683e+01
+[SWaT_canon:TranAD] 35  0.810138   0.994149  0.683614  ...  1730.0  0.841529  1.259529e+01
+[SWaT_canon:TranAD] 36  0.024359   0.350254  0.012619  ...  5399.0  0.504690  9.477773e+00
+[SWaT_canon:TranAD] 37  0.014151   0.886363  0.007132  ...  5429.0  0.503503  3.712461e+02
+[SWaT_canon:TranAD] 38  0.791965   0.997777  0.656547  ...  1878.0  0.828172  2.794782e+02
+[SWaT_canon:TranAD] 39  0.792665   1.000000  0.656547  ...  1878.0  0.828274  2.642149e+02
+[SWaT_canon:TranAD] 40  0.791965   0.997777  0.656547  ...  1878.0  0.828172  2.765882e+02
+[SWaT_canon:TranAD] 41  0.816256   0.994482  0.692209  ...  1683.0  0.845839  5.144051e+01
+[SWaT_canon:TranAD] 42  0.810970   0.996270  0.683797  ...  1729.0  0.841721  2.574600e+01
+[SWaT_canon:TranAD] 43  0.096454   0.707500  0.051756  ...  5185.0  0.524398  7.461974e-05
+[SWaT_canon:TranAD] 44  0.000000   0.000000  0.000000  ...  5468.0  0.500000  2.739641e+02
+[SWaT_canon:TranAD] 45  0.000000   0.000000  0.000000  ...  5468.0  0.500000  9.098931e+01
+[SWaT_canon:TranAD] 46  0.000000   0.000000  0.000000  ...  5468.0  0.500000  2.672957e+02
+[SWaT_canon:TranAD] 47  0.129349   0.900709  0.069678  ...  5087.0  0.534308  1.057097e+02
+[SWaT_canon:TranAD] 48  0.033244   0.502674  0.017191  ...  5374.0  0.507419  2.242820e-05
+[SWaT_canon:TranAD] 49  0.171542   0.595005  0.100219  ...  4920.0  0.545391  5.711515e+00
+[SWaT_canon:TranAD] 50  0.007287   0.952380  0.003658  ...  5448.0  0.501816  1.201230e-04
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] [51 rows x 9 columns]
+[SWaT_canon:TranAD] {'FN': 5118,
+[SWaT_canon:TranAD]  'FP': 13,
+[SWaT_canon:TranAD]  'Hit@100%': 1.0,
+[SWaT_canon:TranAD]  'Hit@150%': 1.0,
+[SWaT_canon:TranAD]  'NDCG@100%': 1.0,
+[SWaT_canon:TranAD]  'NDCG@150%': 1.0,
+[SWaT_canon:TranAD]  'ROC/AUC': 0.531839932134611,
+[SWaT_canon:TranAD]  'TN': 39511,
+[SWaT_canon:TranAD]  'TP': 350,
+[SWaT_canon:TranAD]  'f1': 0.12004685124769537,
+[SWaT_canon:TranAD]  'precision': 0.9641873012620579,
+[SWaT_canon:TranAD]  'recall': 0.06400877822968402,
+[SWaT_canon:TranAD]  'threshold': 64.32322194942975}
+[sota] DONE TranAD_SWaT_canon_s4 rc=0 1422.9s raw_ALL={'AUROC': 0.9, 'bestF1': 0.803, 'F1_at5pctFPR': 0.714, 'TPR_at5pctFPR': 0.756} raw_HARD={'AUROC': 0.681, 'bestF1': 0.209, 'F1_at5pctFPR': 0.181, 'TPR_at5pctFPR': 0.216}
+[SWaT_canon:TranAD]  83%|████████▎ | 25/30 [22:57<04:27, 53.57s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 25,   L1 = 0.6818452410754202
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  83%|████████▎ | 25/30 [23:50<04:27, 53.57s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+1440s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+1440s alloc=0.00G
+[sota] patched ds=SWaT_canon model=TranAD fp32=True dump=ok
+[sota] SWaT_canon train(135936, 51) test(44992, 51) anom=0.122
+[sota] === training SWaT_canon:TranAD (NEPOCHS=30, fp32=True) ===
+[SWaT_canon:TranAD] /opt/conda/lib/python3.11/site-packages/torch/nn/modules/transformer.py:307: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer was not TransformerEncoderLayer
+[SWaT_canon:TranAD]   warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+[SWaT_canon:TranAD] [92mCreating new model: TranAD[0m
+[SWaT_canon:TranAD] [95mTraining TranAD on WADI[0m
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  90%|█████████ | 27/30 [23:24<02:31, 50.44s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 27,   L1 = 0.6830071389075305
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  90%|█████████ | 27/30 [24:17<02:31, 50.44s/it]
+[SWaT_canon:TranAD]  87%|████████▋ | 26/30 [23:50<03:34, 53.52s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 26,   L1 = 0.6816072579536397
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  87%|████████▋ | 26/30 [24:43<03:34, 53.52s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+1500s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+1500s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+60s alloc=0.00G
+[SWaT_canon:TranAD]  93%|█████████▎| 28/30 [24:17<01:42, 51.26s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 28,   L1 = 0.6827821102372166
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  93%|█████████▎| 28/30 [25:09<01:42, 51.26s/it]
+[SWaT_canon:TranAD]   0%|          | 0/30 [00:00<?, ?it/s]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 0,    L1 = 0.781636383244154
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]   0%|          | 0/30 [01:11<?, ?it/s]
+[SWaT_canon:TranAD]  90%|█████████ | 27/30 [24:43<02:39, 53.21s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 27,   L1 = 0.6814600034650212
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  90%|█████████ | 27/30 [25:35<02:39, 53.21s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+1560s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+1560s alloc=0.00G
+[SWaT_canon:TranAD]  97%|█████████▋| 29/30 [25:09<00:51, 51.44s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 29,   L1 = 0.6827132337079462
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  97%|█████████▋| 29/30 [26:03<00:51, 51.44s/it]
+[SWaT_canon:TranAD] 100%|██████████| 30/30 [26:03<00:00, 52.28s/it]
+[SWaT_canon:TranAD] 100%|██████████| 30/30 [26:03<00:00, 52.12s/it]
+[SWaT_canon:TranAD] [1mTraining time:  1563.6450 s[0m
+[SWaT_canon:TranAD] [95mTesting TranAD on WADI[0m
+[gpu] SWaT_canon:TranAD heartbeat t+120s alloc=0.00G
+[SWaT_canon:TranAD] /root/TranAD/src/spot.py:329: RuntimeWarning: overflow encountered in square
+[SWaT_canon:TranAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[SWaT_canon:TranAD]  93%|█████████▎| 28/30 [25:36<01:46, 53.08s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 28,   L1 = 0.6813090053806169
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  93%|█████████▎| 28/30 [26:30<01:46, 53.08s/it]
+[SWaT_canon:TranAD] /root/TranAD/src/spot.py:329: RuntimeWarning: overflow encountered in square
+[SWaT_canon:TranAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[SWaT_canon:TranAD]   3%|▎         | 1/30 [01:11<34:32, 71.46s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 1,    L1 = 0.7366241866410508
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]   3%|▎         | 1/30 [02:18<34:32, 71.46s/it]
+[SWaT_canon:TranAD]           f1  precision    recall  ...      FN   ROC/AUC     threshold
+[SWaT_canon:TranAD] 0   0.120526   0.943700  0.064375  ...  5116.0  0.531922  2.857019e+00
+[SWaT_canon:TranAD] 1   0.000000   0.000000  0.000000  ...  5468.0  0.500000  1.538286e+01
+[SWaT_canon:TranAD] 2   0.809937   0.960371  0.700256  ...  1639.0  0.848129  5.042274e+01
+[SWaT_canon:TranAD] 3   0.036831   0.824000  0.018837  ...  5365.0  0.509140  3.041307e+00
+[SWaT_canon:TranAD] 4   0.109787   0.978462  0.058157  ...  5150.0  0.528990  3.148853e+01
+[SWaT_canon:TranAD] 5   0.144340   0.213620  0.108998  ...  4872.0  0.526744  5.285382e+00
+[SWaT_canon:TranAD] 6   0.007287   0.952380  0.003658  ...  5448.0  0.501816  1.384920e+01
+[SWaT_canon:TranAD] 7   0.000000   0.000000  0.000000  ...  5468.0  0.500000  2.090944e+01
+[SWaT_canon:TranAD] 8   0.000000   0.000000  0.000000  ...  5468.0  0.500000  1.383499e+10
+[SWaT_canon:TranAD] 9   0.808198   0.964494  0.695501  ...  1665.0  0.845979  5.668327e+01
+[SWaT_canon:TranAD] 10  0.043644   0.480769  0.022860  ...  5343.0  0.509722  3.494906e+00
+[SWaT_canon:TranAD] 11  0.007114   0.129870  0.003658  ...  5448.0  0.500134  2.931609e-04
+[SWaT_canon:TranAD] 12  0.062411   0.867647  0.032370  ...  5291.0  0.515844  2.995883e+00
+[SWaT_canon:TranAD] 13  0.018505   0.342105  0.009510  ...  5416.0  0.503490  7.512365e-05
+[SWaT_canon:TranAD] 14  0.125406   0.991870  0.066935  ...  5102.0  0.533429  2.343636e+00
+[SWaT_canon:TranAD] 15  0.018735   0.626506  0.009510  ...  5416.0  0.504363  6.436797e-05
+[SWaT_canon:TranAD] 16  0.000000   0.000000  0.000000  ...  5468.0  0.500000  6.064280e+01
+[SWaT_canon:TranAD] 17  0.833769   0.989204  0.720556  ...  1528.0  0.859734  5.118335e+00
+[SWaT_canon:TranAD] 18  0.000000   0.000000  0.000000  ...  5468.0  0.500000  7.051553e+01
+[SWaT_canon:TranAD] 19  0.169665   0.750359  0.095647  ...  4945.0  0.545623  6.080008e+01
+[SWaT_canon:TranAD] 20  0.092061   0.916955  0.048464  ...  5203.0  0.523928  1.914726e+01
+[SWaT_canon:TranAD] 21  0.251380   0.786538  0.149598  ...  4650.0  0.571990  8.646920e+01
+[SWaT_canon:TranAD] 22  0.000000   0.000000  0.000000  ...  5468.0  0.500000  2.684420e+01
+[SWaT_canon:TranAD] 23  0.000000   0.000000  0.000000  ...  5468.0  0.500000  1.818373e+03
+[SWaT_canon:TranAD] 24  0.837577   0.987581  0.727140  ...  1492.0  0.862937  4.866896e+00
+[SWaT_canon:TranAD] 25  0.000000   0.000000  0.000000  ...  5468.0  0.500000  7.481461e+00
+[SWaT_canon:TranAD] 26  0.809436   0.992038  0.683614  ...  1730.0  0.841427  1.418773e+01
+[SWaT_canon:TranAD] 27  0.820899   0.993249  0.699525  ...  1643.0  0.849433  1.174345e+01
+[SWaT_canon:TranAD] 28  0.000000   0.000000  0.000000  ...  5468.0  0.500000  6.657427e+01
+[SWaT_canon:TranAD] 29  0.018429   0.297143  0.009510  ...  5416.0  0.503199  1.928214e-05
+[SWaT_canon:TranAD] 30  0.801615   0.997821  0.669898  ...  1805.0  0.834848  2.785299e+01
+[SWaT_canon:TranAD] 31  0.000000   0.000000  0.000000  ...  5468.0  0.499924  7.609614e+01
+[SWaT_canon:TranAD] 32  0.065329   0.594340  0.034565  ...  5279.0  0.515650  5.362805e-05
+[SWaT_canon:TranAD] 33  0.810970   0.996270  0.683797  ...  1729.0  0.841721  2.751300e+01
+[SWaT_canon:TranAD] 34  0.000000   0.000000  0.000000  ...  5468.0  0.500000  9.995683e+01
+[SWaT_canon:TranAD] 35  0.810226   0.994413  0.683614  ...  1730.0  0.841541  1.259529e+01
+[SWaT_canon:TranAD] 36  0.024359   0.350254  0.012619  ...  5399.0  0.504690  9.477861e+00
+[SWaT_canon:TranAD] 37  0.014151   0.886363  0.007132  ...  5429.0  0.503503  4.075519e+02
+[SWaT_canon:TranAD] 38  0.791965   0.997777  0.656547  ...  1878.0  0.828172  2.794782e+02
+[SWaT_canon:TranAD] 39  0.792665   1.000000  0.656547  ...  1878.0  0.828274  2.642149e+02
+[SWaT_canon:TranAD] 40  0.791965   0.997777  0.656547  ...  1878.0  0.828172  2.765882e+02
+[SWaT_canon:TranAD] 41  0.816256   0.994482  0.692209  ...  1683.0  0.845839  2.473703e+01
+[SWaT_canon:TranAD] 42  0.810970   0.996270  0.683797  ...  1729.0  0.841721  2.645613e+01
+[SWaT_canon:TranAD] 43  0.099200   0.696897  0.053402  ...  5176.0  0.525094  1.913584e-05
+[SWaT_canon:TranAD] 44  0.000000   0.000000  0.000000  ...  5468.0  0.500000  2.739641e+02
+[SWaT_canon:TranAD] 45  0.000000   0.000000  0.000000  ...  5468.0  0.500000  1.396155e+02
+[SWaT_canon:TranAD] 46  0.000000   0.000000  0.000000  ...  5468.0  0.500000  2.672957e+02
+[SWaT_canon:TranAD] 47  0.129349   0.900709  0.069678  ...  5087.0  0.534308  1.057097e+02
+[SWaT_canon:TranAD] 48  0.000000   0.000000  0.000000  ...  5468.0  0.500000  6.816082e+23
+[SWaT_canon:TranAD] 49  0.171542   0.595005  0.100219  ...  4920.0  0.545391  5.711515e+00
+[SWaT_canon:TranAD] 50  0.007106   0.124224  0.003658  ...  5448.0  0.500045  9.104664e-05
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] [51 rows x 9 columns]
+[SWaT_canon:TranAD] {'FN': 5118,
+[SWaT_canon:TranAD]  'FP': 13,
+[SWaT_canon:TranAD]  'Hit@100%': 1.0,
+[SWaT_canon:TranAD]  'Hit@150%': 1.0,
+[SWaT_canon:TranAD]  'NDCG@100%': 1.0,
+[SWaT_canon:TranAD]  'NDCG@150%': 1.0,
+[SWaT_canon:TranAD]  'ROC/AUC': 0.531839932134611,
+[SWaT_canon:TranAD]  'TN': 39511,
+[SWaT_canon:TranAD]  'TP': 350,
+[SWaT_canon:TranAD]  'f1': 0.12004685124769537,
+[SWaT_canon:TranAD]  'precision': 0.9641873012620579,
+[SWaT_canon:TranAD]  'recall': 0.06400877822968402,
+[SWaT_canon:TranAD]  'threshold': 64.85835168858125}
+[sota] DONE TranAD_SWaT_canon_s2 rc=0 1608.1s raw_ALL={'AUROC': 0.901, 'bestF1': 0.803, 'F1_at5pctFPR': 0.714, 'TPR_at5pctFPR': 0.757} raw_HARD={'AUROC': 0.684, 'bestF1': 0.228, 'F1_at5pctFPR': 0.182, 'TPR_at5pctFPR': 0.217}
+[gpu] SWaT_canon:TranAD heartbeat t+1620s alloc=0.00G
+[gpu] SWaT_canon:TranAD heartbeat t+180s alloc=0.00G
+[SWaT_canon:TranAD]  97%|█████████▋| 29/30 [26:30<00:53, 53.54s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 29,   L1 = 0.6811730045309595
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  97%|█████████▋| 29/30 [27:29<00:53, 53.54s/it]
+[SWaT_canon:TranAD] 100%|██████████| 30/30 [27:29<00:00, 55.05s/it]
+[SWaT_canon:TranAD] 100%|██████████| 30/30 [27:29<00:00, 54.97s/it]
+[SWaT_canon:TranAD] [1mTraining time:  1649.1969 s[0m
+[SWaT_canon:TranAD] [95mTesting TranAD on WADI[0m
+[SWaT_canon:TranAD]   7%|▋         | 2/30 [02:18<32:15, 69.13s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 2,    L1 = 0.7170367121920972
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]   7%|▋         | 2/30 [03:24<32:15, 69.13s/it]
+[SWaT_canon:TranAD] /root/TranAD/src/spot.py:329: RuntimeWarning: overflow encountered in square
+[SWaT_canon:TranAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[SWaT_canon:TranAD] /root/TranAD/src/spot.py:329: RuntimeWarning: overflow encountered in square
+[SWaT_canon:TranAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[gpu] SWaT_canon:TranAD heartbeat t+1680s alloc=0.00G
+[SWaT_canon:TranAD]           f1  precision    recall  ...      FN   ROC/AUC    threshold
+[SWaT_canon:TranAD] 0   0.120526   0.943700  0.064375  ...  5116.0  0.531922     2.812842
+[SWaT_canon:TranAD] 1   0.000000   0.000000  0.000000  ...  5468.0  0.500000    15.382862
+[SWaT_canon:TranAD] 2   0.811482   0.964727  0.700256  ...  1639.0  0.848357    50.422749
+[SWaT_canon:TranAD] 3   0.029079   0.786408  0.014813  ...  5387.0  0.507128     3.086403
+[SWaT_canon:TranAD] 4   0.109787   0.978462  0.058157  ...  5150.0  0.528990    31.488617
+[SWaT_canon:TranAD] 5   0.153898   0.228089  0.116130  ...  4833.0  0.530879     5.285382
+[SWaT_canon:TranAD] 6   0.007287   0.952380  0.003658  ...  5448.0  0.501816    13.849194
+[SWaT_canon:TranAD] 7   0.000000   0.000000  0.000000  ...  5468.0  0.500000    21.435085
+[SWaT_canon:TranAD] 8   0.000000   0.000000  0.000000  ...  5468.0  0.500000     3.035149
+[SWaT_canon:TranAD] 9   0.798538   0.964286  0.681419  ...  1742.0  0.838964    56.682934
+[SWaT_canon:TranAD] 10  0.820703   0.971729  0.710315  ...  1584.0  0.853728     3.555398
+[SWaT_canon:TranAD] 11  0.000000   0.000000  0.000000  ...  5468.0  0.500000     0.000120
+[SWaT_canon:TranAD] 12  0.007286   0.909090  0.003658  ...  5448.0  0.501804     2.986624
+[SWaT_canon:TranAD] 13  0.037333   0.668790  0.019203  ...  5363.0  0.508943     0.000657
+[SWaT_canon:TranAD] 14  0.000000   0.000000  0.000000  ...  5468.0  0.499975     2.415166
+[SWaT_canon:TranAD] 15  0.011634   0.969697  0.005852  ...  5436.0  0.502913     0.000091
+[SWaT_canon:TranAD] 16  0.000000   0.000000  0.000000  ...  5468.0  0.500000   188.210247
+[SWaT_canon:TranAD] 17  0.813503   0.987467  0.691661  ...  1686.0  0.845223     5.120060
+[SWaT_canon:TranAD] 18  0.000000   0.000000  0.000000  ...  5468.0  0.500000    70.515525
+[SWaT_canon:TranAD] 19  0.148122   0.711811  0.082663  ...  5016.0  0.539016    60.766237
+[SWaT_canon:TranAD] 20  0.039529   0.750000  0.020300  ...  5357.0  0.509682    19.153200
+[SWaT_canon:TranAD] 21  0.251342   0.785783  0.149598  ...  4650.0  0.571978    86.475392
+[SWaT_canon:TranAD] 22  0.000000   0.000000  0.000000  ...  5468.0  0.500000    26.791039
+[SWaT_canon:TranAD] 23  0.000000   0.000000  0.000000  ...  5468.0  0.500000  1818.372574
+[SWaT_canon:TranAD] 24  0.069966   0.803213  0.036576  ...  5268.0  0.517668     4.933695
+[SWaT_canon:TranAD] 25  0.000000   0.000000  0.000000  ...  5468.0  0.500000     7.445176
+[SWaT_canon:TranAD] 26  0.808911   0.990461  0.683614  ...  1730.0  0.841351    14.345996
+[SWaT_canon:TranAD] 27  0.809627   0.994935  0.682516  ...  1736.0  0.841018    24.007244
+[SWaT_canon:TranAD] 28  0.000000   0.000000  0.000000  ...  5468.0  0.500000    66.574271
+[SWaT_canon:TranAD] 29  0.011488   0.310680  0.005852  ...  5436.0  0.502028     0.000107
+[SWaT_canon:TranAD] 30  0.801615   0.997821  0.669898  ...  1805.0  0.834848    59.478065
+[SWaT_canon:TranAD] 31  0.000000   0.000000  0.000000  ...  5468.0  0.499924  1121.693128
+[SWaT_canon:TranAD] 32  0.000000   0.000000  0.000000  ...  5468.0  0.499924     0.000684
+[SWaT_canon:TranAD] 33  0.810970   0.996270  0.683797  ...  1729.0  0.841721    26.681936
+[SWaT_canon:TranAD] 34  0.000000   0.000000  0.000000  ...  5468.0  0.500000   100.039092
+[SWaT_canon:TranAD] 35  0.810138   0.994149  0.683614  ...  1730.0  0.841529    12.592666
+[SWaT_canon:TranAD] 36  0.024359   0.350254  0.012619  ...  5399.0  0.504690     9.477753
+[SWaT_canon:TranAD] 37  0.014151   0.886363  0.007132  ...  5429.0  0.503503   372.051208
+[SWaT_canon:TranAD] 38  0.791965   0.997777  0.656547  ...  1878.0  0.828172   279.478184
+[SWaT_canon:TranAD] 39  0.792665   1.000000  0.656547  ...  1878.0  0.828274   264.214852
+[SWaT_canon:TranAD] 40  0.791965   0.997777  0.656547  ...  1878.0  0.828172   276.588204
+[SWaT_canon:TranAD] 41  0.816256   0.994482  0.692209  ...  1683.0  0.845839    51.361814
+[SWaT_canon:TranAD] 42  0.810970   0.996270  0.683797  ...  1729.0  0.841721    54.639161
+[SWaT_canon:TranAD] 43  0.000000   0.000000  0.000000  ...  5468.0  0.499380     0.000262
+[SWaT_canon:TranAD] 44  0.000000   0.000000  0.000000  ...  5468.0  0.500000   273.964073
+[SWaT_canon:TranAD] 45  0.000000   0.000000  0.000000  ...  5468.0  0.500000   129.862707
+[SWaT_canon:TranAD] 46  0.000000   0.000000  0.000000  ...  5468.0  0.500000   267.295744
+[SWaT_canon:TranAD] 47  0.129349   0.900709  0.069678  ...  5087.0  0.534308   105.709715
+[SWaT_canon:TranAD] 48  0.011613   0.744186  0.005852  ...  5436.0  0.502787     0.000039
+[SWaT_canon:TranAD] 49  0.171542   0.595005  0.100219  ...  4920.0  0.545391     5.711515
+[SWaT_canon:TranAD] 50  0.033800   1.000000  0.017191  ...  5374.0  0.508595     0.000069
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] [51 rows x 9 columns]
+[SWaT_canon:TranAD] {'FN': 5118,
+[SWaT_canon:TranAD]  'FP': 13,
+[SWaT_canon:TranAD]  'Hit@100%': 1.0,
+[SWaT_canon:TranAD]  'Hit@150%': 1.0,
+[SWaT_canon:TranAD]  'NDCG@100%': 1.0,
+[SWaT_canon:TranAD]  'NDCG@150%': 1.0,
+[SWaT_canon:TranAD]  'ROC/AUC': 0.531839932134611,
+[SWaT_canon:TranAD]  'TN': 39511,
+[SWaT_canon:TranAD]  'TP': 350,
+[SWaT_canon:TranAD]  'f1': 0.12004685124769537,
+[SWaT_canon:TranAD]  'precision': 0.9641873012620579,
+[SWaT_canon:TranAD]  'recall': 0.06400877822968402,
+[SWaT_canon:TranAD]  'threshold': 64.28777024620317}
+[sota] DONE TranAD_SWaT_canon_s0 rc=0 1692.1s raw_ALL={'AUROC': 0.9, 'bestF1': 0.803, 'F1_at5pctFPR': 0.714, 'TPR_at5pctFPR': 0.756} raw_HARD={'AUROC': 0.679, 'bestF1': 0.212, 'F1_at5pctFPR': 0.18, 'TPR_at5pctFPR': 0.215}
+[gpu] SWaT_canon:TranAD heartbeat t+240s alloc=0.00G
+[SWaT_canon:TranAD]  10%|█         | 3/30 [03:24<30:18, 67.35s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 3,    L1 = 0.7058671392402182
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  10%|█         | 3/30 [04:34<30:18, 67.35s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+300s alloc=0.00G
+[SWaT_canon:TranAD]  13%|█▎        | 4/30 [04:34<29:44, 68.64s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 4,    L1 = 0.6999284864338413
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  13%|█▎        | 4/30 [05:36<29:44, 68.64s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+360s alloc=0.00G
+[SWaT_canon:TranAD]  17%|█▋        | 5/30 [05:36<27:30, 66.03s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 5,    L1 = 0.6965077014801333
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  17%|█▋        | 5/30 [06:34<27:30, 66.03s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+420s alloc=0.00G
+[SWaT_canon:TranAD]  20%|██        | 6/30 [06:34<25:25, 63.56s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 6,    L1 = 0.692446716145565
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  20%|██        | 6/30 [07:26<25:25, 63.56s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+480s alloc=0.00G
+[SWaT_canon:TranAD]  23%|██▎       | 7/30 [07:26<22:47, 59.47s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 7,    L1 = 0.6904040409757172
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  23%|██▎       | 7/30 [08:16<22:47, 59.47s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+540s alloc=0.00G
+[SWaT_canon:TranAD]  27%|██▋       | 8/30 [08:16<20:42, 56.47s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 8,    L1 = 0.6888568459987191
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  27%|██▋       | 8/30 [09:04<20:42, 56.47s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+600s alloc=0.00G
+[SWaT_canon:TranAD]  30%|███       | 9/30 [09:04<18:51, 53.87s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 9,    L1 = 0.6880213717163564
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  30%|███       | 9/30 [09:56<18:51, 53.87s/it]
+[SWaT_canon:TranAD]  33%|███▎      | 10/30 [09:56<17:47, 53.36s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 10,   L1 = 0.6870423538326207
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  33%|███▎      | 10/30 [10:47<17:47, 53.36s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+660s alloc=0.00G
+[SWaT_canon:TranAD]  37%|███▋      | 11/30 [10:47<16:39, 52.58s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 11,   L1 = 0.6862801554632109
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  37%|███▋      | 11/30 [11:39<16:39, 52.58s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+720s alloc=0.00G
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+[SWaT_canon:TranAD]  40%|████      | 12/30 [11:39<15:44, 52.45s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 12,   L1 = 0.6855775671300747
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  40%|████      | 12/30 [12:33<15:44, 52.45s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+780s alloc=0.00G
+[SWaT_canon:TranAD]  43%|████▎     | 13/30 [12:33<14:57, 52.81s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 13,   L1 = 0.6848779164531782
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  43%|████▎     | 13/30 [13:26<14:57, 52.81s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+840s alloc=0.00G
+[SWaT_canon:TranAD]  47%|████▋     | 14/30 [13:26<14:10, 53.14s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 14,   L1 = 0.6843595196266716
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  47%|████▋     | 14/30 [14:21<14:10, 53.14s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+900s alloc=0.00G
+[SWaT_canon:TranAD]  50%|█████     | 15/30 [14:21<13:24, 53.60s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 15,   L1 = 0.683980917303758
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  50%|█████     | 15/30 [15:14<13:24, 53.60s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+960s alloc=0.00G
+[SWaT_canon:TranAD]  53%|█████▎    | 16/30 [15:14<12:28, 53.49s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 16,   L1 = 0.6837737679309623
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  53%|█████▎    | 16/30 [16:07<12:28, 53.49s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+1020s alloc=0.00G
+[SWaT_canon:TranAD]  57%|█████▋    | 17/30 [16:07<11:31, 53.18s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 17,   L1 = 0.683325123482098
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  57%|█████▋    | 17/30 [17:00<11:31, 53.18s/it]
+[SWaT_canon:TranAD]  60%|██████    | 18/30 [17:00<10:37, 53.10s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 18,   L1 = 0.6829804281376148
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  60%|██████    | 18/30 [17:53<10:37, 53.10s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+1080s alloc=0.00G
+[SWaT_canon:TranAD]  63%|██████▎   | 19/30 [17:53<09:43, 53.05s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 19,   L1 = 0.6827334736854456
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  63%|██████▎   | 19/30 [18:46<09:43, 53.05s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+1140s alloc=0.00G
+[SWaT_canon:TranAD]  67%|██████▋   | 20/30 [18:46<08:50, 53.08s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 20,   L1 = 0.682624732398493
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  67%|██████▋   | 20/30 [19:40<08:50, 53.08s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+1200s alloc=0.00G
+[SWaT_canon:TranAD]  70%|███████   | 21/30 [19:40<07:59, 53.31s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 21,   L1 = 0.6823968212918261
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  70%|███████   | 21/30 [20:35<07:59, 53.31s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+1260s alloc=0.00G
+[SWaT_canon:TranAD]  73%|███████▎  | 22/30 [20:35<07:11, 53.92s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 22,   L1 = 0.6822796652458342
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  73%|███████▎  | 22/30 [21:30<07:11, 53.92s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+1320s alloc=0.00G
+[SWaT_canon:TranAD]  77%|███████▋  | 23/30 [21:30<06:18, 54.10s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 23,   L1 = 0.6820663090623396
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  77%|███████▋  | 23/30 [22:24<06:18, 54.10s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+1380s alloc=0.00G
+[SWaT_canon:TranAD]  80%|████████  | 24/30 [22:24<05:24, 54.16s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 24,   L1 = 0.6819048873806572
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  80%|████████  | 24/30 [23:18<05:24, 54.16s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+1440s alloc=0.00G
+[SWaT_canon:TranAD]  83%|████████▎ | 25/30 [23:18<04:30, 54.04s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 25,   L1 = 0.6816902580230783
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  83%|████████▎ | 25/30 [24:11<04:30, 54.04s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+1500s alloc=0.00G
+[SWaT_canon:TranAD]  87%|████████▋ | 26/30 [24:11<03:35, 53.87s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 26,   L1 = 0.6814199105771557
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  87%|████████▋ | 26/30 [25:05<03:35, 53.87s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+1560s alloc=0.00G
+[SWaT_canon:TranAD]  90%|█████████ | 27/30 [25:05<02:42, 54.04s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 27,   L1 = 0.681602100969736
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  90%|█████████ | 27/30 [26:00<02:42, 54.04s/it]
+[gpu] SWaT_canon:TranAD heartbeat t+1620s alloc=0.00G
+[SWaT_canon:TranAD]  93%|█████████▎| 28/30 [26:00<01:48, 54.13s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 28,   L1 = 0.6812817373711145
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  93%|█████████▎| 28/30 [26:54<01:48, 54.13s/it]
+[SWaT_canon:TranAD]  97%|█████████▋| 29/30 [26:54<00:54, 54.16s/it]
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] Epoch 29,   L1 = 0.6811603618375326
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD]  97%|█████████▋| 29/30 [27:48<00:54, 54.16s/it]
+[SWaT_canon:TranAD] 100%|██████████| 30/30 [27:48<00:00, 53.96s/it]
+[SWaT_canon:TranAD] 100%|██████████| 30/30 [27:48<00:00, 55.60s/it]
+[SWaT_canon:TranAD] [1mTraining time:  1668.0621 s[0m
+[SWaT_canon:TranAD] [95mTesting TranAD on WADI[0m
+[gpu] SWaT_canon:TranAD heartbeat t+1680s alloc=0.00G
+[SWaT_canon:TranAD] /root/TranAD/src/spot.py:329: RuntimeWarning: overflow encountered in square
+[SWaT_canon:TranAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[SWaT_canon:TranAD] /root/TranAD/src/spot.py:329: RuntimeWarning: overflow encountered in square
+[SWaT_canon:TranAD]   jac_vs = (1 / t) * (-vs + np.mean(1 / s ** 2))
+[SWaT_canon:TranAD]           f1  precision    recall  ...      FN   ROC/AUC     threshold
+[SWaT_canon:TranAD] 0   0.015936   0.814815  0.008047  ...  5424.0  0.503897  3.965146e+00
+[SWaT_canon:TranAD] 1   0.000000   0.000000  0.000000  ...  5468.0  0.500000  1.538286e+01
+[SWaT_canon:TranAD] 2   0.811482   0.964727  0.700256  ...  1639.0  0.848357  5.042270e+01
+[SWaT_canon:TranAD] 3   0.000000   0.000000  0.000000  ...  5468.0  0.499747  3.053211e+00
+[SWaT_canon:TranAD] 4   0.109787   0.978462  0.058157  ...  5150.0  0.528990  3.148876e+01
+[SWaT_canon:TranAD] 5   0.144691   0.215162  0.108998  ...  4872.0  0.526997  5.273654e+00
+[SWaT_canon:TranAD] 6   0.007287   0.952380  0.003658  ...  5448.0  0.501816  1.384919e+01
+[SWaT_canon:TranAD] 7   0.000000   0.000000  0.000000  ...  5468.0  0.500000  2.090944e+01
+[SWaT_canon:TranAD] 8   0.000000   0.000000  0.000000  ...  5468.0  0.500000  4.394276e+19
+[SWaT_canon:TranAD] 9   0.812250   0.966204  0.700622  ...  1637.0  0.848616  5.668310e+01
+[SWaT_canon:TranAD] 10  0.076735   0.756849  0.040417  ...  5247.0  0.519310  3.578963e+00
+[SWaT_canon:TranAD] 11  0.054927   0.554386  0.028895  ...  5310.0  0.512841  9.051868e-05
+[SWaT_canon:TranAD] 12  0.018820   0.896552  0.009510  ...  5416.0  0.504679  2.992526e+00
+[SWaT_canon:TranAD] 13  0.076483   0.710611  0.040417  ...  5247.0  0.519070  2.395141e-05
+[SWaT_canon:TranAD] 14  0.011636   1.000000  0.005852  ...  5436.0  0.502926  2.473366e+00
+[SWaT_canon:TranAD] 15  0.076285   0.677914  0.040417  ...  5247.0  0.518880  1.806109e-05
+[SWaT_canon:TranAD] 16  0.000000   0.000000  0.000000  ...  5468.0  0.500000  1.965271e+02
+[SWaT_canon:TranAD] 17  0.813536   0.995500  0.687820  ...  1707.0  0.843695  5.117425e+00
+[SWaT_canon:TranAD] 18  0.000000   0.000000  0.000000  ...  5468.0  0.500000  7.051553e+01
+[SWaT_canon:TranAD] 19  0.169665   0.750359  0.095647  ...  4945.0  0.545623  6.079925e+01
+[SWaT_canon:TranAD] 20  0.025811   0.648649  0.013168  ...  5396.0  0.506090  1.912984e+01
+[SWaT_canon:TranAD] 21  0.251419   0.787295  0.149598  ...  4650.0  0.572003  8.647539e+01
+[SWaT_canon:TranAD] 22  0.000000   0.000000  0.000000  ...  5468.0  0.500000  2.681971e+01
+[SWaT_canon:TranAD] 23  0.000000   0.000000  0.000000  ...  5468.0  0.500000  1.818373e+03
+[SWaT_canon:TranAD] 24  0.025411   0.591667  0.012985  ...  5397.0  0.505872  4.880434e+00
+[SWaT_canon:TranAD] 25  0.000000   0.000000  0.000000  ...  5468.0  0.500000  7.461674e+00
+[SWaT_canon:TranAD] 26  0.808648   0.989674  0.683614  ...  1730.0  0.841314  1.448299e+01
+[SWaT_canon:TranAD] 27  0.809627   0.994935  0.682516  ...  1736.0  0.841018  2.418970e+01
+[SWaT_canon:TranAD] 28  0.000000   0.000000  0.000000  ...  5468.0  0.500000  6.657427e+01
+[SWaT_canon:TranAD] 29  0.066701   0.949749  0.034565  ...  5279.0  0.517156  6.732126e-06
+[SWaT_canon:TranAD] 30  0.801615   0.997821  0.669898  ...  1805.0  0.834848  2.705773e+01
+[SWaT_canon:TranAD] 31  0.000000   0.000000  0.000000  ...  5468.0  0.499924  7.481250e+01
+[SWaT_canon:TranAD] 32  0.091416   0.992424  0.047915  ...  5206.0  0.523932  2.629201e-05
+[SWaT_canon:TranAD] 33  0.810970   0.996270  0.683797  ...  1729.0  0.841721  2.672813e+01
+[SWaT_canon:TranAD] 34  0.000000   0.000000  0.000000  ...  5468.0  0.500000  9.995683e+01
+[SWaT_canon:TranAD] 35  0.810138   0.994149  0.683614  ...  1730.0  0.841529  1.259792e+01
+[SWaT_canon:TranAD] 36  0.024359   0.350254  0.012619  ...  5399.0  0.504690  9.477921e+00
+[SWaT_canon:TranAD] 37  0.014151   0.886363  0.007132  ...  5429.0  0.503503  3.712461e+02
+[SWaT_canon:TranAD] 38  0.791965   0.997777  0.656547  ...  1878.0  0.828172  2.794782e+02
+[SWaT_canon:TranAD] 39  0.792665   1.000000  0.656547  ...  1878.0  0.828274  2.642149e+02
+[SWaT_canon:TranAD] 40  0.791965   0.997777  0.656547  ...  1878.0  0.828172  2.765882e+02
+[SWaT_canon:TranAD] 41  0.816256   0.994482  0.692209  ...  1683.0  0.845839  2.407687e+01
+[SWaT_canon:TranAD] 42  0.810970   0.996270  0.683797  ...  1729.0  0.841721  2.574600e+01
+[SWaT_canon:TranAD] 43  0.028782   0.879121  0.014631  ...  5388.0  0.507176  3.381343e-05
+[SWaT_canon:TranAD] 44  0.000000   0.000000  0.000000  ...  5468.0  0.500000  2.739641e+02
+[SWaT_canon:TranAD] 45  0.000000   0.000000  0.000000  ...  5468.0  0.500000  1.267230e+02
+[SWaT_canon:TranAD] 46  0.000000   0.000000  0.000000  ...  5468.0  0.500000  2.672957e+02
+[SWaT_canon:TranAD] 47  0.129349   0.900709  0.069678  ...  5087.0  0.534308  1.057097e+02
+[SWaT_canon:TranAD] 48  0.007119   0.133333  0.003658  ...  5448.0  0.500184  1.861613e-05
+[SWaT_canon:TranAD] 49  0.091733   0.988722  0.048098  ...  5205.0  0.524011  9.685016e+01
+[SWaT_canon:TranAD] 50  0.066772   0.979275  0.034565  ...  5279.0  0.517232  1.762420e-05
+[SWaT_canon:TranAD] 
+[SWaT_canon:TranAD] [51 rows x 9 columns]
+[SWaT_canon:TranAD] {'FN': 5118,
+[SWaT_canon:TranAD]  'FP': 13,
+[SWaT_canon:TranAD]  'Hit@100%': 1.0,
+[SWaT_canon:TranAD]  'Hit@150%': 1.0,
+[SWaT_canon:TranAD]  'NDCG@100%': 1.0,
+[SWaT_canon:TranAD]  'NDCG@150%': 1.0,
+[SWaT_canon:TranAD]  'ROC/AUC': 0.531839932134611,
+[SWaT_canon:TranAD]  'TN': 39511,
+[SWaT_canon:TranAD]  'TP': 350,
+[SWaT_canon:TranAD]  'f1': 0.12004685124769537,
+[SWaT_canon:TranAD]  'precision': 0.9641873012620579,
+[SWaT_canon:TranAD]  'recall': 0.06400877822968402,
+[SWaT_canon:TranAD]  'threshold': 64.28955232404198}
+[sota] DONE TranAD_SWaT_canon_s3 rc=0 1715.1s raw_ALL={'AUROC': 0.901, 'bestF1': 0.803, 'F1_at5pctFPR': 0.714, 'TPR_at5pctFPR': 0.756} raw_HARD={'AUROC': 0.682, 'bestF1': 0.217, 'F1_at5pctFPR': 0.181, 'TPR_at5pctFPR': 0.216}
+
+==================== SUMMARY ====================
+SWaT_canon TranAD  s0 rc=0 1692.1s | ALL auroc=0.9 f1=0.803 | HARD auroc=0.679 f1=0.212 | n_eh=[3775, 1693]
+SWaT_canon TranAD  s1 rc=0 1381.4s | ALL auroc=0.899 f1=0.803 | HARD auroc=0.678 f1=0.21 | n_eh=[3775, 1693]
+SWaT_canon TranAD  s2 rc=0 1608.1s | ALL auroc=0.901 f1=0.803 | HARD auroc=0.684 f1=0.228 | n_eh=[3775, 1693]
+SWaT_canon TranAD  s3 rc=0 1715.1s | ALL auroc=0.901 f1=0.803 | HARD auroc=0.682 f1=0.217 | n_eh=[3775, 1693]
+SWaT_canon TranAD  s4 rc=0 1422.9s | ALL auroc=0.9 f1=0.803 | HARD auroc=0.681 f1=0.209 | n_eh=[3775, 1693]
+SWaT_canon USAD    s0 rc=0 199.4s | ALL auroc=0.899 f1=0.803 | HARD auroc=0.676 f1=0.196 | n_eh=[3775, 1693]
+SWaT_canon USAD    s1 rc=0 271.4s | ALL auroc=0.897 f1=0.803 | HARD auroc=0.671 f1=0.198 | n_eh=[3775, 1693]
+SWaT_canon USAD    s2 rc=0 282.7s | ALL auroc=0.898 f1=0.803 | HARD auroc=0.674 f1=0.196 | n_eh=[3775, 1693]
+SWaT_canon USAD    s3 rc=0 268.1s | ALL auroc=0.898 f1=0.804 | HARD auroc=0.673 f1=0.196 | n_eh=[3775, 1693]
+SWaT_canon USAD    s4 rc=0 264.8s | ALL auroc=0.898 f1=0.803 | HARD auroc=0.673 f1=0.196 | n_eh=[3775, 1693]
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/apersteiny/main/ap-tZwChCYqb8D9XGpRO0qfu7

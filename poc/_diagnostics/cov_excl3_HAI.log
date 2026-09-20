@@ -1,0 +1,11 @@
+per-K train-empty mass {16: 0.05082233359215077, 32: 0.24401778781675726, 64: 0.3221571257146891} intersection mass 0.05082233359215077 n 720
+blocks {'n': 720, 'n_runs': 9, 'longest_run': 645, 'n_runs_ge30': 2, 'frac_in_runs_ge30': 0.9736111111111111, 'frac_singletons': 0.002777777777777778, 'runs_ge30': [(6361, 6416, 56), (6436, 7080, 645)]}
+ref block frac in set 0.9984520123839009 share of set in ref block 0.8958333333333334
+  LatAD   AUROC 0.9344 -> 0.9500 | diff 0.8136 -> 0.8409 | FPR@fixed1% 0.0100 -> 0.0033 | FPR@fixed5% 0.0500 -> 0.0038 | TPR@1%own 0.623 -> 0.787 | TPR@5%own 0.650 -> 0.891 | flagged-in-block {'fpr1': 0.6830985915492958, 'fpr5': 0.9280677009873061}
+  maxz    AUROC 0.8059 -> 0.8137 | diff 0.3401 -> 0.3578 | FPR@fixed1% 0.0080 -> 0.0085 | FPR@fixed5% 0.0414 -> 0.0435 | TPR@1%own 0.534 -> 0.534 | TPR@5%own 0.612 -> 0.612 | flagged-in-block {'fpr1': 0.0, 'fpr5': 0.0, 'train99': 0.17642604745078244}
+  IF      AUROC 0.8485 -> 0.8698 | diff 0.6300 -> 0.6577 | FPR@fixed1% 0.0100 -> 0.0045 | FPR@fixed5% 0.0500 -> 0.0216 | TPR@1%own 0.308 -> 0.400 | TPR@5%own 0.475 -> 0.587 | flagged-in-block {'fpr1': 0.5704225352112676, 'fpr5': 0.5895627644569816}
+  AE      AUROC 0.9231 -> 0.9364 | diff 0.7575 -> 0.7814 | FPR@fixed1% 0.0100 -> 0.0045 | FPR@fixed5% 0.0500 -> 0.0047 | TPR@1%own 0.656 -> 0.790 | TPR@5%own 0.678 -> 0.851 | flagged-in-block {'fpr1': 0.5774647887323944, 'fpr5': 0.9111424541607899}
+  USAD    AUROC 0.8487 -> 0.8582 | diff 0.4967 -> 0.5211 | FPR@fixed1% 0.0100 -> 0.0105 | FPR@fixed5% 0.0500 -> 0.0527 | TPR@1%own 0.583 -> 0.583 | TPR@5%own 0.607 -> 0.606 | flagged-in-block {'fpr1': 0.0, 'fpr5': 0.0}
+  TranAD  AUROC 0.8340 -> 0.8435 | diff 0.4450 -> 0.4672 | FPR@fixed1% 0.0100 -> 0.0105 | FPR@fixed5% 0.0500 -> 0.0527 | TPR@1%own 0.569 -> 0.569 | TPR@5%own 0.590 -> 0.589 | flagged-in-block {'fpr1': 0.0, 'fpr5': 0.0}
+exclusion [(6361, 6416, 56), (6436, 7080, 645)] 701 0.049481188677913464
+saved

@@ -1,0 +1,3 @@
+{'dataset': 'HAI', 'seed': 0, 'ratio_plain': 4.61, 'ratio_permode': 1.5, 'permode_gate_on': False, 'plain_gate_on_at_1p5': False, 'diff43_base': 0.771, 'diff43_plain': 0.687, 'diff43_base_plus_plain': 0.659, 'diff43_base_plus_permode_auto': 0.771, 'diffNoLeak_base': 0.771, 'diffNoLeak_plain': 0.687, 'diffNoLeak_base_plus_plain': 0.659, 'n_diff_noleak': 167, 'secs': 67}
+{'dataset': 'HAI', 'seed': 1, 'ratio_plain': 4.41, 'ratio_permode': 1.26, 'permode_gate_on': True, 'plain_gate_on_at_1p5': False, 'diff43_base': 0.801, 'diff43_plain': 0.679, 'diff43_base_plus_plain': 0.666, 'diff43_base_plus_permode_auto': 0.819, 'diffNoLeak_base': 0.801, 'diffNoLeak_plain': 0.679, 'diffNoLeak_base_plus_plain': 0.666, 'n_diff_noleak': 167, 'secs': 55}
+DONE

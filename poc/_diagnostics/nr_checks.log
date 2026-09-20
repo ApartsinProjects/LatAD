@@ -1,0 +1,31 @@
+HAI: 38 attack runs; attack-run bounds near block: [(6321, 6334), (6417, 6435)]
+
+[train99_mix] NEW-NORMAL cluster(s) [8]: 716 windows, blocks=[(3641, 3641), (3822, 3825), (3997, 4001), (4027, 4030), (4104, 4106), (4197, 4198), (6364, 6419), (6431, 7078)]
+  lost anomalies (8): t=6417 run(6417, 6435) len19 pos0; t=6418 run(6417, 6435) len19 pos1; t=6419 run(6417, 6435) len19 pos2; t=6431 run(6417, 6435) len19 pos14; t=6432 run(6417, 6435) len19 pos15; t=6433 run(6417, 6435) len19 pos16; t=6434 run(6417, 6435) len19 pos17; t=6435 run(6417, 6435) len19 pos18
+  lost at attack-run boundary (first/last window): 2/8; lost inside 6436..7081: 0
+  non-block members: 74 (y1=8); blocks=[(3641, 3641), (3822, 3825), (3997, 4001), (4027, 4030), (4104, 4106), (4197, 4198), (6364, 6419), (6431, 6435)]
+  absorption (maha<=cluster p99=9.64): 722 test windows total; outside cluster 14 (y1=1 of 652 anomalies; y0=13)
+  absorbed outside-cluster anomalies flagged at this op: n/a(mix score)
+
+[latad_fpr5] NEW-NORMAL cluster(s) [8]: 674 windows, blocks=[(661, 663), (669, 669), (4197, 4198), (6363, 6409), (6414, 6414), (6419, 6419), (6429, 7078), (8842, 8842), (8963, 8963), (8982, 8982), (9185, 9185), (9275, 9275), (12041, 12041)]
+  lost anomalies (13): t=661 run(659, 668) len10 pos2; t=663 run(659, 668) len10 pos4; t=6419 run(6417, 6435) len19 pos2; t=6429 run(6417, 6435) len19 pos12; t=6430 run(6417, 6435) len19 pos13; t=6431 run(6417, 6435) len19 pos14; t=6433 run(6417, 6435) len19 pos16; t=6434 run(6417, 6435) len19 pos17; t=6435 run(6417, 6435) len19 pos18; t=8963 run(8961, 8981) len21 pos2; t=9185 run(9181, 9199) len19 pos4; t=9275 run(9275, 9294) len20 pos0; t=12041 run(12039, 12049) len11 pos2
+  lost at attack-run boundary (first/last window): 2/13; lost inside 6436..7081: 0
+  non-block members: 57 (y1=13); blocks=[(661, 663), (669, 669), (4197, 4198), (6363, 6409), (6414, 6414), (6419, 6419), (6429, 6435), (8842, 8842), (8963, 8963), (8982, 8982), (9185, 9185), (9275, 9275), (12041, 12041)]
+  absorption (maha<=cluster p99=11.50): 727 test windows total; outside cluster 60 (y1=5 of 652 anomalies; y0=55)
+  absorbed outside-cluster anomalies flagged at this op: 0
+
+recurrent candidate (cluster 10, regime 19): n=186 y1=1 blocks=60 block lens=[20, 18, 13, 13, 12, 9, 8, 8, 8, 7, 6, 4]
+  inter-block start gaps: median=14 windows, IQR=8..22; regime-19 train share=0.0490
+  FPR train99: base 0.0815 -> fold block 0.0316 -> also fold regime-19 cluster 0.0185; TPR 0.845/0.833/0.831
+  residual y0 flags after fold: 447 in 147 blocks; longest 30; blocks>=10: 8; in regime-19 cluster 185; in noise 188
+
+rule sensitivity (clusters whose verdict changes vs base rule RUN>=30, COH<=2, SPE<=3):
+  (no line printed for a setting = identical verdicts)
+
+single-criterion label check over all non-noise clusters (n>=20):
+           SPE<=3: passes 10 clusters (mean y1 0.44), fails 24 (mean y1 0.98)
+          run>=30: passes 8 clusters (mean y1 0.75), fails 26 (mean y1 0.84)
+           coh<=2: passes 16 clusters (mean y1 0.76), fails 18 (mean y1 0.88)
+   SPE<=3&run>=30: passes 2 clusters (mean y1 0.02), fails 32 (mean y1 0.87)
+
+checks appended to nr_discovery.json

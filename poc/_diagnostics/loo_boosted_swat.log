@@ -1,0 +1,41 @@
+subsets: diff 85 dhard 59  I1=5.9e-08
+boosted: diff 0.881 dhard 0.830 all 0.952 FP@cvp99 0.006  (280s)
+LatAD_global: diff 0.804 dhard 0.728
+HCcoh+LatAD: diff 0.837 dhard 0.773
+null+HC: diff 0.811 dhard 0.735
+cohmax+LatAD: diff 0.829 dhard 0.769
+  boot boosted - HCcoh+LatAD [Difficult]: diff 0.044 CI [-0.017, 0.096] P(<=0)=0.074 eps 23
+  boot boosted - HCcoh+LatAD [DoubleHard]: diff 0.057 CI [-0.035, 0.132] P(<=0)=0.087 eps 18
+  boot boosted - null+HC [Difficult]: diff 0.069 CI [0.012, 0.12] P(<=0)=0.0105 eps 23
+  boot boosted - null+HC [DoubleHard]: diff 0.095 CI [0.011, 0.163] P(<=0)=0.0165 eps 18
+  boot boosted - LatAD_global [Difficult]: diff 0.077 CI [0.012, 0.13] P(<=0)=0.011 eps 23
+  boot boosted - LatAD_global [DoubleHard]: diff 0.102 CI [0.005, 0.176] P(<=0)=0.019 eps 18
+  boot HCcoh+LatAD - boosted [DoubleHard]: diff -0.057 CI [-0.132, 0.035] P(<=0)=0.913
+  boot null+HC - boosted [DoubleHard]: diff -0.095 CI [-0.163, -0.011] P(<=0)=0.9835
+PIT502: share diff 0.02 normal 0.06; drop-target diff 0.876; drop-all diff 0.870; |z| alone diff 0.620; self-resid alone diff 0.686
+  boot boosted(no PIT502) - HCcoh+LatAD [Difficult]: diff 0.033 CI [-0.028, 0.082] P(<=0)=0.144
+  boot boosted(no PIT502) - HCcoh+LatAD [DoubleHard]: diff 0.042 CI [-0.051, 0.112] P(<=0)=0.152
+   {'start_win': 4, 'start_row': 120, 'n_ep': 8, 'n_diff': 5, 'n_dhard': 2, 'boosted_pct': 0.998, 'headline_pct': 0.912, 'PIT502_pct': 0.952, 'PIT502_share': 0.02, 'PIT502_z': 2.38, 'top1_channels': ['LIT101', 'PIT502']}
+   {'start_win': 15, 'start_row': 450, 'n_ep': 3, 'n_diff': 3, 'n_dhard': 3, 'boosted_pct': 0.988, 'headline_pct': 0.982, 'PIT502_pct': 0.999, 'PIT502_share': 0.7, 'PIT502_z': 2.49, 'top1_channels': ['PIT502']}
+   {'start_win': 20, 'start_row': 600, 'n_ep': 8, 'n_diff': 6, 'n_dhard': 5, 'boosted_pct': 0.955, 'headline_pct': 0.694, 'PIT502_pct': 0.972, 'PIT502_share': 0.34, 'PIT502_z': 2.46, 'top1_channels': ['LIT301', 'PIT502']}
+   {'start_win': 37, 'start_row': 1110, 'n_ep': 5, 'n_diff': 3, 'n_dhard': 0, 'boosted_pct': 0.998, 'headline_pct': 0.998, 'PIT502_pct': 0.991, 'PIT502_share': 0.04, 'PIT502_z': 2.52, 'top1_channels': ['AIT503', 'DPIT301']}
+   {'start_win': 50, 'start_row': 1500, 'n_ep': 4, 'n_diff': 1, 'n_dhard': 0, 'boosted_pct': 0.998, 'headline_pct': 0.998, 'PIT502_pct': 0.986, 'PIT502_share': 0.02, 'PIT502_z': 1.74, 'top1_channels': ['FIT401']}
+   {'start_win': 245, 'start_row': 7350, 'n_ep': 4, 'n_diff': 4, 'n_dhard': 4, 'boosted_pct': 0.285, 'headline_pct': 0.018, 'PIT502_pct': 0.693, 'PIT502_share': 0.56, 'PIT502_z': -1.14, 'top1_channels': ['AIT503', 'PIT502']}
+   {'start_win': 301, 'start_row': 9030, 'n_ep': 2, 'n_diff': 2, 'n_dhard': 2, 'boosted_pct': 0.448, 'headline_pct': 0.412, 'PIT502_pct': 0.579, 'PIT502_share': 0.42, 'PIT502_z': 1.4, 'top1_channels': ['LIT401', 'PIT502']}
+   {'start_win': 306, 'start_row': 9180, 'n_ep': 3, 'n_diff': 3, 'n_dhard': 3, 'boosted_pct': 0.553, 'headline_pct': 0.81, 'PIT502_pct': 0.641, 'PIT502_share': 0.1, 'PIT502_z': 1.7, 'top1_channels': ['AIT503', 'LIT401', 'PIT502']}
+   {'start_win': 310, 'start_row': 9300, 'n_ep': 3, 'n_diff': 3, 'n_dhard': 3, 'boosted_pct': 0.708, 'headline_pct': 0.982, 'PIT502_pct': 0.49, 'PIT502_share': 0.01, 'PIT502_z': 1.6, 'top1_channels': ['LIT101', 'LIT301']}
+   {'start_win': 342, 'start_row': 10260, 'n_ep': 4, 'n_diff': 3, 'n_dhard': 1, 'boosted_pct': 0.983, 'headline_pct': 0.961, 'PIT502_pct': 0.753, 'PIT502_share': 0.03, 'PIT502_z': 1.4, 'top1_channels': ['FIT101', 'FIT601', 'LIT401']}
+   {'start_win': 385, 'start_row': 11550, 'n_ep': 8, 'n_diff': 5, 'n_dhard': 5, 'boosted_pct': 0.967, 'headline_pct': 0.933, 'PIT502_pct': 0.555, 'PIT502_share': 0.01, 'PIT502_z': 1.88, 'top1_channels': ['AIT503', 'LIT101']}
+   {'start_win': 442, 'start_row': 13260, 'n_ep': 3, 'n_diff': 1, 'n_dhard': 0, 'boosted_pct': 0.999, 'headline_pct': 0.998, 'PIT502_pct': 0.991, 'PIT502_share': 0.01, 'PIT502_z': -2.07, 'top1_channels': ['FIT401']}
+   {'start_win': 475, 'start_row': 14250, 'n_ep': 4, 'n_diff': 4, 'n_dhard': 0, 'boosted_pct': 0.998, 'headline_pct': 0.998, 'PIT502_pct': 0.823, 'PIT502_share': 0.0, 'PIT502_z': -1.52, 'top1_channels': ['DPIT301']}
+   {'start_win': 573, 'start_row': 17190, 'n_ep': 6, 'n_diff': 4, 'n_dhard': 4, 'boosted_pct': 0.958, 'headline_pct': 0.995, 'PIT502_pct': 0.879, 'PIT502_share': 0.06, 'PIT502_z': 1.23, 'top1_channels': ['AIT201', 'LIT101', 'LIT401']}
+   {'start_win': 758, 'start_row': 22740, 'n_ep': 121, 'n_diff': 12, 'n_dhard': 9, 'boosted_pct': 0.979, 'headline_pct': 0.987, 'PIT502_pct': 0.607, 'PIT502_share': 0.0, 'PIT502_z': -1.45, 'top1_channels': ['LIT101', 'LIT301', 'LIT401']}
+   {'start_win': 929, 'start_row': 27870, 'n_ep': 2, 'n_diff': 2, 'n_dhard': 2, 'boosted_pct': 0.787, 'headline_pct': 0.63, 'PIT502_pct': 0.161, 'PIT502_share': 0.0, 'PIT502_z': -0.63, 'top1_channels': ['AIT501', 'LIT101']}
+   {'start_win': 1007, 'start_row': 30210, 'n_ep': 3, 'n_diff': 3, 'n_dhard': 3, 'boosted_pct': 0.941, 'headline_pct': 0.987, 'PIT502_pct': 0.146, 'PIT502_share': 0.0, 'PIT502_z': -1.08, 'top1_channels': ['AIT503', 'LIT401']}
+   {'start_win': 1158, 'start_row': 34740, 'n_ep': 3, 'n_diff': 3, 'n_dhard': 3, 'boosted_pct': 0.971, 'headline_pct': 0.988, 'PIT502_pct': 0.734, 'PIT502_share': 0.01, 'PIT502_z': -0.81, 'top1_channels': ['LIT301']}
+   {'start_win': 1203, 'start_row': 36090, 'n_ep': 3, 'n_diff': 3, 'n_dhard': 3, 'boosted_pct': 0.987, 'headline_pct': 0.87, 'PIT502_pct': 0.937, 'PIT502_share': 0.06, 'PIT502_z': -0.63, 'top1_channels': ['LIT101', 'LIT301']}
+   {'start_win': 1237, 'start_row': 37110, 'n_ep': 5, 'n_diff': 3, 'n_dhard': 2, 'boosted_pct': 0.978, 'headline_pct': 0.953, 'PIT502_pct': 0.479, 'PIT502_share': 0.0, 'PIT502_z': -0.66, 'top1_channels': ['AIT503', 'LIT301']}
+   {'start_win': 1298, 'start_row': 38940, 'n_ep': 3, 'n_diff': 3, 'n_dhard': 2, 'boosted_pct': 0.99, 'headline_pct': 0.982, 'PIT502_pct': 0.754, 'PIT502_share': 0.0, 'PIT502_z': -1.24, 'top1_channels': ['LIT101']}
+   {'start_win': 1454, 'start_row': 43620, 'n_ep': 9, 'n_diff': 3, 'n_dhard': 0, 'boosted_pct': 0.998, 'headline_pct': 0.998, 'PIT502_pct': 0.569, 'PIT502_share': 0.0, 'PIT502_z': -0.95, 'top1_channels': ['AIT501', 'FIT401']}
+   {'start_win': 1477, 'start_row': 44310, 'n_ep': 7, 'n_diff': 6, 'n_dhard': 3, 'boosted_pct': 0.998, 'headline_pct': 0.992, 'PIT502_pct': 0.681, 'PIT502_share': 0.0, 'PIT502_z': -0.93, 'top1_channels': ['FIT601', 'LIT301']}
+saved

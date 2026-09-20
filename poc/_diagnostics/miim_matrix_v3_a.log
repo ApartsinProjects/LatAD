@@ -1,0 +1,77 @@
+
+===== SKAB =====
+ n_train=400 n_test=631 anomalies=254 D_raw=48 D_eff=48 channels=8
+ [A1/A2] BIC sweep
+   GMM K=  1 BIC=4.761e+04 ll_fit=-67.205 ll_ho_med=-56.122 ll_ho_mean=-92.784 (1.6s)
+   GMM K=  2 BIC=2.215e+04 ll_fit=-30.022 ll_ho_med=-12.528 ll_ho_mean=-68.940 (0.0s)
+   GMM K=  4 BIC=1.583e+04 ll_fit=-19.371 ll_ho_med=-12.528 ll_ho_mean=-64.582 (0.0s)
+   GMM K=  8 BIC=-1365 ll_fit=8.436 ll_ho_med=12.291 ll_ho_mean=-41.029 (0.0s)
+   GMM K= 16 BIC=-185.8 ll_fit=13.245 ll_ho_med=14.690 ll_ho_mean=-37.870 (0.0s)
+   GMM K= 32 BIC=4967 ll_fit=18.872 ll_ho_med=17.050 ll_ho_mean=-248.672 (0.0s)
+   GMM K= 64 BIC=1.906e+04 ll_fit=24.712 ll_ho_med=18.415 ll_ho_mean=-241.590 (0.1s)
+ [modes] KMeans K=8
+ [A4] within-mode non-Gaussianity
+   med_kurt=0.68 ll_gain_ho=+7.502 AUROC 0.620->0.615
+ [A5] PCA
+   n90=12 n95=16 PR=5.2 of D_eff=48 (channels=8)
+ [A6] occupancy
+   slope=-2.40 max/min=90.0 gini=0.59 top1=0.45
+ [A7] silhouette
+   {'K_mode': 8, 'sil_feature_kmeans': 0.2652717418084008, 'vade_K': 16, 'vade_latent': 6, 'vade_modes_used': 15, 'vade_frac_maxresp_lt_0.5_train': 0.525, 'sil_feature_vadeLabels': 0.12323290884207197, 'sil_latent_vade': 0.3988942518189655, 'sil_latent_kmeansLabels': 0.36058404583978, 'test_anom_frac_between_modes': 0.5, 'test_normal_frac_between_modes': 0.5013262599469496, 'latent_source': 'fresh VaDE (K=16,latent=6,seed0,epochs40)'}
+ [A8] correlation communities
+   E3-HAC nested=6 maximal=1 | thr0.7cc=1 thr0.5 comps=1 greedy=2 Q=0.06 discrete=1/8 const=0
+ [A9] trivial rule
+   easy_frac=0.27 AUROC all/easy/diff = 0.554/1.000/0.388
+[SKAB] saved (7.7s)
+
+===== SWaT =====
+ n_train=3623 n_test=1087 anomalies=182 D_raw=306 D_eff=255 channels=51
+ [A1/A2] BIC sweep
+   GMM K=  1 BIC=1.906e+06 ll_fit=-325.263 ll_ho_med=-266.782 ll_ho_mean=-557.790 (0.0s)
+   GMM K=  2 BIC=1.41e+06 ll_fit=-239.846 ll_ho_med=-230.915 ll_ho_mean=-505.371 (0.1s)
+   GMM K=  4 BIC=3.35e+05 ll_fit=-54.517 ll_ho_med=-74.577 ll_ho_mean=-231.309 (0.5s)
+   GMM K=  8 BIC=1.84e+04 ll_fit=2.431 ll_ho_med=39.383 ll_ho_mean=-260.543 (0.8s)
+   GMM K= 16 BIC=-3.333e+05 ll_fit=68.175 ll_ho_med=95.864 ll_ho_mean=-411.071 (0.6s)
+   GMM K= 32 BIC=-6.61e+05 ll_fit=135.384 ll_ho_med=148.781 ll_ho_mean=-420.976 (1.9s)
+   GMM K= 64 BIC=-8.115e+05 ll_fit=183.449 ll_ho_med=195.279 ll_ho_mean=-679.309 (9.7s)
+   GMM K=128 BIC=-7.752e+05 ll_fit=221.891 ll_ho_med=228.204 ll_ho_mean=-907.519 (15.0s)
+ [modes] KMeans K=64
+ [A4] within-mode non-Gaussianity
+   med_kurt=0.38 ll_gain_ho=+3.792 AUROC 0.992->0.993
+ [A5] PCA
+   n90=29 n95=42 PR=14.0 of D_eff=255 (channels=51)
+ [A6] occupancy
+   slope=-1.36 max/min=285.0 gini=0.52 top1=0.08
+ [A7] silhouette
+   {'K_mode': 64, 'sil_feature_kmeans': 0.27413044832195566, 'vade_K': 40, 'vade_latent': 16, 'vade_modes_used': 40, 'sil_latent_vade': 0.5301264524459839, 'sil_latent_kmeansLabels': 0.41949692368507385, 'sil_feature_vadeLabels': 0.2594942396052124, 'vade_frac_maxresp_lt_0.5_train': 0.0, 'latent_source': 'e2_fable_SWaT.npz'}
+ [A8] correlation communities
+   E3-HAC nested=26 maximal=2 | thr0.7cc=5 thr0.5 comps=4 greedy=10 Q=0.59 discrete=7/43 const=8
+ [A9] trivial rule
+   easy_frac=0.79 AUROC all/easy/diff = 0.988/1.000/0.943
+[SWaT] saved (59.1s)
+
+===== WADI =====
+ n_train=2614 n_test=575 anomalies=56 D_raw=738 D_eff=547 channels=123
+ [A1/A2] BIC sweep
+   GMM K=  1 BIC=3.256e+06 ll_fit=-768.037 ll_ho_med=-747.817 ll_ho_mean=-796.224 (0.1s)
+   GMM K=  2 BIC=2.669e+06 ll_fit=-627.278 ll_ho_med=-705.653 ll_ho_mean=-662.349 (0.7s)
+   GMM K=  4 BIC=2.119e+06 ll_fit=-493.277 ll_ho_med=-589.652 ll_ho_mean=-568.830 (0.9s)
+   GMM K=  8 BIC=1.772e+06 ll_fit=-403.229 ll_ho_med=-491.786 ll_ho_mean=-520.276 (2.6s)
+   GMM K= 16 BIC=1.32e+06 ll_fit=-280.384 ll_ho_med=-359.575 ll_ho_mean=-414.977 (2.6s)
+   GMM K= 32 BIC=1.034e+06 ll_fit=-181.070 ll_ho_med=-292.072 ll_ho_mean=-549.831 (7.4s)
+   GMM K= 64 BIC=9.171e+05 ll_fit=-90.010 ll_ho_med=-278.529 ll_ho_mean=-773.847 (15.6s)
+   GMM K=128 BIC=1.009e+06 ll_fit=15.090 ll_ho_med=-249.898 ll_ho_mean=-981.272 (35.4s)
+ [modes] KMeans K=64
+ [A4] within-mode non-Gaussianity
+   med_kurt=2.21 ll_gain_ho=+0.000 AUROC 0.718->0.726
+ [A5] PCA
+   n90=82 n95=119 PR=26.0 of D_eff=547 (channels=123)
+ [A6] occupancy
+   slope=-0.74 max/min=122.0 gini=0.35 top1=0.05
+ [A7] silhouette
+   {'K_mode': 64, 'sil_feature_kmeans': 0.062088809570203865, 'vade_K': 20, 'vade_latent': 10, 'vade_modes_used': 20, 'sil_latent_vade': 0.08875469863414764, 'sil_latent_kmeansLabels': 0.12736009061336517, 'sil_feature_vadeLabels': -0.0061236132882948584, 'vade_frac_maxresp_lt_0.5_train': 0.013006885998469778, 'latent_source': 'e2_fable_WADI.npz'}
+ [A8] correlation communities
+   E3-HAC nested=45 maximal=6 | thr0.7cc=7 thr0.5 comps=2 greedy=21 Q=0.42 discrete=8/93 const=30
+ [A9] trivial rule
+   easy_frac=0.66 AUROC all/easy/diff = 0.558/0.687/0.307
+[WADI] saved (114.4s)

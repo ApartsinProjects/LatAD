@@ -1,0 +1,7 @@
+train floor 0.05 seed 0: score 0.05: rho=0.58 lift1=+0.105 lift2=+0.145 | score 0.02: rho=0.207 lift1=+0.112 lift2=+0.152 | score 0.01: rho=0.052 lift1=+0.112 lift2=+0.150 | score empirical: rho=0.003 lift1=+0.042 lift2=+0.078 (OFF 0.5)
+train floor 0.05 seed 1: score 0.05: rho=0.552 lift1=+0.044 lift2=+0.090 | score 0.02: rho=0.14 lift1=+0.041 lift2=+0.089 | score 0.01: rho=0.06 lift1=+0.039 lift2=+0.096 | score empirical: rho=0.003 lift1=-0.007 lift2=-0.002 (OFF 0.452)
+train floor 0.05 seed 2: score 0.05: rho=0.453 lift1=+0.068 lift2=+0.112 | score 0.02: rho=0.087 lift1=+0.042 lift2=+0.082 | score 0.01: rho=0.025 lift1=+0.036 lift2=+0.073 | score empirical: rho=0.0 lift1=-0.006 lift2=-0.017 (OFF 0.469)
+train floor 0.01 seed 0: score 0.05: rho=0.033 lift1=+0.035 lift2=+0.045 | score 0.02: rho=0.0 lift1=+0.014 lift2=+0.017 | score 0.01: rho=0.0 lift1=-0.021 lift2=-0.040 | score empirical: rho=0.0 lift1=-0.004 lift2=-0.011 (OFF 0.553)
+train floor 0.01 seed 1: score 0.05: rho=0.53 lift1=+0.025 lift2=+0.068 | score 0.02: rho=0.085 lift1=+0.023 lift2=+0.064 | score 0.01: rho=0.007 lift1=+0.019 lift2=+0.065 | score empirical: rho=0.003 lift1=+0.020 lift2=+0.058 (OFF 0.454)
+train floor 0.01 seed 2: score 0.05: rho=0.512 lift1=+0.014 lift2=+0.065 | score 0.02: rho=0.13 lift1=+0.018 lift2=+0.088 | score 0.01: rho=0.043 lift1=+0.022 lift2=+0.095 | score empirical: rho=0.0 lift1=+0.036 lift2=+0.136 (OFF 0.407)
+done

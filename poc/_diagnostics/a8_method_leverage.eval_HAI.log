@@ -1,0 +1,87 @@
+HAI: subsets {'All': 652, 'Easy': 485, 'Difficult': 167, 'DoubleHard': 84}
+  boot knn_lat_k10: {"HCcoh+LatAD+h vs HCcoh+LatAD": {"Difficult": {"diff": -0.002, "diff_ci": [-0.014, 0.007], "p_le_0": 0.658, "n_episodes": 26}, "DoubleHard": {"diff": 0.007, "diff_ci": [-0.007, 0.02], "p_le_0": 0.146, "n_episodes": 19}}, "HCcoh+h vs HC_coh": {"Difficult": {"diff": 0.03, "diff_ci": [-0.002, 0.065], "p_le_0": 0.038, "n_episodes": 26}, "DoubleHard": {"diff": 0.06, "diff_ci": [0.013, 0.108], "p_le_0"
+  boot knn_feat_k10: {"HCcoh+LatAD+h vs HCcoh+LatAD": {"Difficult": {"diff": -0.004, "diff_ci": [-0.013, 0.003], "p_le_0": 0.854, "n_episodes": 26}, "DoubleHard": {"diff": -0.0, "diff_ci": [-0.013, 0.01], "p_le_0": 0.5, "n_episodes": 19}}, "HCcoh+h vs HC_coh": {"Difficult": {"diff": 0.033, "diff_ci": [0.001, 0.064], "p_le_0": 0.02, "n_episodes": 26}, "DoubleHard": {"diff": 0.054, "diff_ci": [0.01, 0.099], "p_le_0": 0.
+  boot knn_pca20_k10: {"HCcoh+LatAD+h vs HCcoh+LatAD": {"Difficult": {"diff": 0.001, "diff_ci": [-0.012, 0.012], "p_le_0": 0.476, "n_episodes": 26}, "DoubleHard": {"diff": 0.01, "diff_ci": [-0.006, 0.025], "p_le_0": 0.106, "n_episodes": 19}}, "HCcoh+h vs HC_coh": {"Difficult": {"diff": 0.037, "diff_ci": [0.001, 0.074], "p_le_0": 0.02, "n_episodes": 26}, "DoubleHard": {"diff": 0.068, "diff_ci": [0.021, 0.116], "p_le_0":
+  boot vade_exp_prev1: {"HCcoh+LatAD+h vs HCcoh+LatAD": {"Difficult": {"diff": -0.007, "diff_ci": [-0.022, 0.009], "p_le_0": 0.802, "n_episodes": 26}, "DoubleHard": {"diff": 0.002, "diff_ci": [-0.018, 0.025], "p_le_0": 0.394, "n_episodes": 19}}, "HCcoh+h vs HC_coh": {"Difficult": {"diff": -0.012, "diff_ci": [-0.047, 0.025], "p_le_0": 0.662, "n_episodes": 26}, "DoubleHard": {"diff": 0.012, "diff_ci": [-0.038, 0.073], "p_
+  boot vade_exp_selfgate: {"HCcoh+LatAD+h vs HCcoh+LatAD": {"Difficult": {"diff": 0.012, "diff_ci": [-0.004, 0.026], "p_le_0": 0.082, "n_episodes": 26}, "DoubleHard": {"diff": 0.024, "diff_ci": [0.007, 0.042], "p_le_0": 0.004, "n_episodes": 19}}, "HCcoh+h vs HC_coh": {"Difficult": {"diff": 0.05, "diff_ci": [0.012, 0.085], "p_le_0": 0.002, "n_episodes": 26}, "DoubleHard": {"diff": 0.082, "diff_ci": [0.037, 0.126], "p_le_0":
+  boot vade_trans_prev1: {"HCcoh+LatAD+h vs HCcoh+LatAD": {"Difficult": {"diff": 0.002, "diff_ci": [-0.008, 0.01], "p_le_0": 0.382, "n_episodes": 26}, "DoubleHard": {"diff": 0.011, "diff_ci": [0.0, 0.024], "p_le_0": 0.02, "n_episodes": 19}}, "HCcoh+h vs HC_coh": {"Difficult": {"diff": 0.035, "diff_ci": [0.002, 0.065], "p_le_0": 0.014, "n_episodes": 26}, "DoubleHard": {"diff": 0.065, "diff_ci": [0.023, 0.107], "p_le_0": 0.
+  boot obs_exp_prev1: {"HCcoh+LatAD+h vs HCcoh+LatAD": {"Difficult": {"diff": -0.02, "diff_ci": [-0.032, -0.009], "p_le_0": 1.0, "n_episodes": 26}, "DoubleHard": {"diff": -0.015, "diff_ci": [-0.026, 0.001], "p_le_0": 0.97, "n_episodes": 19}}, "HCcoh+h vs HC_coh": {"Difficult": {"diff": -0.022, "diff_ci": [-0.044, -0.002], "p_le_0": 0.984, "n_episodes": 26}, "DoubleHard": {"diff": -0.004, "diff_ci": [-0.024, 0.026], "p_
+  boot obs_exp_selfgate: {"HCcoh+LatAD+h vs HCcoh+LatAD": {"Difficult": {"diff": -0.014, "diff_ci": [-0.028, -0.001], "p_le_0": 0.98, "n_episodes": 26}, "DoubleHard": {"diff": -0.004, "diff_ci": [-0.022, 0.017], "p_le_0": 0.69, "n_episodes": 19}}, "HCcoh+h vs HC_coh": {"Difficult": {"diff": -0.004, "diff_ci": [-0.034, 0.029], "p_le_0": 0.622, "n_episodes": 26}, "DoubleHard": {"diff": 0.031, "diff_ci": [-0.005, 0.077], "p_
+  boot obs_trans_prev1: {"HCcoh+LatAD+h vs HCcoh+LatAD": {"Difficult": {"diff": -0.006, "diff_ci": [-0.02, 0.005], "p_le_0": 0.856, "n_episodes": 26}, "DoubleHard": {"diff": -0.011, "diff_ci": [-0.026, 0.003], "p_le_0": 0.932, "n_episodes": 19}}, "HCcoh+h vs HC_coh": {"Difficult": {"diff": 0.017, "diff_ci": [-0.011, 0.039], "p_le_0": 0.122, "n_episodes": 26}, "DoubleHard": {"diff": 0.026, "diff_ci": [-0.001, 0.057], "p_l
+  boot knn_lat_k10+vade_exp_prev1: {"HCcoh+LatAD+h vs HCcoh+LatAD": {"Difficult": {"diff": -0.005, "diff_ci": [-0.019, 0.006], "p_le_0": 0.772, "n_episodes": 26}, "DoubleHard": {"diff": 0.01, "diff_ci": [-0.006, 0.024], "p_le_0": 0.094, "n_episodes": 19}}, "HCcoh+h vs HC_coh": {"Difficult": {"diff": 0.027, "diff_ci": [-0.006, 0.061], "p_le_0": 0.048, "n_episodes": 26}, "DoubleHard": {"diff": 0.064, "diff_ci": [0.016, 0.116], "p_le_
+  boot knn_lat_k10+obs_exp_prev1: {"HCcoh+LatAD+h vs HCcoh+LatAD": {"Difficult": {"diff": -0.014, "diff_ci": [-0.029, -0.003], "p_le_0": 0.992, "n_episodes": 26}, "DoubleHard": {"diff": -0.003, "diff_ci": [-0.017, 0.012], "p_le_0": 0.646, "n_episodes": 19}}, "HCcoh+h vs HC_coh": {"Difficult": {"diff": 0.017, "diff_ci": [-0.021, 0.048], "p_le_0": 0.232, "n_episodes": 26}, "DoubleHard": {"diff": 0.05, "diff_ci": [0.01, 0.098], "p_le
+  boot vade_exp_ctl_shuf: {"HCcoh+LatAD+h vs HCcoh+LatAD": {"Difficult": {"diff": -0.038, "diff_ci": [-0.05, -0.027], "p_le_0": 1.0, "n_episodes": 26}, "DoubleHard": {"diff": -0.038, "diff_ci": [-0.059, -0.017], "p_le_0": 1.0, "n_episodes": 19}}, "HCcoh+h vs HC_coh": {"Difficult": {"diff": -0.028, "diff_ci": [-0.048, -0.012], "p_le_0": 1.0, "n_episodes": 26}, "DoubleHard": {"diff": -0.013, "diff_ci": [-0.049, 0.014], "p_le
+  boot obs_exp_ctl_shuf: {"HCcoh+LatAD+h vs HCcoh+LatAD": {"Difficult": {"diff": -0.101, "diff_ci": [-0.134, -0.07], "p_le_0": 1.0, "n_episodes": 26}, "DoubleHard": {"diff": -0.104, "diff_ci": [-0.149, -0.057], "p_le_0": 1.0, "n_episodes": 19}}, "HCcoh+h vs HC_coh": {"Difficult": {"diff": -0.098, "diff_ci": [-0.138, -0.063], "p_le_0": 1.0, "n_episodes": 26}, "DoubleHard": {"diff": -0.075, "diff_ci": [-0.125, -0.031], "p_l
+  boot obs_switch_prev1: {"HCcoh+LatAD+h vs HCcoh+LatAD": {"Difficult": {"diff": -0.058, "diff_ci": [-0.083, -0.036], "p_le_0": 1.0, "n_episodes": 26}, "DoubleHard": {"diff": -0.047, "diff_ci": [-0.076, -0.017], "p_le_0": 1.0, "n_episodes": 19}}, "HCcoh+h vs HC_coh": {"Difficult": {"diff": -0.066, "diff_ci": [-0.085, -0.043], "p_le_0": 1.0, "n_episodes": 26}, "DoubleHard": {"diff": -0.048, "diff_ci": [-0.082, -0.006], "p_
+  boot vade_exp_oracle: {"HCcoh+LatAD+h vs HCcoh+LatAD": {"Difficult": {"diff": 0.047, "diff_ci": [0.023, 0.067], "p_le_0": 0.0, "n_episodes": 26}, "DoubleHard": {"diff": 0.058, "diff_ci": [0.029, 0.088], "p_le_0": 0.0, "n_episodes": 19}}, "HCcoh+h vs HC_coh": {"Difficult": {"diff": 0.099, "diff_ci": [0.045, 0.142], "p_le_0": 0.0, "n_episodes": 26}, "DoubleHard": {"diff": 0.131, "diff_ci": [0.069, 0.193], "p_le_0": 0.0, 
+  boot obs_exp_oracle: {"HCcoh+LatAD+h vs HCcoh+LatAD": {"Difficult": {"diff": 0.0, "diff_ci": [-0.017, 0.018], "p_le_0": 0.496, "n_episodes": 26}, "DoubleHard": {"diff": 0.017, "diff_ci": [-0.005, 0.04], "p_le_0": 0.076, "n_episodes": 19}}, "HCcoh+h vs HC_coh": {"Difficult": {"diff": 0.017, "diff_ci": [-0.022, 0.052], "p_le_0": 0.186, "n_episodes": 26}, "DoubleHard": {"diff": 0.063, "diff_ci": [0.019, 0.113], "p_le_0":
+
+=== HAI clean subsets {'All': 652, 'Easy': 485, 'Difficult': 167, 'DoubleHard': 84} ===
+LatAD                                         0.933±0.007  0.975±0.004  0.811±0.016  0.806±0.019  
+HC_coh                                        0.932±0.007  0.977±0.004  0.801±0.020  0.738±0.022  
+HCcoh+LatAD                                   0.948±0.004  0.984±0.002  0.846±0.019  0.814±0.024  
+LatAD_refit                                   0.933±0.002  0.976±0.000  0.812±0.009  0.806±0.011  
+head:knn_lat_k10                              0.909±0.002  0.952±0.001  0.784±0.008  0.768±0.004  
+LatAD+knn_lat_k10                             0.929±0.005  0.973±0.003  0.804±0.012  0.794±0.012  
+HCcoh+knn_lat_k10                             0.942±0.003  0.980±0.002  0.832±0.012  0.797±0.016  
+HCcoh+LatAD+knn_lat_k10                       0.946±0.003  0.981±0.002  0.844±0.013  0.822±0.014  
+head:knn_feat_k10                             0.916±0.000  0.962±0.000  0.784±0.000  0.761±0.000  
+LatAD+knn_feat_k10                            0.933±0.005  0.978±0.003  0.802±0.010  0.788±0.012  
+HCcoh+knn_feat_k10                            0.946±0.002  0.985±0.001  0.834±0.011  0.791±0.015  
+HCcoh+LatAD+knn_feat_k10                      0.948±0.003  0.984±0.001  0.842±0.011  0.814±0.013  
+head:knn_pca20_k10                            0.912±0.000  0.955±0.000  0.788±0.000  0.772±0.000  
+LatAD+knn_pca20_k10                           0.931±0.004  0.974±0.003  0.806±0.009  0.796±0.012  
+HCcoh+knn_pca20_k10                           0.945±0.002  0.982±0.001  0.838±0.012  0.806±0.017  
+HCcoh+LatAD+knn_pca20_k10                     0.947±0.003  0.981±0.002  0.846±0.013  0.824±0.015  
+head:vade_exp_prev1                           0.530±0.108  0.535±0.131  0.515±0.054  0.553±0.043  
+LatAD+vade_exp_prev1                          0.918±0.006  0.967±0.004  0.777±0.015  0.786±0.023  
+HCcoh+vade_exp_prev1                          0.914±0.006  0.957±0.005  0.789±0.026  0.749±0.031  
+HCcoh+LatAD+vade_exp_prev1                    0.944±0.006  0.980±0.002  0.838±0.023  0.817±0.027  
+head:vade_exp_selfgate                        0.915±0.004  0.959±0.009  0.788±0.012  0.798±0.021  
+LatAD+vade_exp_selfgate                       0.933±0.005  0.976±0.002  0.810±0.013  0.817±0.018  
+HCcoh+vade_exp_selfgate                       0.949±0.003  0.983±0.001  0.851±0.011  0.819±0.018  
+HCcoh+LatAD+vade_exp_selfgate                 0.950±0.003  0.982±0.001  0.857±0.013  0.838±0.016  
+head:vade_trans_prev1                         0.923±0.004  0.968±0.002  0.794±0.010  0.785±0.012  
+LatAD+vade_trans_prev1                        0.930±0.005  0.972±0.003  0.807±0.012  0.799±0.016  
+HCcoh+vade_trans_prev1                        0.944±0.004  0.981±0.001  0.836±0.015  0.803±0.019  
+HCcoh+LatAD+vade_trans_prev1                  0.947±0.004  0.981±0.002  0.847±0.015  0.825±0.017  
+head:obs_exp_prev1                            0.813±0.018  0.881±0.012  0.615±0.036  0.608±0.042  
+LatAD+obs_exp_prev1                           0.917±0.006  0.967±0.003  0.771±0.015  0.771±0.020  
+HCcoh+obs_exp_prev1                           0.919±0.009  0.967±0.004  0.779±0.026  0.734±0.031  
+HCcoh+LatAD+obs_exp_prev1                     0.939±0.006  0.978±0.002  0.826±0.022  0.799±0.026  
+head:obs_exp_selfgate                         0.839±0.029  0.901±0.020  0.660±0.057  0.681±0.066  
+LatAD+obs_exp_selfgate                        0.919±0.011  0.968±0.007  0.778±0.022  0.784±0.027  
+HCcoh+obs_exp_selfgate                        0.925±0.014  0.970±0.006  0.797±0.039  0.768±0.047  
+HCcoh+LatAD+obs_exp_selfgate                  0.940±0.009  0.978±0.004  0.831±0.027  0.810±0.033  
+head:obs_trans_prev1                          0.889±0.004  0.946±0.003  0.725±0.009  0.692±0.009  
+LatAD+obs_trans_prev1                         0.927±0.004  0.975±0.002  0.789±0.010  0.766±0.013  
+HCcoh+obs_trans_prev1                         0.937±0.007  0.978±0.001  0.818±0.023  0.763±0.027  
+HCcoh+LatAD+obs_trans_prev1                   0.945±0.004  0.982±0.001  0.839±0.016  0.803±0.018  
+head:knn_lat_k10+vade_exp_prev1               0.917±0.005  0.967±0.003  0.772±0.014  0.773±0.022  
+LatAD+knn_lat_k10+vade_exp_prev1              0.927±0.005  0.972±0.003  0.796±0.013  0.799±0.018  
+HCcoh+knn_lat_k10+vade_exp_prev1              0.941±0.004  0.979±0.001  0.829±0.015  0.801±0.019  
+HCcoh+LatAD+knn_lat_k10+vade_exp_prev1        0.944±0.004  0.980±0.002  0.841±0.014  0.824±0.016  
+head:knn_lat_k10+obs_exp_prev1                0.906±0.004  0.959±0.004  0.754±0.009  0.749±0.012  
+LatAD+knn_lat_k10+obs_exp_prev1               0.922±0.005  0.970±0.003  0.782±0.013  0.779±0.015  
+HCcoh+knn_lat_k10+obs_exp_prev1               0.936±0.004  0.976±0.003  0.818±0.016  0.788±0.020  
+HCcoh+LatAD+knn_lat_k10+obs_exp_prev1         0.941±0.004  0.978±0.002  0.832±0.015  0.811±0.017  
+head:vade_exp_ctl_shuf                        0.831±0.008  0.889±0.016  0.662±0.027  0.639±0.043  
+LatAD+vade_exp_ctl_shuf                       0.909±0.004  0.964±0.003  0.750±0.014  0.733±0.021  
+HCcoh+vade_exp_ctl_shuf                       0.918±0.002  0.968±0.006  0.773±0.013  0.724±0.026  
+HCcoh+LatAD+vade_exp_ctl_shuf                 0.933±0.003  0.976±0.004  0.808±0.011  0.776±0.014  
+head:obs_exp_ctl_shuf                         0.709±0.008  0.758±0.006  0.565±0.016  0.551±0.016  
+LatAD+obs_exp_ctl_shuf                        0.871±0.004  0.928±0.003  0.705±0.011  0.683±0.008  
+HCcoh+obs_exp_ctl_shuf                        0.869±0.003  0.926±0.004  0.703±0.010  0.663±0.010  
+HCcoh+LatAD+obs_exp_ctl_shuf                  0.897±0.002  0.949±0.003  0.744±0.008  0.710±0.008  
+head:obs_switch_prev1                         0.438±0.018  0.420±0.018  0.492±0.025  0.499±0.035  
+LatAD+obs_switch_prev1                        0.832±0.055  0.864±0.061  0.740±0.040  0.745±0.041  
+HCcoh+obs_switch_prev1                        0.850±0.038  0.889±0.044  0.735±0.030  0.690±0.035  
+HCcoh+LatAD+obs_switch_prev1                  0.902±0.025  0.942±0.025  0.788±0.030  0.767±0.035  
+head:vade_exp_oracle                          0.941±0.004  0.964±0.004  0.874±0.015  0.893±0.017  
+LatAD+vade_exp_oracle                         0.951±0.006  0.986±0.002  0.849±0.018  0.854±0.023  
+HCcoh+vade_exp_oracle                         0.965±0.006  0.987±0.003  0.900±0.016  0.869±0.024  
+HCcoh+LatAD+vade_exp_oracle                   0.965±0.004  0.990±0.002  0.892±0.016  0.872±0.019  
+head:obs_exp_oracle                           0.853±0.030  0.908±0.021  0.693±0.059  0.733±0.067  
+LatAD+obs_exp_oracle                          0.927±0.009  0.972±0.004  0.797±0.026  0.813±0.030  
+HCcoh+obs_exp_oracle                          0.933±0.013  0.973±0.005  0.819±0.039  0.800±0.045  
+HCcoh+LatAD+obs_exp_oracle                    0.946±0.008  0.981±0.002  0.846±0.029  0.831±0.034  

@@ -1,0 +1,1 @@
+{'trim_rows': 2160, 'trim_windows': 72, 'n_train_windows_before': 4530, 'n_train_windows_after': 4458, 'n_test': 1498, 'n_anom': 233, 'n_episodes': 25, 'maxz_thr_full': 5.03, 'maxz_thr_trim': 5.057, 'n_diff_full': 85, 'n_diff_trim': 85, 'n_dhard_trim': 60, 'n_diff_episodes_trim': 23}

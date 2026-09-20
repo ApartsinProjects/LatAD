@@ -1,0 +1,43 @@
+== WADI: train 2614, stream 3133, eps0 10.656
+  [train_only]
+    leaders_x2             random: [65.0, 109.0, 190.7, 280.7, 360.7, 468.0, 586.0]  prefix: [31, 81, 141, 236, 312, 419, 606]  Smax=1286.3 at_full=0.46 rise.5-1=0.62 prefix rise.5-1=0.94
+    leaders_x2_ge5         random: [4.7, 7.3, 17.7, 30.3, 48.0, 63.3, 94.0]  prefix: [5, 11, 18, 32, 47, 72, 94]  Smax=758640.4 at_full=0.00 rise.5-1=0.96 prefix rise.5-1=1.00
+    leaders_x4             random: [4.3, 8.7, 13.7, 15.7, 20.7, 27.0, 24.0]  prefix: [3, 9, 10, 17, 23, 27, 31]  Smax=34.2 at_full=0.70 rise.5-1=0.16 prefix rise.5-1=0.35
+    leaders_x4_ge5         random: [1.3, 2.3, 6.0, 5.3, 9.3, 11.3, 7.0]  prefix: [3, 6, 9, 13, 13, 16, 17]  Smax=12.1 at_full=0.58 rise.5-1=-0.25 prefix rise.5-1=0.31
+    leaders_x8             random: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]  prefix: [1, 1, 1, 1, 1, 2, 2]  Smax=1.0 at_full=1.00 rise.5-1=0.00 prefix rise.5-1=1.00
+    leaders_x8_ge5         random: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]  prefix: [1, 1, 1, 1, 1, 1, 1]  Smax=1.0 at_full=1.00 rise.5-1=0.00 prefix rise.5-1=0.00
+    gmm_bic                random: [4.7, 6.0, 12.0, 29.3, 26.7, 42.7, 48.0]  prefix: [6, 12, 16, 32, 32, 32, 48]  Smax=115.9 at_full=0.41 rise.5-1=0.80 prefix rise.5-1=0.50
+    gmm_aic                random: [6.7, 16.0, 32.0, 48.0, 64.0, 96.0, 128.0]  prefix: [8, 16, 32, 48, 64, 96, 128]  Smax=1039.8 at_full=0.12 rise.5-1=1.00 prefix rise.5-1=1.00
+    gmm_bic_2x             random: [2.3, 2.7, 5.0, 6.7, 16.0, 25.3, 32.0]  prefix: [3, 6, 12, 16, 16, 16, 32]  Smax=262852.6 at_full=0.00 rise.5-1=1.00 prefix rise.5-1=1.00
+    gmm_bic_4x             random: [1.0, 2.0, 2.3, 5.3, 5.3, 7.3, 12.0]  prefix: [1, 2, 3, 8, 6, 8, 12]  Smax=184.4 at_full=0.07 rise.5-1=1.25 prefix rise.5-1=1.00
+    gmm_vb_dp              random: [4.7, 7.0, 11.3, 18.3, 18.7, 22.7, 25.0]  prefix: [5, 10, 14, 20, 24, 28, 25]  Smax=34.1 at_full=0.73 rise.5-1=0.34 prefix rise.5-1=0.04
+    gmm_grid_max           random: [8.0, 16.0, 32.0, 48.0, 64.0, 96.0, 128.0]  prefix: [8, 16, 32, 48, 64, 96, 128]  Smax=1011.1 at_full=0.13 rise.5-1=1.00 prefix rise.5-1=1.00
+    gmm_bic_capped         random: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]  prefix: [0, 0, 0, 0, 0, 0, 0]  Smax=0.0 at_full=0.00 rise.5-1=0.00 prefix rise.5-1=0.00
+    gmm_bic_4x_capped      random: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]  prefix: [0, 0, 0, 0, 0, 0, 0]  Smax=0.0 at_full=0.00 rise.5-1=0.00 prefix rise.5-1=0.00
+  [full_normal_stream]
+    leaders_x2             random: [81.0, 132.7, 234.3, 356.0, 438.0, 558.7, 703.0]  prefix: [42, 95, 173, 272, 372, 492, 726]  Smax=1426.7 at_full=0.49 rise.5-1=0.61 prefix rise.5-1=0.95
+    leaders_x2_ge5         random: [5.0, 9.7, 15.7, 38.0, 53.0, 72.3, 115.0]  prefix: [6, 12, 22, 39, 57, 80, 112]  Smax=1121158.4 at_full=0.00 rise.5-1=1.17 prefix rise.5-1=0.96
+    leaders_x4             random: [6.0, 11.3, 15.0, 25.7, 27.3, 34.7, 39.0]  prefix: [4, 10, 13, 20, 24, 27, 37]  Smax=57.7 at_full=0.68 rise.5-1=0.43 prefix rise.5-1=0.54
+    leaders_x4_ge5         random: [1.7, 4.0, 5.7, 10.7, 11.0, 15.3, 15.0]  prefix: [3, 6, 10, 13, 13, 17, 18]  Smax=24.4 at_full=0.61 rise.5-1=0.36 prefix rise.5-1=0.38
+    leaders_x8             random: [1.0, 1.0, 1.7, 1.7, 1.3, 1.7, 2.0]  prefix: [1, 1, 1, 1, 1, 2, 3]  Smax=1.9 at_full=1.08 rise.5-1=0.50 prefix rise.5-1=2.00
+    leaders_x8_ge5         random: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]  prefix: [1, 1, 1, 1, 1, 1, 1]  Smax=1.0 at_full=1.00 rise.5-1=0.00 prefix rise.5-1=0.00
+    gmm_bic                random: [5.0, 8.7, 21.3, 29.3, 37.3, 48.0, 64.0]  prefix: [3, 16, 24, 48, 48, 48, 64]  Smax=164.7 at_full=0.39 rise.5-1=0.71 prefix rise.5-1=0.33
+    gmm_aic                random: [8.0, 14.7, 32.0, 64.0, 96.0, 128.0, 192.0]  prefix: [8, 16, 32, 64, 96, 128, 192]  Smax=3077018.4 at_full=0.00 rise.5-1=1.00 prefix rise.5-1=1.00
+    gmm_bic_2x             random: [2.7, 4.3, 6.7, 10.7, 21.3, 26.7, 32.0]  prefix: [3, 8, 6, 12, 24, 24, 32]  Smax=144.1 at_full=0.22 rise.5-1=0.50 prefix rise.5-1=0.33
+    gmm_bic_4x             random: [1.0, 2.3, 3.7, 6.0, 6.7, 9.3, 12.0]  prefix: [3, 2, 6, 8, 6, 8, 12]  Smax=28.4 at_full=0.42 rise.5-1=0.80 prefix rise.5-1=1.00
+    gmm_vb_dp              random: [5.3, 9.0, 16.7, 21.3, 23.7, 23.7, 29.0]  prefix: [6, 10, 15, 19, 23, 25, 29]  Smax=35.0 at_full=0.83 rise.5-1=0.23 prefix rise.5-1=0.26
+    gmm_grid_max           random: [8.0, 16.0, 32.0, 64.0, 96.0, 128.0, 192.0]  prefix: [8, 16, 32, 64, 96, 128, 192]  Smax=1923858.8 at_full=0.00 rise.5-1=1.00 prefix rise.5-1=1.00
+    gmm_bic_capped         random: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]  prefix: [0, 1, 0, 0, 0, 0, 0]  Smax=0.0 at_full=0.00 rise.5-1=0.00 prefix rise.5-1=0.00
+    gmm_bic_4x_capped      random: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]  prefix: [0, 0, 0, 0, 0, 0, 0]  Smax=0.0 at_full=0.00 rise.5-1=0.00 prefix rise.5-1=0.00
+  first-appearance x2: {'n_regimes_ge5': 112, 'n_regimes_ge5_born_in_train': 97, 'n_regimes_ge5_born_in_test': 15, 'test_normal_mass_in_test_born_regimes': 0.3468208092485549, 'first_test_born_regime_stream_index': 2729, 'test_born_regimes_pos_size_top10': [(294, 47), (300, 25), (288, 24), (344, 16), (440, 8), (526, 8), (217, 7), (510, 7), (277, 6), (432, 6)]}
+  first-appearance x4: {'n_regimes_ge5': 18, 'n_regimes_ge5_born_in_train': 17, 'n_regimes_ge5_born_in_test': 1, 'test_normal_mass_in_test_born_regimes': 0.535645472061657, 'first_test_born_regime_stream_index': 2851, 'test_born_regimes_pos_size_top10': [(266, 278)]}
+  first-appearance x8: {'n_regimes_ge5': 1, 'n_regimes_ge5_born_in_train': 1, 'n_regimes_ge5_born_in_test': 0, 'test_normal_mass_in_test_born_regimes': 0.0, 'first_test_born_regime_stream_index': None, 'test_born_regimes_pos_size_top10': []}
+  exclusion: blocks [(68, 123, 56), (252, 282, 31), (286, 359, 74), (363, 493, 131), (510, 543, 34)] n_normal_excl 324 (62.428%) anom_excl 0
+    LatAD   AUROC 0.7969 -> 0.7958 | diff 0.7013 -> 0.6942 | FPR@fixed1% 0.0116 -> 0.0154 | TPR@1%own 0.411 -> 0.393 | TPR@5%own 0.518 -> 0.482 | flagged-in-block share 1%/5%: {'fpr1': 0.5, 'fpr5': 0.5384615384615384}
+    maxz    AUROC 0.5583 -> 0.8021 | diff 0.3073 -> 0.5757 | FPR@fixed1% 0.0000 -> 0.0000 | TPR@1%own 0.000 -> 0.000 | TPR@5%own 0.000 -> 0.000 | flagged-in-block share 1%/5%: {'fpr1': nan, 'fpr5': nan, 'train99': 0.8958333333333334}
+    IF      AUROC 0.7261 -> 0.7068 | diff 0.6755 -> 0.6521 | FPR@fixed1% 0.0116 -> 0.0256 | TPR@1%own 0.143 -> 0.089 | TPR@5%own 0.304 -> 0.196 | flagged-in-block share 1%/5%: {'fpr1': 0.16666666666666666, 'fpr5': 0.4230769230769231}
+    AE      AUROC 0.7433 -> 0.8512 | diff 0.4261 -> 0.6499 | FPR@fixed1% 0.0116 -> 0.0103 | TPR@1%own 0.482 -> 0.482 | TPR@5%own 0.518 -> 0.518 | flagged-in-block share 1%/5%: {'fpr1': 0.6666666666666666, 'fpr5': 0.6538461538461539}
+    USAD    AUROC 0.6979 -> 0.8097 | diff 0.3028 -> 0.5447 | FPR@fixed1% 0.0116 -> 0.0103 | TPR@1%own 0.339 -> 0.339 | TPR@5%own 0.446 -> 0.446 | flagged-in-block share 1%/5%: {'fpr1': 0.6666666666666666, 'fpr5': 0.6153846153846154}
+    TranAD  AUROC 0.7211 -> 0.8299 | diff 0.3326 -> 0.5933 | FPR@fixed1% 0.0116 -> 0.0205 | TPR@1%own 0.339 -> 0.321 | TPR@5%own 0.500 -> 0.464 | flagged-in-block share 1%/5%: {'fpr1': 0.3333333333333333, 'fpr5': 0.5384615384615384}
+  [252s]
+saved E:\Projects\Backlog\LatAD\poc\_diagnostics\cov_rarefaction.json

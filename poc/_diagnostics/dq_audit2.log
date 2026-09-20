@@ -1,0 +1,42 @@
+
+=== WADI ===
+  channels at sd floor: 191 / 738
+  attack runs: 11  lengths=[6, 4, 11, 4, 4, 3, 3, 2, 11, 4, 4]  starts=[16, 195, 202, 235, 248, 283, 360, 490, 494, 506, 544]
+  exact-duplicate rows: train 0/2614  test 0/575
+  OOS-strict (> max train LOO=59.88): test normals 0.002, anomalies 0.393
+  [latad_fpr1] n=6 adj-k1 enrich=8.2x  OOS-strict=0.17 (base 0.002) OOS-p99 enrich=4.4x | corrFPR: k1=0.0077 k3=0.0077 strict=0.0097 k3|strict=0.0077 k3|p99=0.0019
+  [latad_fpr5] n=26 adj-k1 enrich=4.8x  OOS-strict=0.04 (base 0.002) OOS-p99 enrich=3.6x | corrFPR: k1=0.0409 k3=0.0314 strict=0.0483 k3|strict=0.0314 k3|p99=0.0140
+  [train99_vade_mixture] n=2 adj-k1 enrich=24.7x  OOS-strict=0.50 (base 0.002) OOS-p99 enrich=5.2x | corrFPR: k1=0.0000 k3=0.0000 strict=0.0019 k3|strict=0.0000 k3|p99=0.0000
+  OOS-normal blocks >=30 (gap<=5): []
+  total test normals in such blocks: 0 / 519
+  test-normal regimes with train share <0.2%: []  (k, n_test_normal, train_share)
+  reverse inliers idx=[16, 18, 195, 238, 360, 361, 362, 509]  at-boundary=[True, False, True, True, True, False, True, True]  difficult=[True, True, True, True, False, False, False, False]
+  difficult per attack run (start, attack_len, n_diff): [(16, 6, 6), (195, 4, 4), (202, 11, 3), (235, 4, 4), (248, 4, 2)]
+
+=== HAI ===
+  channels at sd floor: 48 / 354
+  attack runs: 38  lengths=[20, 12, 20, 10, 14, 13, 19, 11, 19, 14, 7, 6, 13, 19, 14, 14, 22, 14, 19, 20, 14, 7, 21, 21, 12, 19, 20, 19, 15, 15, 14, 11, 14, 14, 98, 13, 12, 13]  starts=[319, 429, 569, 659, 2619, 2719, 2829, 2953, 3059, 3299, 3429, 3545, 5484, 5699, 5825, 6049, 6179, 6321, 6417, 8457, 8601, 8685, 8821, 8961, 9045, 9181, 9275, 9399, 9781, 10000, 11939, 12039, 12165, 12299, 12569, 12759, 12885, 14755]
+  exact-duplicate rows: train 0/18359  test 0/14819
+  OOS-strict (> max train LOO=287.13): test normals 0.000, anomalies 0.135
+  [latad_fpr1] n=142 adj-k1 enrich=14.4x  OOS-strict=0.01 (base 0.000) OOS-p99 enrich=4.9x | corrFPR: k1=0.0093 k3=0.0089 strict=0.0100 k3|strict=0.0089 k3|p99=0.0000
+  [latad_fpr5] n=709 adj-k1 enrich=3.4x  OOS-strict=0.00 (base 0.000) OOS-p99 enrich=4.9x | corrFPR: k1=0.0492 k3=0.0486 strict=0.0500 k3|strict=0.0486 k3|p99=0.0000
+  [train99_vade_mixture] n=1155 adj-k1 enrich=4.4x  OOS-strict=0.00 (base 0.000) OOS-p99 enrich=4.8x | corrFPR: k1=0.0798 k3=0.0773 strict=0.0815 k3|strict=0.0773 k3|p99=0.0015
+  OOS-normal blocks >=30 (gap<=5): [(77, 119, 83, 0.0, 0.01), (249, 63, 43, 0.0, 0.0), (441, 128, 119, 0.0, 0.07), (589, 70, 70, 0.03, 0.53), (669, 733, 703, 0.0, 0.23), (1467, 33, 32, 0.0, 0.0), (1603, 43, 26, 0.0, 0.0), (1898, 65, 35, 0.0, 0.0), (2167, 62, 39, 0.0, 0.0), (2277, 66, 44, 0.0, 0.0), (2435, 37, 26, 0.0, 0.0), (2563, 44, 35, 0.0, 0.0), (2732, 53, 36, 0.0, 0.09), (6201, 50, 34, 0.04, 0.06), (6289, 32, 29, 0.0, 0.0), (6335, 82, 82, 0.12, 0.78), (6436, 646, 646, 0.14, 1.0), (12667, 69, 62, 0.04, 0.13)]
+  total test normals in such blocks: 2395 / 14167
+  test-normal regimes with train share <0.2%: []  (k, n_test_normal, train_share)
+  reverse inliers idx=[333, 2619, 2829, 2953, 2959, 3072, 3073, 3074, 3075, 3076, 3077, 3545, 9399, 9417, 9781, 9782, 11939, 14755]  at-boundary=[False, True, True, True, False, False, False, False, False, False, True, True, True, True, True, False, True, True]  difficult=[False, False, False, True, True, True, True, True, True, True, True, True, True, True, False, False, True, True]
+  difficult per attack run (start, attack_len, n_diff): [(2953, 11, 11), (3059, 19, 19), (3299, 14, 14), (3429, 7, 7), (3545, 6, 6), (5484, 13, 1), (5699, 19, 10), (5825, 14, 2), (6049, 14, 14), (8457, 20, 10), (8601, 14, 4), (8685, 7, 7), (8821, 21, 1), (8961, 21, 3), (9045, 12, 12), (9181, 19, 4), (9275, 20, 1), (9399, 19, 19), (10000, 15, 7), (11939, 14, 3), (12039, 11, 3), (12165, 14, 2), (12299, 14, 2), (12759, 13, 1), (12885, 12, 2), (14755, 13, 2)]
+
+=== SWaT ===
+  channels at sd floor: 52 / 306
+  attack runs: 1  lengths=[182]  starts=[905]
+  exact-duplicate rows: train 741/3623  test 0/1087
+  OOS-strict (> max train LOO=110.88): test normals 0.000, anomalies 0.082
+  [latad_fpr1] n=10 adj-k1 enrich=0.0x  OOS-strict=0.00 (base 0.000) OOS-p99 enrich=0.0x | corrFPR: k1=0.0110 k3=0.0110 strict=0.0110 k3|strict=0.0110 k3|p99=0.0110
+  [latad_fpr5] n=46 adj-k1 enrich=0.0x  OOS-strict=0.00 (base 0.000) OOS-p99 enrich=19.7x | corrFPR: k1=0.0508 k3=0.0508 strict=0.0508 k3|strict=0.0508 k3|p99=0.0498
+  OOS-normal blocks >=30 (gap<=5): []
+  total test normals in such blocks: 0 / 905
+  test-normal regimes with train share <0.2%: []  (k, n_test_normal, train_share)
+  reverse inliers idx=[]  at-boundary=[]  difficult=[]
+  difficult per attack run (start, attack_len, n_diff): [(905, 182, 38)]
+saved

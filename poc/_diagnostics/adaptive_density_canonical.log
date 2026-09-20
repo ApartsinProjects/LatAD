@@ -1,0 +1,26 @@
+CONTROL: {"fixed_kde": {"auroc": 0.999, "rare_vs_anom_auroc": 0.994, "rare_normal_score": 22.11, "common_normal_score": 16.664}, "lof": {"auroc": 0.993, "rare_vs_anom_auroc": 0.994, "rare_normal_score": 1.071, "common_normal_score": 1.071}, "rare_penalty_ratio_lof": 1.0, "rare_penalty_ratio_fixed_kde": 1.327, "INVARIANT_lof_less_rare_penalty": true}
+  [WADI_clean] seed 0: diff gmm=0.756 fix=0.710 lof=0.733
+  [WADI_clean] seed 1: diff gmm=0.744 fix=0.721 lof=0.740
+  [WADI_clean] seed 2: diff gmm=0.750 fix=0.706 lof=0.772
+  [WADI_clean] seed 3: diff gmm=0.719 fix=0.710 lof=0.780
+  [WADI_clean] seed 4: diff gmm=0.746 fix=0.705 lof=0.740
+== WADI_clean: diff gmm=0.743 fixed=0.7105 lof=0.7531  adap-fixed CI={'mean': 0.0424, 'lo': -0.0596, 'hi': 0.1488, 'p_le0': 0.2404}
+  [HAI] seed 0: diff gmm=0.812 fix=0.800 lof=0.811
+  [HAI] seed 1: diff gmm=0.762 fix=0.766 lof=0.767
+  [HAI] seed 2: diff gmm=0.793 fix=0.797 lof=0.804
+  [HAI] seed 3: diff gmm=0.802 fix=0.779 lof=0.809
+  [HAI] seed 4: diff gmm=0.777 fix=0.781 lof=0.796
+== HAI: diff gmm=0.7891 fixed=0.7846 lof=0.7974  adap-fixed CI={'mean': 0.0126, 'lo': -0.0115, 'hi': 0.0362, 'p_le0': 0.2132}
+  [SWaT_canon] seed 0: diff gmm=0.793 fix=0.725 lof=0.740
+  [SWaT_canon] seed 1: diff gmm=0.811 fix=0.728 lof=0.749
+  [SWaT_canon] seed 2: diff gmm=0.800 fix=0.729 lof=0.733
+  [SWaT_canon] seed 3: diff gmm=0.781 fix=0.729 lof=0.744
+  [SWaT_canon] seed 4: diff gmm=0.791 fix=0.727 lof=0.733
+== SWaT_canon: diff gmm=0.7951 fixed=0.7274 lof=0.7397  adap-fixed CI={'mean': 0.0126, 'lo': -0.0544, 'hi': 0.0812, 'p_le0': 0.3596}
+  [SKAB] seed 0: diff gmm=0.492 fix=0.444 lof=0.589
+  [SKAB] seed 1: diff gmm=0.447 fix=0.426 lof=0.550
+  [SKAB] seed 2: diff gmm=0.458 fix=0.409 lof=0.534
+  [SKAB] seed 3: diff gmm=0.464 fix=0.442 lof=0.584
+  [SKAB] seed 4: diff gmm=0.514 fix=0.440 lof=0.584
+== SKAB: diff gmm=0.4749 fixed=0.4323 lof=0.5684  adap-fixed CI={'mean': 0.1364, 'lo': 0.0794, 'hi': 0.1924, 'p_le0': 0.0}
+saved adaptive_density.json  (588s)

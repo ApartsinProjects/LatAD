@@ -1,0 +1,263 @@
+{
+ "WADI_clean": {
+  "n_train": 2614,
+  "n_test_normal": 519,
+  "n_diff": 30,
+  "lin_testnormal_FP_at_train_p99": 0.005780346820809248,
+  "lin_diff_TP_at_train_p99": 0.36666666666666664,
+  "lin_median_ratio_testnormal_over_train": 1.6252990577534248,
+  "lin_au_diff_vs_TRAINnormal": 0.8777097679163479,
+  "lin_au_diff_vs_testnormal": 0.7503532434168272,
+  "lin_au_testnormal_vs_train": 0.7531728516819911,
+  "drift_channels_top8_median_norm_resid_testnormal": [
+   [
+    "1_MV_004_STATUS",
+    3.3
+   ],
+   [
+    "1_AIT_003_PV",
+    2.7
+   ],
+   [
+    "2_DPIT_001_PV",
+    2.1
+   ],
+   [
+    "2_MV_006_STATUS",
+    2.0
+   ],
+   [
+    "2A_AIT_003_PV",
+    1.7
+   ],
+   [
+    "2A_AIT_001_PV",
+    1.7
+   ],
+   [
+    "1_AIT_005_PV",
+    1.7
+   ],
+   [
+    "1_AIT_004_PV",
+    1.6
+   ]
+  ],
+  "n_channels_median_norm_resid_gt3_testnormal": 1,
+  "raw_share_diff_top1_med": 0.26236699478661485,
+  "raw_share_diff_top3_med": 0.5849431803713575,
+  "raw_share_diff_neff_med": 11.631761799138205,
+  "raw_top1_channel_counts_diff": [
+   [
+    "3_AIT_002_PV",
+    6
+   ],
+   [
+    "1_AIT_002_PV",
+    4
+   ],
+   [
+    "2A_AIT_002_PV",
+    3
+   ],
+   [
+    "3_AIT_001_PV",
+    3
+   ],
+   [
+    "1_AIT_004_PV",
+    3
+   ],
+   [
+    "1_LT_001_PV",
+    3
+   ],
+   [
+    "2_FIC_501_SP",
+    3
+   ],
+   [
+    "2_LT_002_PV",
+    2
+   ]
+  ],
+  "latad_testnormal_FP_at_train_p99": 0.009633911368015413,
+  "latad_diff_TP_at_train_p99": 0.0,
+  "latad_au_testnormal_vs_train": 0.5392963338065522,
+  "latad_au_diff_vs_testnormal": 0.6382787411689146
+ },
+ "SWaT_canon": {
+  "n_train": 4530,
+  "n_test_normal": 1265,
+  "n_diff": 85,
+  "lin_testnormal_FP_at_train_p99": 0.019762845849802372,
+  "lin_diff_TP_at_train_p99": 0.3058823529411765,
+  "lin_median_ratio_testnormal_over_train": 2.0561311922770873,
+  "lin_au_diff_vs_TRAINnormal": 0.868058693676146,
+  "lin_au_diff_vs_testnormal": 0.7823575912578471,
+  "lin_au_testnormal_vs_train": 0.7098320376235723,
+  "drift_channels_top8_median_norm_resid_testnormal": [
+   [
+    "MV201",
+    4.5
+   ],
+   [
+    "MV303",
+    3.6
+   ],
+   [
+    "MV101",
+    2.9
+   ],
+   [
+    "P201",
+    2.1
+   ],
+   [
+    "AIT201",
+    1.7
+   ],
+   [
+    "PIT502",
+    0.9
+   ],
+   [
+    "MV304",
+    0.8
+   ],
+   [
+    "AIT501",
+    0.6
+   ]
+  ],
+  "n_channels_median_norm_resid_gt3_testnormal": 2,
+  "raw_share_diff_top1_med": 0.43772744584224293,
+  "raw_share_diff_top3_med": 0.7847898505761846,
+  "raw_share_diff_neff_med": 5.160967389098425,
+  "raw_top1_channel_counts_diff": [
+   [
+    "PIT502",
+    39
+   ],
+   [
+    "LIT301",
+    16
+   ],
+   [
+    "AIT503",
+    8
+   ],
+   [
+    "LIT101",
+    6
+   ],
+   [
+    "LIT401",
+    5
+   ],
+   [
+    "AIT201",
+    3
+   ],
+   [
+    "FIT101",
+    2
+   ],
+   [
+    "AIT501",
+    2
+   ]
+  ],
+  "latad_testnormal_FP_at_train_p99": 0.02450592885375494,
+  "latad_diff_TP_at_train_p99": 0.32941176470588235,
+  "latad_au_testnormal_vs_train": 0.7124341020338716,
+  "latad_au_diff_vs_testnormal": 0.8084538479423391
+ },
+ "HAI": {
+  "n_train": 18359,
+  "n_test_normal": 14167,
+  "n_diff": 167,
+  "lin_testnormal_FP_at_train_p99": 0.3623208865673749,
+  "lin_diff_TP_at_train_p99": 0.49700598802395207,
+  "lin_median_ratio_testnormal_over_train": 2.7073514380127883,
+  "lin_au_diff_vs_TRAINnormal": 0.9474874533301717,
+  "lin_au_diff_vs_testnormal": 0.5858047440095457,
+  "lin_au_testnormal_vs_train": 0.8418587982996921,
+  "drift_channels_top8_median_norm_resid_testnormal": [
+   [
+    "P1_FCV03Z",
+    51.4
+   ],
+   [
+    "P1_FT03",
+    26.4
+   ],
+   [
+    "P1_FT01Z",
+    23.9
+   ],
+   [
+    "P1_FT01",
+    17.5
+   ],
+   [
+    "P1_FT03Z",
+    17.4
+   ],
+   [
+    "P2_SD01",
+    6.4
+   ],
+   [
+    "P1_PCV02Z",
+    5.1
+   ],
+   [
+    "P2_VXT03",
+    4.3
+   ]
+  ],
+  "n_channels_median_norm_resid_gt3_testnormal": 15,
+  "raw_share_diff_top1_med": 0.3602576627620101,
+  "raw_share_diff_top3_med": 0.705594931776552,
+  "raw_share_diff_neff_med": 7.112170184702422,
+  "raw_top1_channel_counts_diff": [
+   [
+    "P1_B2004",
+    61
+   ],
+   [
+    "P4_HT_FD",
+    31
+   ],
+   [
+    "P3_LCP01D",
+    26
+   ],
+   [
+    "P3_LT01",
+    16
+   ],
+   [
+    "P4_ST_FD",
+    5
+   ],
+   [
+    "P1_FCV03Z",
+    5
+   ],
+   [
+    "P4_ST_TT01",
+    5
+   ],
+   [
+    "P2_24Vdc",
+    4
+   ]
+  ],
+  "latad_testnormal_FP_at_train_p99": 0.09564480835745041,
+  "latad_diff_TP_at_train_p99": 0.6526946107784432,
+  "latad_au_testnormal_vs_train": 0.693764779796936,
+  "latad_au_diff_vs_testnormal": 0.8135952278403592
+ }
+}

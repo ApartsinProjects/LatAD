@@ -1,0 +1,515 @@
+{
+ "SWaT_canon": {
+  "n_diff": 107,
+  "n_dhard": 30,
+  "I1_linres_relerr": 5.692028795109915e-08,
+  "gate_train_chrono_holdout_FP_at_fit_p99": 0.021604938271604937,
+  "gate_train_chrono_holdout_median_ratio": 2.182107194804731,
+  "boosted_testnormal_FP_at_cv_train_p99": 0.724901185770751,
+  "auroc": {
+   "boosted_LOO": {
+    "Difficult": 0.518,
+    "DoubleHard": 0.161,
+    "All": 0.771
+   },
+   "linres": {
+    "Difficult": 0.512,
+    "DoubleHard": 0.14,
+    "All": 0.77
+   },
+   "LatAD_global": {
+    "Difficult": 0.527,
+    "DoubleHard": 0.412,
+    "All": 0.766
+   },
+   "HCcoh+LatAD": {
+    "Difficult": 0.657,
+    "DoubleHard": 0.265,
+    "All": 0.835
+   },
+   "null+HC": {
+    "Difficult": 0.598,
+    "DoubleHard": 0.201,
+    "All": 0.808
+   },
+   "cohmax+LatAD": {
+    "Difficult": 0.521,
+    "DoubleHard": 0.225,
+    "All": 0.737
+   },
+   "AUG HCcoh+LatAD+B": {
+    "Difficult": 0.653,
+    "DoubleHard": 0.251,
+    "All": 0.834
+   },
+   "AUG cohmax+LatAD+B": {
+    "Difficult": 0.526,
+    "DoubleHard": 0.191,
+    "All": 0.773
+   },
+   "AUG null+HC+B (max)": {
+    "Difficult": 0.598,
+    "DoubleHard": 0.201,
+    "All": 0.808
+   },
+   "AUG LatAD+B (global)": {
+    "Difficult": 0.53,
+    "DoubleHard": 0.176,
+    "All": 0.776
+   }
+  },
+  "boot": {
+   "AUG HCcoh+LatAD+B - boosted_LOO [Difficult]": {
+    "diff": 0.136,
+    "diff_ci": [
+     0.079,
+     0.189
+    ],
+    "p_le_0": 0.0,
+    "n_episodes": 25
+   },
+   "AUG HCcoh+LatAD+B - boosted_LOO [DoubleHard]": {
+    "diff": 0.09,
+    "diff_ci": [
+     -0.009,
+     0.182
+    ],
+    "p_le_0": 0.035,
+    "n_episodes": 9
+   },
+   "AUG HCcoh+LatAD+B - HCcoh+LatAD [Difficult]": {
+    "diff": -0.004,
+    "diff_ci": [
+     -0.012,
+     0.005
+    ],
+    "p_le_0": 0.819,
+    "n_episodes": 25
+   },
+   "AUG HCcoh+LatAD+B - HCcoh+LatAD [DoubleHard]": {
+    "diff": -0.014,
+    "diff_ci": [
+     -0.033,
+     0.01
+    ],
+    "p_le_0": 0.8835,
+    "n_episodes": 9
+   },
+   "AUG HCcoh+LatAD+B - linres [Difficult]": {
+    "diff": 0.142,
+    "diff_ci": [
+     0.092,
+     0.196
+    ],
+    "p_le_0": 0.0,
+    "n_episodes": 25
+   },
+   "AUG HCcoh+LatAD+B - linres [DoubleHard]": {
+    "diff": 0.111,
+    "diff_ci": [
+     0.044,
+     0.2
+    ],
+    "p_le_0": 0.0,
+    "n_episodes": 9
+   },
+   "AUG null+HC+B (max) - boosted_LOO [Difficult]": {
+    "diff": 0.081,
+    "diff_ci": [
+     0.026,
+     0.135
+    ],
+    "p_le_0": 0.004,
+    "n_episodes": 25
+   },
+   "AUG null+HC+B (max) - boosted_LOO [DoubleHard]": {
+    "diff": 0.041,
+    "diff_ci": [
+     -0.021,
+     0.102
+    ],
+    "p_le_0": 0.1005,
+    "n_episodes": 9
+   },
+   "AUG null+HC+B (max) - null+HC [Difficult]": {
+    "diff": 0.0,
+    "diff_ci": [
+     0.0,
+     0.0
+    ],
+    "p_le_0": 1.0,
+    "n_episodes": 25
+   },
+   "AUG null+HC+B (max) - null+HC [DoubleHard]": {
+    "diff": 0.0,
+    "diff_ci": [
+     0.0,
+     0.0
+    ],
+    "p_le_0": 1.0,
+    "n_episodes": 9
+   },
+   "HCcoh+LatAD - AUG HCcoh+LatAD+B [Difficult]": {
+    "diff": 0.004,
+    "diff_ci": [
+     -0.005,
+     0.012
+    ],
+    "p_le_0": 0.181,
+    "n_episodes": 25
+   },
+   "HCcoh+LatAD - AUG HCcoh+LatAD+B [DoubleHard]": {
+    "diff": 0.014,
+    "diff_ci": [
+     -0.01,
+     0.033
+    ],
+    "p_le_0": 0.1165,
+    "n_episodes": 9
+   }
+  },
+  "elapsed_s": 383.8
+ },
+ "WADI_clean": {
+  "n_diff": 30,
+  "n_dhard": 19,
+  "I1_linres_relerr": 5.769081356065829e-08,
+  "gate_train_chrono_holdout_FP_at_fit_p99": 0.9847036328871893,
+  "gate_train_chrono_holdout_median_ratio": 305.19650035812225,
+  "boosted_testnormal_FP_at_cv_train_p99": 0.1579961464354528,
+  "auroc": {
+   "boosted_LOO": {
+    "Difficult": 0.66,
+    "DoubleHard": 0.553,
+    "All": 0.758
+   },
+   "linres": {
+    "Difficult": 0.75,
+    "DoubleHard": 0.606,
+    "All": 0.834
+   },
+   "LatAD_global": {
+    "Difficult": 0.634,
+    "DoubleHard": 0.571,
+    "All": 0.717
+   },
+   "HCcoh+LatAD": {
+    "Difficult": 0.771,
+    "DoubleHard": 0.662,
+    "All": 0.827
+   },
+   "null+HC": {
+    "Difficult": 0.749,
+    "DoubleHard": 0.633,
+    "All": 0.819
+   },
+   "cohmax+LatAD": {
+    "Difficult": 0.741,
+    "DoubleHard": 0.658,
+    "All": 0.796
+   },
+   "AUG HCcoh+LatAD+B": {
+    "Difficult": 0.773,
+    "DoubleHard": 0.66,
+    "All": 0.832
+   },
+   "AUG cohmax+LatAD+B": {
+    "Difficult": 0.748,
+    "DoubleHard": 0.648,
+    "All": 0.812
+   },
+   "AUG null+HC+B (max)": {
+    "Difficult": 0.76,
+    "DoubleHard": 0.647,
+    "All": 0.822
+   },
+   "AUG LatAD+B (global)": {
+    "Difficult": 0.681,
+    "DoubleHard": 0.584,
+    "All": 0.767
+   }
+  },
+  "boot": {
+   "AUG HCcoh+LatAD+B - boosted_LOO [Difficult]": {
+    "diff": 0.113,
+    "diff_ci": [
+     -0.093,
+     0.269
+    ],
+    "p_le_0": 0.125,
+    "n_episodes": 8
+   },
+   "AUG HCcoh+LatAD+B - boosted_LOO [DoubleHard]": {
+    "diff": 0.108,
+    "diff_ci": [
+     -0.193,
+     0.332
+    ],
+    "p_le_0": 0.2025,
+    "n_episodes": 7
+   },
+   "AUG HCcoh+LatAD+B - HCcoh+LatAD [Difficult]": {
+    "diff": 0.002,
+    "diff_ci": [
+     -0.019,
+     0.028
+    ],
+    "p_le_0": 0.4255,
+    "n_episodes": 8
+   },
+   "AUG HCcoh+LatAD+B - HCcoh+LatAD [DoubleHard]": {
+    "diff": -0.002,
+    "diff_ci": [
+     -0.028,
+     0.033
+    ],
+    "p_le_0": 0.534,
+    "n_episodes": 7
+   },
+   "AUG HCcoh+LatAD+B - linres [Difficult]": {
+    "diff": 0.022,
+    "diff_ci": [
+     -0.144,
+     0.186
+    ],
+    "p_le_0": 0.4515,
+    "n_episodes": 8
+   },
+   "AUG HCcoh+LatAD+B - linres [DoubleHard]": {
+    "diff": 0.054,
+    "diff_ci": [
+     -0.22,
+     0.288
+    ],
+    "p_le_0": 0.415,
+    "n_episodes": 7
+   },
+   "AUG null+HC+B (max) - boosted_LOO [Difficult]": {
+    "diff": 0.099,
+    "diff_ci": [
+     0.016,
+     0.2
+    ],
+    "p_le_0": 0.005,
+    "n_episodes": 8
+   },
+   "AUG null+HC+B (max) - boosted_LOO [DoubleHard]": {
+    "diff": 0.094,
+    "diff_ci": [
+     0.025,
+     0.233
+    ],
+    "p_le_0": 0.006,
+    "n_episodes": 7
+   },
+   "AUG null+HC+B (max) - null+HC [Difficult]": {
+    "diff": 0.011,
+    "diff_ci": [
+     -0.095,
+     0.175
+    ],
+    "p_le_0": 0.4675,
+    "n_episodes": 8
+   },
+   "AUG null+HC+B (max) - null+HC [DoubleHard]": {
+    "diff": 0.014,
+    "diff_ci": [
+     -0.138,
+     0.279
+    ],
+    "p_le_0": 0.486,
+    "n_episodes": 7
+   },
+   "HCcoh+LatAD - AUG HCcoh+LatAD+B [Difficult]": {
+    "diff": -0.002,
+    "diff_ci": [
+     -0.028,
+     0.019
+    ],
+    "p_le_0": 0.5745,
+    "n_episodes": 8
+   },
+   "HCcoh+LatAD - AUG HCcoh+LatAD+B [DoubleHard]": {
+    "diff": 0.002,
+    "diff_ci": [
+     -0.033,
+     0.028
+    ],
+    "p_le_0": 0.4665,
+    "n_episodes": 7
+   }
+  },
+  "elapsed_s": 795.0
+ },
+ "HAI": {
+  "n_diff": 167,
+  "n_dhard": 84,
+  "I1_linres_relerr": 5.928212588663069e-08,
+  "gate_train_chrono_holdout_FP_at_fit_p99": 0.5367647058823529,
+  "gate_train_chrono_holdout_median_ratio": 8.655967749783732,
+  "boosted_testnormal_FP_at_cv_train_p99": 0.666407849227077,
+  "auroc": {
+   "boosted_LOO": {
+    "Difficult": 0.321,
+    "DoubleHard": 0.304,
+    "All": 0.778
+   },
+   "linres": {
+    "Difficult": 0.586,
+    "DoubleHard": 0.465,
+    "All": 0.779
+   },
+   "LatAD_global": {
+    "Difficult": 0.811,
+    "DoubleHard": 0.806,
+    "All": 0.933
+   },
+   "HCcoh+LatAD": {
+    "Difficult": 0.845,
+    "DoubleHard": 0.814,
+    "All": 0.948
+   },
+   "null+HC": {
+    "Difficult": 0.77,
+    "DoubleHard": 0.704,
+    "All": 0.913
+   },
+   "cohmax+LatAD": {
+    "Difficult": 0.832,
+    "DoubleHard": 0.805,
+    "All": 0.945
+   },
+   "AUG HCcoh+LatAD+B": {
+    "Difficult": 0.769,
+    "DoubleHard": 0.719,
+    "All": 0.928
+   },
+   "AUG cohmax+LatAD+B": {
+    "Difficult": 0.721,
+    "DoubleHard": 0.678,
+    "All": 0.916
+   },
+   "AUG null+HC+B (max)": {
+    "Difficult": 0.707,
+    "DoubleHard": 0.626,
+    "All": 0.898
+   },
+   "AUG LatAD+B (global)": {
+    "Difficult": 0.667,
+    "DoubleHard": 0.633,
+    "All": 0.9
+   }
+  },
+  "boot": {
+   "AUG HCcoh+LatAD+B - boosted_LOO [Difficult]": {
+    "diff": 0.448,
+    "diff_ci": [
+     0.327,
+     0.576
+    ],
+    "p_le_0": 0.0,
+    "n_episodes": 26
+   },
+   "AUG HCcoh+LatAD+B - boosted_LOO [DoubleHard]": {
+    "diff": 0.415,
+    "diff_ci": [
+     0.279,
+     0.591
+    ],
+    "p_le_0": 0.0,
+    "n_episodes": 19
+   },
+   "AUG HCcoh+LatAD+B - HCcoh+LatAD [Difficult]": {
+    "diff": -0.077,
+    "diff_ci": [
+     -0.126,
+     -0.036
+    ],
+    "p_le_0": 1.0,
+    "n_episodes": 26
+   },
+   "AUG HCcoh+LatAD+B - HCcoh+LatAD [DoubleHard]": {
+    "diff": -0.095,
+    "diff_ci": [
+     -0.164,
+     -0.046
+    ],
+    "p_le_0": 1.0,
+    "n_episodes": 19
+   },
+   "AUG HCcoh+LatAD+B - linres [Difficult]": {
+    "diff": 0.183,
+    "diff_ci": [
+     0.047,
+     0.317
+    ],
+    "p_le_0": 0.0025,
+    "n_episodes": 26
+   },
+   "AUG HCcoh+LatAD+B - linres [DoubleHard]": {
+    "diff": 0.255,
+    "diff_ci": [
+     0.074,
+     0.417
+    ],
+    "p_le_0": 0.0045,
+    "n_episodes": 19
+   },
+   "AUG null+HC+B (max) - boosted_LOO [Difficult]": {
+    "diff": 0.386,
+    "diff_ci": [
+     0.237,
+     0.545
+    ],
+    "p_le_0": 0.0,
+    "n_episodes": 26
+   },
+   "AUG null+HC+B (max) - boosted_LOO [DoubleHard]": {
+    "diff": 0.321,
+    "diff_ci": [
+     0.143,
+     0.543
+    ],
+    "p_le_0": 0.0,
+    "n_episodes": 19
+   },
+   "AUG null+HC+B (max) - null+HC [Difficult]": {
+    "diff": -0.063,
+    "diff_ci": [
+     -0.1,
+     -0.026
+    ],
+    "p_le_0": 1.0,
+    "n_episodes": 26
+   },
+   "AUG null+HC+B (max) - null+HC [DoubleHard]": {
+    "diff": -0.078,
+    "diff_ci": [
+     -0.135,
+     -0.033
+    ],
+    "p_le_0": 1.0,
+    "n_episodes": 19
+   },
+   "HCcoh+LatAD - AUG HCcoh+LatAD+B [Difficult]": {
+    "diff": 0.077,
+    "diff_ci": [
+     0.036,
+     0.126
+    ],
+    "p_le_0": 0.0,
+    "n_episodes": 26
+   },
+   "HCcoh+LatAD - AUG HCcoh+LatAD+B [DoubleHard]": {
+    "diff": 0.095,
+    "diff_ci": [
+     0.046,
+     0.164
+    ],
+    "p_le_0": 0.0,
+    "n_episodes": 19
+   }
+  },
+  "elapsed_s": 847.8
+ }
+}

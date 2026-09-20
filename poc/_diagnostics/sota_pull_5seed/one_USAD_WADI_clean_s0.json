@@ -1,0 +1,33 @@
+{
+  "dataset": "WADI_clean",
+  "model": "USAD",
+  "seed": 0,
+  "rc": 0,
+  "train_s": 159.0,
+  "epochs": 30,
+  "fp32": true,
+  "n": 17281,
+  "n_anom": 997,
+  "raw_ALL": {
+    "AUROC": 0.783,
+    "bestF1": 0.388,
+    "F1_at5pctFPR": 0.347,
+    "TPR_at5pctFPR": 0.382
+  },
+  "n_easy_hard": [
+    561,
+    436
+  ],
+  "raw_HARD": {
+    "AUROC": 0.697,
+    "bestF1": 0.23,
+    "F1_at5pctFPR": 0.156,
+    "TPR_at5pctFPR": 0.243
+  },
+  "raw_EASY": {
+    "AUROC": 0.849,
+    "bestF1": 0.404,
+    "F1_at5pctFPR": 0.333,
+    "TPR_at5pctFPR": 0.49
+  }
+}

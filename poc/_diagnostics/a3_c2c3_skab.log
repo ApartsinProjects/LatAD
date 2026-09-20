@@ -1,0 +1,13 @@
+C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\torch\cuda\__init__.py:65: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+
+##### SKAB (easy=69 hard=185) #####
+variant                      ALL   EASY   HARD     FPhardCatch
+VaDE-hard (base)           0.627  0.938  0.511     68    37/185
++C2 rescue lam=0.5         0.643  0.913  0.542     69    48/185
++C2 rescue lam=1.0         0.654  0.875  0.572     68    50/185
++C2 rescue lam=2.0         0.649  0.802  0.592     49    42/185
+C3 off-manifold min        0.630  0.920  0.523     16    15/185
+C3 ratio-gap               0.454  0.301  0.511      1     0/185
++C3 ratio-gap (fused)      0.627  0.938  0.511     67    36/185
++C3 diff-gap (fused)       0.632  0.938  0.518     63    33/185

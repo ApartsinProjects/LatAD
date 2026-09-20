@@ -1,0 +1,11 @@
+  [WADI_clean] stats     dim= 732 difficult=0.6728±0.0060
+  [WADI_clean] temporal  dim=1220 difficult=0.6751±0.0146
+  == WADI_clean: temporal − stats = +0.0023 (stats sufficient)
+  [HAI] stats     dim= 354 difficult=0.7426±0.0109
+  [HAI] temporal  dim= 590 difficult=0.8141±0.0072
+  == HAI: temporal − stats = +0.0715 (temporal helps)
+  [SWaT_canon] stats     dim= 306 difficult=0.7500±0.0138
+  [SWaT_canon] temporal  dim= 510 difficult=0.7760±0.0068
+  == SWaT_canon: temporal − stats = +0.0260 (temporal helps)
+
+Interpretation: temporal−stats ≤ +0.01 across datasets ⇒ the gain is NOT from the representation (supports §6).

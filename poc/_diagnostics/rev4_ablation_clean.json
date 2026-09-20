@@ -1,0 +1,60 @@
+{
+ "WADI_clean": {
+  "n_difficult": 43,
+  "heads": {
+   "recon": {
+    "auroc": 0.813,
+    "auroc_sd": 0.002
+   },
+   "density": {
+    "auroc": 0.758,
+    "auroc_sd": 0.009
+   },
+   "nearest": {
+    "auroc": 0.719,
+    "auroc_sd": 0.019
+   },
+   "base": {
+    "auroc": 0.743,
+    "auroc_sd": 0.014
+   },
+   "base+resid": {
+    "auroc": 0.743,
+    "auroc_sd": 0.014
+   },
+   "LatAD": {
+    "auroc": 0.743,
+    "auroc_sd": 0.014
+   }
+  }
+ },
+ "SWaT_canon": {
+  "n_difficult": 85,
+  "heads": {
+   "recon": {
+    "auroc": 0.835,
+    "auroc_sd": 0.0
+   },
+   "density": {
+    "auroc": 0.794,
+    "auroc_sd": 0.006
+   },
+   "nearest": {
+    "auroc": 0.723,
+    "auroc_sd": 0.015
+   },
+   "base": {
+    "auroc": 0.775,
+    "auroc_sd": 0.009
+   },
+   "base+resid": {
+    "auroc": 0.807,
+    "auroc_sd": 0.008
+   },
+   "LatAD": {
+    "auroc": 0.807,
+    "auroc_sd": 0.008
+   }
+  }
+ }
+}

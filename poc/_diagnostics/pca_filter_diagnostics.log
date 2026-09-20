@@ -1,0 +1,120 @@
+WADI_clean: d=732 (C=122), LinRes feats=128, difficult=30, LinRes flags 11
+  [stats x6 (spec)       ] d= 732 k=113  flags on difficult: T2  0 SPE  1 union  1 | LinRes 11 (SPE&Lin 1) | difficult-AUROC as detector: T2 0.645 SPE 0.698 LinRes 0.750 | rho(SPE,Lin|difficult)=0.77
+  difficult anomalies, train-percentile of  SPE : [0.138 0.21  0.249 0.266 0.319 0.502 0.584 0.717 0.731 0.769 0.787 0.804
+ 0.815 0.85  0.854 0.878 0.909 0.912 0.927 0.944 0.954 0.961 0.965 0.966
+ 0.966 0.968 0.978 0.983 0.984 0.997]
+  difficult anomalies, train-percentile of  T2  : [0.2   0.23  0.279 0.333 0.336 0.377 0.502 0.523 0.544 0.608 0.619 0.632
+ 0.637 0.637 0.639 0.674 0.682 0.77  0.805 0.851 0.853 0.88  0.887 0.889
+ 0.901 0.907 0.934 0.939 0.983 0.985]
+  difficult anomalies, train-percentile of  LinRes: [0.39  0.514 0.584 0.635 0.691 0.702 0.71  0.85  0.858 0.879 0.888 0.91
+ 0.914 0.956 0.96  0.964 0.98  0.985 0.987 0.993 0.993 0.996 0.997 0.998
+ 0.999 1.    1.    1.    1.    1.   ]
+  train SPE energy by stat block     : [3.59 4.23 3.44 2.95 7.74 3.86]  total 25.82
+  difficult-anomaly SPE energy/block : [ 7.24  9.22  6.67  5.95 15.43  7.85]  total 52.35
+  columns carrying 50% / 90% of train SPE energy: 130 / 392 of 732
+  [means block only      ] d= 122 k= 35  flags on difficult: T2  0 SPE  0 union  0 | LinRes 11 (SPE&Lin 0) | difficult-AUROC as detector: T2 0.523 SPE 0.598 LinRes 0.750 | rho(SPE,Lin|difficult)=0.85
+  [means, 99% var        ] d= 122 k= 52  flags on difficult: T2  0 SPE  8 union  8 | LinRes 11 (SPE&Lin 7) | difficult-AUROC as detector: T2 0.539 SPE 0.606 LinRes 0.750 | rho(SPE,Lin|difficult)=0.88
+  [one-hot LinRes feats  ] d= 128 k= 26  flags on difficult: T2  0 SPE  1 union  1 | LinRes 11 (SPE&Lin 1) | difficult-AUROC as detector: T2 0.581 SPE 0.632 LinRes 0.750 | rho(SPE,Lin|difficult)=0.73
+  [one-hot feats, 99%    ] d= 128 k= 42  flags on difficult: T2  0 SPE 10 union 10 | LinRes 11 (SPE&Lin 7) | difficult-AUROC as detector: T2 0.586 SPE 0.635 LinRes 0.750 | rho(SPE,Lin|difficult)=0.85
+  [normalized SPE, x6   ] flags on difficult 8  difficult-AUROC 0.738
+HAI: d=354 (C=59), LinRes feats=52, difficult=167, LinRes flags 83
+  [stats x6 (spec)       ] d= 354 k= 60  flags on difficult: T2 90 SPE 110 union 112 | LinRes 83 (SPE&Lin 61) | difficult-AUROC as detector: T2 0.807 SPE 0.747 LinRes 0.586 | rho(SPE,Lin|difficult)=0.18
+  difficult anomalies, train-percentile of  SPE : [0.647 0.726 0.781 0.868 0.871 0.876 0.891 0.899 0.904 0.905 0.909 0.915
+ 0.916 0.92  0.932 0.935 0.936 0.942 0.945 0.949 0.95  0.954 0.959 0.96
+ 0.965 0.966 0.966 0.969 0.969 0.97  0.97  0.97  0.972 0.973 0.974 0.974
+ 0.975 0.975 0.975 0.976 0.976 0.976 0.977 0.978 0.979 0.979 0.984 0.984
+ 0.984 0.984 0.985 0.986 0.986 0.987 0.987 0.987 0.99  0.99  0.99  0.99
+ 0.991 0.991 0.991 0.991 0.992 0.992 0.993 0.993 0.994 0.994 0.994 0.995
+ 0.995 0.995 0.995 0.995 0.995 0.995 0.995 0.996 0.996 0.996 0.996 0.996
+ 0.996 0.997 0.997 0.997 0.997 0.997 0.997 0.997 0.997 0.997 0.997 0.997
+ 0.997 0.997 0.997 0.997 0.997 0.997 0.998 0.998 0.998 0.998 0.999 0.999
+ 0.999 0.999 0.999 1.    1.    1.    1.    1.    1.    1.    1.    1.
+ 1.    1.    1.    1.    1.    1.    1.    1.    1.    1.    1.    1.
+ 1.    1.    1.    1.    1.    1.    1.    1.    1.    1.    1.    1.
+ 1.    1.    1.    1.    1.    1.    1.    1.    1.    1.    1.    1.
+ 1.    1.    1.    1.    1.    1.    1.    1.    1.    1.    1.   ]
+  difficult anomalies, train-percentile of  T2  : [0.105 0.131 0.19  0.193 0.223 0.232 0.255 0.274 0.312 0.35  0.362 0.371
+ 0.406 0.425 0.446 0.455 0.473 0.482 0.483 0.493 0.524 0.538 0.558 0.577
+ 0.621 0.627 0.664 0.665 0.699 0.7   0.707 0.712 0.716 0.717 0.736 0.739
+ 0.757 0.778 0.786 0.798 0.801 0.805 0.817 0.819 0.842 0.844 0.851 0.856
+ 0.884 0.898 0.899 0.904 0.906 0.928 0.935 0.938 0.938 0.942 0.945 0.959
+ 0.96  0.963 0.968 0.968 0.969 0.969 0.976 0.976 0.981 0.981 0.982 0.986
+ 0.987 0.988 0.988 0.989 0.989 0.991 0.992 0.992 0.993 0.994 0.994 0.994
+ 0.995 0.995 0.995 0.995 0.995 0.996 0.996 0.996 0.996 0.996 0.996 0.996
+ 0.996 0.996 0.996 0.996 0.996 0.996 0.996 0.996 0.997 0.997 0.997 0.997
+ 0.997 0.997 0.997 0.997 0.997 0.997 0.997 0.997 0.997 0.997 0.997 0.997
+ 0.997 0.997 0.997 0.998 0.998 0.999 0.999 1.    1.    1.    1.    1.
+ 1.    1.    1.    1.    1.    1.    1.    1.    1.    1.    1.    1.
+ 1.    1.    1.    1.    1.    1.    1.    1.    1.    1.    1.    1.
+ 1.    1.    1.    1.    1.    1.    1.    1.    1.    1.    1.   ]
+  difficult anomalies, train-percentile of  LinRes: [0.099 0.312 0.618 0.652 0.655 0.725 0.729 0.747 0.775 0.782 0.783 0.786
+ 0.793 0.797 0.816 0.831 0.842 0.843 0.851 0.852 0.854 0.86  0.867 0.873
+ 0.88  0.883 0.893 0.898 0.91  0.922 0.923 0.925 0.926 0.929 0.929 0.931
+ 0.942 0.944 0.944 0.945 0.948 0.949 0.953 0.957 0.957 0.958 0.96  0.96
+ 0.963 0.964 0.965 0.967 0.968 0.97  0.971 0.971 0.972 0.972 0.974 0.978
+ 0.978 0.981 0.981 0.982 0.983 0.983 0.983 0.983 0.983 0.984 0.984 0.985
+ 0.985 0.986 0.986 0.986 0.986 0.986 0.986 0.987 0.987 0.988 0.989 0.99
+ 0.991 0.991 0.992 0.992 0.992 0.993 0.993 0.994 0.994 0.994 0.994 0.995
+ 0.995 0.995 0.996 0.996 0.997 0.997 0.997 0.997 0.997 0.998 0.998 0.998
+ 0.998 0.998 0.998 0.999 0.999 0.999 0.999 0.999 0.999 0.999 0.999 0.999
+ 0.999 0.999 0.999 0.999 0.999 0.999 0.999 0.999 0.999 1.    1.    1.
+ 1.    1.    1.    1.    1.    1.    1.    1.    1.    1.    1.    1.
+ 1.    1.    1.    1.    1.    1.    1.    1.    1.    1.    1.    1.
+ 1.    1.    1.    1.    1.    1.    1.    1.    1.    1.    1.   ]
+  train SPE energy by stat block     : [1.16 3.7  1.18 1.19 4.59 3.02]  total 14.84
+  difficult-anomaly SPE energy/block : [ 441.24 2034.09  413.05  615.17  349.33 3130.93]  total 6983.82
+  columns carrying 50% / 90% of train SPE energy: 50 / 174 of 354
+  [means block only      ] d=  59 k= 13  flags on difficult: T2  0 SPE 32 union 32 | LinRes 83 (SPE&Lin 18) | difficult-AUROC as detector: T2 0.438 SPE 0.461 LinRes 0.586 | rho(SPE,Lin|difficult)=0.30
+  [means, 99% var        ] d=  59 k= 21  flags on difficult: T2  9 SPE 126 union 128 | LinRes 83 (SPE&Lin 71) | difficult-AUROC as detector: T2 0.437 SPE 0.506 LinRes 0.586 | rho(SPE,Lin|difficult)=0.44
+  [one-hot LinRes feats  ] d=  52 k= 13  flags on difficult: T2  0 SPE 32 union 32 | LinRes 83 (SPE&Lin 18) | difficult-AUROC as detector: T2 0.437 SPE 0.460 LinRes 0.586 | rho(SPE,Lin|difficult)=0.30
+  [one-hot feats, 99%    ] d=  52 k= 21  flags on difficult: T2  9 SPE 126 union 128 | LinRes 83 (SPE&Lin 71) | difficult-AUROC as detector: T2 0.427 SPE 0.508 LinRes 0.586 | rho(SPE,Lin|difficult)=0.45
+  [normalized SPE, x6   ] flags on difficult 148  difficult-AUROC 0.667
+SWaT_canon: d=306 (C=51), LinRes feats=67, difficult=85, LinRes flags 26
+  [stats x6 (spec)       ] d= 306 k= 43  flags on difficult: T2  4 SPE 27 union 27 | LinRes 26 (SPE&Lin 19) | difficult-AUROC as detector: T2 0.673 SPE 0.810 LinRes 0.782 | rho(SPE,Lin|difficult)=0.75
+  difficult anomalies, train-percentile of  SPE : [0.185 0.222 0.381 0.4   0.461 0.488 0.497 0.596 0.62  0.625 0.641 0.641
+ 0.662 0.668 0.692 0.725 0.75  0.756 0.796 0.82  0.826 0.829 0.842 0.853
+ 0.857 0.881 0.894 0.904 0.909 0.914 0.916 0.917 0.928 0.934 0.945 0.956
+ 0.959 0.964 0.967 0.967 0.971 0.971 0.973 0.973 0.975 0.976 0.976 0.976
+ 0.98  0.98  0.981 0.981 0.985 0.985 0.987 0.987 0.989 0.989 0.99  0.99
+ 0.99  0.991 0.991 0.991 0.991 0.991 0.993 0.995 0.995 0.995 0.996 0.996
+ 0.996 0.996 0.996 0.998 0.998 0.999 0.999 1.    1.    1.    1.    1.
+ 1.   ]
+  difficult anomalies, train-percentile of  T2  : [0.277 0.308 0.496 0.496 0.53  0.591 0.598 0.608 0.622 0.638 0.642 0.666
+ 0.681 0.692 0.705 0.706 0.706 0.709 0.731 0.731 0.736 0.743 0.754 0.755
+ 0.764 0.787 0.797 0.802 0.808 0.809 0.813 0.819 0.82  0.843 0.844 0.844
+ 0.847 0.852 0.853 0.856 0.882 0.886 0.899 0.899 0.91  0.911 0.911 0.912
+ 0.921 0.929 0.945 0.946 0.949 0.95  0.952 0.957 0.957 0.958 0.958 0.963
+ 0.964 0.965 0.967 0.968 0.968 0.972 0.973 0.976 0.979 0.98  0.986 0.987
+ 0.987 0.987 0.988 0.988 0.988 0.988 0.988 0.989 0.989 0.993 0.997 0.998
+ 0.998]
+  difficult anomalies, train-percentile of  LinRes: [0.362 0.362 0.394 0.425 0.451 0.516 0.576 0.636 0.657 0.66  0.73  0.736
+ 0.738 0.749 0.772 0.775 0.8   0.803 0.806 0.814 0.814 0.819 0.82  0.822
+ 0.823 0.825 0.832 0.848 0.849 0.851 0.857 0.861 0.865 0.867 0.868 0.869
+ 0.879 0.892 0.896 0.896 0.904 0.91  0.916 0.921 0.922 0.93  0.933 0.935
+ 0.937 0.945 0.949 0.955 0.967 0.975 0.975 0.979 0.98  0.982 0.983 0.991
+ 0.993 0.995 0.995 0.998 0.999 0.999 0.999 1.    1.    1.    1.    1.
+ 1.    1.    1.    1.    1.    1.    1.    1.    1.    1.    1.    1.
+ 1.   ]
+  train SPE energy by stat block     : [1.56 1.72 1.81 1.86 3.86 1.93]  total 12.75
+  difficult-anomaly SPE energy/block : [ 41.31  56.38  17.11  23.63 117.31  35.34]  total 291.09
+  columns carrying 50% / 90% of train SPE energy: 50 / 167 of 306
+  [means block only      ] d=  51 k= 15  flags on difficult: T2  6 SPE 21 union 21 | LinRes 26 (SPE&Lin 20) | difficult-AUROC as detector: T2 0.640 SPE 0.727 LinRes 0.782 | rho(SPE,Lin|difficult)=0.75
+  [means, 99% var        ] d=  51 k= 22  flags on difficult: T2  9 SPE 18 union 21 | LinRes 26 (SPE&Lin 18) | difficult-AUROC as detector: T2 0.710 SPE 0.643 LinRes 0.782 | rho(SPE,Lin|difficult)=0.85
+  [one-hot LinRes feats  ] d=  67 k= 11  flags on difficult: T2  1 SPE 19 union 19 | LinRes 26 (SPE&Lin 19) | difficult-AUROC as detector: T2 0.668 SPE 0.693 LinRes 0.782 | rho(SPE,Lin|difficult)=0.84
+  [one-hot feats, 99%    ] d=  67 k= 16  flags on difficult: T2  4 SPE 15 union 17 | LinRes 26 (SPE&Lin 15) | difficult-AUROC as detector: T2 0.725 SPE 0.611 LinRes 0.782 | rho(SPE,Lin|difficult)=0.66
+  [normalized SPE, x6   ] flags on difficult 26  difficult-AUROC 0.815
+HAI: k=60, lam[0]=58.23 lam[k-1]=0.609 ratio 96; n train cols with std<1e-6 (constant): 48
+  train mean T2 by block            : [ 6.  10.9  6.2  6.1 19.5 11.3]  sum 60.0
+  difficult-anomaly mean T2 by block: [  5.3 932.5  10.3  15.2 296.7 951.2]  sum 2211.2
+  difficult-anomaly MEDIAN T2 by block: [ 7.2 81.8  8.1  7.8 34.4 87.9]
+  [means only            ] k= 13  T2 difficult-AUROC 0.438  flags   0/167 | SPE difficult-AUROC 0.461 flags  32
+  [std only              ] k= 27  T2 difficult-AUROC 0.802  flags  96/167 | SPE difficult-AUROC 0.814 flags  75
+  [blocks 2-6 (no means) ] k= 61  T2 difficult-AUROC 0.808  flags  91/167 | SPE difficult-AUROC 0.756 flags 107
+  T2-flagged, LinRes-passed difficult windows: 36; T2 train-99th 173.0
+    win 2963: T2=349 top cols blk6:P1_PCV01Z(79, z=15.0), blk6:P1_PCV01D(67, z=12.6), std:P1_PCV01Z(64, z=12.8), std:P1_PCV01D(49, z=9.7)
+    win 3067: T2=934 top cols blk6:P1_PCV01D(216, z=24.2), std:P1_PCV01D(194, z=22.6), blk6:P1_PCV01Z(174, z=19.4), std:P1_PCV01Z(158, z=18.2)
+    win 3068: T2=1405 top cols std:P1_PCV01D(295, z=27.8), std:P1_PCV01Z(294, z=27.5), blk6:P1_PCV01Z(276, z=25.0), blk6:P1_PCV01D(267, z=24.2)
+    win 3303: T2=5399 top cols blk6:P2_VYT03(1053, z=97.5), blk6:P2_VYT02(720, z=83.2), std:P2_VYT02(581, z=74.9), std:P2_VYT03(580, z=75.3)
+    win 3304: T2=5461 top cols blk6:P2_VYT03(1060, z=97.9), blk6:P2_VYT02(730, z=84.3), std:P2_VYT02(584, z=75.2), std:P2_VYT03(581, z=75.2)
+    win 3305: T2=5558 top cols blk6:P2_VYT03(1055, z=96.3), blk6:P2_VYT02(726, z=83.6), std:P2_VYT03(584, z=75.6), blk6:P2_VXT02(576, z=72.0)
+  train T2 quantiles 50/90/99: [ 44.6  74.9 173. ]  chi2(60) 50/90/99: [59.3 74.4 88.4]

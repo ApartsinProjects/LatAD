@@ -1,0 +1,60 @@
+C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\async_utils.py:45: DeprecationWarning: 'asyncio.WindowsSelectorEventLoopPolicy' is deprecated and slated for removal in Python 3.16
+  asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+C:\Users\apart\AppData\Roaming\Python\Python314\site-packages\modal\_utils\async_utils.py:45: DeprecationWarning: 'asyncio.set_event_loop_policy' is deprecated and slated for removal in Python 3.16
+  asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+✓ Initialized. View run at 
+https://modal.com/apps/llmcourse/main/ap-Ri2sQeoqDrUVdy5gnUNP0W
+✓ Created objects.
+├── 🔨 Created mount E:\Projects\Backlog\LatAD\poc\sota_bundle\modal_experts.py
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\ens_bundle\bundle_SWaT.npz
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\ens_bundle\bundle_HAI.npz
+├── 🔨 Created mount 
+│   E:\Projects\Backlog\LatAD\poc\sota_bundle\ens_bundle\bundle_WADI.npz
+├── 🔨 Created mount E:\Projects\Backlog\LatAD\poc\models_vade.py
+└── 🔨 Created function experts.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.0
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+[HAI] seed 0: 28 experts trained
+[HAI] DONE experts=28
+saved experts/expert_HAI.npz  (S=28)
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/llmcourse/main/ap-Ri2sQeoqDrUVdy5gnUNP0W

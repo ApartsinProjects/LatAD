@@ -1,0 +1,127 @@
+{
+ "K": 3,
+ "silhouette": 0.6051798462867737,
+ "shares": [
+  0.2375,
+  0.75,
+  0.0125
+ ],
+ "rare": 2,
+ "rows": [
+  {
+   "beta": 0.0,
+   "n_rare_train": 5,
+   "IF": {
+    "fpr_rare": 0.6,
+    "fpr_other": 0.0,
+    "fpr_rare_matched": 1.0,
+    "diff_auroc": 0.539
+   },
+   "AE": {
+    "fpr_rare": 0.6,
+    "fpr_other": 0.0,
+    "fpr_rare_matched": 1.0,
+    "diff_auroc": 0.504
+   },
+   "LatAD": {
+    "fpr_rare": 1.0,
+    "fpr_other": 0.03494623655913978,
+    "fpr_rare_matched": 0.8,
+    "diff_auroc": 0.533
+   },
+   "secs": 3.2
+  },
+  {
+   "beta": 0.5,
+   "n_rare_train": 0,
+   "IF": {
+    "fpr_rare": 0.8,
+    "fpr_other": 0.0,
+    "fpr_rare_matched": 1.0,
+    "diff_auroc": 0.506
+   },
+   "AE": {
+    "fpr_rare": 1.0,
+    "fpr_other": 0.0,
+    "fpr_rare_matched": 1.0,
+    "diff_auroc": 0.438
+   },
+   "LatAD": {
+    "fpr_rare": 1.0,
+    "fpr_other": 0.06451612903225806,
+    "fpr_rare_matched": 1.0,
+    "diff_auroc": 0.462
+   },
+   "secs": 1.1
+  },
+  {
+   "beta": 1.0,
+   "n_rare_train": 0,
+   "IF": {
+    "fpr_rare": 1.0,
+    "fpr_other": 0.03494623655913978,
+    "fpr_rare_matched": 1.0,
+    "diff_auroc": 0.517
+   },
+   "AE": {
+    "fpr_rare": 1.0,
+    "fpr_other": 0.021505376344086023,
+    "fpr_rare_matched": 1.0,
+    "diff_auroc": 0.397
+   },
+   "LatAD": {
+    "fpr_rare": 1.0,
+    "fpr_other": 0.06989247311827956,
+    "fpr_rare_matched": 1.0,
+    "diff_auroc": 0.554
+   },
+   "secs": 1.2
+  },
+  {
+   "beta": 2.0,
+   "n_rare_train": 0,
+   "IF": {
+    "fpr_rare": 1.0,
+    "fpr_other": 0.06451612903225806,
+    "fpr_rare_matched": 1.0,
+    "diff_auroc": 0.523
+   },
+   "AE": {
+    "fpr_rare": 1.0,
+    "fpr_other": 0.026881720430107527,
+    "fpr_rare_matched": 1.0,
+    "diff_auroc": 0.392
+   },
+   "LatAD": {
+    "fpr_rare": 1.0,
+    "fpr_other": 0.06989247311827956,
+    "fpr_rare_matched": 1.0,
+    "diff_auroc": 0.493
+   },
+   "secs": 1.1
+  },
+  {
+   "beta": 4.0,
+   "n_rare_train": 0,
+   "IF": {
+    "fpr_rare": 1.0,
+    "fpr_other": 0.3467741935483871,
+    "fpr_rare_matched": 0.0,
+    "diff_auroc": 0.519
+   },
+   "AE": {
+    "fpr_rare": 1.0,
+    "fpr_other": 0.3467741935483871,
+    "fpr_rare_matched": 1.0,
+    "diff_auroc": 0.393
+   },
+   "LatAD": {
+    "fpr_rare": 1.0,
+    "fpr_other": 0.13978494623655913,
+    "fpr_rare_matched": 0.6,
+    "diff_auroc": 0.492
+   },
+   "secs": 1.1
+  }
+ ]
+}

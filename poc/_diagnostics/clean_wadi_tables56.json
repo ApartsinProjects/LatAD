@@ -1,0 +1,38 @@
+{
+ "name": "WADI_clean",
+ "n_difficult": 30,
+ "n_normal": 519,
+ "table5_source_of_gain": {
+  "crosschannel_latent_mean": 0.656,
+  "crosschannel_latent_sd": 0.0163,
+  "marginal_product_mean": 0.6394,
+  "marginal_product_sd": 0.0036,
+  "gain": 0.0166
+ },
+ "table6_heads": {
+  "recon": {
+   "auroc": 0.74,
+   "auroc_sd": 0.002
+  },
+  "density": {
+   "auroc": 0.656,
+   "auroc_sd": 0.016
+  },
+  "nearest": {
+   "auroc": 0.603,
+   "auroc_sd": 0.01
+  },
+  "base": {
+   "auroc": 0.634,
+   "auroc_sd": 0.011
+  },
+  "base+resid": {
+   "auroc": 0.634,
+   "auroc_sd": 0.011
+  },
+  "LatAD": {
+   "auroc": 0.634,
+   "auroc_sd": 0.011
+  }
+ }
+}

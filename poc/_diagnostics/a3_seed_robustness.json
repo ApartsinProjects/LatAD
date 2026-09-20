@@ -1,0 +1,62 @@
+[
+ {
+  "seed": 0,
+  "rho": 0.58,
+  "entropy": 0.291,
+  "basin_lam": 1.075,
+  "gate_fires": true,
+  "diff_OFF": 0.5,
+  "diff_ON1": 0.605,
+  "diff_ON2": 0.645,
+  "lift1": 0.105,
+  "lift2": 0.145
+ },
+ {
+  "seed": 1,
+  "rho": 0.552,
+  "entropy": 0.322,
+  "basin_lam": 1.006,
+  "gate_fires": true,
+  "diff_OFF": 0.452,
+  "diff_ON1": 0.496,
+  "diff_ON2": 0.542,
+  "lift1": 0.044,
+  "lift2": 0.09
+ },
+ {
+  "seed": 2,
+  "rho": 0.453,
+  "entropy": 0.275,
+  "basin_lam": 0.756,
+  "gate_fires": true,
+  "diff_OFF": 0.469,
+  "diff_ON1": 0.538,
+  "diff_ON2": 0.581,
+  "lift1": 0.068,
+  "lift2": 0.112
+ },
+ {
+  "seed": 3,
+  "rho": 0.177,
+  "entropy": 0.228,
+  "basin_lam": 0.069,
+  "gate_fires": true,
+  "diff_OFF": 0.473,
+  "diff_ON1": 0.493,
+  "diff_ON2": 0.515,
+  "lift1": 0.02,
+  "lift2": 0.042
+ },
+ {
+  "seed": 4,
+  "rho": 0.075,
+  "entropy": 0.261,
+  "basin_lam": 0.0,
+  "gate_fires": false,
+  "diff_OFF": 0.521,
+  "diff_ON1": 0.548,
+  "diff_ON2": 0.546,
+  "lift1": 0.027,
+  "lift2": 0.025
+ }
+]

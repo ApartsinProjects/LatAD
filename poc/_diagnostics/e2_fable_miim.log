@@ -1,0 +1,12 @@
+[MIIM seed 0] K_true=63 rare_gt_modes=54 rare-gt-normal test=375/1848 (model-rare 796) min_occ=0.0006 margin_med=12.1
+   mixture  thr=17.51 FPR all=0.0308 plain=0.0263 RARE-gt=0.12533333333333332 rare-model=0.05150753768844221 matched1%=0.042666666666666665 | TPR=0.245 AUROC=0.794
+   nearest  thr=13.29 FPR all=0.0308 plain=0.0244 RARE-gt=0.11733333333333333 rare-model=0.04522613065326633 matched1%=0.04 | TPR=0.252 AUROC=0.798
+   gap rare-gt median=4.574363062519383 common median=3.47; AUROC(rare vs common normal)={'mixture': 0.9015379045032812, 'nearest': 0.8940393754243041}  (14s)
+[MIIM seed 1] K_true=90 rare_gt_modes=82 rare-gt-normal test=473/1762 (model-rare 1068) min_occ=0.0003 margin_med=9.5
+   mixture  thr=17.10 FPR all=0.0414 plain=0.0253 RARE-gt=0.09725158562367865 rare-model=0.06835205992509363 matched1%=0.016913319238900635 | TPR=0.274 AUROC=0.773
+   nearest  thr=12.72 FPR all=0.0420 plain=0.0280 RARE-gt=0.09513742071881606 rare-model=0.06928838951310862 matched1%=0.016913319238900635 | TPR=0.270 AUROC=0.776
+   gap rare-gt median=4.7671380106762395 common median=3.68; AUROC(rare vs common normal)={'mixture': 0.8386034374451572, 'nearest': 0.8252558237944424}  (13s)
+[MIIM seed 2] K_true=47 rare_gt_modes=39 rare-gt-normal test=303/1704 (model-rare 502) min_occ=0.0010 margin_med=12.4
+   mixture  thr=20.11 FPR all=0.0217 plain=0.0121 RARE-gt=0.066006600660066 rare-model=0.045816733067729085 matched1%=0.026402640264026403 | TPR=0.180 AUROC=0.754
+   nearest  thr=16.44 FPR all=0.0211 plain=0.0100 RARE-gt=0.052805280528052806 rare-model=0.037848605577689244 matched1%=0.026402640264026403 | TPR=0.186 AUROC=0.758
+   gap rare-gt median=3.9315144659451065 common median=2.97; AUROC(rare vs common normal)={'mixture': 0.8550116253595381, 'nearest': 0.8398951244160819}  (11s)

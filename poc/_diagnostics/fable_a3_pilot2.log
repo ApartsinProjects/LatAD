@@ -1,0 +1,14 @@
+  [WADI] latent-space: {'interior': 0.39938791124713086, 'between': 0.16832440703902066, 'gap': 0.0072685539403213465, 'gap_over_between': 0.04318181818181818, 'rad_between_over_core': 1.4350888665921626}
+  [HAI] latent-space: {'interior': 0.6458957459556621, 'between': 0.3833542131924397, 'gap': 0.017974835230677052, 'gap_over_between': 0.04688832054560955, 'rad_between_over_core': 0.994542974802713}
+  [SWaT] latent-space: {'interior': 0.21639525255313277, 'between': 0.11040574109853712, 'gap': 0.03588186585702457, 'gap_over_between': 0.325, 'rad_between_over_core': 2.1940457983260084}
+  [SKAB s0] latent-space: {'interior': 0.4075, 'between': 0.345, 'gap': 0.005, 'gap_over_between': 0.014492753623188406, 'rad_between_over_core': 0.6831342068723141}
+  [SKAB seed 0] rho=0.580 H=0.291 lam=1.07
+  [SKAB s1] latent-space: {'interior': 0.585, 'between': 0.455, 'gap': 0.0, 'gap_over_between': 0.0, 'rad_between_over_core': 0.6015663391677313}
+  [SKAB seed 1] rho=0.552 H=0.322 lam=1.01
+  [SKAB s2] latent-space: {'interior': 0.44, 'between': 0.365, 'gap': 0.0175, 'gap_over_between': 0.04794520547945205, 'rad_between_over_core': 0.7609754031578927}
+  [SKAB seed 2] rho=0.453 H=0.275 lam=0.76
+  [SKAB s3] latent-space: {'interior': 0.495, 'between': 0.43, 'gap': 0.005, 'gap_over_between': 0.011627906976744186, 'rad_between_over_core': 0.6901432154067138}
+  [SKAB seed 3] rho=0.177 H=0.228 lam=0.07
+  [SKAB s4] latent-space: {'interior': 0.515, 'between': 0.4325, 'gap': 0.005, 'gap_over_between': 0.011560693641618497, 'rad_between_over_core': 0.7693290412370856}
+  [SKAB seed 4] rho=0.075 H=0.261 lam=0.00
+done

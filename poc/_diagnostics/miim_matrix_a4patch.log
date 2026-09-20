@@ -1,0 +1,4 @@
+SKAB paperK=16 median gain +5.33 frac>0 0.64 AUROC 0.618->0.615
+SWaT paperK=40 median gain +35.55 frac>0 0.87 AUROC 0.993->0.993
+WADI paperK=20 median gain +78.38 frac>0 0.64 AUROC 0.698->0.726
+HAI paperK=40 median gain +24.32 frac>0 0.82 AUROC 0.875->0.874
