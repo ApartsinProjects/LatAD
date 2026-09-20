@@ -1231,9 +1231,9 @@ regime-community ensemble, itself construction plus aggregation), scoring heads,
 density-estimation axes on the difficult subset, holding the rest fixed. Factorizing the global density over regime
 communities lifts <span class="rev2-highlight">WADI and HAI</span>, most on WADI, whose difficult faults are confined to small correlated subsystems that a global density dilutes.
 <span class="rev2-highlight">On WADI the community aggregation carries the whole effect: cohesion-weighted Higher Criticism over the per-community experts lifts the single-latent global density from 0.634 to 0.795, and fusing in the whole-plant expert (the headline fusion) costs a little, so the fused headline settles at 0.771.
-On HAI the whole-plant-expert fusion instead lifts the score (0.801 to 0.845), where the hard valve and flow deviations are correlation-conditional. On SWaT the raw aggregations all sit near the drift-suppressed floor (0.47 to 0.60) and no combination rule separates the difficult subset.</span>
+On HAI the whole-plant-expert fusion instead lifts the score (0.801 to 0.845), where the hard valve and flow deviations are correlation-conditional. On SWaT the raw aggregations sit near the drift-suppressed floor (0.47 to 0.60); the SWaT difficult subset is resolved by the changepoint typing of &sect;7, not by the combiner choice.</span>
 Among the sparsity-adaptive combiners,
-cohesion-weighted Higher Criticism is the one that leads on <span class="rev2-highlight">WADI and HAI</span><span class="rev2-highlight"> (all aggregation rules here fused with the whole-plant expert; on the drift-dominated SWaT record no raw combiner separates the difficult subset)</span>, because it weights a violation by the
+cohesion-weighted Higher Criticism is the one that leads on <span class="rev2-highlight">WADI and HAI</span><span class="rev2-highlight"> (all aggregation rules here fused with the whole-plant expert)</span>, because it weights a violation by the
 coupling strength of the subsystem it occurs in (A7) while adapting to the fault&rsquo;s extent.</p>
 
 <div class="tblwrap">
@@ -1278,7 +1278,7 @@ of the reported advantage; its integration is left to future work.</p>
 global-density detector under the six summary statistics per window versus a ten-feature temporal/spectral set, at a
 fixed configuration and difficulty mask (five-seed mean&plusmn;standard deviation). This is a self-contained within-study
 comparison isolating the representation axis; the absolute values use a reduced global-density configuration and are not
-the headline numbers of the main results table (Table&nbsp;A3).</caption>
+the headline numbers of the main results table (Table&nbsp;2).</caption>
 <thead><tr><th class="l">Representation</th><th>WADI</th><th>HAI</th><th>SWaT</th></tr></thead>
 <tbody>
 <tr class="rev2-highlight"><td class="l">six summary statistics (used by LatAD)</td><td>0.634&plusmn;0.011</td><td>0.743&plusmn;0.011</td><td>0.247&plusmn;0.026</td></tr>
@@ -2982,10 +2982,10 @@ by a wide two-component head versus the 80-component head. Synthetic positive co
 <p class="rev2-highlight"><strong>SKAB.</strong> SKAB [<a href="#r-skab">59</a>], a 400-window rotor rig, has no close-distinct regime pairs (0 of 12; it is a single-loop rig), so it does not exhibit the A8 precondition. A8 is specified for completeness but not demonstrated on any dataset in this study.</p>
 
 <h2 class="rev2-highlight">Appendix D. Implementation and reproducibility</h2>
-<p class="rev2-highlight">All detectors share the same windowing and features. Raw channels are standardized per channel on train-normal statistics and, on WADI and SWaT, clipped to &plusmn;10 standard deviations (HAI is not clipped; &sect;5.1); the stream is then windowed at <em>W</em>&nbsp;=&nbsp;60 with stride 30, and each window is summarized by six per-channel statistics (mean, standard deviation, minimum, maximum, last&minus;first, and range), concatenated in stat-blocked order, giving a feature dimension of 6<em>C</em> (732 for WADI, 354 for HAI, 306 for SWaT). A window is labeled anomalous when more than 5% of its raw timesteps carry an attack label. All multi-seed detectors use seeds 0&ndash;4.</p>
+<p class="rev2-highlight">LatAD and the local feature baselines share the same windowing and features; the deep sequence baselines (USAD, TranAD, GDN) use their native inputs and are compared on the same labels and evaluation grid (&sect;5.5). Raw channels are standardized per channel on train-normal statistics and, on WADI and SWaT, clipped to &plusmn;10 standard deviations (HAI is not clipped; &sect;5.1); the stream is then windowed at <em>W</em>&nbsp;=&nbsp;60 with stride 30, and each window is summarized by six per-channel statistics (mean, standard deviation, minimum, maximum, last&minus;first, and range), concatenated in stat-blocked order, giving a feature dimension of 6<em>C</em> (732 for WADI, 354 for HAI, 306 for SWaT). A window is labeled anomalous when more than 5% of its raw timesteps carry an attack label. All multi-seed detectors use seeds 0&ndash;4.</p>
 
 <h3 class="rev2-highlight">D.1&nbsp;&nbsp;VaDE and detector hyperparameters</h3>
-<p class="rev2-highlight">Table&nbsp;D1 lists the configuration of the global VaDE and its scoring heads. The mixture-component count <em>K</em> is a fixed per-dataset hyperparameter set a priori (20/40/40), not selected on any split; the BIC-optimal component count on train-normal windows (22/24/25) is reported separately as a characterization of regime multiplicity and is not used to tune the detector. The density head is a diagonal Gaussian mixture with <em>M</em>&nbsp;=&nbsp;80 components fit on the train-normal latent means; the residual head reduces the reconstruction residual to 30 principal components and whitens it with a per-regime Ledoit-Wolf covariance, and is auto-gated on by a train-normal held-out generalization check (active on HAI and SWaT, off on WADI). The basin head is auto-scaled by a train-normal ambiguity ratio and is a no-op on all three crisp-mode datasets.</p>
+<p class="rev2-highlight">Table&nbsp;D1 lists the configuration of the global VaDE and its scoring heads. The mixture-component count <em>K</em> is a fixed per-dataset hyperparameter set a priori (20/40/40), not selected on any split; the BIC-optimal component count on train-normal windows (22/24/25) is reported separately as a characterization of regime multiplicity and is not used to tune the detector. The density head is a diagonal Gaussian mixture with <em>M</em>&nbsp;=&nbsp;80 components fit on the train-normal latent means; the residual head reduces the reconstruction residual to 30 principal components and whitens it with a per-regime Ledoit-Wolf covariance, and is auto-gated on by a train-normal held-out generalization check (active on HAI and SWaT, off on WADI).</p>
 <div class="tblwrap rev2-highlight">
 <table>
 <caption><strong>Table D1.</strong> VaDE and detector hyperparameters. Values shared across datasets are given once; per-dataset values are listed as WADI / HAI / SWaT.</caption>
@@ -3019,7 +3019,7 @@ by a wide two-component head versus the 80-component head. Synthetic positive co
 <tr><td class="l">AutoEncoder</td><td>6<em>C</em>-64-16-64-6<em>C</em>, ReLU; Adam, lr 1&times;10<sup>&minus;3</sup>, 40 epochs; score = summed squared residual</td></tr>
 <tr><td class="l">LinRes (linear)</td><td>ordinary least squares, leave-one-channel-out; discrete channels (&le;6 states) soft one-hot; score = mean per-channel squared residual</td></tr>
 <tr><td class="l">Boosted LinRes</td><td>histogram gradient boosting (150 iterations, learning rate 0.1), same leave-one-channel-out structure</td></tr>
-<tr><td class="l">USAD</td><td>imperial-qore/TranAD harness, 30 epochs</td></tr>
+<tr><td class="l">USAD</td><td>public TranAD evaluation harness [<a href="#r-tranad">37</a>], 30 epochs</td></tr>
 <tr><td class="l">TranAD</td><td>same harness, 5 epochs</td></tr>
 <tr><td class="l">GDN</td><td>same harness, window length 5, 5 epochs, harness-default top-k and embedding dimension; single seed, AUROC only</td></tr>
 <tr><td class="l">trivial max|<em>u</em>|</td><td>maximum absolute standardized window mean over the level (mean) statistic block</td></tr>
