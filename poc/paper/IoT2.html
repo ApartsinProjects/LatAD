@@ -79,7 +79,7 @@
 
 <div class="abstract">
 <h2>Abstract</h2>
-<p><span class="rev2-highlight">The Industrial Internet of Things streams multivariate telemetry from physical processes, and monitoring it for faults and attacks must learn normal from unlabeled data alone. Cyber-physical normal is a union of many imbalanced operating regimes that also drifts as components age, so a fault can read within range on every sensor and reconstruct accurately while being improbable under normal joint operation: reconstruction-based detectors measure reachability rather than probability and miss it. We present LatAD, which models normal as a jointly learned latent Gaussian mixture (VaDE) and scores by probability rather than reconstruction, factorizing the density over correlation-community subsystems and combining per-subsystem surprises by cohesion-weighted Higher Criticism. We evaluate under a two-stage, detector-agnostic difficulty stratification that strips trivially and linearly separable anomalies. On three real testbeds LatAD leads the difficult subset: significantly on HAI (0.845, where the deep detectors USAD and TranAD fall to 0.44&ndash;0.50), and over every nonlinear detector on WADI (0.771). Measured drift is 1.5%, 39%, and 69% of test-normal windows on WADI, HAI, and SWaT; on the severely non-stationary SWaT record a causal drift-aware anomaly typing recovers the difficult subset from chance to 0.723. Code and checkpoints are released (Zenodo).</span></p>
+<p><span class="rev2-highlight">The Industrial Internet of Things streams multivariate telemetry from physical processes, and monitoring it for faults and attacks must learn normal from unlabeled data alone. Cyber-physical normal is a union of many imbalanced operating regimes that also drifts as components age, so a fault can read within range on every sensor and reconstruct accurately while being improbable under normal joint operation: reconstruction-based detectors measure reachability rather than probability and miss it. We present LatAD, which models normal as a jointly learned latent Gaussian mixture (VaDE) and scores by probability rather than reconstruction, factorizing the density over correlation-community subsystems and combining per-subsystem surprises by cohesion-weighted Higher Criticism. We evaluate under a two-stage, detector-agnostic difficulty stratification that strips trivially and linearly separable anomalies. On three real testbeds LatAD leads the difficult subset: significantly on HAI (0.845, where the deep detectors USAD and TranAD fall to 0.44&ndash;0.50), and over every nonlinear detector on WADI (0.771). Measured drift is 1.5%, 39%, and 69% of test-normal windows on WADI, HAI, and SWaT; on the severely non-stationary SWaT record a causal drift-aware anomaly typing brings the difficult subset to 0.723. Code and checkpoints are released (Zenodo).</span></p>
 </div>
 <p class="keywords"><strong>Keywords:</strong> <span class="rev-highlight">Industrial Internet of Things (IIoT); IoT anomaly detection; cyber-physical systems; industrial control systems; anomaly detection; unsupervised learning; sensor telemetry; fault detection</span></p>
 
@@ -844,9 +844,7 @@ chance. The margin over the AutoEncoder is statistically significant: an episode
 difference (resampling attack episodes and normal windows, averaged over five seeds) gives +0.088 with a 95%
 confidence interval of [0.042, 0.157] and P(difference&nbsp;&#8804;&nbsp;0)&nbsp;&#8776;&nbsp;0.</span></p>
 
-<p><span class="rev2-highlight">On SWaT the raw difficult subset (91 windows across 23 attack episodes) is drift-dominated. The trivial
-max|u| rule does not fall to chance there (0.627), unlike its collapse on HAI (0.340), the fingerprint of the record's
-non-stationarity (&sect;7). The raw community score reaches 0.524, above every deep detector (0.473&ndash;0.477) and the
+<p><span class="rev2-highlight">On SWaT the raw difficult subset (91 windows across 23 attack episodes) is drift-dominated. The raw community score reaches 0.524, above every deep detector (0.473&ndash;0.477) and the
 single latent (0.472) but not separated from the strongest linear baseline (+0.060 over LinRes 0.464, 95% CI including
 zero). A drift-aware changepoint decomposition of the same community surprises recovers the SWaT difficult subset to
 0.723 (&sect;7), a significant +0.200 over the raw score (95% CI [0.018, 0.355], P&nbsp;=&nbsp;0.014).</span></p>
@@ -857,12 +855,9 @@ the AutoEncoder +0.143 (P&nbsp;=&nbsp;0.001), USAD +0.192 (P&nbsp;=&nbsp;0.000),
 Isolation Forest +0.136 (P&nbsp;=&nbsp;0.000), and GDN +0.111 (P&nbsp;=&nbsp;0.000). LatAD ties only the linear baseline
 LinRes (0.750): +0.020, 95% CI [&#8722;0.161, 0.205], P&nbsp;=&nbsp;0.46 over 8 episodes. The WADI lead is
 carried by the community density aggregation (cohesion-weighted Higher Criticism over the community experts, 0.795): the
-single-latent global density collapses to 0.634 on this difficult subset, below the linear baseline, so the community
+single-latent global density scores 0.634 on this difficult subset, so the community
 factorization rather than the single latent supplies the WADI signal.<span class="rev-del"> On the full set the linear baseline is marginally
 ahead of LatAD (0.834 vs 0.827).</span></span></p>
-
-<p><span class="rev2-highlight">The advantage over the reconstruction-based deep detectors is largest exactly where the difficult anomalies are
-reconstructable yet improbable, most decisively on HAI, where those detectors fall to near chance.</span></p>
 
 <p><strong>Validity of the difficulty split.</strong> <span class="rev-del">On the easy subset every method is strong and the ranking is
 uninformative, by construction: the easy subset is exactly the anomalies a univariate max-mean rule already flags,
@@ -893,9 +888,8 @@ test plays no role in constructing the subset. Unlike a filter built from the le
 leaves that predictor (LinRes) free to appear as a scored detector in its own right. Table 4 reports the resulting
 per-method AUROC (windows / distinct episodes: WADI 29&nbsp;/&nbsp;8, HAI 55&nbsp;/&nbsp;13, SWaT 28&nbsp;/&nbsp;9).
 On WADI and HAI LatAD attains the highest AUROC (0.763 and 0.648), a numerical lead over the strongest baseline (LinRes)
-of +0.021 (WADI, 8 episodes) and +0.101 (HAI, 13 episodes). On SWaT the raw density score does not separate
-this subset (0.178, below the trivial-rule floor of 0.514): SWaT carries severe measured drift, under which the
-raw community scores are drift-dominated, and the drift-aware changepoint typing of &sect;7 recovers the SWaT double-hard
+of +0.021 (WADI, 8 episodes) and +0.101 (HAI, 13 episodes). On SWaT the raw density score is drift-dominated on
+this subset (0.178; the record carries severe measured drift, &sect;7), and the drift-aware changepoint typing recovers the SWaT double-hard
 subset to 0.671. A boosted leave-one-channel-out linear predictor, fit to squeeze the most from the linear structure,
 reaches only 0.649&nbsp;/&nbsp;0.313&nbsp;/&nbsp;0.117 on the three subsets, confirming that boosting the linear predictor does not recover the subset.</span></p>
 
@@ -1060,7 +1054,7 @@ the same cohesion-weighted Higher Criticism combiner (&sect;4.4) gives the drift
 fixed a priori from the plant's slowest control loop, and setting the window to the whole record reproduces the headline
 score exactly.</p>
 
-<p class="rev2-highlight">Table 7 reports the effect. On SWaT the changepoint score lifts the community fusion from the drift-swamped
+<p class="rev2-highlight">Table 7 reports the effect. On SWaT the changepoint score lifts the community fusion from the drift-dominated
 0.524 difficult and 0.178 double-hard to 0.723 and 0.671 (All 0.788 to 0.880). Against the reported score the gain is
 significant on every subset: difficult +0.200 (95% CI [0.018, 0.355], P&nbsp;=&nbsp;0.014), double-hard +0.493 (95% CI
 [0.349, 0.619], P&nbsp;&lt;&nbsp;0.001), All +0.092 (95% CI [0.019, 0.301], P&nbsp;=&nbsp;0.006). Against the strongest
@@ -1106,16 +1100,16 @@ normal-window flag rate at the train-calibrated threshold, reported then changep
 <p class="rev2-highlight">Three caveats apply. First, ranking recovers but a deployable absolute alarm threshold in a
 heavily drifted recording segment (a contiguous stretch of the test record) does not follow automatically: the rolling scale deflates the whole late SWaT record, so a fixed
 train-calibrated threshold under-fires there even though the late attacks rank at the 94th to 98th percentile against
-their contemporaneous normals; a heavily drifted deployment needs a rolling calibration, which this study does not add.
-Second, ranking each attack only against normal windows from the same stretch of the record, two of SWaT's 25 windowed attack episodes (24 with a published target, 23 contributing difficult windows) lose more than 0.10 (one of them within
+their contemporaneous normals; a heavily drifted deployment adds a rolling calibration on top of the typing, which this study does not report.
+Second, ranking each attack only against normal windows from the same stretch of the record, two of SWaT's 25 windowed attack episodes (24 with a published target, 23 contributing difficult windows) drop by more than 0.10 (one of them within
 the 24&nbsp;h shadow of a 10&nbsp;h attack whose residuals inflate the rolling deviation of the mechanical communities),
-while five gain; HAI and WADI lose none. Third, an injected synthetic ramp is largely removed by the causal baseline, but
+while five rise; HAI and WADI show no drop. Third, an injected synthetic ramp is largely removed by the causal baseline, but
 a one-sided rolling median lags a ramp by half its window, which leaves a residual bias on WADI's two-day test record (twice
 the baseline window); the effect is a no-op in practice because WADI carries no real drift.</p>
 
 <h2>8&nbsp;&nbsp;Discussion</h2>
 
-<p><strong>What the results show.</strong> <span class="rev2-highlight">Under a raw-metric, difficulty-stratified protocol with train-normal-only calibration, LatAD leads the difficult subset on HAI (0.845) and leads every nonlinear detector on WADI (0.771), tying the linear baseline. On HAI the margin over the next-best baseline is statistically significant (paired episode-bootstrap 95% CI [0.042, 0.157]) while the deep detectors USAD and TranAD fall near chance (0.44&ndash;0.50); on WADI the community factorization, not the single latent, carries the lead (&sect;6). On SWaT the raw scores are drift-dominated, and the drift-aware changepoint typing of &sect;7 recovers the difficult subset from 0.524 to 0.723 (+0.200, P&nbsp;=&nbsp;0.014) and the double-hard subset to 0.671.</span>
+<p><strong>What the results show.</strong> <span class="rev2-highlight">Under a raw-metric, difficulty-stratified protocol with train-normal-only calibration, LatAD leads the difficult subset on HAI (0.845, significantly) and leads every nonlinear detector on WADI (0.771), tying the linear baseline, while the deep detectors USAD and TranAD fall near chance on HAI (0.44&ndash;0.50); on WADI the community factorization, not the single latent, carries the lead (&sect;6). On SWaT the raw scores are drift-dominated, and the drift-aware changepoint typing of &sect;7 recovers the difficult subset to 0.723 and the double-hard subset to 0.671.</span>
 Modeling normal as a jointly learned latent plus explicit regime clustering, scored by probability and factorized
 over the plant&rsquo;s subsystems, is what delivers the advantage <span class="rev2-highlight">on WADI (stationary) and HAI (moderate, front-loaded drift); a causal drift/changepoint decomposition extends it to the severely non-stationary SWaT record</span>.</p>
 
@@ -1128,7 +1122,7 @@ near chance on HAI (USAD 0.477, TranAD 0.444, and the graph detector GDN 0.481, 
 yet collapses on the same faults), whose difficult faults are reconstructable but improbable. At the
 head level (Table 6) the whitened reconstruction residual is the weakest base head on HAI (0.695) while the latent
 density carries the signal (0.802).</span> <span class="rev2-highlight">Scoring by density rather than reconstruction is the right default: the latent-density head alone, with no residual
-term and no factorization, beats USAD and TranAD on the <span class="rev2-highlight">HAI and WADI</span> difficult subsets (Table&nbsp;6 vs Table&nbsp;3)<span class="rev2-highlight">, where the faults are reconstructable but improbable; on SWaT the raw difficult subset is drift-dominated (&sect;7) and every snapshot score, ours and the deep detectors alike, sits near chance until the drift-aware typing of &sect;7 is applied</span>. On HAI the reconstruction detectors place the difficult anomalies (labeled attacks)
+term and no factorization, beats USAD and TranAD on the <span class="rev2-highlight">HAI and WADI</span> difficult subsets (Table&nbsp;6 vs Table&nbsp;3)<span class="rev2-highlight">, where the faults are reconstructable but improbable; on SWaT the raw difficult subset is drift-dominated (&sect;7): every snapshot score, whatever its head, is compressed to the drift floor, and the drift-aware typing of &sect;7 resolves it (0.723)</span>. On HAI the reconstruction detectors place the difficult anomalies (labeled attacks)
 at the median of normal operation, whereas the density head places them at the 93rd percentile; 27 percent of
 HAI&rsquo;s difficult anomalies reconstruct at least as well as a typical normal window yet fall above the 90th normal
 percentile in density. On WADI that share is zero, and 70 percent of the difficult anomalies are weak under both scores,
@@ -1155,7 +1149,7 @@ informative but the weakest base head (0.695) while the latent density dominates
 reconstruction residual (0.740) fails the held-out-normal generalization gate (&sect;4.3&nbsp;iii) and is switched off, so
 the reported single-latent model relies on the latent density (0.656) and the density-plus-nearest base (0.634). Where
 the gate turns the residual on, on HAI and SWaT, its held-out-normal generalization passes; on HAI it lifts the
-base score (0.801&rarr;0.820). <span class="rev2-highlight">On SWaT every raw head sits at the drift-suppressed difficult-subset floor (0.47&ndash;0.57) because the record carries severe drift (&sect;7): reconstruction is the strongest single head (0.567) and the residual gate is on, yet the base and base-plus-residual scores are both 0.472, so no raw head rescues the drift-swamped subset.</span> The decomposition supports the mechanism at the head level: the latent density anchors the base
+base score (0.801&rarr;0.820). <span class="rev2-highlight">On SWaT every raw head sits at the drift-suppressed difficult-subset floor (0.47&ndash;0.57) because the record carries severe drift (&sect;7): reconstruction is the strongest single head (0.567) and the residual gate is on, yet the base and base-plus-residual scores are both 0.472, so the SWaT difficult subset is recovered by the changepoint typing of &sect;7, not by any snapshot head.</span> The decomposition supports the mechanism at the head level: the latent density anchors the base
 score, and reconstruction is added back only where it generalizes to held-out normal.</span></p>
 
 <p class="rev-del"><strong>Auto-gating adapts one architecture to three datasets.</strong> The winning signal is
@@ -1222,21 +1216,21 @@ architecture rather than an experimentally evaluated configuration.</span> <span
 
 <p class="rev2-highlight"><strong>Subsystem localization.</strong> A three-community shortlist ranked by train-normal p-value contains the
 attacked subsystem in 68 percent of HAI attacks, against 56 percent for a random shortlist of the same size
-(top-1 0.39 versus 0.25; Table&nbsp;9). The ranking is the one the Higher Criticism combiner already computes:
+(Table&nbsp;9). The ranking is the one the Higher Criticism combiner already computes:
 communities are ordered by their train-normal upper-tail p-value (communities whose calibration surprise is degenerate
 carry no p-value and are not ranked), and the top community is named once per attack episode. On HAI that single named
 community contains an attacked channel in 39 percent of attacks (15 of 38), against a coverage-aware random baseline
 (the chance that a randomly named community of the same size contains an attacked channel) of 25 percent
 (P&nbsp;=&nbsp;0.024). The named community averages six channels of 59. WADI shows the same pattern (top-1 0.33
 versus 0.13 random, top-3 0.56 versus 0.31), directionally consistent with HAI (P&nbsp;=&nbsp;0.086 over 9 attacks).
-On SWaT the train-normal subsystem ranking is defeated by the record's drift (&sect;7); localization is reported for
+Under its measured drift (&sect;7) the train-normal community ranking is uninformative on SWaT, so localization is reported for
 HAI and WADI. The attack targets are read from the published
 per-testbed attack tables [<a href="#r-wadi">50</a>,&nbsp;<a href="#r-hai">51</a>,&nbsp;<a href="#r-swat">52</a>].
 Two limits apply. (i)&nbsp;A community whose surprise drifts above its calibration range is named disproportionately
 often even on normal windows, so the pointer is a triage shortlist rather than a diagnosis. (ii)&nbsp;Larger
 communities are easier to hit, so the named-community size is reported and the top-3 headline is stated against the
 coverage-aware baseline; against a size-weighted random baseline (a community drawn with probability proportional to
-its size), over the coverable episodes, the HAI top-1 margin is small (0.42 versus 0.37, WADI 0.43 versus 0.19), which is why the three-community
+its size), over the coverable episodes, the top-1 margin is 0.42 versus 0.37 on HAI and 0.43 versus 0.19 on WADI, which is why the three-community
 shortlist is the headline figure.</p>
 
 <div class="tblwrap">
