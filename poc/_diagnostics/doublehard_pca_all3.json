@@ -363,7 +363,7 @@
     "compet_auroc": 0.644
    }
   },
-  "seconds": 124.7
+  "seconds": 123.5
  },
  "HAI": {
   "d": 354,
@@ -793,7 +793,7 @@
     "compet_auroc": 0.433
    }
   },
-  "seconds": 365.1
+  "seconds": 363.1
  },
  "SWaT_canon": {
   "d": 306,
@@ -911,7 +911,7 @@
     ]
    },
    "GDN": {
-    "auroc": 0.571
+    "auroc": 0.115
    },
    "boosted_LOO": {
     "auroc": 0.117
@@ -991,7 +991,7 @@
     ]
    },
    "GDN": {
-    "auroc": 0.631
+    "auroc": 0.148
    },
    "boosted_LOO": {
     "auroc": 0.124
@@ -1071,7 +1071,7 @@
     ]
    },
    "GDN": {
-    "auroc": 0.636
+    "auroc": 0.314
    },
    "boosted_LOO": {
     "auroc": 0.287
@@ -1099,18 +1099,18 @@
     ]
    }
   },
-  "competitor": "GDN",
+  "competitor": "IF",
   "significance": {
-   "diff": -0.393,
+   "diff": -0.148,
    "diff_ci": [
-    -0.489,
-    -0.313
+    -0.237,
+    -0.068
    ],
    "p_le_0": 1.0,
    "n_episodes": 9,
    "n_boot": 2000,
    "method_auroc": 0.178,
-   "compet_auroc": 0.571
+   "compet_auroc": 0.326
   },
   "significance_vs_linres": {
    "diff": 0.025,
@@ -1192,7 +1192,7 @@
      ]
     },
     "GDN": {
-     "auroc": 0.576
+     "auroc": 0.113
     },
     "boosted_LOO": {
      "auroc": 0.099
@@ -1220,20 +1220,20 @@
      ]
     }
    },
-   "competitor": "GDN",
+   "competitor": "IF",
    "significance": {
-    "diff": -0.413,
+    "diff": -0.147,
     "diff_ci": [
-     -0.516,
-     -0.314
+     -0.239,
+     -0.055
     ],
     "p_le_0": 1.0,
     "n_episodes": 9,
     "n_boot": 2000,
     "method_auroc": 0.163,
-    "compet_auroc": 0.576
+    "compet_auroc": 0.31
    }
   },
-  "seconds": 119.5
+  "seconds": 138.7
  }
 }

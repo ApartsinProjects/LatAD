@@ -8,7 +8,7 @@ D = os.path.dirname(os.path.abspath(__file__))
 
 JOBS = [("WADI_clean", "score_GDN_WADI_clean_s0.npy"),
         ("HAI",        "gdn_fast_score_HAI_s0.npy"),
-        ("SWaT_canon", "score_GDN_SWaT_canon_s0.npy")]
+        ("SWaT_canon", "sota_pull_official/score_GDN_SWaT_canon_s0.npy")]  # clean; leaked sibling quarantined
 
 def win_starts(n, W, stride): return list(range(0, n - W + 1, stride))
 def win_avg(ts, starts, W):   return np.array([ts[i:i+W].mean() for i in starts], np.float32)

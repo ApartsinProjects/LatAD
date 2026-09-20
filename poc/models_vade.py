@@ -276,9 +276,11 @@ class VaDE(nn.Module):
     def anomaly_score_hard(self, x, use_recon=False, use_resid=False, use_basin=False, use_near=True):
         """Improved head: latent density NLL + (optional) diagonal nearest-mode NLL, each
         z-normalised against TRAIN-normal, then summed. `use_recon=False` drops the harmful
-        reconstruction term. `use_near` adds the nearest-mode NLL to the base; an ablation across
-        four datasets shows the high-K density head subsumes it (density-only >= density+nearest
-        on WADI/HAI/SWaT, negligible on SKAB), so the reported model uses density-only base.
+        reconstruction term. `use_near` (default True) adds the nearest-mode NLL to the base, and
+        the reported model uses this density+nearest base (build_scores_table.py and the
+        community-expert builders call this with the default use_near=True). An ablation across
+        four datasets shows the head is near-redundant: density-only is within about 0.02 of
+        density+nearest (slightly ahead on WADI), and it is retained as the A5 rare-regime safeguard.
         `use_resid` adds the responsibility-weighted whitened residual (True|False|'auto' via
         held-out-normal generalisation; needs `fit_resid_head`). `use_basin` subtracts the
         C2 basin-agreement rescue (True|False|'auto'; auto-scaled by train ambiguity ratio, so

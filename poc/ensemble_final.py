@@ -115,7 +115,9 @@ def boot(y, method, compet, mask, L, reps=2000):
 def ensemble_scores(name):
     """Return dict of ensemble score arrays (nseed,n): HC, HC_coh, null+HC, plus context."""
     d = np.load(f"{OUT}/scores_{name}.npz")
-    Ex = np.load(f"{os.environ.get('EXPERTS_DIR', 'sota_bundle/experts')}/expert_{name}.npz", allow_pickle=True)
+    _ed = os.environ.get('EXPERTS_DIR', 'sota_bundle/experts_full')
+    Ex = np.load(f"{_ed}/expert_{name}.npz", allow_pickle=True)
+    assert 'fit_surprise' in Ex.files, f"{name}: expert bundle '{_ed}' lacks fit_surprise (stale/old-format bundle; point EXPERTS_DIR at a clean S=24 experts_full bundle)"
     y = d["label"].astype(int)
     assert len(Ex["y"]) == len(y) and int(np.abs(Ex["y"].astype(int) - y).sum()) == 0, f"{name}: expert/scores label mismatch"
     Cal, Tst = Ex["calib_surprise"], Ex["test_surprise"]          # (nseed,S,ncal/ntest)

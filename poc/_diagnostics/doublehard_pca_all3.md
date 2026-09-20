@@ -21,7 +21,7 @@ Second filter is **PCA** (Hotelling T2 on retained components OR SPE/Q on droppe
 | AE | 0.418±0.008 | 0.616±0.004 | 0.154±0.006 |
 | USAD | 0.351±0.018 | 0.565 | 0.125±0.004 |
 | TranAD | 0.296±0.004 | 0.601 | 0.119±0.001 |
-| GDN | 0.354 | 0.648 | 0.571 |
+| GDN | 0.354 | 0.648 | 0.115 |
 | LinRes | 0.547 | 0.742 | 0.153 |
 | boosted_LOO | 0.313 | 0.649 | 0.117 |
 | _LatAD (global density) (ablation)_ | _0.559±0.040_ | _0.623±0.012_ | _0.184±0.022_ |
@@ -35,7 +35,7 @@ Episode-block moving-block bootstrap, 2000 reps; paired AUROC difference (ours m
 |---|---|--:|--:|---|---|
 | HAI | LinRes | 0.547 | 0.648 | +0.101 [-0.090, +0.337], P(diff<=0)=0.17 | ours ahead, NOT sig. |
 | WADI | LinRes | 0.742 | 0.763 | +0.021 [-0.165, +0.201], P(diff<=0)=0.46 | ours ahead, NOT sig. |
-| SWaT | GDN | 0.571 | 0.178 | -0.393 [-0.489, -0.313], P(diff<=0)=1.0 | GDN leads (sig.) |
+| SWaT | IF | 0.326 | 0.178 | -0.148 [-0.237, -0.068], P(diff<=0)=1.0 | IF leads (sig.) |
 
 ## Invariant / sanity checks
 

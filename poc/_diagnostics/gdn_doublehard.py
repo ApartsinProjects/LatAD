@@ -8,7 +8,7 @@ import eda_real as E
 from ensemble_final import build_feats, loco_residual
 D = r"E:\Projects\Backlog\LatAD\poc\_diagnostics"
 JOBS = [("WADI_clean", "score_GDN_WADI_clean_s0.npy"), ("HAI", "gdn_fast_score_HAI_s0.npy"),
-        ("SWaT_canon", "score_GDN_SWaT_canon_s0.npy")]
+        ("SWaT_canon", "sota_pull_official/score_GDN_SWaT_canon_s0.npy")]  # clean; leaked sibling quarantined
 def win_starts(n, W, s): return list(range(0, n - W + 1, s))
 def win_avg(ts, st, W):  return np.array([ts[i:i+W].mean() for i in st], np.float32)
 for name, gf in JOBS:

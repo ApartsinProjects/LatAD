@@ -30,7 +30,9 @@ import ensemble_final as EF
 OUT = os.path.join(POC, "_diagnostics")
 DATASETS = sys.argv[1:] or ["WADI_clean", "HAI", "SWaT_canon"]
 GDN_FILE = {"WADI_clean": "score_GDN_WADI_clean_s0.npy", "HAI": "gdn_fast_score_HAI_s0.npy",
-            "SWaT_canon": "score_GDN_SWaT_canon_s0.npy"}
+            # SWaT_canon: use the clean official-normal GDN dump; the sibling
+            # _diagnostics/score_GDN_SWaT_canon_s0.npy is the leaked/corrupted pre-fix dump (quarantined).
+            "SWaT_canon": "sota_pull_official/score_GDN_SWaT_canon_s0.npy"}
 HEADKEY = "HCcoh+LatAD"                       # the paper's "LatAD (regime-community)" headline
 REPS = int(os.environ.get("BOOT_REPS", "2000"))
 VAR_KEEP = 0.95; VAR_SENS = (0.90, 0.95, 0.99)
