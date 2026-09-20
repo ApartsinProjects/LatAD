@@ -79,7 +79,7 @@
 
 <div class="abstract">
 <h2>Abstract</h2>
-<p><span class="rev2-highlight">The Industrial Internet of Things streams multivariate telemetry from physical processes, and monitoring it for faults and attacks must learn normal from unlabeled data alone. Cyber-physical normal is a union of many imbalanced operating regimes that also drifts as components age, so a faulty state can remain within every sensor's normal range and still reconstruct accurately while being improbable under normal joint operation: reconstruction-based detectors measure reachability rather than probability and miss it. We present LatAD, which models normal as a jointly learned latent Gaussian mixture (VaDE) and scores by probability rather than reconstruction, factorizing the density over correlation-community subsystems and combining per-subsystem surprises by cohesion-weighted Higher Criticism. We evaluate under a detector-agnostic difficulty stratification: a channel rule strips trivially separable anomalies to form the difficult subset, and a secondary linear-subspace filter forms a double-hard subset. On three real testbeds LatAD leads the difficult subset: significantly on HAI (0.845, where the deep detectors USAD and TranAD fall to 0.44&ndash;0.50), and over every nonlinear detector on WADI (0.771). Measured drift is 1.5%, 39%, and 69% of test-normal windows on WADI, HAI, and SWaT; on the severely non-stationary SWaT record a causal drift-aware anomaly typing brings the difficult subset to 0.723. Code and checkpoints are released (Zenodo).</span></p>
+<p><span class="rev2-highlight">The Industrial Internet of Things streams multivariate telemetry from physical processes, and monitoring it for faults and attacks must learn normal from unlabeled data alone. Cyber-physical normal is a union of many imbalanced operating regimes that also drifts as components age, so a faulty state can remain within every sensor's normal range and still reconstruct accurately while being improbable under normal joint operation: reconstruction-based detectors measure reachability rather than probability and miss it. We present LatAD (Latent Anomaly Detector), which models normal as a jointly learned latent Gaussian mixture (VaDE) and scores by probability rather than reconstruction, factorizing the density over correlation-community subsystems and combining per-subsystem surprises by cohesion-weighted Higher Criticism. We evaluate under a detector-agnostic difficulty stratification: a channel rule strips trivially separable anomalies to form the difficult subset, and a secondary linear-subspace filter forms a double-hard subset. On three real testbeds LatAD leads the difficult subset: significantly on HAI (0.845, where the deep detectors USAD and TranAD fall to 0.44&ndash;0.50), and over every nonlinear detector on WADI (0.771). Measured drift is 1.5%, 39%, and 69% of test-normal windows on WADI, HAI, and SWaT; on the severely non-stationary SWaT record a causal drift-aware anomaly typing brings the difficult subset to 0.723 and cuts its normal-window false-alarm rate from 79% to 6.5%. LatAD commissions from normal telemetry alone, localizes each alarm to a physical subsystem, and trains 47 to 72 times faster than a transformer baseline at sub-30 ms per-window inference, within industrial edge budgets. Code and checkpoints are released (Zenodo).</span></p>
 </div>
 <p class="keywords"><strong>Keywords:</strong> <span class="rev-highlight">Industrial Internet of Things (IIoT); IoT anomaly detection; cyber-physical systems; industrial control systems; anomaly detection; unsupervised learning; sensor telemetry; fault detection</span></p>
 
@@ -182,15 +182,15 @@ with explicit Gaussian-mixture regime clustering (Variational Deep Embedding, Va
 mixture-density head and a rare-regime-safe nearest-component likelihood, factorized over the plant&rsquo;s own subsystems
 (communities of the normal-data correlation graph) and combined by cohesion-weighted Higher Criticism (HC), a statistic
 that flags when more subsystems are mildly surprised than chance allows, so a local fault that a single global density
-dilutes is concentrated and localized to its subsystem (&sect;4). Reconstruction is demoted and re-enters only through a
+dilutes is concentrated and localized to its subsystem (&sect;4), so an alarm carries an operator-facing subsystem-triage shortlist (validated on HAI, &sect;8). Reconstruction is demoted and re-enters only through a
 gated residual head. <strong>(C2) A detector-agnostic difficulty stratification.</strong> A channel-based rule
 separates the trivially detectable anomalies and a linear principal-component subspace filter (Hotelling&nbsp;<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msup><mi>T</mi><mn>2</mn></msup></math>
 and squared prediction error) separates the linearly detectable ones, leaving a difficult and a double-hard subset that
 the detector under test plays no part in constructing (&sect;5&ndash;6). <strong>(C3) A drift-aware anomaly typing.</strong> A causal per-community decomposition into a slow
-on-trend baseline and a fast residual types each window as gradual drift or abrupt changepoint, and scoring the
-changepoint component recovers detection on a non-stationary record (&sect;7). We re-compute the deep detectors USAD, TranAD,
+on-trend baseline and a fast residual types each window as gradual drift or abrupt changepoint; scoring the
+changepoint component recovers detection on the severely non-stationary SWaT record (difficult-subset AUROC 0.524 to 0.723) and cuts its normal-window false-alarm rate from 79 to 6.5 percent, while leaving stationary records unchanged (&sect;7). We evaluate the deep detectors USAD, TranAD,
 and GDN under the same raw point-wise metrics. LatAD leads the difficult subset on HAI, significantly, where those
-detectors collapse to near chance, and leads every nonlinear detector on WADI, tying the linear baseline; because aggregate benchmark scores are dominated by easy marginal
+detectors fall to near chance, and leads every nonlinear detector on WADI, statistically level with the linear baseline; because aggregate benchmark scores are dominated by easy marginal
 excursions, the difficult subset, not the headline number, is the central test throughout.</span></p>
 
 <p><span class="rev-del">Because aggregate benchmark scores are dominated by easy marginal excursions, the central test throughout is
@@ -549,8 +549,7 @@ mixture sum washes out (A5): the nearest-component distance retains a deviation 
 populated regime, whereas the mixture sum averages it away. <span class="rev2-highlight">This term is a rare-regime safety head: its role is to
 keep a valid window in a sparsely populated regime from being flagged for rarity alone (A5), not to maximize
 difficult-subset AUROC. On a dataset without such rare-regime false alarms it can leave the base score marginally below
-the density head alone (Table A6, WADI), and it protects the false-alarm rate on rare regimes rather
-than raising the aggregate score.</span> The base
+the density head alone (Table A6, WADI). On these three benchmarks its rare-regime false-alarm rate is not measurably below the mixture head's, so it is retained as a conservative safeguard motivated by A5 rather than for a demonstrated empirical gain.</span> The base
 score is the sum of the two <span class="rev2-highlight">standardized</span> heads,
 <span class="rev2-highlight"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>s</mi><mn>0</mn></msub><mo>=</mo><mtext>std</mtext><mo stretchy="false">(</mo><msub><mi>s</mi><mtext>dens</mtext></msub><mo stretchy="false">)</mo><mo>+</mo><mtext>std</mtext><mo stretchy="false">(</mo><msub><mi>s</mi><mtext>near</mtext></msub><mo stretchy="false">)</mo></mrow></math></span>.</p>
 
@@ -664,7 +663,7 @@ testbed (HAI 20.07), 59 channels, a multi-process plant. No clipping (its large 
 signal).</li>
 <li><strong>SWaT</strong> [<span class="rev-highlight"><a href="#r-swat">52</a></span>], the Secure Water Treatment testbed from iTrust, a
 51-channel six-stage water-treatment plant with real executed attacks. <span class="rev2-highlight">Standardized features are clipped to &plusmn;10&#963; on SWaT and WADI so recalibrated analyser channels (the SWaT AIT201 channel is a documented example [<a href="#r-daics">60</a>]) do not dominate the per-channel range statistics; HAI is not clipped.</span> SWaT is downsampled 10&times;
-on both streams<span class="rev-del">, with the train and test horizons matched</span>. <span class="rev2-highlight">We use the December 2015 iTrust SWaT release: the SWaT normal recording supplies train-normal, and the SWaT attack
+on both streams<span class="rev-del">, with the train and test horizons matched</span>. <span class="rev2-highlight">We use the December 2015 iTrust SWaT release: the SWaT normal recording supplies train-normal (its first 2%, the plant start-up and stabilization transient, is excluded before training), and the SWaT attack
 recording (449,919 one-second rows over 51 channels, 12.14% of timesteps labeled attack) supplies the test set,
 whose normal periods interleave between attack episodes.</span></li>
 </ul>
@@ -683,7 +682,7 @@ xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>C</mi></math>-ch
 xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>6</mn><mi>C</mi></mrow></math>-dimensional
 input. A window is labeled anomalous if more than 5% of its timesteps are attack timesteps. Model inputs are
 additionally per-feature standardized on train-normal before the encoder. The window size and stride are unified
-across all three datasets. The reported model uses these static per-channel features. <span class="rev2-highlight">A controlled representation check (Appendix&nbsp;A, Table&nbsp;A2) confirms that the latent-density mechanism, not the choice of window statistics, carries the HAI and WADI result, and that explicit multiscale temporal features motivated by A9 are a complementary lever left to future work (&sect;8).</span></p>
+across all three datasets. The reported model uses these static per-channel features. <span class="rev2-highlight">A controlled representation check (Appendix&nbsp;A, Table&nbsp;A2) confirms that the latent-density mechanism, not the choice of window statistics, carries the WADI result; on HAI and SWaT a richer temporal representation is a complementary lever (+0.071 and +0.241 difficult-subset AUROC, Appendix&nbsp;A, Table&nbsp;A2), aligned with A9 and left to future work (&sect;8).</span></p>
 
 <p><strong>Model configuration.</strong> The VaDE uses <math xmlns="http://www.w3.org/1998/Math/MathML"
 display="inline"><mi>K</mi></math> mixture components and latent dimension set per dataset (WADI 20 and 10, HAI 40
@@ -874,7 +873,7 @@ On WADI and HAI LatAD attains the highest AUROC (0.763 and 0.648), a numerical l
 of +0.021 (WADI, 8 episodes) and +0.101 (HAI, 13 episodes). On SWaT the raw density score is drift-dominated on
 this subset (0.178; the record carries severe measured drift, &sect;7), and the drift-aware changepoint typing recovers the SWaT double-hard
 subset to 0.671. A boosted leave-one-channel-out linear predictor, fit to squeeze the most from the linear structure,
-reaches only 0.649&nbsp;/&nbsp;0.313&nbsp;/&nbsp;0.117 on the three subsets, confirming that boosting the linear predictor does not recover the subset.</span></p>
+reaches only 0.649&nbsp;/&nbsp;0.313&nbsp;/&nbsp;0.117 on the three subsets, so boosting the raw linear predictor does not recover it. The drift-aware typing of &sect;7 is what recovers the SWaT subset, and it lifts multiple method families, including this boosted linear predictor (double-hard 0.117 to 0.553); LatAD retains the higher post-typing score (0.671).</span></p>
 
 
 
@@ -974,7 +973,7 @@ decaying level offset in two valve-position and turbine communities that begins 
 over it. SWaT is a single continuous eleven-day run of a live water-treatment plant, and its drift is large,
 monotone, and localized to the process analysers and the reverse-osmosis train: the drifting communities are exactly
 those built from the analyser channels (AIT2xx/4xx/5xx) and the RO flow and pressure channels (FIT4xx/5xx, PIT5xx; the AIT, FIT, and PIT families are analyser, flow, and pressure-transmitter tags),
-matching the physical signature of reverse-osmosis membrane fouling and analyser electrode drift. Datasets recorded as a
+matching the physical signature of reverse-osmosis membrane fouling and analyser electrode drift, so the per-community drift map is itself a physically-grounded degradation-localization signal for condition monitoring. Datasets recorded as a
 single long run over non-stationary physical processes therefore carry drift that discrete-attack testbeds with short test records do not, a distinction consistent with the recalibration handling documented for water-treatment analyser channels
 elsewhere [<a href="#r-daics">60</a>] and with the clipping of recalibrated analyser channels described in &sect;5.1.</p>
 
@@ -1148,6 +1147,8 @@ train-normal data only, so a site can be commissioned from its own normal teleme
 per-community score localizes an anomaly to a physical subsystem rather than issuing only a plant-wide flag (validated below, Table&nbsp;5). Scoring
 is sequential, with each completed window evaluated without access to future observations. This is a deployment
 architecture rather than an experimentally evaluated configuration.</span> <span class="rev2-highlight">Figure&nbsp;1 is the deployment: the same windows, scored online, with no labels required at commissioning. What this section adds is the training and inference cost (Appendix&nbsp;B, Table&nbsp;B1) and the subsystem triage shortlist (Table&nbsp;5).</span></p>
+
+<p class="rev2-highlight"><strong>What an operator gets.</strong> The three practitioner-facing properties compose into one deployment story, using only train-normal statistics and online per-window scoring. A site is commissioned from its own normal telemetry with no labeled attacks (Figure&nbsp;1); each alarm is localized to a physical subsystem, a three-community shortlist that contains the attacked subsystem in 68 percent of HAI attacks against 56 percent for a random shortlist of the same size (&sect;8, Table&nbsp;5); and on a drifting record the drift-aware typing of &sect;7 holds the normal-window false-alarm rate to 6.5 percent, down from 79 percent untyped, while recovering detection. All three run within the edge training and inference budgets of Appendix&nbsp;B.</p>
 
 <p class="rev2-highlight"><strong>Subsystem localization.</strong> A three-community shortlist ranked by train-normal p-value contains the
 attacked subsystem in 68 percent of HAI attacks, against 56 percent for a random shortlist of the same size
