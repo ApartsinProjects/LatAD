@@ -379,7 +379,7 @@ the same representation and heads, we describe those first, then the regime-comm
   <text x="340" y="250" text-anchor="middle" font-size="9.5" font-style="italic" fill="#5a4a3a">fan-out over communities</text>
   <rect x="94" y="256" width="540" height="360" rx="8" fill="#ffffff" stroke="#1f4e79" stroke-width="1.2" opacity="0.20"/>
   <rect x="82" y="268" width="540" height="360" rx="8" fill="#ffffff" stroke="#1f4e79" stroke-width="1.2" opacity="0.35"/>
-  <text x="516" y="278" text-anchor="middle" font-size="9" font-style="italic" fill="#1f4e79">communities G1 ... GK</text>
+  <text x="516" y="278" text-anchor="middle" font-size="9" font-style="italic" fill="#1f4e79">communities G1 ... GS</text>
   <g filter="url(#f2sh)"><rect x="70" y="280" width="540" height="360" rx="8" fill="#f7f9fc" stroke="#1f4e79" stroke-width="1.7"/></g>
   <text x="90" y="303" font-size="12.5" font-weight="700" fill="#1f4e79">Per-community expert  (community G<tspan baseline-shift="sub" font-size="70%">i</tspan>)</text>
   <rect x="200" y="316" width="280" height="46" rx="6" fill="#ecf6ee" stroke="#1f7a3a" stroke-width="1.3"/>
@@ -421,7 +421,7 @@ the same representation and heads, we describe those first, then the regime-comm
   <text x="340" y="595" text-anchor="middle" font-size="9.5" fill="#b3401b">The base score is computed in the VaDE latent space.</text>
   <line x1="340" y1="640" x2="340" y2="710" stroke="#33404d" stroke-width="1.6" marker-end="url(#f2arr)"/>
   <text x="348" y="672" font-size="9" fill="#5a4a3a">per-community</text>
-  <text x="348" y="684" font-size="9" fill="#5a4a3a">surprises (K)</text>
+  <text x="348" y="684" font-size="9" fill="#5a4a3a">surprises (S)</text>
   <g filter="url(#f2sh)"><rect x="70" y="648" width="166" height="46" rx="6" fill="#ecf6ee" stroke="#1f7a3a" stroke-width="1.2"/></g>
   <text x="153" y="668" text-anchor="middle" font-size="10" font-weight="700" fill="#1a1a2e">Whole-plant expert</text>
   <text x="153" y="683" text-anchor="middle" font-size="8.8" fill="#33404d">dataset-level regimes</text>
@@ -487,7 +487,7 @@ objective is the negative evidence lower bound; per window it is</p>
   </mrow>
 </math></span>
 
-<p>where <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#947;</mi><mi>c</mi></msub><mo>&#8733;</mo><msub><mi>&#960;</mi><mi>c</mi></msub><mspace width="0.1em"/><mi>N</mi><mo stretchy="false">(</mo><mi>z</mi><mo>&#8739;</mo><msub><mi>&#956;</mi><mi>c</mi></msub><mo>,</mo><msubsup><mi>&#963;</mi><mi>c</mi><mn>2</mn></msubsup><mo stretchy="false">)</mo></mrow></math> are the responsibilities (the posterior probability that a window belongs to regime <em>c</em>). Three standard measures prevent the
+<p>where <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#947;</mi><mi>c</mi></msub><mo>&#8733;</mo><msub><mi>&#960;</mi><mi>c</mi></msub><mspace width="0.1em"/><mi>N</mi><mo stretchy="false">(</mo><mi>z</mi><mo>&#8739;</mo><msub><mi>&#956;</mi><mi>c</mi></msub><mo>,</mo><msubsup><mi>&#963;</mi><mi>c</mi><mn>2</mn></msubsup><mo stretchy="false">)</mo></mrow></math> are the responsibilities (the posterior probability that a window belongs to regime <em>c</em>); the reconstruction term sums over the 6<em>C</em> window features, indexed by <em>j</em>. Three standard measures prevent the
 well-known cluster collapse in which many components are abandoned during joint training: a KL/cluster
 <em>warm-up</em> that anneals <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>&#946;</mi></math> from 0 to 1 so the encoder settles on the pretrained mixture
 initialization before the prior is pulled around; a DAGMM-style [<span class="rev-highlight"><a href="#r-dagmm">28</a></span>] penalty on tiny
@@ -532,6 +532,7 @@ log-likelihood:</p>
   <msub><mi>w</mi><mi>m</mi></msub><mspace width="0.15em"/>
   <mi>N</mi><mo stretchy="false">(</mo><mi>z</mi><mo>&#8739;</mo><msub><mi>a</mi><mi>m</mi></msub><mo>,</mo><mtext>diag</mtext><mspace width="0.1em"/><msubsup><mi>b</mi><mi>m</mi><mn>2</mn></msubsup><mo stretchy="false">)</mo><mo>.</mo></mrow>
 </math></span>
+<p class="rev2-highlight">Here <em>w<sub>m</sub></em>, <em>a<sub>m</sub></em>, and <em>b<sub>m</sub></em><sup>2</sup> are the weight, mean, and diagonal variance of the <em>m</em>-th of the 80 density-mixture components (a separate high-resolution mixture fit on the train-normal latent, distinct from the VaDE regime mixture).</p>
 
 <h4>(ii)&nbsp;Nearest-component NLL (rare-regime-safe)</h4>
 <p>Under heavy-tailed imbalance (A5) a valid point in a rare, low-<math
@@ -558,7 +559,7 @@ score is the sum of the two <span class="rev2-highlight">standardized</span> hea
 per-channel residual <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>r</mi></math> by
 principal-component analysis (fit on train-normal) to
 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mn>30</mn></math> dimensions, fits a
-Ledoit&ndash;Wolf-shrunk [<span class="rev-highlight"><a href="#r-lw">33</a></span>] <span class="rev2-highlight">(a covariance estimate regularized toward the identity, stable when channels outnumber samples)</span> precision <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msub><mi>&#931;</mi><mi>k</mi></msub></math> per regime, and combines the per-regime whitened
+Ledoit&ndash;Wolf-shrunk [<span class="rev-highlight"><a href="#r-lw">33</a></span>] <span class="rev2-highlight">(a covariance estimate regularized toward the identity, stable when channels outnumber samples)</span> covariance <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msub><mi>&#931;</mi><mi>k</mi></msub></math> per regime, and combines the per-regime whitened
 energies of that reduced residual by responsibility:</p>
 <span class="eq"><span class="eqno rev2-highlight">(6)</span><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
   <mrow><msub><mi>s</mi><mtext>resid</mtext></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
@@ -566,7 +567,7 @@ energies of that reduced residual by responsibility:</p>
   <msub><mi>&#947;</mi><mi>k</mi></msub><mspace width="0.15em"/>
   <msubsup><mi>r</mi><mi>k</mi><mi>&#8868;</mi></msubsup><msubsup><mi>&#931;</mi><mi>k</mi><mrow><mo>&#8722;</mo><mn>1</mn></mrow></msubsup><msub><mi>r</mi><mi>k</mi></msub><mo>.</mo></mrow>
 </math></span>
-<p>Here <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msub><mi>r</mi><mi>k</mi></msub></math> is the reduced residual whitened by regime <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>k</mi></math>&rsquo;s precision <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msub><mi>&#931;</mi><mi>k</mi></msub></math>, and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msub><mi>&#947;</mi><mi>k</mi></msub></math> is the window&rsquo;s responsibility for regime <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>k</mi></math>. The head is <em>auto-gated</em> by a held-out-normal generalization test: per-regime precisions are fitted on
+<p>Here <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msub><mi>r</mi><mi>k</mi></msub></math> is the reduced residual whitened by regime <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>k</mi></math>&rsquo;s covariance <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msub><mi>&#931;</mi><mi>k</mi></msub></math>, and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msub><mi>&#947;</mi><mi>k</mi></msub></math> is the window&rsquo;s responsibility for regime <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>k</mi></math>. The head is <em>auto-gated</em> by a held-out-normal generalization test: per-regime precisions are fitted on
 the first 80% of train-normal (split A) and scored on the last 20% (split B); if held-out normal scores much higher
 (the residual overfits or drifts), the ratio <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>q</mi><mn>95</mn></msub><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo><mo>/</mo><msub><mi>q</mi><mn>95</mn></msub><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></math> exceeds 1.5 and the head is switched off. Empirically the ratio is
 <span class="rev2-highlight">3.41 on WADI (off), 1.22 on HAI (on), and 0.76 on SWaT (on): the residual generalizes to held-out normal on HAI and
@@ -617,7 +618,7 @@ are nested subtrees and can overlap, this sum is an over-complete pooling rather
 </math></span>
 
 <p>and the detector scores a window by a weighted combination <math xmlns="http://www.w3.org/1998/Math/MathML"
-display="inline"><mrow><mi>s</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mo>&#8853;</mo><mrow><mi>G</mi><mo>&#8712;</mo><mi>&#119966;</mi></mrow></msub><msub><mi>w</mi><mi>G</mi></msub><mspace width="0.1em"/><msub><mi>s</mi><mi>G</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math>.
+display="inline"><mrow><msub><mo>&#8853;</mo><mrow><mi>G</mi><mo>&#8712;</mo><mi>&#119966;</mi></mrow></msub><msub><mi>w</mi><mi>G</mi></msub><mspace width="0.1em"/><msub><mi>s</mi><mi>G</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math>.
 The weight <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msub><mi>w</mi><mi>G</mi></msub></math>
 grows with the community&rsquo;s internal cohesion (its mean absolute pairwise channel correlation), because a density violation
 inside a tightly coupled subsystem (A7) is more diagnostic than the same deviation in a loosely coupled one. The
