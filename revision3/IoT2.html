@@ -167,7 +167,7 @@
 
 <p>Two obstacles have obscured this failure mode. The first is modeling. If normal is a union of many imbalanced
 regimes, a global anomaly model under-fits the regime structure, a single deep autoencoder alarms on rare-but-valid
-regimes (the trust-eroding false positive), <span class="rev-del">and a reconstruction residual is blind to exactly the joint-structure faults that matter, because a flexible decoder reconstructs them faithfully.</span><span class="rev2-highlight">and the reconstruction residual that the deep detectors rely on misses exactly the reconstructable-but-improbable joint-structure faults that matter<span class="rev-del">, because a flexible decoder reconstructs them faithfully</span>; where a fault does leave a reconstruction signal, a regime-conditioned residual stays competitive and is auto-gated back in.</span></p>
+regimes (the trust-eroding false positive), <span class="rev-del">and a reconstruction residual is blind to exactly the joint-structure faults that matter, because a flexible decoder reconstructs them faithfully.</span><span class="rev2-highlight">and the reconstruction residual that the deep detectors rely on misses exactly the reconstructable-but-improbable joint-structure faults that matter; where a fault does leave a reconstruction signal, a regime-conditioned residual stays competitive and is auto-gated back in.</span></p>
 
 <p>The second is evaluation. The dominant metric in the literature, point-adjusted <span class="rev2-highlight">F1 (the harmonic mean of precision and recall)</span>, inflates scores so severely
 that a <em>random</em> anomaly score can beat every published deep model [<span class="rev-highlight"><a href="#r-kim">7</a></span>, <span class="rev-highlight"><a href="#r-garg">8</a></span>];
@@ -272,7 +272,7 @@ multimodal-latent anomaly detection.</p>
 </math></span>
 where each component <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msub><mi>p</mi><mi>k</mi></msub></math> is a bounded, oriented, curved patch of observation space. The ten
 assumptions of Table 1 describe the qualitative structure of this mixture; each is grounded in a physical property
-of CPS operation<span class="rev-del"> and each motivates</span><span class="rev2-highlight"> and A1&ndash;A7 each motivate</span> a specific design choice in the detector of &sect;4. <span class="rev2-highlight">These properties are not a universal law but a checklist that CPS normal may exhibit to varying degrees: a given dataset realizes some strongly, others weakly or not at all. LatAD is built to exploit <span class="rev-del">each property</span><span class="rev2-highlight">each of A1&ndash;A7</span> when it is present and to reduce to a standard latent-density model when it is absent.</span><span class="rev-del"> A property that a corpus does not exhibit (here A8) simply leaves the corresponding component inactive rather than degrading the detector.</span> We call the resulting
+of CPS operation<span class="rev-del"> and each motivates</span><span class="rev2-highlight"> and A1&ndash;A7 each motivate</span> a specific design choice in the detector of &sect;4. <span class="rev2-highlight">These properties are not a universal law but a checklist that CPS normal may exhibit to varying degrees: a given dataset realizes some strongly, others weakly or not at all. LatAD is built to exploit each of A1&ndash;A7 when it is present and to reduce to a standard latent-density model when it is absent.</span><span class="rev-del"> A property that a corpus does not exhibit (here A8) simply leaves the corresponding component inactive rather than degrading the detector.</span> We call the resulting
 property <em>MIIM</em>: the sample is <strong>M</strong>assive, the regime structure is <strong>I</strong>mplicit
 (unlabeled and only approximately recoverable), the regime occupancy is <strong>I</strong>mbalanced, and normal
 is <strong>M</strong>ultimodal. Two consequences matter for detection. Normality is multimodal in regime space; and
@@ -283,7 +283,7 @@ coupled subsystem. LatAD therefore models regime probability at subsystem scale,
 <div class="tblwrap">
 <table class="assum">
 <caption><strong>Table 1.</strong> The ten CPS normal-data assumptions, their physical origin, and the detector
-design choice each motivates. A1&ndash;A8 shape the instantaneous window; A9&ndash;A10 shape the trajectory.<span class="rev2-highlight"> The last column names the LatAD design section and mechanism that realizes each assumption. Rows are grouped into A1&ndash;A7, realized by the reported model and evaluated on the three real testbeds, and A8&ndash;A10, specified but not realized by the reported window-only model (A8&rsquo;s precondition present but its heavy overlap not exercised, A9 present in the data, A10 measured absent).</span></caption>
+design choice each motivates. A1&ndash;A8 shape the instantaneous window; A9&ndash;A10 shape the trajectory.<span class="rev2-highlight"> The last column names the LatAD design section and mechanism that realizes each assumption. Rows are grouped into A1&ndash;A7, realized by the reported model and evaluated on the three real testbeds, and A8&ndash;A10, specified but not realized by the reported window-only model (A8&rsquo;s precondition present but its heavy overlap not exercised, A9 present in the data, A10 showing no evidence under these tests).</span></caption>
 <thead><tr>
   <th>ID</th><th class="l">Assumption</th><th class="l">CPS rationale</th><th class="l">Motivates (design choice)</th><th class="l rev2-highlight">Realized by (&sect;)</th>
 </tr></thead>
@@ -329,7 +329,7 @@ design choice each motivates. A1&ndash;A8 shape the instantaneous window; A9&nda
 <tr><td><b>A10</b></td><td class="l"><b>Path dependence</b> (history-conditioned normality)</td>
   <td class="l">A fault is defined relative to operational history: the same instantaneous state can be normal or faulty depending on how the system arrived there.</td>
   <td class="l">In principle a trajectory branch; on these snapshot-detectable public benchmarks (each fault visible in a single window, without history) it is inert (see &sect;8), so the reported model is window-only.</td>
-  <td class="l rev2-highlight">Measured absent (snapshot-detectable), with a passing synthetic positive control; future work (&sect;8).</td></tr>
+  <td class="l rev2-highlight">No evidence under these tests (snapshot-detectable), with a passing synthetic positive control; future work (&sect;8).</td></tr>
 </tbody></table>
 </div>
 
@@ -731,7 +731,7 @@ length &#8968;W/stride&#8969;+1 windows (3 on WADI, 4 on HAI and SWaT)</span><sp
 by an episode-level bootstrap that draws whole attack episodes with replacement and contributes their difficult windows,
 preserving within-attack dependence. From 2000 resamples we report the 95% confidence interval (CI) of the
 paired difference by the percentile method (the 2.5th and 97.5th quantiles) and a one-sided <em>p</em>-value as the
-fraction of resamples in which the difference is at most zero.</p>
+fraction of resamples in which the difference is at most zero. <span class="rev2-highlight">These verdicts are robust to the choice of block length. Selecting it instead from the empirical serial dependence, the first lag at which the normal-window score autocorrelation falls below 1/<em>e</em>, gives 264 windows on HAI (whose community score stays correlated under the record's front-loaded drift), 3 on the stationary WADI record, and 4 on SWaT; at this autocorrelation-selected length, and under a seed-hierarchical resample that also resamples the five training seeds, every one of the seven headline comparisons keeps the same significant-or-tie verdict. Because the paired difference cancels shared normal-window noise, a longer block widens the interval only slightly rather than moving the estimate.</span></p>
 
 <h3>5.5&nbsp;&nbsp;Baselines and deep detectors</h3>
 <p>Classical baselines are Isolation Forest [<span class="rev-highlight"><a href="#r-if">34</a></span>] and a deep autoencoder, both on the same
@@ -842,8 +842,8 @@ Isolation Forest +0.136 (P&nbsp;&lt;&nbsp;0.0005), and GDN +0.111 (P&nbsp;&lt;&n
 LinRes (0.750): +0.020, 95% CI [&#8722;0.161, 0.205], P&nbsp;=&nbsp;0.46 over 8 episodes. The WADI lead is
 carried by the community density aggregation (cohesion-weighted Higher Criticism over the community experts, 0.795): the
 single-latent global density scores 0.634 on this difficult subset, so the community
-factorization rather than the single latent supplies the WADI signal.<span class="rev-del"> On the full set the linear baseline is marginally
-ahead of LatAD (0.834 vs 0.827).</span></span></p>
+factorization rather than the single latent supplies the WADI signal.</span><span class="rev-del"> On the full set the linear baseline is marginally
+ahead of LatAD (0.834 vs 0.827).</span></p>
 
 <p><strong>Validity of the difficulty split.</strong> <span class="rev-del">On the easy subset every method is strong and the ranking is
 uninformative, by construction: the easy subset is exactly the anomalies a univariate max-mean rule already flags,

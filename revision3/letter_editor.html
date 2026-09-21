@@ -55,7 +55,7 @@ your direct requests and then summarize the principal changes and where to find 
   SWaT record drift-aware typing recovers the difficult subset from 0.524 to 0.723 (Section 7).</li>
   <li><b>A8, A9, A10 remeasured.</b> The between-regime assumption (renumbered A8) is reframed with valid
   observation-space metrics; A9 (multiscale structure) is shown present and partly exploitable; A10 (path
-  dependence) is measured absent with a passing positive control (Table 1, Section 8).</li>
+  dependence) shows no evidence under these tests, with a passing positive control (Table 1, Section 8).</li>
   <li><b>Dataset-scale scholarship.</b> A new discussion of public-benchmark scale versus operational
   scale is added (Introduction, new Section 2.5, and Section 8), with new references, arguing that A8 to
   A10 are properties best verified at operational scale.</li>
@@ -91,7 +91,7 @@ A8 is therefore specified, partly defended, and verifiable at operational scale 
 <p class="resp">A9 (multiscale structure) is present in the data as a measured property: per-channel
 autocorrelation timescales span 3.4 to 3.7 decades on all three plants, and a longer window adds about
 +0.06 difficult-subset AUROC on HAI, corroborating the +0.071 from explicit temporal features in Appendix
-A. A10 (path dependence) is measured absent on these snapshot-detectable benchmarks by three conditional
+A. A10 (path dependence) shows no evidence under these tests on these snapshot-detectable benchmarks by three conditional
 scorers, each validated against a passing synthetic positive control and an order-shuffle guard; "snapshot
 detectable" is thus now a measured finding, not an assumption (Table 1, Section 8).</p>
 
@@ -139,13 +139,15 @@ contiguous normal blocks, applied uniformly to all three datasets and to every c
 (defined in Section 5.4; results in Section 6, Figure 3). The confidence interval is the two-sided
 2.5 / 97.5 percentile of the paired difference; P is the one-sided bootstrap probability that the difference
 is at most zero. On the difficult subset the margin is significant on HAI (+0.088, 95 percent CI
-[0.042, 0.157], P about 0); on the drift-dominated SWaT record the raw difficult subset ties the strongest
+[0.042, 0.157], P &lt; 0.0005); on the drift-dominated SWaT record the raw difficult subset ties the strongest
 linear baseline (95 percent CI including zero) and becomes significant only after the drift-aware typing of
 Section 7 (+0.200, 95 percent CI [0.018, 0.355], P = 0.014); on WADI LatAD is significantly ahead of every
 learned detector (the AutoEncoder, USAD, TranAD, Isolation Forest, and GDN, each cleared at P &lt; 0.05 by the
 same per-detector episode-block bootstrap) and ties only the linear baseline (+0.020, 95 percent CI
 [-0.161, 0.205], P = 0.46 over 8 attack episodes), where WADI is not separable from the linear baseline at
-that episode count.</p>
+that episode count. The block length exceeds the window-overlap span, and the verdicts are unchanged when it is
+instead selected from the empirical serial dependence (the autocorrelation-decay length: 264 windows on HAI, 3 on
+WADI, 4 on SWaT) and under a seed-hierarchical resample over the five training seeds.</p>
 
 <h3>5. Add ablations isolating the source of the gain</h3>
 <blockquote>... add ablations isolating the source of the gain ...</blockquote>
