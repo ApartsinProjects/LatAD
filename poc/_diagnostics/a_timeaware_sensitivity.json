@@ -1,0 +1,421 @@
+{
+ "HAI": {
+  "method": "HCcoh+LatAD",
+  "method_difficult_auroc": 0.849,
+  "n_difficult": 167,
+  "n_episodes": 26,
+  "nseed": 5,
+  "step_seconds": 30,
+  "L_overlap": 3,
+  "L_acf": 264,
+  "acf_lag1_12": [
+   0.874,
+   0.789,
+   0.748,
+   0.727,
+   0.711,
+   0.697,
+   0.683,
+   0.672,
+   0.662,
+   0.652,
+   0.646,
+   0.643
+  ],
+  "acf_criterion": "first lag with normal-window score ACF < 1/e",
+  "comparisons": {
+   "AutoEncoder": {
+    "L1_iid": {
+     "diff": 0.092,
+     "ci": [
+      0.046,
+      0.156
+     ],
+     "p_le_0": 0.0,
+     "n_boot": 4000,
+     "verdict": "win"
+    },
+    "L3_overlap": {
+     "diff": 0.092,
+     "ci": [
+      0.046,
+      0.159
+     ],
+     "p_le_0": 0.0,
+     "n_boot": 4000,
+     "verdict": "win"
+    },
+    "Lacf": {
+     "diff": 0.092,
+     "ci": [
+      0.046,
+      0.157
+     ],
+     "p_le_0": 0.0,
+     "n_boot": 4000,
+     "verdict": "win"
+    },
+    "Lacf_seedhier": {
+     "diff": 0.092,
+     "ci": [
+      0.044,
+      0.159
+     ],
+     "p_le_0": 0.0,
+     "n_boot": 4000,
+     "verdict": "win"
+    },
+    "paper": {
+     "diff": 0.088,
+     "ci": [
+      0.042,
+      0.157
+     ],
+     "P": "<0.0005"
+    }
+   }
+  }
+ },
+ "WADI_clean": {
+  "method": "HCcoh+LatAD",
+  "method_difficult_auroc": 0.76,
+  "n_difficult": 30,
+  "n_episodes": 8,
+  "nseed": 5,
+  "step_seconds": 300,
+  "L_overlap": 3,
+  "L_acf": 3,
+  "acf_lag1_12": [
+   0.495,
+   0.38,
+   0.255,
+   0.191,
+   0.186,
+   0.126,
+   0.08,
+   0.076,
+   0.101,
+   0.09,
+   0.116,
+   0.102
+  ],
+  "acf_criterion": "first lag with normal-window score ACF < 1/e",
+  "comparisons": {
+   "AutoEncoder": {
+    "L1_iid": {
+     "diff": 0.132,
+     "ci": [
+      0.056,
+      0.21
+     ],
+     "p_le_0": 0.0,
+     "n_boot": 4000,
+     "verdict": "win"
+    },
+    "L3_overlap": {
+     "diff": 0.132,
+     "ci": [
+      0.054,
+      0.213
+     ],
+     "p_le_0": 0.0008,
+     "n_boot": 4000,
+     "verdict": "win"
+    },
+    "Lacf": {
+     "diff": 0.132,
+     "ci": [
+      0.054,
+      0.213
+     ],
+     "p_le_0": 0.0008,
+     "n_boot": 4000,
+     "verdict": "win"
+    },
+    "Lacf_seedhier": {
+     "diff": 0.132,
+     "ci": [
+      0.054,
+      0.215
+     ],
+     "p_le_0": 0.0013,
+     "n_boot": 4000,
+     "verdict": "win"
+    },
+    "paper": {
+     "diff": 0.143,
+     "ci": null,
+     "P": "0.001"
+    }
+   },
+   "USAD": {
+    "L1_iid": {
+     "diff": 0.181,
+     "ci": [
+      0.052,
+      0.322
+     ],
+     "p_le_0": 0.0,
+     "n_boot": 4000,
+     "verdict": "win"
+    },
+    "L3_overlap": {
+     "diff": 0.181,
+     "ci": [
+      0.051,
+      0.324
+     ],
+     "p_le_0": 0.0,
+     "n_boot": 4000,
+     "verdict": "win"
+    },
+    "Lacf": {
+     "diff": 0.181,
+     "ci": [
+      0.051,
+      0.324
+     ],
+     "p_le_0": 0.0,
+     "n_boot": 4000,
+     "verdict": "win"
+    },
+    "Lacf_seedhier": {
+     "diff": 0.181,
+     "ci": [
+      0.052,
+      0.326
+     ],
+     "p_le_0": 0.0005,
+     "n_boot": 4000,
+     "verdict": "win"
+    },
+    "paper": {
+     "diff": 0.192,
+     "ci": null,
+     "P": "<0.0005"
+    }
+   },
+   "TranAD": {
+    "L1_iid": {
+     "diff": 0.147,
+     "ci": [
+      0.041,
+      0.26
+     ],
+     "p_le_0": 0.0,
+     "n_boot": 4000,
+     "verdict": "win"
+    },
+    "L3_overlap": {
+     "diff": 0.147,
+     "ci": [
+      0.041,
+      0.264
+     ],
+     "p_le_0": 0.0008,
+     "n_boot": 4000,
+     "verdict": "win"
+    },
+    "Lacf": {
+     "diff": 0.147,
+     "ci": [
+      0.041,
+      0.264
+     ],
+     "p_le_0": 0.0008,
+     "n_boot": 4000,
+     "verdict": "win"
+    },
+    "Lacf_seedhier": {
+     "diff": 0.147,
+     "ci": [
+      0.038,
+      0.265
+     ],
+     "p_le_0": 0.0013,
+     "n_boot": 4000,
+     "verdict": "win"
+    },
+    "paper": {
+     "diff": 0.157,
+     "ci": null,
+     "P": "0.0005"
+    }
+   },
+   "IsolationForest": {
+    "L1_iid": {
+     "diff": 0.126,
+     "ci": [
+      0.041,
+      0.221
+     ],
+     "p_le_0": 0.0005,
+     "n_boot": 4000,
+     "verdict": "win"
+    },
+    "L3_overlap": {
+     "diff": 0.126,
+     "ci": [
+      0.04,
+      0.221
+     ],
+     "p_le_0": 0.0003,
+     "n_boot": 4000,
+     "verdict": "win"
+    },
+    "Lacf": {
+     "diff": 0.126,
+     "ci": [
+      0.04,
+      0.221
+     ],
+     "p_le_0": 0.0003,
+     "n_boot": 4000,
+     "verdict": "win"
+    },
+    "Lacf_seedhier": {
+     "diff": 0.126,
+     "ci": [
+      0.037,
+      0.223
+     ],
+     "p_le_0": 0.0015,
+     "n_boot": 4000,
+     "verdict": "win"
+    },
+    "paper": {
+     "diff": 0.136,
+     "ci": null,
+     "P": "<0.0005"
+    }
+   },
+   "LinRes": {
+    "L1_iid": {
+     "diff": 0.01,
+     "ci": [
+      -0.169,
+      0.193
+     ],
+     "p_le_0": 0.486,
+     "n_boot": 4000,
+     "verdict": "tie"
+    },
+    "L3_overlap": {
+     "diff": 0.01,
+     "ci": [
+      -0.168,
+      0.185
+     ],
+     "p_le_0": 0.4963,
+     "n_boot": 4000,
+     "verdict": "tie"
+    },
+    "Lacf": {
+     "diff": 0.01,
+     "ci": [
+      -0.168,
+      0.185
+     ],
+     "p_le_0": 0.4963,
+     "n_boot": 4000,
+     "verdict": "tie"
+    },
+    "Lacf_seedhier": {
+     "diff": 0.01,
+     "ci": [
+      -0.172,
+      0.193
+     ],
+     "p_le_0": 0.492,
+     "n_boot": 4000,
+     "verdict": "tie"
+    },
+    "paper": {
+     "diff": 0.02,
+     "ci": [
+      -0.161,
+      0.205
+     ],
+     "P": "0.46"
+    }
+   }
+  }
+ },
+ "SWaT_canon": {
+  "method": "drift-typed CP (v2 24h)",
+  "method_difficult_auroc": 0.724,
+  "n_difficult": 91,
+  "n_episodes": 23,
+  "nseed": 5,
+  "step_seconds": 300,
+  "L_overlap": 3,
+  "L_acf": 4,
+  "acf_lag1_12": [
+   0.566,
+   0.446,
+   0.386,
+   0.36,
+   0.373,
+   0.374,
+   0.353,
+   0.382,
+   0.347,
+   0.302,
+   0.331,
+   0.332
+  ],
+  "acf_criterion": "first lag with normal-window score ACF < 1/e",
+  "comparisons": {
+   "raw community (HC_coh)": {
+    "L1_iid": {
+     "diff": 0.201,
+     "ci": [
+      0.026,
+      0.36
+     ],
+     "p_le_0": 0.0118,
+     "n_boot": 4000,
+     "verdict": "win"
+    },
+    "L3_overlap": {
+     "diff": 0.201,
+     "ci": [
+      0.024,
+      0.362
+     ],
+     "p_le_0": 0.0135,
+     "n_boot": 4000,
+     "verdict": "win"
+    },
+    "Lacf": {
+     "diff": 0.201,
+     "ci": [
+      0.024,
+      0.361
+     ],
+     "p_le_0": 0.0127,
+     "n_boot": 4000,
+     "verdict": "win"
+    },
+    "Lacf_seedhier": {
+     "diff": 0.201,
+     "ci": [
+      0.026,
+      0.368
+     ],
+     "p_le_0": 0.0112,
+     "n_boot": 4000,
+     "verdict": "win"
+    },
+    "paper": {
+     "diff": 0.2,
+     "ci": [
+      0.018,
+      0.355
+     ],
+     "P": "0.014"
+    }
+   }
+  }
+ }
+}

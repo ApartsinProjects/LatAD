@@ -126,9 +126,12 @@ Every significance statement now uses an episode-block bootstrap that resamples 
 with contiguous normal blocks, rather than independent windows, applied uniformly to all three datasets and to
 every confidence interval and P-value (defined in Section 5.4; results in Section 6, Figure 3). The confidence
 interval is the two-sided 2.5 / 97.5 percentile of the paired difference; P is the one-sided bootstrap
-probability that the difference is at most zero.</p>
+probability that the difference is at most zero. The block length exceeds the window-overlap span, and the
+verdicts are unchanged when it is instead selected from the empirical serial dependence (the
+autocorrelation-decay length: 264 windows on HAI, 3 on WADI, 4 on SWaT) and under a seed-hierarchical resample
+over the five training seeds, so the conclusions do not depend on the block choice.</p>
 <ul>
-  <li><b>HAI difficult subset:</b> +0.088, 95 percent CI [0.042, 0.157], P about 0 (167 windows, 26
+  <li><b>HAI difficult subset:</b> +0.088, 95 percent CI [0.042, 0.157], P &lt; 0.0005 (167 windows, 26
   episodes).</li>
   <li><b>Canonical SWaT difficult subset (91 windows, 23 episodes):</b> the raw community score ties the
   strongest linear baseline (95 percent CI including zero); it becomes significant only after the drift-aware

@@ -731,7 +731,7 @@ length &#8968;W/stride&#8969;+1 windows (3 on WADI, 4 on HAI and SWaT)</span><sp
 by an episode-level bootstrap that draws whole attack episodes with replacement and contributes their difficult windows,
 preserving within-attack dependence. From 2000 resamples we report the 95% confidence interval (CI) of the
 paired difference by the percentile method (the 2.5th and 97.5th quantiles) and a one-sided <em>p</em>-value as the
-fraction of resamples in which the difference is at most zero.</p>
+fraction of resamples in which the difference is at most zero. <span class="rev2-highlight">These verdicts are robust to the choice of block length. Selecting it instead from the empirical serial dependence, the first lag at which the normal-window score autocorrelation falls below 1/<em>e</em>, gives 264 windows on HAI (whose community score stays correlated under the record's front-loaded drift), 3 on the stationary WADI record, and 4 on SWaT; at this autocorrelation-selected length, and under a seed-hierarchical resample that also resamples the five training seeds, every one of the seven headline comparisons keeps the same significant-or-tie verdict. Because the paired difference cancels shared normal-window noise, a longer block widens the interval only slightly rather than moving the estimate.</span></p>
 
 <h3>5.5&nbsp;&nbsp;Baselines and deep detectors</h3>
 <p>Classical baselines are Isolation Forest [<span class="rev-highlight"><a href="#r-if">34</a></span>] and a deep autoencoder, both on the same
