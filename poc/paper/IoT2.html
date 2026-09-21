@@ -769,7 +769,7 @@ Isolation Forest +0.136 (P&nbsp;&lt;&nbsp;0.0005), and GDN +0.111 (P&nbsp;&lt;&n
 LinRes (0.750): +0.020, 95% CI [&#8722;0.161, 0.205], P&nbsp;=&nbsp;0.46 over 8 episodes. The WADI lead is
 carried by the community density aggregation (cohesion-weighted Higher Criticism over the community experts, 0.795): the
 single-latent global density scores 0.634 on this difficult subset, so the community
-factorization rather than the single latent supplies the WADI signal.</span></p>
+factorization rather than the single latent supplies the WADI signal. The tie with the linear baseline is expected from the mechanism: the cross-channel latent density, LatAD's distinctive lever, adds +0.200 on HAI but only +0.017 on WADI (Table&nbsp;A5), so the WADI difficult faults carry no cross-channel-only structure and a linear per-channel model extracts the same signal the density does.</span></p>
 
 <p><strong>Validity of the difficulty split.</strong> <span class="rev2-highlight">The trivial max|u| rule is strong on Easy by construction
 (WADI 0.999, HAI 0.966, SWaT 0.997) and drops on the difficult subset (WADI 0.601, HAI 0.340, SWaT 0.627):
@@ -1009,6 +1009,8 @@ snapshot detector, ours or the deep baselines, separates these at a low false-al
 limit of instantaneous-window detection rather than of any one detector. Reaching them would require information
 beyond the instantaneous window, such as a physics-informed process residual or explicit temporal features, which we
 leave to future work.</span></p>
+
+<p class="rev2-highlight"><strong>Density generalizes the linear residual.</strong> The WADI tie has a precise reading. Under a single Gaussian the negative log-density is the whitened (Mahalanobis) residual energy of Equation&nbsp;(6), and a leave-one-channel-out linear regressor (LinRes) reads off exactly that inverse covariance; LinRes is therefore the single-full-covariance-Gaussian special case of a density detector, not a different kind of method. LatAD generalizes it in two directions, a mixture over regimes and a nonlinear latent encoding, so it reduces to the linear residual when normal is unimodal with linear channel relations and separates from it only to the degree normal departs from a single linear Gaussian. The cross-channel latent density accordingly adds +0.200 on the multimodal HAI record but +0.017 on the near-single-mode WADI record (silhouette&nbsp;0.06; Table&nbsp;A5): LatAD wins on HAI and correctly degenerates to the linear baseline on WADI. The auto-gated residual head (&sect;4.3&nbsp;iii) is this Gaussian-density term made explicit, and the mixture-density and community factorization are its multimodal generalization.</p>
 
 <p class="rev2-highlight"><strong>Benchmark coverage as a diagnosable property.</strong> The per-community model also reports where a
 benchmark leaves training coverage thin. On HAI one operating regime is almost absent from the training record
