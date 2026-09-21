@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LatAD — Revision 3</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#ffffff; --ink:#1a2230; --muted:#5b6675;
+    --accent:#1f4e79; --line:#dfe4ea; --accent-soft:#eaf1fb;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#12161c; --card:#1a2029; --ink:#e7ecf2; --muted:#9aa6b4;
+      --accent:#6fa8dc; --line:#2a323d; --accent-soft:#1d2733;
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Segoe UI",system-ui,-apple-system,Helvetica,Arial,sans-serif;
+    line-height:1.55;padding:16px}
+  .wrap{max-width:760px;margin:0 auto;padding:24px 0 48px}
+  .eyebrow{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);font-weight:700;margin:0 0 8px}
+  h1{font-size:1.6rem;line-height:1.25;margin:0 0 6px;text-wrap:balance}
+  .sub{color:var(--muted);margin:0 0 4px;font-size:.98rem}
+  .meta{color:var(--muted);font-size:.85rem;margin:2px 0 28px}
+  .grid{display:grid;gap:12px}
+  a.card{display:block;text-decoration:none;color:inherit;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;padding:16px 18px;
+    transition:border-color .15s,transform .05s}
+  a.card:hover{border-color:var(--accent);transform:translateY(-1px)}
+  a.card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .card .t{font-weight:700;font-size:1.05rem;margin:0 0 3px}
+  .card .d{color:var(--muted);font-size:.9rem;margin:0}
+  .tag{display:inline-block;font-size:.72rem;font-weight:700;color:var(--accent);
+    background:var(--accent-soft);border-radius:6px;padding:2px 8px;margin-left:8px;
+    vertical-align:middle}
+  .sec{margin:26px 0 10px;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);font-weight:700}
+  footer{margin-top:34px;color:var(--muted);font-size:.8rem;border-top:1px solid var(--line);padding-top:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">MDPI IoT &middot; Manuscript IoT-4522779 &middot; Revision 3</p>
+  <h1>Modeling Normal Is All You Need: Joint Latent Clustering for Anomaly Detection in Multimodal Industrial-IoT Cyber-Physical Systems</h1>
+  <p class="sub">Alexander Apartsin and Yehudit Aperstein</p>
+  <p class="meta">Revised manuscript with changes marked (green additions, red strikethrough) and point-by-point response letters.</p>
+
+  <div class="sec">Manuscript</div>
+  <div class="grid">
+    <a class="card" href="IoT2.html">
+      <p class="t">Revised paper<span class="tag">tracked changes</span></p>
+      <p class="d">Full manuscript with additions marked green and deletions struck through.</p>
+    </a>
+  </div>
+
+  <div class="sec">Point-by-point responses</div>
+  <div class="grid">
+    <a class="card" href="letter_editor.html">
+      <p class="t">Response to the Editor</p>
+      <p class="d">Reply to the five editor requirements.</p>
+    </a>
+    <a class="card" href="letter_reviewer1.html">
+      <p class="t">Response to Reviewer 1</p>
+      <p class="d">Reply to the five technical comments.</p>
+    </a>
+    <a class="card" href="letter_reviewer2.html">
+      <p class="t">Response to Reviewer 2</p>
+      <p class="d">Reply to the twelve presentation comments.</p>
+    </a>
+  </div>
+
+  <footer>Anomaly detection for industrial-IoT cyber-physical systems. Model fitting uses train-normal telemetry only.</footer>
+</div>
+</body>
+</html>
