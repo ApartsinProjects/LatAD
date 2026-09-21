@@ -110,13 +110,13 @@ industrial-IoT framing should be more explicit, and we have deepened it througho
 opens inside the IIoT stack: a cyber-physical system couples networked sensors, actuators, and controllers with
 a physical process and forms the sensing-and-actuation layer of the Industrial Internet of Things, and anomaly
 detection is a core reliability-and-security function of that layer, monitored from streaming telemetry
-[<a href="#r-iotsurvey">4</a>,&nbsp;<a href="#r-iottaxon">5</a>]. Section 2.1 makes the edge thread explicit:
+[<a href="#r-iotsurvey">5</a>,&nbsp;<a href="#r-iottaxon">6</a>]. Section 2.1 makes the edge thread explicit:
 detection is increasingly pushed onto gateways and industrial edge nodes to cut telemetry backhaul and enable
 local response, under the compute, memory, and latency budgets that shape model design
-[<a href="#r-edgeint">15</a>&ndash;<a href="#r-iotedgeai">17</a>], which now connects directly to the
+[<a href="#r-edgeint">14</a>&ndash;<a href="#r-iotedgeai">16</a>], which now connects directly to the
 edge-deployment cost measurements we added in Appendix B and Table B1. We also added evidence that fleet-scale
 IIoT heterogeneity motivates the core design: global models trained across many devices, subsystems, and
-regimes develop detection blind spots that subsystem-specific models recover [<a href="#r-islam">18</a>], the
+regimes develop detection blind spots that subsystem-specific models recover [<a href="#r-islam">17</a>], the
 direct rationale for factorizing the density over correlation-community subsystems. Figure 1 now shows where
 LatAD sits in the IIoT monitoring context (field sensors and PLCs feeding an edge gateway or SCADA historian,
 LatAD scoring each completed window online, and the alarm plus most-surprised subsystem forwarded to the
