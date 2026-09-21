@@ -1,0 +1,92 @@
+## Overall editorial assessment
+
+**Not yet acceptance-ready.** I would recommend **one further focused major revision, not rejection**. The revision is substantially better and most Reviewer 2 presentation requests are genuinely addressed. However, three technical/editorial requirements remain incompletely answered: **the time-aware inference, the rare-regime experiment, and the claimed isolation of the source of gain**. These affect claims repeated in the abstract, conclusion, and response letters, so I would not treat them as minor polishing.
+
+The original reviews asked for five substantive technical corrections plus twelve mainly presentation/clarity corrections. 
+
+## 1. Coverage of Reviewer 1
+
+| Comment | Assessment | Specific finding |
+|---|---|---|
+| **R1.1 — Unused A3/A9/A10** | **Partially addressed** | This is a serious, substantive revision. The old inactive between-regime assumption is transparently renumbered A8; Table 1 now distinguishes **A1–A7 realized** from **A8–A10 not realized**, and Appendix C directly investigates A8.  The problem is the new language that A1–A7 are “validated.” Several are merely **implemented/motivational**: A2's “exponential regime growth,” A3's thin fringes, and A4's low intrinsic dimension are not independently validated. A9 has some empirical support; A10 is only reported through prose diagnostics. “Measured absent” is too strong for A10; at most, three chosen conditional scorers found no evidence. |
+| **R1.2 — Direct support for nearest-component NLL under imbalance** | **Inadequately/partially addressed** | Appendix E is useful new evidence: on 3W, rare-regime FP counts fall 17/17/23 → 11/9/16 over three seeds, with approximately unchanged detection.  But the reviewer explicitly requested **different regime-imbalance ratios**, comparison with **other imbalance-aware scores**, and emphasis on rare-normal FPR. None is provided. It is one naturally imbalanced dataset and only mixture-NLL vs nearest-NLL. Moreover, because the *overall* false-alarm rate is matched, the result demonstrates redistribution of false positives away from rare discovered components, not a reduction in total FPR. Raw FP counts should also be normalized by the number of normal samples in rare regimes. |
+| **R1.3 — Cost of many community models** | **Substantially addressed** | Appendix B now reports parameters, training time, GPU memory, GPU latency and LatAD CPU latency. The headline community model is indeed much more expensive than global LatAD, but still tractable.  One caveat: CPU edge measurements are absent for USAD, TranAD and GDN, so the claim of an edge comparison “on the same hardware for every method” is too broad. Also, **47–72× faster applies only to global LatAD versus TranAD**, not the headline community model and not “the deep detectors” generally. |
+| **R1.4 — Time-aware statistical testing** | **Not adequately addressed; acceptance blocker** | The bootstrap is now nominally time-aware: attacks are resampled by whole episode, but normal windows use blocks of only **3 windows on WADI and 4 on HAI/SWaT**, chosen because they exceed the mechanical window-overlap span.  That addresses overlapping windows, but **not the longer serial dependence of the physical process**. This is particularly problematic because the same paper claims per-channel autocorrelation timescales spanning **3.4–3.7 decades**. The selected block size is therefore not justified by the dependence structure. Training-seed variability is also largely conditioned away by testing a seed-averaged score rather than incorporating seeds hierarchically. |
+| **R1.5 — Isolate cross-channel gain vs window representation** | **Partially addressed, but interpretation is overstated** | The experiments themselves are valuable. Table A5 gives cross-channel gains of **+0.200 HAI, +0.017 WADI, −0.050 SWaT**; Table A2 gives temporal/spectral-feature effects of **+0.071 HAI and +0.241 SWaT**.  The letter nevertheless concludes that “the gain is therefore cross-channel density modeling rather than the window representation.” That conclusion is only convincing for **HAI**. On WADI the cross-channel-vs-marginal effect is essentially zero and the large gain comes from **community factorization**; on SWaT temporal/drift treatment matters much more. The requested raw sequential-input variant was explicitly not run. |
+
+The response to R1.5 is unusually candid about not running the sequential-input experiment, which is good, but then overstates what the remaining ablations establish. The letter itself records that WADI gains essentially nothing from cross-channel density and SWaT is negative, immediately before making the global “therefore cross-channel” conclusion. 
+
+## 2. Coverage of Reviewer 2
+
+| Comment | Assessment | Specific finding |
+|---|---|---|
+| **R2.1 Abbreviations** | **Partial** | Main-text CPS, IIoT, SCADA, GMM, NLL etc. are substantially fixed, but the abstract still introduces **VaDE** without expanding “Variational Deep Embedding”; it also uses dataset/model acronyms compactly. The response letter actually admits that “the abstract keeps the compact forms,” which does not fully satisfy the request.  |
+| **R2.2 Abstract technical contribution** | **Addressed** | The new abstract explains latent mixture density, community factorization, Higher Criticism and drift typing rather than spending nearly all its space motivating the problem. |
+| **R2.3 Introduction structure** | **Addressed** | CPS background is now first, and the offending “This paper detects them by…” sentence is struck. Contributions are delayed until later. |
+| **R2.4 Ambiguous “task”** | **Addressed** | It now explicitly says “Unsupervised anomaly detection for CPS telemetry…”. |
+| **R2.5 Two obstacles / what LatAD solves** | **Mostly addressed** | C1/C2/C3 make the distinction much clearer. Minor wording issue: **the paper** contributes the evaluation stratification; strictly, the LatAD detector itself does not. |
+| **R2.6 Related Work restructuring** | **Mostly addressed** | The requested self-descriptions are removed, §2.3 is now a genuine related-work survey, and the definition moved to the Introduction. §2.5 was not literally deleted, but the old dataset-description section was replaced by a short “Benchmark scale” discussion. Since deletion was phrased as a suggestion, this is defensible. |
+| **R2.7 System/application figure** | **Addressed** | Figure 1 clearly places LatAD after PLCs/edge gateway/SCADA historian and before operator response. |
+| **R2.8 MIIM–LatAD relationship** | **Addressed** | Table 1 has an explicit “Realized by” mapping and §4 says MIIM defines *what* must be modeled while LatAD is one realization of A1–A7.  |
+| **R2.9 Section 4 readability/workflow** | **Addressed** | Figure 2 and revised §4 headings clearly map representation, scoring and subsystem-factorization stages. |
+| **R2.10 Per-community architecture + cost** | **Substantially addressed** | §4.4 explicitly says separate VaDE/encoder/GMM/scoring heads per community, plus a whole-plant expert; Appendix B reports cost. CPU baseline comparison remains incomplete, as noted above. |
+| **R2.11 z notation conflict** | **Addressed** | Latent remains \(z\); standardized channel mean becomes \(u\). This is clear in §5.3.  |
+| **R2.12 Typesetting/equation numbering** | **Addressed as far as the bundle permits verification** | Nine display equations are numbered. I cannot independently verify the claim about the generated DOCX's first-line indentation from the HTML bundle, but the supplied HTML itself is internally uniform. |
+
+Thus, **Reviewer 2 should largely be satisfied** after a small abbreviation cleanup and a few claim-strength adjustments. The response letter accurately describes most of these structural changes. 
+
+## 3. Coverage of the Editor's five direct requirements
+
+The Editor essentially elevated R1's five technical issues to mandatory requirements. 
+
+| Editor requirement | Verdict |
+|---|---|
+| Validate previously unused assumptions | **Partial.** Scope correction is good; A8 is meaningfully investigated. A9 has some evidence. A10 lacks sufficiently reported quantitative evidence to support “measured absent.” |
+| Direct experimental support for nearest-component likelihood | **Partial.** Appendix E is new direct evidence, but does not perform the requested imbalance sweep or alternatives comparison. |
+| Training/inference cost | **Substantially satisfied.** |
+| Time-aware statistical test | **Not satisfactorily satisfied.** Blocks are chosen from window overlap rather than empirical serial dependence. |
+| Ablations isolating source of gain | **Experiments added, but conclusion needs correction.** The source is dataset-dependent, not generically cross-channel density. |
+
+Accordingly, the opening statement of the Editor letter that the revision “addresses every point” and has put “every significance claim on a time-aware footing” is too strong. 
+
+## 4. Response letters: accuracy and tone
+
+**Tone:** professional, respectful, specific, and generally appropriate. They quote the requests, describe changes, and give section/table pointers. This is substantially better than a defensive response.
+
+**Numerical consistency is generally good.** The major figures quoted in the letters agree with the manuscript: HAI difficult AUROC 0.845; WADI 0.771; SWaT typed 0.723; Table A5 gains +0.200/+0.017/−0.050; and the Appendix B timings are consistent with the response.  
+
+There are, however, several letter-level corrections I would require. “Seven are realized **and validated**” should become “seven are realized/implemented and evaluated where the benchmarks exercise them.” The nearest-component answer should explicitly say that the authors **did not perform the requested controlled imbalance-ratio sweep or comparison to additional imbalance-aware scores**, rather than implying Appendix E fully substitutes for it. The statistical letter should not say “every” P-value is covered unless the same method is explicitly defined for the localization P-values and all §7 comparisons. The source-of-gain paragraph must become dataset-specific. And Reviewer 2's letter should not claim abbreviation compliance while simultaneously explaining that abbreviations remain unexpanded in the abstract.
+
+The localization wording also needs tempering. Table 5 is useful evidence, but WADI is explicitly only directional (\(P=0.086\)), while the HAI \(P=0.024\) reported in the text pertains to the top-1 comparison; the headline response instead calls the three-community shortlist a “validated triage output.” That is stronger than the reported inference warrants. 
+
+## 5. Remaining scientific/statistical weaknesses
+
+The most serious issue is the inference procedure. The manuscript states that block lengths 3/4 exceed window overlap and therefore treats them as its time-aware solution.  But mechanical overlap is not the same as serial correlation. Given the manuscript's own multiscale/autocorrelation claims, a valid sensitivity analysis should use blocks chosen from score/autocorrelation decay, or much longer contiguous blocks, and show that the HAI/WADI/SWaT conclusions survive. A hierarchical resampling over training seeds and temporal blocks would also better match the claimed algorithm-level uncertainty. With 2,000 bootstrap replicates, “\(P\approx0\)” should not be written; the natural resolution is approximately **\(P<0.0005\)**, preferably with the usual finite-bootstrap correction.
+
+There is also a conceptual problem in calling the difficult subset **“joint-structure faults.”** The canonical difficulty mask removes only anomalies separable by the **per-channel window mean**. The manuscript itself admits that WADI's remaining anomalies can be “single-channel or linear” in Table A5.  Therefore a high score on that subset does **not** by itself prove detection of cross-channel joint structure. The stronger six-statistic check is only reported for HAI, and the PCA double-hard subset is stronger but very small. The heading “Difficult, joint-structure faults” and statements such as “a method that scores well there is detecting joint structure the rule misses” should be rewritten.
+
+A related inconsistency appears in the “single-mode” narrative. The paper repeatedly calls WADI/HAI/SWaT single-mode or effectively single-mode while simultaneously presenting BIC-derived 22–25 statistical regimes and building the paper around multimodality.  This can be reconciled—**one nominal plant operating mode can contain many latent statistical sub-regimes**—but it must be stated explicitly. Also, SWaT's reported BIC optimum of 25 is at the upper end of the stated search grid, so it should be called the **best tested value / at least 25**, not necessarily a demonstrated optimum.
+
+The drift section is interesting but overclaims mechanism and operational readiness. It attributes SWaT shifts specifically to membrane fouling and analyzer-electrode drift and calls the map a “physically-grounded degradation-localization signal,” without dataset-specific degradation ground truth in the manuscript. More defensible language is “consistent with” those mechanisms. More importantly, the paper reports a spectacular false-alarm reduction 79%→6.5%, yet immediately concedes that a fixed train-calibrated threshold **under-fires in the late drifted segment** and that rolling operational calibration is not evaluated.  Thus the abstract should not combine improved AUROC and lower FPR in a way that suggests a demonstrated deployable operating point unless TPR/recall at that same threshold is reported.
+
+A few method-level details also require correction. Equation (6) says \(r_k\) is already “whitened by” \(\Sigma_k\), then evaluates \(r_k^\top\Sigma_k^{-1}r_k\); if that formula is intended, \(r_k\) should be described as the **PCA-reduced residual**, not an already whitened residual.  The explanation of nearest-component NLL is also muddled: removing \(\pi_k\) protects a rare *valid* component from being penalized for low prior probability; the present sentence about retaining a rare-regime deviation that the mixture “averages away” is a different mechanism and should be removed or justified.
+
+Finally, Appendix A shows that the claimed “headline” aggregation is not uniformly the empirical optimum: on WADI community HC **without whole-plant fusion** is 0.795 versus the headline 0.771, and on raw SWaT simple sum reaches 0.595 versus headline 0.524.  This does not invalidate the method, but it means the paper should avoid implying that the particular HC+global fusion is demonstrably optimal or universally favored by the ablation.
+
+## 6. Ranked changes required before acceptance
+
+1. **Redo or strengthen the statistical inference.** Choose normal-block lengths from empirical temporal dependence, provide a block-length sensitivity analysis, incorporate model-seed uncertainty, specify the hypothesis-test construction correctly, and re-evaluate all “significant” claims—including the several WADI comparisons and §7 comparisons. If multiple per-detector hypotheses remain, either correct for multiplicity or label them exploratory.
+
+2. **Finish the rare-regime validation or narrow the claim.** Ideally perform the requested controlled imbalance sweep and include at least one reasonable alternative imbalance correction. At minimum, Appendix E needs rare-regime sample denominators/FPRs, complete 3W methodology and uncertainty, and the letters must explicitly acknowledge that the requested sweep/alternative methods were not performed. Replace “can only remove” with the observed empirical statement unless a theorem is supplied.
+
+3. **Repair the paper's mechanism claims.** Do not equate “difficult” with “joint-structure.” State the ablation result as dataset-specific: **HAI strongly supports cross-channel density; WADI primarily supports community factorization; SWaT is dominated by temporal drift and benefits strongly from temporal information.** This change is required in §6, §8, the conclusion, and both technical response letters.
+
+4. **Recast assumption validation accurately.** Replace “A1–A7 validated” by “A1–A7 realized/implemented,” unless each assumption gets a direct empirical test. Add quantitative A9/A10 results—preferably a compact appendix table including the three conditional scorers, synthetic positive control, and shuffle control. For A10 use “no evidence detected by these tests” rather than “measured absent.”
+
+5. **Tighten the drift-aware contribution.** Give sensitivity to the 24 h window or a train-only selection rationale, and report detection sensitivity/TPR at the same operating threshold used for the 79%→6.5% FPR comparison. Otherwise downgrade the operational claim. Replace the dataset-specific fouling/degradation diagnosis with “consistent with” unless ground truth establishes it.
+
+6. **Correct cost/deployment wording.** State specifically that **global LatAD is 47–72× faster than TranAD**; separately report the headline community model's ratios. Either benchmark the deep baselines on the CPU proxy or stop implying that all edge measurements use the same hardware. Replace undefined “within industrial edge budgets” with a concrete comparison to the actual window-arrival interval or an explicitly defined latency budget.
+
+7. **Perform the final consistency cleanup:** expand VaDE in the abstract and name AUROC with the headline numbers; reconcile “single nominal mode” with 22–25 latent sub-regimes; fix Equation (6)'s whitening wording; report the grid-boundary BIC result cautiously; replace “every nonlinear detector” by “every evaluated nonlinear detector”; identify exactly which Table 5 localization endpoint has \(P=0.024\); and replace \(P\approx0\) with the bootstrap's finite-resolution bound.
+
+**Handling-editor verdict:** the revision has convincingly resolved most structural/presentation criticisms and added substantial new analysis, so I would **not reject it**. But I would also **not accept it in its current form**. Items 1–4 above are substantive acceptance conditions; items 5–7 are important tightening and consistency work. The principal risk at this stage is no longer that the method is unexplained—it is that the manuscript and letters claim stronger empirical/statistical support than the new experiments actually establish.
