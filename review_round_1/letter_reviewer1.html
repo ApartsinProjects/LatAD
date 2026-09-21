@@ -30,7 +30,7 @@ Authors: Alexander Apartsin and Yehudit Aperstein
 
 <p>Dear Reviewer,</p>
 
-<p>Thank you for a careful and constructive reading. Your
+<p>Thank you for reviewing the manuscript. Your
 comments pushed us to validate or remeasure the previously unused assumptions, to support the
 nearest-component score directly, to benchmark computational cost, to put every significance claim on a
 time-aware footing, and to isolate the source of the gain. We address each point below, giving the change we
@@ -95,8 +95,7 @@ density), nearest-component is at or below every alternative at every threshold 
 benefit is specifically removal of the &minus;log&nbsp;&pi; rare-regime penalty, not generic
 imbalance-awareness. At the genuinely rare thresholds (5 percent occupancy and below) nearest never adds a
 rare-regime false alarm (0 of 30 cases per threshold); at a looser 10 percent threshold it can redistribute a
-few flags onto moderately-common tails (1 of 30), which we report as an observed property rather than a
-theorem. Difficult-subset detection is unchanged (true-positive rate at 5 percent false-alarm
+few flags onto moderately-common tails (1 of 30). Difficult-subset detection is unchanged (true-positive rate at 5 percent false-alarm
 +0.007&nbsp;&plusmn;&nbsp;0.068). The property is defensive by design, and the single-mode benchmarks cannot
 exhibit it.</p>
 
@@ -136,7 +135,7 @@ baselines on one Modal A10G GPU (24 GB) plus a Modal 8-vCPU CPU edge proxy, the 
 method. The regime-community stack does instantiate one small density model per subsystem, at a cost Table B1
 quantifies: training 50 / 195 / 38 s on WADI / HAI / SWaT and per-window latency of 17 to 32 ms (up to about
 52 ms at batch 256), against LatAD-global at 3.2 / 16 / 3.5 s and 0.7 to 13 ms. Even so, LatAD-global trains
-roughly 47 to 72 times faster than TranAD (231 / 898 / 163 s), both configurations use only about 20 to 29 MB
+roughly 47 to 72 times faster than TranAD (231 / 898 / 163 s), both configurations use only about 19 to 29 MB
 of GPU memory and run within about 3.5 to 3.9 GB of host memory, and both stay inside gateway-class real-time
 budgets on the CPU edge proxy. Section 4.4 now states the architecture (a separate small VaDE per community,
 nothing shared but the input window features, plus one whole-plant expert), and the deployment paragraph in
@@ -212,7 +211,7 @@ the scoped claims and the corrected significance pattern: the best All-subset AU
 HAI, a lead over every learned detector on WADI, and the drift-dominated SWaT difficult subset recovered to
 0.723 by the drift-aware typing of Section 7.</p>
 
-<p class="close">Thank you again for the detailed and helpful review. We believe the revision answers each
+<p class="close">Thank you again for reviewing the manuscript. We believe the revision answers each
 point, and where the answer is a limitation we have stated it plainly.</p>
 
 <p>Sincerely,<br>

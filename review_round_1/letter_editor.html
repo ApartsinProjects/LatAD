@@ -32,8 +32,7 @@ Authors: Alexander Apartsin and Yehudit Aperstein
 
 <p>Dear Academic Editor,</p>
 
-<p>Thank you for handling our manuscript. We are grateful
-for the care you and both Reviewers gave the paper. The revision addresses every point: we validated or
+<p>Thank you for handling our manuscript. The revision addresses every point: we validated or
 remeasured the previously unused assumptions, added a construct-matched graph baseline, benchmarked
 computational cost, put every significance claim on a time-aware footing, added an ablation that isolates
 the source of the gain, and reworked the front matter, figures, notation, and typesetting. Along the way
@@ -130,7 +129,7 @@ the &pi;-weighted mixture, with the prior-flattening alternatives in between; Ta
 specifically removal of the &minus;log&nbsp;&pi; rare-regime penalty, not generic imbalance-awareness. At the
 genuinely rare thresholds (5 percent occupancy and below) nearest never adds a rare-regime false alarm
 (0 of 30 cases per threshold); at a looser 10 percent threshold it can redistribute a few flags onto
-moderately-common tails (1 of 30), which we report as an observed property rather than a theorem.
+moderately-common tails (1 of 30).
 Difficult-subset detection is unchanged (true-positive rate at 5 percent false-alarm
 +0.007&nbsp;&plusmn;&nbsp;0.068). The property is defensive by design, and the single-mode benchmarks cannot
 exhibit it.</p>
@@ -143,7 +142,7 @@ memory, and host memory for LatAD (global and regime-community) and the deep bas
 A10G GPU (24 GB) plus a Modal 8-vCPU CPU edge proxy, the same hardware for every method. LatAD-global trains
 in 3.2 / 16 / 3.5 s on WADI / HAI / SWaT, roughly 47 to 72 times faster than TranAD; per-window latency stays
 within gateway-class budgets (0.7 to 13 ms global, 17 to 32 ms for the full community stack), the CPU edge
-proxy scores a window in 0.6 to 14.6 ms (global), peak GPU memory is about 20 to 29 MB, and both
+proxy scores a window in 0.6 to 14.6 ms (global), peak GPU memory is about 19 to 29 MB, and both
 configurations run within about 3.5 to 3.9 GB of host memory. The deployment paragraph in Section 8 no longer
 denies them.</p>
 
@@ -226,10 +225,9 @@ Reviewer 2 letters, is the point-by-point response. The revised manuscript is ch
 text is highlighted and deleted passages are removed, and each response above cites the section, table, or figure it
 changed.</p>
 
-<p class="close">Every request was met with completed experiments and corrected numbers within the manuscript;
-no request required deferral to future work, beyond the three assumptions (A8 to A10) we now explicitly scope as
-such. We believe the revision meets every request and that the corrected, construct-matched evaluation makes the
-paper stronger. Thank you again for your time and guidance.</p>
+<p class="close">Every request is addressed within the manuscript, with completed experiments and corrected numbers; the three
+assumptions A8 to A10 are the only items explicitly scoped to future work. We believe the revision meets every
+request and that the corrected, construct-matched evaluation makes the paper stronger. Thank you again for your time and guidance.</p>
 
 <p>Sincerely,<br>
 Alexander Apartsin and Yehudit Aperstein</p>
