@@ -85,10 +85,18 @@ sit marginally below the density head alone (Table A6, WADI; Section 4.3 ii). It
 mixture NLL, and the rare-regime false-positive rate you ask about, would surface under the operating-regime
 imbalance sweep you propose. We now measure this directly: Appendix&nbsp;E runs the comparison on the 3W oil-well dataset, which has
 genuinely imbalanced regime occupancy, and at a matched false-alarm rate the nearest-component score removes
-the mixture's rare-regime false alarms (from 17, 17, 23 to 11, 9, 16 across three seeds; the invariant that it
-can only remove such false alarms holds every seed) while difficult-subset detection is unchanged
-(true-positive rate at 5 percent false-alarm +0.007&nbsp;&plusmn;&nbsp;0.068). The property is defensive, as
-designed, and the single-mode benchmarks cannot exhibit it.</p>
+the mixture's rare-regime false alarms (from 17, 17, 23 to 11, 9, 16 across three seeds). We also sweep the
+rare-occupancy threshold (2, 5, and 10 percent) and compare nearest-component against three imbalance-aware
+alternatives (a uniform-prior mixture, a tempered &pi;<sup>0.5</sup> mixture, and a kNN latent density),
+reporting a rare-regime false-positive rate (Table&nbsp;E2). Nearest-component is at or below every alternative at
+every threshold (at the 5 percent threshold, 0.148 versus 0.210 for the &pi;-weighted mixture, with the
+prior-flattening alternatives in between), so the benefit is specifically the removal of the
+&minus;log&nbsp;&pi; rare-regime penalty, not generic imbalance-awareness. At the genuinely rare thresholds
+(5 percent occupancy and below) nearest never adds a rare-regime false alarm (0 of 30 cases per threshold); at a
+looser 10 percent threshold it protects the rarest regimes and can redistribute a few flags onto moderately-common
+tails (1 of 30), so we report this as an empirically observed property rather than a theorem. Difficult-subset
+detection is unchanged (true-positive rate at 5 percent false-alarm +0.007&nbsp;&plusmn;&nbsp;0.068). The property
+is defensive, as designed, and the single-mode benchmarks cannot exhibit it.</p>
 
 <h2>Comment 3. The regime-community design trains many models; evaluate its practical cost under the same hardware as the baselines.</h2>
 <blockquote>The regime-community design in this manuscript trains separate representation and density models
