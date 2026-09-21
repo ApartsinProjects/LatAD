@@ -31,7 +31,7 @@ Authors: Alexander Apartsin and Yehudit Aperstein
 <p>Dear Reviewer,</p>
 
 <p>Thank you for the thorough reading and for the clear, specific suggestions on the abstract, introduction,
-related work, figures, notation, and typesetting. We found them very useful, and the revised paper follows
+related work, figures, notation, and typesetting. We have adopted them, and the revised paper follows
 them closely. We address each point below, quoting your comment and then giving the change and its location.
 New and changed text is highlighted in green in the revised manuscript; deleted passages are removed.</p>
 
@@ -49,7 +49,7 @@ re-expands them.</p>
 <blockquote>The abstract spends most of its length introducing the problems of existing anomaly detection
 methods, while providing very little introduction to the principle of the paper's core contribution, LatAD.
 Please highlight the technical contributions of this paper in the abstract.</blockquote>
-<p class="resp"><b class="lead">Response: change made.</b> Good point. The abstract states LatAD's principle
+<p class="resp"><b class="lead">Response: change made.</b> We agree. The abstract states LatAD's principle
 directly: "Our detector, LatAD (Latent-density Anomaly Detector), learns a latent Gaussian-mixture clustering
 of regimes (VaDE), scores anomalies by density, and factorizes that density over correlation-community
 subsystems combined by a cohesion-weighted Higher Criticism statistic." It then reports the headline result:
@@ -91,11 +91,13 @@ novel. Contribution C3 adds a drift-aware anomaly typing, so LatAD contributes o
 evaluation axes.</p>
 
 <h2>Comment 6. Restructure Related Work: move the anomaly-detection definition to the introduction, delete the three LatAD self-descriptions, rewrite Section 2.3, and delete Section 2.5.</h2>
-<blockquote>The structure of the Related Work section also has major problems ... move the definition of anomaly
-detection to the Introduction ... delete the last sentence of the first paragraph, "LatAD sits squarely in
-this line XXX"; the last sentence of Section 2.1, "LatAD addresses a complementary IIoT problem XXX"; and the
-last paragraph of Section 2.2, "LatAD adopts this critique as XXX." Section 2.3 is entirely an introduction to
-LatAD and needs to be rewritten. Section 2.5 is suggested to be deleted.</blockquote>
+<blockquote>The structure of the Related Work section also has major problems and should be revised. First, the
+definition of anomaly detection in the first sentence should be moved to the Introduction. Second, since LatAD
+is the authors' novel work, it should not be described in detail in Related Work. It is suggested to delete:
+the last sentence of the first paragraph, "LatAD sits squarely in this line XXX"; the last sentence of Section
+2.1, "LatAD addresses a complementary IIoT problem XXX"; and the last paragraph of Section 2.2, "LatAD adopts
+this critique as XXX." Section 2.3 is entirely an introduction to LatAD and needs to be rewritten. Section 2.5
+is suggested to be deleted.</blockquote>
 <p class="resp"><b class="lead">Response: change made.</b> The anomaly-detection definition is relocated to
 Section 1. The three LatAD self-descriptions (the last sentence of the Related Work preamble, the last
 sentence of Section 2.1, and the last paragraph of Section 2.2) are removed. Section 2.3 is rewritten as a
@@ -107,7 +109,7 @@ of assumptions A8 to A10 (a pointer to Section 5.1 covers the dataset details).<
 <h2>Comment 7. Add a system-model or application-scenario diagram showing where in the IIoT LatAD collects data and detects.</h2>
 <blockquote>Add a system model diagram or an application scenario diagram that shows at which stage of the
 Industrial IoT the proposed LatAD method collects data and performs anomaly detection.</blockquote>
-<p class="resp"><b class="lead">Response: change made.</b> Good suggestion. Figure 1 (Section 1) shows the
+<p class="resp"><b class="lead">Response: change made.</b> We agree. Figure 1 (Section 1) shows the
 IIoT monitoring context: field sensors and PLCs feed an edge gateway or SCADA historian that aggregates and
 windows the multivariate telemetry, LatAD scores each completed window online, and an anomaly alarm together
 with the most-surprised subsystem is forwarded to the operator, maintenance, or security stack. It is
@@ -131,8 +133,9 @@ origin. The caption states which assumptions are realized (A1 to A7) and which a
 
 <h2>Comment 9. Section 4 readability: map Sections 4.1 to 4.4 to pipeline stages and add a LatAD workflow figure.</h2>
 <blockquote>The readability of Section 4 needs to be improved. Sections 4.1 to 4.4 barely mention LatAD in the
-main text ... Which parts of the LatAD detector pipeline do the representation stage and scoring stage
-correspond to? Please add a figure to introduce the LatAD workflow.</blockquote>
+main text, making it unclear which part of the LatAD detector pipeline each corresponds to. Which parts of the
+LatAD detector pipeline do the representation stage and scoring stage correspond to? Please add a figure to
+introduce the LatAD workflow.</blockquote>
 <p class="resp"><b class="lead">Response: change made.</b> Each Section 4 heading now names its pipeline stage:
 Section 4.1 "Representation: Variational Deep Embedding (VaDE) (the representation stage; Figure 2, top)";
 Section 4.3 "The scoring stack (the scoring stage; Figure 2, per-community heads)"; and Section 4.4
@@ -144,7 +147,7 @@ the Section 4 preamble.</p>
 <blockquote>Is VaDE + density head + residual head fitted separately for each community? Or is the encoder
 shared? The paper does not report training time, GPU memory, or inference latency, which is critical for IIoT
 edge deployment.</blockquote>
-<p class="resp"><b class="lead">Response: change made.</b> Good questions, and both are now answered directly.
+<p class="resp"><b class="lead">Response: change made.</b> Both are now answered directly.
 Section 4.4 states the architecture: for each community we fit a separate small VaDE, each with its own
 encoder, Gaussian mixture, and scoring heads, its regime count and latent dimension scaled to the community
 size; nothing is shared across communities except the input window features, so the model is a stack of
@@ -156,9 +159,10 @@ times faster than TranAD), per-window latency is 0.7 to 13 ms global and 17 to 3
 stack, and both configurations run within about 3.5 to 3.9 GB of host memory.</p>
 
 <h2>Comment 11. The symbol z denotes both a latent variable (Section 4.3) and a standardized per-channel value (Section 5.3); replace one.</h2>
-<blockquote>The symbol z denotes a latent variable in Section 4.3 but a standardized per-channel value in
-Section 5.3 ... the symbol conflict is still serious. It is suggested to replace z with another symbol in
-Section 4.2 or Section 5.3.</blockquote>
+<blockquote>The symbol z denotes a latent variable in &sect;4.3 but a standardized per-channel value in &sect;5.3.
+Although the paper includes the sentence "here z is a standardized per-channel value, not the latent z of
+&sect;4.3," the symbol conflict is still serious. It is suggested to replace z with another symbol in &sect;4.2
+or &sect;5.3.</blockquote>
 <p class="resp"><b class="lead">Response: change made.</b> Thank you for catching this. The conflict is
 resolved: the latent variable keeps
 the symbol z, the standardization operator is renamed std(.), and the trivial-rule per-channel value is
@@ -183,8 +187,7 @@ to Table 2 and to Figure 3. Figures 1 and 2 were added and the results chart ren
 revised the front matter and the longer sentences, and a language pass over the whole manuscript is applied to
 the submitted version.</p>
 
-<p class="close">Thank you again for the detailed suggestions, which improved the clarity and structure of
-the paper considerably.</p>
+<p class="close">Thank you again for the detailed suggestions; the revised paper follows them throughout.</p>
 
 <p>Sincerely,<br>
 Alexander Apartsin and Yehudit Aperstein</p>

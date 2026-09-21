@@ -43,8 +43,8 @@ used throughout and are reflected in the responses.</p>
 not fully realize them. A9 and A10 are not used in the model, while the basin-agreement head for A3 is
 inactive on all three datasets. More experiments are needed on data that can activate and test these
 assumptions, otherwise the contribution should be limited to the assumptions that are actually validated.</blockquote>
-<p class="resp"><b class="lead">Response: change made and assumptions remeasured.</b> Good point, and it led
-to a cleaner framing. We now present MIIM as ten assumptions of which seven are realized by the detector and
+<p class="resp"><b class="lead">Response: change made and assumptions remeasured.</b> We agree, and have
+rescoped the contribution accordingly. We now present MIIM as ten assumptions of which seven are realized by the detector and
 validated here (A1 to A7) and three are specified for future work (A8 to A10). Table 1 lists the assumptions and
 their physical origin, and Section 4 maps each realized assumption (A1 to A7) to its design section; the caption
 states which are realized and which are future work. The between-regime
@@ -76,8 +76,8 @@ with history-dependent faults.</p>
 support. Experiments under different regime imbalance ratios should compare mixture NLL, nearest-component
 NLL, and other imbalance-aware scoring methods, with more attention to the false-positive rate of rare normal
 regimes.</blockquote>
-<p class="resp"><b class="lead">Response: rebuttal plus head-level isolation.</b> Good suggestion, and the
-imbalance sweep gave us a clean way to show the term's role. The nearest-component likelihood is isolated as a
+<p class="resp"><b class="lead">Response: rebuttal plus head-level isolation.</b> We agree the term needs
+direct support, and the imbalance sweep isolates its role. The nearest-component likelihood is isolated as a
 standalone score head in Table A5, with difficult-subset AUROC 0.603 on WADI, 0.797 on HAI, and 0.479 on
 SWaT, beside the mixture density and the density-plus-nearest base; its rationale is stated as assumption A5
 in Table 1 ("score against the nearest component, never the weighted mixture, so a rare-but-valid regime is
@@ -100,13 +100,37 @@ theorem. Difficult-subset detection is unchanged (true-positive rate at 5 percen
 +0.007&nbsp;&plusmn;&nbsp;0.068). The property is defensive by design, and the single-mode benchmarks cannot
 exhibit it.</p>
 
-<h2>Comment 3. The regime-community design trains many models; evaluate its practical cost under the same hardware as the baselines.</h2>
+<h2>Comment 3. The connection to industrial-IoT is limited; cite two suggested LoRa/LPWAN papers.</h2>
+<blockquote>The connection to industrial-IoT system remains limited, and please cite the following important
+papers: [1] Chen, Ciyuan, et al. "Enhancing Link Performance for Mobile LoRa Networks." IEEE Transactions on
+Mobile Computing (2025). [2] Xu, Zhuqing, et al. "Leveraging imperfect-orthogonality aware scheduling for high
+scalability in LPWAN." IEEE Transactions on Mobile Computing 23.10 (2024): 10111-10129.</blockquote>
+<p class="resp"><b class="lead">Response: industrial-IoT connection strengthened.</b> We agree the
+industrial-IoT framing should be more explicit, and we have deepened it throughout the revision. Section 1 now
+opens inside the IIoT stack: a cyber-physical system couples networked sensors, actuators, and controllers with
+a physical process and forms the sensing-and-actuation layer of the Industrial Internet of Things, and anomaly
+detection is a core reliability-and-security function of that layer, monitored from streaming telemetry
+[<a href="#r-iotsurvey">4</a>,&nbsp;<a href="#r-iottaxon">5</a>]. Section 2.1 makes the edge thread explicit:
+detection is increasingly pushed onto gateways and industrial edge nodes to cut telemetry backhaul and enable
+local response, under the compute, memory, and latency budgets that shape model design
+[<a href="#r-edgeint">15</a>&ndash;<a href="#r-iotedgeai">17</a>], which now connects directly to the
+edge-deployment cost measurements we added in Appendix B and Table B1. We also added evidence that fleet-scale
+IIoT heterogeneity motivates the core design: global models trained across many devices, subsystems, and
+regimes develop detection blind spots that subsystem-specific models recover [<a href="#r-islam">18</a>], the
+direct rationale for factorizing the density over correlation-community subsystems. Figure 1 now shows where
+LatAD sits in the IIoT monitoring context (field sensors and PLCs feeding an edge gateway or SCADA historian,
+LatAD scoring each completed window online, and the alarm plus most-surprised subsystem forwarded to the
+operator). The two suggested references address the LoRa link and LPWAN scheduling layer of wireless
+connectivity; this paper operates on the process-telemetry layer above it, so we strengthened the industrial-IoT
+connection through the sensing, edge-inference, and heterogeneity references cited above.</p>
+
+<h2>Comment 4. The regime-community design trains many models; evaluate its practical cost under the same hardware as the baselines.</h2>
 <blockquote>The regime-community design in this manuscript trains separate representation and density models
 for many communities, which may introduce much higher cost than a single global detector. More experiments
 are needed to evaluate the practical cost of this design under the same hardware setting as the main
 baselines.</blockquote>
-<p class="resp"><b class="lead">Response: change made.</b> A fair thing to check, and the numbers are
-reassuring. We added Appendix B and Table B1, reporting parameter count, training wall-clock, per-window
+<p class="resp"><b class="lead">Response: change made.</b> We agree the added cost should be quantified. We
+added Appendix B and Table B1, reporting parameter count, training wall-clock, per-window
 inference latency, peak GPU memory, and host memory for LatAD (global and regime-community) and the deep
 baselines on one Modal A10G GPU (24 GB) plus a Modal 8-vCPU CPU edge proxy, the same hardware for every
 method. The regime-community stack does instantiate one small density model per subsystem, at a cost Table B1
@@ -118,11 +142,11 @@ budgets on the CPU edge proxy. Section 4.4 now states the architecture (a separa
 nothing shared but the input window features, plus one whole-plant expert), and the deployment paragraph in
 Section 8 points at these numbers.</p>
 
-<h2>Comment 4. Sliding windows are strongly time-correlated; use a time-aware test on all three datasets, and clarify the WADI confidence interval and p-value.</h2>
+<h2>Comment 5. Sliding windows are strongly time-correlated; use a time-aware test on all three datasets, and clarify the WADI confidence interval and p-value.</h2>
 <blockquote>The sliding windows in this manuscript are strongly correlated in time, so ordinary resampling may
 underestimate the confidence interval. A time-aware statistical test should be used on all three datasets, and
 the definition of the confidence interval and p-value on WADI should be clarified.</blockquote>
-<p class="resp"><b class="lead">Response: change made.</b> You are right that time correlation matters here.
+<p class="resp"><b class="lead">Response: change made.</b> We agree that time correlation matters here.
 Every significance statement now uses an episode-block bootstrap that resamples whole attack episodes together
 with contiguous normal blocks, rather than independent windows, applied uniformly to all three datasets and to
 every confidence interval and P-value (defined in Section 5.4; results in Section 6, Figure 3). The confidence
@@ -148,13 +172,13 @@ and +0.021 on WADI (8 episodes); on SWaT the raw double-hard score is drift-domi
 drift-aware typing of Section 7 recovers it to 0.671, a significant +0.493 (95 percent CI [0.349, 0.619],
 P &lt; 0.001) over the raw score (Table A3). All intervals were recomputed from persisted scores, with no retraining.</p>
 
-<h2>Comment 5. Six static window statistics: run raw-sequential, temporal, or spectral experiments and ablations to verify whether the gain comes from cross-channel density or from the window representation.</h2>
+<h2>Comment 6. Six static window statistics: run raw-sequential, temporal, or spectral experiments and ablations to verify whether the gain comes from cross-channel density or from the window representation.</h2>
 <blockquote>This manuscript mainly uses six static statistics from each window, so the source of the performance
 gain is still unclear. Experiments with raw sequential input and temporal or spectral information are needed
 to verify whether the gain mainly comes from cross-channel density modeling or from the current window
 representation.</blockquote>
-<p class="resp"><b class="lead">Response: change made, the source of the gain is now isolated.</b> Good
-question, and it is exactly the ablation the paper needed. Table A4 (cited from Section 6) swaps the
+<p class="resp"><b class="lead">Response: change made, the source of the gain is now isolated.</b> We agree
+this needs isolating, and Table A4 (cited from Section 6) does so directly. Table A4 swaps the
 cross-channel latent density for a channel-independent product of per-channel densities, holding the
 representation fixed: the cross-channel density adds <b>+0.200 on HAI</b>, essentially nothing on the WADI
 difficult subset (+0.017), whose difficult anomalies are single-channel or linear so per-channel marginals
@@ -175,10 +199,10 @@ no residual term and no factorization, beats the deep reconstruction detectors U
 WADI difficult subsets (Table A5; on SWaT the raw difficult subset is drift-dominated), isolating the density
 mechanism from both the representation and the factorization.</p>
 
-<h2>Comment on English, figures, and conclusions.</h2>
+<h2>Evaluation-form items: English, figures and tables, and conclusions.</h2>
 <blockquote>The English could be improved to more clearly express the research. Figures and tables, and the
 conclusions, should be improved.</blockquote>
-<p class="resp"><b class="lead">Response: change made.</b> Thank you, these improved the presentation. We
+<p class="resp"><b class="lead">Response: change made.</b> We addressed each of these. We
 revised the front matter and the longer sentences, and a language pass over the whole manuscript is applied to
 the submitted version. Two vector figures were added (Figure 1, the IIoT system-model context; Figure 2, the
 assumption-tagged LatAD workflow), the difficult-subset results chart is renumbered Figure 3 with a corrected

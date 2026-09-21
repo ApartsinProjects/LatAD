@@ -71,10 +71,18 @@ your direct requests and then summarize the principal changes and where to find 
 </ul>
 
 <h2>Your direct requests</h2>
+<blockquote>Please validate the assumptions that are currently unused (A3, A9, A10), provide direct experimental
+support for the rare-regime-safe nearest-component likelihood, report training and inference cost for edge
+deployment, use a time-aware statistical test, and add ablations isolating the source of the gain. Reviewer 2
+additionally asks for a clearer abstract and introduction, a restructured related-work section, system-model
+and LatAD workflow figures, resolution of the notation conflict for z, and consistent typesetting with numbered
+equations. Please submit a point-by-point response with the revised manuscript.</blockquote>
+<p>We answer each request below and quote the sentence it addresses; the writing and structure items forwarded
+from Reviewer 2 are answered in full in the Reviewer 2 letter and summarized here.</p>
 
 <h3>1. Validate the assumptions that are currently unused (A3, A9, A10)</h3>
 <blockquote>Please validate the assumptions that are currently unused (A3, A9, A10) ...</blockquote>
-<p class="resp"><b class="lead">Response.</b> Good point, and it prompted a cleaner framing. We now present
+<p class="resp"><b class="lead">Response.</b> We agree, and have rescoped the contribution accordingly. We now present
 MIIM as ten assumptions of which <b>seven are realized by the detector and validated here (A1 to A7)
 and three are specified for future work (A8 to A10)</b>. Table 1 lists the ten assumptions and their physical
 origin; Section 4 maps each realized assumption (A1 to A7) to the design section that implements it, and the
@@ -98,8 +106,8 @@ detectable" is thus now a measured finding, not an assumption (Table 1, Section 
 
 <h3>2. Direct experimental support for the rare-regime-safe nearest-component likelihood</h3>
 <blockquote>... provide direct experimental support for the rare-regime-safe nearest-component likelihood ...</blockquote>
-<p class="resp"><b class="lead">Response.</b> Good suggestion, and it gave us a clean way to show the term's
-role. The nearest-component likelihood is isolated as a standalone score head in Table A5 (difficult-subset
+<p class="resp"><b class="lead">Response.</b> We agree the term needs direct support, and the imbalance sweep
+isolates its role. The nearest-component likelihood is isolated as a standalone score head in Table A5 (difficult-subset
 AUROC WADI 0.603, HAI 0.797, SWaT 0.479), beside the mixture density and the density-plus-nearest base, with
 its rationale stated as assumption A5 in Table 1. It is a rare-regime <em>safety</em> term: it keeps a valid
 window in a sparsely populated regime from being flagged for rarity alone, protecting the false-alarm rate
@@ -122,7 +130,7 @@ exhibit it.</p>
 
 <h3>3. Report training and inference cost for edge deployment</h3>
 <blockquote>... report training and inference cost for edge deployment ...</blockquote>
-<p class="resp"><b class="lead">Response.</b> Added, and it is a fair thing to ask for edge deployment.
+<p class="resp"><b class="lead">Response.</b> Added; these are the numbers that matter for edge deployment.
 Appendix B and Table B1 report parameter count, training wall-clock, per-window inference latency, peak GPU
 memory, and host memory for LatAD (global and regime-community) and the deep baselines, measured on one Modal
 A10G GPU (24 GB) plus a Modal 8-vCPU CPU edge proxy, the same hardware for every method. LatAD-global trains
