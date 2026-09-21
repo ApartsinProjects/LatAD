@@ -83,7 +83,7 @@
 
 <div class="abstract">
 <h2>Abstract</h2>
-<p><span class="rev2-highlight">The Industrial Internet of Things streams multivariate telemetry from physical processes, and monitoring it for faults and attacks must learn normal from unlabeled data alone. Cyber-physical normal is a union of many imbalanced operating regimes that also drifts as components age, so a faulty state can remain within every sensor's normal range and still reconstruct accurately while being improbable under normal joint operation: reconstruction-based detectors measure reachability rather than probability and miss it. We present LatAD (Latent-density Anomaly Detector), which models normal as a jointly learned latent Gaussian mixture (Variational Deep Embedding, VaDE) and scores by probability rather than reconstruction, factorizing the density over correlation-community subsystems and combining per-subsystem surprises by cohesion-weighted Higher Criticism. We evaluate under a detector-agnostic difficulty stratification: a channel rule strips trivially separable anomalies to form the difficult subset, and a secondary linear-subspace filter forms a double-hard subset. On three real testbeds LatAD leads on difficult-subset AUROC: significantly on HAI (0.845, where the deep detectors USAD and TranAD fall to 0.44&ndash;0.50), and over every evaluated nonlinear detector on WADI (0.771). Measured drift is 1.5%, 39%, and 69% of test-normal windows on WADI, HAI, and SWaT; on the severely non-stationary SWaT record a causal drift-aware anomaly typing brings the difficult subset to 0.723 (attack recall 0.687 at the calibrated threshold) and cuts its normal-window false-alarm rate from 79% to 6.5%. LatAD commissions from normal telemetry alone, localizes each alarm to a physical subsystem, and trains 47 to 72 times faster than TranAD in its global-density variant, at sub-30 ms per-window inference on a CPU edge proxy, within industrial edge budgets. Code and checkpoints are released (Zenodo).</span></p>
+<p>The Industrial Internet of Things (IIoT) instruments physical processes with networked sensors and controllers that stream multivariate telemetry, and monitoring this telemetry for faults and cyberattacks is essential to reliability and safety. Machine learning is the natural tool, but failures are rare and seldom labeled, so supervised detection is impractical: a detector must learn normal behavior from unlabeled telemetry alone. In cyber-physical systems this normal law is structured: a union of many imbalanced operating regimes shaped by physics and control, formalized as ten <em>Massive, Implicit, Imbalanced Multimodality</em> (MIIM) assumptions. That structure exposes a blind spot of the dominant approach: a fault can be individually normal on every sensor and reconstruct accurately, yet improbable under normal joint operation, so reconstruction-based detectors measure reachability rather than probability and miss it. Our detector, LatAD <span class="rev2-highlight">(Latent-density Anomaly Detector)</span>, learns a latent Gaussian-mixture clustering of regimes (VaDE<span class="rev2-highlight">, Variational Deep Embedding</span>), scores anomalies by density, and factorizes that density over correlation-community subsystems combined by a cohesion-weighted <span class="rev2-highlight">Higher Criticism</span> statistic. <span class="rev-del">On three real IIoT testbeds LatAD attains the best AUROC (WADI 0.862, HAI 0.949, SWaT 0.993) and leads the difficult subset of all three, notably on HAI (0.849; a significant +0.09, 95% CI [0.046, 0.160]); USAD and TranAD fall to 0.30&ndash;0.48 on these reconstructable-but-improbable faults.</span><span class="rev2-highlight">On three real IIoT testbeds LatAD attains the best All-subset AUROC of any learned detector on HAI (0.948) and leads the difficult subset, notably on HAI (0.845; a significant +0.088, 95% CI [0.042, 0.157]); USAD and TranAD fall to 0.44&ndash;0.50 on these reconstructable-but-improbable faults.</span></p>
 </div>
 <p class="keywords"><strong>Keywords:</strong> <span class="rev-highlight">Industrial Internet of Things (IIoT); IoT anomaly detection; cyber-physical systems; industrial control systems; anomaly detection; unsupervised learning; sensor telemetry; fault detection</span></p>
 
@@ -282,55 +282,23 @@ coupled subsystem. LatAD therefore models regime probability at subsystem scale,
 
 <div class="tblwrap">
 <table class="assum">
-<caption><strong>Table 1.</strong> The ten CPS normal-data assumptions, their physical origin, and the detector
-design choice each motivates. A1&ndash;A8 shape the instantaneous window; A9&ndash;A10 shape the trajectory.<span class="rev2-highlight"> The last column names the LatAD design section and mechanism that realizes each assumption. Rows are grouped into A1&ndash;A7, realized by the reported model and evaluated on the three real testbeds, and A8&ndash;A10, specified but not realized by the reported window-only model (A8&rsquo;s precondition present but its heavy overlap not exercised, A9 present in the data, A10 showing no evidence under these tests).</span></caption>
+<caption><strong>Table 1.</strong> The ten CPS normal-data assumptions and their physical origin. A1&ndash;A8 shape the instantaneous window; A9&ndash;A10 shape the trajectory. <span class="rev2-highlight">The reported model realizes A1&ndash;A7; A8&ndash;A10 are specified but not realized by the window-only model. Each realized assumption is mapped to the LatAD design section that exploits it in &sect;4, and the realized-versus-future scoping is discussed in &sect;8.</span></caption>
 <thead><tr>
-  <th>ID</th><th class="l">Assumption</th><th class="l">CPS rationale</th><th class="l">Motivates (design choice)</th><th class="l rev2-highlight">Realized by (&sect;)</th>
+  <th>ID</th><th class="l">Assumption</th><th class="l">CPS rationale</th>
 </tr></thead>
 <tbody>
-<tr><td class="l rev2-highlight" colspan="5" style="background:#eef3f8;text-align:left"><b>Realized by the reported model (A1&ndash;A7)</b></td></tr>
-<tr><td><b>A1</b></td><td class="l"><b>Regime mixture</b> (multimodality)</td>
-  <td class="l">A plant or vehicle cycles through discrete operating regimes (idle, cruise, load steps); normal is their union, not one blob.</td>
-  <td class="l">Model normal as an explicit mixture, not a global density: the latent <span class="rev2-highlight">Gaussian mixture model (GMM)</span> prior of VaDE.</td>
-  <td class="l rev2-highlight">VaDE latent Gaussian-mixture regimes (&sect;4.1).</td></tr>
-<tr><td><b>A2</b></td><td class="l"><b>Regime explosion</b> (exponential regime growth)</td>
-  <td class="l">A CPS is built from many interacting subsystems; each added element multiplies reachable regimes, so regime count grows with complexity.</td>
-  <td class="l">Use a high number of components <em>K</em> (and a high-resolution density head) rather than a handful.</td>
-  <td class="l rev2-highlight">High component count <em>K</em> and mixture-density head (&sect;4.1, &sect;4.3).</td></tr>
-<tr><td><b>A3</b></td><td class="l"><b>Thin fringes</b> (intra-regime sparsity)</td>
-  <td class="l">Within a regime the system dwells near a typical operating point and reaches the edges only occasionally; each regime holds legitimate low-density regions near its boundary.</td>
-  <td class="l">Density inside a regime is non-Gaussian &rarr; a parametric high-resolution mixture density head, not one Gaussian per regime.</td>
-  <td class="l rev2-highlight">Mixture-density head (&sect;4.3, i).</td></tr>
-<tr><td><b>A4</b></td><td class="l"><b>Few levers</b> (low intrinsic dimension)</td>
-  <td class="l">The independent control variables are far fewer than the observed channels; the rest follow deterministically or probabilistically.</td>
-  <td class="l">A low-dimensional learned latent (dim 10&ndash;16 across datasets) suffices; faults appear as departures within that latent.</td>
-  <td class="l rev2-highlight">Low-dimensional VaDE latent (&sect;4.1).</td></tr>
-<tr><td><b>A5</b></td><td class="l"><b>Heavy tail</b> (Zipf imbalance)</td>
-  <td class="l">Machines spend most of the record in a few steady regimes; startup, shutdown and rare maneuvers occupy little of it, so an infrequent-but-normal point is easily mistaken for a fault.</td>
-  <td class="l">Score against the <em>nearest</em> component, never the &#960;-weighted mixture, so a rare-but-valid regime is not penalized (ii).</td>
-  <td class="l rev2-highlight">Nearest-component negative-log-likelihood (NLL) head (&sect;4.3, ii).</td></tr>
-<tr><td><b>A6</b></td><td class="l"><b>Hidden regimes</b> (latent, implicit regimes)</td>
-  <td class="l">True regimes are an emergent artifact of coupling and are not logged; regimes must be discovered approximately from raw streams.</td>
-  <td class="l">Discover regimes jointly with the representation (VaDE), unsupervised; never use regime labels.</td>
-  <td class="l rev2-highlight">Joint VaDE clustering, unsupervised (&sect;4.1).</td></tr>
-<tr><td><b>A7</b></td><td class="l"><b>Mixed signals</b> <span class="rev2-highlight">(heterogeneous scale and noise)</span></td>
-  <td class="l">The bus carries sensors, actuators, discrete states and setpoints, each with its own range, resolution and correlated noise.</td>
-  <td class="l"><span class="rev2-highlight">Per-feature standardization on train-normal; a whitened (Mahalanobis) residual respecting per-channel scale and cross-channel correlation (iii). (All channels are standardized and Gaussian-modeled; no channel is given a categorical likelihood; native discrete-channel likelihoods are surveyed in &sect;8.)</span></td>
-  <td class="l rev2-highlight">Standardization and whitened residual (&sect;4.3, iii); community factorization (&sect;4.4).</td></tr>
-<tr><td class="l rev2-highlight" colspan="5" style="background:#eef3f8;text-align:left"><b>Specified, not realized by the reported window-only model (A8&ndash;A10)</b></td></tr>
-<tr><td><b>A8</b></td><td class="l"><b><span class="rev-del">Hard envelopes</span> <span class="rev2-highlight">Between-regime overlap</span></b> <span class="rev2-highlight">(heavy mode overlap between regimes)</span></td>
-  <td class="l"><span class="rev-del">Controllers hold each regime within setpoint/actuator bands; the space between regimes is passed through, rarely dwelt in, leaving thin anomalous pockets.</span><span class="rev2-highlight">Neighboring regimes could overlap in observation space, so a window would fall in a zone of mode ambiguity while every channel stays in range. The precondition (adjacent-but-distinct regimes) holds on nearly every plant, but heavy mode overlap is absent under valid observation-space metrics, and the masking form is coupled to A10 (&sect;8, Appendix&nbsp;C).</span></td>
-  <td class="l"><span class="rev-del">A between-regime point must score anomalous even when every channel is in range: the basin-agreement head (iv).</span><span class="rev2-highlight">Specified for completeness; not realized by the reported model. Its over-coverage variant is defended by the high-resolution density head; its masking variant is left with A10 as future work.</span></td>
-  <td class="l rev2-highlight">Specified, partly defended (&sect;8, Appendix&nbsp;C).</td></tr>
-<tr><td><b>A9</b></td><td class="l"><b>Many clocks</b> (multiscale dynamics)</td>
-  <td class="l">Physical inertia sets per-channel time constants (thermal slow, electrical fast); only some regime&rarr;regime transitions are legal, each with a characteristic dwell.</td>
-  <td class="l">Fixed-length windows with per-channel statistics as features; motivates explicit temporal features, left to future work (&sect;8).</td>
-  <td class="l rev2-highlight">Present in the data (per-channel timescales span 3.4&ndash;3.7 decades on all three); a complementary lever on HAI, explicit temporal features left to future work (&sect;8).</td></tr>
-<tr><td><b>A10</b></td><td class="l"><b>Path dependence</b> (history-conditioned normality)</td>
-  <td class="l">A fault is defined relative to operational history: the same instantaneous state can be normal or faulty depending on how the system arrived there.</td>
-  <td class="l">In principle a trajectory branch; on these snapshot-detectable public benchmarks (each fault visible in a single window, without history) it is inert (see &sect;8), so the reported model is window-only.</td>
-  <td class="l rev2-highlight">No evidence under these tests (snapshot-detectable), with a passing synthetic positive control; future work (&sect;8).</td></tr>
-</tbody></table>
+<tr><td><b>A1</b></td><td class="l"><b>Regime mixture</b> (multimodality)</td><td class="l">A plant or vehicle cycles through discrete operating regimes (idle, cruise, load steps); normal is their union, not one blob.</td></tr>
+<tr><td><b>A2</b></td><td class="l"><b>Regime explosion</b> (exponential regime growth)</td><td class="l">A CPS is built from many interacting subsystems; each added element multiplies reachable regimes, so regime count grows with complexity.</td></tr>
+<tr><td><b>A3</b></td><td class="l"><b>Thin fringes</b> (intra-regime sparsity)</td><td class="l">Within a regime the system dwells near a typical operating point and reaches the edges only occasionally; each regime holds legitimate low-density regions near its boundary.</td></tr>
+<tr><td><b>A4</b></td><td class="l"><b>Few levers</b> (low intrinsic dimension)</td><td class="l">The independent control variables are far fewer than the observed channels; the rest follow deterministically or probabilistically.</td></tr>
+<tr><td><b>A5</b></td><td class="l"><b>Heavy tail</b> (Zipf imbalance)</td><td class="l">Machines spend most of the record in a few steady regimes; startup, shutdown and rare maneuvers occupy little of it, so an infrequent-but-normal point is easily mistaken for a fault.</td></tr>
+<tr><td><b>A6</b></td><td class="l"><b>Hidden regimes</b> (latent, implicit regimes)</td><td class="l">True regimes are an emergent artifact of coupling and are not logged; regimes must be discovered approximately from raw streams.</td></tr>
+<tr><td><b>A7</b></td><td class="l"><b>Mixed signals</b> <span class="rev2-highlight">(heterogeneous scale and noise)</span></td><td class="l">The bus carries sensors, actuators, discrete states and setpoints, each with its own range, resolution and correlated noise.</td></tr>
+<tr><td><b>A8</b></td><td class="l"><b><span class="rev-del">Hard envelopes</span> <span class="rev2-highlight">Between-regime overlap</span></b> <span class="rev2-highlight">(heavy mode overlap between regimes)</span></td><td class="l"><span class="rev-del">Controllers hold each regime within setpoint/actuator bands; the space between regimes is passed through, rarely dwelt in, leaving thin anomalous pockets.</span><span class="rev2-highlight">Neighboring regimes could overlap in observation space, so a window would fall in a zone of mode ambiguity while every channel stays in range. The precondition (adjacent-but-distinct regimes) holds on nearly every plant, but heavy mode overlap is absent under valid observation-space metrics, and the masking form is coupled to A10 (&sect;8, Appendix&nbsp;C).</span></td></tr>
+<tr><td><b>A9</b></td><td class="l"><b>Many clocks</b> (multiscale dynamics)</td><td class="l">Physical inertia sets per-channel time constants (thermal slow, electrical fast); only some regime&rarr;regime transitions are legal, each with a characteristic dwell.</td></tr>
+<tr><td><b>A10</b></td><td class="l"><b>Path dependence</b> (history-conditioned normality)</td><td class="l">A fault is defined relative to operational history: the same instantaneous state can be normal or faulty depending on how the system arrived there.</td></tr>
+</tbody>
+</table>
 </div>
 
 <p>Two standing qualifiers apply throughout: the sample is <strong>massive</strong> (<math
@@ -394,7 +362,6 @@ the same representation and heads, we describe those first, then the regime-comm
   <line x1="330" y1="362" x2="150" y2="394" stroke="#1f7a3a" stroke-width="1.1" marker-end="url(#f2arrG)"/>
   <line x1="335" y1="362" x2="276" y2="394" stroke="#1f7a3a" stroke-width="1.1" marker-end="url(#f2arrG)"/>
   <line x1="345" y1="362" x2="405" y2="394" stroke="#1f7a3a" stroke-width="1.1" marker-end="url(#f2arrG)"/>
-  <line x1="350" y1="362" x2="531" y2="394" stroke="#1f7a3a" stroke-width="1.1" marker-end="url(#f2arrG)"/>
   <rect x="90" y="396" width="114" height="90" rx="6" fill="#ecf6ee" stroke="#1f7a3a" stroke-width="1.3"/>
   <text x="147" y="416" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1a1a2e">Mixture-density</text>
   <text x="147" y="428" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1a1a2e">head</text>
@@ -452,11 +419,11 @@ standardization (A7) are always active; the whitened-residual head (A7) is
 did not reduce performance on any of these datasets, and the reported gains come from the always-active heads, with
 the auto-gated residual head adding to them on HAI and SWaT (Table A6). Assumptions A9&ndash;A10 shape the trajectory rather than the window and are only weakly exercised (A9) or measured absent (A10) on these
 snapshot-detectable public benchmarks; extending the detector to explicit multiscale-temporal features (A9) and
-history-conditioned, path-dependent scoring (A10) is left to future work (&sect;8).</span> <span class="rev2-highlight">The reported detector realizes A1&ndash;A7 (Table&nbsp;1, last column); A8&ndash;A10 are specified and measured but not realized (&sect;8).</span></p>
+history-conditioned, path-dependent scoring (A10) is left to future work (&sect;8).</span> <span class="rev2-highlight">The reported detector realizes A1&ndash;A7 (each mapped to a design section below); A8&ndash;A10 are specified and measured but not realized (&sect;8).</span></p>
 
 <p><strong>One realization of the assumptions.</strong> A1&ndash;A10 specify <em>what</em> a model of CPS normal must
 capture, not <em>how</em> to implement it; the detector below is one concrete realization of <span class="rev2-highlight">A1&ndash;A7</span>, reported in
-full so that every choice is auditable, and &sect;8 surveys the design space the same assumptions admit.</p>
+full so that every choice is auditable, and &sect;8 surveys the design space the same assumptions admit. <span class="rev2-highlight">Each realized assumption maps to a specific mechanism: A1 (regime mixture) and A6 (latent regimes) to the jointly learned VaDE Gaussian-mixture latent (&sect;4.1); A2 (regime explosion) to the high component count and mixture-density head (&sect;4.1, &sect;4.3); A3 (thin fringes) to the mixture-density head (&sect;4.3&nbsp;i); A4 (low intrinsic dimension) to the low-dimensional latent (&sect;4.1); A5 (heavy-tailed occupancy) to the nearest-component likelihood (&sect;4.3&nbsp;ii); and A7 (heterogeneous scale) to per-feature standardization with a whitened residual (&sect;4.3&nbsp;iii) and the community factorization (&sect;4.4).</span></p>
 
 <h3>4.1&nbsp;&nbsp;Representation: Variational Deep Embedding (VaDE) <span class="rev2-highlight">(the representation stage; Figure&nbsp;2, top)</span></h3>
 
