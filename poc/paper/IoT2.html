@@ -243,7 +243,7 @@ rotorcraft flight controls [<span class="rev-highlight"><a href="#r-rotorcraft">
 multimodal-latent anomaly detection.</p>
 
 <h3><span class="rev2-highlight">2.5&nbsp;&nbsp;Benchmark versus operational scale</span></h3>
-<p> <span class="rev2-highlight">Per-dataset details are given in &sect;5.1. The water-treatment and ICS-security benchmarks used here and elsewhere (SWaT, WADI, BATADAL [<a href="#r-batadal">46</a>], HAI) share a scale profile: roughly 40 to 120 channels, days to weeks of data, and a single nominal operating mode. This is far below operational scale. BATADAL extends to about a year but keeps only 43 hourly variables, and N-CMAPSS [<a href="#r-ncmapss">47</a>] reaches a 40-unit fleet with full run-to-failure trajectories but exposes only 14 sensors; operational sources such as the Building Data Genome Project 2 [<a href="#r-bdg2">11</a>] (3,053 meters across 1,636 buildings over two years) and plant process historians carrying thousands to tens of thousands of tags span orders of magnitude more channels, far longer horizons, and many operating modes. A parallel line of work argues that benchmark realism, not model novelty, now limits measured progress [<a href="#r-wukeogh">9</a>,&nbsp;<a href="#r-sarfraz">25</a>,&nbsp;<a href="#r-tsbuad">48</a>]. Operational scale (examples in &sect;8) is therefore the setting in which the trajectory assumptions A9 and A10 and the masking form of A8 become testable.</span></p>
+<p> <span class="rev2-highlight">Per-dataset details are given in &sect;5.1. The water-treatment and ICS-security benchmarks used here and elsewhere (SWaT, WADI, BATADAL [<a href="#r-batadal">46</a>], HAI) share a scale profile: roughly 40 to 120 channels, days to weeks of data, and a single nominal operating mode. This is far below operational scale. BATADAL extends to about a year but keeps only 43 hourly variables, and N-CMAPSS [<a href="#r-ncmapss">47</a>] reaches a 40-unit fleet with full run-to-failure trajectories but exposes only 14 sensors; operational sources such as the Building Data Genome Project 2 [<a href="#r-bdg2">11</a>] (3,053 meters across 1,636 buildings over two years) and plant process historians carrying thousands to tens of thousands of tags span orders of magnitude more channels, far longer horizons, and many operating modes. A parallel line of work argues that benchmark realism, not model novelty, now limits measured progress [<a href="#r-wukeogh">9</a>,&nbsp;<a href="#r-sarfraz">25</a>,&nbsp;<a href="#r-tsbuad">48</a>]. Operational scale is therefore the setting in which the trajectory assumptions A9 and A10 and the masking form of A8 become testable.</span></p>
 
 <h2>3&nbsp;&nbsp;The MIIM assumptions about <span class="rev-highlight">IIoT/CPS normal telemetry</span></h2>
 
@@ -784,19 +784,13 @@ the resulting HAI difficult subset (110 windows) <span class="rev2-highlight">th
 the linear cross-channel baseline, 0.604 for the AutoEncoder, and 0.528 for Isolation Forest), so the HAI
 advantage is not an artifact of the particular statistic that defines difficulty.</span></p>
 
-<p><strong>The double-hard subset.</strong> <span class="rev2-highlight">As a secondary robustness stress test we remove, from the difficult subset,
-every window that a linear principal-component subspace already separates. A PCA model is fit on train-normal, and a
-difficult window is kept as <em>double-hard</em> only if it exceeds neither the Hotelling&nbsp;<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msup><mi>T</mi><mn>2</mn></msup></math>
-in-subspace statistic nor the squared prediction (SPE) residual out-of-subspace statistic at their 99th train-normal
-percentiles. This is the standard linear-subspace anomaly filter and depends only on train-normal, so the detector under
-test plays no role in constructing the subset. Unlike a filter built from the leave-one-channel-out linear predictor, it
-leaves that predictor (LinRes) free to appear as a scored detector in its own right. Table A3 reports the resulting
-per-method AUROC (windows / distinct episodes: WADI 29&nbsp;/&nbsp;8, HAI 55&nbsp;/&nbsp;13, SWaT 28&nbsp;/&nbsp;9).
-On WADI and HAI LatAD attains the highest AUROC (0.763 and 0.648), a numerical lead over the strongest baseline (LinRes)
+<p><strong>The double-hard subset.</strong> <span class="rev2-highlight">As a secondary robustness stress test we further remove, from the difficult subset,
+every window that a linear principal-component subspace already separates; the filter construction is detailed in Appendix&nbsp;A, beside Table&nbsp;A3.
+On the resulting double-hard windows (windows / distinct episodes: WADI 29&nbsp;/&nbsp;8, HAI 55&nbsp;/&nbsp;13, SWaT 28&nbsp;/&nbsp;9)
+LatAD attains the highest AUROC on WADI and HAI (0.763 and 0.648), a numerical lead over the strongest baseline (LinRes)
 of +0.021 (WADI, 8 episodes) and +0.101 (HAI, 13 episodes). On SWaT the raw density score is drift-dominated on
-this subset (0.178; the record carries severe measured drift, &sect;7), and the drift-aware changepoint typing recovers the SWaT double-hard
-subset to 0.671. A boosted leave-one-channel-out linear predictor, fit to squeeze the most from the linear structure,
-reaches only 0.649&nbsp;/&nbsp;0.313&nbsp;/&nbsp;0.117 on the three subsets, so boosting the raw linear predictor does not recover it. The drift-aware typing of &sect;7 is what recovers the SWaT subset, and it lifts multiple method families, including this boosted linear predictor (double-hard 0.117 to 0.553); LatAD retains the higher post-typing score (0.671).</span></p>
+this subset (0.178; the record carries severe measured drift, &sect;7), and the drift-aware changepoint typing of &sect;7 recovers the SWaT double-hard
+subset to 0.671.</span></p>
 
 
 
@@ -1015,7 +1009,7 @@ than merely unobserved: three conditional scorers (a linear autoregressor on the
 nearest-neighbor successor model, and a regime-transition matrix), validated on a synthetic positive control and
 guarded by an order-shuffle control, find no window that is marginally normal yet improbable given its history above the
 shuffle floor, on all three benchmarks, once windows whose history already contains an attack are excluded.
-&ldquo;Snapshot-detectable&rdquo; is thus a measured finding for these benchmarks, not an assumption.</span> <span class="rev2-highlight"> A8 through A10, and the rare-regime safeguard of A5, register as absent, inert, or unexercised on the public CPS benchmarks precisely because those benchmarks are small and single-mode: days of data, one nominal operating mode, and discrete abrupt attacks. These are properties of the available data, not of the method, and exercising them needs operational-scale data whose requirements are specific. The rare-but-valid regimes A5 protects and the heavy between-regime overlap of A8 need data with many genuinely distinct, imbalanced operating regimes, which scale alone does not supply: a continuous operating envelope or a single-mode process, however large, does not exhibit them. The multiscale structure of A9 needs long duration, and the path dependence of A10 needs history-dependent, run-to-failure trajectories, as in the fleet degradation records of N-CMAPSS [<a href="#r-ncmapss">47</a>]. Operational-scale records that combine these (for example the multi-year, thousand-stream Building Data Genome Project&nbsp;2 [<a href="#r-bdg2">11</a>]) are a natural starting point, but a benchmark that genuinely exhibits heavy-tailed, discrete multi-regime structure is itself scarce; building or curating one is the primary axis for follow-up evaluation and the main barrier to exercising the full MIIM assumption set.</span></p>
+&ldquo;Snapshot-detectable&rdquo; is thus a measured finding for these benchmarks, not an assumption.</span> <span class="rev2-highlight"> A8 through A10, and the rare-regime safeguard of A5, register as absent, inert, or unexercised on the public CPS benchmarks precisely because those benchmarks are small and single-mode: days of data, one nominal operating mode, and discrete abrupt attacks. These are properties of the available data, not of the method; the operational-scale records that would exercise each of them (many imbalanced regimes for A5 and A8, long duration for A9, and history-dependent run-to-failure trajectories for A10) are set out in &sect;2.5, and curating a benchmark that genuinely exhibits heavy-tailed, discrete multi-regime structure remains the main barrier to exercising the full MIIM assumption set.</span></p>
 
 <p><strong>Alternative realizations and validation.</strong> The MIIM assumptions fix the structure to model
 rather than the estimator, so the detector of &sect;4 is one point in a larger design space. The regime-community
@@ -1156,6 +1150,8 @@ the headline numbers of the main results table (Table&nbsp;2).</caption>
 </div>
 
 <p class="rev2-highlight">Tables&nbsp;A3&ndash;A5 collect supporting ablations and the robustness subset referenced from the main text: the double-hard robustness subset (Table&nbsp;A3), the source of the cross-channel gain (Table&nbsp;A4), and the per-head decomposition (Table&nbsp;A5).</p>
+
+<p class="rev2-highlight">The double-hard filter fits a PCA model on train-normal and keeps a difficult window only if it exceeds neither the Hotelling&nbsp;<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msup><mi>T</mi><mn>2</mn></msup></math> in-subspace statistic nor the squared prediction (SPE) residual out-of-subspace statistic at their 99th train-normal percentiles: a standard linear-subspace filter that depends only on train-normal, so the detector under test plays no role in constructing the subset, and, unlike a filter built from the leave-one-channel-out linear predictor, it leaves that predictor (LinRes) free to appear as a scored detector in its own right. A boosted leave-one-channel-out linear predictor, fit to squeeze the most from the linear structure, reaches only 0.649&nbsp;/&nbsp;0.313&nbsp;/&nbsp;0.117 on the three subsets, so boosting the raw linear predictor does not recover it; the drift-aware typing of &sect;7 lifts multiple method families, including this boosted predictor (double-hard 0.117 to 0.553), and LatAD retains the higher post-typing score (0.671).</p>
 
 <div class="tblwrap">
 <table>
