@@ -1,0 +1,380 @@
+Delivered-To: apartsin@gmail.com
+Received: by 2002:a05:6802:6193:10b0:648:bac:3263 with SMTP id y19-n1csp5039102oca;
+        Tue, 15 Sep 2026 08:35:02 -0700 (PDT)
+X-Received: by 2002:a17:907:e011:10b0:c29:c531:7525 with SMTP id a640c23a62f3a-c29c531850amr518112266b.7.1789486502146;
+        Tue, 15 Sep 2026 08:35:02 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1789486502; cv=pass;
+        d=google.com; s=arc-20260327;
+        b=OivA+hAgsQHT3Drd72Rci0/YjZS9nEv1zmwoj13QKtQ7v5OZ61/+OGj55sdI8hWQyP
+         TCqFZLYJ09O5LoOboBWpK+XZcGdnHWH9LJ1Qg8REXc2dVE6yd5fLIXAiD3UOlHPq1OoZ
+         M/jQxHvpuf4moj/3eUSo0xU6shJE3MdtDRlmk36GhWZivKPrxd5X1fDzHKtFt/bcxR/6
+         G7LQJMR4woqlZyHtBoxsUEqQFl1J6kAv9XaXFw8qbcN7qNxcioqLT/GB/d0Yn7dgKrHV
+         l6rEBFlCNyIEX2y+uWo8A09u5torc/mOqX8UQ2+K2xDlXywpW3uJPwssKXaU4w2NUzWC
+         Xw3w==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=QPoVJsBQBtvpeA7j6+AnNAMuP5TPXJ9XJPEd23osVEI=;
+        fh=hKp1b+jGhvuj2z+IGNKE8FWUvAgBO1X+jwDXm4NqZz4=;
+        b=qVRO56nJN085JcWt6xoAYvxVwoxmmMYGeb2DWCfbL/F93RwL32dsf4j2IpIJRVwMZp
+         WZ4zFxAdW9Itq9NyWB7Wp2NGpX4KrU8ZT48kVPlPawQyToZaGvHM8u0fStOCBnxW2ups
+         lhne9vtNOuFsAzOxFTXBUkKUHQhVyk1FOAItrV5vYDiiQCgKci8HjuKFkZOrCjA7xO+f
+         2zJNip1kl3Lon94CCrnxdIV3SvxU3J8XPlUnnKBywfJF/3UuWEZLAv4BbuLCWjCxwgdo
+         z2JHRZIrnDuDBJl1xCh05rLSbYDvmYlh08Q9Xc/5MkIF9wyLP5K9scPxZ5skJ38YmTQL
+         YNRg==;
+        dara=google.com
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20251104 header.b=rtndEgd5;
+       arc=pass (i=1);
+       spf=pass (google.com: domain of zenya.apartsin@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=zenya.apartsin@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <zenya.apartsin@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-c29d817ca75sor28896266b.9.2026.09.15.08.35.01
+        for <apartsin@gmail.com>
+        (Google Transport Security);
+        Tue, 15 Sep 2026 08:35:02 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zenya.apartsin@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20251104 header.b=rtndEgd5;
+       arc=pass (i=1);
+       spf=pass (google.com: domain of zenya.apartsin@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=zenya.apartsin@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+ARC-Seal: i=1; a=rsa-sha256; t=1789486501; cv=none;
+        d=google.com; s=arc-20260327;
+        b=HgRx6r+FFSGxBmi1UO0GTRgWX5Siw8ym4j2bnEHQHFyBC4nWvLrzsgGkptaHgPYUvr
+         4B252h9wg0gez1PnhkZUtWe8V7B0uNw65TiVy/ZZXwDEcPO2AEA+fM1kvDQtSUq1QhH3
+         sY4fcZW7GCy7Olnzabs38YFjAGNr83OcDgdhP6OQHbSC0NFsCLBOau5bLEhL/5D8ZGZl
+         c+URECYzf1CpXVsL+OXveXoPXyBMbV3UFD1Q6cqvToTuJb3VqMZnIxEoMbOMNqlqk6eq
+         vHEHjvSGJsuR3a9V7qwIx//6JIu+e6t5YKR/k+yGW8xnfP1mUG4gChVIPTz4U2gkuwfu
+         Uzog==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=QPoVJsBQBtvpeA7j6+AnNAMuP5TPXJ9XJPEd23osVEI=;
+        fh=hKp1b+jGhvuj2z+IGNKE8FWUvAgBO1X+jwDXm4NqZz4=;
+        b=XgPV9gbYbE+P1TbPGty7qo9pTKBndLVg+FXsUis7GMh3xzBEPMUL5Y9PTPPGH4GiAe
+         2+Zvqyt0LfE/tfGO2xvOrs6ehnEH8sOrAWsq5F1YGYJFxViZQgfV6xid3los9NkFWzPP
+         Ka0ISCD7S3/+WoUAv2+KlaLGbyjelWwcfDpnLRp++tebPVW+mza9AKzykrYCnuCTec+h
+         8pzgLS3S81XKkiKjSSJoV+CgbiXch7mXmlaPqC9OZEgvcjHu6ZyVAuteLwX5IwW4Qo5c
+         xLGy2Csagq24wDW6rCHWirCFo0QEn0GE8H2iaa+lEasq/Av0cPzXiRPox20jJsEapNdZ
+         jnBA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789486501; x=1790091301; dara=google.com;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=QPoVJsBQBtvpeA7j6+AnNAMuP5TPXJ9XJPEd23osVEI=;
+        b=rtndEgd5qkd+MefmhvuAM3UH+jLkvoeZT0PxhQ2Np8+s1U8Z9EBAykVq2K7id+gujF
+         8MzOHYgomP5vypK2jz1jeAtwxM/CvxpW+Djx2GzMca/4jas0O+xsgydf8beswYWZG8cZ
+         9fiE1NBtSQjwrB8teb27RNMGLXE70ks4qiWjs67OJ7ZRMbHBWN2wQG/mp8hcMgdg9T0j
+         REhfR0c+fqJQ3ZP2trjN2JF45lEq9tF5XAxnsLUd37Lk9I64EmLVex//JYYvQslTw++S
+         0cwZDsc5DXdEkWooNLPYhbKybb9ydGTLdraMI0LSY/GGhV842I1X7IAVWDVCgW7iDwN7
+         JXaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789486501; x=1790091301;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=QPoVJsBQBtvpeA7j6+AnNAMuP5TPXJ9XJPEd23osVEI=;
+        b=pJViBssv8tZN0k4Ti45KJX455jjjDcwgwuc/0X/Mhk1O9gFbPrj7GW0fJO/DQnl+eP
+         UcaGxeXXwg5BEdU+o37HGfr0Ctinn3p/kaPzXBZk+3IJ3FklaRjmWz7k2rtAP8Ii9Zl9
+         DIuNJkqvwP+wMaI01MLQSxZIZfS9Sizy5mQfXwIRWN5U6reOQ72sDbN6AhDF85hoz41M
+         xac3VZQ017xybJ6mBkY7/xCMhmBEqX0cNhDUTXn7GknH34wiCg8y0xhbV57r3JGMb7K5
+         culcWWLoQRrEpBXVa5/vBmfuSywdGQ5XQobDVmcApEFZn1aYAFKDVWe439sSFT1PMHcY
+         tECw==
+X-Gm-Message-State: AFuF++nR5inQ3v9376HHbhBRfvJGbPCjdiROBFYzH0a6Kcr8bYs5/tA6
+	4NHnzLMAVlXzkQye4ssjUsPzwcu8iU2wCbHxSpcOlGcbpjsJa5jyYfCVqa6l7xSIaYwPvXX3Rkk
+	S3zAvYHIrV280N3L7M25uvn6MG9oM2gNiBQuGlJY=
+X-Gm-Gg: AYBFou2MWziC5zLHRAwGnIsm0mvwxfQZfrenX6gPLXliQOz7ordBL7snLs7jNNwxFfg
+	+V/MqOHNjGS61SDGugT6gYTWBLMuoNyaB1JEeHLbZg7DQKYlp3NIAVrFyiEaFQ+apMmY0ciTxp4
+	/hw3LwKkvAgU9FgCf9yCKqzYwi3pjXDMZ5wsPea6fJfVw0hTxNqlu45mhHmK/xyqh4SZZKC5sFt
+	IsUb5UphhXYenNriZ69LGlQDfpAsESbQl9IVmOwCvY7hjU/9Iphfvoy6s0Lk9n+iViZCsDQV8md
+	e3sTaQh8tL2/XTjZGZoVyuORE2zWImbudp6/mY6bWVlzjVW8DPIzqRy6quVeaS1/zALkfLx1/zQ
+	2+N2zQewLpUx0Dw==
+X-Received: by 2002:a05:6402:20ce:20b0:6aa:1112:62ce with SMTP id
+ 4fb4d7f45d1cf-6aa11126963mr2568361a12.17.1789486501150; Tue, 15 Sep 2026
+ 08:35:01 -0700 (PDT)
+MIME-Version: 1.0
+From: Yehudit Aperstein <yehudit.aperstein@gmail.com>
+Date: Tue, 15 Sep 2026 17:34:48 +0200
+X-Gm-Features: AcwNN1UaTlkKq1JMP3GMKvIW2O0onKMhM-TTBcuyV1NH1J34VCoylnMsS6T3lxg
+Message-ID: <CAC85BK+JGUthGv6eXL9Eg0gXbROrwiTck5y22fWRKQgziZGbuQ@mail.gmail.com>
+Subject: IoT reviewer 2
+To: =?UTF-8?B?0JvRjtCx0LjQvNGL0Lkg0LzRg9C2?= <apartsin@gmail.com>
+Content-Type: multipart/alternative; boundary="0000000000003b4114065b874bf4"
+
+--0000000000003b4114065b874bf4
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Quality of English Language
+(x) The English could be improved to more clearly express the research.
+( ) The English is fine and does not require any improvement.
+Yes Can be improved Must be improved Not applicable
+Does the introduction provide sufficient background and include all
+relevant references? ( ) ( ) (x) ( )
+Is the research design appropriate? ( ) (x) ( ) ( )
+Are the methods adequately described? ( ) ( ) (x) ( )
+Are the results clearly presented? ( ) (x) ( ) ( )
+Are the conclusions supported by the results? ( ) (x) ( ) ( )
+Are all figures and tables clear and well-presented? ( ) ( ) (x) ( )
+Comments and Suggestions for Authors
+
+This paper formalizes the structure of normal CPS/IIoT telemetry as ten
+Massive, Implicit, Imbalanced Multimodality (MIIM) assumptions (A1=E2=80=93=
+A10) and
+introduces LatAD, an unsupervised detector that learns a latent
+Gaussian-mixture regime clustering, scores anomalies by latent density and
+a rare-regime-safe nearest-component likelihood, and factorizes the density
+over correlation-community subsystems combined by cohesion-weighted Higher
+Criticism with an auto-gated reconstruction residual head. Under raw
+point-wise metrics and difficulty stratification on WADI, HAI, and SWaT,
+LatAD achieves the best overall AUROC and leads the difficult anomaly
+subsets, with a statistically significant gain on HAI over
+reconstruction-based deep detectors such as USAD and TranAD.
+
+The research content of the paper is very interesting, but the reviewers
+have raised the following issues or suggestions:
+
+   1. When an abbreviation first appears in the abstract or main text, its
+   full form should be provided, e.g., LatAD, IIoT, CPS, SCADA, etc.
+   2. The abstract spends most of its length introducing the problems of
+   existing anomaly detection methods, while providing very little
+   introduction to the principle of the paper's core contribution, LatAD.
+   Please highlight the technical contributions of this paper in the abstra=
+ct.
+   3. The logic of the Introduction is not clear enough and should be
+   carefully revised. In the first paragraph, the last sentence, "This pape=
+r
+   detects them by XXX," should be deleted. The paper's contributions shoul=
+d
+   not be introduced in the first paragraph of the Introduction. It is
+   suggested to add background on cyber-physical systems in the first
+   paragraph.
+   4. On Page 2, line 71, "the task is often framed as XXX"=E2=80=94what ta=
+sk does
+   "the task" specifically refer to? Please state it clearly.
+   5. The paper states that modeling and evaluation are "two obstacles that
+   have obscured this failure mode." Has LatAD made contributions to both
+   aspects? What specific problem is LatAD proposed to address, or what
+   existing method does it improve? Please explain clearly.
+   6. The structure of the Related Work section also has major problems and
+   should be revised. First, the definition of anomaly detection in the fir=
+st
+   sentence should be moved to the Introduction. Second, since LatAD is the
+   authors' novel work, it should not be described in detail in Related Wor=
+k.
+   It is suggested to delete: the last sentence of the first paragraph, "La=
+tAD
+   sits squarely in this line XXX"; the last sentence of Section 2.1, "LatA=
+D
+   addresses a complementary IIoT problem XXX"; and the last paragraph of
+   Section 2.2, "LatAD adopts this critique as XXX." Section 2.3 is entirel=
+y
+   an introduction to LatAD and needs to be rewritten. Section 2.5 is
+   suggested to be deleted.
+   7. Add a system model diagram or an application scenario diagram that
+   shows at which stage of the Industrial IoT the proposed LatAD method
+   collects data and performs anomaly detection.
+   8. What is the relationship between the MIIM presented in Section 3 and
+   the LatAD detector presented in Section 4? Are they studied independentl=
+y
+   or closely related? Please add an explanation of their relationship.
+   9. The readability of Section 4 needs to be improved. Sections 4.1 to
+   4.4 barely mention LatAD in the main text, making it unclear which part =
+of
+   the LatAD detector pipeline each corresponds to. Which parts of the LatA=
+D
+   detector pipeline do the representation stage and scoring stage correspo=
+nd
+   to? Please add a figure to introduce the LatAD workflow.
+   10. Is VaDE + density head + residual head fitted separately for each
+   community? Or is the encoder shared? The paper does not report training
+   time, GPU memory, or inference latency, which is critical for IIoT edge
+   deployment.
+   11. The symbol z denotes a latent variable in =C2=A74.3 but a standardiz=
+ed
+   per-channel value in =C2=A75.3. Although the paper includes the sentence=
+ "here z
+   is a standardized per-channel value, not the latent z of =C2=A74.3," the=
+ symbol
+   conflict is still serious. It is suggested to replace z with another sym=
+bol
+   in =C2=A74.2 or =C2=A75.3.
+   12. Typesetting issues: Some paragraphs begin flush left, while others
+   are indented. Please unify the format. None of the equations in the pape=
+r
+   are numbered.
+
+--0000000000003b4114065b874bf4
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto"><div style=3D"margin:0px;padding:0px;color:rgb(10,10,10);=
+font-family:arial,sans-serif;font-size:14px" dir=3D"auto"><div style=3D"mar=
+gin:0.46875rem 0px;padding:0px 0.46875rem;min-height:0px;min-width:0px;widt=
+h:396.271px;height:auto">Quality of English Language</div><div style=3D"mar=
+gin:0.46875rem 0px;padding:0px 0.46875rem;min-height:0px;min-width:0px;widt=
+h:396.271px;height:auto"><tt>(x)=C2=A0</tt>The English could be improved to=
+ more clearly express the research.<br><tt>( )=C2=A0</tt>The English is fin=
+e and does not require any improvement.<br></div></div><div style=3D"margin=
+:0px;padding:0px;height:2rem;color:rgb(10,10,10);font-family:arial,sans-ser=
+if;font-size:14px" dir=3D"auto"><div style=3D"margin:0.46875rem 0px;padding=
+:0px 0.46875rem;min-height:0px;min-width:0px;width:396.271px;height:auto"><=
+/div><div style=3D"margin:0.46875rem 0px;padding:0px 0.46875rem;min-height:=
+0px;min-width:0px;width:396.271px;height:auto"></div></div><div style=3D"ma=
+rgin:0px;padding:0px;height:1px;color:rgb(10,10,10);font-family:arial,sans-=
+serif;font-size:14px" dir=3D"auto"></div><table style=3D"border-collapse:co=
+llapse;border-radius:0px;margin:0px;width:396.271px;display:block;border-sp=
+acing:0px;padding:0px;color:rgb(10,10,10);font-family:arial,sans-serif;font=
+-size:14px"></table><div style=3D"margin:0px;padding:0px;height:2rem;color:=
+rgb(10,10,10);font-family:arial,sans-serif;font-size:14px" dir=3D"auto"><di=
+v style=3D"margin:0.46875rem 0px;padding:0px 0.46875rem;min-height:0px;min-=
+width:0px;width:396.271px;height:auto"></div><div style=3D"margin:0.46875re=
+m 0px;padding:0px 0.46875rem;min-height:0px;min-width:0px;width:396.271px;h=
+eight:auto"></div></div><div style=3D"margin:0px;padding:0px;height:1px;col=
+or:rgb(10,10,10);font-family:arial,sans-serif;font-size:14px" dir=3D"auto">=
+</div><table style=3D"border-collapse:collapse;border-radius:0px;margin:0px=
+;width:396.271px;display:block;border-spacing:0px;padding:0px;color:rgb(10,=
+10,10);font-family:arial,sans-serif;font-size:14px"><tbody><tr style=3D"lin=
+e-height:14px"><td style=3D"margin:0px;padding:0.3em;text-align:right;width=
+:300px"></td><td style=3D"margin:0px;padding:0.3em;text-align:center;width:=
+50px">Yes</td><td style=3D"margin:0px;padding:0.3em;text-align:center;width=
+:50px">Can be improved</td><td style=3D"margin:0px;padding:0.3em;text-align=
+:center;width:50px">Must be improved</td><td style=3D"margin:0px;padding:0.=
+3em;text-align:center;width:50px">Not applicable</td></tr><tr style=3D"bord=
+er-bottom:0px;line-height:14px"><td style=3D"margin:0px;padding:0.3em;text-=
+align:right;width:300px"><label style=3D"display:block;font-size:0.8125rem;=
+line-height:1.8;margin:0px;padding:2px;width:141.453px">Does the introducti=
+on provide sufficient background and include all relevant references?</labe=
+l></td><td style=3D"margin:0px;padding:0.3em;text-align:center;width:50px">=
+<tt>( )</tt></td><td style=3D"margin:0px;padding:0.3em;text-align:center;wi=
+dth:50px"><tt>( )</tt></td><td style=3D"margin:0px;padding:0.3em;text-align=
+:center;width:50px"><tt>(x)</tt></td><td style=3D"margin:0px;padding:0.3em;=
+text-align:center;width:50px"><tt>( )</tt></td></tr><tr style=3D"line-heigh=
+t:14px"><td style=3D"margin:0px;padding:0.3em;text-align:right;width:300px"=
+><label style=3D"display:block;font-size:0.8125rem;line-height:1.8;margin:0=
+px;padding:2px;width:141.453px">Is the research design appropriate?</label>=
+</td><td style=3D"margin:0px;padding:0.3em;text-align:center;width:50px"><t=
+t>( )</tt></td><td style=3D"margin:0px;padding:0.3em;text-align:center;widt=
+h:50px"><tt>(x)</tt></td><td style=3D"margin:0px;padding:0.3em;text-align:c=
+enter;width:50px"><tt>( )</tt></td><td style=3D"margin:0px;padding:0.3em;te=
+xt-align:center;width:50px"><tt>( )</tt></td></tr><tr style=3D"border-botto=
+m:0px;line-height:14px"><td style=3D"margin:0px;padding:0.3em;text-align:ri=
+ght;width:300px"><label style=3D"display:block;font-size:0.8125rem;line-hei=
+ght:1.8;margin:0px;padding:2px;width:141.453px">Are the methods adequately =
+described?</label></td><td style=3D"margin:0px;padding:0.3em;text-align:cen=
+ter;width:50px"><tt>( )</tt></td><td style=3D"margin:0px;padding:0.3em;text=
+-align:center;width:50px"><tt>( )</tt></td><td style=3D"margin:0px;padding:=
+0.3em;text-align:center;width:50px"><tt>(x)</tt></td><td style=3D"margin:0p=
+x;padding:0.3em;text-align:center;width:50px"><tt>( )</tt></td></tr><tr sty=
+le=3D"line-height:14px"><td style=3D"margin:0px;padding:0.3em;text-align:ri=
+ght;width:300px"><label style=3D"display:block;font-size:0.8125rem;line-hei=
+ght:1.8;margin:0px;padding:2px;width:141.453px">Are the results clearly pre=
+sented?</label></td><td style=3D"margin:0px;padding:0.3em;text-align:center=
+;width:50px"><tt>( )</tt></td><td style=3D"margin:0px;padding:0.3em;text-al=
+ign:center;width:50px"><tt>(x)</tt></td><td style=3D"margin:0px;padding:0.3=
+em;text-align:center;width:50px"><tt>( )</tt></td><td style=3D"margin:0px;p=
+adding:0.3em;text-align:center;width:50px"><tt>( )</tt></td></tr><tr style=
+=3D"border-bottom:0px;line-height:14px"><td style=3D"margin:0px;padding:0.3=
+em;text-align:right;width:300px"><label style=3D"display:block;font-size:0.=
+8125rem;line-height:1.8;margin:0px;padding:2px;width:141.453px">Are the con=
+clusions supported by the results?</label></td><td style=3D"margin:0px;padd=
+ing:0.3em;text-align:center;width:50px"><tt>( )</tt></td><td style=3D"margi=
+n:0px;padding:0.3em;text-align:center;width:50px"><tt>(x)</tt></td><td styl=
+e=3D"margin:0px;padding:0.3em;text-align:center;width:50px"><tt>( )</tt></t=
+d><td style=3D"margin:0px;padding:0.3em;text-align:center;width:50px"><tt>(=
+ )</tt></td></tr><tr style=3D"line-height:14px"><td style=3D"margin:0px;pad=
+ding:0.3em;text-align:right;width:300px"><label style=3D"display:block;font=
+-size:0.8125rem;line-height:1.8;margin:0px;padding:2px;width:141.453px">Are=
+ all figures and tables clear and well-presented?</label></td><td style=3D"=
+margin:0px;padding:0.3em;text-align:center;width:50px"><tt>( )</tt></td><td=
+ style=3D"margin:0px;padding:0.3em;text-align:center;width:50px"><tt>( )</t=
+t></td><td style=3D"margin:0px;padding:0.3em;text-align:center;width:50px">=
+<tt>(x)</tt></td><td style=3D"margin:0px;padding:0.3em;text-align:center;wi=
+dth:50px"><tt>( )</tt></td></tr></tbody></table><div style=3D"margin:0px;pa=
+dding:0px;height:2rem;color:rgb(10,10,10);font-family:arial,sans-serif;font=
+-size:14px" dir=3D"auto"><div style=3D"margin:0.46875rem 0px;padding:0px 0.=
+46875rem;min-height:0px;min-width:0px;width:396.271px;height:auto"></div><d=
+iv style=3D"margin:0.46875rem 0px;padding:0px 0.46875rem;min-height:0px;min=
+-width:0px;width:396.271px;height:auto"></div></div><div style=3D"margin:0p=
+x;padding:0px;color:rgb(10,10,10);font-family:arial,sans-serif;font-size:14=
+px" dir=3D"auto"><div style=3D"margin:0.46875rem 0px;padding:0px 0.46875rem=
+;min-height:0px;min-width:0px;width:396.271px;height:auto">Comments and Sug=
+gestions for Authors</div><div style=3D"margin:0.46875rem 0px;padding:0px 0=
+.46875rem;min-height:0px;min-width:0px;width:396.271px;max-width:580px;heig=
+ht:auto"><p style=3D"margin:0px 0px 1rem;padding:0px;font-size:inherit;line=
+-height:1.6">This paper formalizes the structure of normal CPS/IIoT telemet=
+ry as ten Massive, Implicit, Imbalanced Multimodality (MIIM) assumptions (A=
+1=E2=80=93A10) and introduces LatAD, an unsupervised detector that learns a=
+ latent Gaussian-mixture regime clustering, scores anomalies by latent dens=
+ity and a rare-regime-safe nearest-component likelihood, and factorizes the=
+ density over correlation-community subsystems combined by cohesion-weighte=
+d Higher Criticism with an auto-gated reconstruction residual head. Under r=
+aw point-wise metrics and difficulty stratification on WADI, HAI, and SWaT,=
+ LatAD achieves the best overall AUROC and leads the difficult anomaly subs=
+ets, with a statistically significant gain on HAI over reconstruction-based=
+ deep detectors such as USAD and TranAD.</p><p style=3D"margin:0px 0px 1rem=
+;padding:0px;font-size:inherit;line-height:1.6">The research content of the=
+ paper is very interesting, but the reviewers have raised the following iss=
+ues or suggestions:</p><ol style=3D"margin:0px 0px 1rem 1.25rem;padding:0px=
+;line-height:1.6;list-style-position:outside"><li style=3D"margin:0px;paddi=
+ng:0px;font-size:inherit">When an abbreviation first appears in the abstrac=
+t or main text, its full form should be provided, e.g., LatAD, IIoT, CPS, S=
+CADA, etc.</li><li style=3D"margin:0px;padding:0px;font-size:inherit">The a=
+bstract spends most of its length introducing the problems of existing anom=
+aly detection methods, while providing very little introduction to the prin=
+ciple of the paper&#39;s core contribution, LatAD. Please highlight the tec=
+hnical contributions of this paper in the abstract.</li><li style=3D"margin=
+:0px;padding:0px;font-size:inherit">The logic of the Introduction is not cl=
+ear enough and should be carefully revised. In the first paragraph, the las=
+t sentence, &quot;This paper detects them by XXX,&quot; should be deleted. =
+The paper&#39;s contributions should not be introduced in the first paragra=
+ph of the Introduction. It is suggested to add background on cyber-physical=
+ systems in the first paragraph.</li><li style=3D"margin:0px;padding:0px;fo=
+nt-size:inherit">On Page 2, line 71, &quot;the task is often framed as XXX&=
+quot;=E2=80=94what task does &quot;the task&quot; specifically refer to? Pl=
+ease state it clearly.</li><li style=3D"margin:0px;padding:0px;font-size:in=
+herit">The paper states that modeling and evaluation are &quot;two obstacle=
+s that have obscured this failure mode.&quot; Has LatAD made contributions =
+to both aspects? What specific problem is LatAD proposed to address, or wha=
+t existing method does it improve? Please explain clearly.</li><li style=3D=
+"margin:0px;padding:0px;font-size:inherit">The structure of the Related Wor=
+k section also has major problems and should be revised. First, the definit=
+ion of anomaly detection in the first sentence should be moved to the Intro=
+duction. Second, since LatAD is the authors&#39; novel work, it should not =
+be described in detail in Related Work. It is suggested to delete: the last=
+ sentence of the first paragraph, &quot;LatAD sits squarely in this line XX=
+X&quot;; the last sentence of Section 2.1, &quot;LatAD addresses a compleme=
+ntary IIoT problem XXX&quot;; and the last paragraph of Section 2.2, &quot;=
+LatAD adopts this critique as XXX.&quot; Section 2.3 is entirely an introdu=
+ction to LatAD and needs to be rewritten. Section 2.5 is suggested to be de=
+leted.</li><li style=3D"margin:0px;padding:0px;font-size:inherit">Add a sys=
+tem model diagram or an application scenario diagram that shows at which st=
+age of the Industrial IoT the proposed LatAD method collects data and perfo=
+rms anomaly detection.</li><li style=3D"margin:0px;padding:0px;font-size:in=
+herit">What is the relationship between the MIIM presented in Section 3 and=
+ the LatAD detector presented in Section 4? Are they studied independently =
+or closely related? Please add an explanation of their relationship.</li><l=
+i style=3D"margin:0px;padding:0px;font-size:inherit">The readability of Sec=
+tion 4 needs to be improved. Sections 4.1 to 4.4 barely mention LatAD in th=
+e main text, making it unclear which part of the LatAD detector pipeline ea=
+ch corresponds to. Which parts of the LatAD detector pipeline do the repres=
+entation stage and scoring stage correspond to? Please add a figure to intr=
+oduce the LatAD workflow.</li><li style=3D"margin:0px;padding:0px;font-size=
+:inherit">Is VaDE + density head + residual head fitted separately for each=
+ community? Or is the encoder shared? The paper does not report training ti=
+me, GPU memory, or inference latency, which is critical for IIoT edge deplo=
+yment.</li><li style=3D"margin:0px;padding:0px;font-size:inherit">The symbo=
+l z denotes a latent variable in =C2=A74.3 but a standardized per-channel v=
+alue in =C2=A75.3. Although the paper includes the sentence &quot;here z is=
+ a standardized per-channel value, not the latent z of =C2=A74.3,&quot; the=
+ symbol conflict is still serious. It is suggested to replace z with anothe=
+r symbol in =C2=A74.2 or =C2=A75.3.</li><li style=3D"margin:0px;padding:0px=
+;font-size:inherit">Typesetting issues: Some paragraphs begin flush left, w=
+hile others are indented. Please unify the format. None of the equations in=
+ the paper are numbered.</li></ol></div></div></div>
+
+--0000000000003b4114065b874bf4--

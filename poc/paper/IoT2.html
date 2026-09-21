@@ -68,10 +68,14 @@
 <body>
 <div class="doclinks no-docx no-print">
 <a class="doclink" href="index.html">&#8962;&nbsp;Revision&nbsp;3 home</a>
+<a class="doclink" href="paper_revised.docx" download>&#8595;&nbsp;Revised paper (DOCX, changes marked)</a>
+<a class="doclink" href="paper_revised.pdf" download>&#8595;&nbsp;Revised paper (PDF)</a>
 <a class="doclink" href="letter_editor.html">&#9993;&nbsp;Response to Editor</a>
+<a class="doclink" href="letter_editor.docx" download>&#8595;&nbsp;Editor response (DOCX)</a>
 <a class="doclink" href="letter_reviewer1.html">&#9993;&nbsp;Response to Reviewer&nbsp;1</a>
+<a class="doclink" href="letter_reviewer1.docx" download>&#8595;&nbsp;Reviewer&nbsp;1 response (DOCX)</a>
 <a class="doclink" href="letter_reviewer2.html">&#9993;&nbsp;Response to Reviewer&nbsp;2</a>
-<a class="doclink" href="paper_mdpi.docx" download>&#8595;&nbsp;DOCX</a>
+<a class="doclink" href="letter_reviewer2.docx" download>&#8595;&nbsp;Reviewer&nbsp;2 response (DOCX)</a>
 <a class="doclink" href="journal_info.html">&#8505;&nbsp;Journal info</a>
 </div>
 
@@ -244,14 +248,14 @@ rotorcraft flight controls [<span class="rev-highlight"><a href="#r-rotorcraft">
 
 <h2>3&nbsp;&nbsp;The MIIM assumptions about <span class="rev-highlight">IIoT/CPS normal telemetry</span></h2>
 
-<p>We model the normal law of a CPS as a mixture over reachable operating regimes,
-<span class="eq"><span class="eqno rev2-highlight">(1)</span><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+<p>We model the normal law of a CPS as a mixture over reachable operating regimes,</p>
+<p><span class="eq"><span class="eqno rev2-highlight">(1)</span><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
  <mrow><mi>p</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
  <munderover><mo>&#8721;</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>K</mi></munderover>
  <msub><mi>&#960;</mi><mi>k</mi></msub><mspace width="0.15em"/>
  <msub><mi>p</mi><mi>k</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow>
-</math></span>
-where each component <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msub><mi>p</mi><mi>k</mi></msub></math> is a bounded, oriented, curved patch of observation space. The ten
+</math></span></p>
+<p>where each component <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msub><mi>p</mi><mi>k</mi></msub></math> is a bounded, oriented, curved patch of observation space. The ten
 assumptions of Table 1 describe the qualitative structure of this mixture; each is grounded in a physical property
 of CPS operation<span class="rev2-highlight"> and A1&ndash;A7 each motivate</span> a specific design choice in the detector of &sect;4. <span class="rev2-highlight">These properties are not a universal law but a checklist that CPS normal may exhibit to varying degrees: a given dataset realizes some strongly, others weakly or not at all. LatAD is built to exploit each of A1&ndash;A7 when it is present and to reduce to a standard latent-density model when it is absent.</span> We call the resulting
 property <em>MIIM</em>: the sample is <strong>M</strong>assive, the regime structure is <strong>I</strong>mplicit
@@ -402,8 +406,9 @@ full so that every choice is auditable, and &sect;8 surveys the design space the
 
 <p>VaDE [<span class="rev-highlight"><a href="#r-vade">27</a></span>] is a variational autoencoder (VAE) whose latent prior is a Gaussian mixture, so the
 representation and the operating-regime clusters are learned <em>together</em> (A1, A6) rather than one after the
-other. <span class="rev2-highlight">The encoder and decoder widths, mixture size, training schedule, and scoring-head settings are listed in Appendix&nbsp;D (Table&nbsp;D1).</span> An encoder maps a window feature vector <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>x</mi></math> to a latent Gaussian <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>q</mi><mo stretchy="false">(</mo><mi>z</mi><mo>&#8739;</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>N</mi><mo stretchy="false">(</mo><mi>&#956;</mi><mo>,</mo><mtext>diag</mtext><mspace width="0.1em"/><msup><mi>&#963;</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow></math>; a decoder reconstructs <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mover><mi>x</mi><mo>^</mo></mover></math>; and the prior is
-<span class="eq"><span class="eqno rev2-highlight">(2)</span><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+other. <span class="rev2-highlight">The encoder and decoder widths, mixture size, training schedule, and scoring-head settings are listed in Appendix&nbsp;D (Table&nbsp;D1).</span> An encoder maps a window feature vector <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>x</mi></math> to a latent Gaussian <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>q</mi><mo stretchy="false">(</mo><mi>z</mi><mo>&#8739;</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>N</mi><mo stretchy="false">(</mo><mi>&#956;</mi><mo>,</mo><mtext>diag</mtext><mspace width="0.1em"/><msup><mi>&#963;</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow></math>; a decoder reconstructs <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mover><mi>x</mi><mo>^</mo></mover></math>.</p>
+<p><span class="rev2-highlight">The latent prior is the Gaussian mixture,</span></p>
+<p><span class="eq"><span class="eqno rev2-highlight">(2)</span><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
  <mrow><mi>p</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>=</mo>
  <munderover><mo>&#8721;</mo><mrow><mi>c</mi><mo>=</mo><mn>1</mn></mrow><mi>K</mi></munderover>
  <msub><mi>&#960;</mi><mi>c</mi></msub><mspace width="0.15em"/>
@@ -411,8 +416,8 @@ other. <span class="rev2-highlight">The encoder and decoder widths, mixture size
  <msub><mi>&#956;</mi><mi>c</mi></msub><mo>,</mo>
  <mtext>diag</mtext><mspace width="0.1em"/><msubsup><mi>&#963;</mi><mi>c</mi><mn>2</mn></msubsup>
  <mo stretchy="false">)</mo><mo>,</mo></mrow>
-</math></span>
-with mixture parameters <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>{</mo><msub><mi>&#960;</mi><mi>c</mi></msub><mo>,</mo><msub><mi>&#956;</mi><mi>c</mi></msub><mo>,</mo><msub><mi>&#963;</mi><mi>c</mi></msub><mo>}</mo></mrow></math> learned jointly with the networks. The training
+</math></span></p>
+<p>with mixture parameters <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>{</mo><msub><mi>&#960;</mi><mi>c</mi></msub><mo>,</mo><msub><mi>&#956;</mi><mi>c</mi></msub><mo>,</mo><msub><mi>&#963;</mi><mi>c</mi></msub><mo>}</mo></mrow></math> learned jointly with the networks. The training
 objective is the negative evidence lower bound; per window it is</p>
 
 <span class="eq"><span class="eqno rev2-highlight">(3)</span><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
