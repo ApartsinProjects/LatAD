@@ -96,7 +96,7 @@
 <p class="rev-highlight">In an IIoT deployment this telemetry does not remain on the device: field sensors and programmable logic controllers feed edge gateways and Supervisory Control and Data Acquisition (SCADA) historians that aggregate, window, and forward the multivariate stream <span class="rev2-highlight">(Figure&nbsp;1)</span>, so unsupervised anomaly detection is the operative safeguard for IIoT reliability and security [<a href="#r-iotsurvey">4</a>]. The stakes are cyber-physical: an anomalous window can indicate sensor degradation, actuator malfunction, a developing process fault, or a control-plane manipulation or intrusion, and because the digital and physical layers are coupled, a missed anomaly can propagate from a tampered setpoint into the physical process [<a href="#r-iottaxon">5</a>]. </p>
 
 <figure>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" width="640" font-family="Helvetica, Arial, 'Segoe UI', sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" width="640" font-family="Helvetica, Arial, 'Segoe UI', sans-serif">
  <defs>
  <marker id="f1arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
  <path d="M 0 0 L 10 5 L 0 10 z" fill="#33404d"/>
@@ -152,10 +152,6 @@
  <g filter="url(#f1sh)"><rect x="450" y="248" width="248" height="40" rx="6" fill="#eef2f6" stroke="#4a5568" stroke-width="1.2"/></g>
  <text x="574" y="266" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1a1a2e">Operator / maintenance / security</text>
  <text x="574" y="280" text-anchor="middle" font-size="9" font-style="italic" fill="#5a4a3a">triage and response</text>
- <rect x="22" y="300" width="676" height="86" rx="7" fill="#fafbfc" stroke="#b0b8c0" stroke-width="1.1"/>
- <text x="36" y="326" font-size="11" font-weight="700" fill="#1f4e79">Unsupervised and online</text>
- <text x="36" y="350" font-size="10.5" fill="#1a1a2e">Scoring is sequential and online: each completed window is scored once, in arrival order.</text>
- <text x="36" y="377" font-size="9.5" font-style="italic" fill="#5a4a3a">Blue blocks: LatAD and its output. Grey blocks: existing IIoT infrastructure.</text>
 </svg>
 <figcaption class="rev2-highlight"><strong>Figure 1.</strong> IIoT monitoring context. LatAD occupies the edge/historian tier: field sensors and programmable logic controllers (PLCs) feed an edge gateway or SCADA historian that aggregates and windows the multivariate telemetry, LatAD scores each completed window online, and an anomaly alarm together with the most-surprised subsystem is forwarded to the operator, maintenance, or security stack. Model fitting and calibration use train-normal telemetry only, so a site is commissioned from its own normal data without labeled attacks. Grey blocks are existing IIoT infrastructure; blue blocks are LatAD and its output.</figcaption>
 </figure>
@@ -246,7 +242,7 @@ structural-health monitoring of rotorcraft components [<span class="rev-highligh
 rotorcraft flight controls [<span class="rev-highlight"><a href="#r-rotorcraft">45</a></span>]. LatAD generalizes this applied line to unsupervised,
 multimodal-latent anomaly detection.</p>
 
-<h3> <span class="rev2-highlight">2.5&nbsp;&nbsp;Benchmark scale</span></h3>
+<h3><span class="rev2-highlight">2.5&nbsp;&nbsp;Benchmark versus operational scale</span></h3>
 <p> <span class="rev2-highlight">Per-dataset details are given in &sect;5.1. The water-treatment and ICS-security benchmarks used here and elsewhere (SWaT, WADI, BATADAL [<a href="#r-batadal">46</a>], HAI) share a scale profile: roughly 40 to 120 channels, days to weeks of data, and a single nominal operating mode. This is far below operational scale. BATADAL extends to about a year but keeps only 43 hourly variables, and N-CMAPSS [<a href="#r-ncmapss">47</a>] reaches a 40-unit fleet with full run-to-failure trajectories but exposes only 14 sensors; operational sources such as the Building Data Genome Project 2 [<a href="#r-bdg2">11</a>] (3,053 meters across 1,636 buildings over two years) and plant process historians carrying thousands to tens of thousands of tags span orders of magnitude more channels, far longer horizons, and many operating modes. A parallel line of work argues that benchmark realism, not model novelty, now limits measured progress [<a href="#r-wukeogh">9</a>,&nbsp;<a href="#r-sarfraz">25</a>,&nbsp;<a href="#r-tsbuad">48</a>]. Operational scale (examples in &sect;8) is therefore the setting in which the trajectory assumptions A9 and A10 and the masking form of A8 become testable.</span></p>
 
 <h2>3&nbsp;&nbsp;The MIIM assumptions about <span class="rev-highlight">IIoT/CPS normal telemetry</span></h2>
