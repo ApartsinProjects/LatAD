@@ -80,7 +80,7 @@
 
 <div class="abstract">
 <h2>Abstract</h2>
-<p><span class="rev2-highlight">The Industrial Internet of Things streams multivariate telemetry from physical processes, and monitoring it for faults and attacks must learn normal from unlabeled data alone. Cyber-physical normal is a union of many imbalanced operating regimes that also drifts as components age, so a faulty state can remain within every sensor's normal range and still reconstruct accurately while being improbable under normal joint operation: reconstruction-based detectors measure reachability rather than probability and miss it. We present LatAD (Latent Anomaly Detector), which models normal as a jointly learned latent Gaussian mixture (VaDE) and scores by probability rather than reconstruction, factorizing the density over correlation-community subsystems and combining per-subsystem surprises by cohesion-weighted Higher Criticism. We evaluate under a detector-agnostic difficulty stratification: a channel rule strips trivially separable anomalies to form the difficult subset, and a secondary linear-subspace filter forms a double-hard subset. On three real testbeds LatAD leads the difficult subset: significantly on HAI (0.845, where the deep detectors USAD and TranAD fall to 0.44&ndash;0.50), and over every nonlinear detector on WADI (0.771). Measured drift is 1.5%, 39%, and 69% of test-normal windows on WADI, HAI, and SWaT; on the severely non-stationary SWaT record a causal drift-aware anomaly typing brings the difficult subset to 0.723 and cuts its normal-window false-alarm rate from 79% to 6.5%. LatAD commissions from normal telemetry alone, localizes each alarm to a physical subsystem, and trains 47 to 72 times faster at sub-30 ms per-window inference, within industrial edge budgets. Code and checkpoints are released (Zenodo).</span></p>
+<p><span class="rev2-highlight">The Industrial Internet of Things streams multivariate telemetry from physical processes, and monitoring it for faults and attacks must learn normal from unlabeled data alone. Cyber-physical normal is a union of many imbalanced operating regimes that also drifts as components age, so a faulty state can remain within every sensor's normal range and still reconstruct accurately while being improbable under normal joint operation: reconstruction-based detectors measure reachability rather than probability and miss it. We present LatAD (Latent-density Anomaly Detector), which models normal as a jointly learned latent Gaussian mixture (VaDE) and scores by probability rather than reconstruction, factorizing the density over correlation-community subsystems and combining per-subsystem surprises by cohesion-weighted Higher Criticism. We evaluate under a detector-agnostic difficulty stratification: a channel rule strips trivially separable anomalies to form the difficult subset, and a secondary linear-subspace filter forms a double-hard subset. On three real testbeds LatAD leads the difficult subset: significantly on HAI (0.845, where the deep detectors USAD and TranAD fall to 0.44&ndash;0.50), and over every nonlinear detector on WADI (0.771). Measured drift is 1.5%, 39%, and 69% of test-normal windows on WADI, HAI, and SWaT; on the severely non-stationary SWaT record a causal drift-aware anomaly typing brings the difficult subset to 0.723 and cuts its normal-window false-alarm rate from 79% to 6.5%. LatAD commissions from normal telemetry alone, localizes each alarm to a physical subsystem, and trains 47 to 72 times faster than the deep detectors in its global-density variant, at sub-30 ms per-window inference on a CPU edge proxy, within industrial edge budgets. Code and checkpoints are released (Zenodo).</span></p>
 </div>
 <p class="keywords"><strong>Keywords:</strong> <span class="rev-highlight">Industrial Internet of Things (IIoT); IoT anomaly detection; cyber-physical systems; industrial control systems; anomaly detection; unsupervised learning; sensor telemetry; fault detection</span></p>
 
@@ -189,7 +189,7 @@ separates the trivially detectable anomalies and a linear principal-component su
 and squared prediction error) separates the linearly detectable ones, leaving a difficult and a double-hard subset that
 the detector under test plays no part in constructing (&sect;5&ndash;6). <strong>(C3) A drift-aware anomaly typing.</strong> A causal per-community decomposition into a slow
 on-trend baseline and a fast residual types each window as gradual drift or abrupt changepoint; scoring the
-changepoint component recovers detection on the severely non-stationary SWaT record (difficult-subset AUROC 0.524 to 0.723) and cuts its normal-window false-alarm rate from 79 to 6.5 percent, while leaving stationary records unchanged (&sect;7). We evaluate the deep detectors USAD, TranAD,
+changepoint component recovers detection on the severely non-stationary SWaT record (difficult-subset <span class="rev2-highlight">area under the ROC curve (AUROC)</span> 0.524 to 0.723) and cuts its normal-window false-alarm rate from 79 to 6.5 percent, while leaving stationary records unchanged (&sect;7). We evaluate the deep detectors USAD, TranAD,
 and GDN under the same raw point-wise metrics. LatAD leads the difficult subset on HAI, significantly, where those
 detectors fall to near chance, and leads every nonlinear detector on WADI, statistically level with the linear baseline; because aggregate benchmark scores are dominated by easy marginal
 excursions, the difficult subset, not the headline number, is the central test throughout.</span></p>
@@ -316,7 +316,7 @@ design choice each motivates. A1&ndash;A8 shape the instantaneous window; A9&nda
   <td class="l rev2-highlight">Standardization and whitened residual (&sect;4.3, iii); community factorization (&sect;4.4).</td></tr>
 <tr><td class="l rev2-highlight" colspan="5" style="background:#eef3f8;text-align:left"><b>Specified, not realized by the reported window-only model (A8&ndash;A10)</b></td></tr>
 <tr><td><b>A8</b></td><td class="l"><b><span class="rev-del">Hard envelopes</span> <span class="rev2-highlight">Between-regime overlap</span></b> <span class="rev2-highlight">(heavy mode overlap between regimes)</span></td>
-  <td class="l"><span class="rev-del">Controllers hold each regime within setpoint/actuator bands; the space between regimes is passed through, rarely dwelt in, leaving thin anomalous pockets.</span><span class="rev2-highlight">Neighbouring regimes could overlap in observation space, so a window would fall in a zone of mode ambiguity while every channel stays in range. The precondition (adjacent-but-distinct regimes) holds on nearly every plant, but heavy mode overlap is absent under valid observation-space metrics, and the masking form is coupled to A10 (&sect;8, Appendix&nbsp;C).</span></td>
+  <td class="l"><span class="rev-del">Controllers hold each regime within setpoint/actuator bands; the space between regimes is passed through, rarely dwelt in, leaving thin anomalous pockets.</span><span class="rev2-highlight">Neighboring regimes could overlap in observation space, so a window would fall in a zone of mode ambiguity while every channel stays in range. The precondition (adjacent-but-distinct regimes) holds on nearly every plant, but heavy mode overlap is absent under valid observation-space metrics, and the masking form is coupled to A10 (&sect;8, Appendix&nbsp;C).</span></td>
   <td class="l"><span class="rev-del">A between-regime point must score anomalous even when every channel is in range: the basin-agreement head (iv).</span><span class="rev2-highlight">Specified for completeness; not realized by the reported model. Its over-coverage variant is defended by the high-resolution density head; its masking variant is left with A10 as future work.</span></td>
   <td class="l rev2-highlight">Specified, partly defended (&sect;8, Appendix&nbsp;C).</td></tr>
 <tr><td><b>A9</b></td><td class="l"><b>Many clocks</b> (multiscale dynamics)</td>
@@ -538,7 +538,7 @@ log-likelihood:</p>
 <h4>(ii)&nbsp;Nearest-component NLL (rare-regime-safe)</h4>
 <p>Under heavy-tailed imbalance (A5) a valid point in a rare, low-<math
 xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>&#960;</mi></math> regime must not be flagged
-solely for being rare. We therefore use the <em>closest</em> component, not the &#960;-weighted mixture:</p>
+solely for being rare<span class="rev2-highlight"> (Appendix&nbsp;E demonstrates this rare-regime safety on a dataset with imbalanced regime occupancy)</span>. We therefore use the <em>closest</em> component, not the &#960;-weighted mixture:</p>
 <span class="eq"><span class="eqno rev2-highlight">(5)</span><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
   <mrow><msub><mi>s</mi><mtext>near</mtext></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo>
   <mo>&#8722;</mo><munder><mi>max</mi><mi>c</mi></munder>
@@ -598,7 +598,7 @@ the train-normal correlation graph groups the channels into nested communities <
 xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>G</mi></math> (dendrogram subtrees of size 3 to 25
 channels) that serve as data-driven proxies for these subsystems, with no supervision and no plant schematic.</p>
 
-<p>Faults inherit the same locality: a stuck valve, a drifting analyser, or a fouled sensor perturbs its own
+<p>Faults inherit the same locality: a stuck valve, a drifting analyzer, or a fouled sensor perturbs its own
 subsystem while the rest of the plant runs normally, so an incipient fault is typically confined to one community, a
 handful of channels out of hundreds. A single global density dilutes such a local violation across the full
 dimensionality (a single-group shift is a vanishing fraction of WADI&rsquo;s <span class="rev2-highlight">732-dimensional feature, 122 channels
@@ -663,7 +663,7 @@ test horizons matched</span>.</li>
 testbed (HAI 20.07), 59 channels, a multi-process plant. No clipping (its large excursions are real attack
 signal).</li>
 <li><strong>SWaT</strong> [<span class="rev-highlight"><a href="#r-swat">52</a></span>], the Secure Water Treatment testbed from iTrust, a
-51-channel six-stage water-treatment plant with real executed attacks. <span class="rev2-highlight">Standardized features are clipped to &plusmn;10&#963; on SWaT and WADI so recalibrated analyser channels (the SWaT AIT201 channel is a documented example [<a href="#r-daics">60</a>]) do not dominate the per-channel range statistics; HAI is not clipped.</span> SWaT is downsampled 10&times;
+51-channel six-stage water-treatment plant with real executed attacks. <span class="rev2-highlight">Standardized features are clipped to &plusmn;10&#963; on SWaT and WADI so recalibrated analyzer channels (the SWaT AIT201 channel is a documented example [<a href="#r-daics">60</a>]) do not dominate the per-channel range statistics; HAI is not clipped.</span> SWaT is downsampled 10&times;
 on both streams<span class="rev-del">, with the train and test horizons matched</span>. <span class="rev2-highlight">We use the December 2015 iTrust SWaT release: the SWaT normal recording supplies train-normal (its first 2%, the plant start-up and stabilization transient, is excluded before training), and the SWaT attack
 recording (449,919 one-second rows over 51 channels, 12.14% of timesteps labeled attack) supplies the test set,
 whose normal periods interleave between attack episodes.</span></li>
@@ -972,11 +972,11 @@ WADI 1.5%, HAI 39%, and SWaT 69%. The ordering is physically grounded. WADI's tw
 time for component aging, so its normal is effectively stationary. HAI carries a moderate, front-loaded drift: a
 decaying level offset in two valve-position and turbine communities that begins early in the test record and relaxes
 over it. SWaT is a single continuous eleven-day run of a live water-treatment plant, and its drift is large,
-monotone, and localized to the process analysers and the reverse-osmosis train: the drifting communities are exactly
-those built from the analyser channels (AIT2xx/4xx/5xx) and the RO flow and pressure channels (FIT4xx/5xx, PIT5xx; the AIT, FIT, and PIT families are analyser, flow, and pressure-transmitter tags),
-matching the physical signature of reverse-osmosis membrane fouling and analyser electrode drift, so the per-community drift map is itself a physically-grounded degradation-localization signal for condition monitoring. Datasets recorded as a
-single long run over non-stationary physical processes therefore carry drift that discrete-attack testbeds with short test records do not, a distinction consistent with the recalibration handling documented for water-treatment analyser channels
-elsewhere [<a href="#r-daics">60</a>] and with the clipping of recalibrated analyser channels described in &sect;5.1.</p>
+monotone, and localized to the process analyzers and the reverse-osmosis train: the drifting communities are exactly
+those built from the analyzer channels (AIT2xx/4xx/5xx) and the RO flow and pressure channels (FIT4xx/5xx, PIT5xx; the AIT, FIT, and PIT families are analyzer, flow, and pressure-transmitter tags),
+matching the physical signature of reverse-osmosis membrane fouling and analyzer electrode drift, so the per-community drift map is itself a physically-grounded degradation-localization signal for condition monitoring. Datasets recorded as a
+single long run over non-stationary physical processes therefore carry drift that discrete-attack testbeds with short test records do not, a distinction consistent with the recalibration handling documented for water-treatment analyzer channels
+elsewhere [<a href="#r-daics">60</a>] and with the clipping of recalibrated analyzer channels described in &sect;5.1.</p>
 
 <h3 class="rev2-highlight">7.2&nbsp;&nbsp;Drift-aware changepoint typing</h3>
 <p class="rev2-highlight">To separate the two kinds of departure we decompose each community's surprise causally, using only past windows. A
@@ -1192,7 +1192,7 @@ further-reduction route on top of these figures for the per-community stack on c
 
 <p><strong>Limitations.</strong> Three boundary conditions apply: three datasets, one trained configuration per
 dataset (evaluated over five seeds), and a single instantaneous representation. <span class="rev2-highlight">Two further boundaries follow from
-the data: WADI results are on the 122-channel set with the rescaled analyser channel removed
+the data: WADI results are on the 122-channel set with the rescaled analyzer channel removed
 (&sect;5.1), and HAI's test record contains one operating regime almost absent from training; all reported numbers use the full test set nonetheless.</span> AUROC is threshold-free and reported
 as a five-seed mean; the F1 column is a best-threshold raw F1. The easy/difficult split is a property of one cut, the trivial
 detector's 99th-percentile-of-train-normal threshold; a different percentile would redraw the boundary between the
@@ -1334,7 +1334,7 @@ recovers the LatAD (regime-community) SWaT double-hard AUROC to 0.671.</span></c
 <caption class="rev2-highlight"><strong>Table A5.</strong> Source of gain: difficult-subset AUROC (five-seed mean&plusmn;standard deviation) of the cross-channel latent density against a channel-independent product of per-channel densities, on the WADI, HAI, and SWaT difficult subsets (30&nbsp;/&nbsp;167&nbsp;/&nbsp;91 anomaly windows). <span class="rev2-highlight">Bold marks HAI, where the cross-channel density adds the largest difficult-subset margin; on WADI it adds essentially nothing (single-channel or linear faults), and on SWaT the raw cross-channel density is drift-dominated.</span></caption>
 <thead><tr><th class="l">Density model</th><th>WADI</th><th>HAI</th><th>SWaT</th></tr></thead>
 <tbody>
-<tr class="rev2-highlight"><td class="l">cross-channel latent density</td><td>0.656&plusmn;0.016</td><td>0.789&plusmn;0.018</td><td>0.472&plusmn;0.020</td></tr>
+<tr class="rev2-highlight"><td class="l">cross-channel latent density</td><td>0.656&plusmn;0.016</td><td>0.802&plusmn;0.011</td><td>0.472&plusmn;0.020</td></tr>
 <tr class="rev2-highlight"><td class="l">channel-independent product of marginals</td><td>0.639&plusmn;0.004</td><td>0.589&plusmn;0.004</td><td>0.522&plusmn;0.003</td></tr>
 <tr class="rev2-highlight"><td class="l"><b>cross-channel gain</b></td><td>+0.017</td><td class="win">+0.200</td><td>&minus;0.050</td></tr>
 </tbody></table>
@@ -3024,6 +3024,18 @@ by a wide two-component head versus the 80-component head. Synthetic positive co
 </tbody></table>
 </div>
 
+<h2 class="rev2-highlight">Appendix E. Rare-regime safety of the nearest-component score (A5)</h2>
+<p class="rev2-highlight">The nearest-component likelihood (&sect;4.3) is designed to avoid false alarms on rare-but-valid regimes: the &pi;-weighted mixture negative log-likelihood penalizes a window drawn from a low-prior component, whereas the nearest-component score, which drops the &pi; weight, judges a window only against its closest regime. The three benchmarks are effectively single-mode, so this property cannot be exercised on them; we test it on the 3W oil-well telemetry dataset [<a href="#r-3w">63</a>], which has genuinely imbalanced regime occupancy (its rarest discovered regime holds under 0.1&nbsp;percent of the train-normal mass). At a false-alarm rate matched between the two scores, the mixture false-alarms on rare regimes while the nearest-component score does not: across five seeds the number of test-normal false positives falling in a rare (under 5&nbsp;percent occupancy) regime drops from 17, 17, 23 under the mixture to 11, 9, 16 under nearest-component (Table&nbsp;E1), and the invariant that nearest-component can only remove, never add, a rare-regime false alarm holds every seed. Every false alarm removed sits in a low-occupancy regime (median occupancy 0.002 to 0.024, against 0.07 to 0.14 for all test-normal windows). Detection at the matched operating point is unchanged (difficult-subset true-positive rate at 5&nbsp;percent false-alarm +0.007&nbsp;&plusmn;&nbsp;0.068; AUROC +0.003&nbsp;&plusmn;&nbsp;0.020, five seeds), so the property is defensive: it removes rare-regime false alarms at no detection cost, the behavior the score is designed for and one the single-mode benchmarks cannot show.</p>
+<div class="tblwrap rev2-highlight"><table>
+<caption class="rev2-highlight"><strong>Table E1.</strong> Rare-regime false-alarm safety on 3W (imbalanced regime occupancy). At a false-alarm rate matched between the two scores, test-normal false positives falling in a rare (under 5&nbsp;percent occupancy) regime, &pi;-weighted mixture versus nearest-component, five seeds, with the difficult-subset true-positive-rate change at 5&nbsp;percent false-alarm. Nearest-component removes rare-regime false alarms (invariant: it never adds one) at no detection cost.</caption>
+<thead><tr><th class="l">Seed</th><th>Rare-regime FP (mixture)</th><th>Rare-regime FP (nearest)</th><th>Diff.-subset TPR@5% change</th></tr></thead>
+<tbody>
+<tr class="rev2-highlight"><td class="l">0</td><td>17</td><td>11</td><td>+0.064</td></tr>
+<tr class="rev2-highlight"><td class="l">1</td><td>17</td><td>9</td><td>+0.046</td></tr>
+<tr class="rev2-highlight"><td class="l">2</td><td>23</td><td>16</td><td>&minus;0.089</td></tr>
+<tr class="rev2-highlight"><td class="l"><em>mean</em></td><td><em>19</em></td><td><em>12</em></td><td><em>+0.007&nbsp;&plusmn;&nbsp;0.068</em></td></tr>
+</tbody></table></div>
+
 <hr>
 <h2>References</h2>
 <ol class="refs" start="1">
@@ -3089,6 +3101,7 @@ by a wide two-component head versus the 80-component head. Synthetic positive co
 <li id="r-daics" class="rev2-highlight">Abdelaty, M.; Doriguzzi-Corin, R.; Siracusa, D. DAICS: A deep learning solution for anomaly detection in industrial control systems. <em>IEEE Trans. Emerg. Top. Comput.</em> <strong>2022</strong>, <em>10</em>, 1117&ndash;1129. <a href="https://doi.org/10.1109/TETC.2021.3073017">https://doi.org/10.1109/TETC.2021.3073017</a>.</li>
 <li id="r-anoshift" class="rev2-highlight">Dragoi, M.; Burceanu, E.; Haller, E.; Manolache, A.; Brad, F. AnoShift: A distribution shift benchmark for unsupervised anomaly detection. In <em>Advances in Neural Information Processing Systems 35 (NeurIPS)</em>, New Orleans, LA, USA, 28 November&ndash;9 December 2022; pp. 32854&ndash;32867. <a href="https://arxiv.org/abs/2206.15476">arXiv:2206.15476</a>.</li>
 <li id="r-d3r" class="rev2-highlight">Wang, C.; Zhuang, Z.; Qi, Q.; Wang, J.; Wang, X.; Sun, H.; Liao, J. Drift doesn't matter: Dynamic decomposition with diffusion reconstruction for unstable multivariate time series anomaly detection. In <em>Advances in Neural Information Processing Systems 36 (NeurIPS)</em>, New Orleans, LA, USA, 10&ndash;16 December 2023; pp. 10758&ndash;10774. <a href="https://openreview.net/forum?id=aW5bSuduF1">https://openreview.net/forum?id=aW5bSuduF1</a>.</li>
+<li id="r-3w" class="rev2-highlight">Vargas, R.E.V.; Munaro, C.J.; Ciarelli, P.M.; Medeiros, A.G.; do Amaral, B.G.; Barrionuevo, D.C.; de Ara&uacute;jo, J.C.D.; Ribeiro, J.L.; Magalh&atilde;es, L.P. A realistic and public dataset with rare undesirable real events in oil wells. <em>J. Petroleum Sci. Eng.</em> <strong>2019</strong>, <em>181</em>, 106223. <a href="https://doi.org/10.1016/j.petrol.2019.106223">https://doi.org/10.1016/j.petrol.2019.106223</a>.</li>
 </ol>
 
 </body>

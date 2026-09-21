@@ -44,26 +44,27 @@ your direct requests and then summarize the principal changes and where to find 
 <h2>Summary of the principal changes</h2>
 <ul>
   <li><b>New construct-matched baseline (GDN).</b> The graph-based detector GDN is now run on all three
-  canonical streams under the identical protocol and reported in Tables 3 and 4 and in Figure 3. This replaces the earlier
+  canonical streams under the identical protocol and reported in Table 2 and in Figure 3. This replaces the earlier
   statement that GDN did not complete, which was inaccurate; GDN is now a full baseline (Sections 2.4,
   5.5, and 7).</li>
   <li><b>Corrected numbers.</b> The WADI difficult subset was re-derived from 43 to 30 windows after we
   fixed a difficulty-stratification artifact (an inconsistent per-dataset clip that had left 12 trivially
   separable constant-channel-flip windows in the difficult subset). Together with two earlier data-quality
   corrections (the rescaled WADI analyzer channel dropped and the canonical December-2015 SWaT release
-  adopted, Section 5.1), all result tables were rebuilt. The headline difficult-subset AUROC is HAI 0.845,
-  SWaT 0.837, WADI 0.771.</li>
+  adopted, Section 5.1), all result tables were rebuilt. The headline difficult-subset AUROC is HAI 0.845
+  and WADI 0.771; on the drift-dominated SWaT record the drift-aware typing recovers the difficult subset
+  from 0.524 to 0.723 (Section 7).</li>
   <li><b>A8, A9, A10 remeasured.</b> The between-regime assumption (renumbered A8) is reframed with valid
   observation-space metrics; A9 (multiscale structure) is shown present and partly exploitable; A10 (path
-  dependence) is measured absent with a passing positive control (Table 1, Section 7, Appendix C).</li>
+  dependence) is measured absent with a passing positive control (Table 1, Section 8).</li>
   <li><b>Dataset-scale scholarship.</b> A new discussion of public-benchmark scale versus operational
-  scale is added (Introduction, new Section 2.5, and Section 7), with new references, arguing that A8 to
+  scale is added (Introduction, new Section 2.5, and Section 8), with new references, arguing that A8 to
   A10 are properties best verified at operational scale.</li>
-  <li><b>New validated additions.</b> A subsystem-localization evaluation is added (new Table 7, Section 7):
-  a three-community shortlist ranked by train-normal p-value contains the attacked subsystem in 68 to 79
-  percent of HAI and SWaT attacks, against 49 to 56 percent for a random shortlist of the same size. The
-  head-level density-versus-reconstruction comparison in Section 7 is sharpened (the single latent-density
-  head beats the deep reconstruction detectors USAD and TranAD on the difficult subset of all three plants),
+  <li><b>New validated additions.</b> A subsystem-localization evaluation is added (new Table 5, Section 8):
+  a three-community shortlist ranked by train-normal p-value contains the attacked subsystem in 68 percent
+  of HAI and 56 percent of WADI attacks, against 56 and 31 percent for a random shortlist of the same size. The
+  head-level density-versus-reconstruction comparison in Section 8 is sharpened (the single latent-density
+  head beats the deep reconstruction detectors USAD and TranAD on the HAI and WADI difficult subsets),
   and the mechanism is illustrated on synthetic data in a new Figure A1.</li>
   <li><b>Change-marked manuscript.</b> New and changed text is highlighted in green in the revised
   <code>IoT2.html</code>; deletions are struck. Every response below cites the section, table, or figure
@@ -88,26 +89,29 @@ crisp, and SKAB is the one screened dataset with no close-distinct regime pair a
 regimes) is present on nearly every real CPS dataset, but heavy mode overlap is absent; the masking form is
 detectable only with the trajectory (which couples A8 to A10), and the over-coverage form is already
 defended by the 80-component density head. A8 is therefore specified, partly defended, and verifiable at
-operational scale (Section 7, Appendix C).</p>
+operational scale (Section 8, Appendix C).</p>
 <p class="resp">A9 (multiscale structure) is present in the data as a measured property: per-channel
 autocorrelation timescales span 3.4 to 3.7 decades on all three plants, and a longer window adds about
-+0.06 difficult-subset AUROC on HAI, corroborating the +0.072 from explicit temporal features in Appendix
++0.06 difficult-subset AUROC on HAI, corroborating the +0.071 from explicit temporal features in Appendix
 A. A10 (path dependence) is measured absent on these snapshot-detectable benchmarks by three conditional
 scorers, each validated against a passing synthetic positive control and an order-shuffle guard; "snapshot
-detectable" is thus now a measured finding, not an assumption (Table 1, Section 7).</p>
+detectable" is thus now a measured finding, not an assumption (Table 1, Section 8).</p>
 
 <h3>2. Direct experimental support for the rare-regime-safe nearest-component likelihood</h3>
 <blockquote>... provide direct experimental support for the rare-regime-safe nearest-component likelihood ...</blockquote>
 <p class="resp"><b class="lead">Response.</b> The nearest-component likelihood is isolated as a standalone
-score head in Table 6 (difficult-subset AUROC WADI 0.603, HAI 0.797, SWaT 0.723), alongside the mixture
+score head in Table A6 (difficult-subset AUROC WADI 0.603, HAI 0.797, SWaT 0.479), alongside the mixture
 density and the density-plus-nearest base, and its design rationale is stated as assumption A5 in Table 1.
 It is a rare-regime <em>safety</em> term: its role is to keep a valid window in a sparsely populated regime
 from being flagged for rarity alone, protecting the false-alarm rate rather than raising the aggregate score,
 and on a dataset without such rare-regime false alarms it can sit marginally below the density head alone
-(Table 6, WADI; Section 4.3 ii). Its distinctive benefit over the mixture NLL, and the rare-regime
-false-positive question, would surface under the operating-regime imbalance sweep you propose. We did not run
-that imbalance sweep, and we support the head here with the Table 6 head-level isolation and the A5 design
-argument rather than assert a benefit we did not measure.</p>
+(Table A6, WADI; Section 4.3 ii). Its distinctive benefit over the mixture NLL, and the rare-regime
+false-positive question, would surface under the operating-regime imbalance sweep you propose. We now measure this directly: Appendix&nbsp;E runs the comparison on the 3W oil-well dataset, which has
+genuinely imbalanced regime occupancy, and at a matched false-alarm rate the nearest-component score removes
+the mixture's rare-regime false alarms (from 17, 17, 23 to 11, 9, 16 across five seeds; the invariant that it
+can only remove such false alarms holds every seed) while difficult-subset detection is unchanged
+(true-positive rate at 5 percent false-alarm +0.007&nbsp;&plusmn;&nbsp;0.068). The property is defensive, as
+designed, and the single-mode benchmarks cannot exhibit it.</p>
 
 <h3>3. Report training and inference cost for edge deployment</h3>
 <blockquote>... report training and inference cost for edge deployment ...</blockquote>
@@ -119,29 +123,30 @@ WADI / HAI / SWaT, roughly 47 to 72 times faster than TranAD; per-window latency
 budgets (0.7 to 13 ms global, 17 to 32 ms for the full community stack), a CPU edge proxy scores a window in
 0.6 to 14.6 ms (global), peak GPU memory is tens of MB (about 20 to 29 MB for LatAD), and both configurations
 run within about 3.5 to 3.9 GB of host memory. These cost measurements are added in Appendix B and Table B1, and
-the deployment paragraph in Section 7 is reworded so it no longer denies them.</p>
+the deployment paragraph in Section 8 is reworded so it no longer denies them.</p>
 
 <h3>4. Use a time-aware statistical test</h3>
 <blockquote>... use a time-aware statistical test ...</blockquote>
 <p class="resp"><b class="lead">Response.</b> Every significance statement is on an episode-block bootstrap
 that resamples whole attack episodes together with contiguous normal blocks, applied uniformly to all three
 datasets and to every reported confidence interval and P-value (defined in Section 5.4; results in Section 6,
-Table 4, Figure 3). The
+Figure 3). The
 confidence interval is the two-sided 2.5 / 97.5 percentile of the paired difference and P is the one-sided
 bootstrap probability that the difference is at most zero. On the difficult subset the margin is significant
-on HAI (+0.088, 95 percent CI [0.042, 0.157], P about 0) and canonical SWaT (+0.055, 95 percent CI [0.012,
-0.104], P = 0.007); on WADI LatAD is significantly ahead of every learned detector (the AutoEncoder, USAD,
+on HAI (+0.088, 95 percent CI [0.042, 0.157], P about 0); on the drift-dominated SWaT record the raw difficult
+subset ties the strongest linear baseline (95 percent CI including zero) and becomes significant only after the
+drift-aware typing of Section 7 (+0.200, 95 percent CI [0.018, 0.355], P = 0.014); on WADI LatAD is significantly ahead of every learned detector (the AutoEncoder, USAD,
 TranAD, Isolation Forest, and GDN, each cleared at P &lt; 0.05 by the same per-detector episode-block bootstrap),
 and ties only the linear baseline (+0.020, 95 percent CI [-0.161, 0.205], P = 0.46 over 8 attack episodes),
 where we state plainly that WADI is not separable from the linear baseline at that episode count.</p>
 
 <h3>5. Add ablations isolating the source of the gain</h3>
 <blockquote>... add ablations isolating the source of the gain ...</blockquote>
-<p class="resp"><b class="lead">Response.</b> Added as a main-text table. Table 5 (Section 6) replaces the
+<p class="resp"><b class="lead">Response.</b> Added as a main-text table. Table A5 (cited from Section 6) replaces the
 cross-channel latent density with a channel-independent product of per-channel densities: the cross-channel
-density adds <b>+0.200 on HAI and +0.141 on canonical SWaT</b> over the channel-independent baseline, the two
-datasets where LatAD wins significantly, and essentially nothing on the artifact-free WADI difficult subset
-(+0.017), whose difficult anomalies are single-channel or linear. The head-level decomposition (Table 6) and
+density adds <b>+0.200 on HAI</b> over the channel-independent baseline, essentially nothing on the artifact-free
+WADI difficult subset (+0.017), whose difficult anomalies are single-channel or linear, and <b>does not exceed
+the per-channel product on SWaT (-0.050)</b>. The head-level decomposition (Table A6) and
 the factorization ladder (Table A1) localize the same gain to the density heads and the regime-community
 factorization, and the representation check (Table A2) shows the window representation is a smaller,
 complementary lever. The gain is therefore cross-channel density modeling, not the window representation.</p>

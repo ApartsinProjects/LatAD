@@ -38,7 +38,7 @@ New and changed text is highlighted in green in the revised manuscript, and dele
 <blockquote>When an abbreviation first appears in the abstract or main text, its full form should be provided,
 e.g., LatAD, IIoT, CPS, SCADA, etc.</blockquote>
 <p class="resp"><b class="lead">Response: change made.</b> LatAD is given its full form at first use in the
-abstract ("Our detector, LatAD (Latent-density Anomaly Detector)"), and CPS, IIoT, and SCADA are expanded in
+abstract ("We present LatAD (Latent-density Anomaly Detector)"), and CPS, IIoT, and SCADA are expanded in
 Section 1 ("A cyber-physical system (CPS)"; "Industrial Internet of Things (IIoT)"; "Supervisory Control and
 Data Acquisition (SCADA) historians"). The remaining abbreviations (VaDE, GMM, NLL, HC, BIC, AUROC, F1, ICS,
 SOTA, KDE) are expanded at first use in the main text; the abstract keeps the compact forms and the main text
@@ -49,12 +49,13 @@ re-expands them.</p>
 methods, while providing very little introduction to the principle of the paper's core contribution, LatAD.
 Please highlight the technical contributions of this paper in the abstract.</blockquote>
 <p class="resp"><b class="lead">Response: change made.</b> The abstract was rebalanced toward the mechanism:
-"Our detector, LatAD (Latent-density Anomaly Detector), models normal as a jointly learned latent Gaussian
+"We present LatAD (Latent-density Anomaly Detector), which models normal as a jointly learned latent Gaussian
 mixture (VaDE) and scores by probability rather than reconstruction, factorizing the density over
-correlation-community subsystems and combining per-subsystem surprises by cohesion-weighted Higher Criticism;
-reconstruction re-enters only through an auto-gated residual head." It now carries one headline result per
-claim (best overall AUROC on HAI 0.948 and SWaT 0.938, a significant lead on the difficult subset of HAI and
-SWaT) and closes on the code and checkpoint release.</p>
+correlation-community subsystems and combining per-subsystem surprises by cohesion-weighted Higher
+Criticism." It now carries one headline result per claim (LatAD leads the difficult subset significantly on
+HAI, 0.845, where the deep detectors USAD and TranAD fall to 0.44 to 0.50, and over every nonlinear detector
+on WADI, 0.771; on the non-stationary SWaT record a causal drift-aware typing brings the difficult subset to
+0.723 and cuts its normal-window false-alarm rate from 79% to 6.5%) and closes on the code and checkpoint release.</p>
 
 <h2>Comment 3. The introduction logic is unclear; delete the first-paragraph method sentence, keep contributions out of paragraph 1, and add CPS background.</h2>
 <blockquote>The logic of the Introduction is not clear enough and should be carefully revised. In the first
@@ -109,9 +110,9 @@ multivariate telemetry, LatAD scores each completed window online, and an anomal
 most-surprised subsystem is forwarded to the operator, maintenance, or security stack. It is referenced from
 the Section 1 text, and the caption notes that model fitting and calibration use train-normal telemetry only,
 so a site is commissioned from its own normal data without labeled attacks. The most-surprised community that
-Figure 1 forwards is now a validated triage output: Section 7 (new Table 7) reports that a three-community
-shortlist ranked by train-normal p-value contains the attacked subsystem in 68 to 79 percent of HAI and SWaT
-attacks, against 49 to 56 percent for a random shortlist of the same size.</p>
+Figure 1 forwards is now a validated triage output: Section 8 (new Table 5) reports that a three-community
+shortlist ranked by train-normal p-value contains the attacked subsystem in 68 percent of HAI and 56 percent of WADI
+attacks, against 56 and 31 percent for a random shortlist of the same size.</p>
 
 <h2>Comment 8. Explain the relationship between MIIM (Section 3) and the LatAD detector (Section 4).</h2>
 <blockquote>What is the relationship between the MIIM presented in Section 3 and the LatAD detector presented in
@@ -157,7 +158,7 @@ Section 5.3 ... the symbol conflict is still serious. It is suggested to replace
 Section 4.2 or Section 5.3.</blockquote>
 <p class="resp"><b class="lead">Response: change made.</b> The conflict is resolved. The latent variable keeps
 the symbol z, the standardization operator is renamed std(.), and the trivial-rule per-channel value is
-renamed u throughout Tables 3 and 4 and the prose (Sections 5.3 and 5.5, Section 6). The old disambiguation
+renamed u throughout Table 2 (and Table A4) and the prose (Sections 5.3 and 5.5, Section 6). The old disambiguation
 clause is replaced by a short parenthetical at first use in Section 5.3, and the remaining "z-score units"
 phrasing in Section 4.4 and the Table A1 caption is changed to "standardized units."</p>
 
@@ -174,7 +175,7 @@ well-presented.</blockquote>
 <p class="resp"><b class="lead">Response: change made.</b> The results section was rewritten around the
 corrected, construct-matched numbers, with the significance test and window and episode counts stated for each
 dataset, and a new source-of-gain table (Table 5) added. A construct-matched graph baseline (GDN) was added
-to Tables 3 and 4 and to Figure 3. Figures 1 and 2 were added and the results chart renumbered Figure 3 with a corrected caption. We
+to Table 2 and to Figure 3. Figures 1 and 2 were added and the results chart renumbered Figure 3 with a corrected caption. We
 revised the front matter and the longer sentences, and a language pass over the whole manuscript is applied to
 the submitted version.</p>
 
