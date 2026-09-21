@@ -83,7 +83,7 @@
 
 <div class="abstract">
 <h2>Abstract</h2>
-<p>The Industrial Internet of Things (IIoT) instruments physical processes with networked sensors and controllers that stream multivariate telemetry, and monitoring this telemetry for faults and cyberattacks is essential to reliability and safety. Machine learning is the natural tool, but failures are rare and seldom labeled, so supervised detection is impractical: a detector must learn normal behavior from unlabeled telemetry alone. In cyber-physical systems this normal law is structured: a union of many imbalanced operating regimes shaped by physics and control, formalized as ten <em>Massive, Implicit, Imbalanced Multimodality</em> (MIIM) assumptions. That structure exposes a blind spot of the dominant approach: a fault can be individually normal on every sensor and reconstruct accurately, yet improbable under normal joint operation, so reconstruction-based detectors measure reachability rather than probability and miss it. Our detector, LatAD <span class="rev2-highlight">(Latent-density Anomaly Detector)</span>, learns a latent Gaussian-mixture clustering of regimes (VaDE<span class="rev2-highlight">, Variational Deep Embedding</span>), scores anomalies by density, and factorizes that density over correlation-community subsystems combined by a cohesion-weighted <span class="rev2-highlight">Higher Criticism</span> statistic. <span class="rev2-highlight">On three real IIoT testbeds LatAD attains the best All-subset AUROC of any learned detector on HAI (0.948) and leads the difficult subset, notably on HAI (0.845; a significant +0.088, 95% CI [0.042, 0.157]); USAD and TranAD fall to 0.44&ndash;0.50 on these reconstructable-but-improbable faults.</span></p>
+<p>The Industrial Internet of Things (IIoT) instruments physical processes with networked sensors and controllers that stream multivariate telemetry, and monitoring this telemetry for faults and cyberattacks is essential to reliability and safety. Machine learning is the natural tool, but failures are rare and seldom labeled, so supervised detection is impractical: a detector must learn normal behavior from unlabeled telemetry alone. In cyber-physical systems this normal law is structured: a union of many imbalanced operating regimes shaped by physics and control, formalized as ten <em>Massive, Implicit, Imbalanced Multimodality</em> (MIIM) assumptions. That structure exposes a blind spot of the dominant approach: a fault can be individually normal on every sensor and reconstruct accurately, yet improbable under normal joint operation, so reconstruction-based detectors measure reachability rather than probability and miss it. Our detector, LatAD <span class="rev2-highlight">(Latent-density Anomaly Detector)</span>, learns a latent Gaussian-mixture clustering of regimes (VaDE<span class="rev2-highlight">, Variational Deep Embedding</span>), scores anomalies by density, and factorizes that density over correlation-community subsystems combined by a cohesion-weighted <span class="rev2-highlight">Higher Criticism</span> statistic. <span class="rev2-highlight">On three real IIoT testbeds LatAD attains the best All-subset AUROC of any learned detector on HAI (0.948) and leads the difficult subset on HAI (0.845; a significant +0.088, 95% CI [0.042, 0.157]); USAD and TranAD fall to 0.44&ndash;0.50 on these reconstructable-but-improbable faults.</span></p>
 </div>
 <p class="keywords"><strong>Keywords:</strong> <span class="rev-highlight">Industrial Internet of Things (IIoT); IoT anomaly detection; cyber-physical systems; industrial control systems; anomaly detection; unsupervised learning; sensor telemetry; fault detection</span></p>
 
@@ -179,7 +179,7 @@ with explicit Gaussian-mixture regime clustering (Variational Deep Embedding, Va
 mixture-density head and a rare-regime-safe nearest-component likelihood, factorized over the plant&rsquo;s own subsystems
 (communities of the normal-data correlation graph) and combined by cohesion-weighted Higher Criticism (HC). This statistic
 flags when more subsystems are mildly surprised than chance allows, so a local fault that a single global density
-dilutes is concentrated and localized to its subsystem (&sect;4), and thus each alarm carries an operator-facing subsystem-triage shortlist (evaluated on HAI, &sect;8). Reconstruction is demoted and re-enters only through a
+dilutes is concentrated and localized to its subsystem (&sect;4), and thus each alarm carries an operator-facing subsystem-triage shortlist (evaluated on HAI and WADI, &sect;8, Table&nbsp;5). Reconstruction is demoted and re-enters only through a
 gated residual head. <strong>(C2) A detector-agnostic difficulty stratification.</strong> A channel-based rule
 separates the trivially detectable anomalies and a linear principal-component subspace filter (Hotelling&nbsp;<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msup><mi>T</mi><mn>2</mn></msup></math>
 and squared prediction error) separates the linearly detectable ones, leaving a difficult and a double-hard subset that
@@ -243,7 +243,7 @@ rotorcraft flight controls [<span class="rev-highlight"><a href="#r-rotorcraft">
 multimodal-latent anomaly detection.</p>
 
 <h3><span class="rev2-highlight">2.5&nbsp;&nbsp;Benchmark versus operational scale</span></h3>
-<p> <span class="rev2-highlight">Per-dataset details are given in &sect;5.1. The water-treatment and ICS-security benchmarks used here and elsewhere (SWaT, WADI, BATADAL [<a href="#r-batadal">46</a>], HAI) share a scale profile: roughly 40 to 120 channels, days to weeks of data, and a single nominal operating mode. This is far below operational scale. BATADAL extends to about a year but keeps only 43 hourly variables, and N-CMAPSS [<a href="#r-ncmapss">47</a>] reaches a 40-unit fleet with full run-to-failure trajectories but exposes only 14 sensors; operational sources such as the Building Data Genome Project 2 [<a href="#r-bdg2">11</a>] (3,053 meters across 1,636 buildings over two years) and plant process historians carrying thousands to tens of thousands of tags span orders of magnitude more channels, far longer horizons, and many operating modes. A parallel line of work argues that benchmark realism, not model novelty, now limits measured progress [<a href="#r-wukeogh">9</a>,&nbsp;<a href="#r-sarfraz">25</a>,&nbsp;<a href="#r-tsbuad">48</a>]. Operational scale is therefore the setting in which the trajectory assumptions A9 and A10 and the masking form of A8 become testable.</span></p>
+<p> <span class="rev2-highlight">Per-dataset details are given in &sect;5.1. The water-treatment and ICS-security benchmarks used here (SWaT, WADI, HAI) and the related BATADAL [<a href="#r-batadal">46</a>] share a scale profile: roughly 40 to 120 channels, days to weeks of data, and a single nominal operating mode. This is far below operational scale. BATADAL extends to about a year but keeps only 43 hourly variables, and N-CMAPSS [<a href="#r-ncmapss">47</a>] reaches a 40-unit fleet with full run-to-failure trajectories but exposes only 14 sensors; operational sources such as the Building Data Genome Project 2 [<a href="#r-bdg2">11</a>] (3,053 meters across 1,636 buildings over two years) and plant process historians carrying thousands to tens of thousands of tags span orders of magnitude more channels, far longer horizons, and many operating modes. A parallel line of work argues that benchmark realism, not model novelty, now limits measured progress [<a href="#r-wukeogh">9</a>,&nbsp;<a href="#r-sarfraz">25</a>,&nbsp;<a href="#r-tsbuad">48</a>]. Operational scale is therefore the setting in which the trajectory assumptions A9 and A10 and the masking form of A8 become testable.</span></p>
 
 <h2>3&nbsp;&nbsp;The MIIM assumptions about <span class="rev-highlight">IIoT/CPS normal telemetry</span></h2>
 
@@ -435,11 +435,11 @@ objective is the negative evidence lower bound; per window it is</p>
 </math></span>
 
 <p>where <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#947;</mi><mi>c</mi></msub><mo>&#8733;</mo><msub><mi>&#960;</mi><mi>c</mi></msub><mspace width="0.1em"/><mi>N</mi><mo stretchy="false">(</mo><mi>z</mi><mo>&#8739;</mo><msub><mi>&#956;</mi><mi>c</mi></msub><mo>,</mo><msubsup><mi>&#963;</mi><mi>c</mi><mn>2</mn></msubsup><mo stretchy="false">)</mo></mrow></math> are the responsibilities (the posterior probability that a window belongs to regime <em>c</em>); the reconstruction term sums over the 6<em>C</em> window features, indexed by <em>j</em>. Three standard measures prevent the
-well-known cluster collapse in which many components are abandoned during joint training: a KL/cluster
+well-known cluster collapse in which many components are abandoned during joint training: a Kullback&ndash;Leibler (KL)/cluster
 <em>warm-up</em> that anneals <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>&#946;</mi></math> from 0 to 1 so the encoder settles on the pretrained mixture
 initialization before the prior is pulled around; a DAGMM-style [<span class="rev-highlight"><a href="#r-dagmm">28</a></span>] penalty on tiny
 component variances (a variance floor plus a <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><munder><mo>&#8721;</mo><mi>c</mi></munder><msubsup><mi>&#963;</mi><mi>c</mi><mrow><mo>&#8722;</mo><mn>2</mn></mrow></msubsup></math> term); and a slower learning rate on the mixture parameters so
-the GMM initialization (fitted on the pretrained latent) is refined, not destroyed. Training proceeds as
+the Gaussian mixture model (GMM) initialization (fitted on the pretrained latent) is refined, not destroyed. Training proceeds as
 plain-VAE pretraining, GMM initialization on the encoded means, then joint optimization of the full objective.</p>
 
 <h3>4.2&nbsp;&nbsp;Scoring: density over reconstruction</h3>
@@ -452,8 +452,8 @@ a latent term. On the <em>difficult</em> faults (correlation breaks and between-
 
 <p><span class="rev2-highlight">The mechanism is that a flexible decoder can <em>reconstruct a fault faithfully</em>: a correlation-break
 window has in-range marginals, so the decoder rebuilds it and the residual carries little signal.</span> <span class="rev2-highlight">This is what
-happens on HAI, where the residual term (0.689) trails the latent term (0.760) and drags the summed joint score
-down, so demoting reconstruction helps.</span> The base scoring stack therefore works entirely in the jointly learned latent; reconstruction re-enters
+happens on HAI, where adding the whitened residual pulls the summed joint score (0.689) below the latent term
+alone (0.760), so demoting reconstruction helps.</span> The base scoring stack therefore works entirely in the jointly learned latent; reconstruction re-enters
 only through the optional, auto-gated residual head, which fires only where it
 generalizes to held-out normal <span class="rev2-highlight">(&sect;4.3&nbsp;iii)</span>.</p>
 
@@ -494,7 +494,7 @@ mixture sum washes out (A5): the nearest-component distance retains a deviation 
 populated regime, whereas the mixture sum averages it away. <span class="rev2-highlight">This term is a rare-regime safety head: its role is to
 keep a valid window in a sparsely populated regime from being flagged for rarity alone (A5), not to maximize
 difficult-subset AUROC. On a dataset without such rare-regime false alarms it can leave the base score marginally below
-the density head alone (Table A5, WADI). On these three benchmarks its rare-regime false-alarm rate is not measurably below the mixture head's, so it is retained as a conservative safeguard motivated by A5 rather than for a demonstrated empirical gain.</span> The base
+the density head alone (Table A5, WADI). On these three benchmarks its rare-regime false-alarm rate is not measurably below the mixture head's; the safety gain is demonstrated on the imbalanced 3W record (Appendix&nbsp;E, Table&nbsp;E2).</span> The base
 score is the sum of the two <span class="rev2-highlight">standardized</span> heads,
 <span class="rev2-highlight"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>s</mi><mn>0</mn></msub><mo>=</mo><mtext>std</mtext><mo stretchy="false">(</mo><msub><mi>s</mi><mtext>dens</mtext></msub><mo stretchy="false">)</mo><mo>+</mo><mtext>std</mtext><mo stretchy="false">(</mo><msub><mi>s</mi><mtext>near</mtext></msub><mo stretchy="false">)</mo></mrow></math></span>.</p>
 
@@ -594,7 +594,7 @@ and calibration. Appendix A ablates the density-estimation axis.</p>
 <h2>5&nbsp;&nbsp;Experimental methodology</h2>
 
 <h3>5.1&nbsp;&nbsp;Datasets</h3>
-<p>We use three real CPS datasets and no synthetic data in the results tables. <span class="rev-highlight">All three are instrumented Industrial-IoT / industrial-control-system testbeds: networked sensors, actuators, and programmable logic controllers stream multivariate telemetry from a live physical process, and each carries real executed attacks, making them standard proxies for IIoT security-monitoring and condition-monitoring workloads.</span></p>
+<p>We use three real CPS datasets and no synthetic data in the main results tables (Tables&nbsp;2 to&nbsp;5). <span class="rev-highlight">All three are instrumented Industrial-IoT / industrial-control-system testbeds: networked sensors, actuators, and programmable logic controllers stream multivariate telemetry from a live physical process, and each carries real executed attacks, making them standard proxies for IIoT security-monitoring and condition-monitoring workloads.</span></p>
 <ul>
 <li><strong>WADI</strong> [<span class="rev-highlight"><a href="#r-wadi">50</a></span>], a water-distribution testbed <span class="rev2-highlight">(the WADI.A1 April-2017 release)</span>, <span class="rev2-highlight">123 sensor/actuator
 channels</span>. Roughly a quarter of channels are near-constant in normal operation; these are attack <em>carriers</em>,
@@ -1022,7 +1022,7 @@ states (TABOR [<a href="#r-tabor">56</a>]) are complementary realizations of A7 
 model does not use.</span>
 <span class="rev2-highlight">All community-construction and combiner settings are shared across datasets and not tuned per dataset (&sect;5.2). Validating the regime-community realization on additional CPS systems is the next test; because its build and calibration use train-normal data only, that test requires no labels.</span></p>
 
-<p class="rev2-highlight"><strong>Operator-facing output.</strong> The three practitioner-facing properties compose into one deployment story, using only train-normal statistics and online per-window scoring. A site is commissioned from its own normal telemetry with no labeled attacks (Figure&nbsp;1); each alarm is localized to a physical subsystem, a three-community shortlist that contains the attacked subsystem in 68 percent of HAI attacks against 56 percent for a random shortlist of the same size (&sect;8, Table&nbsp;5); and on a drifting record the drift-aware typing of &sect;7 holds the normal-window false-alarm rate to 6.5 percent, down from 79 percent untyped, while recovering detection. All three run within the edge training and inference budgets of Appendix&nbsp;B.</p>
+<p class="rev2-highlight"><strong>Operator-facing output.</strong> The three practitioner-facing properties compose into one deployment story, using only train-normal statistics and online per-window scoring. A site is commissioned from its own normal telemetry with no labeled attacks (Figure&nbsp;1); each alarm is localized to a physical subsystem via a three-community shortlist ranked by train-normal p-value (Table&nbsp;5); and on a drifting record the drift-aware typing of &sect;7 holds the normal-window false-alarm rate to 6.5 percent, down from 79 percent untyped, while recovering detection. All three run within the edge training and inference budgets of Appendix&nbsp;B.</p>
 
 <p class="rev2-highlight"><strong>Subsystem localization.</strong> A three-community shortlist ranked by train-normal p-value contains the
 attacked subsystem in 68 percent of HAI attacks, against 56 percent for a random shortlist of the same size
@@ -1040,7 +1040,7 @@ Two limits apply: a community whose surprise drifts above its calibration range 
 
 <div class="tblwrap">
 <table>
-<caption class="rev2-highlight"><strong>Table 5.</strong> Subsystem localization at the attack-episode level, rank rule of &sect;8. <em>Top-1</em> names the single most-surprised community; <em>top-3</em> is a three-community shortlist. The random baselines are coverage-aware (the chance that a randomly named community of the same resolution contains an attacked channel), averaged over episodes. Bold marks HAI, where the localization margin is significant. SWaT is omitted: its train-normal ranking is defeated by the record's drift (&sect;7).</caption>
+<caption class="rev2-highlight"><strong>Table 5.</strong> Subsystem localization at the attack-episode level, rank rule described in the text above. <em>Top-1</em> names the single most-surprised community; <em>top-3</em> is a three-community shortlist. The random baselines are coverage-aware (the chance that a randomly named community of the same resolution contains an attacked channel), averaged over episodes. Bold marks HAI, where the top-1 localization margin is significant (P&nbsp;=&nbsp;0.024). SWaT is omitted: its train-normal ranking is defeated by the record's drift (&sect;7).</caption>
 <thead><tr class="rev2-highlight"><th class="l">Dataset</th><th>Attack episodes (targets known)</th><th>Named-community size (channels / plant)</th><th>Top-1</th><th>Random top-1</th><th>Top-3</th><th>Random top-3</th></tr></thead>
 <tbody>
 <tr class="rev2-highlight"><td class="l">HAI</td><td>38 (36 coverable)</td><td>5.6 / 59</td><td><b>0.39</b></td><td>0.25</td><td><b>0.68</b></td><td>0.56</td></tr>
@@ -1151,7 +1151,7 @@ the headline numbers of the main results table (Table&nbsp;2).</caption>
 
 <p class="rev2-highlight">Tables&nbsp;A3&ndash;A5 collect supporting ablations and the robustness subset referenced from the main text: the double-hard robustness subset (Table&nbsp;A3), the source of the cross-channel gain (Table&nbsp;A4), and the per-head decomposition (Table&nbsp;A5).</p>
 
-<p class="rev2-highlight">The double-hard filter fits a PCA model on train-normal and keeps a difficult window only if it exceeds neither the Hotelling&nbsp;<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msup><mi>T</mi><mn>2</mn></msup></math> in-subspace statistic nor the squared prediction (SPE) residual out-of-subspace statistic at their 99th train-normal percentiles: a standard linear-subspace filter that depends only on train-normal, so the detector under test plays no role in constructing the subset, and, unlike a filter built from the leave-one-channel-out linear predictor, it leaves that predictor (LinRes) free to appear as a scored detector in its own right. A boosted leave-one-channel-out linear predictor, fit to squeeze the most from the linear structure, reaches only 0.649&nbsp;/&nbsp;0.313&nbsp;/&nbsp;0.117 on the three subsets, so boosting the raw linear predictor does not recover it; the drift-aware typing of &sect;7 lifts multiple method families, including this boosted predictor (double-hard 0.117 to 0.553), and LatAD retains the higher post-typing score (0.671).</p>
+<p class="rev2-highlight">The double-hard filter fits a PCA model on train-normal and keeps a difficult window only if it exceeds neither the Hotelling&nbsp;<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msup><mi>T</mi><mn>2</mn></msup></math> in-subspace statistic nor the squared prediction (SPE) residual out-of-subspace statistic at their 99th train-normal percentiles: a standard linear-subspace filter that depends only on train-normal, so the detector under test plays no role in constructing the subset, and, unlike a filter built from the leave-one-channel-out linear predictor, it leaves that predictor (LinRes) free to appear as a scored detector in its own right. A boosted leave-one-channel-out linear predictor, fit to squeeze the most from the linear structure, reaches only 0.649&nbsp;/&nbsp;0.313&nbsp;/&nbsp;0.117 on the three datasets, so boosting the raw linear predictor does not recover it; the drift-aware typing of &sect;7 lifts multiple method families, including this boosted predictor (double-hard 0.117 to 0.553), and LatAD retains the higher post-typing score (0.671).</p>
 
 <div class="tblwrap">
 <table>
@@ -2770,12 +2770,12 @@ WADI, HAI, and SWaT, against 231, 898, and 163&nbsp;s for TranAD and 96, 592, an
 window (batch&nbsp;1; up to about 52&nbsp;ms at batch&nbsp;256) for the full regime-community stack, against 0.15&nbsp;ms for a plain
 autoencoder; a CPU edge proxy scores a window in 0.6 to 14.6&nbsp;ms (global) and 14.5 to 25&nbsp;ms (community). The models
 are small (100 to 209&nbsp;k parameters global, 0.78 to 1.25&nbsp;M community) and run within about 3.5 to 3.9&nbsp;GB of host
-memory and tens of MB of GPU memory (Table&nbsp;B1, peak 20 to 29&nbsp;MB for LatAD), placing both configurations inside gateway-class real-time budgets.</p>
+memory and tens of MB of GPU memory (Table&nbsp;B1, peak 19 to 29&nbsp;MB for LatAD), placing both configurations inside gateway-class real-time budgets.</p>
 
 <div class="tblwrap rev2-highlight">
 <table>
 <caption class="rev2-highlight"><strong>Table B1.</strong> Training and inference cost, per dataset (WADI&nbsp;/&nbsp;HAI&nbsp;/&nbsp;SWaT), measured on one Modal A10G GPU (24&nbsp;GB) plus a Modal 8-vCPU CPU edge proxy (the same hardware for every method). <em>Train s</em> is training wall-clock; <em>ms/win</em> is per-window latency at batch&nbsp;1; <em>Peak GPU MB</em> is the peak CUDA memory during inference<span class="rev2-highlight">; <em>Host RAM GB</em> is peak host memory on the CPU edge proxy</span>.
- CPU-edge latency and host memory were not measured for USAD, TranAD, or GDN (&ndash;).</caption>
+ CPU-edge latency and host memory were not measured for USAD or TranAD (&ndash;); GDN and Isolation Forest are not profiled here.</caption>
 <thead><tr><th class="l">Method</th><th>Params (W/H/S)</th><th>Train s (W/H/S)</th><th>GPU ms/win (W/H/S)</th><th>Peak GPU MB (W/H/S)</th><th>CPU-edge ms/win (W/H/S)</th><th class="rev2-highlight">Host RAM GB (W/H/S)</th></tr></thead>
 <tbody>
 <tr><td class="l"><b>LatAD (global density)</b></td><td>209k / 112k / 100k</td><td>3.2 / 16 / 3.5</td><td>0.7 / 13.0 / 13.0</td><td>19.9 / 19.4 / 19.7</td><td>0.6 / 14.6 / 14.5</td><td class="rev2-highlight">3.5 / 3.7 / 3.9</td></tr>
@@ -2838,7 +2838,7 @@ by a wide two-component head versus the 80-component head. Synthetic positive co
 <caption><strong>Table D1.</strong> VaDE and detector hyperparameters. Values shared across datasets are given once; per-dataset values are listed as WADI / HAI / SWaT.</caption>
 <thead><tr><th class="l">Hyperparameter</th><th>Value</th></tr></thead>
 <tbody>
-<tr><td class="l">Encoder / decoder MLP</td><td>[6<em>C</em>, 128, 64] &rarr; latent; decoder mirror, ReLU between hidden layers</td></tr>
+<tr><td class="l">Encoder / decoder multilayer perceptron (MLP)</td><td>[6<em>C</em>, 128, 64] &rarr; latent; decoder mirror, ReLU between hidden layers</td></tr>
 <tr><td class="l">Mixture components <em>K</em> (fixed a priori)</td><td>20 / 40 / 40</td></tr>
 <tr><td class="l">Latent dimension</td><td>10 / 16 / 16</td></tr>
 <tr><td class="l">Pretrain (plain-VAE) epochs</td><td>30</td></tr>

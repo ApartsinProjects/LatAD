@@ -32,14 +32,15 @@ Authors: Alexander Apartsin and Yehudit Aperstein
 
 <p>Dear Academic Editor,</p>
 
-<p>Thank you for handling our manuscript and for a clear, actionable set of requests. We are grateful
+<p>Thank you for handling our manuscript. We are grateful
 for the care you and both Reviewers gave the paper. The revision addresses every point: we validated or
 remeasured the previously unused assumptions, added a construct-matched graph baseline, benchmarked
 computational cost, put every significance claim on a time-aware footing, added an ablation that isolates
 the source of the gain, and reworked the front matter, figures, notation, and typesetting. Along the way
 we re-audited every reported number against its source artifact and corrected them where an artifact had
-inflated a result; the corrected numbers are used throughout, and the main conclusions hold and are in
-one respect sharper. A point-by-point response to each Reviewer accompanies this letter. Below we answer
+inflated a result; the corrected numbers are used throughout, and the main conclusions hold. The corrected
+evaluation is in one respect stronger: GDN, previously reported as not completing, is now a full
+construct-matched baseline, and the drift-aware typing recovers the SWaT difficult subset from 0.524 to 0.723. A point-by-point response to each Reviewer accompanies this letter. Below we answer
 your direct requests and then summarize the principal changes and where to find them.</p>
 
 <h2>Summary of the principal changes</h2>
@@ -59,6 +60,12 @@ your direct requests and then summarize the principal changes and where to find 
   <li><b>Dataset-scale scholarship.</b> A new discussion of public-benchmark scale versus operational
   scale is added (Introduction, new Section 2.5, and Section 8), with new references, arguing that A8 to
   A10 are properties best verified at operational scale.</li>
+  <li><b>Evidence beyond the three canonical benchmarks.</b> The assumption work is evaluated on additional
+  public CPS records in the roles they test: 3W for imbalanced regime occupancy (A5; Appendix E) and a
+  between-regime screen across eight public CPS sources (WADI, HAI, SWaT, Cranfield, SKAB, MetroPT, SMD, and the
+  Paderborn bearing testbed; A8, Appendix C).
+  BATADAL, N-CMAPSS, and the Building Data Genome Project 2 are cited as operational-scale reference points for
+  A9 and A10, not evaluated here (Section 2.5, Section 8).</li>
   <li><b>New validated additions.</b> A subsystem-localization evaluation is added (new Table 5, Section 8):
   a three-community shortlist ranked by train-normal p-value contains the attacked subsystem in 68 percent
   of HAI and 56 percent of WADI attacks, against 56 and 31 percent for a random shortlist of the same size. The
@@ -142,21 +149,24 @@ denies them.</p>
 
 <h3>4. Use a time-aware statistical test</h3>
 <blockquote>... use a time-aware statistical test ...</blockquote>
-<p class="resp"><b class="lead">Response.</b> We agree this matters. Every
-significance statement now uses an episode-block bootstrap that resamples whole attack episodes together with
-contiguous normal blocks, applied uniformly to all three datasets and to every confidence interval and P-value
-(defined in Section 5.4; results in Section 6, Figure 3). The confidence interval is the two-sided
-2.5 / 97.5 percentile of the paired difference; P is the one-sided bootstrap probability that the difference
-is at most zero. On the difficult subset the margin is significant on HAI (+0.088, 95 percent CI
-[0.042, 0.157], P &lt; 0.0005); on the drift-dominated SWaT record the raw difficult subset ties the strongest
-linear baseline (95 percent CI including zero) and becomes significant only after the drift-aware typing of
-Section 7 (+0.200, 95 percent CI [0.018, 0.355], P = 0.014); on WADI LatAD is significantly ahead of every
-learned detector (the AutoEncoder, USAD, TranAD, Isolation Forest, and GDN, each cleared at P &lt; 0.05 by the
-same per-detector episode-block bootstrap) and ties only the linear baseline (+0.020, 95 percent CI
-[-0.161, 0.205], P = 0.46 over 8 attack episodes), where WADI is not separable from the linear baseline at
-that episode count. The block length exceeds the window-overlap span, and the verdicts are unchanged when it is
-instead selected from the empirical serial dependence (the autocorrelation-decay length: 264 windows on HAI, 3 on
-WADI, 4 on SWaT) and under a seed-hierarchical resample over the five training seeds.</p>
+<p class="resp"><b class="lead">Response.</b> We agree this matters. Every significance statement now uses an
+episode-block bootstrap that resamples whole attack episodes together with contiguous normal blocks, applied
+uniformly to all three datasets and to every confidence interval and P-value (defined in Section 5.4; results in
+Section 6, Figure 3). The confidence interval is the two-sided 2.5 / 97.5 percentile of the paired difference;
+P is the one-sided bootstrap probability that the difference is at most zero. On the difficult subset:</p>
+<ul>
+  <li><b>HAI:</b> significant, +0.088, 95 percent CI [0.042, 0.157], P &lt; 0.0005.</li>
+  <li><b>SWaT (drift-dominated):</b> the raw subset ties the strongest linear baseline (95 percent CI including
+  zero); significant only after the drift-aware typing of Section 7 (+0.200, 95 percent CI [0.018, 0.355],
+  P = 0.014).</li>
+  <li><b>WADI:</b> significantly ahead of every learned detector (AutoEncoder, USAD, TranAD, Isolation Forest,
+  and GDN, each cleared at P &lt; 0.05 by the same per-detector episode-block bootstrap); ties only the linear
+  baseline (+0.020, 95 percent CI [-0.161, 0.205], P = 0.46 over 8 attack episodes), not separable from it at
+  that episode count.</li>
+</ul>
+<p class="resp">The block length exceeds the window-overlap span, and the verdicts are unchanged when it is
+instead selected from the empirical serial dependence (the autocorrelation-decay length: 264 windows on HAI, 3
+on WADI, 4 on SWaT) and under a seed-hierarchical resample over the five training seeds.</p>
 
 <h3>5. Add ablations isolating the source of the gain</h3>
 <blockquote>... add ablations isolating the source of the gain ...</blockquote>
@@ -171,16 +181,43 @@ modeling (+0.200 over the per-channel product); on WADI the regime-community fac
 temporal and drift structure. In none of the three is the window representation the source.</p>
 
 <h2>Requests forwarded from Reviewer 2</h2>
-<p class="resp">The writing and structure items you forwarded are all addressed and are detailed in the
-Reviewer 2 letter: the abstract is rebalanced toward LatAD's mechanism and the introduction is restructured
-with CPS background and no contributions in the first paragraph (abstract, Section 1); Related Work is
-restructured, with the anomaly-detection definition moved to the introduction, the LatAD self-descriptions
-removed, Section 2.3 rewritten as a neutral survey, and the old Section 2.5 replaced by a benchmark-scale
-section (Sections 1, 2.1 to 2.5); a system-model figure (Figure 1) and a LatAD workflow figure (Figure 2)
-are added and referenced; the notation conflict for z is resolved by keeping the latent z, renaming the
-standardization operator, and renaming the trivial-rule per-channel value u (Sections 4.3, 5.3); and all
-nine display equations are numbered (1) to (9), with paragraph-indentation unification applied at the DOCX
-build stage.</p>
+<blockquote>Reviewer 2 additionally asks for a clearer abstract and introduction, a restructured related-work
+section, system-model and LatAD workflow figures, resolution of the notation conflict for z, and consistent
+typesetting with numbered equations.</blockquote>
+<p>Each item you name is addressed below in brief; the full point-by-point responses, with the reviewer's
+comments quoted, are in the accompanying Reviewer 2 letter (comment numbers cited).</p>
+
+<h3>Clearer abstract (Reviewer 2, comments 1 and 2)</h3>
+<p class="resp"><b class="lead">Response.</b> Every abbreviation is expanded at first use (LatAD, IIoT, CPS,
+SCADA), and the abstract now states LatAD's mechanism directly, a latent Gaussian-mixture clustering of regimes
+scored by density and factorized over correlation-community subsystems with a cohesion-weighted Higher Criticism
+statistic, before the headline result: the best All-subset AUROC of any learned detector on HAI (0.948) and a
+significant difficult-subset lead (HAI 0.845).</p>
+
+<h3>Clearer introduction (Reviewer 2, comments 3 to 5)</h3>
+<p class="resp"><b class="lead">Response.</b> Section 1 now opens with CPS and IIoT background, the
+first-paragraph method sentence is removed and no contributions appear in the first paragraph, the previously
+unspecified "task" is named (unsupervised anomaly detection for CPS telemetry), and the two obstacles are tied
+to the three contributions C1 to C3 on the modeling and evaluation axes.</p>
+
+<h3>Restructured Related Work (Reviewer 2, comment 6)</h3>
+<p class="resp"><b class="lead">Response.</b> The anomaly-detection definition is moved to the introduction,
+the three LatAD self-descriptions are removed, Section 2.3 is rewritten as a neutral survey (Deep SVDD,
+OmniAnomaly, THOC), and the former Section 2.5 is replaced by a benchmark-scale section.</p>
+
+<h3>System-model and LatAD workflow figures (Reviewer 2, comments 7 and 9)</h3>
+<p class="resp"><b class="lead">Response.</b> Figure 1 (Section 1) shows where LatAD sits in the IIoT
+monitoring context, and Figure 2 shows the LatAD workflow with each block tagged by the assumption it serves;
+the Section 4 headings now name each pipeline stage (representation, scoring, and subsystem factorization).</p>
+
+<h3>Notation conflict for z (Reviewer 2, comment 11)</h3>
+<p class="resp"><b class="lead">Response.</b> Resolved: the latent variable keeps the symbol z, the
+standardization operator is renamed std(&middot;), and the trivial-rule per-channel value is renamed u
+throughout (Sections 4.3, 5.3, and Table 2).</p>
+
+<h3>Typesetting and numbered equations (Reviewer 2, comment 12)</h3>
+<p class="resp"><b class="lead">Response.</b> All nine display equations are numbered (1) to (9), and paragraph
+indentation is unified under one body style applied at the DOCX build stage.</p>
 
 <h2>Point-by-point response and revised manuscript</h2>
 <blockquote>Please submit a point-by-point response with the revised manuscript.</blockquote>
@@ -189,8 +226,10 @@ Reviewer 2 letters, is the point-by-point response. The revised manuscript is ch
 text is highlighted and deleted passages are removed, and each response above cites the section, table, or figure it
 changed.</p>
 
-<p class="close">We believe the revision meets every request and that the corrected, construct-matched
-evaluation makes the paper stronger. Thank you again for your time and guidance.</p>
+<p class="close">Every request was met with completed experiments and corrected numbers within the manuscript;
+no request required deferral to future work, beyond the three assumptions (A8 to A10) we now explicitly scope as
+such. We believe the revision meets every request and that the corrected, construct-matched evaluation makes the
+paper stronger. Thank you again for your time and guidance.</p>
 
 <p>Sincerely,<br>
 Alexander Apartsin and Yehudit Aperstein</p>
