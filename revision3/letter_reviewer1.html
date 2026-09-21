@@ -78,12 +78,12 @@ NLL, and other imbalance-aware scoring methods, with more attention to the false
 regimes.</blockquote>
 <p class="resp"><b class="lead">Response: rebuttal plus head-level isolation.</b> Good suggestion, and the
 imbalance sweep gave us a clean way to show the term's role. The nearest-component likelihood is isolated as a
-standalone score head in Table A6, with difficult-subset AUROC 0.603 on WADI, 0.797 on HAI, and 0.479 on
+standalone score head in Table A5, with difficult-subset AUROC 0.603 on WADI, 0.797 on HAI, and 0.479 on
 SWaT, beside the mixture density and the density-plus-nearest base; its rationale is stated as assumption A5
 in Table 1 ("score against the nearest component, never the weighted mixture, so a rare-but-valid regime is
 not penalized"). It is a rare-regime safety term: it keeps a valid window in a sparsely populated regime from
 being flagged for rarity alone, protecting the false-alarm rate rather than raising the aggregate score, so on
-a dataset without such rare-regime false alarms it can sit marginally below the density head alone (Table A6,
+a dataset without such rare-regime false alarms it can sit marginally below the density head alone (Table A5,
 WADI; Section 4.3 ii).</p>
 <p class="resp">We now measure the false-positive behavior you ask about directly. Appendix&nbsp;E runs the
 comparison on the 3W oil-well dataset, which has genuinely imbalanced regime occupancy: at a matched
@@ -146,7 +146,7 @@ over the five training seeds, so the conclusions do not depend on the block choi
 <p class="resp">On the double-hard subset LatAD holds a numerical lead of +0.101 on HAI (13 episodes)
 and +0.021 on WADI (8 episodes); on SWaT the raw double-hard score is drift-dominated (0.178) and the
 drift-aware typing of Section 7 recovers it to 0.671, a significant +0.493 (95 percent CI [0.349, 0.619],
-P &lt; 0.001) over the raw score (Table A4). All intervals were recomputed from persisted scores, with no retraining.</p>
+P &lt; 0.001) over the raw score (Table A3). All intervals were recomputed from persisted scores, with no retraining.</p>
 
 <h2>Comment 5. Six static window statistics: run raw-sequential, temporal, or spectral experiments and ablations to verify whether the gain comes from cross-channel density or from the window representation.</h2>
 <blockquote>This manuscript mainly uses six static statistics from each window, so the source of the performance
@@ -154,7 +154,7 @@ gain is still unclear. Experiments with raw sequential input and temporal or spe
 to verify whether the gain mainly comes from cross-channel density modeling or from the current window
 representation.</blockquote>
 <p class="resp"><b class="lead">Response: change made, the source of the gain is now isolated.</b> Good
-question, and it is exactly the ablation the paper needed. Table A5 (cited from Section 6) swaps the
+question, and it is exactly the ablation the paper needed. Table A4 (cited from Section 6) swaps the
 cross-channel latent density for a channel-independent product of per-channel densities, holding the
 representation fixed: the cross-channel density adds <b>+0.200 on HAI</b>, essentially nothing on the WADI
 difficult subset (+0.017), whose difficult anomalies are single-channel or linear so per-channel marginals
@@ -166,13 +166,13 @@ ran a raw per-timestep sequential-input variant, feeding the flattened 60-sample
 reduction to the same detector under the same difficulty mask (five seeds): it strictly lowers the
 difficult-subset AUROC on all three datasets, by 0.068 on WADI, 0.230 on HAI, and 0.060 on SWaT. The gain
 therefore comes from the density mechanism applied to a compact, learnable representation, not from
-information the six statistics withhold. The head-level decomposition (Table A6) and the factorization ladder
+information the six statistics withhold. The head-level decomposition (Table A5) and the factorization ladder
 (Table A1) localize the same gain to the density heads and the regime-community factorization. The source is
 dataset-specific: on HAI cross-channel density modeling (+0.200 over the per-channel product); on WADI the
 regime-community factorization; on SWaT the temporal and drift structure (Section 7). In none of the three is
 the window representation the source. Section 8 makes this most directly: the single latent-density head, with
 no residual term and no factorization, beats the deep reconstruction detectors USAD and TranAD on the HAI and
-WADI difficult subsets (Table A6; on SWaT the raw difficult subset is drift-dominated), isolating the density
+WADI difficult subsets (Table A5; on SWaT the raw difficult subset is drift-dominated), isolating the density
 mechanism from both the representation and the factorization.</p>
 
 <h2>Comment on English, figures, and conclusions.</h2>

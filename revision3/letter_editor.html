@@ -48,7 +48,7 @@ your direct requests and then summarize the principal changes and where to find 
   canonical streams under the identical protocol and reported in Table 2 and Figure 3, replacing the earlier
   inaccurate statement that GDN did not complete; it is now a full baseline (Sections 2.4, 5.5, and 7).</li>
   <li><b>Corrected numbers.</b> The WADI difficult subset was re-derived from 43 to 30 windows after we
-  fixed a difficulty-stratification artifact (an inconsistent per-dataset clip that had left 12 trivially
+  fixed a difficulty-stratification artifact (an inconsistent per-dataset clip that had left trivially
   separable constant-channel-flip windows in the subset). With two earlier corrections (the rescaled WADI
   analyzer channel dropped and the canonical December-2015 SWaT release adopted, Section 5.1), all tables
   were rebuilt. The headline difficult-subset AUROC is HAI 0.845 and WADI 0.771; on the drift-dominated
@@ -99,12 +99,12 @@ detectable" is thus now a measured finding, not an assumption (Table 1, Section 
 <h3>2. Direct experimental support for the rare-regime-safe nearest-component likelihood</h3>
 <blockquote>... provide direct experimental support for the rare-regime-safe nearest-component likelihood ...</blockquote>
 <p class="resp"><b class="lead">Response.</b> Good suggestion, and it gave us a clean way to show the term's
-role. The nearest-component likelihood is isolated as a standalone score head in Table A6 (difficult-subset
+role. The nearest-component likelihood is isolated as a standalone score head in Table A5 (difficult-subset
 AUROC WADI 0.603, HAI 0.797, SWaT 0.479), beside the mixture density and the density-plus-nearest base, with
 its rationale stated as assumption A5 in Table 1. It is a rare-regime <em>safety</em> term: it keeps a valid
 window in a sparsely populated regime from being flagged for rarity alone, protecting the false-alarm rate
 rather than raising the aggregate score, so on a dataset without such rare-regime false alarms it can sit
-marginally below the density head alone (Table A6, WADI; Section 4.3 ii).</p>
+marginally below the density head alone (Table A5, WADI; Section 4.3 ii).</p>
 <p class="resp">We now measure the imbalance behavior directly. Appendix&nbsp;E runs the comparison on the 3W
 oil-well dataset, which has genuinely imbalanced regime occupancy: at a matched false-alarm rate the
 nearest-component score removes the mixture's rare-regime false alarms (from 17, 17, 23 to 11, 9, 16 across
@@ -152,11 +152,11 @@ WADI, 4 on SWaT) and under a seed-hierarchical resample over the five training s
 
 <h3>5. Add ablations isolating the source of the gain</h3>
 <blockquote>... add ablations isolating the source of the gain ...</blockquote>
-<p class="resp"><b class="lead">Response.</b> Added as Table A5 (cited from Section 6), which replaces the
+<p class="resp"><b class="lead">Response.</b> Added as Table A4 (cited from Section 6), which replaces the
 cross-channel latent density with a channel-independent product of per-channel densities: the cross-channel
 density adds <b>+0.200 on HAI</b>, essentially nothing on the artifact-free WADI difficult subset (+0.017),
 whose difficult anomalies are single-channel or linear, and <b>does not exceed the per-channel product on
-SWaT (-0.050)</b>. The head-level decomposition (Table A6), the factorization ladder (Table A1), and the
+SWaT (-0.050)</b>. The head-level decomposition (Table A5), the factorization ladder (Table A1), and the
 representation check (Table A2, a smaller complementary lever) localize the same gain to the density heads and
 the regime-community factorization. The source is therefore dataset-specific: on HAI cross-channel density
 modeling (+0.200 over the per-channel product); on WADI the regime-community factorization; on SWaT the
