@@ -149,10 +149,12 @@ already suffice, and <b>does not exceed the per-channel product on SWaT (-0.050)
 address the representation directly, Table A2 re-runs the same latent-density detector with a richer
 ten-feature temporal and spectral representation in place of the six statistics: it is immaterial on WADI and
 adds +0.071 on HAI and +0.241 on SWaT, so an expanded temporal representation is a smaller, complementary
-lever aligned with A9, not the source of the reported advantage. We did not run a raw per-timestep
-sequential-input variant of LatAD; the temporal-and-spectral part of your request is answered at the feature
-level by Table A2, which injects explicit temporal and spectral features into the window representation while
-leaving the latent-density mechanism unchanged. The head-level decomposition (Table A6) and
+lever aligned with A9, not the source of the reported advantage. We also ran a raw per-timestep
+sequential-input variant of LatAD, feeding the flattened 60-sample window with no statistical reduction to the same
+detector under the same difficulty mask (five seeds): it strictly lowers the difficult-subset AUROC on all three
+datasets, by 0.068 on WADI, 0.230 on HAI, and 0.060 on SWaT. The gain therefore comes from the density mechanism
+applied to a compact, learnable representation, not from information the six statistics withhold; the temporal and
+spectral features of Table A2 are a smaller complementary lever that leaves the latent-density mechanism unchanged. The head-level decomposition (Table A6) and
 the factorization ladder (Table A1) localize the same gain to the density heads and the regime-community
 factorization. The source of the gain is therefore dataset-specific: on HAI it is cross-channel density modeling (+0.200 over the per-channel product); on WADI, where cross-channel density adds essentially nothing, it is the regime-community factorization; on SWaT it is the temporal and drift structure (Section 7). In none of the three is the window representation the source. The revised Section 8 makes this most directly: the single latent-density head, with no residual term and no factorization, beats the deep reconstruction detectors USAD and TranAD on the HAI and WADI difficult subsets (Table A6; on SWaT the raw difficult subset is drift-dominated), which isolates the density mechanism from both the representation and the factorization.</p>
 
