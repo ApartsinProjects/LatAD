@@ -446,8 +446,7 @@ plain-VAE pretraining, GMM initialization on the encoded means, then joint optim
 
 <p>The natural VaDE anomaly score is the joint negative log-likelihood <span class="rev2-highlight">(NLL)</span>: a whitened reconstruction residual plus
 a latent term. On the <em>difficult</em> faults (correlation breaks and between-regime pockets) this
-<span class="rev2-highlight">summed score can be counterproductive</span>. Table A3 decomposes the two terms by their difficult-subset AUROC on a single trained model
-per dataset.</p>
+<span class="rev2-highlight">summed score can be counterproductive</span>. <span class="rev2-highlight">On the HAI difficult subset the naive joint negative log-likelihood (0.689) falls below the latent term alone (0.760), so the whitened reconstruction residual, informative in isolation, drags the sum down; the reported model demotes reconstruction to a gated head (&sect;4.3&nbsp;iii, Table&nbsp;A5).</span></p>
 
 
 
@@ -495,7 +494,7 @@ mixture sum washes out (A5): the nearest-component distance retains a deviation 
 populated regime, whereas the mixture sum averages it away. <span class="rev2-highlight">This term is a rare-regime safety head: its role is to
 keep a valid window in a sparsely populated regime from being flagged for rarity alone (A5), not to maximize
 difficult-subset AUROC. On a dataset without such rare-regime false alarms it can leave the base score marginally below
-the density head alone (Table A6, WADI). On these three benchmarks its rare-regime false-alarm rate is not measurably below the mixture head's, so it is retained as a conservative safeguard motivated by A5 rather than for a demonstrated empirical gain.</span> The base
+the density head alone (Table A5, WADI). On these three benchmarks its rare-regime false-alarm rate is not measurably below the mixture head's, so it is retained as a conservative safeguard motivated by A5 rather than for a demonstrated empirical gain.</span> The base
 score is the sum of the two <span class="rev2-highlight">standardized</span> heads,
 <span class="rev2-highlight"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>s</mi><mn>0</mn></msub><mo>=</mo><mtext>std</mtext><mo stretchy="false">(</mo><msub><mi>s</mi><mtext>dens</mtext></msub><mo stretchy="false">)</mo><mo>+</mo><mtext>std</mtext><mo stretchy="false">(</mo><msub><mi>s</mi><mtext>near</mtext></msub><mo stretchy="false">)</mo></mrow></math></span>.</p>
 
@@ -748,7 +747,7 @@ density over regime communities (&sect;4.4), and is largest on the difficult sub
 
 <p><strong>The difficult subset.</strong> This is the subset the design targets <span class="rev2-highlight">(Figure&nbsp;3)</span>. The clearest
 demonstration is HAI: <span class="rev2-highlight">LatAD reaches 0.845 on the difficult subset (167 windows spanning 26 attack episodes), well
-above the AutoEncoder (0.757) and far above the deep detectors USAD (0.497) and TranAD (0.445), which sit near
+above the AutoEncoder (0.757) and far above the deep detectors USAD and TranAD, which sit near
 chance. The margin over the AutoEncoder is statistically significant: an episode-block bootstrap of the paired
 difference (resampling attack episodes and normal windows, averaged over five seeds) gives +0.088 with a 95%
 confidence interval of [0.042, 0.157] and P(difference&nbsp;&#8804;&nbsp;0)&nbsp;&lt;&nbsp;0.0005.</span></p>
@@ -756,7 +755,7 @@ confidence interval of [0.042, 0.157] and P(difference&nbsp;&#8804;&nbsp;0)&nbsp
 <p><span class="rev2-highlight">On SWaT the raw difficult subset (91 windows across 23 attack episodes) is drift-dominated. The raw community score reaches 0.524, above every deep detector (0.473&ndash;0.477) and the
 single latent (0.472) but not separated from the strongest linear baseline (+0.060 over LinRes 0.464, 95% CI including
 zero). A drift-aware changepoint decomposition of the same community surprises recovers the SWaT difficult subset to
-0.723 (&sect;7), a significant +0.200 over the raw score (95% CI [0.018, 0.355], P&nbsp;=&nbsp;0.014).</span></p>
+0.723 (&sect;7), a significant +0.200 over the raw score (&sect;7).</span></p>
 
 <p><span class="rev2-highlight">On WADI LatAD reaches 0.771 (30 difficult windows over 8 attack episodes), significantly ahead of every nonlinear
 detector. A per-detector episode-block bootstrap of the paired difference clears each one with P&nbsp;&lt;&nbsp;0.05: vs
@@ -765,7 +764,7 @@ Isolation Forest +0.136 (P&nbsp;&lt;&nbsp;0.0005), and GDN +0.111 (P&nbsp;&lt;&n
 LinRes (0.750): +0.020, 95% CI [&#8722;0.161, 0.205], P&nbsp;=&nbsp;0.46 over 8 episodes. The WADI lead is
 carried by the community density aggregation (cohesion-weighted Higher Criticism over the community experts, 0.795): the
 single-latent global density scores 0.634 on this difficult subset, so the community
-factorization rather than the single latent supplies the WADI signal. The tie with the linear baseline is expected from the mechanism: the cross-channel latent density, LatAD's distinctive lever, adds +0.200 on HAI but only +0.017 on WADI (Table&nbsp;A5), so the WADI difficult faults carry no cross-channel-only structure and a linear per-channel model extracts the same signal the density does.</span></p>
+factorization rather than the single latent supplies the WADI signal. The tie with the linear baseline is expected from the mechanism: the cross-channel latent density, LatAD's distinctive lever, adds +0.200 on HAI but only +0.017 on WADI (Table&nbsp;A4), so the WADI difficult faults carry no cross-channel-only structure and a linear per-channel model extracts the same signal the density does.</span></p>
 
 <p><strong>Validity of the difficulty split.</strong> <span class="rev2-highlight">The trivial max|u| rule is strong on Easy by construction
 (WADI 0.999, HAI 0.966, SWaT 0.997) and drops on the difficult subset (WADI 0.601, HAI 0.340, SWaT 0.627):
@@ -791,7 +790,7 @@ difficult window is kept as <em>double-hard</em> only if it exceeds neither the 
 in-subspace statistic nor the squared prediction (SPE) residual out-of-subspace statistic at their 99th train-normal
 percentiles. This is the standard linear-subspace anomaly filter and depends only on train-normal, so the detector under
 test plays no role in constructing the subset. Unlike a filter built from the leave-one-channel-out linear predictor, it
-leaves that predictor (LinRes) free to appear as a scored detector in its own right. Table A4 reports the resulting
+leaves that predictor (LinRes) free to appear as a scored detector in its own right. Table A3 reports the resulting
 per-method AUROC (windows / distinct episodes: WADI 29&nbsp;/&nbsp;8, HAI 55&nbsp;/&nbsp;13, SWaT 28&nbsp;/&nbsp;9).
 On WADI and HAI LatAD attains the highest AUROC (0.763 and 0.648), a numerical lead over the strongest baseline (LinRes)
 of +0.021 (WADI, 8 episodes) and +0.101 (HAI, 13 episodes). On SWaT the raw density score is drift-dominated on
@@ -871,7 +870,7 @@ models that look strong under point-adjusted F1 have little difficult-fault sign
 <figcaption><strong><span class="rev2-highlight">Figure 3.</span></strong> <span class="rev2-highlight">Difficult-subset AUROC by method, values as Table 2; whiskers show &plusmn;1 standard deviation (SD) over five seeds where available. LatAD leads the difficult subset on HAI (0.845, significantly over the AutoEncoder) and leads every nonlinear detector on WADI (0.771), tying the linear baseline; on SWaT the raw difficult scores are drift-compressed near chance (&sect;7). Significance tests are given in the text.</span></figcaption>
 </figure>
 
-<p class="rev2-highlight"><strong>Source of the gain.</strong> The difficult-subset advantage is driven primarily by cross-channel density modeling rather than by the window representation, which is a separate and smaller complementary lever (Appendix&nbsp;A, Table&nbsp;A2). Replacing the cross-channel latent density with a channel-independent product of per-channel densities (Table A5) isolates where cross-channel structure, rather than per-channel marginals, carries the signal: the cross-channel density adds <span class="rev2-highlight">+0.200 on HAI</span> over the channel-independent baseline, while on the WADI difficult subset it adds essentially nothing (<span class="rev2-highlight">+0.017</span>). WADI&rsquo;s difficult anomalies are single-channel or linear, so per-channel marginals already suffice <span class="rev2-highlight">(excluded channel: &sect;5.1)</span>. <span class="rev2-highlight">On SWaT the raw cross-channel density is drift-dominated (&sect;7) and does not exceed the marginal product (&minus;0.050).</span> The head-level decomposition (Table A6) and the factorization/aggregation ablation (Table A1) localize the same gain: the latent density anchors the base score, and factorizing it over correlation communities lifts the difficult subset further, most on WADI <span class="rev2-highlight">and on HAI</span> (Appendix&nbsp;A).</p>
+<p class="rev2-highlight"><strong>Source of the gain.</strong> The difficult-subset advantage is driven primarily by cross-channel density modeling rather than by the window representation, which is a separate and smaller complementary lever (Appendix&nbsp;A, Table&nbsp;A2). Replacing the cross-channel latent density with a channel-independent product of per-channel densities (Table A4) isolates where cross-channel structure, rather than per-channel marginals, carries the signal: the cross-channel density adds <span class="rev2-highlight">+0.200 on HAI</span> over the channel-independent baseline, while on the WADI difficult subset it adds essentially nothing (<span class="rev2-highlight">+0.017</span>). WADI&rsquo;s difficult anomalies are single-channel or linear, so per-channel marginals already suffice <span class="rev2-highlight">(excluded channel: &sect;5.1)</span>. <span class="rev2-highlight">On SWaT the raw cross-channel density is drift-dominated (&sect;7) and does not exceed the marginal product (&minus;0.050).</span> The head-level decomposition (Table A5) and the factorization/aggregation ablation (Table A1) localize the same gain: the latent density anchors the base score, and factorizing it over correlation communities lifts the difficult subset further, most on WADI <span class="rev2-highlight">and on HAI</span> (Appendix&nbsp;A).</p>
 
 
 
@@ -977,12 +976,12 @@ over the plant&rsquo;s subsystems, is what delivers the advantage <span class="r
 reconstruction. On multimodal normal data <span class="rev2-highlight">reconstruction and probability</span> diverge: a flexible
 decoder trained to reproduce several regimes interpolates between them, so an improbable between-regime or
 in-regime-tail combination sits inside the decoder's reachable range and reconstructs with low error. <span class="rev2-highlight">Scoring by density rather than reconstruction is the right default: the latent-density head alone, with no residual
-term and no factorization, beats USAD and TranAD on the <span class="rev2-highlight">HAI and WADI</span> difficult subsets (Table&nbsp;A6 vs Table&nbsp;2)<span class="rev2-highlight">, where the faults are reconstructable but improbable; on SWaT the raw difficult subset is drift-dominated (&sect;7): every snapshot score, whatever its head, is compressed to the drift floor, and the drift-aware typing of &sect;7 resolves it (0.723)</span>. On HAI the reconstruction detectors place the difficult anomalies (labeled attacks)
+term and no factorization, beats USAD and TranAD on the <span class="rev2-highlight">HAI and WADI</span> difficult subsets (Table&nbsp;A5 vs Table&nbsp;2)<span class="rev2-highlight">, where the faults are reconstructable but improbable; on SWaT the raw difficult subset is drift-dominated (&sect;7): every snapshot score, whatever its head, is compressed to the drift floor, and the drift-aware typing of &sect;7 resolves it (0.723)</span>. On HAI the reconstruction detectors place the difficult anomalies (labeled attacks)
 at the median of normal operation, whereas the density head places them at the 93rd percentile; 27 percent of
 HAI&rsquo;s difficult anomalies reconstruct at least as well as a typical normal window yet fall above the 90th normal
 percentile in density. On WADI that share is zero, and 70 percent of the difficult anomalies are weak under both scores,
 which is why the community factorization rather than the head carries the WADI gain. <span class="rev2-highlight">Figure&nbsp;A1 illustrates this reachability-versus-probability crossover on synthetic data.</span> A reconstruction residual
-<em>whitened on train-normal</em> is nonetheless a stronger term than the reconstruction the deep detectors score with, which is why LatAD keeps it as a gated head (Table&nbsp;A6) where it
+<em>whitened on train-normal</em> is nonetheless a stronger term than the reconstruction the deep detectors score with, which is why LatAD keeps it as a gated head (Table&nbsp;A5) where it
 generalizes to held-out normal instead of discarding reconstruction.</span> <span class="rev2-highlight">The base score therefore</span> omits reconstruction
 and scores in the jointly learned latent, with a high-resolution density head for non-Gaussian fringes (A3) and a
 rare-regime-safe nearest-component likelihood (A5).</p>
@@ -991,7 +990,7 @@ rare-regime-safe nearest-component likelihood (A5).</p>
 deviation (shift) confined to a small correlated subsystem is improbable within that subsystem's own density yet unremarkable in
 the whole-plant density, so factorization lifts the WADI difficult-subset score (Table&nbsp;A1: 0.634&nbsp;&rarr;&nbsp;0.795).</span></p>
 
-<p>Table A6 decomposes the score into its heads across five seeds and all three datasets. <span class="rev2-highlight">On HAI reconstruction is
+<p>Table A5 decomposes the score into its heads across five seeds and all three datasets. <span class="rev2-highlight">On HAI reconstruction is
 informative but the weakest base head (0.695) while the latent density dominates (0.802); on WADI the standalone
 reconstruction residual (0.740) fails the held-out-normal generalization gate (&sect;4.3&nbsp;iii) and is switched off, so
 the reported single-latent model relies on the latent density (0.656) and the density-plus-nearest base (0.634). Where
@@ -1001,23 +1000,9 @@ score, and reconstruction is added back only where it generalizes to held-out no
 
 <p class="rev2-highlight"><strong>Assumption A8 (between-regime overlap).</strong> A8 posits regimes lying so close in observation space that a window can be improbable while every channel stays in range.<span class="rev2-highlight"> It has two failure modes: over-coverage (a density head so coarse that its normal mass spreads across the gap between regimes and covers an isolated anomaly) and masking (an anomaly of one regime absorbed by an adjacent regime's density).</span> Its precondition, adjacent-but-distinct regimes, holds on every multi-loop plant we screened (WADI, HAI, SWaT, Cranfield, MetroPT [<a href="#r-metropt">53</a>], and the SMD server machines [<a href="#r-omni">31</a>]: 94 to 100&nbsp;percent of train-normal mass sits in a discovered regime with a valley-separated neighbor within twice its own normal envelope). The heavy overlap itself is absent: under four observation-space measures <span class="rev2-highlight">(the overlap coefficient is tabulated in Table&nbsp;C1, alongside its close-distinct-mass, masking-rate, and isolated-anomaly over-coverage columns)</span> no benchmark approaches the 30-percent-overlap positive control, and the labeled anomaly-masking rate never exceeds its lag-matched regime-switch base rate (Appendix&nbsp;C, Table&nbsp;C1). <span class="rev2-highlight">The over-coverage mode is already defended by the reported model:</span> a wide two-component head misses about 80&nbsp;percent of WADI's isolated anomalies, the 80-component density head of &sect;4.3&nbsp;(i) about 13&nbsp;percent. <span class="rev2-highlight">The masking mode</span> is identifiable only through the path by which a window arrived, so it belongs with A10 and is left to operational-scale data (Appendix&nbsp;C). The reported model carries no dedicated overlap head.</p>
 
-<p><strong>The residual frontier on WADI.</strong> <span class="rev2-highlight">A minority of WADI difficult windows carry near-absent
-instantaneous fault content and sit inside the normal tail, where normal CPS operation is itself noisy. No evaluated
-snapshot detector, ours or the deep baselines, separates these at a low false-alarm budget; they are an intrinsic
-limit of instantaneous-window detection rather than of any one detector. Reaching them would require information
-beyond the instantaneous window, such as a physics-informed process residual or explicit temporal features, which we
-leave to future work.</span></p>
+<p class="rev2-highlight"><strong>Density generalizes the linear residual.</strong> The WADI tie has a precise reading. Under a single Gaussian the negative log-density is the whitened (Mahalanobis) residual energy of Equation&nbsp;(6), and a leave-one-channel-out linear regressor (LinRes) reads off exactly that inverse covariance; LinRes is therefore the single-full-covariance-Gaussian special case of a density detector, not a different kind of method. LatAD generalizes it in two directions, a mixture over regimes and a nonlinear latent encoding, so it reduces to the linear residual when normal is unimodal with linear channel relations and separates from it only to the degree normal departs from a single linear Gaussian. The cross-channel latent density accordingly adds +0.200 on the multimodal HAI record but +0.017 on the near-single-mode WADI record (silhouette&nbsp;0.06; Table&nbsp;A4): LatAD wins on HAI and correctly degenerates to the linear baseline on WADI. The auto-gated residual head (&sect;4.3&nbsp;iii) is this Gaussian-density term made explicit, and the mixture-density and community factorization are its multimodal generalization.</p>
 
-<p class="rev2-highlight"><strong>Density generalizes the linear residual.</strong> The WADI tie has a precise reading. Under a single Gaussian the negative log-density is the whitened (Mahalanobis) residual energy of Equation&nbsp;(6), and a leave-one-channel-out linear regressor (LinRes) reads off exactly that inverse covariance; LinRes is therefore the single-full-covariance-Gaussian special case of a density detector, not a different kind of method. LatAD generalizes it in two directions, a mixture over regimes and a nonlinear latent encoding, so it reduces to the linear residual when normal is unimodal with linear channel relations and separates from it only to the degree normal departs from a single linear Gaussian. The cross-channel latent density accordingly adds +0.200 on the multimodal HAI record but +0.017 on the near-single-mode WADI record (silhouette&nbsp;0.06; Table&nbsp;A5): LatAD wins on HAI and correctly degenerates to the linear baseline on WADI. The auto-gated residual head (&sect;4.3&nbsp;iii) is this Gaussian-density term made explicit, and the mixture-density and community factorization are its multimodal generalization.</p>
-
-<p class="rev2-highlight"><strong>Benchmark coverage as a diagnosable property.</strong> The per-community model also reports where a
-benchmark leaves training coverage thin. On HAI one operating regime is almost absent from the training record
-(0.4% of train windows against 6.3% of test) and appears as a contiguous block of test-normal windows after
-training ends, a recording-duration limit rather than a fault. LatAD's own regime model flags this block as an unseen
-regime, and its false alarms at a 5% budget concentrate there. Excluding that regime, a label-free operation that
-removes 18.4% of test-normal windows and no anomaly, lifts a secondary coverage-diagnostic view of the reported model
-(all-subset AUROC 0.948 to 0.965, difficult-subset 0.845 to 0.890, and the true-positive rate at a 5%
-false-alarm budget 0.789 to 0.916), with LatAD leading throughout. The main tables report the full test set; the excluded-regime view is secondary and shows that the regime-community model diagnoses its own coverage gaps.</p>
+<p class="rev2-highlight"><strong>Benchmark coverage as a diagnosable property.</strong> The per-community model also flags where a benchmark leaves training coverage thin: on HAI one operating regime is almost absent from the training record (0.4% of train windows against 6.3% of test) and appears as a contiguous block of test-normal windows after training ends, which LatAD's own regime model flags as an unseen regime and where its 5%-budget false alarms concentrate, a recording-duration limit rather than a fault.</p>
 
 <p><strong>Trajectory assumptions A9&ndash;A10<span class="rev2-highlight"> and benchmark scale</span></strong><span class="rev2-highlight">.</span> The reported model is window-only and leverages the
 instantaneous-structure assumptions A1&ndash;A7 (A8 is specified but not realized). <span class="rev2-highlight">A9 (multiscale, many clocks) is
@@ -1043,8 +1028,6 @@ states (TABOR [<a href="#r-tabor">56</a>]) are complementary realizations of A7 
 model does not use.</span>
 <span class="rev2-highlight">All community-construction and combiner settings are shared across datasets and not tuned per dataset (&sect;5.2). Validating the regime-community realization on additional CPS systems is the next test; because its build and calibration use train-normal data only, that test requires no labels.</span></p>
 
-<p class="rev-highlight"><strong>Implications for IIoT deployment.</strong> <span class="rev2-highlight">Figure&nbsp;1 is the deployment: the same windows, scored online, with no labels required at commissioning. What this section adds is the training and inference cost (Appendix&nbsp;B, Table&nbsp;B1) and the subsystem triage shortlist (Table&nbsp;5).</span></p>
-
 <p class="rev2-highlight"><strong>Operator-facing output.</strong> The three practitioner-facing properties compose into one deployment story, using only train-normal statistics and online per-window scoring. A site is commissioned from its own normal telemetry with no labeled attacks (Figure&nbsp;1); each alarm is localized to a physical subsystem, a three-community shortlist that contains the attacked subsystem in 68 percent of HAI attacks against 56 percent for a random shortlist of the same size (&sect;8, Table&nbsp;5); and on a drifting record the drift-aware typing of &sect;7 holds the normal-window false-alarm rate to 6.5 percent, down from 79 percent untyped, while recovering detection. All three run within the edge training and inference budgets of Appendix&nbsp;B.</p>
 
 <p class="rev2-highlight"><strong>Subsystem localization.</strong> A three-community shortlist ranked by train-normal p-value contains the
@@ -1059,12 +1042,7 @@ versus 0.13 random, top-3 0.56 versus 0.31), directionally consistent with HAI (
 Under its measured drift (&sect;7) the train-normal community ranking is uninformative on SWaT, so localization is reported for
 HAI and WADI. The attack targets are read from the published
 per-testbed attack tables [<a href="#r-wadi">50</a>,&nbsp;<a href="#r-hai">51</a>,&nbsp;<a href="#r-swat">52</a>].
-Two limits apply. (i)&nbsp;A community whose surprise drifts above its calibration range is named disproportionately
-often even on normal windows, so the pointer is a triage shortlist rather than a diagnosis. (ii)&nbsp;Larger
-communities are easier to hit, so the named-community size is reported and the top-3 headline is stated against the
-coverage-aware baseline; against a size-weighted random baseline (a community drawn with probability proportional to
-its size), over the coverable episodes, the top-1 margin is 0.42 versus 0.37 on HAI and 0.43 versus 0.19 on WADI, which is why the three-community
-shortlist is the headline figure.</p>
+Two limits apply: a community whose surprise drifts above its calibration range is named disproportionately often, so the pointer is a triage shortlist rather than a diagnosis; and because larger communities are easier to hit, the named-community size is reported and the top-3 headline is stated against the coverage-aware baseline.</p>
 
 <div class="tblwrap">
 <table>
@@ -1177,22 +1155,11 @@ the headline numbers of the main results table (Table&nbsp;2).</caption>
 </tbody></table>
 </div>
 
-<p class="rev2-highlight">Tables&nbsp;A3&ndash;A6 collect supporting ablations and the robustness subset referenced from the main text: the two natural score terms (Table&nbsp;A3), the double-hard robustness subset (Table&nbsp;A4), the source of the cross-channel gain (Table&nbsp;A5), and the per-head decomposition (Table&nbsp;A6).</p>
+<p class="rev2-highlight">Tables&nbsp;A3&ndash;A5 collect supporting ablations and the robustness subset referenced from the main text: the double-hard robustness subset (Table&nbsp;A3), the source of the cross-channel gain (Table&nbsp;A4), and the per-head decomposition (Table&nbsp;A5).</p>
 
 <div class="tblwrap">
 <table>
-<caption><strong>Table A3.</strong> Difficult-subset AUROC of the two natural score terms (single trained model per dataset; shown for WADI and HAI). <span class="rev2-highlight">These are single-seed values for one trained model per dataset and differ slightly from the corresponding five-seed means in the full three-dataset head ablation of Table&nbsp;A6.</span></caption>
-<thead><tr><th class="l">Score term</th><th>WADI</th><th>HAI</th></tr></thead>
-<tbody>
-<tr><td class="l">(a) reconstruction residual <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mi>r</mi><mi>&#8868;</mi></msup><msup><mi>&#931;</mi><mrow><mo>&#8722;</mo><mn>1</mn></mrow></msup><mi>r</mi></mrow></math></td><td class="rev2-highlight">0.742</td><td>0.689</td></tr>
-<tr><td class="l">(b) latent NLL (nearest diagonal component)</td><td class="rev2-highlight">0.621</td><td>0.760</td></tr>
-<tr><td class="l">(a)+(b) joint NLL (naive VaDE score)</td><td class="rev2-highlight">0.733</td><td>0.689</td></tr>
-</tbody></table>
-</div>
-
-<div class="tblwrap">
-<table>
-<caption><strong>Table A4.</strong> <span class="rev2-highlight">Double-hard subset AUROC (five-seed mean&plusmn;standard deviation for Isolation Forest,
+<caption><strong>Table A3.</strong> <span class="rev2-highlight">Double-hard subset AUROC (five-seed mean&plusmn;standard deviation for Isolation Forest,
 the AutoEncoder, USAD, TranAD, and the two LatAD configurations; GDN
 and the boosted linear predictor are single-seed; the standard deviation is omitted where it rounds to 0.000). The
 double-hard subset keeps only difficult-subset windows that a linear PCA subspace does not separate (neither the
@@ -1218,7 +1185,7 @@ recovers the LatAD (regime-community) SWaT double-hard AUROC to 0.671.</span></c
 
 <div class="tblwrap rev2-highlight">
 <table>
-<caption class="rev2-highlight"><strong>Table A5.</strong> Source of gain: difficult-subset AUROC (five-seed mean&plusmn;standard deviation) of the cross-channel latent density against a channel-independent product of per-channel densities, on the WADI, HAI, and SWaT difficult subsets (30&nbsp;/&nbsp;167&nbsp;/&nbsp;91 anomaly windows). <span class="rev2-highlight">Bold marks HAI, where the cross-channel density adds the largest difficult-subset margin; on WADI it adds essentially nothing (single-channel or linear faults), and on SWaT the raw cross-channel density is drift-dominated.</span></caption>
+<caption class="rev2-highlight"><strong>Table A4.</strong> Source of gain: difficult-subset AUROC (five-seed mean&plusmn;standard deviation) of the cross-channel latent density against a channel-independent product of per-channel densities, on the WADI, HAI, and SWaT difficult subsets (30&nbsp;/&nbsp;167&nbsp;/&nbsp;91 anomaly windows). <span class="rev2-highlight">Bold marks HAI, where the cross-channel density adds the largest difficult-subset margin; on WADI it adds essentially nothing (single-channel or linear faults), and on SWaT the raw cross-channel density is drift-dominated.</span></caption>
 <thead><tr><th class="l">Density model</th><th>WADI</th><th>HAI</th><th>SWaT</th></tr></thead>
 <tbody>
 <tr class="rev2-highlight"><td class="l">cross-channel latent density</td><td>0.656&plusmn;0.016</td><td>0.789&plusmn;0.018</td><td>0.472&plusmn;0.020</td></tr>
@@ -1229,7 +1196,7 @@ recovers the LatAD (regime-community) SWaT double-hard AUROC to 0.671.</span></c
 
 <div class="tblwrap">
 <table>
-<caption><strong>Table A6.</strong> Difficult-subset AUROC by score head, five-seed mean&plusmn;standard deviation
+<caption><strong>Table A5.</strong> Difficult-subset AUROC by score head, five-seed mean&plusmn;standard deviation
 on all three datasets (a five-seed run). <em>recon</em> is the whitened reconstruction residual (the term the base score omits); <span class="rev2-highlight"><em>latent density</em> is the <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><mo>=</mo><mn>80</mn></mrow></math>-component density head of Equation&nbsp;(4) and <em>nearest-component NLL</em> is the head of Equation&nbsp;(5);</span> <em>base</em>
 is density+nearest; the final row adds the auto-gated residual head, which is by definition the single-latent
 <em>LatAD (global density)</em> configuration and agrees with its Table&nbsp;A1 row within seed variation; its per-community
@@ -2893,7 +2860,7 @@ by a wide two-component head versus the 80-component head. Synthetic positive co
 </div>
 
 <h3 class="rev2-highlight">D.2&nbsp;&nbsp;Regime communities, aggregation, and the reported detector</h3>
-<p class="rev2-highlight">Communities are built from the train-normal window-mean correlation graph: near-constant channels (train standard deviation &le;&nbsp;10<sup>&minus;6</sup>) are dropped, a Pearson correlation matrix is formed on the standardized window means, the distance is 1&minus;|&rho;|, and average-linkage hierarchical clustering is cut into every nested dendrogram subtree of size 3 to 25 channels (giving <em>S</em>&nbsp;=&nbsp;44 communities on WADI, 28 on HAI, 24 on SWaT). Each community's cohesion is its mean pairwise |&rho;| and its fusion weight is cohesion&nbsp;&times;&nbsp;&radic;size. Each community trains a smaller VaDE (<em>K</em>&nbsp;=&nbsp;min(20,&nbsp;max(6,|G|)), latent min(8,&nbsp;max(3,&lfloor;|G|/2&rfloor;)), 15 epochs, density head min(50,&nbsp;max(12,&nbsp;&lfloor;n<sub>fit</sub>/12&rfloor;))). For every model the first 80% of train-normal windows (chronological) is the fit slice and the last 20% is a held-out calibration slice used as the upper-tail reference; no test data enters fitting or calibration. Per-community upper-tail p-values are combined by cohesion-weighted Higher Criticism, and the reported detector, <strong>LatAD (regime-community)</strong>, is the standardized sum of that cohesion-weighted Higher-Criticism score and the whole-plant (global VaDE) upper-tail score, each standardized against its train-normal reference. The double-hard subset (Table&nbsp;A4) is constructed by a linear principal-component filter (Hotelling <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msup><mi>T</mi><mn>2</mn></msup></math> and squared prediction error at their 99th train-normal percentiles, 95% retained variance), and the drift-aware typing (&sect;7) decomposes each community's surprise against a causal 24&nbsp;h rolling median. Baseline settings are in Table&nbsp;D2.</p>
+<p class="rev2-highlight">Communities are built from the train-normal window-mean correlation graph: near-constant channels (train standard deviation &le;&nbsp;10<sup>&minus;6</sup>) are dropped, a Pearson correlation matrix is formed on the standardized window means, the distance is 1&minus;|&rho;|, and average-linkage hierarchical clustering is cut into every nested dendrogram subtree of size 3 to 25 channels (giving <em>S</em>&nbsp;=&nbsp;44 communities on WADI, 28 on HAI, 24 on SWaT). Each community's cohesion is its mean pairwise |&rho;| and its fusion weight is cohesion&nbsp;&times;&nbsp;&radic;size. Each community trains a smaller VaDE (<em>K</em>&nbsp;=&nbsp;min(20,&nbsp;max(6,|G|)), latent min(8,&nbsp;max(3,&lfloor;|G|/2&rfloor;)), 15 epochs, density head min(50,&nbsp;max(12,&nbsp;&lfloor;n<sub>fit</sub>/12&rfloor;))). For every model the first 80% of train-normal windows (chronological) is the fit slice and the last 20% is a held-out calibration slice used as the upper-tail reference; no test data enters fitting or calibration. Per-community upper-tail p-values are combined by cohesion-weighted Higher Criticism, and the reported detector, <strong>LatAD (regime-community)</strong>, is the standardized sum of that cohesion-weighted Higher-Criticism score and the whole-plant (global VaDE) upper-tail score, each standardized against its train-normal reference. The double-hard subset (Table&nbsp;A3) is constructed by a linear principal-component filter (Hotelling <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msup><mi>T</mi><mn>2</mn></msup></math> and squared prediction error at their 99th train-normal percentiles, 95% retained variance), and the drift-aware typing (&sect;7) decomposes each community's surprise against a causal 24&nbsp;h rolling median. Baseline settings are in Table&nbsp;D2.</p>
 <div class="tblwrap rev2-highlight">
 <table>
 <caption><strong>Table D2.</strong> Baseline detector settings. Isolation Forest, the AutoEncoder, USAD, and TranAD use five seeds; the linear predictor, boosted linear predictor, and GDN are single-seed.</caption>
