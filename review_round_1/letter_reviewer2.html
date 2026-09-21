@@ -39,11 +39,11 @@ New and changed text is highlighted in green in the revised manuscript; deleted 
 <blockquote>When an abbreviation first appears in the abstract or main text, its full form should be provided,
 e.g., LatAD, IIoT, CPS, SCADA, etc.</blockquote>
 <p class="resp"><b class="lead">Response: change made.</b> LatAD is given its full form at first use in the
-abstract ("We present LatAD (Latent-density Anomaly Detector)"), and CPS, IIoT, and SCADA are expanded in
+abstract ("Our detector, LatAD (Latent-density Anomaly Detector)"), and CPS, IIoT, and SCADA are expanded in
 Section 1 ("A cyber-physical system (CPS)"; "Industrial Internet of Things (IIoT)"; "Supervisory Control and
 Data Acquisition (SCADA) historians"). The remaining abbreviations (VaDE, GMM, NLL, HC, BIC, AUROC, F1, ICS,
-SOTA, KDE) are expanded at first use in the main text; the abstract keeps the compact forms and the main text
-re-expands them.</p>
+SOTA) are expanded at first use in the main text (for example Gaussian mixture model (GMM), Kullback&ndash;Leibler
+(KL), and multilayer perceptron (MLP)); the abstract keeps the compact forms and the main text re-expands them.</p>
 
 <h2>Comment 2. The abstract spends most of its length on the problems of existing methods; highlight LatAD's technical contribution.</h2>
 <blockquote>The abstract spends most of its length introducing the problems of existing anomaly detection
@@ -51,7 +51,7 @@ methods, while providing very little introduction to the principle of the paper'
 Please highlight the technical contributions of this paper in the abstract.</blockquote>
 <p class="resp"><b class="lead">Response: change made.</b> We agree. The abstract states LatAD's principle
 directly: "Our detector, LatAD (Latent-density Anomaly Detector), learns a latent Gaussian-mixture clustering
-of regimes (VaDE), scores anomalies by density, and factorizes that density over correlation-community
+of regimes (VaDE, Variational Deep Embedding), scores anomalies by density, and factorizes that density over correlation-community
 subsystems combined by a cohesion-weighted Higher Criticism statistic." It then reports the headline result:
 LatAD attains the best All-subset AUROC of any learned detector on HAI (0.948) and a significant lead on the
 difficult subset (HAI 0.845; the deep detectors USAD and TranAD fall to 0.44 to 0.50 on these
@@ -102,7 +102,7 @@ is suggested to be deleted.</blockquote>
 Section 1. The three LatAD self-descriptions (the last sentence of the Related Work preamble, the last
 sentence of Section 2.1, and the last paragraph of Section 2.2) are removed. Section 2.3 is rewritten as a
 neutral survey of latent and clustering models and now cites Deep SVDD, OmniAnomaly, and THOC. The former
-Section 2.5 "Benchmark datasets" is removed; in its place Section 2.5 is now "Benchmark scale", a short
+Section 2.5 "Benchmark datasets" is removed; in its place Section 2.5 is now "Benchmark versus operational scale", a short
 scholarly paragraph on the size of public CPS benchmarks versus operational scale, which supports the scoping
 of assumptions A8 to A10 (a pointer to Section 5.1 covers the dataset details).</p>
 
