@@ -59,7 +59,7 @@
  .doclink{background:#f6f8fa;border:1px solid #d8d8d8;border-radius:5px;padding:5px 11px;font-family:"Helvetica Neue",Arial,sans-serif;font-size:.78rem;color:#1f4e79;text-decoration:none;box-shadow:0 1px 2px rgba(0,0,0,.06);white-space:nowrap}
  .doclink:hover{background:#eef3f8;text-decoration:none}
  @media print{.doclink{display:none}}
- /* revision3: all additions GREEN, all deletions RED strikethrough (tracked-changes convention) */
+ /* revision3: all additions highlighted GREEN; deleted passages are removed, not struck */
  .rev-highlight{background:#86e29a;border-radius:2px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
  .rev2-highlight{background:#86e29a;border-radius:2px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
  .rev-del{text-decoration:line-through;text-decoration-color:#c0392b;color:#a5443a;background:#fdecea;border-radius:2px}
@@ -206,7 +206,7 @@ Kim et al. [<span class="rev-highlight"><a href="#r-kim">7</a></span>] demonstra
 (marking an entire ground-truth anomaly segment as detected if any single point in it is flagged) inflates
 F1 so drastically that a <em>random</em> anomaly score achieves higher point-adjusted F1 than every state-of-the-art
 model on SWaT and WADI. Garg et al. [<span class="rev-highlight"><a href="#r-garg">8</a></span>] independently reproduce this inflation and show
-that simple baselines (PCA, channel-wise autoencoders) beat elaborate deep models once metrics are made rigorous,
+that simple baselines (principal-component analysis, PCA, and channel-wise autoencoders) beat elaborate deep models once metrics are made rigorous,
 and that deep methods often fail to detect even simple anomalies. Doshi et al. [<span class="rev-highlight"><a href="#r-doshi">18</a></span>]
 diagnose the point-adjustment reward structure and propose a rectified evaluation, and proximity- and event-aware
 metrics such as PATE [<span class="rev-highlight"><a href="#r-pate">19</a></span>] move beyond point adjustment altogether. The critique now spans metrics and benchmarks alike. Wu and Keogh
@@ -219,8 +219,6 @@ large-scale benchmarks and unified benchmark suites confirm that detector rankin
 which is why we read every method per dataset and per difficulty subset rather than by a single headline number.</p>
 
 <p>A parallel critique targets the dominant scoring mechanism itself. Reconstruction-based detectors assume that a model trained to reconstruct normal data reconstructs anomalies worse; Bouman and Heskes [<span class="rev-highlight"><a href="#r-bouman">23</a></span>] show this assumption is unreliable, because anomalies lying far from normal data can be reconstructed perfectly in practice, and Gong et al. [<span class="rev-highlight"><a href="#r-memae">24</a></span>] earlier showed that a deep autoencoder generalizes well enough to rebuild anomalies and miss them. This motivates scoring in a clustered latent rather than through a reconstruction residual. A position paper by Sarfraz et al. [<span class="rev-highlight"><a href="#r-sarfraz">25</a></span>] draws the two threads together, characterizing the field as plagued by flawed evaluation metrics, inconsistent benchmarking, and unjustified design choices, and showing that state-of-the-art deep detectors effectively learn linear mappings that simple baselines reproduce; Wagner et al. [<span class="rev-highlight"><a href="#r-timesead">26</a></span>] re-audit the widely used multivariate benchmarks, discard the ones with erroneous labels, and note the absence of any standard evaluation metric.</p>
-
-<p></p>
 
 <h3>2.3&nbsp;&nbsp;Latent and clustering models for anomaly detection</h3>
 <p><span class="rev2-highlight">Latent and clustering models detect anomalies by learning a representation of normal and scoring departures in that space. Variational Deep Embedding (VaDE) [<span class="rev-highlight"><a href="#r-vade">27</a></span>] pairs a variational autoencoder with a Gaussian-mixture latent prior, learning representation and clusters jointly, and DAGMM [<span class="rev-highlight"><a href="#r-dagmm">28</a></span>] couples an autoencoder with a Gaussian-mixture energy.</span> <span class="rev2-highlight">One-class methods place normal inside a learned boundary: Deep SVDD [<a href="#r-deepsvdd">29</a>] maps normal points near a fixed latent center and scores by distance to it, and THOC [<a href="#r-thoc">30</a>] extends this to multiscale temporal one-class hyperspheres; OmniAnomaly [<a href="#r-omni">31</a>] scores multivariate telemetry by reconstruction probability under a stochastic-recurrent latent. These methods all score against a single global model of normal; none estimates density per physical subsystem under regime imbalance, the gap this paper addresses.</span> <span class="rev2-highlight">Closest to our aim, Birihanu and Lend&aacute;k [<a href="#r-birihanu">32</a>] flag industrial-control-system (ICS) anomalies from a latent correlation matrix scored by a multivariate Gaussian, whereas we factorize a learned latent density over correlation communities and combine them by Higher Criticism.</span> <span class="rev2-highlight">Standard tools used later are Ledoit&ndash;Wolf shrinkage [<span class="rev-highlight"><a href="#r-lw">33</a></span>] for whitened residuals, and Isolation Forest [<span class="rev-highlight"><a href="#r-if">34</a></span>] and deep autoencoders [<span class="rev-highlight"><a href="#r-aead">35</a></span>] as baselines.</span></p>
@@ -239,8 +237,7 @@ work.</p>
 <p>Beyond public benchmarks, sensor-driven condition monitoring and fault prediction in operational CPS motivate
 modeling the multivariate sensor stream directly: vibration-based machine diagnostics [<span class="rev-highlight"><a href="#r-gearbox">42</a></span>,&nbsp;<span class="rev-highlight"><a href="#r-vibdecomp">43</a></span>],
 structural-health monitoring of rotorcraft components [<span class="rev-highlight"><a href="#r-bolt">44</a></span>], and fault prediction in
-rotorcraft flight controls [<span class="rev-highlight"><a href="#r-rotorcraft">45</a></span>]. LatAD generalizes this applied line to unsupervised,
-multimodal-latent anomaly detection.</p>
+rotorcraft flight controls [<span class="rev-highlight"><a href="#r-rotorcraft">45</a></span>].</p>
 
 <h3><span class="rev2-highlight">2.5&nbsp;&nbsp;Benchmark versus operational scale</span></h3>
 <p> <span class="rev2-highlight">Per-dataset details are given in &sect;5.1. The water-treatment and ICS-security benchmarks used here (SWaT, WADI, HAI) and the related BATADAL [<a href="#r-batadal">46</a>] share a scale profile: roughly 40 to 120 channels, days to weeks of data, and a single nominal operating mode. This is far below operational scale. BATADAL extends to about a year but keeps only 43 hourly variables, and N-CMAPSS [<a href="#r-ncmapss">47</a>] reaches a 40-unit fleet with full run-to-failure trajectories but exposes only 14 sensors; operational sources such as the Building Data Genome Project 2 [<a href="#r-bdg2">48</a>] (3,053 meters across 1,636 buildings over two years) and plant process historians carrying thousands to tens of thousands of tags span orders of magnitude more channels, far longer horizons, and many operating modes. A parallel line of work argues that benchmark realism, not model novelty, now limits measured progress [<a href="#r-wukeogh">9</a>,&nbsp;<a href="#r-sarfraz">25</a>,&nbsp;<a href="#r-tsbuad">22</a>]. Operational scale is therefore the setting in which the trajectory assumptions A9 and A10 and the masking form of A8 become testable.</span></p>
@@ -403,7 +400,7 @@ full so that every choice is auditable, and &sect;8 surveys the design space the
 
 <h3>4.1&nbsp;&nbsp;Representation: Variational Deep Embedding (VaDE) <span class="rev2-highlight">(the representation stage; Figure&nbsp;2, top)</span></h3>
 
-<p>VaDE [<span class="rev-highlight"><a href="#r-vade">27</a></span>] is a variational autoencoder whose latent prior is a Gaussian mixture, so the
+<p>VaDE [<span class="rev-highlight"><a href="#r-vade">27</a></span>] is a variational autoencoder (VAE) whose latent prior is a Gaussian mixture, so the
 representation and the operating-regime clusters are learned <em>together</em> (A1, A6) rather than one after the
 other. <span class="rev2-highlight">The encoder and decoder widths, mixture size, training schedule, and scoring-head settings are listed in Appendix&nbsp;D (Table&nbsp;D1).</span> An encoder maps a window feature vector <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>x</mi></math> to a latent Gaussian <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>q</mi><mo stretchy="false">(</mo><mi>z</mi><mo>&#8739;</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>N</mi><mo stretchy="false">(</mo><mi>&#956;</mi><mo>,</mo><mtext>diag</mtext><mspace width="0.1em"/><msup><mi>&#963;</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow></math>; a decoder reconstructs <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mover><mi>x</mi><mo>^</mo></mover></math>; and the prior is
 <span class="eq"><span class="eqno rev2-highlight">(2)</span><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
@@ -446,14 +443,14 @@ plain-VAE pretraining, GMM initialization on the encoded means, then joint optim
 
 <p>The natural VaDE anomaly score is the joint negative log-likelihood <span class="rev2-highlight">(NLL)</span>: a whitened reconstruction residual plus
 a latent term. On the <em>difficult</em> faults (correlation breaks and between-regime pockets) this
-<span class="rev2-highlight">summed score can be counterproductive</span>. <span class="rev2-highlight">On the HAI difficult subset the naive joint negative log-likelihood (0.689) falls below the latent term alone (0.760), so the whitened reconstruction residual, informative in isolation, drags the sum down; the reported model demotes reconstruction to a gated head (&sect;4.3&nbsp;iii, Table&nbsp;A5).</span></p>
+<span class="rev2-highlight">summed score can be counterproductive</span>. <span class="rev2-highlight">On the HAI difficult subset the naive joint negative log-likelihood falls below the latent term alone, so the whitened reconstruction residual, informative in isolation, drags the sum down; the reported model demotes reconstruction to a gated head (&sect;4.3&nbsp;iii, Table&nbsp;A5).</span></p>
 
 
 
 <p><span class="rev2-highlight">The mechanism is that a flexible decoder can <em>reconstruct a fault faithfully</em>: a correlation-break
 window has in-range marginals, so the decoder rebuilds it and the residual carries little signal.</span> <span class="rev2-highlight">This is what
-happens on HAI, where adding the whitened residual pulls the summed joint score (0.689) below the latent term
-alone (0.760), so demoting reconstruction helps.</span> The base scoring stack therefore works entirely in the jointly learned latent; reconstruction re-enters
+happens on HAI, where adding the whitened residual pulls the summed joint score below the latent term
+alone, so demoting reconstruction helps.</span> The base scoring stack therefore works entirely in the jointly learned latent; reconstruction re-enters
 only through the optional, auto-gated residual head, which fires only where it
 generalizes to held-out normal <span class="rev2-highlight">(&sect;4.3&nbsp;iii)</span>.</p>
 
@@ -526,7 +523,7 @@ SWaT but not on WADI, and the gate recovers this pattern from train-normal alone
 <p><span class="rev2-highlight">Equation&nbsp;(7) is the detector's complete window score, with <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>g</mi><mo>&#8712;</mo><mo>{</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>}</mo></mrow></math> the train-normal auto-gate on the residual head (&sect;4.3&nbsp;iii; <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>g</mi><mo>=</mo><mn>0</mn></mrow></math> on WADI).</span> The reported model configures its heads purely from train-normal statistics, with no test-set tuning<span class="rev2-highlight">.</span></p>
 
 
-<h3>4.4&nbsp;&nbsp;Regime-community density (the headline realization) <span class="rev2-highlight">(the subsystem-factorization stage; Figure&nbsp;2, community fan-out and HC combiner)</span></h3>
+<h3>4.4&nbsp;&nbsp;Regime-community density <span class="rev2-highlight">(the headline realization and subsystem-factorization stage; Figure&nbsp;2, community fan-out and HC combiner)</span></h3>
 
 <p>The stack of &sect;4.1&ndash;4.3 estimates one density over the whole channel set. Its headline realization
 estimates density <em>per subsystem</em> instead, and the reason is physical. A CPS is an assembly of coupled
@@ -665,7 +662,7 @@ that respects the serial dependence of the data. Normal windows are resampled by
 by an episode-level bootstrap that draws whole attack episodes with replacement and contributes their difficult windows,
 preserving within-attack dependence. From 2000 resamples we report the 95% confidence interval (CI) of the
 paired difference by the percentile method (the 2.5th and 97.5th quantiles) and a one-sided <em>p</em>-value as the
-fraction of resamples in which the difference is at most zero. <span class="rev2-highlight">These verdicts are robust to the choice of block length. Selecting it instead from the empirical serial dependence, the first lag at which the normal-window score autocorrelation falls below 1/<em>e</em>, gives 264 windows on HAI (whose community score stays correlated under the record's front-loaded drift), 3 on the stationary WADI record, and 4 on SWaT; at this autocorrelation-selected length, and under a seed-hierarchical resample that also resamples the five training seeds, every one of the seven headline comparisons keeps the same significant-or-tie verdict. Because the paired difference cancels shared normal-window noise, a longer block widens the interval only slightly rather than moving the estimate.</span></p>
+fraction of resamples in which the difference is at most zero. <span class="rev2-highlight">These verdicts are robust to the choice of block length. Selecting it instead from the empirical serial dependence, the first lag at which the normal-window score autocorrelation falls below 1/<em>e</em>, gives 264 windows on HAI (whose community score stays correlated under the record's front-loaded drift), 3 on the stationary WADI record, and 4 on SWaT; at this autocorrelation-selected length, and under a seed-hierarchical resample that also resamples the five training seeds, every headline comparison keeps the same significant-or-tie verdict. Because the paired difference cancels shared normal-window noise, a longer block widens the interval only slightly rather than moving the estimate.</span></p>
 
 <h3>5.5&nbsp;&nbsp;Baselines and deep detectors</h3>
 <p>Classical baselines are Isolation Forest [<span class="rev-highlight"><a href="#r-if">34</a></span>] and a deep autoencoder, both on the same
@@ -741,7 +738,7 @@ clearing every baseline and all three deep detectors. On WADI it clears every ev
 with the linear baseline marginally ahead there (0.834 vs 0.827); WADI's advantage for LatAD is on the difficult subset.
 On SWaT the All-subset scores are compressed and led by the trivial max|u| rule (0.853), a signature of the
 severe measured drift on that record (&sect;7): the raw community score reaches 0.788, above the deep detectors
-(0.761&ndash;0.763) and the single latent (0.752) but below the trivial rule, and the drift-aware typing of &sect;7 lifts it
+(0.761&ndash;0.763) but below the trivial rule, and the drift-aware typing of &sect;7 lifts it
 to 0.880. The gain over the single-latent base (LatAD global density) comes from factorizing the
 density over regime communities (&sect;4.4), and is largest on the difficult subset.</span></p>
 
@@ -1139,8 +1136,8 @@ of the reported advantage; its integration is left to future work. Feeding the u
 <caption class="rev2-highlight"><strong>Table A2.</strong> Feature-representation check, difficult-subset AUROC of the single-latent
 global-density detector under the six summary statistics per window versus a ten-feature temporal/spectral set, at a
 fixed configuration and difficulty mask (five-seed mean&plusmn;standard deviation). This is a self-contained within-study
-comparison isolating the representation axis; the absolute values use a reduced global-density configuration and are not
-the headline numbers of the main results table (Table&nbsp;2).</caption>
+comparison isolating the representation axis; the absolute values are the single-latent LatAD (global density) base ablation on the difficult subset, not
+the headline regime-community numbers of the main results table (Table&nbsp;2).</caption>
 <thead><tr><th class="l">Representation</th><th>WADI</th><th>HAI</th><th>SWaT</th></tr></thead>
 <tbody>
 <tr class="rev2-highlight"><td class="l">six summary statistics (used by LatAD)</td><td>0.634&plusmn;0.011</td><td>0.743&plusmn;0.011</td><td>0.247&plusmn;0.026</td></tr>
@@ -2885,7 +2882,7 @@ by a wide two-component head versus the 80-component head. Synthetic positive co
 <tr class="rev2-highlight"><td class="l"><em>mean</em></td><td><em>19</em></td><td><em>12</em></td><td><em>+0.007&nbsp;&plusmn;&nbsp;0.068</em></td></tr>
 </tbody></table></div>
 
-<p class="rev2-highlight">To confirm the effect is not an artefact of one split or one comparison, we sweep the rare-regime occupancy threshold (2, 5, and 10&nbsp;percent) and compare the nearest-component score against three imbalance-aware alternatives: a uniform-prior mixture (a flat 1/<em>K</em> prior), a tempered mixture (&pi;<sup>0.5</sup>), and a <em>k</em>-nearest-neighbour latent density. Reported as a rare-regime false-positive rate (rare-regime false positives divided by the rare-regime normal count) at a matched overall false-positive rate, the nearest-component score is at or below every alternative at every threshold on 3W (Table&nbsp;E2): at the 5&nbsp;percent threshold it reaches 0.148 against 0.210 for the &pi;-weighted mixture, with the prior-flattening alternatives in between (uniform-prior 0.204, tempered 0.205) and the non-parametric kNN worst (0.216). The gain therefore comes specifically from dropping the &minus;log&nbsp;&pi;<sub>k</sub> rare-regime penalty, not from generic imbalance-awareness. Difficult-subset detection at the matched operating point is unchanged (nearest 0.299 against mixture 0.318 true-positive rate, within seed variation). At the genuinely rare thresholds (&le;&nbsp;5&nbsp;percent) the nearest score never adds a rare-regime false positive (0 of 30 seed&times;operating-point cases per threshold); at a looser 10&nbsp;percent threshold, which dilutes &ldquo;rare&rdquo; to moderately-common regimes, it protects the rarest regimes, where the prior penalty is largest, and can redistribute a few flags onto moderate tails (1 of 30). On Cranfield, whose rare regimes are too sparse to flag, all scores tie. This is an empirically observed property, not a proven theorem.</p>
+<p class="rev2-highlight">To confirm the effect is not an artefact of one split or one comparison, we sweep the rare-regime occupancy threshold (2, 5, and 10&nbsp;percent) and compare the nearest-component score against three imbalance-aware alternatives: a uniform-prior mixture (a flat 1/<em>K</em> prior), a tempered mixture (&pi;<sup>0.5</sup>), and a <em>k</em>-nearest-neighbour latent density. Reported as a rare-regime false-positive rate (rare-regime false positives divided by the rare-regime normal count) at a matched overall false-positive rate, the nearest-component score is at or below every alternative at every threshold on 3W (Table&nbsp;E2): at the 5&nbsp;percent threshold it reaches 0.148 against 0.210 for the &pi;-weighted mixture, with the prior-flattening alternatives in between (uniform-prior 0.204, tempered 0.205) and the non-parametric kNN worst (0.216). The gain therefore comes specifically from dropping the &minus;log&nbsp;&pi;<sub>k</sub> rare-regime penalty, not from generic imbalance-awareness. Difficult-subset detection at the matched operating point is unchanged (nearest 0.299 against mixture 0.318 true-positive rate, within seed variation). At the genuinely rare thresholds (&le;&nbsp;5&nbsp;percent) the nearest score never adds a rare-regime false positive (0 of 30 seed&times;operating-point cases per threshold); at a looser 10&nbsp;percent threshold, which dilutes &ldquo;rare&rdquo; to moderately-common regimes, it protects the rarest regimes, where the prior penalty is largest, and can redistribute a few flags onto moderate tails (1 of 30).</p>
 <div class="tblwrap rev2-highlight"><table>
 <caption class="rev2-highlight"><strong>Table E2.</strong> Rare-regime false-positive rate on 3W across rare-occupancy thresholds (2, 5, and 10&nbsp;percent) and scoring rules, at a matched overall false-positive rate (5&nbsp;percent), five-seed mean&plusmn;standard deviation. Lower is better. Scores: &pi;-weighted mixture (naive), nearest-component (A5), uniform-prior mixture, tempered (&pi;<sup>0.5</sup>) mixture, and <em>k</em>-nearest-neighbour latent density. Nearest-component is at or below every alternative at every threshold; the prior-flattening alternatives fall between the mixture and nearest, isolating the &minus;log&nbsp;&pi; penalty as the mechanism.</caption>
 <thead><tr><th class="l">Rare-occupancy threshold</th><th>&pi;-mixture</th><th>nearest (A5)</th><th>uniform-prior</th><th>tempered</th><th>kNN</th></tr></thead>
