@@ -85,7 +85,7 @@ sit marginally below the density head alone (Table A6, WADI; Section 4.3 ii). It
 mixture NLL, and the rare-regime false-positive rate you ask about, would surface under the operating-regime
 imbalance sweep you propose. We now measure this directly: Appendix&nbsp;E runs the comparison on the 3W oil-well dataset, which has
 genuinely imbalanced regime occupancy, and at a matched false-alarm rate the nearest-component score removes
-the mixture's rare-regime false alarms (from 17, 17, 23 to 11, 9, 16 across five seeds; the invariant that it
+the mixture's rare-regime false alarms (from 17, 17, 23 to 11, 9, 16 across three seeds; the invariant that it
 can only remove such false alarms holds every seed) while difficult-subset detection is unchanged
 (true-positive rate at 5 percent false-alarm +0.007&nbsp;&plusmn;&nbsp;0.068). The property is defensive, as
 designed, and the single-mode benchmarks cannot exhibit it.</p>
@@ -126,7 +126,7 @@ probability that the difference is at most zero.</p>
   typing of Section 7, +0.200 (95 percent CI [0.018, 0.355], P = 0.014).</li>
   <li><b>WADI difficult subset (clarified):</b> LatAD (0.771) is significantly ahead of every learned detector
   by the same per-detector episode-block bootstrap, each cleared with P &lt; 0.05: vs AutoEncoder +0.143
-  (P = 0.001), USAD +0.192 (P &lt; 0.0005), TranAD +0.157 (P &lt; 0.00055), Isolation Forest +0.136 (P &lt; 0.0005), and
+  (P = 0.001), USAD +0.192 (P &lt; 0.0005), TranAD +0.157 (P = 0.0005), Isolation Forest +0.136 (P &lt; 0.0005), and
   GDN +0.111 (P &lt; 0.0005). It ties only the linear baseline LinRes (0.750): +0.020, 95 percent CI
   [-0.161, 0.205], P = 0.46 over 8 attack episodes, not statistically separable at that episode count.</li>
 </ul>

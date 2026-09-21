@@ -80,12 +80,15 @@ that framing is misleading."</p>
 <blockquote>The paper states that modeling and evaluation are "two obstacles that have obscured this failure
 mode." Has LatAD made contributions to both aspects? What specific problem is LatAD proposed to address, or
 what existing method does it improve? Please explain clearly.</blockquote>
-<p class="resp"><b class="lead">Response: change made.</b> A dedicated paragraph in Section 1 states this
-directly: "LatAD addresses the modeling obstacle: it replaces the reconstruction residual of USAD- and
-TranAD-style deep detectors with a probability score in a jointly learned latent regime space, factorized
-over the plant's physical subsystems. The evaluation obstacle it addresses by adopting the critique's
-protocol, raw metrics with difficulty stratification, which we use rather than claim as a contribution." So
-LatAD is a modeling contribution; on evaluation it adopts an existing protocol rather than claiming novelty.</p>
+<p class="resp"><b class="lead">Response: change made.</b> LatAD contributes to both obstacles, and Section 1
+now states this through its three contributions. On the modeling obstacle, contribution C1 replaces the
+reconstruction residual of USAD- and TranAD-style deep detectors with a probability score in a jointly learned
+latent regime space, factorized over the plant's physical subsystems. On the evaluation obstacle, contribution
+C2 is a detector-agnostic difficulty stratification, the channel-based rule and the linear principal-component
+subspace filter that isolate the difficult and double-hard subsets; the underlying raw-metric protocol it
+builds on, point-wise scoring with no point adjustment, is adopted from the critique rather than claimed as
+novel. Contribution C3 adds a drift-aware anomaly typing. LatAD is therefore a contribution on both the
+modeling and the evaluation axes.</p>
 
 <h2>Comment 6. Restructure Related Work: move the anomaly-detection definition to the introduction, delete the three LatAD self-descriptions, rewrite Section 2.3, and delete Section 2.5.</h2>
 <blockquote>The structure of the Related Work section also has major problems ... move the definition of anomaly
