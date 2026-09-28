@@ -1,0 +1,274 @@
+{
+ "SWaT": {
+  "dataset": "SWaT",
+  "n_channels": 51,
+  "n_active": 43,
+  "n_stages": 6,
+  "stages": [
+   "P1",
+   "P2",
+   "P3",
+   "P4",
+   "P5",
+   "P6"
+  ],
+  "nested_communities": {
+   "n_comm": 26,
+   "mean_size": 7.9,
+   "weighted_purity": 0.5777,
+   "frac_pure_comm": 0.1154
+  },
+  "community_purity_vs_chance": {
+   "weighted_purity": 0.5777,
+   "chance_mean": 0.3703,
+   "chance_p95": 0.4272,
+   "lift_over_chance": 0.2074
+  },
+  "flat_partition_vs_stages": {
+   "k": 6,
+   "ARI": 0.2675,
+   "NMI": 0.4654,
+   "homogeneity": 0.4359,
+   "completeness": 0.4992,
+   "v_measure": 0.4654
+  },
+  "example_communities": [
+   {
+    "size": 3,
+    "dominant": "P2",
+    "purity": 0.667,
+    "composition": {
+     "P1": 1,
+     "P2": 2
+    }
+   },
+   {
+    "size": 3,
+    "dominant": "P4",
+    "purity": 0.667,
+    "composition": {
+     "P4": 2,
+     "P5": 1
+    }
+   },
+   {
+    "size": 3,
+    "dominant": "P5",
+    "purity": 0.667,
+    "composition": {
+     "P4": 1,
+     "P5": 2
+    }
+   },
+   {
+    "size": 5,
+    "dominant": "P5",
+    "purity": 0.6,
+    "composition": {
+     "P4": 2,
+     "P5": 3
+    }
+   },
+   {
+    "size": 3,
+    "dominant": "P3",
+    "purity": 1.0,
+    "composition": {
+     "P3": 3
+    }
+   },
+   {
+    "size": 8,
+    "dominant": "P5",
+    "purity": 0.625,
+    "composition": {
+     "P4": 3,
+     "P5": 5
+    }
+   },
+   {
+    "size": 3,
+    "dominant": "P5",
+    "purity": 1.0,
+    "composition": {
+     "P5": 3
+    }
+   },
+   {
+    "size": 4,
+    "dominant": "P3",
+    "purity": 1.0,
+    "composition": {
+     "P3": 4
+    }
+   },
+   {
+    "size": 11,
+    "dominant": "P5",
+    "purity": 0.727,
+    "composition": {
+     "P4": 3,
+     "P5": 8
+    }
+   },
+   {
+    "size": 3,
+    "dominant": "P6",
+    "purity": 0.667,
+    "composition": {
+     "P3": 1,
+     "P6": 2
+    }
+   },
+   {
+    "size": 4,
+    "dominant": "P2",
+    "purity": 0.75,
+    "composition": {
+     "P1": 1,
+     "P2": 3
+    }
+   },
+   {
+    "size": 4,
+    "dominant": "P3",
+    "purity": 0.5,
+    "composition": {
+     "P3": 2,
+     "P6": 2
+    }
+   }
+  ]
+ },
+ "WADI": {
+  "dataset": "WADI",
+  "n_channels": 123,
+  "n_active": 91,
+  "n_stages": 3,
+  "stages": [
+   "P1",
+   "P2",
+   "P3"
+  ],
+  "nested_communities": {
+   "n_comm": 44,
+   "mean_size": 6.9,
+   "weighted_purity": 0.9043,
+   "frac_pure_comm": 0.6818
+  },
+  "community_purity_vs_chance": {
+   "weighted_purity": 0.9043,
+   "chance_mean": 0.7949,
+   "chance_p95": 0.8416,
+   "lift_over_chance": 0.1094
+  },
+  "flat_partition_vs_stages": {
+   "k": 3,
+   "ARI": -0.0488,
+   "NMI": 0.0193,
+   "homogeneity": 0.0121,
+   "completeness": 0.0474,
+   "v_measure": 0.0193
+  },
+  "example_communities": [
+   {
+    "size": 3,
+    "dominant": "P1",
+    "purity": 1.0,
+    "composition": {
+     "P1": 3
+    }
+   },
+   {
+    "size": 4,
+    "dominant": "P1",
+    "purity": 1.0,
+    "composition": {
+     "P1": 4
+    }
+   },
+   {
+    "size": 3,
+    "dominant": "P2",
+    "purity": 0.667,
+    "composition": {
+     "P1": 1,
+     "P2": 2
+    }
+   },
+   {
+    "size": 3,
+    "dominant": "P2",
+    "purity": 1.0,
+    "composition": {
+     "P2": 3
+    }
+   },
+   {
+    "size": 3,
+    "dominant": "P2",
+    "purity": 1.0,
+    "composition": {
+     "P2": 3
+    }
+   },
+   {
+    "size": 4,
+    "dominant": "P2",
+    "purity": 1.0,
+    "composition": {
+     "P2": 4
+    }
+   },
+   {
+    "size": 5,
+    "dominant": "P2",
+    "purity": 1.0,
+    "composition": {
+     "P2": 5
+    }
+   },
+   {
+    "size": 3,
+    "dominant": "P2",
+    "purity": 0.667,
+    "composition": {
+     "P1": 1,
+     "P2": 2
+    }
+   },
+   {
+    "size": 8,
+    "dominant": "P2",
+    "purity": 1.0,
+    "composition": {
+     "P2": 8
+    }
+   },
+   {
+    "size": 3,
+    "dominant": "P2",
+    "purity": 1.0,
+    "composition": {
+     "P2": 3
+    }
+   },
+   {
+    "size": 3,
+    "dominant": "P2",
+    "purity": 1.0,
+    "composition": {
+     "P2": 3
+    }
+   },
+   {
+    "size": 3,
+    "dominant": "P2",
+    "purity": 1.0,
+    "composition": {
+     "P2": 3
+    }
+   }
+  ]
+ }
+}

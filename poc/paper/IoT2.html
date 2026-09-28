@@ -60,8 +60,9 @@
  .doclink:hover{background:#eef3f8;text-decoration:none}
  @media print{.doclink{display:none}}
  /* revision3: all additions highlighted GREEN; deleted passages are removed, not struck */
- .rev-highlight{background:#86e29a;border-radius:2px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
- .rev2-highlight{background:#86e29a;border-radius:2px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+ /* revision4: only round-2 (this cycle) changes are highlighted; earlier-round marks are cleared */
+ .rev-highlight,.rev2-highlight{background:transparent}
+ .rev4-highlight{background:#bfe3f7;border-radius:2px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
  .rev-del{text-decoration:line-through;text-decoration-color:#c0392b;color:#a5443a;background:#fdecea;border-radius:2px}
 </style>
 </head>
@@ -75,15 +76,10 @@
 <script>try{if(sessionStorage.getItem(&#39;latad_pw&#39;)===&#39;1&#39;){document.getElementById(&#39;__pw&#39;).remove()}}catch(e){}</script>
 
 <div class="doclinks no-docx no-print">
-<a class="doclink" href="index.html">&#8962;&nbsp;Revision&nbsp;3 home</a>
-<a class="doclink" href="paper_revised.docx" download>&#8595;&nbsp;Revised paper (DOCX, changes marked)</a>
-<a class="doclink" href="paper_revised.pdf" download>&#8595;&nbsp;Revised paper (PDF)</a>
-<a class="doclink" href="letter_editor.html">&#9993;&nbsp;Response to Editor</a>
-<a class="doclink" href="letter_editor.docx" download>&#8595;&nbsp;Editor response (DOCX)</a>
-<a class="doclink" href="letter_reviewer1.html">&#9993;&nbsp;Response to Reviewer&nbsp;1</a>
-<a class="doclink" href="letter_reviewer1.docx" download>&#8595;&nbsp;Reviewer&nbsp;1 response (DOCX)</a>
-<a class="doclink" href="letter_reviewer2.html">&#9993;&nbsp;Response to Reviewer&nbsp;2</a>
-<a class="doclink" href="letter_reviewer2.docx" download>&#8595;&nbsp;Reviewer&nbsp;2 response (DOCX)</a>
+<a class="doclink" href="index.html">&#8962;&nbsp;Revision&nbsp;4 home</a>
+<a class="doclink" href="letter_round2.html">&#9993;&nbsp;Reviewer response (Round&nbsp;2)</a>
+<a class="doclink" href="letter_round2.docx" download>&#8595;&nbsp;Reviewer response (Round&nbsp;2, DOCX)</a>
+<a class="doclink" href="../revision3/index.html">&#8617;&nbsp;Round-1 response package</a>
 <a class="doclink" href="journal_info.html">&#8505;&nbsp;Journal info</a>
 </div>
 
@@ -243,8 +239,7 @@ uncertainty to sharpen sensitivity to normal patterns, and CATCH [<span class="r
 correlations through frequency-domain patching. Both remain reconstruction-based, so the mechanism analysis of
 &sect;8 suggests they inherit the same blind spot on the reconstructable-but-improbable joint faults that define our
 difficult subset. We benchmark USAD and TranAD, the reconstruction- and transformer-based deep detectors, under the same
-raw, difficulty-stratified metrics (the comparison is in &sect;6). <span class="rev2-highlight"> We also benchmark GDN under the same protocol (&sect;5.5).</span> A raw-metric evaluation of the newer reconstruction detectors (SensitiveHUE, CATCH) is left to future
-work.</p>
+raw, difficulty-stratified metrics (the comparison is in &sect;6). <span class="rev2-highlight"> We also benchmark GDN under the same protocol (&sect;5.5).</span> <span class="rev4-highlight">These three are widely-adopted, well-established detectors spanning the dominant deep-detector families; SensitiveHUE and CATCH are recently introduced reconstruction-based variants that this same mechanism analysis predicts inherit the in-envelope blind spot, and a direct raw-metric comparison against them is left to future work.</span></p>
 
 <p>Beyond public benchmarks, sensor-driven condition monitoring and fault prediction in operational CPS motivate
 modeling the multivariate sensor stream directly: vibration-based machine diagnostics [<span class="rev-highlight"><a href="#r-gearbox">42</a></span>,&nbsp;<span class="rev-highlight"><a href="#r-vibdecomp">43</a></span>],
@@ -548,7 +543,7 @@ setpoint, and a shared control lever drives its dependent channels together, so 
 the <span class="rev2-highlight">heterogeneous, correlated channels of A7</span> surface as blocks of the channel correlation graph. Agglomerative clustering on
 the train-normal correlation graph groups the channels into nested communities <math
 xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>G</mi></math> (dendrogram subtrees of size 3 to 25
-channels) that serve as data-driven proxies for these subsystems, with no supervision and no plant schematic.</p>
+channels) that serve as data-driven proxies for these subsystems, with no supervision and no plant schematic. <span class="rev4-highlight">On SWaT and WADI these communities align with the plants' documented process stages well above chance, though not exactly, since some cross-stage coupling is physically real (Appendix&nbsp;C).</span></p>
 
 <p>Faults inherit the same locality: a stuck valve, a drifting analyzer, or a fouled sensor perturbs its own
 subsystem while the rest of the plant runs normally, so an incipient fault is typically confined to one community, a
@@ -573,7 +568,7 @@ are nested subtrees and can overlap, this sum is an over-complete pooling rather
 display="inline"><mrow><msub><mo>&#8853;</mo><mrow><mi>G</mi><mo>&#8712;</mo><mi>&#119966;</mi></mrow></msub><msub><mi>w</mi><mi>G</mi></msub><mspace width="0.1em"/><msub><mi>s</mi><mi>G</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math>.
 The weight <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msub><mi>w</mi><mi>G</mi></msub></math>
 grows with the community&rsquo;s internal cohesion (its mean absolute pairwise channel correlation), because a density violation
-inside a tightly coupled subsystem (A7) is more diagnostic than the same deviation in a loosely coupled one. The
+inside a tightly coupled subsystem (A7) is more diagnostic than the same deviation in a loosely coupled one. <span class="rev4-highlight">The per-community scores and the whole-plant-expert score are each standardized on train-normal, to zero mean and unit variance, before they are combined, so the combination sums comparable standardized surprises rather than statistics of different scale or meaning.</span> The
 combiner <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mo>&#8853;</mo></math> must adapt to the
 fault&rsquo;s unknown extent: summation is optimal when the fault perturbs many communities, a maximum when it is
 confined to one, and Higher Criticism [<span class="rev-highlight"><a href="#r-hc">49</a></span>], a sparse-signal statistic that asks whether more communities are
@@ -689,12 +684,12 @@ correction; our detector and all local baselines use HAI at native resolution. <
 under the identical protocol: its per-timestep anomaly scores are re-aggregated onto our window grid and difficulty
 subsets exactly as the deep detectors are, giving a single-seed, construct-matched GDN figure on all three datasets
 (Table&nbsp;2), scored by AUROC only.</span>
-We do <em>not</em> apply point adjustment to any method (&sect;2.2). <span class="rev2-highlight">The trivial max|u| rule of &sect;5.3 is also shown as a diagnostic row.</span></p>
+We do <em>not</em> apply point adjustment to any method (&sect;2.2). <span class="rev2-highlight">The trivial max|u| rule of &sect;5.3 is also shown as a diagnostic row.</span> <span class="rev4-highlight">These detectors are chosen as established, widely-adopted representatives of the autoencoder, transformer, and graph families rather than as an exhaustive survey; more recently introduced methods are discussed in &sect;2.4.</span></p>
 
 <h2>6&nbsp;&nbsp;Results</h2>
 
 <p>Table 2 reports AUROC and best raw point-wise F1 for every method on the three datasets and the three
-subsets. The reported model is <strong>LatAD (regime-community)</strong> (&sect;4.4).</p>
+subsets. The reported model is <strong>LatAD (regime-community)</strong> (&sect;4.4). <span class="rev4-highlight">The difficulty stratification is detector-agnostic: it is fixed on train-normal statistics alone, independent of any scored detector, so it does not favour LatAD, and the same subsets are used to score every method. Subset sizes differ, and the WADI difficult subset is small (30 windows from 8 attack episodes); the WADI difficult-subset comparison is therefore underpowered, which is why LatAD's WADI result is reported below as a tie with the linear baseline rather than a performance claim.</span></p>
 
 <div class="tblwrap">
 <table>
@@ -807,7 +802,7 @@ subset to 0.671.</span></p>
 <p><span class="rev2-highlight"><strong>Deep SOTA under raw metrics.</strong> Re-computed with raw point-wise metrics, the deep detectors USAD
 and TranAD fall to 0.497 and 0.445 on the HAI difficult subset, near chance and far below LatAD's 0.845, even while
 they remain strong on Easy (0.94&ndash;0.99). On WADI they trail LatAD without collapsing (0.579 / 0.613 versus 0.771).</span> This is the concrete face of the &ldquo;<span class="rev2-highlight">illusion of progress</span>&rdquo;:
-models that look strong under point-adjusted F1 have little difficult-fault signal once the metric is raw<span class="rev2-highlight">, and lose most sharply where the fault breaks joint structure (above), consistent across datasets</span>.</p>
+models that look strong under point-adjusted F1 have little difficult-fault signal once the metric is raw<span class="rev2-highlight">, and lose most sharply where the fault breaks joint structure (above), consistent across datasets</span>. <span class="rev4-highlight">This empirical finding is stated for the evaluated detectors (USAD, TranAD, GDN); SensitiveHUE and CATCH are recently introduced reconstruction-based methods that the same mechanism argument predicts will share the in-envelope blind spot, and a direct comparison is left to future work.</span></p>
 
 <figure>
 <svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica Neue,Arial,sans-serif" font-size="12">
@@ -1104,7 +1099,7 @@ regime-community ensemble, itself construction plus aggregation), scoring heads,
 density-estimation axes on the difficult subset, holding the rest fixed. Factorizing the global density over regime
 communities lifts <span class="rev2-highlight">WADI and HAI</span>, most on WADI, whose difficult faults are confined to small correlated subsystems that a global density dilutes.
 <span class="rev2-highlight">On WADI the community aggregation carries the whole effect: cohesion-weighted Higher Criticism over the per-community experts lifts the single-latent global density from 0.634 to 0.795, and fusing in the whole-plant expert (the headline fusion) costs a little, so the fused headline settles at 0.771.
-On HAI the whole-plant-expert fusion instead lifts the score (0.801 to 0.845), where the hard valve and flow deviations are correlation-conditional. On SWaT the raw aggregations sit near the drift-suppressed floor (0.47 to 0.60); the SWaT difficult subset is resolved by the changepoint typing of &sect;7, not by the combiner choice.</span>
+On HAI the whole-plant-expert fusion instead lifts the score (0.801 to 0.845), where the hard valve and flow deviations are correlation-conditional. <span class="rev4-highlight">This whole-plant fusion is a single untuned design choice applied identically to every dataset: it is net-beneficial, with a large HAI gain against a small WADI cost that stays inside the reported confidence interval, consistent with the finding that the factorization helps in proportion to how multimodal the normal law is. An auto-gate on the whole-plant term, analogous to the residual-head gate, could drop it on near-single-mode records; we keep one configuration and disclose the trade-off rather than tune per dataset.</span> On SWaT the raw aggregations sit near the drift-suppressed floor (0.47 to 0.60); the SWaT difficult subset is resolved by the changepoint typing of &sect;7, not by the combiner choice.</span>
 Among the sparsity-adaptive combiners,
 cohesion-weighted Higher Criticism is the one that leads on <span class="rev2-highlight">WADI and HAI</span><span class="rev2-highlight"> (all aggregation rules here fused with the whole-plant expert)</span>, because it weights a violation by the
 coupling strength of the subsystem it occurs in (A7) while adapting to the fault&rsquo;s extent.</p>
@@ -2837,6 +2832,19 @@ by a wide two-component head versus the 80-component head. Synthetic positive co
 </div>
 
 <p class="rev2-highlight"><strong>SKAB.</strong> SKAB [<a href="#r-skab">63</a>], a 400-window rotor rig, has no close-distinct regime pairs (0 of 12; it is a single-loop rig), so it does not exhibit the A8 precondition. A8 is specified for completeness but not demonstrated on any dataset in this study.</p>
+
+<h3 class="rev4-highlight">Community&ndash;stage alignment</h3>
+<p class="rev4-highlight">Because the correlation communities are used for subsystem-level interpretation (&sect;4.4, &sect;8), we check how far they correspond to the plants' documented physical stages. The stage of each SWaT and WADI channel is read from its name (SWaT sensor names carry a stage digit, for example FIT101 in stage&nbsp;1 and AIT201 in stage&nbsp;2; WADI names carry a process-area prefix: <code>1_</code> for the primary grid, <code>2_</code>/<code>2A_</code>/<code>2B_</code> for the secondary and booster, <code>3_</code> for the consumer return), and the communities are constructed from train-normal correlation exactly as in &sect;4.4. Table&nbsp;C2 reports the size-weighted share of channels that fall in their community's dominant stage, against a label-permutation null.</p>
+<div class="tblwrap">
+<table>
+<caption class="rev4-highlight"><strong>Table C2.</strong> Alignment of the correlation communities with the documented physical stages. <em>Stage purity</em> is the size-weighted fraction of channels lying in their community's dominant stage; <em>null</em> is its mean under 2,000 random label permutations (the observed value exceeds the null's 95th percentile in both cases). <em>Pure</em> is the share of communities entirely within one stage. On SWaT, whose six stages are balanced, a flat cut of the same dendrogram at six clusters also gives normalized mutual information 0.465 and homogeneity 0.436 against the stages; on WADI a single process area dominates the channel count, so a partition-agreement score is uninformative there and the purity-versus-null comparison is the appropriate measure.</caption>
+<thead><tr><th class="l">Dataset</th><th>Active channels</th><th>Documented stages</th><th>Communities</th><th>Stage purity</th><th>Permutation null</th><th>Stage-pure</th></tr></thead>
+<tbody>
+<tr class="rev4-highlight"><td class="l">SWaT</td><td>43</td><td>6</td><td>26</td><td class="win">0.578</td><td>0.370</td><td>12%</td></tr>
+<tr class="rev4-highlight"><td class="l">WADI</td><td>91</td><td>3</td><td>44</td><td class="win">0.904</td><td>0.795</td><td>68%</td></tr>
+</tbody></table>
+</div>
+<p class="rev4-highlight">On both plants the communities are markedly more stage-coherent than chance (size-weighted purity above the null by +0.207 on SWaT and +0.109 on WADI, each beyond the null's 95th percentile), and 68&nbsp;percent of WADI communities lie entirely within one process area. The alignment is deliberately not exact: a purely correlation-driven partition places a minority of channels across stage boundaries because flow, pressure, and dosing physically propagate between adjacent stages. This supports the subsystem-level interpretation while respecting its data-driven, overlapping nature, and the localization evaluation of Table&nbsp;5 confirms the proxies are operationally useful.</p>
 
 <h2 class="rev2-highlight">Appendix D. Implementation and reproducibility</h2>
 <p class="rev2-highlight">LatAD and the local feature baselines share the same windowing and features; the deep sequence baselines (USAD, TranAD, GDN) use their native inputs and are compared on the same labels and evaluation grid (&sect;5.5). Raw channels are standardized per channel on train-normal statistics and, on WADI and SWaT, clipped to &plusmn;10 standard deviations (HAI is not clipped; &sect;5.1); the stream is then windowed at <em>W</em>&nbsp;=&nbsp;60 with stride 30, and each window is summarized by six per-channel statistics (mean, standard deviation, minimum, maximum, last&minus;first, and range), concatenated in stat-blocked order, giving a feature dimension of 6<em>C</em> (732 for WADI, 354 for HAI, 306 for SWaT). A window is labeled anomalous when more than 5% of its raw timesteps carry an attack label. All multi-seed detectors use seeds 0&ndash;4.</p>
