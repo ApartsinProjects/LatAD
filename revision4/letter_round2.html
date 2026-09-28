@@ -10,17 +10,15 @@
   h1{font-size:1.4rem;margin:0 0 .2em}
   h2{font-size:1.08rem;margin:1.5em 0 .35em;border-bottom:1px solid #ccc;padding-bottom:.15em}
   .meta{color:#555;font-size:.95rem;margin:0 0 1.4em}
-  blockquote{margin:.6em 0;padding:.5em .9em;border-left:3px solid #9aa7b4;
-    background:#f4f6f8;font-style:italic;color:#33404d}
+  blockquote{margin:.5em 0;padding:.4em .9em;border-left:3px solid #9aa7b4;
+    background:#f4f6f8;font-style:italic;color:#33404d;font-size:.95rem}
   .guide{border-left:3px solid #c9a13b;background:#fbf7ec;color:#5c4a17}
-  .resp{margin:.5em 0 1.1em}
+  .resp{margin:.4em 0 1em}
   .resp b.lead{color:#1f4e79}
-  .draft{color:#8a6d3b;background:#fcf8e3;border:1px solid #e6d8a8;border-radius:5px;
-    padding:6px 10px;font-size:.9rem;margin:0 0 1.2em}
-  .todo{color:#a5443a;font-weight:bold}
-  ul{margin:.4em 0 .8em;padding-left:1.4em}
-  li{margin:.25em 0}
-  .close{margin-top:1.8em}
+  .loc{color:#1f4e79;font-weight:bold}
+  ul{margin:.4em 0 .9em;padding-left:1.3em}
+  li{margin:.3em 0}
+  .close{margin-top:1.6em}
 </style>
 </head>
 <body>
@@ -34,153 +32,69 @@ Authors: Alexander Apartsin and Yehudit Aperstein
 
 <p>Dear Reviewer,</p>
 
-<p>Thank you for the continued reading of our manuscript. We address each of the five points below, quoting the
-comment and giving our response with the supporting evidence and the intended manuscript change.</p>
+<p>Thank you for the continued reading. We summarize our response to each of the five points below, with the
+result and a pointer to where it appears in the revised manuscript (this round's changes are highlighted in
+blue). New and changed text is marked in the manuscript.</p>
 
-<!-- ================= COMMENT 1 ================= -->
-<h2>Comment 1. Correlation-communities are treated as physical subsystems, yet Pearson correlation need not reflect physical coupling and communities overlap; examine the relation to real process stages on SWaT or WADI.</h2>
-<blockquote>This manuscript directly treats correlation-based communities as physical subsystems, although Pearson
-correlation does not ensure real physical coupling and the communities can overlap. The relation between these
-communities and actual process stages or control loops should be examined on SWaT or WADI before using
-subsystem-level interpretation.</blockquote>
+<h2>Comment 1. Correlation-communities need not reflect physical coupling; examine their relation to real process stages on SWaT or WADI.</h2>
+<blockquote>...Pearson correlation does not ensure real physical coupling and the communities can overlap. The
+relation between these communities and actual process stages or control loops should be examined on SWaT or
+WADI...</blockquote>
+<p class="resp"><b class="lead">Examined directly; alignment is above chance but not exact.</b> Scoring the
+communities against each plant's documented stages (read from channel names), size-weighted stage purity is
+<b>0.578 vs a 0.370 permutation null on SWaT</b> (NMI 0.465) and <b>0.904 vs 0.795 on WADI</b> (68&nbsp;percent
+of communities within one process area). The alignment is significant but deliberately imperfect, since flow,
+pressure, and dosing physically couple adjacent stages, which is why the communities are described as data-driven
+subsystem proxies rather than exact stages. <span class="loc">See new Appendix&nbsp;C &ldquo;Community&ndash;stage
+alignment&rdquo; and Table&nbsp;C2; wording softened in &sect;4.4; downstream usefulness in Table&nbsp;5.</span></p>
 
-<p class="resp"><b class="lead">Response: examined directly on SWaT and WADI.</b> We agree that the
-correlation communities are data-driven proxies rather than a claim of physical coupling, and that they overlap
-by construction (they are nested dendrogram subtrees, and the cohesion-weighted Higher Criticism combiner is
-designed to aggregate overlapping communities). We performed exactly the examination requested. Using the
-documented plant structure, which is encoded in the channel names (SWaT sensor names carry their stage, for
-example FIT101/LIT101/MV101 in stage&nbsp;1 and AIT201 in stage&nbsp;2; WADI names carry their process area,
-for example <code>1_AIT_001</code>, <code>2_MV_003</code>, <code>2A_</code>, <code>2B_</code>,
-<code>3_</code>), we reproduced the community construction on train-normal and measured how well the discovered
-communities align with the physical stages.</p>
-<ul>
-  <li><b>SWaT</b> (43 active channels, 6 documented stages): the communities are stage-coherent well above
-  chance, with size-weighted dominant-stage purity <b>0.578 versus a permutation-null baseline of 0.370</b>
-  (+0.207), normalized mutual information 0.465, and homogeneity 0.436 for a flat partition cut at
-  <em>k</em>&nbsp;=&nbsp;6.</li>
-  <li><b>WADI</b> (93 active channels): purity <b>0.848 versus a 0.696 null</b> (+0.152), with 58&nbsp;percent
-  of communities entirely within a single process area.</li>
-</ul>
-<p class="resp">The alignment is significant but deliberately not exact: some cross-stage correlation is
-physically real (flow, pressure, and dosing propagate between adjacent stages), so a purely correlation-driven
-partition should, and does, place a minority of channels across stage boundaries. This is precisely why the
-paper describes the communities as <em>data-driven subsystem proxies</em> obtained &ldquo;with no plant
-schematic,&rdquo; not as recovered process stages. The result supports the subsystem-level interpretation while
-respecting its limits. We have added this alignment analysis to the revised manuscript (a paragraph and
-Table&nbsp;C2 in Appendix&nbsp;C, with the numbers above), and adjusted the wording toward &ldquo;correlation
-community (subsystem proxy)&rdquo; where the distinction matters. The
-localization evaluation already in the paper (Table&nbsp;5) is the downstream confirmation that these proxies
-are operationally useful: the top-ranked community contains the attacked subsystem well above a coverage-aware
-random baseline.</p>
+<h2>Comment 2. Adding the standardized HC score to the whole-plant expert mixes scores of different meaning, and the effect is dataset-dependent (WADI 0.795&#8594;0.771, HAI 0.801&#8594;0.845).</h2>
+<blockquote>...the two scores have different statistical meanings. The difficult AUROC decreases from 0.795 to 0.771
+on WADI but increases from 0.801 to 0.845 on HAI...</blockquote>
+<p class="resp"><b class="lead">Standardized before combining; the dependence is the paper's thesis.</b> Both
+terms are standardized on train-normal (zero mean, unit variance) before they are summed, so the combination is
+over comparable standardized surprises. The dataset-dependence is expected and already reported: the whole-plant
+fusion is a single untuned choice, net-beneficial (HAI +0.044 against a WADI cost of 0.024 inside the confidence
+interval), consistent with the factorization helping in proportion to how multimodal the normal law is; an
+auto-gate could drop it on near-single-mode records. <span class="loc">See &sect;4.4 (standardization) and
+Appendix&nbsp;A (trade-off and auto-gate note).</span></p>
 
-<!-- ================= COMMENT 2 ================= -->
-<h2>Comment 2. Adding the standardized HC score to the whole-plant expert mixes scores of different statistical meaning, and the effect is strongly dataset-dependent (WADI 0.795&#8594;0.771, HAI 0.801&#8594;0.845).</h2>
-<blockquote>This manuscript directly adds the standardized HC score to the whole-plant expert score, although the
-two scores have different statistical meanings. The difficult AUROC decreases from 0.795 to 0.771 on WADI but
-increases from 0.801 to 0.845 on HAI, which suggests that this fusion is strongly dataset-dependent.</blockquote>
+<h2>Comment 3. The connection to industrial-IoT remains limited; consider studies on LoRa link performance and LPWAN scheduling.</h2>
+<blockquote>...could refer to existing studies such as enhancing link performance for mobile LoRa networks and
+leveraging imperfect-orthogonality-aware scheduling for high scalability in LPWAN.</blockquote>
+<p class="resp"><b class="lead">IIoT framing strengthened; the two studies fall outside the paper's layer.</b>
+The IIoT positioning was deepened in the previous revision (&sect;1, &sect;2.1, Figure&nbsp;1). Following the
+journal's guideline for recommended references (&ldquo;critically analyze them&hellip; if unnecessary, you should
+not include them&rdquo;), the two studies address the wireless-connectivity layer (LoRa link performance; LPWAN
+scheduling), whereas this paper works at the process-telemetry / analytics layer, with no shared problem, method,
+dataset, or metric; we therefore did not include them. An earlier, since-edited version of a Reviewer&nbsp;1
+comment named these papers, and we reached the same conclusion then. We would gladly add a brief reference given
+a specific connection to the paper's topic.</p>
 
-<p class="resp"><b class="lead">Response.</b> On the &ldquo;different statistical meanings&rdquo; point: this is
-the reason both terms are <em>standardized</em> before they are combined. Each score is centered and scaled by
-its own train-normal mean and standard deviation, so the community Higher-Criticism score and the whole-plant
-expert score enter the sum on a common, unit-variance scale rather than in their native units. The combination
-is a sum of standardized surprises, not a sum of raw statistics of different magnitudes.</p>
-<p class="resp">On the dataset-dependence: it is real, it is reported in the paper (Appendix&nbsp;A gives exactly
-these numbers), and it follows directly from the paper's thesis rather than contradicting it. LatAD uses a
-<em>single configuration across all three datasets with no per-dataset tuning</em>. The whole-plant-expert
-fusion is a net-beneficial design choice: it adds +0.044 on HAI (0.801 to 0.845), where the difficult faults
-are correlation-conditional and the whole-plant view helps, and costs 0.024 on WADI (0.795 to 0.771), where the
-difficult faults are already confined to small correlated subsystems that the per-community experts capture on
-their own. This WADI cost sits inside the reported confidence interval and mirrors the paper's central finding
-that the factorization helps in proportion to how multimodal and structured the normal law is (the cross-channel
-gain is +0.200 on HAI versus +0.017 on WADI). We report both the community-only aggregation (WADI 0.795) and the
-fused headline (0.771) transparently in Appendix&nbsp;A. The revised manuscript states this trade-off explicitly
-at the fusion definition and adds the standardization clarification, and notes that an auto-gate on the
-whole-plant term (analogous to the residual-head gate already in the model) could drop it on near-single-mode
-records; we prefer to keep a single untuned configuration and disclose the trade-off rather than select per
-dataset.</p>
+<h2>Comment 4. The difficult subset uses the authors' own rule; WADI has only 30 windows / 8 episodes and the LatAD&#8211;LinRes CI includes zero.</h2>
+<blockquote>...WADI contains only 30 difficult windows from 8 attack episodes, and the confidence interval between
+LatAD and LinRes is [-0.161, 0.205], so the current evidence is not strong enough for broad performance
+conclusions.</blockquote>
+<p class="resp"><b class="lead">Agreed; no WADI claim is made.</b> The difficulty rule is detector-agnostic
+(train-normal only, independent of any scored detector), and the WADI difficult subset is small and underpowered,
+so the WADI result is reported as a <em>tie</em> with the linear baseline (the interval includes zero), not a
+superiority claim. The single significant headline is HAI (+0.088, 95&nbsp;percent CI [0.042, 0.157]); the
+manuscript makes no broad cross-baseline &ldquo;outperforms&rdquo; claim. <span class="loc">Stated explicitly at
+the start of &sect;6; per-dataset verdicts in &sect;6 and the Conclusion.</span></p>
 
-<!-- ================= COMMENT 3 ================= -->
-<h2>Comment 3. The connection to the industrial-IoT system remains limited; consider existing studies on LoRa link performance and LPWAN scheduling.</h2>
-<blockquote>The connection to the industrial IoT system remains limited, and could refer to existing studies
-such as enhancing link performance for mobile LoRa networks and leveraging imperfect-orthogonality-aware
-scheduling for high scalability in LPWAN.</blockquote>
+<h2>Comment 5. Comparison with modern deep detectors is limited; include more recent methods or narrow the conclusions.</h2>
+<blockquote>...SensitiveHUE and CATCH are discussed, but the main experiments still focus on USAD, TranAD, and GDN.
+More recent methods should be included, or the conclusions about reconstruction-based deep detectors should be
+narrowed.</blockquote>
+<p class="resp"><b class="lead">Conclusion narrowed to the evaluated detectors.</b> The three baselines are
+established, widely-adopted representatives of the dominant deep-detector families, each with well over a thousand
+citations (USAD 1,335; TranAD 1,141; GDN 1,557; Semantic Scholar, 2026); SensitiveHUE (44) and CATCH (161) are
+recently introduced and both reconstruction-based, which the &sect;8 mechanism analysis predicts inherit the same
+in-envelope blind spot. Per the reviewer's either/or, we narrowed the empirical claim to the evaluated detectors
+(USAD, TranAD, GDN) and present SensitiveHUE/CATCH as recent variants with a direct comparison left to future
+work; we would provide that comparison if the editor prefers. <span class="loc">See &sect;2.4 and &sect;8.</span></p>
 
-<p class="resp"><b class="lead">Response.</b> We appreciate the attention to the industrial-IoT positioning of
-the work, and we strengthened that positioning in the previous revision: Section&nbsp;1 now frames the method
-within the IIoT stack, Section&nbsp;2.1 discusses the edge-inference thread with on-topic references, and
-Figure&nbsp;1 places the detector in an IIoT monitoring deployment. On the two specific studies recommended, we
-followed the journal's guideline for reviewer-recommended references:</p>
-<blockquote class="guide">Editor guideline (IV): &ldquo;If the reviewer(s) recommended references, critically
-analyze them to ensure that their inclusion would enhance your manuscript. If you believe these references are
-unnecessary, you should not include them.&rdquo;</blockquote>
-<p class="resp">Analyzing the two suggested works critically, they address a different layer of the IIoT stack
-from the one this paper studies. The LoRa study concerns physical- and link-layer performance of the wireless
-channel; the LPWAN study concerns medium-access scheduling for network scalability. Both operate at the
-wireless-connectivity layer, addressing how telemetry is transported. Our contribution operates at the
-process-telemetry / analytics layer above it: unsupervised anomaly detection on the multivariate sensor stream
-once the telemetry has arrived. There is no shared problem formulation, method, dataset, or evaluation metric,
-and neither study informs the modeling of normal CPS telemetry or the detection of in-envelope faults. We
-therefore concluded, per guideline&nbsp;(IV), that including these references would not enhance the manuscript.</p>
-<p class="resp">For completeness on this point: an earlier version of a Reviewer&nbsp;1 comment (subsequently
-edited) named these two studies explicitly; we performed the same critical analysis at that time and reached
-the same conclusion, that they have no direct connection to anomaly detection in the telemetry of cyber-physical
-systems. Should the reviewer or editor see a specific connection we have missed, we would gladly add a brief
-contextual reference and would welcome a pointer to the intended link.</p>
-
-<!-- ================= COMMENT 4 ================= -->
-<h2>Comment 4. The difficult subset uses the authors' own 99th-percentile and PCA T&sup2;/SPE rule; WADI has only 30 difficult windows from 8 episodes and the LatAD&#8211;LinRes CI is [&#8722;0.161, 0.205], so the evidence is not strong enough for broad conclusions.</h2>
-<blockquote>This manuscript places strong emphasis on the difficult subset, but this subset is defined by the
-proposed 99th-percentile max-mean rule and PCA T2/SPE filtering. WADI contains only 30 difficult windows from 8
-attack episodes, and the confidence interval between LatAD and LinRes is [-0.161, 0.205], so the current
-evidence is not strong enough for broad performance conclusions.</blockquote>
-
-<p class="resp"><b class="lead">Response.</b> We agree on the WADI power limit, and the manuscript already
-declines to draw a broad conclusion there. Two points clarify the evidence.</p>
-<p class="resp">First, the difficulty rule is <em>detector-agnostic</em>: it is defined entirely on train-normal
-statistics (the channel-wise 99th percentile and a linear PCA T&sup2;/SPE subspace fixed on train-normal), with
-no reference to LatAD or any scored detector. The same subset is used to evaluate every method, so it does not
-bias the comparison toward our model; it isolates the reconstructable-but-improbable faults for all detectors
-equally.</p>
-<p class="resp">Second, we do not claim a WADI win. The single statistically significant headline is on HAI
-(+0.088, 95&nbsp;percent CI [0.042, 0.157], P&nbsp;&lt;&nbsp;0.0005). On WADI the manuscript reports precisely
-what the reviewer notes: LatAD leads every learned detector but <em>ties</em> the linear baseline LinRes, with a
-confidence interval that includes zero (not separable at 8&nbsp;episodes). This is stated as a tie, not a
-superiority claim. The revised manuscript states this explicitly where the difficult-subset results are
-introduced (&sect;6): the difficulty rule is detector-agnostic, and the WADI difficult subset is small
-(30&nbsp;windows from 8&nbsp;episodes) and underpowered, so LatAD's WADI result is reported as a tie with the
-linear baseline rather than a performance claim. The per-dataset verdicts (significant on HAI; leads-but-ties
-the linear baseline on WADI; drift-recovered on SWaT) are stated in the Results and Conclusion, and the
-manuscript makes no broad cross-baseline &ldquo;outperforms&rdquo; claim.</p>
-
-<!-- ================= COMMENT 5 ================= -->
-<h2>Comment 5. Comparison with modern deep detectors is limited: SensitiveHUE and CATCH are discussed but experiments use USAD, TranAD, GDN; include more recent methods or narrow the conclusions.</h2>
-<blockquote>The comparison with modern deep anomaly detection methods remains limited because SensitiveHUE and
-CATCH are discussed, but the main experiments still focus on USAD, TranAD, and GDN. More recent methods should
-be included, or the conclusions about reconstruction-based deep detectors should be narrowed.</blockquote>
-
-<p class="resp"><b class="lead">Response.</b> Our baseline set was chosen to be representative of the
-established deep-detector paradigms rather than exhaustive: USAD (autoencoder reconstruction), TranAD
-(transformer reconstruction), and GDN (graph relational) are among the most widely adopted and highly cited
-multivariate CPS anomaly detectors, each with well over a thousand citations (USAD 1,335; TranAD 1,141;
-GDN 1,557; Semantic Scholar, 2026), and they span the three dominant families a new method is measured
-against: autoencoder reconstruction, transformer reconstruction, and graph relational. SensitiveHUE
-(KDD&nbsp;2024) and CATCH (ICLR&nbsp;2025) are far less established, with 44 and 161 citations respectively at
-the time of writing, roughly an order of magnitude fewer; an exhaustive comparison against every newly
-published method is not feasible within one study, and the field's own reproducibility critiques (cited in the
-paper) caution against treating just-released numbers as settled.</p>
-<p class="resp">Both recommended methods are, moreover, reconstruction-based: SensitiveHUE reweights a
-reconstruction error by learned per-variable uncertainty, and CATCH reconstructs through frequency-domain
-channel patching. The mechanism analysis in Section&nbsp;8 concerns the reconstruction objective itself, that a
-sufficiently flexible decoder rebuilds a fault whose marginals stay in range, so it applies to these variants as
-well; we already note this in the manuscript. Per the reviewer's either/or, we have <b>narrowed the
-conclusion</b> in the revised manuscript (&sect;2.4 and &sect;8) so that the empirical claim is made only for the
-evaluated detectors (USAD, TranAD, GDN); SensitiveHUE and CATCH are presented explicitly as recently introduced
-reconstruction-based variants that the mechanism analysis predicts inherit the same in-envelope blind spot, with
-a direct comparison left to future work. Should the editor prefer a direct empirical comparison, we would
-provide it in a further revision.</p>
-
-<p class="close">We hope these responses address the five points, and we will apply the noted manuscript changes
-in the revised version.</p>
+<p class="close">We hope these responses and the marked manuscript changes address the five points.</p>
 
 <p>Sincerely,<br>
 Alexander Apartsin and Yehudit Aperstein</p>
