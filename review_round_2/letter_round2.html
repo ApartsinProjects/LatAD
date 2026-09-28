@@ -53,7 +53,7 @@ alignment&rdquo; and Table&nbsp;C2; wording softened in &sect;4.4; downstream us
 on WADI but increases from 0.801 to 0.845 on HAI...</blockquote>
 <p class="resp"><b class="lead">Standardized before combining; the dependence is the paper's thesis.</b> Both
 terms are standardized on train-normal (zero mean, unit variance) before they are summed, so the combination is
-over comparable standardized surprises. The dataset-dependence is expected and already reported: the whole-plant
+over comparable standardized surprises. The dataset-dependence is expected and was already reported in the submitted version, in Appendix&nbsp;A (the figures the reviewer cites are from that appendix): the whole-plant
 fusion is a single untuned choice, net-beneficial (HAI +0.044 against a WADI cost of 0.024 inside the confidence
 interval), consistent with the factorization helping in proportion to how multimodal the normal law is; an
 auto-gate could drop it on near-single-mode records. <span class="loc">See &sect;4.4 (standardization) and
@@ -78,7 +78,8 @@ conclusions.</blockquote>
 <p class="resp"><b class="lead">Agreed; no WADI claim is made.</b> The difficulty rule is detector-agnostic
 (train-normal only, independent of any scored detector), and the WADI difficult subset is small and underpowered,
 so the WADI result is reported as a <em>tie</em> with the linear baseline (the interval includes zero), not a
-superiority claim. The single significant headline is HAI (+0.088, 95&nbsp;percent CI [0.042, 0.157]); the
+superiority claim; the submitted version already reports it this way, and we have now made the subset's limited
+power explicit. The single significant headline is HAI (+0.088, 95&nbsp;percent CI [0.042, 0.157]); the
 manuscript makes no broad cross-baseline &ldquo;outperforms&rdquo; claim. <span class="loc">Stated explicitly at
 the start of &sect;6; per-dataset verdicts in &sect;6 and the Conclusion.</span></p>
 
@@ -89,7 +90,7 @@ narrowed.</blockquote>
 <p class="resp"><b class="lead">Conclusion narrowed to the evaluated detectors.</b> The three baselines are
 established, widely-adopted representatives of the dominant deep-detector families, each with well over a thousand
 citations (USAD 1,335; TranAD 1,141; GDN 1,557; Semantic Scholar, 2026); SensitiveHUE (44) and CATCH (161) are
-recently introduced and both reconstruction-based, which the &sect;8 mechanism analysis predicts inherit the same
+recently introduced and both reconstruction-based; both were already discussed in the submitted version, and the &sect;8 mechanism analysis predicts they inherit the same
 in-envelope blind spot. Per the reviewer's either/or, we narrowed the empirical claim to the evaluated detectors
 (USAD, TranAD, GDN) and present SensitiveHUE/CATCH as recent variants with a direct comparison left to future
 work; we would provide that comparison if the editor prefers. <span class="loc">See &sect;2.4 and &sect;8.</span></p>
